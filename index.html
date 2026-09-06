@@ -315,6 +315,18 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .qb-needle::before{content:'🕋';position:absolute;top:-24px;left:50%;transform:translateX(-50%);font-size:20px}
 .qb-deg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:1.05em;color:var(--ink2);pointer-events:none;padding-top:66px}
 .qb-status{text-align:center;font-size:.8em;color:var(--ink2);line-height:1.55}
+
+/* ─────────── quiz levels ─────────── */
+.lvl{display:flex;align-items:center;gap:12px;padding:13px 14px;border:1px solid var(--line);border-radius:var(--r);margin-bottom:8px;cursor:pointer;background:var(--bg);transition:all .2s}
+.lvl:active{transform:scale(.985)}
+.lvl.locked{opacity:.45;filter:grayscale(.6)}
+.lvl.passed{border-color:var(--brand-2);background:var(--brand-soft)}
+.lvl-n{width:40px;height:40px;border-radius:12px;background:var(--gold-soft);display:flex;align-items:center;justify-content:center;font-size:1.15em;flex-shrink:0}
+.lvl.passed .lvl-n{background:var(--brand-soft)}
+.lvl-t{flex:1;min-width:0}.lvl-t b{font-size:.88em;display:block;line-height:1.35}.lvl-t small{font-size:.74em;color:var(--ink3)}
+.lvl-s{font-size:.72em;font-weight:800;color:var(--gold);white-space:nowrap}
+.lvl.passed .lvl-s{color:var(--brand-2)}
+.qz-exit{font-size:.76em;font-weight:700;color:var(--ink3);cursor:pointer;text-decoration:underline}
 </style>
 </head>
 <body>
@@ -337,11 +349,18 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
   <div class="card cd"><div class="cd-n" id="cdNum">—</div><div class="cd-t"><b id="cdT">Departure countdown</b><span id="cdS">Set your date and watch the days melt away</span><input type="date" id="depDate" onchange="setDep(this.value)"></div></div>
   <div id="planContainer"></div>
 
+  <div class="card card-pad"><h3>🕰️ History & significance</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">Walk where the prophets walked — know the story behind every rite.</p><div id="histContainer"></div></div>
+
+  <div class="card card-pad"><h3>🌟 Virtues of Umrah & the Haram</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">What Allah has promised the pilgrim — the rewards that await you.</p><div id="virtContainer"></div></div>
+
+  <div class="card card-pad"><h3>🕌 Madinah — virtues & visiting</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The City of the Prophet ﷺ deserves its own preparation.</p><div id="madContainer"></div></div>
+
   <div class="card card-pad"><h3>📚 Know before you go</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The knowledge that turns a trip into worship — tap to expand.</p><div id="knowContainer"></div></div>
 
-  <div class="card card-pad"><h3>🧠 Readiness quiz</h3>
-  <p style="font-size:.84em;color:var(--ink2);margin-bottom:10px">15 questions. Score 80%+ and you're ready. Best: <b id="qzBest" style="color:var(--gold)">—</b></p>
-  <div id="qzArea"><button class="btn gold" onclick="startQuiz()">Start the quiz</button></div></div>
+  <div class="card card-pad"><h3>🧠 Knowledge circuit — quiz levels</h3>
+  <p style="font-size:.84em;color:var(--ink2);margin-bottom:8px">Six levels · true/false &amp; multiple choice · score <b>80%+</b> to unlock the next. Complete the whole circuit before you fly. Passed: <b id="qzBest" style="color:var(--gold)">0/6</b></p>
+  <div class="meter" style="margin-bottom:12px"><i id="qzMeter" style="width:0%"></i></div>
+  <div id="qzArea"></div></div>
 </div>
 
 <!-- ═══════ UMRAH ═══════ -->
@@ -446,7 +465,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
     <input type="file" id="impFile" accept=".json" onchange="importData(event)" style="display:none">
     <button class="btn danger" onclick="confirmReset()">🗑️ Reset everything</button>
   </div>
-  <div style="text-align:center;color:var(--ink3);font-size:.78em;line-height:1.7;padding:8px 0"><b style="color:var(--ink2)">Umrah Strivers</b> · v2.1<br>Free · Offline · Private · No ads</div>
+  <div style="text-align:center;color:var(--ink3);font-size:.78em;line-height:1.7;padding:8px 0"><b style="color:var(--ink2)">Umrah Strivers</b> · v2.2<br>Free · Offline · Private · No ads</div>
 </div>
 
 <div class="foot"><div class="d">May Allah invite you to His House and accept your Umrah. 🕋</div>For corrections, suggestions &amp; feedback<br>reach out to <a href="mailto:m.farhan.bava@gmail.com">Farhan</a><br><span style="font-size:.9em;opacity:.6">Built with ❤️ for the Ummah</span></div>
@@ -511,7 +530,7 @@ var PLAN=[
 {id:'will',label:'Wasiyyah (will) written or updated',exp:'A sunnah of preparedness for any traveller.'},
 {id:'halal',label:'Trip funded from halal earnings',exp:'A pilgrimage funded by the pure is more likely to be accepted.'},
 {id:'family',label:'Taught travel companions the rites',exp:'Especially children and first-timers — review the steps together.'},
-{id:'quiz80',label:'Scored 80%+ on the readiness quiz',exp:'Repeat the quiz until the rites are second nature.'}
+{id:'quiz80',label:'Completed the full knowledge circuit (all quiz levels 80%+)',exp:'Work through all six quiz levels below until every one is passed.'}
 ]}];
 
 var KNOW=[
@@ -523,6 +542,36 @@ var KNOW=[
 {t:'🌸 Notes for sisters',b:'<ul><li>Ihram is your normal modest clothing — any colour; no niqab or gloves while in ihram.</li><li>No raml (jogging) in tawaf or between the green lights in sa’i — walk normally.</li><li>To exit ihram, trim about a fingertip’s length from the ends of your hair.</li><li>If menstruation begins, all worship continues except salah, tawaf & fasting — delay tawaf until pure; consult a scholar if departure is imminent.</li><li>Pray in the designated women’s sections; agree a family meeting point — signal drops in the Haram.</li></ul>'},
 {t:'⏰ Crowd & timing tips',b:'<ul><li>Easiest tawaf: <strong>late night to pre-Fajr</strong>. Hardest: after Isha and around Jumu’ah.</li><li>Arrive 45–60 min before prayer for a spot inside — gates close when full.</li><li>Upper floors take longer per round but are far calmer.</li><li>Never push at the Black Stone — pointing from afar gives the same reward.</li><li>Set a family meeting point (e.g. a numbered gate).</li><li>Drink Zamzam constantly and pace yourself — it’s a marathon of worship, not a sprint.</li></ul>'},
 {t:'⚠️ Common mistakes to avoid',b:'<ul><li>Believing each tawaf round has a fixed dua — none are prescribed; only "Rabbana atina…" between the Yamani corner and Black Stone is sunnah.</li><li>Kissing the Yamani corner — it is touched, not kissed; the Black Stone is kissed only if easily reached.</li><li>Raml in all 7 rounds — men do it in the first 3 only, in the arrival tawaf.</li><li>Praying with the right shoulder uncovered after tawaf — cover both shoulders for salah.</li><li>Cutting only a few strands for taqsir — trim from all around the head; halq carries greater reward for men.</li><li>Removing ihram before halq/taqsir is done — restrictions end only after cutting.</li><li>Loud group dhikr in tawaf — it disturbs others; recite individually.</li><li>Selfies and filming in the mataf — guard your khushu and others’ privacy.</li></ul>'}];
+
+var HISTORY=[
+{t:'🕋 The Kaaba — the first House',b:'<p>"Indeed, the first House established for mankind was that at Bakkah — blessed and a guidance for the worlds." (Quran 3:96). The Kaaba is the qibla of every prayer you have ever prayed. Ibrahim (AS) and his son Isma’il (AS) raised its foundations, praying: <strong>"Our Lord, accept this from us"</strong> (Quran 2:127). When you stand in the mataf you stand where prophets, companions and centuries of believers have stood before you.</p>'},
+{t:'🌊 Hajar, Zamzam & the origin of Sa’i',b:'<p>When Ibrahim (AS) left Hajar and baby Isma’il in the barren valley by Allah’s command, Hajar asked: "Has Allah commanded you to do this?" He said yes. She replied: <strong>"Then He will not abandon us."</strong> She ran seven times between Safa and Marwah searching for water — and Allah caused Zamzam to spring at her baby’s feet (Bukhari 3364). Your sa’i re-enacts her tawakkul, step for step, and Zamzam still flows for you today.</p>'},
+{t:'⚖️ The Black Stone & the young Muhammad ﷺ',b:'<p>The Prophet ﷺ said the Black Stone <strong>descended from Paradise whiter than milk, and the sins of the children of Adam blackened it</strong> (Tirmidhi 877). Years before prophethood, when Quraysh rebuilt the Kaaba, the tribes nearly fought over who would set the Stone in place. The young Muhammad ﷺ — already called al-Amin, the Trustworthy — laid it on a cloth so every tribe could lift a corner together, and he set it with his own hands.</p>'},
+{t:'⛰️ Cave of Hira — where revelation began',b:'<p>On Jabal an-Nour above Makkah, in the cave of Hira, Jibril (AS) came to the Prophet ﷺ with the first words of the Quran: <strong>"Iqra — Read, in the name of your Lord who created"</strong> (Quran 96:1, Bukhari 3). Everything — every mushaf, every masjid, every Muslim — traces back to that night in that cave you can see from the Haram.</p>'},
+{t:'🧭 The qibla change & Masjid al-Qiblatayn',b:'<p>For about 17 months in Madinah the Muslims prayed towards Jerusalem, while the Prophet ﷺ longed for the Kaaba. Then mid-prayer the revelation came: <strong>"Turn your face toward al-Masjid al-Haram"</strong> (Quran 2:144) — and the congregation turned as one. Masjid al-Qiblatayn ("the mosque of the two qiblas") in Madinah marks that moment.</p>'},
+{t:'🚪 The Hijrah & the Conquest of Makkah',b:'<p>Persecuted by Quraysh, the Prophet ﷺ left his beloved city, hiding three nights in the cave of Thawr with Abu Bakr (RA): <strong>"Do not grieve; indeed Allah is with us"</strong> (Quran 9:40). Eight years later he returned with ten thousand companions and conquered Makkah <strong>without bloodshed</strong>, forgave his persecutors, and cleansed the Kaaba of its 360 idols while reciting: "Truth has come and falsehood has vanished" (Quran 17:81).</p>'},
+{t:'📍 Landmarks and what they mean',b:'<ul><li><strong>Maqam Ibrahim</strong> — the stone Ibrahim (AS) stood on while raising the Kaaba’s walls; his footprints were preserved in it (Quran 2:125).</li><li><strong>Hijr Isma’il</strong> — the semicircle was part of the original Kaaba; praying inside it counts as praying inside the Kaaba (Tirmidhi 876).</li><li><strong>Multazam</strong> — the wall between the Black Stone and the door, where dua is beloved.</li><li><strong>The Yamani corner</strong> — touched (not kissed) each round when possible.</li></ul>'}];
+
+var VIRTUES=[
+{t:'🧼 Umrah wipes away sins',b:'<p>The Prophet ﷺ said: <strong>"Umrah to Umrah is an expiation for the sins committed between them, and the accepted Hajj has no reward except Paradise."</strong> (Bukhari 1773). Whoever performs the pilgrimage without obscenity or wickedness "returns as the day his mother bore him" (Muslim 1350). You come home with a clean slate — guard it.</p>'},
+{t:'💰 It removes poverty',b:'<p><strong>"Follow up between Hajj and Umrah, for they remove poverty and sins just as the bellows removes the dross of iron, gold and silver."</strong> (Tirmidhi 810). The money you spend on this journey is never a loss.</p>'},
+{t:'🤝 You are the guest of Allah',b:'<p><strong>"The pilgrims of Hajj and Umrah are the delegation of Allah: if they call upon Him, He answers them, and if they ask His forgiveness, He forgives them."</strong> (Ibn Majah 2892). Arrive with your dua list ready — you have an audience with the Most Generous Host.</p>'},
+{t:'🛡️ The jihad of the weak',b:'<p>The Prophet ﷺ said: <strong>"The jihad of the elderly, the weak and the women is Hajj and Umrah."</strong> (Nasai 2626). And when Aishah (RA) asked if women have jihad, he said: "Jihad in which there is no fighting — Hajj and Umrah." (Ibn Majah 2901). Every drop of sweat in the mataf is counted.</p>'},
+{t:'🕋 The reward of tawaf',b:'<p><strong>"Whoever performs tawaf around this House seven times and keeps count of it is like one who frees a slave."</strong> With every step "a sin is erased and a good deed is recorded" (Tirmidhi 959). And tawaf is worship you can ONLY do here — fill your trip with it.</p>'},
+{t:'🕌 100,000 prayers — the mathematics of the Haram',b:'<p><strong>"One prayer in this masjid of mine is better than a thousand prayers elsewhere, except al-Masjid al-Haram — and one prayer in al-Masjid al-Haram is better than a hundred thousand prayers elsewhere."</strong> (Ibn Majah 1406). One Fajr in the Haram outweighs ~55 years of prayers. Five daily prayers for a week here is a lifetime of reward — never sleep through a congregation.</p>'},
+{t:'💧 Zamzam — blessed water',b:'<p>The Prophet ﷺ said: <strong>"Zamzam water is for whatever it is drunk for."</strong> (Ibn Majah 3062) and called it "blessed — a food that nourishes and a cure for illness" (Muslim 2473). Drink your fill, face the qibla, and ask Allah for exactly what you need — knowledge, cure, forgiveness.</p>'},
+{t:'❤️ Makkah — the most beloved land',b:'<p>Leaving for the Hijrah, the Prophet ﷺ said of Makkah: <strong>"By Allah, you are the best of Allah’s land, and the most beloved of Allah’s land to Allah. Had I not been driven out of you, I would never have left."</strong> (Tirmidhi 3925). The Haram is a sanctuary where even the trees and game are protected — carry its adab everywhere.</p>'}];
+
+var MADINAH=[
+{t:'🕌 1,000 prayers — Masjid an-Nabawi',b:'<p><strong>"One prayer in this masjid of mine is better than a thousand prayers anywhere else, except al-Masjid al-Haram."</strong> (Bukhari 1190). The Prophet ﷺ built this mosque with his own hands. Aim to pray all 40 prayers there if your stay allows — but know the famous "40 prayers" hadith is graded weak; the 1,000× virtue applies to every single prayer regardless.</p>'},
+{t:'🌹 The Rawdah — a garden of Paradise',b:'<p><strong>"Between my house and my minbar is a garden (rawdah) from the gardens of Paradise."</strong> (Bukhari 1195). It is the small area marked today by green carpets. Entry requires a free timed permit on Nusuk — book it the day your travel dates are fixed, and pray there with presence, not photos.</p>'},
+{t:'🤲 Greeting the Prophet ﷺ',b:'<p>Stand before the blessed grave calmly and say: <strong>"As-salamu ’alayka ya Rasulallah"</strong> — then greet Abu Bakr (RA) and ’Umar (RA) who rest beside him. No shouting, no pushing, no backs turned in dua towards other worshippers. He ﷺ said: "There is no one who sends salam upon me but Allah returns my soul to me so that I may return his salam." (Abu Dawud 2041).</p>'},
+{t:'🛡️ A protected sanctuary',b:'<p>Madinah, like Makkah, is a haram — a sacred sanctuary (Muslim 1374). The Prophet ﷺ said: <strong>"There are angels at the entrances of Madinah: neither plague nor the Dajjal can enter it."</strong> (Bukhari 1880). And: "Madinah expels its impurities as the furnace expels the dross of iron." (Bukhari 1871).</p>'},
+{t:'🍃 The virtue of living & dying there',b:'<p><strong>"Whoever is able to die in Madinah, let him die there, for I will intercede for the one who dies there."</strong> (Tirmidhi 3917). And: "None patiently endures the hardship of Madinah except that I will be an intercessor or witness for him on the Day of Resurrection." (Muslim 1374).</p>'},
+{t:'🕌 Masjid Quba — an Umrah every visit',b:'<p>The first mosque of Islam, founded on taqwa (Quran 9:108). <strong>"Whoever purifies himself in his house, then comes to Masjid Quba and prays in it, has the reward of an Umrah."</strong> (Ibn Majah 1412). The Prophet ﷺ visited every Saturday — make wudu at your hotel and go at least once.</p>'},
+{t:'⛰️ Uhud & the martyrs',b:'<p><strong>"Uhud is a mountain that loves us and we love it."</strong> (Bukhari 4083). At its foot rest Hamza (RA), the Prophet’s ﷺ uncle and the Master of Martyrs, with seventy companions of the Battle of Uhud. Visit after Fajr, give salam, and reflect on what they gave for the deen that reached you.</p>'},
+{t:'🌴 Ajwa dates & the blessing of Madinah',b:'<p>The Prophet ﷺ said: <strong>"Whoever eats seven Ajwa dates in the morning will not be harmed that day by poison or magic."</strong> (Bukhari 5779). He also made dua: "O Allah, bless Madinah with twice the blessings You gave Makkah." (Bukhari 1885). Bring Ajwa home as your gift.</p>'},
+{t:'🧳 Practical: Madinah is not a rite of Umrah',b:'<p>Visiting Madinah is a beloved, highly virtuous journey — one of only three mosques worth travelling to (Bukhari 1189) — but it is <strong>not part of the Umrah rites</strong> and there is no ihram for it. Plan 2–4 relaxed days: prayers in the Haram, Rawdah permit, Quba, Qiblatayn, Uhud and Baqi. The pace is calmer than Makkah — use it for reflection and long duas.</p>'}];
 
 var RITES=[
 {id:'ph1',ico:'🤍',title:'Phase 1 · Ihram at the miqat',hn:'"Actions are but by intentions, and every person shall have what they intended." — Bukhari 1',steps:[
@@ -609,22 +658,83 @@ var PLACES=[
 {id:'ghamamah',city:'madinah',i:'🕌',n:'Masjid al-Ghamamah',q:'Masjid al-Ghamamah Madinah',d:'Where the Prophet ﷺ prayed Eid and istisqa — a cloud once shaded him here.',tip:'A 5-minute walk south-west of Masjid an-Nabawi.'},
 {id:'darmadinah',city:'madinah',i:'🏛️',n:'Dar Al Madinah Museum',q:'Dar Al Madinah Museum',d:'The seerah and history of Madinah with detailed models of the city across the ages.',tip:'Excellent with kids; guided tours available in English.'}];
 
-var QUIZ=[
+var QUIZ_LEVELS=[
+{icon:'🕋',name:'Level 1 · Foundations of Umrah',desc:'What Umrah is and how it flows',qs:[
+{q:'Umrah is often called…',o:['The greater pilgrimage','The minor pilgrimage','The night journey','The farewell pilgrimage'],a:1,e:'Umrah is the "minor pilgrimage" — Hajj is the major one with fixed dates and extra rites.'},
+{q:'True or false: Umrah can be performed at any time of the year.',tf:1,a:0,e:'True — unlike Hajj, Umrah has no fixed date. (Ramadan carries a special reward.)'},
+{q:'The correct order of the Umrah rites is…',o:['Tawaf → Ihram → Sa’i → Halq','Ihram → Sa’i → Tawaf → Halq','Ihram → Tawaf → Sa’i → Halq/Taqsir','Sa’i → Tawaf → Ihram → Halq'],a:2,e:'Ihram at the miqat, then tawaf, then sa’i, then cutting the hair — in that order.'},
+{q:'True or false: Umrah and Hajj are identical acts of worship.',tf:1,a:1,e:'False — Hajj adds Arafat, Muzdalifah, Mina and the fixed days of Dhul-Hijjah; Umrah is ihram, tawaf, sa’i and halq.'},
 {q:'How many rounds (circuits) make one complete tawaf?',o:['3','5','7','10'],a:2,e:'Seven rounds, counter-clockwise, starting and ending at the Black Stone line.'},
-{q:'Where does each round of tawaf begin?',o:['Maqam Ibrahim','The Black Stone (Hajar al-Aswad) corner','The Yamani corner','The Kaaba door'],a:1,e:'Face the Black Stone, say "Bismillahi wallahu akbar", then begin with the Kaaba on your left.'},
-{q:'Sa’i begins at… and ends at…',o:['Marwah → Safa','Safa → Marwah','Either direction','The mataf'],a:1,e:'"Begin with what Allah began with" (Quran 2:158 mentions Safa first) — 7 laps ending at Marwah.'},
-{q:'Which of these is prohibited in ihram?',o:['Wearing a wristwatch','Showering with plain water','Applying perfume','Wearing sandals'],a:2,e:'Scented products are prohibited in ihram. Watches, glasses, belts, unscented showers — all fine.'},
-{q:'What is raml?',o:['Brisk walking in the first 3 rounds of tawaf (men)','Jogging the whole sa’i','A type of dua','The stoning ritual'],a:0,e:'Men walk briskly with short steps in rounds 1–3 of the arrival tawaf only. Women walk normally.'},
+{q:'Sa’i begins at… and ends at…',o:['Marwah → Safa','Safa → Marwah','Either direction','The mataf'],a:1,e:'"Begin with what Allah began with" — Quran 2:158 mentions Safa first; 7 laps ending at Marwah.'},
 {q:'When does the pilgrim stop reciting the talbiyah in Umrah?',o:['At the hotel','On seeing the Kaaba','When beginning tawaf','After sa’i'],a:2,e:'The talbiyah continues from the miqat until you start your tawaf.'},
+{q:'What does "Labbayk" mean?',o:['Forgive me','Here I am (at Your service)','Allah is greatest','Praise be to Allah'],a:1,e:'Labbayk Allahumma labbayk — "Here I am, O Allah, here I am," answering the call to pilgrimage.'},
+{q:'True or false: children may perform Umrah, with guardians handling the rites for the very young.',tf:1,a:0,e:'True — the Prophet ﷺ confirmed a child’s pilgrimage counts (Muslim 1336); parents make intention for infants.'},
+{q:'True or false: an accepted pilgrimage returns you "as the day your mother bore you".',tf:1,a:0,e:'True — whoever performs it without obscenity or sin returns cleansed of sins (Bukhari 1521, Muslim 1350).'}
+]},
+{icon:'🤍',name:'Level 2 · Ihram & the Miqats',desc:'The sacred state and its boundaries',qs:[
 {q:'The miqat for those travelling to Makkah from Madinah is…',o:['Yalamlam','Qarn al-Manazil','Al-Juhfah','Dhul-Hulayfah (Abyar Ali)'],a:3,e:'Dhul-Hulayfah, just outside Madinah — the farthest miqat from Makkah (~450 km).'},
-{q:'What is prayed immediately after tawaf?',o:['4 rakahs of Duha','2 rakahs behind Maqam Ibrahim','Salat al-Janazah','Nothing'],a:1,e:'Two rakahs behind Maqam Ibrahim (or anywhere if crowded) — al-Kafirun then al-Ikhlas are sunnah.'},
-{q:'How does a woman exit ihram after sa’i?',o:['Shave her head','Trim a fingertip’s length of hair','Cut a single strand','Nothing required'],a:1,e:'Women trim about a fingertip’s length (~2 cm) from the ends — never shave.'},
-{q:'One prayer in Masjid al-Haram equals how many elsewhere?',o:['1,000','10,000','50,000','100,000'],a:3,e:'100,000 prayers (Ibn Majah 1406). In Masjid an-Nabawi: 1,000.'},
-{q:'You cannot reach the Black Stone. What do you do?',o:['Push through the crowd','Skip that round','Point towards it and say Allahu Akbar','Wait until it clears'],a:2,e:'Gesture towards it from afar with "Allahu Akbar" and continue — harming others for a sunnah is never right.'},
+{q:'Most flights arriving from the east (UAE, Pakistan, India…) cross which miqat?',o:['Qarn al-Manazil (As-Sayl)','Al-Juhfah','Dhat Irq','Yalamlam'],a:0,e:'Qarn al-Manazil serves Najd, Taif and most eastern arrivals — be in ihram before the pilot’s announcement.'},
+{q:'Which of these is prohibited in ihram?',o:['Wearing a wristwatch','Showering with plain water','Applying perfume','Wearing sandals'],a:2,e:'Scented products are prohibited. Watches, glasses, belts and unscented showers are all fine.'},
+{q:'True or false: men may wear a money belt or waist pouch in ihram.',tf:1,a:0,e:'True — a belt is not fitted "stitched clothing"; it is how you keep your passport and cash safe.'},
+{q:'True or false: a woman must wear a niqab (face veil) in ihram.',tf:1,a:1,e:'False — the opposite: the niqab and gloves are specifically not worn in ihram (Bukhari 1838). Ordinary modest dress applies.'},
+{q:'The two garments of a man’s ihram are called…',o:['Thobe & ghutrah','Izar & rida','Bisht & shemagh','Qamis & sirwal'],a:1,e:'The izar wraps the lower body, the rida drapes the upper body — both unstitched.'},
+{q:'True or false: the intention for Umrah must be made before crossing the miqat.',tf:1,a:0,e:'True — crossing your miqat without ihram when intending Umrah requires returning to it or compensation (fidyah).'},
+{q:'True or false: a pilgrim flying to Jeddah may delay ihram until after landing.',tf:1,a:1,e:'False — Jeddah lies inside the miqat boundaries for most routes, so ihram must be assumed before the plane crosses the miqat.'},
+{q:'Which is NOT an ihram violation?',o:['Applying perfume','Trimming nails','Wearing prescription glasses','Proposing marriage'],a:2,e:'Glasses, watches, rings, umbrellas and sandals are all fine in ihram.'},
+{q:'True or false: if you break an ihram rule by genuine mistake or forgetfulness, your Umrah is ruined.',tf:1,a:1,e:'False — "Our Lord, do not hold us to account for what we forget or err in" (Quran 2:286). Learn, correct, continue.'}
+]},
+{icon:'🔄',name:'Level 3 · Tawaf, Sa’i & Halq',desc:'The rites in fine detail',qs:[
+{q:'Where does each round of tawaf begin?',o:['Maqam Ibrahim','The Black Stone (Hajar al-Aswad) corner','The Yamani corner','The Kaaba door'],a:1,e:'Face the Black Stone, say "Bismillahi wallahu akbar", then keep the Kaaba on your left.'},
+{q:'What is raml?',o:['Brisk walking in the first 3 rounds of tawaf (men)','Jogging the whole sa’i','A type of dua','The stoning ritual'],a:0,e:'Men walk briskly with short steps in rounds 1–3 of the arrival tawaf only. Women walk normally.'},
+{q:'True or false: wudu is required for tawaf.',tf:1,a:0,e:'True — tawaf is like prayer (Tirmidhi 960); keep your wudu, and renew it if broken.'},
+{q:'True or false: each round of tawaf has its own fixed, prescribed dua.',tf:1,a:1,e:'False — no dua is prescribed per round. Only "Rabbana atina…" between the Yamani corner and Black Stone is sunnah.'},
+{q:'You cannot reach the Black Stone. What do you do?',o:['Push through the crowd','Skip that round','Point towards it and say Allahu Akbar','Wait until it clears'],a:2,e:'Gesture from afar with "Allahu Akbar" and continue — harming others for a sunnah is never right.'},
 {q:'What dua is sunnah between the Yamani corner and the Black Stone?',o:['The talbiyah','Rabbana atina fid-dunya hasanah…','Ayat al-Kursi','Surah al-Fatihah'],a:1,e:'"Our Lord, give us good in this world and good in the Hereafter, and protect us from the Fire." (Quran 2:201)'},
-{q:'Praying 2 rakahs in Masjid Quba (with wudu from home) equals…',o:['A Hajj','An Umrah','40 years of prayer','Nothing specific'],a:1,e:'"…has the reward of an Umrah." — Ibn Majah 1412. The Prophet ﷺ visited Quba every Saturday.'},
-{q:'Visiting the Rawdah in Madinah requires…',o:['Nothing — walk in anytime','A paid ticket','A free timed permit via the Nusuk app','A tour guide'],a:2,e:'Book the free permit on Nusuk as soon as your dates are confirmed — slots run out.'},
-{q:'What does "an Umrah in Ramadan" equal, according to the Prophet ﷺ?',o:['10 Umrahs','A Hajj with him ﷺ','Laylatul Qadr','A year of fasting'],a:1,e:'"An Umrah in Ramadan is equal to a Hajj with me." — Bukhari 1863.'}];
+{q:'What is prayed immediately after tawaf?',o:['4 rakahs of Duha','2 rakahs behind Maqam Ibrahim','Salat al-Janazah','Nothing'],a:1,e:'Two rakahs behind Maqam Ibrahim (anywhere if crowded) — al-Kafirun then al-Ikhlas are sunnah.'},
+{q:'True or false: Safa → Marwah counts as one full lap of sa’i.',tf:1,a:0,e:'True — one direction is one lap; seven laps finish on Marwah.'},
+{q:'True or false: women jog between the green lights during sa’i.',tf:1,a:1,e:'False — the light jog there is for men; women walk throughout.'},
+{q:'How does a woman exit ihram after sa’i?',o:['Shave her head','Trim a fingertip’s length of hair','Cut a single strand','Nothing required'],a:1,e:'Women trim about a fingertip’s length (~2 cm) from the ends — never shave.'},
+{q:'True or false: for men, shaving the head (halq) carries more reward than trimming (taqsir).',tf:1,a:0,e:'True — the Prophet ﷺ made dua for those who shave three times, and once for those who trim (Bukhari 1727).'}
+]},
+{icon:'🕰️',name:'Level 4 · History of Makkah & the Kaaba',desc:'The story behind every rite',qs:[
+{q:'Who raised the foundations of the Kaaba?',o:['Adam alone','Ibrahim & Isma’il','Quraysh','Musa & Harun'],a:1,e:'"And when Ibrahim was raising the foundations of the House with Isma’il…" (Quran 2:127).'},
+{q:'The Kaaba is described in the Quran as…',o:['The first House established for mankind','The largest building of its time','A gift to Quraysh','The house of Adam'],a:0,e:'"The first House established for mankind was that at Bakkah — blessed and a guidance for the worlds." (Quran 3:96)'},
+{q:'The well of Zamzam sprang for…',o:['Ibrahim on his journey','Hajar and baby Isma’il','The army of the Elephant','Quraysh pilgrims'],a:1,e:'Allah caused it to spring at baby Isma’il’s feet as Hajar ran between Safa and Marwah (Bukhari 3364).'},
+{q:'Sa’i between Safa and Marwah commemorates…',o:['The Hijrah route','Hajar’s search for water','The conquest of Makkah','The Farewell Sermon'],a:1,e:'Your seven laps re-enact Hajar’s seven runs of pure trust in Allah — "Then He will not abandon us."'},
+{q:'True or false: the Black Stone descended from Paradise whiter than milk.',tf:1,a:0,e:'True — "…and the sins of the children of Adam blackened it." (Tirmidhi 877)'},
+{q:'How did the young Muhammad ﷺ resolve the Quraysh dispute over placing the Black Stone?',o:['He placed it himself secretly','He drew lots','He laid it on a cloth for all tribes to lift together','He told them to leave it out'],a:2,e:'Every tribe lifted a corner of the cloth, and al-Amin ﷺ set the Stone in place with his own hands.'},
+{q:'The first revelation came to the Prophet ﷺ in…',o:['The cave of Thawr','Masjid al-Haram','The cave of Hira on Jabal an-Nour','Mina'],a:2,e:'"Iqra — Read!" (Quran 96:1) descended in Hira, the cave above Makkah (Bukhari 3).'},
+{q:'True or false: Muslims always prayed towards the Kaaba from the beginning of Islam.',tf:1,a:1,e:'False — they first faced Jerusalem; the qibla changed mid-prayer (~2 AH) — Quran 2:144, commemorated at Masjid al-Qiblatayn.'},
+{q:'Maqam Ibrahim is…',o:['Ibrahim’s grave','The stone he stood on while building the Kaaba','The door of the Kaaba','A minaret'],a:1,e:'The standing-stone of Ibrahim (AS) — "Take the Maqam of Ibrahim as a place of prayer." (Quran 2:125)'},
+{q:'During the Hijrah, the Prophet ﷺ and Abu Bakr hid in…',o:['The cave of Hira','The cave of Thawr','Masjid Quba','Jabal Uhud'],a:1,e:'Three nights in Thawr — "Do not grieve; indeed Allah is with us." (Quran 9:40)'},
+{q:'True or false: praying inside Hijr Isma’il counts as praying inside the Kaaba.',tf:1,a:0,e:'True — the semicircle was part of the original Kaaba (Tirmidhi 876). A rare chance most pilgrims miss!'}
+]},
+{icon:'🌟',name:'Level 5 · Virtues of Umrah & the Haram',desc:'The rewards that await you',qs:[
+{q:'"Umrah to Umrah is an expiation for…"',o:['All future sins','The sins committed between them','Major sins only','Debts'],a:1,e:'Bukhari 1773 — and the accepted Hajj has no reward but Paradise.'},
+{q:'What does "an Umrah in Ramadan" equal, according to the Prophet ﷺ?',o:['10 Umrahs','A Hajj with him ﷺ','Laylatul Qadr','A year of fasting'],a:1,e:'"An Umrah in Ramadan is equal to a Hajj with me." — Bukhari 1863.'},
+{q:'One prayer in Masjid al-Haram equals how many elsewhere?',o:['1,000','10,000','50,000','100,000'],a:3,e:'100,000 prayers (Ibn Majah 1406) — one Fajr there outweighs decades of prayer elsewhere.'},
+{q:'True or false: "Follow up between Hajj and Umrah, for they remove poverty and sins…"',tf:1,a:0,e:'True — "…as the bellows removes the dross of iron, gold and silver." (Tirmidhi 810)'},
+{q:'Pilgrims are described by the Prophet ﷺ as…',o:['The soldiers of Allah','The delegation (guests) of Allah','The neighbours of the Kaaba','The people of the cloak'],a:1,e:'"If they call upon Him, He answers; if they seek His forgiveness, He forgives." (Ibn Majah 2892)'},
+{q:'True or false: the Prophet ﷺ called Hajj and Umrah the jihad of the elderly, the weak and women.',tf:1,a:0,e:'True — Nasai 2626; and to Aishah (RA): "jihad in which there is no fighting — Hajj and Umrah." (Ibn Majah 2901)'},
+{q:'Completing tawaf while keeping count of it is likened to…',o:['Fasting a month','Freeing a slave','A year of charity','Building a mosque'],a:1,e:'Tirmidhi 959 — and with every step a sin is erased and a good deed recorded.'},
+{q:'"Zamzam water is…"',o:['Only for the sick','For whatever it is drunk for','Only for pilgrims','For wudu only'],a:1,e:'Ibn Majah 3062 — drink it with a specific dua: knowledge, cure, forgiveness, whatever you need.'},
+{q:'True or false: the Prophet ﷺ called Makkah the most beloved of Allah’s land to Allah.',tf:1,a:0,e:'True — "Had I not been driven out of you, I would never have left." (Tirmidhi 3925)'},
+{q:'True or false: because the Haram multiplies reward, wrongdoing there is also graver.',tf:1,a:0,e:'True — Allah warns against "deviation to wrongdoing" in the Haram (Quran 22:25). Guard your tongue and gaze doubly.'}
+]},
+{icon:'🕌',name:'Level 6 · Madinah — City of the Prophet ﷺ',desc:'Virtues & etiquette of the visit',qs:[
+{q:'One prayer in Masjid an-Nabawi is better than…',o:['100 elsewhere','1,000 elsewhere (except al-Masjid al-Haram)','100,000 elsewhere','70 elsewhere'],a:1,e:'Bukhari 1190 — a thousand-fold, exceeded only by Masjid al-Haram.'},
+{q:'The Rawdah is described by the Prophet ﷺ as…',o:['The best of gardens','A garden from the gardens of Paradise','His private courtyard','The first masjid'],a:1,e:'"Between my house and my minbar is a garden from the gardens of Paradise." (Bukhari 1195)'},
+{q:'Visiting the Rawdah requires…',o:['Nothing — walk in anytime','A paid ticket','A free timed permit via the Nusuk app','A tour guide'],a:2,e:'Book the free permit on Nusuk as soon as your dates are confirmed — slots run out.'},
+{q:'Praying 2 rakahs in Masjid Quba (with wudu from home) equals…',o:['A Hajj','An Umrah','40 years of prayer','Nothing specific'],a:1,e:'Ibn Majah 1412 — and the Prophet ﷺ visited Quba every Saturday.'},
+{q:'True or false: Madinah is a sacred sanctuary (haram) just as Makkah is.',tf:1,a:0,e:'True — the Prophet ﷺ declared Madinah sacred between its two lava plains (Muslim 1374).'},
+{q:'True or false: the Dajjal and the plague can enter Madinah.',tf:1,a:1,e:'False — "There are angels at the entrances of Madinah: neither plague nor the Dajjal can enter it." (Bukhari 1880)'},
+{q:'Masjid al-Qiblatayn is famous because…',o:['It has two minarets','The qibla changed there mid-prayer','It is the oldest mosque','The Prophet ﷺ was born there'],a:1,e:'The congregation turned from Jerusalem to the Kaaba in a single prayer (Quran 2:144).'},
+{q:'The Prophet ﷺ said about Uhud…',o:['"It is a cursed mountain"','"It is a mountain that loves us and we love it"','"Never climb it"','"It guards the city"'],a:1,e:'Bukhari 4083 — at its foot rest Hamza (RA) and the seventy martyrs of Uhud.'},
+{q:'Who rests beside the Prophet ﷺ in his chamber?',o:['Hamza & Abbas','Abu Bakr & Umar','Uthman & Ali','His wives'],a:1,e:'His two closest companions and successors — greet all three with a calm salam.'},
+{q:'True or false: visiting Madinah is a required rite of Umrah.',tf:1,a:1,e:'False — beloved and highly virtuous (one of the three mosques worth travelling to — Bukhari 1189), but not part of the Umrah rites, and it needs no ihram.'},
+{q:'"Whoever eats seven ___ dates in the morning will not be harmed that day by poison or magic."',o:['Sukkari','Ajwa','Medjool','Barhi'],a:1,e:'Ajwa dates of Madinah (Bukhari 5779) — the perfect gift to bring home.'},
+{q:'True or false: the Prophet ﷺ will intercede for the one who dies in Madinah.',tf:1,a:0,e:'True — "Whoever is able to die in Madinah, let him die there, for I will intercede for him." (Tirmidhi 3917)'}
+]}];
 
 var DUAS=[
 {t:'The Talbiyah',ar:'لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لَا شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ وَالْمُلْكَ، لَا شَرِيكَ لَكَ',tl:'Labbayk Allahumma labbayk, labbayka la sharika laka labbayk, innal-hamda wan-ni’mata laka wal-mulk, la sharika lak',tr:'Here I am O Allah, here I am. You have no partner, here I am. All praise, favour and sovereignty are Yours. You have no partner.',s:'Bukhari 1549'},
@@ -696,9 +806,11 @@ function renderPlan(){
     h+=mkSec(sec,i>0,inner);
   });
   document.getElementById('planContainer').innerHTML=h;
-  var k='';
-  KNOW.forEach(function(g){k+='<div class="acc" onclick="this.classList.toggle(\'open\')"><div class="acc-h">'+g.t+' <span class="acc-c">▶</span></div><div class="acc-b">'+g.b+'</div></div>';});
-  document.getElementById('knowContainer').innerHTML=k;
+  function accs(arr){var k='';arr.forEach(function(g){k+='<div class="acc" onclick="this.classList.toggle(\'open\')"><div class="acc-h">'+g.t+' <span class="acc-c">▶</span></div><div class="acc-b">'+g.b+'</div></div>';});return k;}
+  document.getElementById('knowContainer').innerHTML=accs(KNOW);
+  document.getElementById('histContainer').innerHTML=accs(HISTORY);
+  document.getElementById('virtContainer').innerHTML=accs(VIRTUES);
+  document.getElementById('madContainer').innerHTML=accs(MADINAH);
 }
 function togPlan(id){planChk[id]=!planChk[id];save('us-plan',planChk);vib(15);updPlan();chkBadges();}
 function updPlan(){
@@ -714,7 +826,7 @@ function updPlan(){
   document.getElementById('planHeroT').textContent=pct>=100?'Fully prepared! 🎉':pct>=60?'Almost there':pct>0?'Good progress':'Let’s get ready';
   document.getElementById('planHeroS').textContent=done+' of '+tot+' preparation items done';
   updCountdown();
-  document.getElementById('qzBest').textContent=ST.quizBest?ST.quizBest+'%':'—';
+  renderLevels();
 }
 function setDep(v){ST.dep=v;saveST();updCountdown();}
 function updCountdown(){
@@ -728,35 +840,72 @@ function updCountdown(){
   }else{n.textContent='—';t.textContent='Departure countdown';s.textContent='Set your date and watch the days melt away';}
 }
 
-/* ════════════════════════ QUIZ ════════════════════════ */
-var qzI=0,qzScore=0,qzLock=false,qzHist=[];
-function startQuiz(){qzI=0;qzScore=0;qzHist=[];renderQz();}
-function qzDots(){var h='';for(var i=0;i<QUIZ.length;i++){h+='<i class="'+(i<qzHist.length?(qzHist[i]?'f':'w'):'')+'"></i>';}return '<div class="qz-dots">'+h+'</div>';}
+/* ════════════════════════ QUIZ (levels) ════════════════════════ */
+var qzST={best:{}};
+try{qzST=Object.assign(qzST,JSON.parse(localStorage.getItem('us-quiz')||'{}'));}catch(e){}
+var qzLevel=0,qzI=0,qzScore=0,qzLock=false,qzHist=[];
+function qzPassed(i){return (qzST.best[i]||0)>=80;}
+function qzUnlocked(i){return i===0||qzPassed(i-1);}
+function qzPassedCount(){var n=0;QUIZ_LEVELS.forEach(function(_,i){if(qzPassed(i))n++;});return n;}
+function qzAllPassed(){return qzPassedCount()===QUIZ_LEVELS.length;}
+function renderLevels(){
+  var h='';
+  QUIZ_LEVELS.forEach(function(lv,i){
+    var un=qzUnlocked(i),ps=qzPassed(i),best=qzST.best[i];
+    h+='<div class="lvl'+(un?'':' locked')+(ps?' passed':'')+'" onclick="startLevel('+i+')">'
+      +'<div class="lvl-n">'+(un?lv.icon:'🔒')+'</div>'
+      +'<div class="lvl-t"><b>'+lv.name+'</b><small>'+lv.desc+' · '+lv.qs.length+' questions</small></div>'
+      +'<div class="lvl-s">'+(ps?'✓ '+best+'%':(best!==undefined?best+'%':(un?'Start →':'Locked')))+'</div></div>';
+  });
+  if(qzAllPassed())h+='<div class="note" style="margin-top:10px">🏆 Circuit complete! You have the knowledge — now go with presence of heart. Taqabbal Allah.</div>';
+  document.getElementById('qzArea').innerHTML=h;
+  var pc=qzPassedCount();
+  document.getElementById('qzBest').textContent=pc+'/'+QUIZ_LEVELS.length;
+  var m=document.getElementById('qzMeter');if(m)m.style.width=Math.round(pc/QUIZ_LEVELS.length*100)+'%';
+}
+function startLevel(i){
+  if(!qzUnlocked(i)){toast('🔒 Pass '+QUIZ_LEVELS[i-1].name.split(' · ')[0]+' first (80%+)');vib([50,40,50]);return;}
+  qzLevel=i;qzI=0;qzScore=0;qzHist=[];renderQz();
+}
+function qzOpts(q){return q.o?q.o:['True','False'];}
+function qzAns(q){return q.o?q.a:(q.a===0?0:1);}
+function qzDots(n){var h='';for(var i=0;i<n;i++){h+='<i class="'+(i<qzHist.length?(qzHist[i]?'f':'w'):'')+'"></i>';}return '<div class="qz-dots">'+h+'</div>';}
 function renderQz(){
   qzLock=false;
-  var q=QUIZ[qzI],h='<div class="qz-top"><span>Question '+(qzI+1)+' / '+QUIZ.length+'</span><span>Score '+qzScore+'</span></div>'+qzDots()+'<div class="qz-q">'+q.q+'</div>';
-  q.o.forEach(function(o,i){h+='<button class="qz-o" id="qzo-'+i+'" onclick="answerQz('+i+')">'+String.fromCharCode(65+i)+'. '+o+'</button>';});
+  var lv=QUIZ_LEVELS[qzLevel],q=lv.qs[qzI];
+  var h='<div class="qz-top"><span>'+lv.icon+' '+lv.name.split(' · ')[0]+' · Q'+(qzI+1)+'/'+lv.qs.length+'</span><span class="qz-exit" onclick="renderLevels()">✕ Exit</span></div>'+qzDots(lv.qs.length)+'<div class="qz-q">'+q.q+'</div>';
+  qzOpts(q).forEach(function(o,i){h+='<button class="qz-o" id="qzo-'+i+'" onclick="answerQz('+i+')">'+(q.o?String.fromCharCode(65+i)+'. ':'')+o+'</button>';});
   h+='<div id="qzFb"></div>';
   document.getElementById('qzArea').innerHTML=h;
 }
 function answerQz(i){
   if(qzLock)return;qzLock=true;
-  var q=QUIZ[qzI],ok=i===q.a;
+  var lv=QUIZ_LEVELS[qzLevel],q=lv.qs[qzI],ans=qzAns(q),ok=i===ans;
   qzHist.push(ok);
   if(ok){qzScore++;vib(30);}else vib([60,40,60]);
-  document.getElementById('qzo-'+q.a).classList.add('right');
+  document.getElementById('qzo-'+ans).classList.add('right');
   if(!ok)document.getElementById('qzo-'+i).classList.add('wrong');
-  document.getElementById('qzFb').innerHTML='<div class="qz-x">'+(ok?'✅ Correct! ':'❌ ')+q.e+'</div><button class="btn" onclick="nextQz()">'+(qzI<QUIZ.length-1?'Next question →':'See my score')+'</button>';
+  document.getElementById('qzFb').innerHTML='<div class="qz-x">'+(ok?'✅ Correct! ':'❌ ')+q.e+'</div><button class="btn" onclick="nextQz()">'+(qzI<lv.qs.length-1?'Next question →':'See my score')+'</button>';
 }
 function nextQz(){
-  if(qzI<QUIZ.length-1){qzI++;renderQz();return;}
-  var pct=Math.round(qzScore/QUIZ.length*100);
-  if(pct>ST.quizBest){ST.quizBest=pct;saveST();}
-  var msg=pct>=80?'Mashallah — you’re ready for Umrah! 🕋':pct>=60?'Good effort — review "Know Before You Go" and retake.':'Keep studying — the Umrah tab will get you there.';
-  document.getElementById('qzArea').innerHTML='<div class="qz-final"><div class="big">'+pct+'%</div><p>'+qzScore+' of '+QUIZ.length+' correct — '+msg+'</p><button class="btn gold" onclick="startQuiz()">↺ Retake quiz</button></div>';
-  document.getElementById('qzBest').textContent=ST.quizBest+'%';
-  if(pct>=80&&!planChk['quiz80']){planChk['quiz80']=true;save('us-plan',planChk);updPlan();}
+  var lv=QUIZ_LEVELS[qzLevel];
+  if(qzI<lv.qs.length-1){qzI++;renderQz();return;}
+  var pct=Math.round(qzScore/lv.qs.length*100);
+  var prevBest=qzST.best[qzLevel]||0;
+  if(pct>prevBest){qzST.best[qzLevel]=pct;localStorage.setItem('us-quiz',JSON.stringify(qzST));}
+  var passed=pct>=80;
+  var msg;
+  if(passed&&qzLevel<QUIZ_LEVELS.length-1)msg='Level passed! '+QUIZ_LEVELS[qzLevel+1].icon+' '+QUIZ_LEVELS[qzLevel+1].name.split(' · ')[1]+' is now unlocked.';
+  else if(passed)msg='Final level passed — the whole circuit is yours!';
+  else msg='You need 80% to pass — review the knowledge cards above and retake.';
+  document.getElementById('qzArea').innerHTML='<div class="qz-final"><div class="big">'+pct+'%</div><p>'+qzScore+' of '+lv.qs.length+' correct — '+msg+'</p><button class="btn gold" onclick="startLevel('+qzLevel+')">↺ Retake level</button><button class="btn ghost" onclick="renderLevels()">← All levels</button></div>';
+  if(passed){toast('🎉 '+lv.name.split(' · ')[0]+' passed!',true);vib([40,60,120]);}
+  if(qzAllPassed()&&!planChk['quiz80']){planChk['quiz80']=true;save('us-plan',planChk);updPlan();toast('🏆 Knowledge circuit complete!',true);}
+  ST.quizBest=Math.max(ST.quizBest||0,pct);saveST();
   chkBadges();
+  var pc=qzPassedCount();
+  document.getElementById('qzBest').textContent=pc+'/'+QUIZ_LEVELS.length;
+  var m=document.getElementById('qzMeter');if(m)m.style.width=Math.round(pc/QUIZ_LEVELS.length*100)+'%';
 }
 
 /* ════════════════════════ RITES ════════════════════════ */
@@ -901,7 +1050,7 @@ function badgeOK(id){
   switch(id){
     case 'firstUmrah':return ST.umrahs>=1;
     case 'again':return ST.umrahs>=2;
-    case 'quizMaster':return ST.quizBest>=80;
+    case 'quizMaster':return qzAllPassed();
     case 'prepped':{var tot=0,done=0;PLAN.forEach(function(s){s.items.forEach(function(it){tot++;if(planChk[it.id])done++;});});return tot>0&&done===tot;}
     case 'explorer':return Object.keys(placeVis).filter(function(k){return placeVis[k];}).length>=8;
     case 'devoted':{var n=0;for(var i=1;i<=ST.tripLen;i++){var p=dayPct(i);if(p!==null&&p>=80)n++;}return n>=3;}
