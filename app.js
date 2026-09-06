@@ -1,6 +1,6 @@
 /* Umrah Strivers — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='4.6.0';
+var APP_VERSION='4.7.0';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* ════════════════════════ STATE ════════════════════════ */
 var ST={day:1,tripLen:10,theme:'light',tab:'home',dep:'',umrahs:0,tawaf:0,sai:0,quizBest:0,city:'Makkah'};
@@ -105,14 +105,42 @@ function renderPlan(){
     h+=mkSec(sec,i>0,inner);
   });
   document.getElementById('planContainer').innerHTML=h;
-  function accs(arr){var k='';arr.forEach(function(g){k+='<div class="acc" onclick="this.classList.toggle(\'open\')"><div class="acc-h">'+g.t+' <span class="acc-c">▶</span></div><div class="acc-b">'+g.b+'</div></div>';});return k;}
-  document.getElementById('knowContainer').innerHTML=accs(KNOW);
-  document.getElementById('histContainer').innerHTML=accs(HISTORY);
-  document.getElementById('virtContainer').innerHTML=accs(VIRTUES);
-  document.getElementById('madContainer').innerHTML=accs(MADINAH);
-  document.getElementById('qaContainer').innerHTML=accs(FIQHQA);
-  document.getElementById('scamContainer').innerHTML=accs(SCAMS);
+  LN_CARDS.forEach(function(c){var el=document.getElementById(c[1]);if(el)el.innerHTML=accs(c[2]);lnMeta(c[0],c[2]);});
+  renderRiteTiles();filterLearn();
 }
+/* accordions (P-19): the header alone toggles, so links and text inside an open topic are usable */
+function accs(arr){return arr.map(function(g){return '<div class="acc"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)">'+g.t+' <span class="acc-c">▶</span></div><div class="acc-b">'+g.b+'</div></div>';}).join('');}
+function accToggle(h){var a=h.parentNode,o=a.classList.toggle('open');h.setAttribute('aria-expanded',o?'true':'false');}
+/* Learn hub: reading sections in reading order (P-13/P-21), topic counts (P-20), search (P-20), rites index (P-14) */
+var LN_CARDS=[['knowCard','knowContainer',KNOW],['qaCard','qaContainer',FIQHQA],['histCard','histContainer',HISTORY],['virtCard','virtContainer',VIRTUES],['madCard','madContainer',MADINAH],['sisCard','sisContainer',SISTERS],['scamCard','scamContainer',SCAMS]];
+var LN_OTHER=['ritesCard','fcCard','lnQuizCard'],lnAuto=null;
+function fcText(html){return String(html||'').replace(/<[^>]+>/g,' ').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim();}
+function lnMeta(cardId,arr){var h3=document.querySelector('#'+cardId+' h3');if(!h3)return;var w=0;arr.forEach(function(g){w+=fcText(g.t+' '+g.b).split(' ').length;});var m=h3.querySelector('.lnm');if(!m){m=document.createElement('small');m.className='lnm';h3.appendChild(m);}m.textContent=arr.length+' topics · ≈'+Math.max(1,Math.round(w/200))+' min read';}
+function filterLearn(){
+  var inp=document.getElementById('lnSearch');if(!inp)return;var q=(inp.value||'').trim().toLowerCase(),none=document.getElementById('lnNone'),shown=[],total=0;
+  if(lnAuto&&(!q||lnAuto.textContent.toLowerCase().indexOf(q)<0)){lnAuto.classList.remove('open');var ah=lnAuto.querySelector('.acc-h');if(ah)ah.setAttribute('aria-expanded','false');lnAuto=null;}
+  LN_CARDS.forEach(function(c){var card=document.getElementById(c[0]);if(!card)return;var vis=0;
+    card.querySelectorAll('.acc').forEach(function(a){var hit=!q||a.textContent.toLowerCase().indexOf(q)>-1;a.hidden=!hit;if(hit){vis++;shown.push(a);}});
+    card.classList.toggle('ln-hide',!!q&&!vis);var j=document.querySelector('#lnJumps [data-for="'+c[0]+'"]');if(j)j.classList.toggle('ln-hide',!!q&&!vis);total+=vis;});
+  LN_OTHER.forEach(function(id){var e=document.getElementById(id);if(e)e.classList.toggle('ln-hide',!!q);var j=document.querySelector('#lnJumps [data-for="'+id+'"]');if(j)j.classList.toggle('ln-hide',!!q);});
+  if(none)none.hidden=!q||total>0;
+  if(q&&shown.length===1&&lnAuto!==shown[0]){lnAuto=shown[0];lnAuto.classList.add('open');var hd=lnAuto.querySelector('.acc-h');if(hd)hd.setAttribute('aria-expanded','true');try{lnAuto.scrollIntoView({behavior:'smooth',block:'center'});}catch(e){}}
+}
+function renderRiteTiles(){var a=document.getElementById('riteTiles');if(!a)return;
+  a.innerHTML=RITES.map(function(ph,i){var t=ph.title.replace(/^Phase \d+ · /,''),n=riteCounts(ph.steps).tot;
+    return '<div class="rtile" role="button" tabindex="0" aria-label="Step '+(i+1)+', '+t.replace(/"/g,'')+' — open in the rites guide" onclick="openRitePhase(\''+ph.id+'\')"><span class="i">'+ph.ico+'</span><b>'+t+'</b><small>Step '+(i+1)+' · '+n+' to-dos</small></div>'+(i===0||i===2?'<span class="rarr" aria-hidden="true">→</span>':'')+(i===1?'<span class="rarr dn" aria-hidden="true">↓</span>':'');}).join('');}
+function openRitePhase(id){var sc=document.getElementById('sec-'+id);if(sc){sc.classList.remove('shut');var hd=sc.querySelector('.sec-hd');if(hd)hd.setAttribute('aria-expanded','true');}goTab('umrah','steps','sec-'+id);}
+/* P-15: hand-off from reading to the quiz — next unlocked level, or the mistakes drill once all are passed */
+function lnNextLevel(){for(var i=0;i<QUIZ_LEVELS.length;i++){if(!qzPassed(i))return i;}return -1;}
+function renderLearnQuiz(){
+  var a=document.getElementById('lnQuizArea'),sb=document.getElementById('lnQuizSub');if(!a)return;
+  var next=lnNextLevel(),wc=qzWrongCount(),h;
+  if(next<0){sb.textContent='All '+QUIZ_LEVELS.length+' levels passed — mashallah.';h='<div class="lnq"><div class="lvl-n">🏆</div><div class="t"><b>Circuit complete</b>'+(wc?wc+' question'+(wc===1?'':'s')+' still to master.':'Nothing left to review — go with presence of heart.')+'</div></div><button class="btn'+(wc?' gold':' ghost')+'" onclick="lnQuizGo()">'+(wc?'🔁 Review my mistakes ('+wc+')':'🧠 Open the quiz')+'</button>';}
+  else{var L=QUIZ_LEVELS[next],best=qzST.best[next];sb.textContent='Next up: '+L.name+(best!==undefined?' · best so far '+best+'%':'');
+    h='<div class="lnq"><div class="lvl-n">'+L.icon+'</div><div class="t"><b>'+L.name.split(' · ')[1]+'</b>'+L.desc+' · '+L.qs.length+' questions · 80% unlocks the next level</div></div><button class="btn gold" onclick="lnQuizGo()">🧠 Start '+L.name.split(' · ')[0]+' →</button>';}
+  a.innerHTML=h;
+}
+function lnQuizGo(){var next=lnNextLevel();goTab('plan','quiz');if(next<0){if(qzWrongCount())startMistakes();}else startLevel(next);}
 function togPlan(id){planChk[id]=!planChk[id];save('us-plan',planChk);vib(15);if(planChk[id])markPrepDay();updPlan();chkBadges();}
 function updPlan(){
   var P=planTotals(),tot=P.tot,done=P.done;
@@ -188,6 +216,7 @@ function renderLevels(){
   var pc=qzPassedCount();
   document.getElementById('qzBest').textContent=pc+'/'+QUIZ_LEVELS.length;
   var m=document.getElementById('qzMeter');if(m)m.style.width=Math.round(pc/QUIZ_LEVELS.length*100)+'%';
+  renderLearnQuiz();
 }
 function startLevel(i){
   if(!qzUnlocked(i)){toast('🔒 Pass '+QUIZ_LEVELS[i-1].name.split(' · ')[0]+' first (80%+)');vib([50,40,50]);return;}
@@ -260,7 +289,7 @@ function renderRites(){
     h+=mkSec(ph,i>0,inner);
   });
   document.getElementById('riteContainer').innerHTML=h;
-  renderCnt('tawaf');renderCnt('sai');
+  renderCnt('tawaf');renderCnt('sai');renderRiteTiles();
 }
 function stamp(k){ST.log=ST.log||{};if(!ST.log[k]){ST.log[k]=Date.now();saveST();}}
 function togRite(id){riteChk[id]=!riteChk[id];save('us-rites',riteChk);vib(15);
@@ -513,8 +542,8 @@ function renderHome(){
     stageNow=4;}
   else if(d===null||d>0){var P=planTotals(),tot=P.tot,done=P.done;pct=P.pct;phase=d===null?'🧭 Planning — set your departure date':'✈️ '+d+' day'+(d===1?'':'s')+' until departure';cta=[pct<100?'Continue preparing':'Study & quiz','plan',pct<100?'prep':'learn',pct<100?(ST.dep?'tlCard':'cdCard'):null];lbl=done+' of '+tot+' prep items · '+qzPassedCount()+'/'+QUIZ_LEVELS.length+' quiz levels';stageNow=0;}
   else{pct=dayPct(ST.day)||0;phase='🕋 Day '+ST.day+' of '+ST.tripLen+' in the Haramain';cta=['Log today’s worship','daily','today'];lbl=pct+'% of today’s deeds · '+tu+' Umrah'+(tu===1?'':'s')+' completed';stageNow=ST.umrahs?2:1;}
-  var due=fcDue();var fcIdx0=due.length?due[0]:null;
-  var nh=0;[HISTORY,VIRTUES,MADINAH,FIQHQA,KNOW,SCAMS].forEach(function(x){nh+=x.length;});
+  var due=fcDue();var fc0=due.length?FC_MAP[due[0]]:null;
+  var nh=0;[HISTORY,VIRTUES,MADINAH,FIQHQA,KNOW,SISTERS,SCAMS].forEach(function(x){nh+=x.length;});
   var nq=0;QUIZ_LEVELS.forEach(function(l){nq+=l.qs.length;});
   var stages=[
     {i:'🧳',t:'Before you fly',s:'Prepare with ihsan',d:'Begin with your intention — then checklists for documents, packing and health, a departure countdown and a generated day-by-day itinerary. Then learn: the history of the Kaaba and Madinah, the virtues, the fiqh Q&A, a scam-awareness guide — and prove it in a 7-level quiz.',f:['Checklists','Itinerary','Knowledge hub','7-level quiz','Flashcards','Document vault'],go:['plan','prep'],c:'Start preparing'},
@@ -543,13 +572,13 @@ function renderHome(){
   // 6. Quick tools
   h+='<div class="vh" style="margin-top:6px"><h2 style="font-size:1.2em">Quick tools</h2></div>';
   h+='<div class="qa-grid">'+acts.map(function(x){return '<button class="qa" onclick="'+goStr([x[2],x[3]])+'"><span>'+x[0]+'</span>'+x[1]+'</button>';}).join('')+'<button class="qa wide" onclick="sosSheet()" aria-label="Hotel and emergency help"><span>🚕</span>Hotel / SOS <span style="font-size:1em;opacity:.55;font-weight:600">· driver card · I’m lost · 911 · 1966</span></button></div>';
-  if(fcIdx0!==null)h+='<div class="card card-pad hfc" role="button" tabindex="0" aria-label="Study today’s knowledge card" onclick="startFC();goTab(\'plan\',\'learn\',\'fcCard\')"><small>🃏 Today’s knowledge card · '+due.length+' due</small><b>'+FC_DECK[fcIdx0].f+'</b><span>Tap to study →</span></div>';
+  if(fc0)h+='<div class="card card-pad hfc" role="button" tabindex="0" aria-label="Study today’s knowledge card" onclick="startFC();goTab(\'plan\',\'learn\',\'fcCard\')"><small>🃏 Today’s knowledge card · '+due.length+(fcStarted()?' due':' ready')+'</small><b>'+fc0.f+'</b><span>Tap to study →</span></div>';
   h+='<div class="note" style="margin:0 0 12px">'+QUOTES[Math.floor(Date.now()/86400000)%QUOTES.length]+'</div>';
   h+='<div class="card card-pad"><h3>Common questions</h3>'
-    +'<div class="acc" onclick="this.classList.toggle(\'open\')"><div class="acc-h">Is it really free? <span class="acc-c">▶</span></div><div class="acc-b">Yes — no ads, no subscriptions, no “pro” tier. Built as sadaqah jariyah for the Ummah. If it helps you, share it and make dua for those who built it.</div></div>'
-    +'<div class="acc" onclick="this.classList.toggle(\'open\')"><div class="acc-h">Does it work in the Haram without signal? <span class="acc-c">▶</span></div><div class="acc-b">Yes. Open it once with internet and it caches itself; the counters, rites guide, duas, places and your data all work offline. Prayer times cache for the day; the map links need signal.</div></div>'
-    +'<div class="acc" onclick="this.classList.toggle(\'open\')"><div class="acc-h">Where is my data stored? <span class="acc-c">▶</span></div><div class="acc-b">Only on your phone. There is no account and no server. Export a backup from Settings before changing phones; the document vault is encrypted with your PIN and cannot be recovered without it.</div></div>'
-    +'<div class="acc" onclick="this.classList.toggle(\'open\')"><div class="acc-h">Is the religious content reliable? <span class="acc-c">▶</span></div><div class="acc-b">Every hadith is cited to its collection and was checked against the source text; weak narrations are avoided or marked. It is a study companion, not a fatwa service — ask a scholar for rulings on your situation. Scholar review is pending; corrections are welcome.</div></div>'
+    +'<div class="acc"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)">Is it really free? <span class="acc-c">▶</span></div><div class="acc-b">Yes — no ads, no subscriptions, no “pro” tier. Built as sadaqah jariyah for the Ummah. If it helps you, share it and make dua for those who built it.</div></div>'
+    +'<div class="acc"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)">Does it work in the Haram without signal? <span class="acc-c">▶</span></div><div class="acc-b">Yes. Open it once with internet and it caches itself; the counters, rites guide, duas, places and your data all work offline. Prayer times cache for the day; the map links need signal.</div></div>'
+    +'<div class="acc"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)">Where is my data stored? <span class="acc-c">▶</span></div><div class="acc-b">Only on your phone. There is no account and no server. Export a backup from Settings before changing phones; the document vault is encrypted with your PIN and cannot be recovered without it.</div></div>'
+    +'<div class="acc"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)">Is the religious content reliable? <span class="acc-c">▶</span></div><div class="acc-b">Every hadith is cited to its collection and was checked against the source text; weak narrations are avoided or marked. It is a study companion, not a fatwa service — ask a scholar for rulings on your situation. Scholar review is pending; corrections are welcome.</div></div>'
     +'</div>';
   h+='<div class="card card-pad" style="text-align:center"><h3 style="margin-bottom:6px">Made for the Ummah</h3><p style="font-size:.84em;color:var(--ink2);line-height:1.6">Free, no ads, no tracking. The sister app of <a href="https://www.ramadanstrivers.com/" target="_blank" rel="noopener" style="color:var(--brand-2);font-weight:700;text-decoration:none">Ramadan Strivers</a>. Share it with anyone going to Umrah.</p><div style="display:flex;gap:8px;justify-content:center"><button class="btn ghost" style="margin-top:6px" onclick="shareApp()">📤 Share</button><button class="btn ghost" style="margin-top:6px" onclick="showQR()">▦ Show QR</button></div></div>';
   a.innerHTML=h;
@@ -1147,46 +1176,69 @@ function makeCertGo(){
 }
 
 /* ════════════════════════ FLASHCARDS ════════════════════════ */
-var FC_DECK=[],fcQueue=[],fcIdx=0,fcST={};
+/* P-16: string keys — 'l#q#' quiz cards (front = question, back = options + explanation), 'know3' / 'qa1' / 'hist0' / 'virt0' / 'mad0' / 'sis0' / 'scam2' read cards.
+   Deck order mirrors the Learn reading path; fcDue() puts your quiz mistakes first and, inside 28 days of departure, the ihram/tawaf levels + Know-before-you-go next. */
+var FC_DECK=[],FC_MAP={},fcQueue=[],fcIdx=0,fcST={};
 function fcToday(){return Math.floor(Date.now()/86400000);}
+function fcSave(){localStorage.setItem('us-cards',JSON.stringify(fcST));}
+function fcStarted(){return Object.keys(fcST).length>0;}
 function buildDeck(){
-  FC_DECK=[];
-  [HISTORY,VIRTUES,MADINAH,FIQHQA].forEach(function(arr){arr.forEach(function(it){
-    FC_DECK.push({f:it.t,b:it.b.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim()});
-  });});
+  FC_DECK=[];FC_MAP={};
+  function add(c){FC_DECK.push(c);FC_MAP[c.k]=c;}
+  function read(arr,pre,src){arr.forEach(function(it,i){add({k:pre+i,f:it.t,b:it.b,src:'Read · '+src,type:'read'});});}
+  function quiz(lv){var L=QUIZ_LEVELS[lv];if(!L)return;L.qs.forEach(function(q,i){add({k:'l'+lv+'q'+i,f:q.q,q:q,lv:lv,src:'Quiz · '+L.name.split(' · ')[0],type:'quiz'});});}
+  quiz(0);read(KNOW,'know','Know before you go');quiz(1);quiz(2);read(FIQHQA,'qa','Fiqh Q&A');quiz(6);read(HISTORY,'hist','History');quiz(3);read(VIRTUES,'virt','Virtues');quiz(4);read(MADINAH,'mad','Madinah');quiz(5);read(SISTERS,'sis','For sisters');read(SCAMS,'scam','Scams');
   try{fcST=JSON.parse(localStorage.getItem('us-cards')||'{}');}catch(e){fcST={};}
+  /* migrate v1 numeric keys (old deck order: HISTORY, VIRTUES, MADINAH, FIQHQA) once */
+  var mig=false,old=[['hist',HISTORY.length],['virt',VIRTUES.length],['mad',MADINAH.length],['qa',FIQHQA.length]];
+  Object.keys(fcST).forEach(function(k){if(!/^\d+$/.test(k))return;mig=true;var i=+k,st=fcST[k];delete fcST[k];for(var j=0;j<old.length;j++){if(i<old[j][1]){var nk=old[j][0]+i;if(FC_MAP[nk]&&!fcST[nk])fcST[nk]=st;break;}i-=old[j][1];}});
+  if(mig)fcSave();
 }
 function fcDue(){
-  var t=fcToday(),due=[];
-  FC_DECK.forEach(function(c,i){var st=fcST[i];if(!st||st.due<=t)due.push(i);});
+  var t=fcToday(),d=depDays(),soon=d!==null&&d<=28,due=[],idx={};
+  FC_DECK.forEach(function(c){var st=fcST[c.k];if(!st||st.due<=t){idx[c.k]=due.length;due.push(c.k);}});
+  function tier(k){var c=FC_MAP[k];if(c.type==='quiz'&&qzST.wrong[k])return 0;if(soon&&((c.type==='quiz'&&(c.lv===1||c.lv===2))||k.indexOf('know')===0))return 1;return 2;}
+  due.sort(function(a,b){return tier(a)-tier(b)||idx[a]-idx[b];});
   return due;
+}
+function fcBack(c){
+  if(c.type!=='quiz')return c.b;
+  var q=c.q,ans=qzAns(q);
+  return '<div class="fc-q">'+q.q+'</div><div class="fc-opts">'+qzOpts(q).map(function(o,i){return '<div class="'+(i===ans?'ok':'')+'">'+(i===ans?'✓ ':'')+o+'</div>';}).join('')+'</div>'+q.e;
 }
 function renderFC(){
   var area=document.getElementById('fcArea');if(!area)return;
-  var due=fcDue();
-  document.getElementById('fcDueLbl').textContent=due.length?due.length+' cards due today.':'';
+  var due=fcDue(),started=fcStarted(),lbl=document.getElementById('fcDueLbl');
+  if(lbl)lbl.textContent=due.length?(started?due.length+' due today.':due.length+' cards ready.'):'';
   if(!fcQueue.length){
-    if(!due.length){area.innerHTML='<div class="note" style="margin:0">✅ All caught up — new cards return tomorrow. Consistency builds hearts.</div>';return;}
-    area.innerHTML='<button class="btn gold" onclick="startFC()">🃏 Review '+Math.min(12,due.length)+' cards</button>';return;
+    if(!due.length){area.innerHTML='<div class="note" style="margin:0">✅ Cards caught up — back tomorrow.</div>';return;}
+    var n=Math.min(started?12:5,due.length);
+    area.innerHTML='<button class="btn gold" onclick="startFC()">🃏 '+(started?'Review next '+n+' ('+due.length+' due)':'Start with '+n+' cards')+'</button>'+(qzWrongCount()?'<p style="font-size:.74em;color:var(--ink3);margin-top:8px;text-align:center">Your quiz mistakes come first.</p>':'');return;
   }
-  var i=fcQueue[fcIdx],c=FC_DECK[i];
+  var k=fcQueue[fcIdx],c=FC_MAP[k];if(!c){fcEnd();return;}
+  var wrong=c.type==='quiz'&&!!qzST.wrong[k];
   area.innerHTML='<div class="fc-prog">Card '+(fcIdx+1)+' / '+fcQueue.length+'</div>'
-   +'<div class="fc" id="fcFlip" role="button" tabindex="0" aria-label="Flip the card" onclick="this.classList.toggle(\'flip\')"><div class="fc-in">'
-   +'<div class="fc-face fc-front"><div class="t">'+c.f+'</div><div class="hint">Tap to reveal</div></div>'
-   +'<div class="fc-face fc-back">'+c.b+'</div>'
+   +'<div class="fc-wrap" id="fcWrap"><div class="fc" id="fcFlip" role="button" tabindex="0" aria-label="Reveal the answer" onclick="fcFlip()"><div class="fc-in">'
+   +'<div class="fc-face fc-front"><span class="fc-src'+(wrong?' wrong':'')+'">'+(wrong?'🔁 from your quiz':c.src)+'</span><div class="t">'+c.f+'</div><div class="hint">Tap to reveal · then grade yourself</div></div>'
+   +'<div class="fc-face fc-back">'+fcBack(c)+'<span class="fc-showq" role="button" tabindex="0" onclick="event.stopPropagation();fcUnflip()">↩ Show question</span></div>'
    +'</div></div>'
-   +'<div class="fc-acts"><button onclick="fcGrade(false)">↺ Again</button><button class="good" onclick="fcGrade(true)">✓ Got it</button></div>';
+   +'<div class="fc-acts"><button onclick="fcGrade(false)">↺ Again</button><button class="good" onclick="fcGrade(true)">✓ Got it</button></div></div>'
+   +'<button class="fc-end" onclick="fcEnd()">✕ End session</button>';
 }
-function startFC(){fcQueue=fcDue().slice(0,12);fcIdx=0;renderFC();}
+function fcFlip(){var w=document.getElementById('fcWrap');if(w&&!w.classList.contains('flip')){w.classList.add('flip');vib(6);}}
+function fcUnflip(){var w=document.getElementById('fcWrap');if(w)w.classList.remove('flip');}
+function fcEnd(){fcQueue=[];fcIdx=0;renderFC();}
+function startFC(){fcQueue=fcDue().slice(0,fcStarted()?12:5);fcIdx=0;renderFC();}
 function fcGrade(ok){
-  var i=fcQueue[fcIdx],st=fcST[i]||{box:0};
+  var k=fcQueue[fcIdx],st=fcST[k]||{box:0};
   var box=ok?Math.min(3,(st.box||0)+1):1;
   var gap=box===1?1:box===2?3:7;
-  fcST[i]={box:box,due:fcToday()+gap};
-  localStorage.setItem('us-cards',JSON.stringify(fcST));
+  fcST[k]={box:box,due:fcToday()+gap};fcSave();
   vib(ok?20:[40,30,40]);
   fcIdx++;
-  if(fcIdx>=fcQueue.length){fcQueue=[];fcIdx=0;toast('🃏 Session done — see you tomorrow!');}
+  if(fcIdx>=fcQueue.length){var n=fcQueue.length;fcQueue=[];fcIdx=0;var rem=fcDue().length;
+    if(rem)toast('🃏 '+n+' done · '+rem+' more due — keep going?','','Next '+Math.min(12,rem),function(){startFC();});
+    else toast('🃏 Session done — all caught up until tomorrow',true);}
   renderFC();
 }
 

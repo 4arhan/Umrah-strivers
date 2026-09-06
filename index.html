@@ -247,11 +247,13 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .sw.on{background:var(--brand-2);border-color:var(--brand-2)}.sw.on::after{transform:translateX(22px)}
 .numin{width:74px;padding:9px;border-radius:var(--r-sm);border:1px solid var(--line);background:var(--bg);color:var(--ink);font-family:var(--fb);font-weight:700;font-size:.95em;text-align:center}
 .acc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:8px;overflow:hidden}
-.acc-h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 16px;font-size:.88em;font-weight:600;cursor:pointer}
+.acc-h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 16px;min-height:44px;font-size:.88em;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.acc-h:focus-visible{outline:3px solid var(--brand-2);outline-offset:-3px;border-radius:var(--r)}
+.acc[hidden]{display:none!important}
 .acc-h:active{opacity:.7}
 .acc-c{font-size:.62em;color:var(--ink3);transition:transform .2s;flex-shrink:0}
 .acc.open .acc-c{transform:rotate(90deg)}
-.acc-b{max-height:0;overflow:hidden;padding:0 16px;font-size:.84em;color:var(--ink2);line-height:1.7;transition:max-height .3s ease,padding .3s ease}
+.acc-b{max-height:0;overflow:hidden;padding:0 16px;font-size:.84em;color:var(--ink2);line-height:1.7;transition:max-height .3s ease,padding .3s ease;user-select:text;-webkit-user-select:text}
 .acc.open .acc-b{max-height:2600px;padding:0 16px 14px}
 .acc-b ul{padding-left:18px;margin:6px 0}.acc-b li{padding:2px 0}.acc-b strong{color:var(--ink)}
 .res{display:flex;align-items:center;gap:12px;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:11px 14px;margin-bottom:8px;text-decoration:none;color:var(--ink);transition:all .15s}
@@ -372,19 +374,29 @@ html[data-text='lg'] body{font-size:17px}
 .dua-top small{font-size:.72em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--gold-ink)}
 .say{border:1px solid var(--gold);background:var(--card);color:var(--gold-ink);border-radius:999px;padding:4px 11px;font-size:.78em;font-weight:700;cursor:pointer;transition:transform .15s;font-family:var(--fb)}
 .say:active{transform:scale(.9)}
-.fc{perspective:1200px;min-height:190px;cursor:pointer;margin-bottom:10px;position:relative}
-.fc-in{position:relative;width:100%;min-height:190px;transition:transform .5s;transform-style:preserve-3d}
-.fc.flip .fc-in{transform:rotateY(180deg)}
-.fc-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--r);border:1.5px solid var(--line);padding:18px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.fc-wrap{margin-bottom:10px}
+.fc{perspective:1200px;min-height:150px;cursor:pointer;margin-bottom:10px;position:relative}
+.fc-in{display:grid;width:100%;min-height:150px;transition:transform .5s;transform-style:preserve-3d}
+.fc.flip .fc-in,.fc-wrap.flip .fc-in{transform:rotateY(180deg)}
+.fc-face{grid-area:1/1;position:relative;inset:auto;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--r);border:1.5px solid var(--line);padding:18px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
 .fc-front{background:linear-gradient(150deg,var(--brand),#0B2E24);color:#fff;text-align:center}
 [data-theme="dark"] .fc-front{background:linear-gradient(150deg,#13402F,#0B241C)}
 .fc-front .t{font-family:var(--fd);font-size:1.15em;font-weight:700;line-height:1.4}
 .fc-front .hint{font-size:.68em;opacity:.55;letter-spacing:1px;text-transform:uppercase;margin-top:10px}
-.fc-back{background:var(--card);transform:rotateY(180deg);font-size:.82em;color:var(--ink2);line-height:1.6;overflow-y:auto;justify-content:flex-start}
-.fc-acts{display:flex;gap:8px}
+.fc-src{display:inline-block;margin:0 auto 10px;font-size:.64em;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.14);color:#EFD494}
+.fc-src.wrong{background:rgba(217,180,94,.9);color:#231803}
+.fc-back{background:var(--card);transform:rotateY(180deg);font-size:.82em;color:var(--ink2);line-height:1.6;justify-content:flex-start}
+.fc-back .fc-q{font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.45}
+.fc-opts{margin:0 0 10px}
+.fc-opts div{padding:6px 10px;border:1px solid var(--line);border-radius:10px;margin-bottom:4px;font-size:.95em}
+.fc-opts div.ok{border-color:var(--ok);background:var(--brand-soft);color:var(--ink);font-weight:700}
+.fc-showq{display:inline-block;margin-top:10px;font-size:.8em;font-weight:700;color:var(--brand-2);cursor:pointer;text-decoration:underline dotted}
+.fc-acts{display:none;gap:8px}
+.fc-wrap.flip .fc-acts{display:flex}
 .fc-acts button{flex:1;padding:12px 0;border-radius:var(--r-sm);font-family:var(--fb);font-weight:700;font-size:.84em;cursor:pointer;border:1.5px solid var(--line);background:var(--bg);color:var(--ink2);transition:transform .15s}
 .fc-acts button:active{transform:scale(.96)}
 .fc-acts .good{border-color:var(--brand-2);color:var(--brand-2)}
+.fc-end{display:block;margin:10px auto 0;border:none;background:transparent;color:var(--ink3);font-family:var(--fb);font-weight:700;font-size:.76em;cursor:pointer;padding:6px 10px}
 .fc-prog{font-size:.72em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--ink3);text-align:center;margin-bottom:8px}
 .kq-o{display:block;width:100%;text-align:center;padding:16px;margin-bottom:10px;border-radius:var(--r);border:2px solid var(--line);background:var(--bg);color:var(--ink);font-size:1.05em;font-weight:700;cursor:pointer;font-family:var(--fb);transition:all .15s}
 .kq-o:active{transform:scale(.97)}
@@ -630,6 +642,22 @@ html[data-text='lg'] body{font-size:17px}
 .qa.wide span{display:inline;font-size:1.3em;margin:0}
 .kidsrow{display:flex;align-items:center;gap:12px;padding:14px 16px}
 .kidsrow .kr-t{flex:1;min-width:0}.kidsrow .kr-t b{display:block;font-size:.92em}.kidsrow .kr-t small{display:block;font-size:.76em;color:var(--ink2);line-height:1.45;margin-top:2px}
+/* ─────────── Learn batch: rites index, Start-here pill, topic meta, quiz hand-off ─────────── */
+.rtiles{display:grid;grid-template-columns:1fr auto 1fr;gap:6px 4px;align-items:center;margin-bottom:6px}
+.rtile{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:12px 8px;text-align:center;cursor:pointer;font-family:var(--fb);color:var(--ink);transition:transform .15s;min-height:88px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.rtile:active{transform:scale(.96)}
+.rtile .i{font-size:1.5em;display:block}
+.rtile b{display:block;font-size:.82em;line-height:1.3;margin-top:4px}
+.rtile small{display:block;font-size:.7em;color:var(--ink3);margin-top:2px}
+.rarr{color:var(--gold);font-weight:800;font-size:1.1em;text-align:center;line-height:1}
+.rarr.dn{grid-column:1/-1}
+.pillmini{display:inline-block;vertical-align:middle;margin-left:6px;font-family:var(--fb);font-size:.58em;font-weight:800;letter-spacing:.8px;text-transform:uppercase;background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#231803;padding:3px 9px;border-radius:999px}
+.lnm{display:block;font-family:var(--fb);font-size:.66em;font-weight:600;color:var(--ink3);letter-spacing:.3px;margin-top:2px}
+.lvlref{display:inline-block;font-size:.9em;color:var(--ink3);font-style:italic}
+.ln-hide{display:none!important}
+.lnq{display:flex;align-items:center;gap:12px;margin-top:8px}
+.lnq .lvl-n{width:44px;height:44px;font-size:1.3em}
+.lnq .t{flex:1;min-width:0;font-size:.86em;line-height:1.45;color:var(--ink2)}.lnq .t b{display:block;color:var(--ink);font-size:1.02em}
 </style>
 </head>
 <body>
@@ -656,7 +684,7 @@ html[data-text='lg'] body{font-size:17px}
   <div class="jumps" id="prepJumps" aria-label="Jump to a section of Prepare"></div>
   <div class="niy" id="niyCard"><div class="niy-c" id="niyCol" role="button" tabindex="0" aria-expanded="false" onclick="niyToggle()"><div class="t"><b id="niyColT">✓ Intention set</b><span id="niyColF"></span></div><button class="chip-btn" tabindex="-1">Re-read / edit ▾</button></div><div class="niy-k">Begin here</div><h3>Before the checklist — the intention</h3><p class="niy-p">Umrah is answered by the heart before it is booked by the hands. Three foundations, then everything else.</p>
     <div class="niy-b"><b>1 · The Intention <i>(Niyyah)</i></b><p>Define your specific spiritual goals for this journey — what you are asking Allah for, what you want to leave behind. "Umrah to Umrah is an expiation for what is between them" (Bukhari 1773) — minor sins; major sins need sincere tawbah. Go purely for Allah, not for the photos.</p></div>
-    <div class="niy-b"><b>2 · The Knowledge <i>(Fiqh)</i></b><p>Learning the rituals is mandatory. Do not obsess over the hotel and forget the rules of the worship. The Learn and Quiz tabs exist for this — finish the circuit before you fly.</p><button class="chip-btn" onclick="goSub('plan','learn')">📚 Start learning</button></div>
+    <div class="niy-b"><b>2 · The Knowledge <i>(Fiqh)</i></b><p>Learning the rituals is mandatory. Do not obsess over the hotel and forget the rules of the worship. The Learn and Quiz tabs exist for this — finish the circuit before you fly.</p><button class="chip-btn" onclick="goTab('plan','learn','knowCard')">📚 Start learning</button></div>
     <div class="niy-b"><b>3 · The Detachment</b><p>Cut ties with worldly distractions before departure — markets, debates, idle talk, the scroll. Settle debts, seek forgiveness from people, write your will, and travel light in the heart.</p></div>
     <label class="niy-l" for="niyText">✍️ My intention &amp; spiritual goals</label>
     <textarea class="pnotes niy-t" id="niyText" placeholder="O Allah, I am going to Your House for… I ask You for… I want to return as someone who…" onchange="saveNiyyah()"></textarea>
@@ -687,21 +715,28 @@ html[data-text='lg'] body{font-size:17px}
     <button class="btn ghost" onclick="shareItin()">📤 Share itinerary</button></div>
   <div class="card card-pad" id="vaultCard"><h3>🔐 Document vault</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Passport, visa, bookings — encrypted on this device with a PIN you choose (AES-256). Nothing is uploaded anywhere.</p><div id="vaultArea"></div></div>
   </div><div class="sub" id="sub-plan-learn">
-  <div class="jumps"><button onclick="jumpTo('histCard')">🕰️ History</button><button onclick="jumpTo('virtCard')">🌟 Virtues</button><button onclick="jumpTo('madCard')">🕌 Madinah</button><button onclick="jumpTo('qaCard')">❓ Q&amp;A</button><button onclick="jumpTo('scamCard')">🚨 Scams</button><button onclick="jumpTo('knowCard')">📚 Practical</button></div>
-  <div class="card card-pad" id="fcCard"><h3>🃏 Daily knowledge cards</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">A few minutes a day — spaced repetition until departure. <b id="fcDueLbl"></b></p><div id="fcArea"></div></div>
+  <input class="srch" id="lnSearch" type="search" placeholder="🔍 Search Learn — ihram, Zamzam, missed lap…" oninput="filterLearn()" aria-label="Search the Learn topics">
+  <div class="jumps" id="lnJumps"><button data-for="ritesCard" onclick="jumpTo('ritesCard')">🗺️ Rites</button><button data-for="knowCard" onclick="jumpTo('knowCard')">📚 Essentials</button><button data-for="qaCard" onclick="jumpTo('qaCard')">❓ Q&amp;A</button><button data-for="histCard" onclick="jumpTo('histCard')">🕰️ History</button><button data-for="virtCard" onclick="jumpTo('virtCard')">🌟 Virtues</button><button data-for="madCard" onclick="jumpTo('madCard')">🕌 Madinah</button><button data-for="sisCard" onclick="jumpTo('sisCard')">🌸 Sisters</button><button data-for="scamCard" onclick="jumpTo('scamCard')">🚨 Scams</button><button data-for="fcCard" onclick="jumpTo('fcCard')">🃏 Cards</button><button data-for="lnQuizCard" onclick="jumpTo('lnQuizCard')">🧠 Quiz</button></div>
+  <div class="note" id="lnNone" hidden style="margin:0 0 12px">No topics match — try “ihram”, “Zamzam”, “wudu” or “period”.</div>
+  <div class="card card-pad" id="ritesCard"><h3>🗺️ Umrah in 4 steps</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The whole rite in order — learn this first, then the cards below.</p><div class="rtiles" id="riteTiles"></div><button class="btn ghost" onclick="goTab('umrah','steps')">📋 Full walkthrough &amp; duas</button></div>
 
-  <div class="card card-pad" id="histCard"><h3>🕰️ History & significance</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">Walk where the prophets walked — know the story behind every rite.</p><div id="histContainer"></div></div>
+  <div class="card card-pad" id="knowCard"><h3>📚 Know before you go <span class="pillmini">Start here</span></h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">Miqats, ihram &amp; the common mistakes — the knowledge that turns a trip into worship. Tap a topic to expand.</p><div id="knowContainer"></div></div>
 
-  <div class="card card-pad" id="virtCard"><h3>🌟 Virtues of Umrah & the Haram</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">What Allah has promised the pilgrim — the rewards that await you.</p><div id="virtContainer"></div></div>
+  <div class="card card-pad" id="qaCard"><h3>❓ Common questions (fiqh Q&amp;A)</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The questions every first-timer asks — answered with evidence. <span class="lvlref">Covered in Level 7</span></p><div id="qaContainer"></div></div>
 
-  <div class="card card-pad" id="madCard"><h3>🕌 Madinah — virtues & visiting</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The City of the Prophet ﷺ deserves its own preparation.</p><div id="madContainer"></div></div>
+  <div class="card card-pad" id="histCard"><h3>🕰️ History &amp; significance</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">Walk where the prophets walked — know the story behind every rite. <span class="lvlref">Covered in Level 4</span></p><div id="histContainer"></div></div>
 
-  <div class="card card-pad" id="qaCard"><h3>❓ Common questions (fiqh Q&amp;A)</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The questions every first-timer asks — answered with evidence.</p><div id="qaContainer"></div></div>
+  <div class="card card-pad" id="virtCard"><h3>🌟 Virtues of Umrah &amp; the Haram</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">What Allah has promised the pilgrim — the rewards that await you. <span class="lvlref">Covered in Level 5</span></p><div id="virtContainer"></div></div>
 
-  <div class="card card-pad" id="scamCard"><h3>🚨 Donations & scams — stay sharp</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">Generosity is worship; being fooled is not. Every provider on <a href="https://umrah.nusuk.sa/" target="_blank" rel="noopener"><b>umrah.nusuk.sa</b></a> is ministry-licensed, and Saudi Arabia’s official donation platform is <a href="https://ehsan.sa/" target="_blank" rel="noopener"><b>Ehsan</b></a> — here is what to watch for.</p><div id="scamContainer"></div></div>
+  <div class="card card-pad" id="madCard"><h3>🕌 Madinah — virtues &amp; visiting</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The City of the Prophet ﷺ deserves its own preparation. <span class="lvlref">Covered in Level 6</span></p><div id="madContainer"></div></div>
 
+  <div class="card card-pad" id="sisCard"><h3>🌸 For sisters</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">Everything that differs for women, in one five-minute read — ihram clothing, pace, exiting ihram, periods, women’s areas and safety.</p><div id="sisContainer"></div></div>
 
-  <div class="card card-pad" id="knowCard"><h3>📚 Know before you go</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The knowledge that turns a trip into worship — tap to expand.</p><div id="knowContainer"></div></div>
+  <div class="card card-pad" id="scamCard"><h3>🚨 Donations &amp; scams — stay sharp</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">Generosity is worship; being fooled is not. Every provider on <a href="https://umrah.nusuk.sa/" target="_blank" rel="noopener"><b>umrah.nusuk.sa</b></a> is ministry-licensed, and Saudi Arabia’s official donation platform is <a href="https://ehsan.sa/" target="_blank" rel="noopener"><b>Ehsan</b></a> — here is what to watch for.</p><div id="scamContainer"></div></div>
+
+  <div class="card card-pad" id="fcCard"><h3>🃏 Daily knowledge cards</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">A few minutes a day — spaced repetition over everything above and your quiz mistakes, paced to your departure. <b id="fcDueLbl"></b></p><div id="fcArea"></div></div>
+
+  <div class="card card-pad" id="lnQuizCard"><h3>🧠 Test what you learned</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:4px" id="lnQuizSub">Seven levels · 80% unlocks the next.</p><div id="lnQuizArea"></div></div>
 
   </div><div class="sub" id="sub-plan-quiz">
   <div class="card card-pad"><h3>🧠 Knowledge circuit — quiz levels</h3>
