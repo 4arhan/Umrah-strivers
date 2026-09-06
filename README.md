@@ -9,8 +9,9 @@ A single-file, offline-first web app. No accounts, no servers, no tracking — a
 ### 🧳 Plan — before you fly
 - **Departure countdown** with a live day counter
 - **Preparation checklists** — documents & bookings (Nusuk visa, Rawdah permit), packing (ihram, unscented toiletries…), health (Meningitis ACWY certificate, walking training), and knowledge & spiritual prep
-- **Knowledge Hub** — four study sections: **History & significance** (the Kaaba, Hajar & Zamzam, the Black Stone, Hira, the qibla change, the Hijrah & conquest), **Virtues of Umrah & the Haram** (sin expiation, poverty removal, guests of Allah, 100,000× prayers, Zamzam), a dedicated **Madinah section** (1,000× prayers, the Rawdah, greeting the Prophet ﷺ, the sanctuary, Quba, Uhud, Ajwa), and the practical **Know Before You Go** topics (miqats, ihram rules, Nusuk, transport, sisters' notes, common mistakes)
-- **Knowledge circuit quiz** — 6 unlockable levels, ~65 true/false & multiple-choice questions with referenced explanations; score 80% to unlock the next level and complete the circuit before you fly
+- **Knowledge Hub** — five study sections: **History & significance** (the Kaaba, Hajar & Zamzam, the Black Stone, Hira, the Year of the Elephant, the Kaaba's rebuilds, the talbiyah's meaning, the qibla change, the Hijrah & conquest), **Virtues of Umrah & the Haram** (sin expiation, poverty removal, guests of Allah, the Prophet's ﷺ own four Umrahs, 100,000× prayers, Zamzam), a dedicated **Madinah section** (1,000× prayers, the Rawdah, greeting the Prophet ﷺ, the sanctuary, Quba, Uhud, Ajwa), a **fiqh Q&A** (badal Umrah, wudu breaking mid-tawaf, menstruation, wheelchair tawaf, traveller's prayer…), and the practical **Know Before You Go** topics (miqats, ihram rules, Nusuk, transport, sisters' notes, common mistakes)
+- **Knowledge circuit quiz** — 7 unlockable levels, ~75 true/false & multiple-choice questions with referenced explanations; score 80% to unlock the next level and complete the circuit before you fly
+- **Every hadith citation verified** against its collection (Bukhari, Muslim, Tirmidhi, Ibn Majah, Nasai, Abu Dawud) — paraphrases marked, weak-hadith claims avoided
 
 ### 🕋 Umrah — during the rites
 - **Step-by-step rites checklist** across 4 phases: Ihram at the miqat → Tawaf → Sa'i → Halq/Taqsir, with the key duas inline (Arabic, transliteration, translation)

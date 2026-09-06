@@ -355,10 +355,12 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 
   <div class="card card-pad"><h3>🕌 Madinah — virtues & visiting</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The City of the Prophet ﷺ deserves its own preparation.</p><div id="madContainer"></div></div>
 
+  <div class="card card-pad"><h3>❓ Common questions (fiqh Q&amp;A)</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The questions every first-timer asks — answered with evidence.</p><div id="qaContainer"></div></div>
+
   <div class="card card-pad"><h3>📚 Know before you go</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The knowledge that turns a trip into worship — tap to expand.</p><div id="knowContainer"></div></div>
 
   <div class="card card-pad"><h3>🧠 Knowledge circuit — quiz levels</h3>
-  <p style="font-size:.84em;color:var(--ink2);margin-bottom:8px">Six levels · true/false &amp; multiple choice · score <b>80%+</b> to unlock the next. Complete the whole circuit before you fly. Passed: <b id="qzBest" style="color:var(--gold)">0/6</b></p>
+  <p style="font-size:.84em;color:var(--ink2);margin-bottom:8px">Seven levels · true/false &amp; multiple choice · score <b>80%+</b> to unlock the next. Complete the whole circuit before you fly. Passed: <b id="qzBest" style="color:var(--gold)">0/6</b></p>
   <div class="meter" style="margin-bottom:12px"><i id="qzMeter" style="width:0%"></i></div>
   <div id="qzArea"></div></div>
 </div>
@@ -465,7 +467,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
     <input type="file" id="impFile" accept=".json" onchange="importData(event)" style="display:none">
     <button class="btn danger" onclick="confirmReset()">🗑️ Reset everything</button>
   </div>
-  <div style="text-align:center;color:var(--ink3);font-size:.78em;line-height:1.7;padding:8px 0"><b style="color:var(--ink2)">Umrah Strivers</b> · v2.2<br>Free · Offline · Private · No ads</div>
+  <div style="text-align:center;color:var(--ink3);font-size:.78em;line-height:1.7;padding:8px 0"><b style="color:var(--ink2)">Umrah Strivers</b> · v2.3<br>Free · Offline · Private · No ads</div>
 </div>
 
 <div class="foot"><div class="d">May Allah invite you to His House and accept your Umrah. 🕋</div>For corrections, suggestions &amp; feedback<br>reach out to <a href="mailto:m.farhan.bava@gmail.com">Farhan</a><br><span style="font-size:.9em;opacity:.6">Built with ❤️ for the Ummah</span></div>
@@ -486,7 +488,7 @@ var QUOTES=[
 '"Perform Umrah after Umrah, for the two of them wipe away whatever sins came between them." — Bukhari 1773',
 '"They will come to you on foot and on every lean camel from every distant pass." — Quran 22:27',
 '"The guests of Allah are three: the warrior, the Hajj pilgrim, and the Umrah pilgrim." — Nasai 2625',
-'"An Umrah in Ramadan is equal to a Hajj with me." — Bukhari 1863',
+'"Perform Umrah in Ramadan, for an Umrah in Ramadan is equal to a Hajj." — Bukhari 1863',
 '"Whoever comes to this House and does not speak obscenely or act wickedly returns as the day his mother bore him." — Muslim 1350'
 ];
 
@@ -550,16 +552,20 @@ var HISTORY=[
 {t:'⛰️ Cave of Hira — where revelation began',b:'<p>On Jabal an-Nour above Makkah, in the cave of Hira, Jibril (AS) came to the Prophet ﷺ with the first words of the Quran: <strong>"Iqra — Read, in the name of your Lord who created"</strong> (Quran 96:1, Bukhari 3). Everything — every mushaf, every masjid, every Muslim — traces back to that night in that cave you can see from the Haram.</p>'},
 {t:'🧭 The qibla change & Masjid al-Qiblatayn',b:'<p>For about 17 months in Madinah the Muslims prayed towards Jerusalem, while the Prophet ﷺ longed for the Kaaba. Then mid-prayer the revelation came: <strong>"Turn your face toward al-Masjid al-Haram"</strong> (Quran 2:144) — and the congregation turned as one. Masjid al-Qiblatayn ("the mosque of the two qiblas") in Madinah marks that moment.</p>'},
 {t:'🚪 The Hijrah & the Conquest of Makkah',b:'<p>Persecuted by Quraysh, the Prophet ﷺ left his beloved city, hiding three nights in the cave of Thawr with Abu Bakr (RA): <strong>"Do not grieve; indeed Allah is with us"</strong> (Quran 9:40). Eight years later he returned with ten thousand companions and conquered Makkah <strong>without bloodshed</strong>, forgave his persecutors, and cleansed the Kaaba of its 360 idols while reciting: "Truth has come and falsehood has vanished" (Quran 17:81).</p>'},
+{t:'🐘 The Year of the Elephant',b:'<p>The year the Prophet ﷺ was born (~570 CE), Abrahah marched an army with a war elephant to demolish the Kaaba. Allah sent flocks of birds with stones of baked clay and made the army "like eaten straw" — the whole of <strong>Surah al-Fil (105)</strong> tells it. The House has a Protector; armies could not touch what He guards, and you are walking towards it as His invited guest.</p>'},
+{t:'🧱 The Kaaba through the ages',b:'<p>The Kaaba has been rebuilt several times — by Quraysh in the Prophet’s ﷺ youth (when funds ran short, they left out part of the original foundation, which is why the <strong>Hijr Isma’il</strong> semicircle stands outside the walls today). The Prophet ﷺ told Aishah: <strong>"Do you not know that when your people rebuilt the Kaaba, they decreased it from the original foundations of Ibrahim?"</strong> (Bukhari 1583). The black kiswah covering is renewed every year, embroidered with gold calligraphy — a tradition of honouring the House that is centuries old.</p>'},
+{t:'🗣️ The talbiyah — what you are really saying',b:'<p><strong>Labbayk Allahumma labbayk</strong> — "Here I am, O Allah, here I am." You are answering a call announced by Ibrahim (AS) thousands of years ago: "And proclaim to the people the Hajj; they will come to you on foot and on every lean camel from every distant pass." (Quran 22:27). Every phrase strips away shirk: <em>la sharika lak</em> — You have no partner; all praise, all favour, all sovereignty are Yours alone. Say it with meaning, not momentum — men aloud, women softly, until the tawaf begins.</p>'},
 {t:'📍 Landmarks and what they mean',b:'<ul><li><strong>Maqam Ibrahim</strong> — the stone Ibrahim (AS) stood on while raising the Kaaba’s walls; his footprints were preserved in it (Quran 2:125).</li><li><strong>Hijr Isma’il</strong> — the semicircle was part of the original Kaaba; praying inside it counts as praying inside the Kaaba (Tirmidhi 876).</li><li><strong>Multazam</strong> — the wall between the Black Stone and the door, where dua is beloved.</li><li><strong>The Yamani corner</strong> — touched (not kissed) each round when possible.</li></ul>'}];
 
 var VIRTUES=[
 {t:'🧼 Umrah wipes away sins',b:'<p>The Prophet ﷺ said: <strong>"Umrah to Umrah is an expiation for the sins committed between them, and the accepted Hajj has no reward except Paradise."</strong> (Bukhari 1773). Whoever performs the pilgrimage without obscenity or wickedness "returns as the day his mother bore him" (Muslim 1350). You come home with a clean slate — guard it.</p>'},
 {t:'💰 It removes poverty',b:'<p><strong>"Follow up between Hajj and Umrah, for they remove poverty and sins just as the bellows removes the dross of iron, gold and silver."</strong> (Tirmidhi 810). The money you spend on this journey is never a loss.</p>'},
 {t:'🤝 You are the guest of Allah',b:'<p><strong>"The pilgrims of Hajj and Umrah are the delegation of Allah: if they call upon Him, He answers them, and if they ask His forgiveness, He forgives them."</strong> (Ibn Majah 2892). Arrive with your dua list ready — you have an audience with the Most Generous Host.</p>'},
-{t:'🛡️ The jihad of the weak',b:'<p>The Prophet ﷺ said: <strong>"The jihad of the elderly, the weak and the women is Hajj and Umrah."</strong> (Nasai 2626). And when Aishah (RA) asked if women have jihad, he said: "Jihad in which there is no fighting — Hajj and Umrah." (Ibn Majah 2901). Every drop of sweat in the mataf is counted.</p>'},
+{t:'🛡️ The jihad of the weak',b:'<p>The Prophet ﷺ said: <strong>"The jihad of the elderly, the young, the weak and women is Hajj and Umrah."</strong> (Nasai 2626). And when Aishah (RA) asked if women have jihad, he said: "Jihad in which there is no fighting — Hajj and Umrah." (Ibn Majah 2901). Every drop of sweat in the mataf is counted.</p>'},
 {t:'🕋 The reward of tawaf',b:'<p><strong>"Whoever performs tawaf around this House seven times and keeps count of it is like one who frees a slave."</strong> With every step "a sin is erased and a good deed is recorded" (Tirmidhi 959). And tawaf is worship you can ONLY do here — fill your trip with it.</p>'},
 {t:'🕌 100,000 prayers — the mathematics of the Haram',b:'<p><strong>"One prayer in this masjid of mine is better than a thousand prayers elsewhere, except al-Masjid al-Haram — and one prayer in al-Masjid al-Haram is better than a hundred thousand prayers elsewhere."</strong> (Ibn Majah 1406). One Fajr in the Haram outweighs ~55 years of prayers. Five daily prayers for a week here is a lifetime of reward — never sleep through a congregation.</p>'},
 {t:'💧 Zamzam — blessed water',b:'<p>The Prophet ﷺ said: <strong>"Zamzam water is for whatever it is drunk for."</strong> (Ibn Majah 3062) and called it "blessed — a food that nourishes and a cure for illness" (Muslim 2473). Drink your fill, face the qibla, and ask Allah for exactly what you need — knowledge, cure, forgiveness.</p>'},
+{t:'🕋 The Prophet’s ﷺ own four Umrahs',b:'<p>Anas (RA) was asked how many Umrahs the Prophet ﷺ performed: <strong>"Four — the Umrah of Hudaybiyyah, the Umrah of the following year (al-Qada), the Umrah from al-Ji’ranah, and the Umrah with his Hajj."</strong> (Bukhari 1778). He also ordered Aishah’s brother to take her to <strong>Tan’eem</strong> so she could perform an extra Umrah (Bukhari 1784) — the very miqat you can use for a second Umrah today.</p>'},
 {t:'❤️ Makkah — the most beloved land',b:'<p>Leaving for the Hijrah, the Prophet ﷺ said of Makkah: <strong>"By Allah, you are the best of Allah’s land, and the most beloved of Allah’s land to Allah. Had I not been driven out of you, I would never have left."</strong> (Tirmidhi 3925). The Haram is a sanctuary where even the trees and game are protected — carry its adab everywhere.</p>'}];
 
 var MADINAH=[
@@ -572,6 +578,18 @@ var MADINAH=[
 {t:'⛰️ Uhud & the martyrs',b:'<p><strong>"Uhud is a mountain that loves us and we love it."</strong> (Bukhari 4083). At its foot rest Hamza (RA), the Prophet’s ﷺ uncle and the Master of Martyrs, with seventy companions of the Battle of Uhud. Visit after Fajr, give salam, and reflect on what they gave for the deen that reached you.</p>'},
 {t:'🌴 Ajwa dates & the blessing of Madinah',b:'<p>The Prophet ﷺ said: <strong>"Whoever eats seven Ajwa dates in the morning will not be harmed that day by poison or magic."</strong> (Bukhari 5779). He also made dua: "O Allah, bless Madinah with twice the blessings You gave Makkah." (Bukhari 1885). Bring Ajwa home as your gift.</p>'},
 {t:'🧳 Practical: Madinah is not a rite of Umrah',b:'<p>Visiting Madinah is a beloved, highly virtuous journey — one of only three mosques worth travelling to (Bukhari 1189) — but it is <strong>not part of the Umrah rites</strong> and there is no ihram for it. Plan 2–4 relaxed days: prayers in the Haram, Rawdah permit, Quba, Qiblatayn, Uhud and Baqi. The pace is calmer than Makkah — use it for reflection and long duas.</p>'}];
+
+var FIQHQA=[
+{t:'❓ Can I perform Umrah on behalf of someone else?',b:'<p>Yes — <strong>badal Umrah</strong> for a deceased person, or one permanently unable (chronic illness, old age), is established: the Prophet ﷺ heard a man saying "Labbayk on behalf of Shubrumah" and allowed it once the man had first performed his own (Abu Dawud 1811). So: your own Umrah first, then on behalf of others — one person per Umrah.</p>'},
+{t:'❓ Can I do more than one Umrah in a single trip?',b:'<p>Yes. The Prophet ﷺ ordered ’Abdur-Rahman to take his sister Aishah (RA) to <strong>Tan’eem (Masjid Aisha)</strong> to perform an Umrah from there (Bukhari 1784). Exit the Haram boundary, assume a fresh ihram, and repeat the rites. Scholars differ on how much repetition is ideal — quality and khushu come before quantity.</p>'},
+{t:'❓ What if my wudu breaks during tawaf?',b:'<p>Renew your wudu and return. The majority hold you resume from where you stopped in the current round or repeat that round to be safe; a completed round is not lost. Crowding makes this common — no panic, it does not ruin your Umrah.</p>'},
+{t:'❓ Can I rest during tawaf or sa’i?',b:'<p>Yes — you may pause to rest, drink Zamzam, or pray an obligatory prayer when the iqamah is called, then continue from where you left off. The rites are acts of devotion, not endurance tests: "Allah intends for you ease" (Quran 2:185).</p>'},
+{t:'❓ What does a menstruating woman do?',b:'<p>She assumes ihram at the miqat like everyone (ihram does not require purity), recites talbiyah and dhikr, and <strong>delays tawaf — and the sa’i after it — until she is pure</strong> (Bukhari 305, the Prophet’s ﷺ instruction to Aishah). Everything else — dua, dhikr, listening to Quran — continues. If departure is imminent, ask a scholar about the concessions.</p>'},
+{t:'❓ Are raml and idtiba’ obligatory?',b:'<p>No — both are sunnah for men in the arrival tawaf only. Skipping them (crowds, weakness, forgetting) affects nothing. The obligations of tawaf are: purity, covering the awrah, seven complete rounds around the House, keeping the Kaaba on your left.</p>'},
+{t:'❓ Is tawaf valid on the upper floors or in a wheelchair?',b:'<p>Fully valid. The upper floors and the mataf ring circle the same House, and the Prophet ﷺ himself performed tawaf mounted on a camel (Bukhari 1607). Free wheelchair services and paid pushers are available — ask the Haram staff near the gates.</p>'},
+{t:'❓ Does talking during tawaf break it?',b:'<p>No — "Tawaf around the House is like salah, except that Allah has permitted speech in it; so whoever speaks, let him say only good." (Tirmidhi 960). Necessary talk is fine; idle chatter and phone-scrolling waste a moment you may never get back.</p>'},
+{t:'❓ Do I shorten my prayers as a traveller?',b:'<p>A traveller may shorten 4-rakah prayers to 2 (qasr) — but when praying <strong>behind the Haram imam you complete the full prayer</strong> with the congregation. Most pilgrims simply pray everything in congregation at the Haram, which is the whole point of being there.</p>'},
+{t:'❓ Must ihram garments be new and white?',b:'<p>No — clean and unstitched is the requirement for men; white is recommended, new is not required. Washing your ihram or changing into a spare set while in ihram is perfectly fine. For women, any modest clothing in any colour is their ihram.</p>'}];
 
 var RITES=[
 {id:'ph1',ico:'🤍',title:'Phase 1 · Ihram at the miqat',hn:'"Actions are but by intentions, and every person shall have what they intended." — Bukhari 1',steps:[
@@ -603,7 +621,7 @@ var RITES=[
 
 var DAILY=[
 {id:'salah',ico:'🕌',title:'Salah in the Haram',hn:'"One prayer in al-Masjid al-Haram is better than one hundred thousand prayers elsewhere." — Ibn Majah 1406',items:[
-{id:'fajr',label:'Fajr in congregation',ref:'Muslim 656',exp:'Fajr + Isha in congregation = the reward of a whole night in prayer.',pts:15,stk:'fajr'},
+{id:'fajr',label:'Fajr in congregation',ref:'Muslim 656',exp:'Isha in congregation is like praying half the night; Fajr in congregation completes the whole night. (Muslim 656)',pts:15,stk:'fajr'},
 {id:'dhuhr',label:'Dhuhr in congregation',pts:12},
 {id:'asr',label:'Asr in congregation',pts:12},
 {id:'maghrib',label:'Maghrib in congregation',pts:12},
@@ -711,11 +729,11 @@ var QUIZ_LEVELS=[
 ]},
 {icon:'🌟',name:'Level 5 · Virtues of Umrah & the Haram',desc:'The rewards that await you',qs:[
 {q:'"Umrah to Umrah is an expiation for…"',o:['All future sins','The sins committed between them','Major sins only','Debts'],a:1,e:'Bukhari 1773 — and the accepted Hajj has no reward but Paradise.'},
-{q:'What does "an Umrah in Ramadan" equal, according to the Prophet ﷺ?',o:['10 Umrahs','A Hajj with him ﷺ','Laylatul Qadr','A year of fasting'],a:1,e:'"An Umrah in Ramadan is equal to a Hajj with me." — Bukhari 1863.'},
+{q:'What does "an Umrah in Ramadan" equal, according to the Prophet ﷺ?',o:['10 Umrahs','A Hajj with him ﷺ','Laylatul Qadr','A year of fasting'],a:1,e:'"An Umrah in Ramadan is equal to a Hajj" (Bukhari 1863) — and in one narration: "a Hajj with me" (Muslim 1256).'},
 {q:'One prayer in Masjid al-Haram equals how many elsewhere?',o:['1,000','10,000','50,000','100,000'],a:3,e:'100,000 prayers (Ibn Majah 1406) — one Fajr there outweighs decades of prayer elsewhere.'},
 {q:'True or false: "Follow up between Hajj and Umrah, for they remove poverty and sins…"',tf:1,a:0,e:'True — "…as the bellows removes the dross of iron, gold and silver." (Tirmidhi 810)'},
 {q:'Pilgrims are described by the Prophet ﷺ as…',o:['The soldiers of Allah','The delegation (guests) of Allah','The neighbours of the Kaaba','The people of the cloak'],a:1,e:'"If they call upon Him, He answers; if they seek His forgiveness, He forgives." (Ibn Majah 2892)'},
-{q:'True or false: the Prophet ﷺ called Hajj and Umrah the jihad of the elderly, the weak and women.',tf:1,a:0,e:'True — Nasai 2626; and to Aishah (RA): "jihad in which there is no fighting — Hajj and Umrah." (Ibn Majah 2901)'},
+{q:'True or false: the Prophet ﷺ called Hajj and Umrah the jihad of the elderly, the young, the weak and women.',tf:1,a:0,e:'True — "The jihad of the elderly, the young, the weak and women is Hajj and Umrah" (Nasai 2626); and to Aishah (RA): "jihad in which there is no fighting" (Ibn Majah 2901).'},
 {q:'Completing tawaf while keeping count of it is likened to…',o:['Fasting a month','Freeing a slave','A year of charity','Building a mosque'],a:1,e:'Tirmidhi 959 — and with every step a sin is erased and a good deed recorded.'},
 {q:'"Zamzam water is…"',o:['Only for the sick','For whatever it is drunk for','Only for pilgrims','For wudu only'],a:1,e:'Ibn Majah 3062 — drink it with a specific dua: knowledge, cure, forgiveness, whatever you need.'},
 {q:'True or false: the Prophet ﷺ called Makkah the most beloved of Allah’s land to Allah.',tf:1,a:0,e:'True — "Had I not been driven out of you, I would never have left." (Tirmidhi 3925)'},
@@ -734,6 +752,18 @@ var QUIZ_LEVELS=[
 {q:'True or false: visiting Madinah is a required rite of Umrah.',tf:1,a:1,e:'False — beloved and highly virtuous (one of the three mosques worth travelling to — Bukhari 1189), but not part of the Umrah rites, and it needs no ihram.'},
 {q:'"Whoever eats seven ___ dates in the morning will not be harmed that day by poison or magic."',o:['Sukkari','Ajwa','Medjool','Barhi'],a:1,e:'Ajwa dates of Madinah (Bukhari 5779) — the perfect gift to bring home.'},
 {q:'True or false: the Prophet ﷺ will intercede for the one who dies in Madinah.',tf:1,a:0,e:'True — "Whoever is able to die in Madinah, let him die there, for I will intercede for him." (Tirmidhi 3917)'}
+]},
+{icon:'⚖️',name:'Level 7 · Fiqh essentials — Q&A',desc:'The rulings first-timers ask about',qs:[
+{q:'Can you perform Umrah on behalf of a deceased parent?',o:['Never','Yes — after having performed your own Umrah first','Only during Hajj season','Only for mothers'],a:1,e:'Badal is established: "Labbayk on behalf of Shubrumah…" — the Prophet ﷺ said to perform your own first, then his (Abu Dawud 1811).'},
+{q:'True or false: you may perform a second Umrah in the same trip by taking ihram from Tan’eem.',tf:1,a:0,e:'True — the Prophet ﷺ sent Aishah (RA) with her brother to Tan’eem for exactly this (Bukhari 1784).'},
+{q:'How many Umrahs did the Prophet ﷺ perform?',o:['One','Two','Four','Seven'],a:2,e:'Four: Hudaybiyyah, al-Qada, al-Ji’ranah, and the one with his Hajj (Bukhari 1778).'},
+{q:'Your wudu breaks in round 5 of tawaf. What happens?',o:['The whole Umrah is invalid','Renew wudu and continue — completed rounds are not lost','You must restart from round 1 tomorrow','Nothing — wudu is optional'],a:1,e:'Renew your wudu and return; resume the interrupted round (or repeat it to be safe). No panic, nothing is ruined.'},
+{q:'True or false: you may pause tawaf or sa’i to rest, drink Zamzam, or join the obligatory prayer, then continue.',tf:1,a:0,e:'True — continue from where you left off. "Allah intends for you ease" (Quran 2:185).'},
+{q:'A woman’s period begins after ihram. She…',o:['Cannot do Umrah at all','Continues everything except tawaf (and the sa’i after it) until pure','Does tawaf anyway','Must leave Makkah immediately'],a:1,e:'Ihram, talbiyah, dhikr and dua all continue; only the tawaf (and its sa’i) wait for purity (Bukhari 305).'},
+{q:'True or false: skipping raml or idtiba’ invalidates the tawaf.',tf:1,a:1,e:'False — both are sunnah for men in the arrival tawaf only; leaving them affects nothing.'},
+{q:'Tawaf in a wheelchair or on the upper floors is…',o:['Invalid','Valid only for the elderly','Fully valid','Half reward'],a:2,e:'Fully valid — the Prophet ﷺ himself performed tawaf mounted (Bukhari 1607).'},
+{q:'True or false: speaking during tawaf breaks it, exactly like speaking in salah.',tf:1,a:1,e:'False — "Tawaf is like salah, except that Allah permitted speech in it; so speak only good." (Tirmidhi 960)'},
+{q:'True or false: a man’s ihram garments must be brand new and pure white.',tf:1,a:1,e:'False — clean and unstitched is the requirement; white is recommended, new is not. Spares and washing are fine.'}
 ]}];
 
 var DUAS=[
@@ -811,6 +841,7 @@ function renderPlan(){
   document.getElementById('histContainer').innerHTML=accs(HISTORY);
   document.getElementById('virtContainer').innerHTML=accs(VIRTUES);
   document.getElementById('madContainer').innerHTML=accs(MADINAH);
+  document.getElementById('qaContainer').innerHTML=accs(FIQHQA);
 }
 function togPlan(id){planChk[id]=!planChk[id];save('us-plan',planChk);vib(15);updPlan();chkBadges();}
 function updPlan(){
@@ -898,7 +929,6 @@ function nextQz(){
   if(passed&&qzLevel<QUIZ_LEVELS.length-1)msg='Level passed! '+QUIZ_LEVELS[qzLevel+1].icon+' '+QUIZ_LEVELS[qzLevel+1].name.split(' · ')[1]+' is now unlocked.';
   else if(passed)msg='Final level passed — the whole circuit is yours!';
   else msg='You need 80% to pass — review the knowledge cards above and retake.';
-  document.getElementById('qzArea').innerHTML='<div class="qz-final"><div class="big">'+pct+'%</div><p>'+qzScore+' of '+lv.qs.length+' correct — '+msg+'</p><button class="btn gold" onclick="startLevel('+qzLevel+')">↺ Retake level</button><button class="btn ghost" onclick="renderLevels()">← All levels</button></div>';
   if(passed){toast('🎉 '+lv.name.split(' · ')[0]+' passed!',true);vib([40,60,120]);}
   if(qzAllPassed()&&!planChk['quiz80']){planChk['quiz80']=true;save('us-plan',planChk);updPlan();toast('🏆 Knowledge circuit complete!',true);}
   ST.quizBest=Math.max(ST.quizBest||0,pct);saveST();
@@ -906,6 +936,7 @@ function nextQz(){
   var pc=qzPassedCount();
   document.getElementById('qzBest').textContent=pc+'/'+QUIZ_LEVELS.length;
   var m=document.getElementById('qzMeter');if(m)m.style.width=Math.round(pc/QUIZ_LEVELS.length*100)+'%';
+  document.getElementById('qzArea').innerHTML='<div class="qz-final"><div class="big">'+pct+'%</div><p>'+qzScore+' of '+lv.qs.length+' correct — '+msg+'</p><button class="btn gold" onclick="startLevel('+qzLevel+')">↺ Retake level</button><button class="btn ghost" onclick="renderLevels()">← All levels</button></div>';
 }
 
 /* ════════════════════════ RITES ════════════════════════ */
