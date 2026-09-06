@@ -1,263 +1,423 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Umrah Strivers">
-<meta name="theme-color" content="#070b14">
-<meta name="description" content="Umrah Strivers — Plan, learn & track your Umrah. Places to visit, rites checklist, tawaf counter & daily worship tracker.">
+<meta name="theme-color" content="#0E3B2E">
+<meta name="description" content="Umrah Strivers — plan, learn, perform & track your Umrah. Places to visit, rites walkthrough, tawaf counter & daily worship tracker.">
 <title>Umrah Strivers</title>
-<link rel="manifest" href="data:application/json,%7B%22name%22%3A%22Umrah%20Strivers%22%2C%22short_name%22%3A%22Umrah%22%2C%22description%22%3A%22Plan%20and%20track%20your%20Umrah%20journey%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23070b14%22%2C%22theme_color%22%3A%22%23070b14%22%2C%22orientation%22%3A%22portrait%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%2520viewBox%3D%270%25200%2520100%2520100%27%253E%253Crect%2520fill%3D%27%2523070b14%27%2520width%3D%27100%27%2520height%3D%27100%27%2520rx%3D%2720%27%2F%253E%253Ctext%2520x%3D%2750%27%2520y%3D%2768%27%2520font-size%3D%2755%27%2520text-anchor%3D%27middle%27%253E%25F0%259F%2595%258B%253C%2Ftext%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="data:application/json,%7B%22name%22%3A%22Umrah%20Strivers%22%2C%22short_name%22%3A%22Umrah%22%2C%22description%22%3A%22Plan%20and%20track%20your%20Umrah%20journey%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230E3B2E%22%2C%22theme_color%22%3A%22%230E3B2E%22%2C%22orientation%22%3A%22portrait%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%2520viewBox%3D%270%25200%2520100%2520100%27%253E%253Crect%2520fill%3D%27%25230E3B2E%27%2520width%3D%27100%27%2520height%3D%27100%27%2520rx%3D%2722%27%2F%253E%253Ctext%2520x%3D%2750%27%2520y%3D%2768%27%2520font-size%3D%2755%27%2520text-anchor%3D%27middle%27%253E%25F0%259F%2595%258B%253C%2Ftext%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f5f2ec;--bg2:#fff;--bg-glass:rgba(255,255,255,.72);--bg-header:#070b14;--text:#1c1917;--text2:#57534e;--text3:#a8a29e;--green:#15803d;--green-l:#22c55e;--green-glow:rgba(21,128,61,.12);--gold:#b8860b;--gold-l:#d4a520;--gold-glow:rgba(184,134,11,.12);--border:rgba(120,113,108,.15);--card:#fff;--card-glow:0 1px 3px rgba(0,0,0,.04),0 4px 24px rgba(0,0,0,.06);--success:#16a34a;--warn:#ca8a04;--error:#dc2626;--r:20px;--rs:12px;--overlay:rgba(0,0,0,.45);--safe-t:env(safe-area-inset-top);--safe-b:env(safe-area-inset-bottom);--ff:'Playfair Display',Georgia,serif;--fb:'Source Sans 3',-apple-system,BlinkMacSystemFont,sans-serif}
-[data-theme="dark"]{--bg:#070b14;--bg2:#0d1321;--bg-glass:rgba(13,19,33,.82);--bg-header:#050810;--text:#f5f5f4;--text2:#a8a29e;--text3:#57534e;--green:#4ade80;--green-l:#86efac;--green-glow:rgba(74,222,128,.08);--gold:#fbbf24;--gold-l:#fcd34d;--gold-glow:rgba(251,191,36,.08);--border:rgba(245,245,244,.08);--card:rgba(13,19,33,.9);--card-glow:0 1px 3px rgba(0,0,0,.2),0 4px 24px rgba(0,0,0,.25);--success:#22c55e;--warn:#eab308;--error:#ef4444;--overlay:rgba(0,0,0,.7)}
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}html{scroll-behavior:smooth}
-body{font-family:var(--fb);background:var(--bg);color:var(--text);min-height:100dvh;overflow-x:hidden;padding-bottom:calc(72px + var(--safe-b));line-height:1.65;-webkit-font-smoothing:antialiased;font-weight:400;position:relative}
-body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background-image:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 0L80 40L40 80L0 40Z' fill='none' stroke='%23b8860b' stroke-width='0.3' opacity='0.5'/%3E%3Cpath d='M40 15L65 40L40 65L15 40Z' fill='none' stroke='%23b8860b' stroke-width='0.2' opacity='0.3'/%3E%3C/svg%3E");background-size:80px 80px;opacity:.035;animation:geoDrift 90s linear infinite}
-[data-theme="dark"] body::before{opacity:.05}
-@keyframes geoDrift{from{background-position:0 0}to{background-position:80px 80px}}
-body>*{position:relative;z-index:1}::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
-.hdr{background:var(--bg-header);color:#fff;padding:calc(12px + var(--safe-t)) 20px 12px;position:sticky;top:0;z-index:100;backdrop-filter:blur(24px) saturate(1.5);-webkit-backdrop-filter:blur(24px) saturate(1.5);border-bottom:1px solid rgba(251,191,36,.2)}
-.hdr-in{display:flex;justify-content:space-between;align-items:center;max-width:540px;margin:0 auto}
-.hdr h1{font-family:var(--ff);font-size:1.25em;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
-.hdr h1 span{color:var(--gold-l);font-style:italic;font-weight:400;font-size:.65em;letter-spacing:0;text-transform:none;display:block;margin-top:1px;opacity:.8}
-.learn-link{font-size:11px;color:rgba(255,255,255,.9);cursor:pointer;font-weight:600;padding:3px 10px;border:1.5px solid rgba(255,255,255,.5);border-radius:20px;transition:all .2s;text-decoration:none;white-space:nowrap;font-family:var(--fb);margin-left:6px;vertical-align:middle;display:inline-block;letter-spacing:.3px;position:relative;top:-1px}.learn-link:active{transform:scale(.95);opacity:.7}
-.thm-btn{background:rgba(255,255,255,.06);border:1px solid rgba(251,191,36,.3);color:var(--gold-l);width:40px;height:40px;font-size:1.1em;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:12px;transition:all .25s}.thm-btn:active{transform:scale(.9)}
-.bnr{background:linear-gradient(135deg,#0c1a12 0%,#122a1c 40%,#0f3d2a 100%);color:#fff;padding:22px 20px 18px;text-align:center;position:relative;overflow:hidden}
-.bnr::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(251,191,36,.06),transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(74,222,128,.05),transparent 50%);pointer-events:none}
-.bnr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(251,191,36,.4),transparent)}
-.bnr .bt{font-family:var(--ff);font-size:1.7em;font-weight:800;letter-spacing:1px}.bnr .bs{font-size:.78em;opacity:.65;margin-top:2px;font-weight:300;letter-spacing:2px;text-transform:uppercase}
-.bnr .bq{font-family:var(--ff);font-style:italic;font-size:.86em;margin-top:12px;opacity:.8;line-height:1.7;max-width:480px;margin-left:auto;margin-right:auto}
-.wrap{max-width:540px;margin:0 auto;padding:14px 16px}.tab{display:none;animation:tabIn .3s ease}.tab.on{display:block}
-@keyframes tabIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.prog{background:linear-gradient(135deg,#0c2618,#163d28,#1a5c3a);color:#fff;padding:22px 20px;margin-bottom:12px;border-radius:var(--r);box-shadow:0 4px 30px rgba(21,128,61,.15);position:relative;overflow:hidden}
-[data-theme="light"] .prog{background:linear-gradient(135deg,#15803d,#16a34a,#22c55e)}
-.prog::before{content:'';position:absolute;top:-30%;right:-15%;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(251,191,36,.1),transparent);pointer-events:none}
-.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.prog-title{font-weight:500;font-size:.85em;opacity:.8;letter-spacing:.5px}.prog-pct{font-size:2.4em;font-weight:800;font-family:var(--ff);line-height:1}
-.prog-bar-out{background:rgba(255,255,255,.18);height:6px;border-radius:3px;margin-bottom:12px;overflow:hidden}.prog-bar{height:100%;background:linear-gradient(90deg,#fbbf24,#fde68a);border-radius:3px;transition:width .5s cubic-bezier(.4,0,.2,1)}
-.prog-bot{display:flex;justify-content:space-between;font-size:.8em;opacity:.75}
-.day-nav{display:flex;align-items:center;justify-content:center;gap:20px;padding:10px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);margin-bottom:12px}
-.day-nav button{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-size:1em;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}.day-nav button:active{transform:scale(.88);border-color:var(--green)}
-.day-nav .dd{font-weight:600;font-size:.88em;color:var(--text2);min-width:100px;text-align:center;letter-spacing:.5px}
-.sec{background:var(--card);border:1px solid var(--border);margin-bottom:10px;overflow:hidden;border-radius:var(--r);box-shadow:var(--card-glow)}
-.sec-hd{background:var(--green);color:#fff;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none}
-[data-theme="dark"] .sec-hd{background:linear-gradient(135deg,rgba(21,128,61,.35),rgba(21,128,61,.2))}[data-theme="light"] .sec-hd{background:linear-gradient(135deg,#15803d,#16a34a)}
-.sec-hd h2{font-size:.82em;font-weight:600;letter-spacing:.3px}.sec-prog{display:flex;align-items:center;gap:8px}.sec-prog span:first-child{font-size:.75em;opacity:.8}
-.sec-chev{font-size:.65em;transition:transform .3s;color:var(--gold-l)}.sec.shut .sec-chev{transform:rotate(-90deg)}
-.sec-bd{padding:10px;max-height:12000px;overflow:hidden;transition:max-height .35s ease,padding .35s ease}.sec.shut .sec-bd{max-height:0;padding:0 10px}
-.sub-t{font-size:.75em;font-weight:700;color:var(--gold);padding:8px 0 6px;margin:10px 0 6px;text-transform:uppercase;letter-spacing:1.5px;border-bottom:1px solid var(--gold-glow)}
-.hadith-n{background:var(--gold-glow);border-left:3px solid var(--gold);padding:12px 14px;margin:6px 0 10px;border-radius:0 var(--rs) var(--rs) 0;font-family:var(--ff);font-style:italic;font-size:.86em;line-height:1.65;color:var(--text2)}
-.chk{display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--bg);border:1px solid var(--border);margin-bottom:5px;border-radius:var(--rs);cursor:pointer;transition:all .2s}.chk:active{transform:scale(.985)}.chk.done{opacity:.45;background:var(--green-glow)}
-.chk input[type="checkbox"]{-webkit-appearance:none;appearance:none;width:22px;height:22px;border:2px solid var(--border);border-radius:6px;flex-shrink:0;margin-top:1px;cursor:pointer;position:relative;transition:all .2s;background:var(--card)}
-.chk input:checked{border-color:var(--green);background:var(--green)}.chk input:checked::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.75em;font-weight:700}
-.chk label{flex:1;cursor:pointer;font-size:.9em;line-height:1.55;font-weight:400}.chk.done label{text-decoration:line-through}
-.chk-pts{font-size:.7em;color:var(--gold);font-weight:700;margin-left:5px}.chk-ref{display:block;font-size:.75em;color:var(--text3);font-style:italic;margin-top:2px}.chk-ref a{color:var(--green);text-decoration:none}
-.chk-exp{display:block;font-size:.76em;color:var(--text2);margin-top:3px;line-height:1.45}
-.scard{background:var(--card);border:1px solid var(--border);padding:20px;margin-bottom:12px;border-radius:var(--r);box-shadow:var(--card-glow)}
-.scard h3{color:var(--green);font-size:1em;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--gold-glow);font-family:var(--ff)}
-.sr{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)}.sr:last-child{border-bottom:none}.sr-l{color:var(--text2);font-size:.9em}.sr-v{font-weight:600;color:var(--green)}
-.streaks{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
-.strk{background:var(--card);border:1.5px solid var(--border);padding:14px 6px;text-align:center;border-radius:var(--rs);transition:all .3s;box-shadow:var(--card-glow)}.strk.on{border-color:var(--gold);box-shadow:0 0 16px var(--gold-glow)}
-.strk-i{font-size:1.3em;margin-bottom:3px}.strk-n{font-size:1.5em;font-weight:800;color:var(--green);font-family:var(--ff);line-height:1}.strk-l{font-size:.62em;color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-top:4px}
-.heat{padding:20px}.heat h3{color:var(--green);font-family:var(--ff);font-size:1.05em;margin-bottom:16px}
-.heat-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:5px}
-.heat-c{aspect-ratio:1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.55em;font-weight:700;color:rgba(255,255,255,.6)}
-.heat-c.h0{background:var(--border);color:var(--text3)}.heat-c.h1{background:#166534}.heat-c.h2{background:#16a34a}.heat-c.h3{background:#22c55e}.heat-c.h4{background:#4ade80}
-[data-theme="light"] .heat-c.h0{background:#e7e5e4;color:#78716c}[data-theme="light"] .heat-c.h1{background:#bbf7d0;color:#166534}[data-theme="light"] .heat-c.h2{background:#86efac;color:#14532d}[data-theme="light"] .heat-c.h3{background:#4ade80;color:#fff}[data-theme="light"] .heat-c.h4{background:#16a34a;color:#fff}
-.heat-c.h-today{box-shadow:0 0 0 2px var(--gold),0 0 12px var(--gold-glow)}
-.badges{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.bdg{text-align:center;padding:14px 4px;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--rs);transition:all .3s}.bdg.unlk{border-color:var(--gold);background:var(--gold-glow);box-shadow:0 0 12px var(--gold-glow)}.bdg.lck{opacity:.3;filter:grayscale(1)}
-.bdg-i{font-size:1.7em;margin-bottom:3px}.bdg-n{font-size:.65em;font-weight:600;color:var(--text2)}
-.set-item{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--border);gap:12px}.set-lbl{font-weight:500;font-size:.92em}.set-desc{font-size:.8em;color:var(--text3)}
-.tgl{width:48px;height:26px;background:var(--border);border:none;cursor:pointer;position:relative;border-radius:13px;transition:all .25s;flex-shrink:0}.tgl::after{content:'';position:absolute;width:20px;height:20px;background:#fff;top:3px;left:3px;border-radius:50%;transition:transform .25s cubic-bezier(.4,0,.2,1);box-shadow:0 1px 3px rgba(0,0,0,.15)}.tgl.on{background:var(--green)}.tgl.on::after{transform:translateX(22px)}
-.btn{padding:13px 24px;border:1.5px solid var(--green);background:var(--green);color:#fff;font-weight:600;cursor:pointer;transition:all .2s;width:100%;margin-top:10px;border-radius:var(--rs);font-family:var(--fb);font-size:.9em;letter-spacing:.3px}.btn:active{transform:scale(.97)}.btn-ol{background:transparent;color:var(--green)}.btn-red{border-color:var(--error);background:var(--error)}.btn-gold{border-color:var(--gold);background:linear-gradient(135deg,#fbbf24,#d97706);color:#1c1917;font-weight:700}
-.ftr{text-align:center;padding:28px 20px 16px;margin-top:16px;border-top:1px solid var(--border);color:var(--text3);font-size:.82em;line-height:1.75}.ftr .dua{font-family:var(--ff);font-style:italic;font-size:1.05em;color:var(--gold);margin-bottom:10px}.ftr a{color:var(--green);text-decoration:none;font-weight:600}
-.bnav{position:fixed;bottom:0;left:0;right:0;background:var(--bg-glass);border-top:1px solid var(--border);display:flex;padding:0 4px;padding-bottom:var(--safe-b);z-index:100;backdrop-filter:blur(24px) saturate(1.5);-webkit-backdrop-filter:blur(24px) saturate(1.5)}
-.bnav-i{flex:1;padding:8px 0;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;color:var(--text3);border:none;background:transparent;transition:all .2s;font-family:var(--fb);position:relative}.bnav-i.on{color:var(--green)}.bnav-i.on::before{content:'';position:absolute;top:0;left:25%;right:25%;height:2px;background:var(--green);border-radius:0 0 2px 2px}.bnav-i .ni{font-size:1.25em}.bnav-i .nl{font-size:.58em;font-weight:700;text-transform:uppercase;letter-spacing:.6px}
-.toast-c{position:fixed;top:calc(70px + var(--safe-t));left:50%;transform:translateX(-50%);z-index:300;display:flex;flex-direction:column;gap:8px;pointer-events:none;max-width:85%}
-.toast{background:var(--green);color:#fff;padding:12px 20px;font-size:.86em;font-weight:500;border-radius:var(--rs);animation:tIn .3s ease,tOut .3s ease 2.7s;box-shadow:0 8px 30px rgba(0,0,0,.2)}.toast.bdg-t{background:linear-gradient(135deg,#fbbf24,#d97706);color:#1c1917}
-@keyframes tIn{from{transform:translateY(-16px);opacity:0}to{transform:translateY(0);opacity:1}}@keyframes tOut{from{opacity:1}to{opacity:0}}
-.guide-sec{background:var(--card);border:1px solid var(--border);border-radius:var(--r);margin-bottom:8px;overflow:hidden;transition:all .2s}
-.guide-hd{padding:14px 18px;font-size:.9em;font-weight:600;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:var(--fb);gap:10px}
-.guide-hd:active{opacity:.7}
-.guide-chev{font-size:.65em;color:var(--text3);transition:transform .2s;flex-shrink:0}
-.guide-sec.open .guide-chev{transform:rotate(90deg)}
-.guide-bd{max-height:0;overflow:hidden;padding:0 18px;font-size:.84em;color:var(--text2);line-height:1.7;transition:max-height .3s ease,padding .3s ease}
-.guide-sec.open .guide-bd{max-height:2400px;padding:0 18px 16px}
-.guide-bd ul{padding-left:18px;margin:6px 0}.guide-bd li{padding:2px 0}.guide-bd strong{color:var(--text)}
-.app-link{display:flex;align-items:center;gap:10px;background:var(--bg2);padding:10px 14px;border-radius:var(--rs);margin-top:8px;text-decoration:none;color:var(--text);transition:all .2s;border:1px solid var(--border)}.app-link:active{background:var(--card)}
-.app-link-txt{font-size:.78em;color:var(--text2);flex:1;line-height:1.4}.app-link-txt strong{display:block;font-size:1.1em;margin-bottom:1px;color:var(--text)}.app-link-go{padding:4px 12px;background:var(--green);color:#fff;border-radius:10px;font-size:.68em;font-weight:700;letter-spacing:.5px}
-.cd-card{background:linear-gradient(135deg,#1a0a2e,#2d1b69,#1a1145);color:#fff;padding:18px 20px;border-radius:var(--r);margin-bottom:12px;text-align:center;border:1px solid rgba(251,191,36,.25);position:relative;overflow:hidden}
-[data-theme="light"] .cd-card{background:linear-gradient(135deg,#312e81,#4338ca,#3730a3)}
-.cd-card h3{font-family:var(--ff);font-size:1em;margin-bottom:4px;color:#fde68a}.cd-card .cd-num{font-size:2.2em;font-weight:800;color:#fbbf24;font-family:var(--ff);display:block;margin:4px 0;line-height:1}.cd-card p{font-size:.8em;opacity:.8}
-.cd-card input[type="date"]{margin-top:10px;padding:9px 12px;border-radius:var(--rs);border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font-family:var(--fb);font-size:.9em;color-scheme:dark}
-.cntr{background:linear-gradient(135deg,#0f0825,#1a1045,#0c2340);color:#fff;padding:22px 20px;margin-bottom:12px;border-radius:var(--r);border:1px solid rgba(251,191,36,.2);text-align:center;position:relative;overflow:hidden}
-[data-theme="light"] .cntr{background:linear-gradient(135deg,#1e1b4b,#312e81,#1e3a5f)}
-.cntr h3{font-family:var(--ff);font-size:1.05em;margin-bottom:2px}.cntr .cntr-sub{font-size:.74em;opacity:.65;margin-bottom:12px;font-style:italic}
-.cntr-num{font-size:4em;font-weight:800;font-family:var(--ff);color:#fde68a;line-height:1;margin:6px 0}
-.cntr-num small{font-size:.35em;opacity:.6;font-weight:400}
-.cntr-dots{display:flex;justify-content:center;gap:8px;margin:12px 0}
-.cntr-dot{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);transition:all .3s}.cntr-dot.f{background:linear-gradient(135deg,#fbbf24,#d97706);border-color:#fbbf24;box-shadow:0 0 10px rgba(251,191,36,.4)}
-.cntr-btns{display:flex;gap:10px;justify-content:center;margin-top:8px}
-.cntr-btns button{border:none;border-radius:var(--rs);cursor:pointer;font-family:var(--fb);font-weight:700;transition:all .15s}
-.cntr-add{background:linear-gradient(135deg,#fbbf24,#d97706);color:#1c1917;padding:16px 34px;font-size:1.05em}.cntr-add:active{transform:scale(.93)}
-.cntr-sml{background:rgba(255,255,255,.1);color:#fff;padding:16px 18px;font-size:.85em;font-weight:500}.cntr-sml:active{transform:scale(.93)}
-.cntr-done{font-size:.85em;color:#4ade80;font-weight:700;margin-top:10px}
-.step{display:flex;gap:12px;padding:12px 14px;background:var(--bg);border:1px solid var(--border);margin-bottom:6px;border-radius:var(--rs);cursor:pointer;transition:all .2s;align-items:flex-start}.step:active{transform:scale(.985)}.step.done{opacity:.5;background:var(--green-glow)}
-.step-n{width:26px;height:26px;border-radius:50%;background:var(--green-glow);color:var(--green);font-weight:800;font-size:.8em;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1.5px solid var(--green);margin-top:1px}
-.step.done .step-n{background:var(--green);color:#fff}
-.step-t{flex:1}.step-t b{font-size:.92em;display:block}.step.done .step-t b{text-decoration:line-through}
-.step-t p{font-size:.78em;color:var(--text2);margin-top:2px;line-height:1.5}
-.step-dua{background:var(--gold-glow);border-left:3px solid var(--gold);padding:8px 10px;margin-top:6px;border-radius:0 8px 8px 0;font-size:.78em;line-height:1.6}
-.step-dua .ar{font-size:1.25em;direction:rtl;display:block;margin-bottom:3px;line-height:1.9;font-family:Georgia,serif}
-.step-dua .tl{font-style:italic;color:var(--text2)}.step-dua .tr{color:var(--text3);display:block;margin-top:2px}
-.place{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:8px;box-shadow:var(--card-glow);transition:all .2s}
-.place.vis{border-color:var(--green);background:var(--green-glow)}
-.place-top{display:flex;gap:12px;align-items:flex-start}
-.place-i{font-size:1.5em;flex-shrink:0;margin-top:2px}
-.place-t{flex:1}.place-t b{font-size:.94em}.place-t p{font-size:.79em;color:var(--text2);line-height:1.5;margin-top:2px}
-.place-tip{font-size:.74em;color:var(--gold);margin-top:4px;font-style:italic}
-.place-acts{display:flex;gap:8px;margin-top:10px}
-.place-acts a,.place-acts button{flex:1;padding:9px 0;border-radius:10px;font-size:.76em;font-weight:700;text-align:center;text-decoration:none;cursor:pointer;border:1.5px solid var(--border);background:var(--bg);color:var(--text2);font-family:var(--fb);transition:all .2s;letter-spacing:.3px}
-.place-acts a{border-color:#3b82f6;color:#3b82f6}.place-acts a:active{transform:scale(.96)}
-.place-acts button.v{border-color:var(--green);color:var(--green)}.place.vis .place-acts button.v{background:var(--green);color:#fff}
-.qz-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;box-shadow:var(--card-glow);margin-bottom:12px}
-.qz-prog{font-size:.72em;color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:8px;display:flex;justify-content:space-between}
-.qz-q{font-size:1em;font-weight:600;line-height:1.5;margin-bottom:14px;font-family:var(--ff)}
-.qz-opt{display:block;width:100%;text-align:left;padding:12px 14px;margin-bottom:7px;border-radius:var(--rs);border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-size:.88em;cursor:pointer;font-family:var(--fb);transition:all .15s;line-height:1.45}
-.qz-opt:active{transform:scale(.98)}
-.qz-opt.right{border-color:var(--success);background:rgba(34,197,94,.12);font-weight:600}
-.qz-opt.wrong{border-color:var(--error);background:rgba(239,68,68,.1)}
-.qz-exp{background:var(--gold-glow);border-left:3px solid var(--gold);padding:10px 12px;border-radius:0 var(--rs) var(--rs) 0;font-size:.8em;line-height:1.55;color:var(--text2);margin-top:4px}
-.qz-score{text-align:center;padding:10px 0}
-.qz-score .big{font-size:3em;font-weight:800;font-family:var(--ff);color:var(--gold);line-height:1.1}
-.qz-score p{font-size:.85em;color:var(--text2);margin-top:6px}
-.pill-row{display:flex;gap:8px;margin-bottom:12px}
-.pill{flex:1;padding:9px 0;text-align:center;border-radius:24px;border:1.5px solid var(--border);background:var(--card);color:var(--text2);font-size:.78em;font-weight:700;cursor:pointer;font-family:var(--fb);transition:all .2s;letter-spacing:.4px}
-.pill.on{border-color:var(--green);background:var(--green);color:#fff}
-.dua-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;margin-bottom:10px;box-shadow:var(--card-glow)}
-.dua-card h4{font-size:.85em;color:var(--green);margin-bottom:8px;font-family:var(--ff)}
-.dua-card .ar{font-size:1.35em;direction:rtl;line-height:2;display:block;margin-bottom:6px;font-family:Georgia,serif}
-.dua-card .tl{font-size:.82em;font-style:italic;color:var(--text2);line-height:1.6}
-.dua-card .tr{font-size:.8em;color:var(--text3);margin-top:4px;line-height:1.55}
-.dua-card .src{font-size:.7em;color:var(--gold);margin-top:6px;font-style:italic}
-@media(max-width:400px){.hdr h1{font-size:1.02em}.streaks{grid-template-columns:repeat(2,1fr)}.badges{grid-template-columns:repeat(3,1fr)}.heat-grid{gap:3px}.heat-c{font-size:.45em}}
+/* ─────────── design tokens · mobile-first ─────────── */
+:root{
+  --bg:#F6F2EA;--bg-soft:#EFE9DD;--card:#FFFFFF;--ink:#17251F;--ink2:#54635B;--ink3:#93A29A;
+  --brand:#0E3B2E;--brand-2:#177A52;--brand-soft:#E3EFE7;--brand-ink:#0E3B2E;
+  --gold:#B8892F;--gold-2:#D9B45E;--gold-soft:#F6EDDA;
+  --line:#E7DFD0;--danger:#C2410C;--blue:#2563EB;
+  --ok:#177A52;--warn:#B45309;
+  --sh:0 1px 2px rgba(23,37,31,.05),0 8px 28px rgba(23,37,31,.07);
+  --sh-lg:0 4px 12px rgba(14,59,46,.14),0 18px 50px rgba(14,59,46,.18);
+  --r-lg:26px;--r:20px;--r-sm:14px;
+  --sat:env(safe-area-inset-top);--sab:env(safe-area-inset-bottom);
+  --fd:'Fraunces',Georgia,serif;--fb:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+[data-theme="dark"]{
+  --bg:#0B120F;--bg-soft:#101915;--card:#152019;--ink:#EDF3EE;--ink2:#A4B5AB;--ink3:#5E6F66;
+  --brand:#2FBE83;--brand-2:#3AD695;--brand-soft:#15281F;--brand-ink:#BFE8D4;
+  --gold:#E0BC66;--gold-2:#EFD494;--gold-soft:#241D0E;
+  --line:#1F2D26;--danger:#F97316;--blue:#60A5FA;
+  --ok:#2FBE83;--warn:#F0B45B;
+  --sh:0 1px 2px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.35);
+  --sh-lg:0 6px 18px rgba(0,0,0,.5),0 22px 60px rgba(0,0,0,.5);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--ink);min-height:100dvh;line-height:1.6;-webkit-font-smoothing:antialiased;font-size:15px}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+ background:radial-gradient(60% 34% at 50% -6%,rgba(23,122,82,.14),transparent 70%),radial-gradient(40% 26% at 92% 4%,rgba(184,137,47,.10),transparent 70%)}
+[data-theme="dark"] body::before{opacity:.8;background:radial-gradient(60% 34% at 50% -6%,rgba(47,190,131,.10),transparent 70%),radial-gradient(40% 26% at 92% 4%,rgba(224,188,102,.06),transparent 70%)}
+/* phone-frame on larger screens (mobile-first: none of this applies below 520px) */
+.app{position:relative;z-index:1;max-width:480px;margin:0 auto;padding:0 16px calc(112px + var(--sab))}
+@media(min-width:900px){body{background:linear-gradient(160deg,var(--bg),var(--bg-soft))}}
+
+/* ─────────── top bar ─────────── */
+.top{position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:10px;
+ padding:calc(10px + var(--sat)) 4px 10px;margin:0 -4px 4px;
+ background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4)}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-mark{width:40px;height:40px;border-radius:14px;background:linear-gradient(145deg,var(--brand),var(--brand-2));display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:var(--sh);color:#fff}
+.brand h1{font-family:var(--fd);font-size:1.16em;font-weight:700;letter-spacing:.2px;line-height:1.15}
+.brand small{display:block;font-family:var(--fb);font-weight:500;font-size:.6em;color:var(--ink3);letter-spacing:1.6px;text-transform:uppercase}
+.iconbtn{width:40px;height:40px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--ink2);font-size:1.05em;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--sh);transition:transform .15s}
+.iconbtn:active{transform:scale(.9)}
+
+/* ─────────── tabs / views ─────────── */
+.view{display:none;animation:vIn .32s cubic-bezier(.2,.7,.3,1)}
+.view.on{display:block}
+@keyframes vIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.vh{margin:14px 2px 12px}
+.vh h2{font-family:var(--fd);font-size:1.7em;font-weight:700;line-height:1.15;letter-spacing:.2px}
+.vh p{color:var(--ink2);font-size:.88em;margin-top:2px}
+
+/* ─────────── hero card w/ ring ─────────── */
+.hero{background:linear-gradient(150deg,var(--brand) 0%,#0B2E24 58%,#123C2C 100%);color:#fff;border-radius:var(--r-lg);padding:20px;display:flex;align-items:center;gap:18px;box-shadow:var(--sh-lg);position:relative;overflow:hidden;margin-bottom:14px}
+[data-theme="dark"] .hero{background:linear-gradient(150deg,#123C2C,#0B241C 60%,#132E24)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(120px 120px at 88% 10%,rgba(217,180,94,.25),transparent 70%);pointer-events:none}
+.hero::after{content:'۞';position:absolute;right:-14px;bottom:-26px;font-size:7em;opacity:.06;line-height:1}
+.hero-t{flex:1;min-width:0;position:relative}
+.hero-t .k{font-size:.68em;letter-spacing:2px;text-transform:uppercase;opacity:.65;font-weight:700}
+.hero-t .v{font-family:var(--fd);font-size:1.5em;font-weight:700;line-height:1.2;margin:2px 0 4px}
+.hero-t .s{font-size:.78em;opacity:.75;line-height:1.5}
+.ring-wrap{position:relative;width:92px;height:92px;flex-shrink:0}
+.ring-wrap svg{transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:rgba(255,255,255,.16);stroke-width:8}
+.ring-fg{fill:none;stroke:url(#gld);stroke-width:8;stroke-linecap:round;stroke-dasharray:239;stroke-dashoffset:239;transition:stroke-dashoffset .7s cubic-bezier(.3,.7,.3,1)}
+.ring-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:1.25em;font-family:var(--fd)}
+.ring-num small{font-size:.5em;font-weight:600;opacity:.6;letter-spacing:.6px}
+
+/* ─────────── generic cards & sections ─────────── */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh);margin-bottom:14px;overflow:hidden}
+.card-pad{padding:18px}
+.card h3{font-family:var(--fd);font-size:1.12em;font-weight:700;margin-bottom:10px}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh);margin-bottom:12px;overflow:hidden}
+.sec-hd{display:flex;align-items:center;gap:12px;padding:15px 16px;cursor:pointer;user-select:none}
+.sec-ico{width:38px;height:38px;border-radius:12px;background:var(--brand-soft);color:var(--brand-2);display:flex;align-items:center;justify-content:center;font-size:1.05em;flex-shrink:0}
+.sec-hd h2{flex:1;font-size:.94em;font-weight:700;letter-spacing:.1px}
+.sec-hd h2 small{display:block;font-weight:500;font-size:.78em;color:var(--ink3);margin-top:1px}
+.sec-ct{font-size:.72em;font-weight:700;color:var(--brand-2);background:var(--brand-soft);padding:4px 10px;border-radius:999px;white-space:nowrap}
+.sec-chev{color:var(--ink3);font-size:.7em;transition:transform .3s}
+.sec.shut .sec-chev{transform:rotate(-90deg)}
+.sec-bd{max-height:14000px;overflow:hidden;transition:max-height .4s ease;padding:0 12px 12px}
+.sec.shut .sec-bd{max-height:0;padding:0 12px}
+.note{background:var(--gold-soft);border-left:3px solid var(--gold);color:var(--ink2);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:11px 13px;margin:2px 2px 10px;font-family:var(--fd);font-style:italic;font-size:.86em;line-height:1.65}
+.note a{color:var(--brand-2);text-decoration:none;font-weight:600}
+.subt{font-size:.7em;font-weight:800;color:var(--gold);letter-spacing:1.8px;text-transform:uppercase;margin:12px 4px 8px}
+
+/* ─────────── checklist rows ─────────── */
+.row{display:flex;align-items:flex-start;gap:12px;padding:12px 12px;border-radius:var(--r);cursor:pointer;transition:background .2s;margin-bottom:2px}
+.row:active{background:var(--bg-soft)}
+.row.done{opacity:.48}
+.tick{width:24px;height:24px;border-radius:50%;border:2px solid var(--line);flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.68em;font-weight:800;transition:all .2s;background:var(--card)}
+.row.done .tick{background:var(--brand-2);border-color:var(--brand-2)}
+.row.done .tick::after{content:'✓'}
+.row-t{flex:1;min-width:0}
+.row-t b{font-weight:600;font-size:.94em;line-height:1.45;display:block}
+.row.done .row-t b{text-decoration:line-through}
+.row-t .x{font-size:.8em;color:var(--ink2);margin-top:2px;line-height:1.5}
+.row-t .rf{font-size:.74em;color:var(--ink3);font-style:italic;margin-top:2px}
+.pts{font-size:.68em;font-weight:800;color:var(--gold);background:var(--gold-soft);border-radius:999px;padding:3px 8px;flex-shrink:0;margin-top:3px}
+
+/* ─────────── progress pill bar ─────────── */
+.meter{background:var(--bg-soft);height:8px;border-radius:99px;overflow:hidden}
+.meter i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--brand-2),var(--gold-2));transition:width .6s cubic-bezier(.3,.7,.3,1)}
+
+/* ─────────── countdown ─────────── */
+.cd{display:flex;align-items:center;gap:16px;padding:16px 18px}
+.cd-n{font-family:var(--fd);font-size:2.5em;font-weight:700;color:var(--brand-2);line-height:1;min-width:70px;text-align:center}
+.cd-t{flex:1}
+.cd-t b{font-size:.92em;display:block}
+.cd-t span{font-size:.78em;color:var(--ink2)}
+.cd input[type="date"]{margin-top:8px;padding:9px 12px;border-radius:var(--r-sm);border:1px solid var(--line);background:var(--bg);color:var(--ink);font-family:var(--fb);font-size:.9em;width:100%}
+
+/* ─────────── counters (tawaf / sa'i) ─────────── */
+.cnt{padding:22px 18px;text-align:center}
+.cnt h3{margin-bottom:2px}
+.cnt .sub{font-size:.78em;color:var(--ink2);margin-bottom:16px;line-height:1.5}
+.tapring{position:relative;width:216px;height:216px;margin:0 auto;cursor:pointer;user-select:none;transition:transform .12s}
+.tapring:active{transform:scale(.96)}
+.tapring svg{transform:rotate(-90deg);display:block}
+.tr-bg{fill:none;stroke:var(--bg-soft);stroke-width:14}
+.tr-seg{fill:none;stroke-width:14;stroke:url(#gseg);stroke-linecap:round;stroke-dasharray:565;stroke-dashoffset:565;transition:stroke-dashoffset .5s cubic-bezier(.3,.7,.3,1)}
+.tr-mid{position:absolute;inset:22px;border-radius:50%;background:linear-gradient(150deg,var(--brand),#0B2E24);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:inset 0 2px 14px rgba(0,0,0,.25),var(--sh)}
+[data-theme="dark"] .tr-mid{background:linear-gradient(150deg,#13402F,#0B241C)}
+.tr-mid .n{font-family:var(--fd);font-size:3.4em;font-weight:700;line-height:1}
+.tr-mid .of{font-size:.72em;opacity:.65;letter-spacing:1.6px;text-transform:uppercase;margin-top:4px;font-weight:700}
+.tr-mid .tap{font-size:.62em;opacity:.5;margin-top:6px;letter-spacing:1px;text-transform:uppercase}
+.cnt-acts{display:flex;justify-content:center;gap:10px;margin-top:16px}
+.chip-btn{border:1px solid var(--line);background:var(--card);color:var(--ink2);font-family:var(--fb);font-weight:600;font-size:.8em;padding:9px 18px;border-radius:999px;cursor:pointer;transition:all .15s;box-shadow:var(--sh)}
+.chip-btn:active{transform:scale(.94)}
+.cnt-done{margin-top:14px;font-size:.84em;font-weight:600;color:var(--ok);background:var(--brand-soft);border-radius:var(--r-sm);padding:10px 14px;display:none}
+
+/* ─────────── steps ─────────── */
+.stp{display:flex;gap:12px;padding:12px;border-radius:var(--r);cursor:pointer;transition:background .2s;margin-bottom:2px;align-items:flex-start}
+.stp:active{background:var(--bg-soft)}
+.stp.done{opacity:.5}
+.stp-n{width:28px;height:28px;border-radius:50%;background:var(--brand-soft);color:var(--brand-2);border:1.5px solid var(--brand-2);font-weight:800;font-size:.76em;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:all .2s}
+.stp.done .stp-n{background:var(--brand-2);color:#fff}
+.stp-t{flex:1;min-width:0}
+.stp-t b{font-size:.94em;display:block;line-height:1.45}
+.stp.done .stp-t b{text-decoration:line-through}
+.stp-t p{font-size:.8em;color:var(--ink2);margin-top:2px;line-height:1.55}
+.dua{background:var(--gold-soft);border-left:3px solid var(--gold);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:10px 12px;margin-top:8px;font-size:.8em;line-height:1.6}
+.dua .ar{font-size:1.3em;direction:rtl;display:block;line-height:2;font-family:var(--fd);margin-bottom:4px}
+.dua .tl{font-style:italic;color:var(--ink2)}
+.dua .tr{display:block;color:var(--ink3);margin-top:3px}
+.dua .src{display:block;font-size:.85em;color:var(--gold);margin-top:5px;font-style:italic;font-weight:600}
+
+/* ─────────── day nav & stats ─────────── */
+.daynav{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--line);border-radius:999px;box-shadow:var(--sh);padding:6px;margin-bottom:14px}
+.daynav button{width:44px;height:44px;border-radius:50%;border:none;background:var(--bg-soft);color:var(--ink);font-size:1em;cursor:pointer;transition:all .15s}
+.daynav button:active{transform:scale(.88);background:var(--brand-soft);color:var(--brand-2)}
+.daynav .dd{font-weight:800;font-size:.92em;letter-spacing:.4px}
+.daynav .dd small{display:block;text-align:center;font-weight:600;font-size:.7em;color:var(--ink3);letter-spacing:1.4px;text-transform:uppercase}
+.stat4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.st{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:12px 6px;text-align:center;transition:all .3s}
+.st.on{border-color:var(--gold);background:var(--gold-soft)}
+.st .i{font-size:1.15em}
+.st .n{font-family:var(--fd);font-size:1.4em;font-weight:700;color:var(--brand-2);line-height:1.1;margin-top:2px}
+.st .l{font-size:.58em;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--ink3);margin-top:3px}
+.heat{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
+.hc{aspect-ratio:1;border-radius:8px;background:var(--bg-soft);display:flex;align-items:center;justify-content:center;font-size:.58em;font-weight:700;color:var(--ink3)}
+.hc.h1{background:#BBE3CB;color:#0E3B2E}.hc.h2{background:#6FCB9A;color:#0B2E24}.hc.h3{background:#2FAE74;color:#fff}.hc.h4{background:#0E7A4E;color:#fff}
+[data-theme="dark"] .hc.h1{background:#1B3A2B;color:#7FBF9C}[data-theme="dark"] .hc.h2{background:#1F5A3C;color:#CFEFDD}[data-theme="dark"] .hc.h3{background:#27825A;color:#fff}[data-theme="dark"] .hc.h4{background:#2FBE83;color:#08281B}
+.hc.now{outline:2px solid var(--gold);outline-offset:1px}
+.kv{display:flex;justify-content:space-between;align-items:center;padding:10px 2px;border-bottom:1px solid var(--line);font-size:.9em}
+.kv:last-child{border-bottom:none}
+.kv span:first-child{color:var(--ink2)}
+.kv b{color:var(--brand-2);font-weight:700}
+.bdgs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.bdg{text-align:center;padding:12px 4px;border-radius:var(--r);border:1px solid var(--line);background:var(--bg);transition:all .3s}
+.bdg.ok{border-color:var(--gold);background:var(--gold-soft);box-shadow:var(--sh)}
+.bdg.no{opacity:.32;filter:grayscale(1)}
+.bdg .i{font-size:1.6em}
+.bdg .n{font-size:.6em;font-weight:700;color:var(--ink2);margin-top:3px;line-height:1.3}
+
+/* ─────────── places ─────────── */
+.pills{display:flex;gap:8px;margin-bottom:14px}
+.pill{flex:1;padding:10px 0;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink2);font-family:var(--fb);font-weight:700;font-size:.8em;cursor:pointer;transition:all .2s;box-shadow:var(--sh);letter-spacing:.3px}
+.pill.on{background:var(--brand);border-color:var(--brand);color:#fff}
+[data-theme="dark"] .pill.on{background:var(--brand-2);border-color:var(--brand-2);color:#08281B}
+.place{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh);padding:15px 16px;margin-bottom:10px;transition:border-color .2s}
+.place.vis{border-color:var(--brand-2)}
+.place-h{display:flex;gap:12px}
+.place-ico{width:44px;height:44px;border-radius:14px;background:linear-gradient(145deg,var(--brand-soft),var(--gold-soft));display:flex;align-items:center;justify-content:center;font-size:1.35em;flex-shrink:0}
+.place-t{flex:1;min-width:0}
+.place-t b{font-size:.95em;line-height:1.35;display:block}
+.place-t p{font-size:.8em;color:var(--ink2);line-height:1.55;margin-top:3px}
+.place-t .tip{font-size:.75em;color:var(--gold);font-style:italic;margin-top:4px;line-height:1.5}
+.place-a{display:flex;gap:8px;margin-top:12px}
+.place-a a,.place-a button{flex:1;padding:10px 0;border-radius:999px;font-size:.78em;font-weight:700;text-align:center;text-decoration:none;cursor:pointer;font-family:var(--fb);transition:all .15s;letter-spacing:.3px;border:1px solid var(--line)}
+.place-a a{background:var(--brand-soft);border-color:transparent;color:var(--brand-2)}
+.place-a button{background:var(--card);color:var(--ink2)}
+.place.vis .place-a button{background:var(--brand-2);border-color:var(--brand-2);color:#fff}
+[data-theme="dark"] .place.vis .place-a button{color:#08281B}
+.place-a a:active,.place-a button:active{transform:scale(.96)}
+
+/* ─────────── quiz ─────────── */
+.qz-top{display:flex;justify-content:space-between;font-size:.72em;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
+.qz-dots{display:flex;gap:4px;margin-bottom:14px}
+.qz-dots i{flex:1;height:4px;border-radius:99px;background:var(--bg-soft)}
+.qz-dots i.f{background:var(--brand-2)}.qz-dots i.w{background:var(--danger)}
+.qz-q{font-family:var(--fd);font-size:1.08em;font-weight:600;line-height:1.5;margin-bottom:14px}
+.qz-o{display:block;width:100%;text-align:left;padding:13px 15px;margin-bottom:8px;border-radius:var(--r);border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font-size:.88em;cursor:pointer;font-family:var(--fb);font-weight:500;transition:all .15s;line-height:1.45}
+.qz-o:active{transform:scale(.985)}
+.qz-o.right{border-color:var(--ok);background:var(--brand-soft);font-weight:700}
+.qz-o.wrong{border-color:var(--danger);background:rgba(194,65,12,.08)}
+.qz-x{background:var(--gold-soft);border-left:3px solid var(--gold);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:11px 13px;font-size:.82em;color:var(--ink2);line-height:1.55;margin-top:4px}
+.qz-final{text-align:center;padding:8px 0}
+.qz-final .big{font-family:var(--fd);font-size:3.2em;font-weight:700;color:var(--gold);line-height:1.1}
+.qz-final p{font-size:.86em;color:var(--ink2);margin-top:6px}
+
+/* ─────────── buttons, settings, guide ─────────── */
+.btn{display:block;width:100%;padding:14px;border-radius:var(--r);border:none;background:var(--brand);color:#fff;font-family:var(--fb);font-weight:700;font-size:.92em;cursor:pointer;transition:all .15s;margin-top:10px;letter-spacing:.2px;box-shadow:var(--sh)}
+[data-theme="dark"] .btn{background:var(--brand-2);color:#08281B}
+.btn:active{transform:scale(.97)}
+.btn.gold{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#231803}
+.btn.ghost{background:var(--card);color:var(--brand-2);border:1.5px solid var(--brand-2);box-shadow:none}
+.btn.danger{background:transparent;color:var(--danger);border:1.5px solid var(--danger);box-shadow:none}
+.setrow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.setrow:last-child{border-bottom:none}
+.setrow b{font-size:.92em;font-weight:600;display:block}
+.setrow small{font-size:.78em;color:var(--ink3)}
+.sw{width:50px;height:28px;border-radius:99px;background:var(--bg-soft);border:1px solid var(--line);cursor:pointer;position:relative;transition:all .25s;flex-shrink:0}
+.sw::after{content:'';position:absolute;width:22px;height:22px;border-radius:50%;background:#fff;top:2px;left:2px;box-shadow:0 1px 4px rgba(0,0,0,.2);transition:transform .25s cubic-bezier(.4,0,.2,1)}
+.sw.on{background:var(--brand-2);border-color:var(--brand-2)}.sw.on::after{transform:translateX(22px)}
+.numin{width:74px;padding:9px;border-radius:var(--r-sm);border:1px solid var(--line);background:var(--bg);color:var(--ink);font-family:var(--fb);font-weight:700;font-size:.95em;text-align:center}
+.acc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:8px;overflow:hidden}
+.acc-h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 16px;font-size:.88em;font-weight:600;cursor:pointer}
+.acc-h:active{opacity:.7}
+.acc-c{font-size:.62em;color:var(--ink3);transition:transform .2s;flex-shrink:0}
+.acc.open .acc-c{transform:rotate(90deg)}
+.acc-b{max-height:0;overflow:hidden;padding:0 16px;font-size:.84em;color:var(--ink2);line-height:1.7;transition:max-height .3s ease,padding .3s ease}
+.acc.open .acc-b{max-height:2600px;padding:0 16px 14px}
+.acc-b ul{padding-left:18px;margin:6px 0}.acc-b li{padding:2px 0}.acc-b strong{color:var(--ink)}
+.res{display:flex;align-items:center;gap:12px;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:11px 14px;margin-bottom:8px;text-decoration:none;color:var(--ink);transition:all .15s}
+.res:active{transform:scale(.985)}
+.res .i{font-size:1.3em}
+.res .t{flex:1;font-size:.8em;color:var(--ink2);line-height:1.4}
+.res .t b{display:block;font-size:1.1em;color:var(--ink)}
+.res .g{font-size:.68em;font-weight:800;color:var(--brand-2);letter-spacing:.5px}
+.duacard{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:10px}
+.duacard h4{font-family:var(--fd);font-size:.92em;color:var(--brand-2);margin-bottom:6px}
+
+/* ─────────── bottom nav (floating pill) ─────────── */
+.nav{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + var(--sab));z-index:80;width:min(456px,calc(100% - 24px));
+ display:flex;background:color-mix(in srgb,var(--card) 88%,transparent);border:1px solid var(--line);border-radius:999px;box-shadow:var(--sh-lg);
+ backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);padding:6px}
+.nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 0 7px;border:none;background:transparent;border-radius:999px;cursor:pointer;color:var(--ink3);font-family:var(--fb);transition:all .2s}
+.nav button svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.nav button .l{font-size:.56em;font-weight:800;letter-spacing:.7px;text-transform:uppercase}
+.nav button.on{background:var(--brand);color:#fff}
+[data-theme="dark"] .nav button.on{background:var(--brand-2);color:#08281B}
+
+/* ─────────── toast ─────────── */
+.toasts{position:fixed;top:calc(64px + var(--sat));left:50%;transform:translateX(-50%);z-index:200;display:flex;flex-direction:column;gap:8px;pointer-events:none;width:max-content;max-width:88%}
+.toast{background:var(--brand);color:#fff;padding:12px 20px;font-size:.85em;font-weight:600;border-radius:999px;box-shadow:var(--sh-lg);animation:tIn .3s ease,tOut .3s ease 2.9s}
+.toast.gold{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#231803}
+@keyframes tIn{from{transform:translateY(-14px);opacity:0}to{transform:none;opacity:1}}
+@keyframes tOut{from{opacity:1}to{opacity:0}}
+.foot{text-align:center;color:var(--ink3);font-size:.78em;line-height:1.8;padding:26px 12px 8px}
+.foot .d{font-family:var(--fd);font-style:italic;font-size:1.15em;color:var(--gold);margin-bottom:6px}
+.foot a{color:var(--brand-2);text-decoration:none;font-weight:600}
 </style>
 </head>
 <body>
-<header class="hdr"><div class="hdr-in"><div><h1>🕋 Umrah Strivers <span>The Journey of a Lifetime <a class="learn-link" onclick="goTab('more')">ⓘ Guide</a></span></h1></div><button class="thm-btn" onclick="toggleTheme()" aria-label="Toggle theme"><span id="themeIcon">☀️</span></button></div></header>
-<div class="bnr"><div class="bt" id="bnrTitle">Umrah Strivers</div><div class="bs" id="bnrSub">Plan · Learn · Perform · Track</div><div class="bq" id="bnrQuote"></div></div>
-<main class="wrap">
+<svg width="0" height="0" style="position:absolute"><defs>
+<linearGradient id="gld" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EFD494"/><stop offset="1" stop-color="#D9B45E"/></linearGradient>
+<linearGradient id="gseg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3AD695"/><stop offset="1" stop-color="#D9B45E"/></linearGradient>
+</defs></svg>
 
-<!-- ═══════════════ PLAN TAB ═══════════════ -->
-<div class="tab on" id="tab-plan">
-<div class="cd-card"><h3>🗓️ Departure Countdown</h3><span class="cd-num" id="cdNum">—</span><p id="cdLbl">Set your departure date to start the countdown</p><input type="date" id="depDate" onchange="setDep(this.value)"></div>
-<div class="prog"><div class="prog-top"><span class="prog-title">Preparation Progress</span><span class="prog-pct" id="planPct">0%</span></div><div class="prog-bar-out"><div class="prog-bar" id="planBar" style="width:0%"></div></div><div class="prog-bot"><span id="planCnt">0 of 0 prepared</span><span>🧳 Get ready!</span></div></div>
-<div id="planContainer"></div>
-
-<div class="scard" style="margin-top:16px"><h3>📚 Know Before You Go</h3><p style="font-size:.8em;color:var(--text3);margin-bottom:10px">Tap each topic — this is the knowledge that transforms your Umrah from a trip into an act of worship.</p><div id="knowContainer"></div></div>
-
-<div class="scard"><h3>🧠 Umrah Readiness Quiz</h3>
-<p style="font-size:.82em;color:var(--text2);margin-bottom:10px;line-height:1.5">Test yourself before you travel. Score 80%+ and you're ready. Best score: <strong id="qzBest" style="color:var(--gold)">—</strong></p>
-<div id="qzArea"><button class="btn btn-gold" onclick="startQuiz()">🧠 Start the Quiz</button></div>
-</div>
+<div class="app">
+<div class="top">
+  <div class="brand"><div class="brand-mark">🕋</div><h1>Umrah Strivers<small>The journey of a lifetime</small></h1></div>
+  <button class="iconbtn" onclick="toggleTheme()" aria-label="Toggle theme"><span id="themeIcon">🌙</span></button>
 </div>
 
-<!-- ═══════════════ UMRAH (RITES) TAB ═══════════════ -->
-<div class="tab" id="tab-umrah">
-<div class="prog"><div class="prog-top"><span class="prog-title">Umrah Rites Progress</span><span class="prog-pct" id="ritePct">0%</span></div><div class="prog-bar-out"><div class="prog-bar" id="riteBar" style="width:0%"></div></div><div class="prog-bot"><span id="riteCnt">0 of 0 steps</span><span id="umrahCntLbl">🕋 Umrahs completed: 0</span></div></div>
+<!-- ═══════ PLAN ═══════ -->
+<div class="view on" id="view-plan">
+  <div class="vh"><h2>Prepare with ihsan</h2><p id="quoteLine"></p></div>
+  <div class="hero"><div class="hero-t"><div class="k">Preparation</div><div class="v" id="planHeroT">Let's get ready</div><div class="s" id="planHeroS">Checklists, essential knowledge & a readiness quiz</div></div>
+    <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="planRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="planPct">0%</span><small>READY</small></div></div></div>
+  <div class="card cd"><div class="cd-n" id="cdNum">—</div><div class="cd-t"><b id="cdT">Departure countdown</b><span id="cdS">Set your date and watch the days melt away</span><input type="date" id="depDate" onchange="setDep(this.value)"></div></div>
+  <div id="planContainer"></div>
 
-<div class="cntr"><h3>🕋 Tawaf Counter</h3><div class="cntr-sub">7 rounds, counter-clockwise, starting & ending at the Black Stone line</div><div class="cntr-num"><span id="tawafN">0</span><small> / 7</small></div><div class="cntr-dots" id="tawafDots"></div><div class="cntr-btns"><button class="cntr-sml" onclick="cntr('tawaf',-1)">−1</button><button class="cntr-add" onclick="cntr('tawaf',1)">＋ Round</button><button class="cntr-sml" onclick="cntrReset('tawaf')">Reset</button></div><div class="cntr-done" id="tawafDone" style="display:none">✅ Tawaf complete — pray 2 rakahs behind Maqam Ibrahim</div></div>
+  <div class="card card-pad"><h3>📚 Know before you go</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The knowledge that turns a trip into worship — tap to expand.</p><div id="knowContainer"></div></div>
 
-<div class="cntr" style="background:linear-gradient(135deg,#0c1f18,#123a2a,#0f4d38)"><h3>⛰️ Sa'i Counter</h3><div class="cntr-sub">7 laps — begin at Safa, end at Marwah (Safa → Marwah = 1 lap)</div><div class="cntr-num"><span id="saiN">0</span><small> / 7</small></div><div class="cntr-dots" id="saiDots"></div><div class="cntr-btns"><button class="cntr-sml" onclick="cntr('sai',-1)">−1</button><button class="cntr-add" onclick="cntr('sai',1)">＋ Lap</button><button class="cntr-sml" onclick="cntrReset('sai')">Reset</button></div><div class="cntr-done" id="saiDone" style="display:none">✅ Sa'i complete — proceed to halq / taqsir</div></div>
-
-<div id="riteContainer"></div>
-<button class="btn btn-gold" onclick="finishUmrah()">🎉 Record Completed Umrah & Reset Steps</button>
-<p style="font-size:.76em;color:var(--text3);text-align:center;margin-top:8px">Performing another Umrah? Take ihram from Masjid Aisha (Tan'eem) — see the Places tab.</p>
+  <div class="card card-pad"><h3>🧠 Readiness quiz</h3>
+  <p style="font-size:.84em;color:var(--ink2);margin-bottom:10px">15 questions. Score 80%+ and you're ready. Best: <b id="qzBest" style="color:var(--gold)">—</b></p>
+  <div id="qzArea"><button class="btn gold" onclick="startQuiz()">Start the quiz</button></div></div>
 </div>
 
-<!-- ═══════════════ DAILY TAB ═══════════════ -->
-<div class="tab" id="tab-daily">
-<div class="day-nav"><button onclick="changeDay(-1)" aria-label="Previous">◀</button><div class="dd" id="dayDisp">Day 1 / 10</div><button onclick="changeDay(1)" aria-label="Next">▶</button></div>
-<div class="prog"><div class="prog-top"><span class="prog-title">Today's Worship</span><span class="prog-pct" id="dPct">0%</span></div><div class="prog-bar-out"><div class="prog-bar" id="dBar" style="width:0%"></div></div><div class="prog-bot"><span id="dCnt">0 of 0 completed</span><span id="dPts">0 pts</span></div></div>
-<div class="streaks"><div class="strk" id="skFajr"><div class="strk-i">🕌</div><div class="strk-n" id="skFajrN">0</div><div class="strk-l">Fajr Jama'ah</div></div><div class="strk" id="skTahaj"><div class="strk-i">🌙</div><div class="strk-n" id="skTahajN">0</div><div class="strk-l">Tahajjud</div></div><div class="strk" id="skQuran"><div class="strk-i">📖</div><div class="strk-n" id="skQuranN">0</div><div class="strk-l">Quran</div></div><div class="strk" id="skTawaf"><div class="strk-i">🕋</div><div class="strk-n" id="skTawafN">0</div><div class="strk-l">Nafl Tawaf</div></div></div>
-<div id="dailyContainer"></div>
-<div class="card heat scard" style="padding:20px"><h3 style="border:none;padding:0;margin-bottom:14px">🟩 Trip Consistency</h3><div class="heat-grid" id="heatGrid"></div></div>
-<div class="scard"><h3>📈 Trip Stats</h3><div class="sr"><span class="sr-l">Days logged</span><span class="sr-v" id="stDays">0</span></div><div class="sr"><span class="sr-l">Average completion</span><span class="sr-v" id="stAvg">0%</span></div><div class="sr"><span class="sr-l">Best day</span><span class="sr-v" id="stBest">—</span></div><div class="sr"><span class="sr-l">Days ≥ 80%</span><span class="sr-v" id="stPerf">0</span></div><div class="sr"><span class="sr-l">Umrahs completed</span><span class="sr-v" id="stUmrahs">0</span></div><div class="sr"><span class="sr-l">Places visited</span><span class="sr-v" id="stPlaces">0</span></div></div>
-<div class="scard"><h3>🏅 Achievements (<span id="bdgCnt">0</span>/8)</h3><div class="badges" id="bdgGrid"></div></div>
+<!-- ═══════ UMRAH ═══════ -->
+<div class="view" id="view-umrah">
+  <div class="vh"><h2>Labbayk Allahumma</h2><p>Every step from miqat to halq — with counters that keep count for you.</p></div>
+  <div class="hero"><div class="hero-t"><div class="k">Umrah rites</div><div class="v" id="riteHeroT">Step by step</div><div class="s" id="riteHeroS">🕋 Umrahs completed: 0</div></div>
+    <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="riteRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="ritePct">0%</span><small>DONE</small></div></div></div>
+
+  <div class="card cnt"><h3>🕋 Tawaf</h3><div class="sub">7 rounds, counter-clockwise, from the Black Stone line.<br><b>Tap the circle after each round.</b></div>
+    <div class="tapring" onclick="cntr('tawaf',1)"><svg width="216" height="216" viewBox="0 0 216 216"><circle class="tr-bg" cx="108" cy="108" r="90"/><circle class="tr-seg" id="tawafRing" cx="108" cy="108" r="90"/></svg><div class="tr-mid"><div class="n" id="tawafN">0</div><div class="of">of 7 rounds</div><div class="tap">tap to count</div></div></div>
+    <div class="cnt-acts"><button class="chip-btn" onclick="event.stopPropagation();cntr('tawaf',-1)">− Undo</button><button class="chip-btn" onclick="cntrReset('tawaf')">Reset</button></div>
+    <div class="cnt-done" id="tawafDone">✅ Tawaf complete — pray 2 rakahs behind Maqam Ibrahim</div></div>
+
+  <div class="card cnt"><h3>⛰️ Sa'i</h3><div class="sub">7 laps — begin at Safa, finish at Marwah (Safa → Marwah = 1).<br><b>Tap the circle after each lap.</b></div>
+    <div class="tapring" onclick="cntr('sai',1)"><svg width="216" height="216" viewBox="0 0 216 216"><circle class="tr-bg" cx="108" cy="108" r="90"/><circle class="tr-seg" id="saiRing" cx="108" cy="108" r="90"/></svg><div class="tr-mid"><div class="n" id="saiN">0</div><div class="of">of 7 laps</div><div class="tap">tap to count</div></div></div>
+    <div class="cnt-acts"><button class="chip-btn" onclick="event.stopPropagation();cntr('sai',-1)">− Undo</button><button class="chip-btn" onclick="cntrReset('sai')">Reset</button></div>
+    <div class="cnt-done" id="saiDone">✅ Sa'i complete — proceed to halq / taqsir</div></div>
+
+  <div id="riteContainer"></div>
+  <button class="btn gold" onclick="finishUmrah()">🎉 Record completed Umrah & reset</button>
+  <p style="font-size:.76em;color:var(--ink3);text-align:center;margin-top:8px">Another Umrah? Take ihram from Masjid Aisha (Tan'eem) — see Places.</p>
 </div>
 
-<!-- ═══════════════ PLACES TAB ═══════════════ -->
-<div class="tab" id="tab-places">
-<div class="prog"><div class="prog-top"><span class="prog-title">Ziyarah Progress</span><span class="prog-pct" id="plPct">0%</span></div><div class="prog-bar-out"><div class="prog-bar" id="plBar" style="width:0%"></div></div><div class="prog-bot"><span id="plCnt">0 of 0 visited</span><span>📍 Tap Map to navigate</span></div></div>
-<div class="pill-row"><button class="pill on" id="pillAll" onclick="filterCity('all')">All</button><button class="pill" id="pillMakkah" onclick="filterCity('makkah')">🕋 Makkah</button><button class="pill" id="pillMadinah" onclick="filterCity('madinah')">🕌 Madinah</button></div>
-<div class="hadith-n">"Do not set out on a journey except to three mosques: al-Masjid al-Haram, the Mosque of the Messenger ﷺ, and al-Masjid al-Aqsa." — <a href="https://sunnah.com/bukhari:1189" target="_blank" rel="noopener" style="color:var(--green)">Bukhari 1189</a></div>
-<div id="placesContainer"></div>
+<!-- ═══════ DAILY ═══════ -->
+<div class="view" id="view-daily">
+  <div class="vh"><h2>Maximise every day</h2><p>Every prayer here is multiplied — don't let a single day drift.</p></div>
+  <div class="daynav"><button onclick="changeDay(-1)" aria-label="Previous day">◀</button><div class="dd" id="dayDisp">Day 1<small>of 10</small></div><button onclick="changeDay(1)" aria-label="Next day">▶</button></div>
+  <div class="hero"><div class="hero-t"><div class="k">Today's worship</div><div class="v" id="dHeroT">Bismillah</div><div class="s" id="dHeroS">0 of 0 completed · 0 pts</div></div>
+    <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="dRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="dPct">0%</span><small>TODAY</small></div></div></div>
+  <div class="stat4">
+    <div class="st" id="skFajr"><div class="i">🕌</div><div class="n" id="skFajrN">0</div><div class="l">Fajr</div></div>
+    <div class="st" id="skTahaj"><div class="i">🌙</div><div class="n" id="skTahajN">0</div><div class="l">Tahajjud</div></div>
+    <div class="st" id="skQuran"><div class="i">📖</div><div class="n" id="skQuranN">0</div><div class="l">Quran</div></div>
+    <div class="st" id="skTawaf"><div class="i">🕋</div><div class="n" id="skTawafN">0</div><div class="l">Tawaf</div></div>
+  </div>
+  <div id="dailyContainer"></div>
+  <div class="card card-pad"><h3>🟩 Trip consistency</h3><div class="heat" id="heatGrid"></div></div>
+  <div class="card card-pad"><h3>📈 Trip stats</h3>
+    <div class="kv"><span>Days logged</span><b id="stDays">0</b></div>
+    <div class="kv"><span>Average completion</span><b id="stAvg">0%</b></div>
+    <div class="kv"><span>Best day</span><b id="stBest">—</b></div>
+    <div class="kv"><span>Days ≥ 80%</span><b id="stPerf">0</b></div>
+    <div class="kv"><span>Umrahs completed</span><b id="stUmrahs">0</b></div>
+    <div class="kv"><span>Places visited</span><b id="stPlaces">0</b></div></div>
+  <div class="card card-pad"><h3>🏅 Achievements (<span id="bdgCnt">0</span>/8)</h3><div class="bdgs" id="bdgGrid"></div></div>
 </div>
 
-<!-- ═══════════════ MORE TAB ═══════════════ -->
-<div class="tab" id="tab-more">
-<div class="scard" style="background:linear-gradient(135deg,rgba(74,222,128,.06),rgba(251,191,36,.04));border:1px solid var(--gold-glow)"><h3 style="font-size:1.15em;border:none;padding-bottom:0;margin-bottom:6px">📘 How to Use This App</h3><p style="font-size:.82em;color:var(--text3);margin-bottom:0">Tap any section to expand it</p></div>
-<div class="guide-sec" onclick="this.classList.toggle('open')"><div class="guide-hd">🧳 Plan — before you fly <span class="guide-chev">▶</span></div><div class="guide-bd">Set your departure date for a live countdown. Work through the preparation checklists (documents, packing, health, knowledge). Read every "Know Before You Go" topic — miqats, ihram rules, permits, transport, and common mistakes. Then take the quiz until you score 80%+. A prepared heart makes a focused Umrah.</div></div>
-<div class="guide-sec" onclick="this.classList.toggle('open')"><div class="guide-hd">🕋 Umrah — during the rites <span class="guide-chev">▶</span></div><div class="guide-bd">The Umrah tab walks you through every step from ihram to halq, with the duas you need inline. Use the big Tawaf and Sa'i counters while you walk — one tap per round, with haptic feedback, so you never lose count. When you finish, tap "Record Completed Umrah" — it logs your Umrah and resets the steps for your next one (take ihram from Masjid Aisha in Tan'eem).</div></div>
-<div class="guide-sec" onclick="this.classList.toggle('open')"><div class="guide-hd">📿 Daily — maximise every day <span class="guide-chev">▶</span></div><div class="guide-bd">While you're in the Haramain, every prayer is multiplied — don't waste a single day. Tick off your five prayers in congregation, tahajjud, Quran, dhikr and extra deeds. The app tracks streaks, a consistency heatmap, points, and unlocks achievements. Set your trip length in Settings below.</div></div>
-<div class="guide-sec" onclick="this.classList.toggle('open')"><div class="guide-hd">📍 Places — ziyarah with purpose <span class="guide-chev">▶</span></div><div class="guide-bd">Every major site in Makkah and Madinah, each with why it matters, an etiquette tip, and a one-tap Google Maps button for navigation. Mark places as visited to track your ziyarah progress. Note: ziyarah is a virtuous extra — the Umrah rites and prayers in the Haramain always come first.</div></div>
-<div class="guide-sec" onclick="this.classList.toggle('open')"><div class="guide-hd">🔒 Privacy & Data <span class="guide-chev">▶</span></div><div class="guide-bd">All your data lives on your device only. No accounts, no servers, no tracking. Export a backup anytime and import it on another device. The app works offline — essential in the crowded Haram where signal drops.</div></div>
-
-<div class="scard" style="margin-top:16px"><h3>🤲 Essential Duas</h3><div id="duaContainer"></div></div>
-
-<div class="scard"><h3>🔗 Helpful Resources</h3><div style="display:flex;flex-direction:column;gap:8px">
-<a href="https://www.nusuk.sa/" target="_blank" rel="noopener" class="app-link"><div style="font-size:1.3em">🕌</div><div class="app-link-txt"><strong>Nusuk</strong>Official Saudi platform — Umrah visa, Rawdah permits & bookings</div><div class="app-link-go">Open →</div></a>
-<a href="https://sar.hhr.sa/" target="_blank" rel="noopener" class="app-link"><div style="font-size:1.3em">🚄</div><div class="app-link-txt"><strong>Haramain High-Speed Rail</strong>Jeddah ↔ Makkah ↔ Madinah train tickets</div><div class="app-link-go">Open →</div></a>
-<a href="https://tarteel.ai/" target="_blank" rel="noopener" class="app-link"><div style="font-size:1.3em">📖</div><div class="app-link-txt"><strong>Tarteel AI</strong>AI Quran recitation — tajweed correction & memorisation</div><div class="app-link-go">Open →</div></a>
-<a href="https://lifewithallah.com/app" target="_blank" rel="noopener" class="app-link"><div style="font-size:1.3em">🤲</div><div class="app-link-txt"><strong>Life with Allah</strong>Daily adhkar &amp; duas from the Sunnah</div><div class="app-link-go">Open →</div></a>
-<a href="https://sunnah.com/" target="_blank" rel="noopener" class="app-link"><div style="font-size:1.3em">📚</div><div class="app-link-txt"><strong>Sunnah.com</strong>Hadith collections — Bukhari, Muslim &amp; more</div><div class="app-link-go">Open →</div></a>
-<a href="https://www.ramadanstrivers.com/" target="_blank" rel="noopener" class="app-link"><div style="font-size:1.3em">🌙</div><div class="app-link-txt"><strong>Ramadan Strivers</strong>Our sister app — your Ramadan planner &amp; tracker</div><div class="app-link-go">Open →</div></a>
-</div></div>
-
-<div class="scard"><h3>⚙️ Settings</h3>
-<div class="set-item"><div><div class="set-lbl">Dark Mode</div><div class="set-desc">Easier on the eyes at night</div></div><button class="tgl" id="dmTgl" onclick="toggleTheme()"></button></div>
-<div class="set-item"><div><div class="set-lbl">Trip Length</div><div class="set-desc">How many days is your trip?</div></div><input type="number" id="tripLen" min="3" max="30" style="width:70px;padding:8px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--fb);font-size:.95em;text-align:center" onchange="setTripLen(this.value)"></div>
+<!-- ═══════ PLACES ═══════ -->
+<div class="view" id="view-places">
+  <div class="vh"><h2>Ziyarah with purpose</h2><p>Tap Maps to navigate. Mark what you've visited.</p></div>
+  <div class="hero"><div class="hero-t"><div class="k">Sacred places</div><div class="v">Makkah & Madinah</div><div class="s" id="plHeroS">0 of 20 visited</div></div>
+    <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="plRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="plPct">0%</span><small>SEEN</small></div></div></div>
+  <div class="pills"><button class="pill on" id="pillAll" onclick="filterCity('all')">All</button><button class="pill" id="pillMakkah" onclick="filterCity('makkah')">🕋 Makkah</button><button class="pill" id="pillMadinah" onclick="filterCity('madinah')">🕌 Madinah</button></div>
+  <div class="note">"Do not set out on a journey except to three mosques: al-Masjid al-Haram, the Mosque of the Messenger ﷺ, and al-Masjid al-Aqsa." — <a href="https://sunnah.com/bukhari:1189" target="_blank" rel="noopener">Bukhari 1189</a></div>
+  <div id="placesContainer"></div>
 </div>
 
-<div class="scard"><h3>💾 Your Data</h3>
-<button class="btn btn-ol" onclick="exportData()">📤 Export Backup</button>
-<button class="btn btn-ol" onclick="document.getElementById('impFile').click()">📥 Import Backup</button>
-<input type="file" id="impFile" accept=".json" onchange="importData(event)" style="display:none">
-<button class="btn btn-red" onclick="confirmReset()">🗑️ Reset Everything</button>
+<!-- ═══════ MORE ═══════ -->
+<div class="view" id="view-more">
+  <div class="vh"><h2>Guide & settings</h2><p>How the app works, essential duas, and your data.</p></div>
+  <div class="card card-pad"><h3>📘 How to use this app</h3><div id="guideContainer" style="margin-top:4px">
+    <div class="acc" onclick="this.classList.toggle('open')"><div class="acc-h">🧳 Plan — before you fly <span class="acc-c">▶</span></div><div class="acc-b">Set your departure date for a live countdown. Work through the preparation checklists (documents, packing, health, knowledge). Read every "Know Before You Go" topic — miqats, ihram rules, permits, transport and common mistakes. Then take the quiz until you score 80%+.</div></div>
+    <div class="acc" onclick="this.classList.toggle('open')"><div class="acc-h">🕋 Umrah — during the rites <span class="acc-c">▶</span></div><div class="acc-b">The Umrah tab walks you through every step from ihram to halq, with the duas inline. Tap the big Tawaf and Sa'i circles after each round — with haptic feedback — so you never lose count. Then record your completed Umrah; the steps reset for your next one.</div></div>
+    <div class="acc" onclick="this.classList.toggle('open')"><div class="acc-h">📿 Daily — every day in the Haramain <span class="acc-c">▶</span></div><div class="acc-b">Tick off your five congregational prayers, tahajjud, Quran, dhikr and extra deeds. The app tracks streaks, a consistency heatmap, points and achievements. Set your trip length in Settings.</div></div>
+    <div class="acc" onclick="this.classList.toggle('open')"><div class="acc-h">📍 Places — ziyarah <span class="acc-c">▶</span></div><div class="acc-b">Every major site in Makkah and Madinah with why it matters, an etiquette tip and one-tap Google Maps navigation. Ziyarah is a virtuous extra — the rites and prayers always come first.</div></div>
+    <div class="acc" onclick="this.classList.toggle('open')"><div class="acc-h">🔒 Privacy & data <span class="acc-c">▶</span></div><div class="acc-b">Everything lives on your device only — no accounts, no servers, no tracking. Export a backup anytime; the app works offline in the crowded Haram where signal drops.</div></div>
+  </div></div>
+
+  <div class="card card-pad"><h3>🤲 Essential duas</h3><div id="duaContainer"></div></div>
+
+  <div class="card card-pad"><h3>🔗 Helpful resources</h3>
+    <a href="https://www.nusuk.sa/" target="_blank" rel="noopener" class="res"><span class="i">🕌</span><span class="t"><b>Nusuk</b>Official Saudi platform — visas, Rawdah permits & bookings</span><span class="g">OPEN →</span></a>
+    <a href="https://sar.hhr.sa/" target="_blank" rel="noopener" class="res"><span class="i">🚄</span><span class="t"><b>Haramain High-Speed Rail</b>Jeddah ↔ Makkah ↔ Madinah tickets</span><span class="g">OPEN →</span></a>
+    <a href="https://tarteel.ai/" target="_blank" rel="noopener" class="res"><span class="i">📖</span><span class="t"><b>Tarteel AI</b>AI Quran recitation — tajweed & memorisation</span><span class="g">OPEN →</span></a>
+    <a href="https://lifewithallah.com/app" target="_blank" rel="noopener" class="res"><span class="i">🤲</span><span class="t"><b>Life with Allah</b>Daily adhkar & duas from the Sunnah</span><span class="g">OPEN →</span></a>
+    <a href="https://sunnah.com/" target="_blank" rel="noopener" class="res"><span class="i">📚</span><span class="t"><b>Sunnah.com</b>Hadith collections — Bukhari, Muslim & more</span><span class="g">OPEN →</span></a>
+    <a href="https://www.ramadanstrivers.com/" target="_blank" rel="noopener" class="res"><span class="i">🌙</span><span class="t"><b>Ramadan Strivers</b>Our sister app — the Ramadan planner & tracker</span><span class="g">OPEN →</span></a>
+  </div>
+
+  <div class="card card-pad"><h3>⚙️ Settings</h3>
+    <div class="setrow"><div><b>Dark mode</b><small>Easier on the eyes at night</small></div><button class="sw" id="dmTgl" onclick="toggleTheme()"></button></div>
+    <div class="setrow"><div><b>Trip length</b><small>How many days is your trip?</small></div><input type="number" class="numin" id="tripLen" min="3" max="30" onchange="setTripLen(this.value)"></div>
+  </div>
+
+  <div class="card card-pad"><h3>💾 Your data</h3>
+    <button class="btn ghost" onclick="exportData()">📤 Export backup</button>
+    <button class="btn ghost" onclick="document.getElementById('impFile').click()">📥 Import backup</button>
+    <input type="file" id="impFile" accept=".json" onchange="importData(event)" style="display:none">
+    <button class="btn danger" onclick="confirmReset()">🗑️ Reset everything</button>
+  </div>
+  <div style="text-align:center;color:var(--ink3);font-size:.78em;line-height:1.7;padding:8px 0"><b style="color:var(--ink2)">Umrah Strivers</b> · v2.0<br>Free · Offline · Private · No ads</div>
 </div>
 
-<div style="text-align:center;padding:20px 0 8px;font-size:.8em;color:var(--text3);line-height:1.7"><strong style="color:var(--text2)">Umrah Strivers</strong> · v1.0<br>The Journey of a Lifetime<br>Free · Offline · Private · No ads</div>
+<div class="foot"><div class="d">May Allah invite you to His House and accept your Umrah. 🕋</div>For corrections, suggestions &amp; feedback<br>reach out to <a href="mailto:m.farhan.bava@gmail.com">Farhan</a><br><span style="font-size:.9em;opacity:.6">Built with ❤️ for the Ummah</span></div>
 </div>
 
-<div class="ftr"><div class="dua">May Allah invite you to His House and accept your Umrah. 🕋</div><p>For corrections, suggestions &amp; feedback<br>please reach out to <a href="mailto:m.farhan.bava@gmail.com">Farhan</a></p><p style="margin-top:6px;font-size:.75em;opacity:.5">Built with ❤️ for the Ummah</p></div>
-</main>
-
-<nav class="bnav">
-<button class="bnav-i on" data-tab="plan" onclick="goTab('plan')"><span class="ni">🧳</span><span class="nl">Plan</span></button>
-<button class="bnav-i" data-tab="umrah" onclick="goTab('umrah')"><span class="ni">🕋</span><span class="nl">Umrah</span></button>
-<button class="bnav-i" data-tab="daily" onclick="goTab('daily')"><span class="ni">📿</span><span class="nl">Daily</span></button>
-<button class="bnav-i" data-tab="places" onclick="goTab('places')"><span class="ni">📍</span><span class="nl">Places</span></button>
-<button class="bnav-i" data-tab="more" onclick="goTab('more')"><span class="ni">⚙️</span><span class="nl">More</span></button>
+<nav class="nav">
+<button class="on" data-v="plan" onclick="goTab('plan')"><svg viewBox="0 0 24 24"><path d="M9 6V4.5A1.5 1.5 0 0 1 10.5 3h3A1.5 1.5 0 0 1 15 4.5V6"/><rect x="4" y="6" width="16" height="15" rx="3"/><path d="M9 13l2 2 4-4"/></svg><span class="l">Plan</span></button>
+<button data-v="umrah" onclick="goTab('umrah')"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M12 5V3.5"/></svg><span class="l">Umrah</span></button>
+<button data-v="daily" onclick="goTab('daily')"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><circle cx="6" cy="11" r="2"/><circle cx="18" cy="11" r="2"/><circle cx="9" cy="18" r="2"/><circle cx="15" cy="18" r="2"/></svg><span class="l">Daily</span></button>
+<button data-v="places" onclick="goTab('places')"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span class="l">Places</span></button>
+<button data-v="more" onclick="goTab('more')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.6"/><circle cx="5" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg><span class="l">More</span></button>
 </nav>
-<div class="toast-c" id="toastC"></div>
+<div class="toasts" id="toastC"></div>
 
 <script>
 /* ════════════════════════ DATA ════════════════════════ */
 var QUOTES=[
 '"Perform Umrah after Umrah, for the two of them wipe away whatever sins came between them." — Bukhari 1773',
-'"And proclaim to the people the Hajj; they will come to you on foot and on every lean camel from every distant pass." — Quran 22:27',
+'"They will come to you on foot and on every lean camel from every distant pass." — Quran 22:27',
 '"The guests of Allah are three: the warrior, the Hajj pilgrim, and the Umrah pilgrim." — Nasai 2625',
 '"An Umrah in Ramadan is equal to a Hajj with me." — Bukhari 1863',
 '"Whoever comes to this House and does not speak obscenely or act wickedly returns as the day his mother bore him." — Muslim 1350'
 ];
 
-/* ─── Pre-Umrah preparation checklists ─── */
 var PLAN=[
-{id:'docs',title:'1. DOCUMENTS & BOOKINGS',items:[
+{id:'docs',ico:'🛂',title:'Documents & bookings',items:[
 {id:'passport',label:'Passport valid 6+ months',exp:'Saudi Arabia requires at least six months of validity from arrival.'},
 {id:'visa',label:'Umrah visa / eVisa obtained (Nusuk)',exp:'Apply via the official Nusuk platform or an authorised agent — beware of unofficial sites.'},
 {id:'flights',label:'Flights booked',exp:'Jeddah (JED) for Makkah first, or Madinah (MED) if starting in Madinah.'},
@@ -265,83 +425,80 @@ var PLAN=[
 {id:'nusuk',label:'Nusuk app installed & account created',exp:'Needed for Rawdah permits in Madinah and official services.'},
 {id:'rawdah',label:'Rawdah permit booked on Nusuk',exp:'Visiting the Rawdah in Masjid an-Nabawi requires a free timed permit — book early.'},
 {id:'insurance',label:'Travel insurance arranged',exp:'Often included with the Umrah visa — confirm your coverage.'},
-{id:'copies',label:'Copies of documents + emergency contacts',exp:'Physical and cloud copies of passport, visa, hotel bookings; share your itinerary with family.'},
+{id:'copies',label:'Copies of documents + emergency contacts',exp:'Physical and cloud copies of passport, visa, bookings; share your itinerary with family.'},
 {id:'money',label:'Saudi Riyals + travel card ready',exp:'Cards are widely accepted, but keep cash for taxis, barbers and small shops.'}
 ]},
-{id:'pack',title:'2. PACKING',items:[
+{id:'pack',ico:'🧳',title:'Packing',items:[
 {id:'ihram',label:'2 sets of ihram (men)',exp:'A spare set is a mercy after tawaf in the heat. Unstitched white cloth: izar & rida.'},
 {id:'belt',label:'Ihram belt / money pouch',exp:'Keeps documents and cash secure — ihram has no pockets.'},
 {id:'abaya',label:'Loose, modest clothing (women)',exp:'Women wear normal modest dress in ihram — no face veil or gloves while in ihram.'},
-{id:'sandals',label:'Comfortable sandals + shoe bag',exp:'Men’s ihram footwear should leave the ankle exposed. Carry a bag — shoes get lost at mosque entrances.'},
+{id:'sandals',label:'Comfortable sandals + shoe bag',exp:'Men’s ihram footwear should leave the ankle exposed. Shoes get lost at mosque entrances.'},
 {id:'unscented',label:'Unscented soap, sunscreen & lip balm',exp:'Perfumed products are prohibited in ihram — buy unscented before you travel.'},
-{id:'meds',label:'Medications + prescriptions',exp:'Carry prescriptions to avoid customs issues; include painkillers, rehydration salts, blister plasters.'},
+{id:'meds',label:'Medications + prescriptions',exp:'Carry prescriptions; include painkillers, rehydration salts, blister plasters.'},
 {id:'vaseline',label:'Petroleum jelly / anti-chafing balm',exp:'Unscented — long tawaf and sa’i walks in ihram cause chafing.'},
 {id:'adapter',label:'Power adapter (Type G) + power bank',exp:'Saudi uses UK-style 3-pin plugs. A power bank saves you in the Haram.'},
 {id:'bottle',label:'Collapsible water bottle / Zamzam cup',exp:'Zamzam dispensers are everywhere in the Haram — stay hydrated.'},
 {id:'umbrella',label:'Umbrella for sun protection',exp:'Midday courtyard marble is brutal — a light umbrella helps outside the mosque.'},
 {id:'dualist',label:'Written personal dua list',exp:'In front of the Kaaba the mind goes blank — write your duas down beforehand.'}
 ]},
-{id:'health',title:'3. HEALTH',items:[
-{id:'menacwy',label:'Meningitis ACWY vaccination certificate',exp:'Required for Umrah visas — must usually be taken at least 10 days before arrival.'},
+{id:'health',ico:'🩺',title:'Health',items:[
+{id:'menacwy',label:'Meningitis ACWY vaccination certificate',exp:'Required for Umrah visas — usually at least 10 days before arrival.'},
 {id:'jabs',label:'Routine vaccines / flu shot up to date',exp:'Millions of pilgrims from around the world — protect yourself and others.'},
 {id:'walk',label:'Walking practice (8–10k steps/day)',exp:'Tawaf + sa’i is 5+ km; you may walk 15–20 km a day. Train before you go.'},
-{id:'doctor',label:'Doctor check-up if needed',exp:'Especially for chronic conditions — carry a doctor’s letter for medical devices/medication.'},
-{id:'hygiene',label:'Hand sanitiser & masks packed',exp:'Crowds mean germs — the "Umrah flu" is real. Prevention keeps your worship strong.'}
+{id:'doctor',label:'Doctor check-up if needed',exp:'Especially for chronic conditions — carry a doctor’s letter for devices/medication.'},
+{id:'hygiene',label:'Hand sanitiser & masks packed',exp:'The "Umrah flu" is real — prevention keeps your worship strong.'}
 ]},
-{id:'knowledge',title:'4. KNOWLEDGE & SPIRIT',items:[
+{id:'knowledge',ico:'🧠',title:'Knowledge & spirit',items:[
 {id:'learn',label:'Learned the Umrah rites step by step',exp:'Review the Umrah tab of this app until each step feels familiar.'},
 {id:'talbiyah',label:'Memorised the talbiyah',exp:'Labbayk Allahumma labbayk — see the Duas section in More.'},
 {id:'tawbah',label:'Sincere tawbah (repentance) made',exp:'Arrive with a clean heart — resolve to leave sins behind.'},
-{id:'debts',label:'Debts settled / disputes resolved',exp:'Seek forgiveness from people you’ve wronged and settle what you owe before travelling.'},
+{id:'debts',label:'Debts settled / disputes resolved',exp:'Seek forgiveness from people you’ve wronged before travelling.'},
 {id:'will',label:'Wasiyyah (will) written or updated',exp:'A sunnah of preparedness for any traveller.'},
 {id:'halal',label:'Trip funded from halal earnings',exp:'A pilgrimage funded by the pure is more likely to be accepted.'},
 {id:'family',label:'Taught travel companions the rites',exp:'Especially children and first-timers — review the steps together.'},
-{id:'quiz80',label:'Scored 80%+ on the readiness quiz',exp:'Take the quiz below — repeat it until the rites are second nature.'}
+{id:'quiz80',label:'Scored 80%+ on the readiness quiz',exp:'Repeat the quiz until the rites are second nature.'}
 ]}];
 
-/* ─── Know Before You Go ─── */
 var KNOW=[
-{t:'📍 The 5 Miqats — where ihram begins',b:'<p>You must enter ihram <strong>before</strong> crossing the miqat boundary for your route:</p><ul><li><strong>Dhul-Hulayfah (Abyar Ali)</strong> — for those coming from Madinah (~450 km from Makkah)</li><li><strong>Al-Juhfah (near Rabigh)</strong> — from Egypt, Syria & the north-west</li><li><strong>Qarn al-Manazil (As-Sayl)</strong> — from Najd, Taif, UAE & most eastern flights</li><li><strong>Yalamlam</strong> — from Yemen & the south</li><li><strong>Dhat Irq</strong> — from Iraq & the north-east</li></ul><p><strong>Flying?</strong> Change into ihram garments before boarding or at a stopover; make your intention when the pilot announces the miqat approach (typically ~30–45 min before Jeddah). Many pilgrims wear ihram from the departure airport to be safe.</p>'},
-{t:'🚫 Ihram — what is not allowed',b:'<p>Once in ihram, avoid until your Umrah is complete:</p><ul><li>Cutting hair or nails</li><li>Applying perfume or scented products (to body or garments)</li><li>Men: stitched fitted clothing, and covering the head</li><li>Women: face veil (niqab) and gloves — ordinary modest dress otherwise</li><li>Hunting or harming animals; cutting plants of the Haram</li><li>Marriage contracts or proposals</li><li>Intimacy and anything leading to it</li><li>Arguing, foul language & sinful behaviour (Quran 2:197)</li></ul><p>Unintentional mistakes are excused — seek knowledge, then don’t obsess. Showering (unscented), changing ihram garments, wearing a belt, glasses, watch, umbrella — all fine.</p>'},
-{t:'📱 Nusuk & permits',b:'<p><strong>Nusuk</strong> is the official Saudi pilgrim platform (app + website). You need it for:</p><ul><li><strong>Rawdah visit permit</strong> (Masjid an-Nabawi) — free but limited; book as soon as your dates are fixed</li><li>Umrah eVisa applications & official service bookings</li></ul><p>Tawaf and general prayer in both Harams need <strong>no permit</strong> for Umrah pilgrims. Download Nusuk before you travel and set it up with your passport details.</p>'},
-{t:'🚄 Getting around',b:'<ul><li><strong>Haramain High-Speed Rail</strong> — Jeddah Airport ↔ Makkah in ~50 min, and Makkah ↔ Madinah in ~2.5 hrs. Book seats online in advance.</li><li><strong>Taxis / Uber / Careem</strong> — plentiful; agree street-taxi fares before riding.</li><li><strong>Buses</strong> — SAPTCO and shuttle buses connect the cities cheaply.</li><li>In Makkah, hotels beyond walking distance run free Haram shuttles — ask reception for the schedule.</li></ul>'},
-{t:'💳 Money, SIM & apps',b:'<ul><li>Currency: <strong>Saudi Riyal (SAR)</strong>. Cards & Apple Pay widely accepted; carry some cash.</li><li><strong>eSIM or local SIM</strong> (STC, Mobily, Zain) at the airport — data is cheap and essential for maps & family.</li><li>Must-have apps: <strong>Nusuk</strong>, <strong>Haramain Rail</strong>, <strong>Careem/Uber</strong>, a prayer-times app, and this one 😉</li><li>Keep small riyal notes for sadaqah, barbers (10–20 SAR) and water sellers.</li></ul>'},
-{t:'🌸 Notes for sisters',b:'<ul><li>Ihram is your normal modest clothing — any colour; no niqab or gloves while in ihram.</li><li>No raml (jogging) in tawaf or between the green lights in sa’i — walk normally.</li><li>To exit ihram, trim about a fingertip’s length from the end of your hair.</li><li>If menstruation begins, all worship continues except salah, tawaf & fasting — delay tawaf until pure; consult a scholar if your departure is imminent.</li><li>Pray in the designated women’s sections; keep a group meeting point — phones die and signal drops in the Haram.</li></ul>'},
-{t:'⏰ Crowd & timing tips',b:'<ul><li>Easiest tawaf: <strong>late night to pre-Fajr</strong>. Hardest: after Isha and Friday around Jumu’ah.</li><li>Arrive 45–60 min before prayer for a spot inside the mosque — gates close when full.</li><li>Upper floors & the mataf ring take longer per round but are far calmer.</li><li>Never push at the Black Stone — pointing to it from afar gives the same reward.</li><li>Set a family meeting point (e.g. a numbered gate) in case anyone gets separated.</li><li>Drink Zamzam constantly, rest between prayers, and pace yourself — it’s a marathon of worship, not a sprint.</li></ul>'},
-{t:'⚠️ Common mistakes to avoid',b:'<ul><li>Believing each tawaf round has a fixed dua — none are prescribed; make any dhikr and dua from the heart (only "Rabbana atina…" between the Yamani corner and Black Stone is sunnah).</li><li>Kissing the Yamani corner — it is touched, not kissed; the Black Stone is kissed only if easily reached.</li><li>Doing raml (brisk walk) in all 7 rounds — men do it in the first 3 only, in tawaf of arrival.</li><li>Praying with the right shoulder still uncovered after tawaf — cover both shoulders for salah.</li><li>Cutting only a few strands for taqsir — trim from all around the head; shaving (halq) carries greater reward for men.</li><li>Removing ihram before halq/taqsir is finished — the restrictions end only after cutting the hair.</li><li>Loud group dhikr behind a leader in tawaf — it disturbs others; recite individually.</li><li>Selfie-taking and filming in the mataf — guard your khushu and others’ privacy.</li></ul>'}];
+{t:'📍 The 5 miqats — where ihram begins',b:'<p>You must enter ihram <strong>before</strong> crossing the miqat for your route:</p><ul><li><strong>Dhul-Hulayfah (Abyar Ali)</strong> — coming from Madinah (~450 km from Makkah)</li><li><strong>Al-Juhfah (near Rabigh)</strong> — from Egypt, Syria & the north-west</li><li><strong>Qarn al-Manazil (As-Sayl)</strong> — from Najd, Taif, UAE & most eastern flights</li><li><strong>Yalamlam</strong> — from Yemen & the south</li><li><strong>Dhat Irq</strong> — from Iraq & the north-east</li></ul><p><strong>Flying?</strong> Change into ihram garments before boarding or at a stopover; make your intention when the pilot announces the miqat approach (~30–45 min before Jeddah). Many pilgrims wear ihram from the departure airport to be safe.</p>'},
+{t:'🚫 Ihram — what is not allowed',b:'<p>Once in ihram, avoid until your Umrah is complete:</p><ul><li>Cutting hair or nails</li><li>Perfume or scented products (body or garments)</li><li>Men: stitched fitted clothing, covering the head</li><li>Women: face veil (niqab) and gloves — ordinary modest dress otherwise</li><li>Hunting; cutting plants of the Haram</li><li>Marriage contracts or proposals</li><li>Intimacy and anything leading to it</li><li>Arguing, foul language & sin (Quran 2:197)</li></ul><p>Unintentional mistakes are excused. Showering (unscented), changing ihram garments, belts, glasses, watches, umbrellas — all fine.</p>'},
+{t:'📱 Nusuk & permits',b:'<p><strong>Nusuk</strong> is the official Saudi pilgrim platform (app + website). You need it for:</p><ul><li><strong>Rawdah visit permit</strong> (Masjid an-Nabawi) — free but limited; book as soon as your dates are fixed</li><li>Umrah eVisa applications & official bookings</li></ul><p>Tawaf and general prayer in both Harams need <strong>no permit</strong> for Umrah pilgrims. Set Nusuk up with your passport details before you travel.</p>'},
+{t:'🚄 Getting around',b:'<ul><li><strong>Haramain High-Speed Rail</strong> — Jeddah Airport ↔ Makkah in ~50 min; Makkah ↔ Madinah in ~2.5 hrs. Book online in advance.</li><li><strong>Taxis / Uber / Careem</strong> — plentiful; agree street-taxi fares before riding.</li><li><strong>Buses</strong> — SAPTCO and shuttles connect the cities cheaply.</li><li>Hotels beyond walking distance run free Haram shuttles — ask reception.</li></ul>'},
+{t:'💳 Money, SIM & apps',b:'<ul><li>Currency: <strong>Saudi Riyal (SAR)</strong>. Cards & Apple Pay widely accepted; carry some cash.</li><li><strong>eSIM or local SIM</strong> (STC, Mobily, Zain) at the airport — data is cheap and essential.</li><li>Must-have apps: <strong>Nusuk</strong>, <strong>Haramain Rail</strong>, <strong>Careem/Uber</strong>, a prayer-times app — and this one 😉</li><li>Keep small notes for sadaqah, barbers (10–20 SAR) and water.</li></ul>'},
+{t:'🌸 Notes for sisters',b:'<ul><li>Ihram is your normal modest clothing — any colour; no niqab or gloves while in ihram.</li><li>No raml (jogging) in tawaf or between the green lights in sa’i — walk normally.</li><li>To exit ihram, trim about a fingertip’s length from the ends of your hair.</li><li>If menstruation begins, all worship continues except salah, tawaf & fasting — delay tawaf until pure; consult a scholar if departure is imminent.</li><li>Pray in the designated women’s sections; agree a family meeting point — signal drops in the Haram.</li></ul>'},
+{t:'⏰ Crowd & timing tips',b:'<ul><li>Easiest tawaf: <strong>late night to pre-Fajr</strong>. Hardest: after Isha and around Jumu’ah.</li><li>Arrive 45–60 min before prayer for a spot inside — gates close when full.</li><li>Upper floors take longer per round but are far calmer.</li><li>Never push at the Black Stone — pointing from afar gives the same reward.</li><li>Set a family meeting point (e.g. a numbered gate).</li><li>Drink Zamzam constantly and pace yourself — it’s a marathon of worship, not a sprint.</li></ul>'},
+{t:'⚠️ Common mistakes to avoid',b:'<ul><li>Believing each tawaf round has a fixed dua — none are prescribed; only "Rabbana atina…" between the Yamani corner and Black Stone is sunnah.</li><li>Kissing the Yamani corner — it is touched, not kissed; the Black Stone is kissed only if easily reached.</li><li>Raml in all 7 rounds — men do it in the first 3 only, in the arrival tawaf.</li><li>Praying with the right shoulder uncovered after tawaf — cover both shoulders for salah.</li><li>Cutting only a few strands for taqsir — trim from all around the head; halq carries greater reward for men.</li><li>Removing ihram before halq/taqsir is done — restrictions end only after cutting.</li><li>Loud group dhikr in tawaf — it disturbs others; recite individually.</li><li>Selfies and filming in the mataf — guard your khushu and others’ privacy.</li></ul>'}];
 
-/* ─── Umrah rites (step-by-step) ─── */
 var RITES=[
-{id:'ph1',title:'PHASE 1 — IHRAM AT THE MIQAT',hn:'"Actions are but by intentions, and every person shall have what they intended." — Bukhari 1',steps:[
+{id:'ph1',ico:'🤍',title:'Phase 1 · Ihram at the miqat',hn:'"Actions are but by intentions, and every person shall have what they intended." — Bukhari 1',steps:[
 {id:'ghusl',b:'Ghusl & grooming',p:'Shower, trim nails, remove unwanted hair. Men may apply perfume to the body (not the garments) before intention.'},
 {id:'garb',b:'Wear ihram garments',p:'Men: two unstitched white cloths (izar & rida), sandals. Women: ordinary modest clothing.'},
-{id:'salah2',b:'Pray 2 rakahs (if in a prayer time or after wudu)',p:'Recommended before ihram — e.g. any obligatory prayer, or 2 rakahs of wudu.'},
-{id:'niyyah',b:'Make the intention at the miqat',p:'Say: "Labbayk Allahumma ’Umrah" — Here I am O Allah, for Umrah. The rules of ihram now apply.',dua:{ar:'لَبَّيْكَ اللَّهُمَّ عُمْرَةً',tl:'Labbayk Allahumma ’Umrah',tr:'Here I am, O Allah, for Umrah.'}},
-{id:'talb',b:'Recite the talbiyah abundantly',p:'Men aloud, women softly — keep reciting until you begin tawaf.',dua:{ar:'لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لَا شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ وَالْمُلْكَ، لَا شَرِيكَ لَكَ',tl:'Labbayk Allahumma labbayk, labbayka la sharika laka labbayk, innal-hamda wan-ni’mata laka wal-mulk, la sharika lak',tr:'Here I am O Allah, here I am. Here I am, You have no partner, here I am. Verily all praise, favour and sovereignty are Yours. You have no partner.'}}
+{id:'salah2',b:'Pray 2 rakahs (if possible)',p:'Recommended before ihram — an obligatory prayer, or 2 rakahs of wudu.'},
+{id:'niyyah',b:'Make the intention at the miqat',p:'The rules of ihram now apply.',dua:{ar:'لَبَّيْكَ اللَّهُمَّ عُمْرَةً',tl:'Labbayk Allahumma ’Umrah',tr:'Here I am, O Allah, for Umrah.'}},
+{id:'talb',b:'Recite the talbiyah abundantly',p:'Men aloud, women softly — keep reciting until you begin tawaf.',dua:{ar:'لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لَا شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ وَالْمُلْكَ، لَا شَرِيكَ لَكَ',tl:'Labbayk Allahumma labbayk, labbayka la sharika laka labbayk, innal-hamda wan-ni’mata laka wal-mulk, la sharika lak',tr:'Here I am O Allah, here I am. You have no partner, here I am. All praise, favour and sovereignty are Yours. You have no partner.'}}
 ]},
-{id:'ph2',title:'PHASE 2 — TAWAF (7 ROUNDS)',hn:'"Whoever performs tawaf around this House seven times and keeps count of it, it is like freeing a slave." — Tirmidhi 959',steps:[
-{id:'wudu',b:'Be in wudu & enter with the right foot',p:'Wudu is required for tawaf. Enter Masjid al-Haram with the right foot and the dua for entering the mosque.',dua:{ar:'اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ',tl:'Allahumma-ftah li abwaba rahmatik',tr:'O Allah, open the gates of Your mercy for me.'}},
-{id:'idtiba',b:'Idtiba’ (men): uncover the right shoulder',p:'Pass the rida under the right arm and over the left shoulder — for the whole of this tawaf only.'},
+{id:'ph2',ico:'🕋',title:'Phase 2 · Tawaf — 7 rounds',hn:'"Whoever performs tawaf around this House seven times and keeps count of it, it is like freeing a slave." — Tirmidhi 959',steps:[
+{id:'wudu',b:'Be in wudu & enter with the right foot',p:'Wudu is required for tawaf.',dua:{ar:'اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ',tl:'Allahumma-ftah li abwaba rahmatik',tr:'O Allah, open the gates of Your mercy for me.'}},
+{id:'idtiba',b:'Idtiba’ (men): uncover the right shoulder',p:'Pass the rida under the right arm and over the left shoulder — for this tawaf only.'},
 {id:'start',b:'Start at the Black Stone line',p:'Face the Stone, raise your hand and say "Bismillahi wallahu akbar". Kiss or touch it only if easy — never push.'},
 {id:'rounds',b:'Complete 7 rounds — use the counter above',p:'Counter-clockwise, Kaaba on your left. Men walk briskly (raml) in rounds 1–3. Make any dhikr and dua you love.'},
-{id:'yamani',b:'Between the Yamani corner & Black Stone',p:'Touch the Yamani corner if easy (don’t kiss it), and recite:',dua:{ar:'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ',tl:'Rabbana atina fid-dunya hasanah wa fil-akhirati hasanah wa qina ’adhaban-nar',tr:'Our Lord, give us good in this world and good in the Hereafter, and protect us from the punishment of the Fire. (Quran 2:201)'}},
-{id:'maqam',b:'Pray 2 rakahs behind Maqam Ibrahim',p:'Cover both shoulders first. Recite al-Kafirun in the first rakah and al-Ikhlas in the second. If crowded, pray anywhere in the mosque.'},
+{id:'yamani',b:'Between the Yamani corner & Black Stone',p:'Touch the Yamani corner if easy (don’t kiss it), and recite:',dua:{ar:'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ',tl:'Rabbana atina fid-dunya hasanah wa fil-akhirati hasanah wa qina ’adhaban-nar',tr:'Our Lord, give us good in this world and good in the Hereafter, and protect us from the Fire. (Quran 2:201)'}},
+{id:'maqam',b:'Pray 2 rakahs behind Maqam Ibrahim',p:'Cover both shoulders first. Al-Kafirun in the first rakah, al-Ikhlas in the second. If crowded, pray anywhere in the mosque.'},
 {id:'zamzam',b:'Drink Zamzam water',p:'Drink your fill and make dua — "Zamzam water is for whatever it is drunk for." (Ibn Majah 3062)'}
 ]},
-{id:'ph3',title:'PHASE 3 — SA’I (7 LAPS)',hn:'"Indeed, Safa and Marwah are among the symbols of Allah." — Quran 2:158',steps:[
-{id:'safa',b:'Ascend Safa, face the Kaaba & make dua',p:'On approaching Safa recite the ayah "Innas-Safa wal-Marwah..." then praise Allah facing the Kaaba, and repeat this dhikr and your own duas three times:',dua:{ar:'لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ، لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ، أَنْجَزَ وَعْدَهُ وَنَصَرَ عَبْدَهُ وَهَزَمَ الْأَحْزَابَ وَحْدَهُ',tl:'La ilaha illallahu wahdahu la sharika lah, lahul-mulku wa lahul-hamdu wa huwa ’ala kulli shay’in qadir. La ilaha illallahu wahdah, anjaza wa’dah, wa nasara ’abdah, wa hazamal-ahzaba wahdah',tr:'None has the right to be worshipped but Allah alone, without partner. His is the dominion and His is the praise, and He is able to do all things. He fulfilled His promise, gave victory to His servant, and defeated the confederates alone.'}},
-{id:'laps',b:'Walk 7 laps — use the counter above',p:'Safa → Marwah is one lap; you finish on Marwah. Men jog lightly between the green lights. Dhikr and dua freely — there is no fixed formula.'},
+{id:'ph3',ico:'⛰️',title:'Phase 3 · Sa’i — 7 laps',hn:'"Indeed, Safa and Marwah are among the symbols of Allah." — Quran 2:158',steps:[
+{id:'safa',b:'Ascend Safa, face the Kaaba & make dua',p:'Recite the ayah "Innas-Safa wal-Marwah…", praise Allah facing the Kaaba, and repeat this dhikr with your own duas three times:',dua:{ar:'لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ، لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ، أَنْجَزَ وَعْدَهُ وَنَصَرَ عَبْدَهُ وَهَزَمَ الْأَحْزَابَ وَحْدَهُ',tl:'La ilaha illallahu wahdahu la sharika lah, lahul-mulku wa lahul-hamdu wa huwa ’ala kulli shay’in qadir. La ilaha illallahu wahdah, anjaza wa’dah, wa nasara ’abdah, wa hazamal-ahzaba wahdah',tr:'None has the right to be worshipped but Allah alone, without partner. His is the dominion and the praise, and He is able to do all things. He fulfilled His promise, gave victory to His servant, and defeated the confederates alone.'}},
+{id:'laps',b:'Walk 7 laps — use the counter above',p:'Safa → Marwah is one lap; you finish on Marwah. Men jog lightly between the green lights. Dhikr and dua freely — no fixed formula.'},
 {id:'marwah',b:'On Marwah each lap: face the Kaaba & repeat',p:'Same praise and dua as on Safa. Sa’i commemorates Hajar’s trust in Allah — walk it with reflection.'}
 ]},
-{id:'ph4',title:'PHASE 4 — HALQ / TAQSIR',hn:'"O Allah, forgive those who shave their heads." He said it three times, and the fourth time: "…and those who shorten." — Bukhari 1727',steps:[
+{id:'ph4',ico:'✂️',title:'Phase 4 · Halq / Taqsir',hn:'"O Allah, forgive those who shave their heads." He said it three times, and the fourth: "…and those who shorten." — Bukhari 1727',steps:[
 {id:'cut',b:'Men: shave (halq) or trim all around (taqsir)',p:'Shaving carries the greater reward. Licensed barbershops cluster around the Marwah exit.'},
 {id:'cutw',b:'Women: trim a fingertip’s length',p:'Gather the hair and cut about 2 cm from the ends — never shave.'},
 {id:'done',b:'Your Umrah is complete! 🎉',p:'All ihram restrictions are lifted. May Allah accept it — make shukr, and keep filling your days with worship (Daily tab).'}
 ]}];
 
-/* ─── Daily worship tracker ─── */
 var DAILY=[
-{id:'salah',title:'1. SALAH IN THE HARAM',hn:'"One prayer in al-Masjid al-Haram is better than one hundred thousand prayers elsewhere." — Ibn Majah 1406',items:[
+{id:'salah',ico:'🕌',title:'Salah in the Haram',hn:'"One prayer in al-Masjid al-Haram is better than one hundred thousand prayers elsewhere." — Ibn Majah 1406',items:[
 {id:'fajr',label:'Fajr in congregation',ref:'Muslim 656',exp:'Fajr + Isha in congregation = the reward of a whole night in prayer.',pts:15,stk:'fajr'},
 {id:'dhuhr',label:'Dhuhr in congregation',pts:12},
 {id:'asr',label:'Asr in congregation',pts:12},
@@ -352,53 +509,51 @@ var DAILY=[
 {id:'madhkar',label:'Morning adhkar',pts:5},
 {id:'eadhkar',label:'Evening adhkar',pts:5}
 ]},
-{id:'quran',title:'2. QURAN',hn:'"Read the Quran, for it will come as an intercessor for its companions on the Day of Resurrection." — Muslim 804',items:[
+{id:'quran',ico:'📖',title:'Quran',hn:'"Read the Quran, for it will come as an intercessor for its companions on the Day of Resurrection." — Muslim 804',items:[
 {id:'recite',label:'Recited Quran (facing the Kaaba if you can)',pts:10,stk:'quran'},
 {id:'tadabbur',label:'Reflected on the meaning (tadabbur)',pts:8},
 {id:'memorize',label:'Memorised new ayah(s)',pts:8},
 {id:'listen',label:'Listened to the Haram recitation attentively',pts:5}
 ]},
-{id:'dhikr',title:'3. DHIKR & DUA',hn:'"The supplication made at the Multazam is accepted." Fill your day with remembrance in the most sacred place on Earth.',items:[
+{id:'dhikr',ico:'📿',title:'Dhikr & dua',hn:'Fill your day with remembrance in the most sacred place on Earth.',items:[
 {id:'istighfar',label:'Istighfar ×100',pts:6},
 {id:'salawat',label:'Salawat on the Prophet ﷺ ×100',pts:6},
 {id:'dhikr100',label:'La ilaha illallah / SubhanAllah dhikr',pts:5},
-{id:'dualist',label:'Went through my personal dua list',exp:'You wrote it before travelling — use it in the mataf, between adhan & iqamah, and in sujood.',pts:8},
+{id:'dualist',label:'Went through my personal dua list',exp:'Use it in the mataf, between adhan & iqamah, and in sujood.',pts:8},
 {id:'duaothers',label:'Made dua for family & the ummah',ref:'Muslim 2733',exp:'The angel says: "Amin, and for you the same."',pts:5}
 ]},
-{id:'extra',title:'4. EXTRA ACTS OF WORSHIP',hn:'"Tawaf around the House is like prayer, except that you may speak in it." — Tirmidhi 960',items:[
+{id:'extra',ico:'✨',title:'Extra acts of worship',hn:'"Tawaf around the House is like prayer, except that you may speak in it." — Tirmidhi 960',items:[
 {id:'ntawaf',label:'Nafl tawaf (7 rounds)',exp:'The greatest voluntary act available only in Makkah — do as many as you can.',pts:15,stk:'tawaf'},
 {id:'zamzam',label:'Drank Zamzam with dua',pts:5},
 {id:'sadaqah',label:'Gave sadaqah',pts:8},
 {id:'helped',label:'Helped a fellow pilgrim',exp:'Pushed a wheelchair, shared water, gave directions — service is worship.',pts:8},
 {id:'ziyarah',label:'Visited a ziyarah place (Places tab)',pts:6},
-{id:'patience',label:'Kept patience in the crowds',exp:'No pushing, no arguing — crowd patience is part of the pilgrimage’s test.',pts:6},
+{id:'patience',label:'Kept patience in the crowds',exp:'No pushing, no arguing — crowd patience is part of the test.',pts:6},
 {id:'tongue',label:'Guarded the tongue',pts:5}
 ]}];
 
-/* ─── Places (ziyarah) ─── */
 var PLACES=[
-{id:'haram',city:'makkah',i:'🕋',n:'Masjid al-Haram & the Kaaba',q:'Masjid al-Haram Makkah',d:'The House of Allah, qibla of the world, and the site of your tawaf. Every prayer here is worth 100,000.',tip:'Landmarks inside: Hajar al-Aswad, Maqam Ibrahim, Hijr Isma’il (praying inside it = praying inside the Kaaba), the Multazam & the Yamani corner.'},
+{id:'haram',city:'makkah',i:'🕋',n:'Masjid al-Haram & the Kaaba',q:'Masjid al-Haram Makkah',d:'The House of Allah, qibla of the world, site of your tawaf. Every prayer here is worth 100,000.',tip:'Landmarks inside: Hajar al-Aswad, Maqam Ibrahim, Hijr Isma’il (praying inside it = praying inside the Kaaba), the Multazam & the Yamani corner.'},
 {id:'hira',city:'makkah',i:'⛰️',n:'Jabal an-Nour & Cave of Hira',q:'Jabal al-Nour Makkah',d:'Where the first revelation "Iqra" descended upon the Prophet ﷺ.',tip:'A steep 45–90 min climb — go after Fajr, take water. Viewing from below also suffices.'},
 {id:'thawr',city:'makkah',i:'🏔️',n:'Jabal Thawr',q:'Jabal Thawr Makkah',d:'The cave where the Prophet ﷺ and Abu Bakr hid for three nights during the Hijrah.',tip:'"Do not grieve; indeed Allah is with us." — Quran 9:40'},
-{id:'taneem',city:'makkah',i:'🕌',n:'Masjid Aisha (Tan’eem)',q:'Masjid Aisha Taneem Makkah',d:'The nearest boundary of the Haram — where Makkah residents and visitors take ihram for an additional Umrah.',tip:'10–15 min taxi from the Haram; free buses often run too.'},
+{id:'taneem',city:'makkah',i:'🕌',n:'Masjid Aisha (Tan’eem)',q:'Masjid Aisha Taneem Makkah',d:'The nearest Haram boundary — take ihram here for an additional Umrah.',tip:'10–15 min taxi from the Haram; free buses often run too.'},
 {id:'mualla',city:'makkah',i:'🌿',n:'Jannat al-Mu’alla',q:'Jannat al-Mualla Makkah',d:'Makkah’s ancient cemetery — resting place of Khadijah (RA), the Prophet’s ﷺ beloved first wife.',tip:'Give salam to the deceased; visiting hours are limited and entry is for men.'},
 {id:'jinn',city:'makkah',i:'🕌',n:'Masjid al-Jinn',q:'Masjid al-Jinn Makkah',d:'Where a group of jinn heard the Quran and embraced Islam (Surah al-Jinn).',tip:'A short walk north of the Haram, near Jannat al-Mu’alla.'},
-{id:'arafat',city:'makkah',i:'🌄',n:'Mount Arafat & Jabal ar-Rahmah',q:'Jabal ar-Rahmah Arafat',d:'The plain where the Prophet ﷺ gave the Farewell Sermon and where Hajj reaches its peak every year.',tip:'Combine Arafat, Muzdalifah & Mina in one half-day ziyarah taxi tour.'},
-{id:'mina',city:'makkah',i:'⛺',n:'Mina',q:'Mina Makkah',d:'The tent city of Hajj and the site of the Jamarat (stoning pillars).',tip:'Quiet outside Hajj season — a moving drive-through with Quran 22:27 in mind.'},
-{id:'muzdalifah',city:'makkah',i:'🌌',n:'Muzdalifah',q:'Muzdalifah',d:'Where Hajj pilgrims spend the night under the open sky between Arafat and Mina.',tip:'Mentioned in Quran 2:198 as al-Mash’ar al-Haram.'},
-{id:'exhibition',city:'makkah',i:'🏛️',n:'Exhibition of the Two Holy Mosques',q:'Exhibition of the Two Holy Mosques Architecture Makkah',d:'Museum of the Haramain — historic Kaaba doors, kiswah textiles, Zamzam wells and rare artefacts.',tip:'Free entry; located on the old Jeddah road. Check hours before going.'},
-{id:'clock',city:'makkah',i:'🕰️',n:'Makkah Clock Tower Museum',q:'Clock Tower Museum Makkah',d:'Astronomy & timekeeping museum at the top of the Abraj al-Bait with a breathtaking view over the Haram.',tip:'Book tickets in advance; sunset slots have the best views.'},
+{id:'arafat',city:'makkah',i:'🌄',n:'Mount Arafat & Jabal ar-Rahmah',q:'Jabal ar-Rahmah Arafat',d:'The plain of the Farewell Sermon, where Hajj reaches its peak every year.',tip:'Combine Arafat, Muzdalifah & Mina in one half-day ziyarah taxi tour.'},
+{id:'mina',city:'makkah',i:'⛺',n:'Mina',q:'Mina Makkah',d:'The tent city of Hajj and the site of the Jamarat.',tip:'Quiet outside Hajj season — a moving drive-through with Quran 22:27 in mind.'},
+{id:'muzdalifah',city:'makkah',i:'🌌',n:'Muzdalifah',q:'Muzdalifah',d:'Where Hajj pilgrims sleep under the open sky between Arafat and Mina.',tip:'Mentioned in Quran 2:198 as al-Mash’ar al-Haram.'},
+{id:'exhibition',city:'makkah',i:'🏛️',n:'Exhibition of the Two Holy Mosques',q:'Exhibition of the Two Holy Mosques Architecture Makkah',d:'Historic Kaaba doors, kiswah textiles, Zamzam wells and rare artefacts.',tip:'Free entry; on the old Jeddah road. Check hours before going.'},
+{id:'clock',city:'makkah',i:'🕰️',n:'Makkah Clock Tower Museum',q:'Clock Tower Museum Makkah',d:'Astronomy museum atop the Abraj al-Bait with a breathtaking view over the Haram.',tip:'Book tickets in advance; sunset slots have the best views.'},
 {id:'nabawi',city:'madinah',i:'🕌',n:'Masjid an-Nabawi',q:'Al Masjid an Nabawi Madinah',d:'The Prophet’s ﷺ mosque — one prayer here is better than a thousand elsewhere.',tip:'Give salam to the Prophet ﷺ and his two companions with calm and lowered voice.'},
 {id:'rawdah',city:'madinah',i:'🌹',n:'The Rawdah',q:'Al Masjid an Nabawi Madinah',d:'"Between my house and my minbar is a garden from the gardens of Paradise." — Bukhari 1195.',tip:'Requires a free timed permit on the Nusuk app — book the moment your dates are fixed.'},
-{id:'baqi',city:'madinah',i:'🌿',n:'Jannat al-Baqi',q:'Al Baqi Cemetery Madinah',d:'The cemetery of Madinah — resting place of ’Uthman (RA), the Prophet’s ﷺ wives, and many companions.',tip:'Open after Fajr and Asr; entry for men. Give the sunnah salam to the people of the graves.'},
-{id:'quba',city:'madinah',i:'🕌',n:'Masjid Quba',q:'Quba Mosque Madinah',d:'The first mosque of Islam. "Whoever purifies himself at home then prays in Masjid Quba has the reward of an Umrah." — Ibn Majah 1412.',tip:'The Prophet ﷺ visited every Saturday — go with wudu from your hotel to earn the full reward.'},
-{id:'qiblatain',city:'madinah',i:'🕌',n:'Masjid al-Qiblatayn',q:'Masjid al-Qiblatayn Madinah',d:'Where the revelation to turn the qibla from Jerusalem to Makkah came during prayer (Quran 2:144).',tip:'A short taxi ride north-west of the Haram.'},
-{id:'uhud',city:'madinah',i:'⛰️',n:'Mount Uhud & the Martyrs',q:'Mount Uhud Madinah',d:'Site of the Battle of Uhud — resting place of Hamza (RA), the Prophet’s ﷺ uncle, and 70 martyrs. "Uhud is a mountain that loves us and we love it." — Bukhari 4083.',tip:'Visit after Fajr before the heat; give salam at the martyrs’ cemetery fence.'},
-{id:'khandaq',city:'madinah',i:'🕌',n:'The Seven Mosques (Khandaq)',q:'Seven Mosques Madinah',d:'The Battle of the Trench site at the foot of Mount Sila’, where Quran 33:9-27 was revealed.',tip:'Combine with Qiblatayn — they are minutes apart.'},
-{id:'ghamamah',city:'madinah',i:'🕌',n:'Masjid al-Ghamamah',q:'Masjid al-Ghamamah Madinah',d:'Where the Prophet ﷺ prayed Eid prayers and istisqa (rain prayer) — a cloud shaded him here.',tip:'A 5-minute walk south-west of Masjid an-Nabawi.'},
-{id:'darmadinah',city:'madinah',i:'🏛️',n:'Dar Al Madinah Museum',q:'Dar Al Madinah Museum',d:'The seerah and history of Madinah brought to life with detailed models of the city across the ages.',tip:'Excellent with kids; guided tours available in English.'}];
+{id:'baqi',city:'madinah',i:'🌿',n:'Jannat al-Baqi',q:'Al Baqi Cemetery Madinah',d:'Resting place of ’Uthman (RA), the Prophet’s ﷺ wives, and many companions.',tip:'Open after Fajr and Asr; entry for men. Give the sunnah salam to the people of the graves.'},
+{id:'quba',city:'madinah',i:'🕌',n:'Masjid Quba',q:'Quba Mosque Madinah',d:'The first mosque of Islam. Praying 2 rakahs here (with wudu from home) = the reward of an Umrah. — Ibn Majah 1412.',tip:'The Prophet ﷺ visited every Saturday — go with wudu from your hotel for the full reward.'},
+{id:'qiblatain',city:'madinah',i:'🕌',n:'Masjid al-Qiblatayn',q:'Masjid al-Qiblatayn Madinah',d:'Where the revelation to turn the qibla from Jerusalem to Makkah came mid-prayer (Quran 2:144).',tip:'A short taxi ride north-west of the Haram.'},
+{id:'uhud',city:'madinah',i:'⛰️',n:'Mount Uhud & the Martyrs',q:'Mount Uhud Madinah',d:'Resting place of Hamza (RA) and 70 martyrs. "Uhud is a mountain that loves us and we love it." — Bukhari 4083.',tip:'Visit after Fajr before the heat; give salam at the martyrs’ cemetery fence.'},
+{id:'khandaq',city:'madinah',i:'🕌',n:'The Seven Mosques (Khandaq)',q:'Seven Mosques Madinah',d:'The Battle of the Trench site at Mount Sila’, where Quran 33:9-27 was revealed.',tip:'Combine with Qiblatayn — they are minutes apart.'},
+{id:'ghamamah',city:'madinah',i:'🕌',n:'Masjid al-Ghamamah',q:'Masjid al-Ghamamah Madinah',d:'Where the Prophet ﷺ prayed Eid and istisqa — a cloud once shaded him here.',tip:'A 5-minute walk south-west of Masjid an-Nabawi.'},
+{id:'darmadinah',city:'madinah',i:'🏛️',n:'Dar Al Madinah Museum',q:'Dar Al Madinah Museum',d:'The seerah and history of Madinah with detailed models of the city across the ages.',tip:'Excellent with kids; guided tours available in English.'}];
 
-/* ─── Quiz ─── */
 var QUIZ=[
 {q:'How many rounds (circuits) make one complete tawaf?',o:['3','5','7','10'],a:2,e:'Seven rounds, counter-clockwise, starting and ending at the Black Stone line.'},
 {q:'Where does each round of tawaf begin?',o:['Maqam Ibrahim','The Black Stone (Hajar al-Aswad) corner','The Yamani corner','The Kaaba door'],a:1,e:'Face the Black Stone, say "Bismillahi wallahu akbar", then begin with the Kaaba on your left.'},
@@ -407,18 +562,17 @@ var QUIZ=[
 {q:'What is raml?',o:['Brisk walking in the first 3 rounds of tawaf (men)','Jogging the whole sa’i','A type of dua','The stoning ritual'],a:0,e:'Men walk briskly with short steps in rounds 1–3 of the arrival tawaf only. Women walk normally.'},
 {q:'When does the pilgrim stop reciting the talbiyah in Umrah?',o:['At the hotel','On seeing the Kaaba','When beginning tawaf','After sa’i'],a:2,e:'The talbiyah continues from the miqat until you start your tawaf.'},
 {q:'The miqat for those travelling to Makkah from Madinah is…',o:['Yalamlam','Qarn al-Manazil','Al-Juhfah','Dhul-Hulayfah (Abyar Ali)'],a:3,e:'Dhul-Hulayfah, just outside Madinah — the farthest miqat from Makkah (~450 km).'},
-{q:'What is prayed immediately after tawaf?',o:['4 rakahs of Duha','2 rakahs behind Maqam Ibrahim','Salat al-Janazah','Nothing'],a:1,e:'Two rakahs behind Maqam Ibrahim (or anywhere in the mosque if crowded) — al-Kafirun then al-Ikhlas are sunnah.'},
+{q:'What is prayed immediately after tawaf?',o:['4 rakahs of Duha','2 rakahs behind Maqam Ibrahim','Salat al-Janazah','Nothing'],a:1,e:'Two rakahs behind Maqam Ibrahim (or anywhere if crowded) — al-Kafirun then al-Ikhlas are sunnah.'},
 {q:'How does a woman exit ihram after sa’i?',o:['Shave her head','Trim a fingertip’s length of hair','Cut a single strand','Nothing required'],a:1,e:'Women trim about a fingertip’s length (~2 cm) from the ends — never shave.'},
 {q:'One prayer in Masjid al-Haram equals how many elsewhere?',o:['1,000','10,000','50,000','100,000'],a:3,e:'100,000 prayers (Ibn Majah 1406). In Masjid an-Nabawi: 1,000.'},
 {q:'You cannot reach the Black Stone. What do you do?',o:['Push through the crowd','Skip that round','Point towards it and say Allahu Akbar','Wait until it clears'],a:2,e:'Gesture towards it from afar with "Allahu Akbar" and continue — harming others for a sunnah is never right.'},
 {q:'What dua is sunnah between the Yamani corner and the Black Stone?',o:['The talbiyah','Rabbana atina fid-dunya hasanah…','Ayat al-Kursi','Surah al-Fatihah'],a:1,e:'"Our Lord, give us good in this world and good in the Hereafter, and protect us from the Fire." (Quran 2:201)'},
 {q:'Praying 2 rakahs in Masjid Quba (with wudu from home) equals…',o:['A Hajj','An Umrah','40 years of prayer','Nothing specific'],a:1,e:'"…has the reward of an Umrah." — Ibn Majah 1412. The Prophet ﷺ visited Quba every Saturday.'},
 {q:'Visiting the Rawdah in Madinah requires…',o:['Nothing — walk in anytime','A paid ticket','A free timed permit via the Nusuk app','A tour guide'],a:2,e:'Book the free permit on Nusuk as soon as your dates are confirmed — slots run out.'},
-{q:'What does "An Umrah in Ramadan" equal, according to the Prophet ﷺ?',o:['10 Umrahs','A Hajj with him ﷺ','Laylatul Qadr','A year of fasting'],a:1,e:'"An Umrah in Ramadan is equal to a Hajj with me." — Bukhari 1863.'}];
+{q:'What does "an Umrah in Ramadan" equal, according to the Prophet ﷺ?',o:['10 Umrahs','A Hajj with him ﷺ','Laylatul Qadr','A year of fasting'],a:1,e:'"An Umrah in Ramadan is equal to a Hajj with me." — Bukhari 1863.'}];
 
-/* ─── Duas library ─── */
 var DUAS=[
-{t:'The Talbiyah',ar:'لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لَا شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ وَالْمُلْكَ، لَا شَرِيكَ لَكَ',tl:'Labbayk Allahumma labbayk, labbayka la sharika laka labbayk, innal-hamda wan-ni’mata laka wal-mulk, la sharika lak',tr:'Here I am O Allah, here I am. Here I am, You have no partner, here I am. All praise, favour and sovereignty are Yours. You have no partner.',s:'Bukhari 1549'},
+{t:'The Talbiyah',ar:'لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لَا شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ وَالْمُلْكَ، لَا شَرِيكَ لَكَ',tl:'Labbayk Allahumma labbayk, labbayka la sharika laka labbayk, innal-hamda wan-ni’mata laka wal-mulk, la sharika lak',tr:'Here I am O Allah, here I am. You have no partner, here I am. All praise, favour and sovereignty are Yours. You have no partner.',s:'Bukhari 1549'},
 {t:'Entering the mosque',ar:'اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ',tl:'Allahumma-ftah li abwaba rahmatik',tr:'O Allah, open for me the gates of Your mercy.',s:'Muslim 713'},
 {t:'Leaving the mosque',ar:'اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ',tl:'Allahumma inni as’aluka min fadlik',tr:'O Allah, I ask You of Your bounty.',s:'Muslim 713'},
 {t:'Between the Yamani corner & Black Stone',ar:'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ',tl:'Rabbana atina fid-dunya hasanah wa fil-akhirati hasanah wa qina ’adhaban-nar',tr:'Our Lord, give us good in this world and good in the Hereafter, and protect us from the punishment of the Fire.',s:'Quran 2:201 · Abu Dawud 1892'},
@@ -438,7 +592,7 @@ var BADGES=[
 {id:'nightHaram',name:'Night in the Haram',icon:'🌙'}];
 
 /* ════════════════════════ STATE ════════════════════════ */
-var ST={day:1,tripLen:10,theme:'dark',tab:'plan',dep:'',umrahs:0,tawaf:0,sai:0,quizBest:0};
+var ST={day:1,tripLen:10,theme:'light',tab:'plan',dep:'',umrahs:0,tawaf:0,sai:0,quizBest:0};
 var planChk={},riteChk={},dailyChk={},placeVis={},earned={};
 
 function loadAll(){
@@ -450,154 +604,164 @@ function loadAll(){
     placeVis=JSON.parse(localStorage.getItem('us-places')||'{}');
     earned=JSON.parse(localStorage.getItem('us-badges')||'{}');
   }catch(e){}
-  document.documentElement.setAttribute('data-theme',ST.theme);
 }
 function saveST(){localStorage.setItem('us-settings',JSON.stringify(ST));}
 function save(k,o){localStorage.setItem(k,JSON.stringify(o));}
 
 /* ════════════════════════ GENERIC UI ════════════════════════ */
-function toast(m,gold){var c=document.getElementById('toastC');var t=document.createElement('div');t.className='toast'+(gold?' bdg-t':'');t.textContent=m;c.appendChild(t);setTimeout(function(){t.remove();},3000);}
+function toast(m,gold){var c=document.getElementById('toastC');var t=document.createElement('div');t.className='toast'+(gold?' gold':'');t.textContent=m;c.appendChild(t);setTimeout(function(){t.remove();},3200);}
 function vib(ms){if(navigator.vibrate)try{navigator.vibrate(ms);}catch(e){}}
-function toggleTheme(){ST.theme=ST.theme==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',ST.theme);updThm();saveST();}
-function updThm(){document.getElementById('themeIcon').textContent=ST.theme==='dark'?'☀️':'🌙';var t=document.getElementById('dmTgl');if(t)t.classList.toggle('on',ST.theme==='dark');}
+function toggleTheme(){ST.theme=ST.theme==='light'?'dark':'light';applyTheme();saveST();}
+function applyTheme(){document.documentElement.setAttribute('data-theme',ST.theme);document.getElementById('themeIcon').textContent=ST.theme==='dark'?'☀️':'🌙';var t=document.getElementById('dmTgl');if(t)t.classList.toggle('on',ST.theme==='dark');var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',ST.theme==='dark'?'#0B120F':'#0E3B2E');}
 function togSec(el){el.closest('.sec').classList.toggle('shut');}
-function goTab(t){ST.tab=t;saveST();document.querySelectorAll('.tab').forEach(function(e){e.classList.remove('on');});document.getElementById('tab-'+t).classList.add('on');document.querySelectorAll('.bnav-i').forEach(function(e){e.classList.remove('on');});document.querySelector('[data-tab="'+t+'"]').classList.add('on');if(t==='daily'){updDaily();updStats();}if(t==='places')updPlaces();if(t==='umrah')updRites();if(t==='plan')updPlan();window.scrollTo({top:0,behavior:'smooth'});}
+function setRing(id,pct){var el=document.getElementById(id);if(el)el.style.strokeDashoffset=239*(1-Math.min(100,pct)/100);}
+function goTab(t){ST.tab=t;saveST();
+  document.querySelectorAll('.view').forEach(function(e){e.classList.remove('on');});
+  document.getElementById('view-'+t).classList.add('on');
+  document.querySelectorAll('.nav button').forEach(function(e){e.classList.toggle('on',e.getAttribute('data-v')===t);});
+  if(t==='daily'){updDaily();updStats();}
+  if(t==='places')updPlaces();
+  if(t==='umrah')updRites();
+  if(t==='plan')updPlan();
+  window.scrollTo({top:0,behavior:'smooth'});}
+function mkSec(sec,shut,inner,countId){
+  return '<div class="sec'+(shut?' shut':'')+'"><div class="sec-hd" onclick="togSec(this)"><div class="sec-ico">'+(sec.ico||'•')+'</div><h2>'+sec.title+(sec.sub?'<small>'+sec.sub+'</small>':'')+'</h2><span class="sec-ct" id="sp-'+sec.id+'"></span><span class="sec-chev">▼</span></div><div class="sec-bd">'+(sec.hn?'<div class="note">'+sec.hn+'</div>':'')+inner+'</div></div>';
+}
 
-function mkSec(sec,shut,inner){return '<div class="sec'+(shut?' shut':'')+'"><div class="sec-hd" onclick="togSec(this)"><h2>'+sec.title+'</h2><div class="sec-prog"><span id="sp-'+sec.id+'"></span><span class="sec-chev">▼</span></div></div><div class="sec-bd">'+(sec.hn?'<div class="hadith-n">'+sec.hn+'</div>':'')+inner+'</div></div>';}
-
-/* ════════════════════════ PLAN TAB ════════════════════════ */
+/* ════════════════════════ PLAN ════════════════════════ */
 function renderPlan(){
   var h='';
   PLAN.forEach(function(sec,i){
     var inner='';
     sec.items.forEach(function(it){
-      inner+='<div class="chk" id="pw-'+it.id+'" onclick="togPlan(event,\''+it.id+'\')"><input type="checkbox" id="pc-'+it.id+'" onclick="event.stopPropagation();togPlan(event,\''+it.id+'\')"><label>'+it.label+(it.exp?'<span class="chk-exp">'+it.exp+'</span>':'')+'</label></div>';
+      inner+='<div class="row" id="pw-'+it.id+'" onclick="togPlan(\''+it.id+'\')"><span class="tick"></span><div class="row-t"><b>'+it.label+'</b>'+(it.exp?'<div class="x">'+it.exp+'</div>':'')+'</div></div>';
     });
     h+=mkSec(sec,i>0,inner);
   });
   document.getElementById('planContainer').innerHTML=h;
   var k='';
-  KNOW.forEach(function(g){k+='<div class="guide-sec" onclick="this.classList.toggle(\'open\')"><div class="guide-hd">'+g.t+' <span class="guide-chev">▶</span></div><div class="guide-bd">'+g.b+'</div></div>';});
+  KNOW.forEach(function(g){k+='<div class="acc" onclick="this.classList.toggle(\'open\')"><div class="acc-h">'+g.t+' <span class="acc-c">▶</span></div><div class="acc-b">'+g.b+'</div></div>';});
   document.getElementById('knowContainer').innerHTML=k;
 }
-function togPlan(ev,id){ev.preventDefault();planChk[id]=!planChk[id];save('us-plan',planChk);updPlan();chkBadges();}
+function togPlan(id){planChk[id]=!planChk[id];save('us-plan',planChk);vib(15);updPlan();chkBadges();}
 function updPlan(){
   var tot=0,done=0;
   PLAN.forEach(function(sec){
     var sd=0;
     sec.items.forEach(function(it){tot++;var on=!!planChk[it.id];if(on){done++;sd++;}
-      var w=document.getElementById('pw-'+it.id),c=document.getElementById('pc-'+it.id);
-      if(w){w.classList.toggle('done',on);c.checked=on;}});
+      var w=document.getElementById('pw-'+it.id);if(w)w.classList.toggle('done',on);});
     var sp=document.getElementById('sp-'+sec.id);if(sp)sp.textContent=sd+'/'+sec.items.length;
   });
   var pct=tot?Math.round(done/tot*100):0;
-  document.getElementById('planPct').textContent=pct+'%';
-  document.getElementById('planBar').style.width=pct+'%';
-  document.getElementById('planCnt').textContent=done+' of '+tot+' prepared';
+  document.getElementById('planPct').textContent=pct+'%';setRing('planRing',pct);
+  document.getElementById('planHeroT').textContent=pct>=100?'Fully prepared! 🎉':pct>=60?'Almost there':pct>0?'Good progress':'Let’s get ready';
+  document.getElementById('planHeroS').textContent=done+' of '+tot+' preparation items done';
   updCountdown();
   document.getElementById('qzBest').textContent=ST.quizBest?ST.quizBest+'%':'—';
 }
 function setDep(v){ST.dep=v;saveST();updCountdown();}
 function updCountdown(){
-  var n=document.getElementById('cdNum'),l=document.getElementById('cdLbl'),inp=document.getElementById('depDate');
+  var n=document.getElementById('cdNum'),t=document.getElementById('cdT'),s=document.getElementById('cdS'),inp=document.getElementById('depDate');
   if(ST.dep){inp.value=ST.dep;
     var d=Math.ceil((new Date(ST.dep+'T00:00:00')-new Date())/86400000);
-    if(d>1){n.textContent=d;l.textContent='days until departure — prepare with excellence';}
-    else if(d===1){n.textContent='1';l.textContent='day left — final checks!';}
-    else if(d===0){n.textContent='🛫';l.textContent='Today is the day! Safe travels — labbayk!';}
-    else{n.textContent='🕋';l.textContent='You’re on your journey — switch to the Umrah & Daily tabs';}
-  }else{n.textContent='—';l.textContent='Set your departure date to start the countdown';}
+    if(d>1){n.textContent=d;t.textContent='days until departure';s.textContent='Prepare with excellence — the countdown is on.';}
+    else if(d===1){n.textContent='1';t.textContent='day left!';s.textContent='Final checks — passport, ihram, dua list.';}
+    else if(d===0){n.textContent='🛫';t.textContent='Today is the day!';s.textContent='Safe travels — labbayk!';}
+    else{n.textContent='🕋';t.textContent='You’re on your journey';s.textContent='Switch to the Umrah & Daily tabs.';}
+  }else{n.textContent='—';t.textContent='Departure countdown';s.textContent='Set your date and watch the days melt away';}
 }
 
 /* ════════════════════════ QUIZ ════════════════════════ */
-var qzI=0,qzScore=0,qzLock=false;
-function startQuiz(){qzI=0;qzScore=0;renderQz();}
+var qzI=0,qzScore=0,qzLock=false,qzHist=[];
+function startQuiz(){qzI=0;qzScore=0;qzHist=[];renderQz();}
+function qzDots(){var h='';for(var i=0;i<QUIZ.length;i++){h+='<i class="'+(i<qzHist.length?(qzHist[i]?'f':'w'):'')+'"></i>';}return '<div class="qz-dots">'+h+'</div>';}
 function renderQz(){
   qzLock=false;
-  var q=QUIZ[qzI],h='<div class="qz-card"><div class="qz-prog"><span>Question '+(qzI+1)+' / '+QUIZ.length+'</span><span>Score: '+qzScore+'</span></div><div class="qz-q">'+q.q+'</div>';
-  q.o.forEach(function(o,i){h+='<button class="qz-opt" id="qzo-'+i+'" onclick="answerQz('+i+')">'+String.fromCharCode(65+i)+'. '+o+'</button>';});
-  h+='<div id="qzFb"></div></div>';
+  var q=QUIZ[qzI],h='<div class="qz-top"><span>Question '+(qzI+1)+' / '+QUIZ.length+'</span><span>Score '+qzScore+'</span></div>'+qzDots()+'<div class="qz-q">'+q.q+'</div>';
+  q.o.forEach(function(o,i){h+='<button class="qz-o" id="qzo-'+i+'" onclick="answerQz('+i+')">'+String.fromCharCode(65+i)+'. '+o+'</button>';});
+  h+='<div id="qzFb"></div>';
   document.getElementById('qzArea').innerHTML=h;
 }
 function answerQz(i){
   if(qzLock)return;qzLock=true;
   var q=QUIZ[qzI],ok=i===q.a;
+  qzHist.push(ok);
   if(ok){qzScore++;vib(30);}else vib([60,40,60]);
   document.getElementById('qzo-'+q.a).classList.add('right');
   if(!ok)document.getElementById('qzo-'+i).classList.add('wrong');
-  document.getElementById('qzFb').innerHTML='<div class="qz-exp">'+(ok?'✅ Correct! ':'❌ ')+q.e+'</div><button class="btn" onclick="nextQz()">'+(qzI<QUIZ.length-1?'Next Question →':'See My Score')+'</button>';
+  document.getElementById('qzFb').innerHTML='<div class="qz-x">'+(ok?'✅ Correct! ':'❌ ')+q.e+'</div><button class="btn" onclick="nextQz()">'+(qzI<QUIZ.length-1?'Next question →':'See my score')+'</button>';
 }
 function nextQz(){
   if(qzI<QUIZ.length-1){qzI++;renderQz();return;}
   var pct=Math.round(qzScore/QUIZ.length*100);
   if(pct>ST.quizBest){ST.quizBest=pct;saveST();}
-  var msg=pct>=80?'Mashallah — you’re ready for Umrah! 🕋':pct>=60?'Good effort — review "Know Before You Go" and retake.':'Keep studying — the rites section will get you there.';
-  document.getElementById('qzArea').innerHTML='<div class="qz-card qz-score"><div class="big">'+pct+'%</div><p>'+qzScore+' of '+QUIZ.length+' correct — '+msg+'</p><button class="btn btn-gold" onclick="startQuiz()">↺ Retake Quiz</button></div>';
+  var msg=pct>=80?'Mashallah — you’re ready for Umrah! 🕋':pct>=60?'Good effort — review "Know Before You Go" and retake.':'Keep studying — the Umrah tab will get you there.';
+  document.getElementById('qzArea').innerHTML='<div class="qz-final"><div class="big">'+pct+'%</div><p>'+qzScore+' of '+QUIZ.length+' correct — '+msg+'</p><button class="btn gold" onclick="startQuiz()">↺ Retake quiz</button></div>';
   document.getElementById('qzBest').textContent=ST.quizBest+'%';
   if(pct>=80&&!planChk['quiz80']){planChk['quiz80']=true;save('us-plan',planChk);updPlan();}
   chkBadges();
 }
 
-/* ════════════════════════ UMRAH RITES ════════════════════════ */
+/* ════════════════════════ RITES ════════════════════════ */
 function renderRites(){
-  var h='';
+  var h='',n=0;
   RITES.forEach(function(ph,i){
-    var inner='';var n=0;
-    RITES.slice(0,i).forEach(function(p){n+=p.steps.length;});
-    ph.steps.forEach(function(st,j){
-      inner+='<div class="step" id="rw-'+st.id+'" onclick="togRite(\''+st.id+'\')"><div class="step-n">'+(n+j+1)+'</div><div class="step-t"><b>'+st.b+'</b><p>'+st.p+'</p>'+(st.dua?'<div class="step-dua" onclick="event.stopPropagation()"><span class="ar">'+st.dua.ar+'</span><span class="tl">'+st.dua.tl+'</span><span class="tr">'+st.dua.tr+'</span></div>':'')+'</div></div>';
+    var inner='';
+    ph.steps.forEach(function(st){
+      n++;
+      inner+='<div class="stp" id="rw-'+st.id+'" onclick="togRite(\''+st.id+'\')"><div class="stp-n">'+n+'</div><div class="stp-t"><b>'+st.b+'</b><p>'+st.p+'</p>'+(st.dua?'<div class="dua" onclick="event.stopPropagation()"><span class="ar">'+st.dua.ar+'</span><span class="tl">'+st.dua.tl+'</span><span class="tr">'+st.dua.tr+'</span></div>':'')+'</div></div>';
     });
     h+=mkSec(ph,i>0,inner);
   });
   document.getElementById('riteContainer').innerHTML=h;
-  renderDots('tawaf');renderDots('sai');
+  renderCnt('tawaf');renderCnt('sai');
 }
-function togRite(id){riteChk[id]=!riteChk[id];save('us-rites',riteChk);vib(20);updRites();}
+function togRite(id){riteChk[id]=!riteChk[id];save('us-rites',riteChk);vib(15);updRites();}
 function updRites(){
   var tot=0,done=0;
   RITES.forEach(function(ph){var sd=0;ph.steps.forEach(function(st){tot++;var on=!!riteChk[st.id];if(on){done++;sd++;}var w=document.getElementById('rw-'+st.id);if(w)w.classList.toggle('done',on);});var sp=document.getElementById('sp-'+ph.id);if(sp)sp.textContent=sd+'/'+ph.steps.length;});
   var pct=tot?Math.round(done/tot*100):0;
-  document.getElementById('ritePct').textContent=pct+'%';
-  document.getElementById('riteBar').style.width=pct+'%';
-  document.getElementById('riteCnt').textContent=done+' of '+tot+' steps';
-  document.getElementById('umrahCntLbl').textContent='🕋 Umrahs completed: '+ST.umrahs;
-  renderDots('tawaf');renderDots('sai');
+  document.getElementById('ritePct').textContent=pct+'%';setRing('riteRing',pct);
+  document.getElementById('riteHeroT').textContent=pct>=100?'Taqabbal Allah! 🎉':pct>0?done+' of '+tot+' steps':'Step by step';
+  document.getElementById('riteHeroS').textContent='🕋 Umrahs completed: '+ST.umrahs;
+  renderCnt('tawaf');renderCnt('sai');
 }
-function renderDots(k){
-  var v=ST[k];document.getElementById(k+'N').textContent=v;
-  var d='';for(var i=0;i<7;i++)d+='<div class="cntr-dot'+(i<v?' f':'')+'"></div>';
-  document.getElementById(k+'Dots').innerHTML=d;
+function renderCnt(k){
+  var v=ST[k];
+  document.getElementById(k+'N').textContent=v;
+  var ring=document.getElementById(k+'Ring');
+  if(ring)ring.style.strokeDashoffset=565*(1-v/7);
   document.getElementById(k+'Done').style.display=v>=7?'block':'none';
 }
 function cntr(k,d){
   var v=Math.max(0,Math.min(7,ST[k]+d));
-  if(v===ST[k])return;ST[k]=v;saveST();vib(v===7?[50,60,120]:35);renderDots(k);
+  if(v===ST[k])return;ST[k]=v;saveST();vib(v===7?[50,60,140]:35);renderCnt(k);
   if(v===7)toast(k==='tawaf'?'🕋 Tawaf complete! Pray 2 rakahs at Maqam Ibrahim':'⛰️ Sa’i complete! Proceed to halq/taqsir');
 }
-function cntrReset(k){ST[k]=0;saveST();renderDots(k);}
+function cntrReset(k){ST[k]=0;saveST();renderCnt(k);}
 function finishUmrah(){
   var done=0,tot=0;RITES.forEach(function(p){p.steps.forEach(function(s){tot++;if(riteChk[s.id])done++;});});
   if(done<tot&&!confirm('Only '+done+' of '+tot+' steps are ticked. Record this Umrah as complete anyway?'))return;
   ST.umrahs++;ST.tawaf=0;ST.sai=0;saveST();
   riteChk={};save('us-rites',riteChk);
   updRites();chkBadges();
-  toast('🎉 Umrah #'+ST.umrahs+' recorded — may Allah accept it! Taqabbal Allah.',true);
+  toast('🎉 Umrah #'+ST.umrahs+' recorded — may Allah accept it!',true);
 }
 
-/* ════════════════════════ DAILY TRACKER ════════════════════════ */
+/* ════════════════════════ DAILY ════════════════════════ */
 function renderDaily(){
   var h='';
   DAILY.forEach(function(sec,i){
     var inner='';
     sec.items.forEach(function(it){
-      inner+='<div class="chk" id="dw-'+it.id+'" onclick="togDaily(event,\''+it.id+'\')"><input type="checkbox" id="dc-'+it.id+'" onclick="event.stopPropagation();togDaily(event,\''+it.id+'\')"><label>'+it.label+'<span class="chk-pts">+'+it.pts+'</span>'+(it.ref?'<span class="chk-ref">'+it.ref+'</span>':'')+(it.exp?'<span class="chk-exp">'+it.exp+'</span>':'')+'</label></div>';
+      inner+='<div class="row" id="dw-'+it.id+'" onclick="togDaily(\''+it.id+'\')"><span class="tick"></span><div class="row-t"><b>'+it.label+'</b>'+(it.exp?'<div class="x">'+it.exp+'</div>':'')+(it.ref?'<div class="rf">'+it.ref+'</div>':'')+'</div><span class="pts">+'+it.pts+'</span></div>';
     });
     h+=mkSec(sec,i>0,inner);
   });
   document.getElementById('dailyContainer').innerHTML=h;
 }
 function dayKey(){return 'd'+ST.day;}
-function togDaily(ev,id){ev.preventDefault();var d=dailyChk[dayKey()]||{};d[id]=!d[id];dailyChk[dayKey()]=d;save('us-daily',dailyChk);updDaily();updStats();chkBadges();}
+function togDaily(id){var d=dailyChk[dayKey()]||{};d[id]=!d[id];dailyChk[dayKey()]=d;save('us-daily',dailyChk);vib(15);updDaily();updStats();chkBadges();}
 function changeDay(d){var n=ST.day+d;if(n>=1&&n<=ST.tripLen){ST.day=n;saveST();updDaily();}}
 function dayPct(n){
   var d=dailyChk['d'+n];if(!d)return null;
@@ -605,17 +769,15 @@ function dayPct(n){
   return Math.round(done/tot*100);
 }
 function updDaily(){
-  document.getElementById('dayDisp').textContent='Day '+ST.day+' / '+ST.tripLen;
+  document.getElementById('dayDisp').innerHTML='Day '+ST.day+'<small>of '+ST.tripLen+'</small>';
   var d=dailyChk[dayKey()]||{};var tot=0,done=0,pts=0;
   DAILY.forEach(function(sec){var sd=0;sec.items.forEach(function(it){tot++;var on=!!d[it.id];if(on){done++;sd++;pts+=it.pts;}
-    var w=document.getElementById('dw-'+it.id),c=document.getElementById('dc-'+it.id);
-    if(w){w.classList.toggle('done',on);c.checked=on;}});
+    var w=document.getElementById('dw-'+it.id);if(w)w.classList.toggle('done',on);});
     var sp=document.getElementById('sp-'+sec.id);if(sp)sp.textContent=sd+'/'+sec.items.length;});
   var pct=tot?Math.round(done/tot*100):0;
-  document.getElementById('dPct').textContent=pct+'%';
-  document.getElementById('dBar').style.width=pct+'%';
-  document.getElementById('dCnt').textContent=done+' of '+tot+' completed';
-  document.getElementById('dPts').textContent=pts+' pts';
+  document.getElementById('dPct').textContent=pct+'%';setRing('dRing',pct);
+  document.getElementById('dHeroT').textContent=pct>=100?'Perfect day! 🌟':pct>=60?'Strong day':pct>0?'Keep going':'Bismillah';
+  document.getElementById('dHeroS').textContent=done+' of '+tot+' completed · '+pts+' pts';
   updStreaks();renderHeat();
 }
 function streakOf(stk){
@@ -623,7 +785,7 @@ function streakOf(stk){
   var n=0;
   for(var day=ST.day;day>=1;day--){
     var d=dailyChk['d'+day];var hit=d&&ids.some(function(id){return d[id];});
-    if(hit)n++;else if(day<ST.day)break;else if(!hit&&day===ST.day)continue;
+    if(hit)n++;else if(day<ST.day)break;
   }
   return n;
 }
@@ -634,9 +796,9 @@ function updStreaks(){
 function renderHeat(){
   var h='';
   for(var i=1;i<=ST.tripLen;i++){
-    var p=dayPct(i),cls='h0';
-    if(p!==null){cls=p>=90?'h4':p>=70?'h3':p>=40?'h2':p>0?'h1':'h0';}
-    h+='<div class="heat-c '+cls+(i===ST.day?' h-today':'')+'" title="Day '+i+(p!==null?': '+p+'%':'')+'">'+i+'</div>';
+    var p=dayPct(i),cls='';
+    if(p!==null&&p>0){cls=p>=90?'h4':p>=70?'h3':p>=40?'h2':'h1';}
+    h+='<div class="hc '+cls+(i===ST.day?' now':'')+'" title="Day '+i+(p!==null?': '+p+'%':'')+'">'+i+'</div>';
   }
   document.getElementById('heatGrid').innerHTML=h;
 }
@@ -660,10 +822,10 @@ function renderPlaces(){
   var h='';
   ['makkah','madinah'].forEach(function(city){
     if(cityFilter!=='all'&&cityFilter!==city)return;
-    h+='<div class="sub-t">'+(city==='makkah'?'🕋 Makkah al-Mukarramah':'🕌 Madinah al-Munawwarah')+'</div>';
+    h+='<div class="subt">'+(city==='makkah'?'🕋 Makkah al-Mukarramah':'🕌 Madinah al-Munawwarah')+'</div>';
     PLACES.filter(function(p){return p.city===city;}).forEach(function(p){
       var url='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.q);
-      h+='<div class="place'+(placeVis[p.id]?' vis':'')+'" id="pl-'+p.id+'"><div class="place-top"><div class="place-i">'+p.i+'</div><div class="place-t"><b>'+p.n+'</b><p>'+p.d+'</p><div class="place-tip">💡 '+p.tip+'</div></div></div><div class="place-acts"><a href="'+url+'" target="_blank" rel="noopener">🗺️ Open in Maps</a><button class="v" onclick="togPlace(\''+p.id+'\')">'+(placeVis[p.id]?'✓ Visited':'Mark Visited')+'</button></div></div>';
+      h+='<div class="place'+(placeVis[p.id]?' vis':'')+'" id="pl-'+p.id+'"><div class="place-h"><div class="place-ico">'+p.i+'</div><div class="place-t"><b>'+p.n+'</b><p>'+p.d+'</p><div class="tip">💡 '+p.tip+'</div></div></div><div class="place-a"><a href="'+url+'" target="_blank" rel="noopener">🗺️ Open in Maps</a><button onclick="togPlace(\''+p.id+'\')">'+(placeVis[p.id]?'✓ Visited':'Mark visited')+'</button></div></div>';
     });
   });
   document.getElementById('placesContainer').innerHTML=h;
@@ -673,9 +835,8 @@ function filterCity(c){cityFilter=c;['All','Makkah','Madinah'].forEach(function(
 function updPlaces(){
   var v=Object.keys(placeVis).filter(function(k){return placeVis[k];}).length;
   var pct=Math.round(v/PLACES.length*100);
-  document.getElementById('plPct').textContent=pct+'%';
-  document.getElementById('plBar').style.width=pct+'%';
-  document.getElementById('plCnt').textContent=v+' of '+PLACES.length+' visited';
+  document.getElementById('plPct').textContent=pct+'%';setRing('plRing',pct);
+  document.getElementById('plHeroS').textContent=v+' of '+PLACES.length+' visited';
 }
 
 /* ════════════════════════ BADGES ════════════════════════ */
@@ -701,18 +862,18 @@ function chkBadges(){
 function renderBadges(){
   var g=document.getElementById('bdgGrid');if(!g)return;
   var n=0,h='';
-  BADGES.forEach(function(b){var ok=!!earned[b.id];if(ok)n++;h+='<div class="bdg '+(ok?'unlk':'lck')+'"><div class="bdg-i">'+b.icon+'</div><div class="bdg-n">'+b.name+'</div></div>';});
+  BADGES.forEach(function(b){var ok=!!earned[b.id];if(ok)n++;h+='<div class="bdg '+(ok?'ok':'no')+'"><div class="i">'+b.icon+'</div><div class="n">'+b.name+'</div></div>';});
   g.innerHTML=h;document.getElementById('bdgCnt').textContent=n;
 }
 
 /* ════════════════════════ DUAS / DATA ════════════════════════ */
 function renderDuas(){
   var h='';
-  DUAS.forEach(function(d){h+='<div class="dua-card"><h4>'+d.t+'</h4><span class="ar">'+d.ar+'</span><div class="tl">'+d.tl+'</div><div class="tr">'+d.tr+'</div><div class="src">'+d.s+'</div></div>';});
+  DUAS.forEach(function(d){h+='<div class="duacard"><h4>'+d.t+'</h4><div class="dua" style="margin:0;background:transparent;border:none;padding:0"><span class="ar">'+d.ar+'</span><span class="tl">'+d.tl+'</span><span class="tr">'+d.tr+'</span><span class="src">'+d.s+'</span></div></div>';});
   document.getElementById('duaContainer').innerHTML=h;
 }
 function exportData(){
-  var data={settings:ST,plan:planChk,rites:riteChk,daily:dailyChk,places:placeVis,badges:earned,v:1};
+  var data={settings:ST,plan:planChk,rites:riteChk,daily:dailyChk,places:placeVis,badges:earned,v:2};
   var b=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
   var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='umrah-strivers-backup.json';a.click();
   toast('📤 Backup exported');
@@ -737,12 +898,12 @@ function confirmReset(){
 
 /* ════════════════════════ INIT ════════════════════════ */
 function initUI(){
-  document.documentElement.setAttribute('data-theme',ST.theme);updThm();
-  document.getElementById('bnrQuote').textContent=QUOTES[Math.floor(Math.random()*QUOTES.length)];
+  applyTheme();
+  document.getElementById('quoteLine').textContent=QUOTES[Math.floor(Math.random()*QUOTES.length)];
   document.getElementById('tripLen').value=ST.tripLen;
   renderPlan();renderRites();renderDaily();renderPlaces();renderDuas();
   updPlan();updRites();updDaily();updPlaces();updStats();renderBadges();
-  goTab(ST.tab&&document.getElementById('tab-'+ST.tab)?ST.tab:'plan');
+  goTab(ST.tab&&document.getElementById('view-'+ST.tab)?ST.tab:'plan');
 }
 document.addEventListener('DOMContentLoaded',function(){loadAll();initUI();});
 </script>

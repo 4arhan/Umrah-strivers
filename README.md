@@ -31,13 +31,26 @@ A single-file, offline-first web app. No accounts, no servers, no tracking — a
 - Resources: Nusuk, Haramain High-Speed Rail, Tarteel, Sunnah.com
 - Dark/light theme, backup export/import, full reset
 
-## Running
+## Deploying to Vercel
 
-It's one file — open `index.html` in a browser, or serve the repo with GitHub Pages. Installable to the home screen as a PWA-style app.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F4arhan%2FUmrah-strivers)
+
+Or manually, in about a minute:
+
+1. Go to [vercel.com/new](https://vercel.com/new) and sign in (with GitHub).
+2. **Import** the `4arhan/Umrah-strivers` repository.
+3. Leave everything default (Framework Preset: **Other**, no build command, no output directory) and hit **Deploy**.
+4. Done — you get `umrah-strivers.vercel.app` (rename in Project Settings → Domains, or attach a custom domain).
+
+Every push to the production branch auto-deploys. A `vercel.json` is included with sensible security headers.
+
+## Running locally
+
+It's one file — just open `index.html` in a browser. Installable to the home screen as a PWA-style app.
 
 ## Tech
 
-Vanilla HTML/CSS/JS, zero build step, zero dependencies (Google Fonts only, with system fallbacks). Same architecture and design language as Ramadan Strivers.
+Mobile-first vanilla HTML/CSS/JS, zero build step, zero dependencies (Google Fonts only, with system fallbacks). Design system: desert emerald & gold, Fraunces + Inter, SVG progress rings, floating pill navigation, tap-ring counters, light & dark themes.
 
 ---
 
