@@ -28,8 +28,10 @@ A single-file, offline-first web app. No accounts, no servers, no tracking — a
 - Configurable trip length (3–30 days)
 
 ### 📍 Places — ziyarah with purpose
-- 20 curated sites across Makkah and Madinah — each with why it matters, an etiquette tip, a **one-tap Google Maps** button, and a "visited" tracker
-- Includes Masjid al-Haram landmarks, Jabal an-Nour, Masjid Aisha (Tan'eem), Jannat al-Mu'alla, Arafat/Mina/Muzdalifah, Masjid an-Nabawi & the Rawdah (Nusuk permit), Quba, Qiblatayn, Uhud, and more
+- **51 sites** across Makkah (29) and Madinah (22), grouped — Makkah: The Haram · Ziyarah · The Hajj sites · Museums & culture · Day trips; Madinah: The Prophet's Mosque & around · Historic mosques · Battlefields, wells & history · Hop-on hop-off & practical
+- Every site has its historical significance (with verified Quran/hadith references where applicable), an etiquette/practical tip, a **one-tap Google Maps** button, and a "visited" tracker; search box across all sites
+- **Madinah Hop-On Hop-Off card** — all 12 City Sightseeing stops (Red history loop, Green Haram loop) with route-coloured chips, a booking link, and stop badges on the matching places
+- New Makkah sites include Hijr Isma'il & Maqam Ibrahim, Zamzam, the Mas'a, the Prophet's ﷺ birthplace, Jabal Abu Qubays, Masjid ar-Rayah, Ji'ranah, Hudaybiyyah, Namirah, al-Mash'ar, al-Khayf, al-Bay'ah, the Jamarat, the Hira Cultural District, the Kiswah factory, Makkah Museum, Ta'if and historic Jeddah; new Madinah sites include Bab as-Salam, Al Manakha, the Quran & Seerah museums, Masjid al-Jumu'ah, al-Ijabah, al-Miqat (Abyar Ali), Wadi al-Aqiq, Bir Uthman, Salman's garden, the Hijaz Railway, Quba Avenue and the practical stops
 
 ### 🕌 Live tools
 - **Audio duas** — tap 🔊 on any dua (rites steps and the library) to hear the Arabic recited via speech synthesis
