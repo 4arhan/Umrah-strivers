@@ -2,7 +2,7 @@
 
 **The Journey of a Lifetime** — plan, learn, perform and track your Umrah. The sister app to [Ramadan Strivers](https://www.ramadanstrivers.com/).
 
-A single-file, offline-first web app. No accounts, no servers, no tracking — all data stays on your device (localStorage), with export/import backup.
+An offline-first web app (`index.html` + `data.js` + `app.js`, zero build step). No accounts, no servers, no tracking — all data stays on your device, with export/import backup and an encrypted document vault.
 
 ## Features
 
@@ -64,12 +64,34 @@ Every push to the production branch auto-deploys. A `vercel.json` is included wi
 
 It's one file — just open `index.html` in a browser. Installable to the home screen as a PWA-style app.
 
+## v4.0 — Home, during-Umrah tools, planning tools
+- **Home dashboard** — greeting with Hijri date, your journey phase with a progress ring and next-step CTA, next prayer countdown, 9 quick actions, today's flashcard, daily quote
+- **Focus mode** for the Tawaf/Sa'i counters — full-screen giant tap zone, screen kept awake (Wake Lock), round-by-round coaching
+- **Umrah timeline & keepsake** — ihram, tawaf, sa'i and halq are time-stamped automatically; every recorded Umrah gets a downloadable keepsake card with durations
+- **Mataf schematic** — where the Black Stone line, Hijr, Maqam, Multazam, Yamani corner, Zamzam and the Safa exit are
+- **"Why?" explainers** on every rite step — the evidence behind each action (verified references)
+- **Itinerary generator** — a worship-first day plan from your dates, Makkah- or Madinah-first, with adjustable day split
+- **Encrypted document vault** — passport/visa/bookings stored in IndexedDB, AES-256-GCM with a PIN-derived key (PBKDF2); nothing leaves the device
+- **Packing by bag** — filter the packing list by ihram bag / carry-on / suitcase; **prep streak** on the Plan hero
+- **My dua list** — editable personal duas, ticked as asked; **water counter** and **estimated km walked in worship**
+- **Share my progress card** — a 1080×1080 image of your trip stats
+- **Places**: coordinates on 38 sites, save your hotel once for **distance & walking time** on every card, **Near me** sort, and a **ziyarah route planner** (nearest-first, unvisited only, opens as a multi-stop Google Maps route)
+- **Swipe** between sub-tabs; sticky progress line under the segmented control; contrast-corrected gold text and aria labels
+
 ## UI (v3.1)
 - **Segmented sub-navigation** inside every tab (Plan: Prepare · Learn · Quiz; Umrah: Counters · Steps; Daily: Today · Tools · Stats; More: Guide · Duas · Settings) — sticky under the header, remembered per tab
 - **First-launch onboarding sheet** — "Where are you on your journey?" jumps you to the right screen and captures your name for the certificate
 - **Journey chip** in the header — days to departure, current trip day, or post-Umrah state — tap to jump
 - Confetti celebrations, animated count-ups on progress rings, skeleton loading for prayer times, places search
 - **v3.3 screen-by-screen polish** — gold departure countdown card, jump-chips on the long Learn and Places pages, compact tap-to-expand place cards, round-by-round guidance under the Tawaf/Sa'i counters, wrapped tasbih phrases, name + share-the-app in Settings
+
+## Development & testing
+
+```
+npm install            # playwright-core only
+npm test               # end-to-end smoke suite (32 checks) in headless Chromium
+```
+Set `CHROME=/path/to/chromium` if Playwright cannot find a browser. Content lives in `data.js` (places, quiz, knowledge, duas); logic in `app.js`.
 
 ## Tech
 

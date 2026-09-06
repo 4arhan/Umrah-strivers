@@ -1,0 +1,13 @@
+{
+  "name": "umrah-strivers",
+  "version": "4.0.0",
+  "private": true,
+  "description": "Plan, learn, perform & track your Umrah — offline-first single-page app",
+  "scripts": {
+    "test": "node test/smoke.js",
+    "start": "npx -y serve -l 3000 ."
+  },
+  "devDependencies": {
+    "playwright-core": "^1.47.0"
+  }
+}

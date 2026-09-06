@@ -1,6 +1,6 @@
 /* Umrah Strivers — offline service worker */
-var CACHE = 'umrah-strivers-v2.1.0';
-var CORE = ['./', './index.html', './manifest.json'];
+var CACHE = 'umrah-strivers-v4.0.0';
+var CORE = ['./', './index.html', './data.js', './app.js', './manifest.json'];
 
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(CORE); }).then(function () { return self.skipWaiting(); }));
