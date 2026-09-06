@@ -20,6 +20,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
 
   console.log('Home');
   check('opens on Home', (await page.getAttribute('.view.on', 'id')) === 'view-home');
+  check('journey chip counts down + no update chip', (await page.textContent('#jChip')).includes('day') && (await page.locator('#updChip').isHidden()));
   check('explains the app + greets by name', (await page.textContent('.hhero h2')).includes('Umrah companion') && (await page.textContent('.hs-t')).includes('Test') && (await page.locator('.stage').count()) === 5);
   check('next prayer loaded', (await page.textContent('#hNext')).includes('in '));
   check('9 quick actions', (await page.locator('.qa').count()) === 9);
@@ -53,10 +54,16 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   await page.evaluate(() => goSub('umrah', 'steps', true));
   await page.click('#rw-ghusl .why');
   check('why explainer toggles', (await page.locator('#rw-ghusl .whyb.on').count()) === 1);
-  const dl1 = page.waitForEvent('download', { timeout: 6000 }).catch(() => null);
   await page.click('button.btn.gold:has-text("Record completed Umrah")'); await page.waitForTimeout(300);
-  await page.evaluate(() => goSub('umrah', 'steps', true)); await page.click('#umrahsArea .chip-btn');
+  await page.evaluate(() => goSub('umrah', 'steps', true)); await page.click('#umrahsArea .chip-btn'); await page.waitForTimeout(300);
+  check('keepsake opens the export sheet with preview', (await page.locator('#gSheet.on img').count()) === 1);
+  const dl1 = page.waitForEvent('download', { timeout: 6000 }).catch(() => null);
+  await page.click('#gSheet button:has-text("Download")');
   check('umrah recorded + keepsake downloads', (await page.evaluate(() => ST.umrahs)) === 1 && !!(await dl1));
+  await page.evaluate(() => closeSheet());
+  await page.click('#rw-niyyah .dua'); await page.waitForTimeout(200);
+  check('inline rite dua opens the full-screen reader', (await page.locator('#duaFocus.on').count()) === 1 && (await page.textContent('#dfAr')).length > 5 && (await page.locator('#dfNext').isHidden()));
+  await page.click('#duaFocus button:has-text("Close")');
 
   console.log('Daily');
   await page.evaluate(() => { goTab('daily'); goSub('daily', 'today', true); }); await page.waitForTimeout(500);
@@ -73,9 +80,11 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   await page.evaluate(() => startQibla()); await page.waitForTimeout(800);
   check('qibla bearing computed', /\d+°/.test(await page.textContent('#qbDeg')));
   await page.evaluate(() => goSub('daily', 'stats', true));
+  await page.click('text=Share my progress card'); await page.waitForTimeout(300);
   const dl2 = page.waitForEvent('download', { timeout: 6000 }).catch(() => null);
-  await page.click('text=Share my progress card');
+  await page.click('#gSheet button:has-text("Download")');
   check('progress card downloads', !!(await dl2));
+  await page.evaluate(() => closeSheet());
 
   console.log('Places');
   await page.evaluate(() => goTab('places'));
@@ -88,12 +97,45 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   await page.fill('#plSearch', 'quba');
   check('search', (await page.locator('.place').count()) >= 1 && (await page.locator('#pl-quba').count()) === 1);
 
+  await page.evaluate(() => openPlace('taneem')); await page.waitForTimeout(400);
+  check('openPlace resets the search, opens the card and offers Umrah steps', (await page.inputValue('#plSearch')) === '' && (await page.locator('#pl-taneem.open').count()) === 1 && (await page.locator('#pl-taneem button:has-text("Umrah steps")').count()) === 1);
+
   console.log('More');
   await page.evaluate(() => { goTab('more'); goSub('more', 'duas', true); });
   check('8 duas with audio buttons', (await page.locator('.duacard').count()) === 8 && (await page.locator('.duacard .say').count()) === 8);
+  await page.click('.duacard >> nth=3 >> .dua'); await page.waitForTimeout(200);
+  check('dua reader opens with prev/next', (await page.locator('#duaFocus.on').count()) === 1 && (await page.textContent('#dfTitle')).includes('Yamani') && (await page.locator('#dfNext').isVisible()));
+  await page.click('#dfNext');
+  check('dua reader navigates', (await page.textContent('#dfTitle')).includes('Safa'));
+  await page.click('#duaFocus button:has-text("Close")');
+  check('More segment is now After · Duas · Settings', (await page.textContent('.seg[data-tab="more"]')).includes('After') && (await page.locator('#sub-more-guide .acc').count()) === 0);
   await page.evaluate(() => goSub('more', 'guide', true));
   await page.click('#postSw');
   check('post-umrah 90 habit chips', (await page.locator('.pchip').count()) === 90);
+  check('journey chip goes to post card', (await page.textContent('#jChip')).includes('Post-Umrah'));
+  await page.evaluate(() => goSub('more', 'settings', true));
+  check('about card: version + correction mailto + links', (await page.textContent('#verLbl')) === (await page.evaluate(() => APP_VERSION)) && (await page.locator('#aboutCard a[href^="mailto:"]').count()) === 1 && (await page.locator('#sub-more-settings .res').count()) === 8);
+  await page.click('#textSeg button:has-text("Large")');
+  check('large text mode applies', (await page.getAttribute('html', 'data-text')) === 'lg' && (await page.evaluate(() => getComputedStyle(document.body).fontSize)) === '17px');
+  await page.click('#textSeg button:has-text("Normal")');
+  await page.click('button:has-text("▦ QR")');
+  check('QR overlay with static SVG', (await page.locator('#qrShow.on .qr-box svg path').count()) === 1 && (await page.textContent('#qrShow')).includes('umrah-strivers.vercel.app'));
+  await page.evaluate(() => document.getElementById('qrShow').classList.remove('on'));
+  const bk = await page.evaluate(() => { const ls = {}; for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k.indexOf('us-') === 0 && k !== 'us-ptcache' && k !== 'us-remlast') ls[k] = 1; } return Object.keys(ls).length; });
+  check('backup covers every us- key', bk >= 8);
+  await page.click('button:has-text("Reset everything")');
+  check('reset is a two-step sheet', (await page.locator('#gSheet.on button:has-text("Export backup first")').count()) === 1);
+  await page.evaluate(() => closeSheet());
+
+  console.log('Deep links & a11y');
+  await page.evaluate(() => goTab('daily', 'tools', 'tbCard')); await page.waitForTimeout(900);
+  check('goTab(tab,sub,anchor) lands on the sub-tab and scrolls to the card', (await page.locator('#sub-daily-tools.on').count()) === 1 && (await page.evaluate(() => Math.abs(document.getElementById('tbCard').getBoundingClientRect().top - 118) < 40)) && (await page.getAttribute('.nav button[data-v="daily"]', 'aria-current')) === 'page');
+  check('checklist rows are checkboxes; tapring is a labelled button', (await page.getAttribute('#dw-fajr', 'role')) === 'checkbox' && (await page.getAttribute('#dw-fajr', 'aria-checked')) === 'true' && (await page.getAttribute('#tawafRingBtn', 'aria-label')).includes('0 of 7'));
+  await page.evaluate(() => goTab('daily', 'today')); await page.waitForTimeout(200);
+  await page.focus('#dw-dhuhr'); await page.keyboard.press('Enter');
+  check('keyboard Enter toggles a row', (await page.getAttribute('#dw-dhuhr', 'aria-checked')) === 'true');
+  check('cross-reference chips render on checklist items', (await page.locator('#pw-rawdah .xchip').count()) === 1 && (await page.locator('#dw-ziyarah .xchip').count()) === 1 && (await page.locator('#itinArea .pl-link').count()) > 3);
+  check('viewport allows pinch zoom', !(await page.getAttribute('meta[name="viewport"]', 'content')).includes('user-scalable=no'));
 
   console.log('Persistence');
   await page.reload(); await page.waitForTimeout(700);

@@ -1,9 +1,13 @@
 /* Umrah Strivers — offline service worker */
-var CACHE = 'umrah-strivers-v4.0.0';
+/* Release note: bump APP_VERSION here AND at the top of app.js for every release. */
+var APP_VERSION = '4.5.0';
+var CACHE = 'umrah-strivers-' + APP_VERSION;
 var CORE = ['./', './index.html', './data.js', './app.js', './manifest.json'];
+var SHELL = ['/', '/index.html', '/app.js', '/data.js'];
 
 self.addEventListener('install', function (e) {
-  e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(CORE); }).then(function () { return self.skipWaiting(); }));
+  // No skipWaiting here: the new worker waits until the page asks (update chip) so the app never reloads under the pilgrim's feet.
+  e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(CORE); }));
 });
 
 self.addEventListener('activate', function (e) {
@@ -12,20 +16,42 @@ self.addEventListener('activate', function (e) {
   }).then(function () { return self.clients.claim(); }));
 });
 
+self.addEventListener('message', function (e) {
+  if (e.data && e.data.type === 'SKIP_WAITING') self.skipWaiting();
+});
+
+function isShell(url, req) {
+  if (req.mode === 'navigate') return true;
+  var p = url.pathname;
+  for (var i = 0; i < SHELL.length; i++) { if (p === SHELL[i] || p.endsWith(SHELL[i])) return true; }
+  return false;
+}
+function withTimeout(p, ms) {
+  return new Promise(function (res, rej) {
+    var t = setTimeout(function () { rej(new Error('timeout')); }, ms);
+    p.then(function (v) { clearTimeout(t); res(v); }, function (err) { clearTimeout(t); rej(err); });
+  });
+}
+
 self.addEventListener('fetch', function (e) {
   var req = e.request;
   if (req.method !== 'GET') return;
   var url = new URL(req.url);
 
-  // App shell: network-first so updates land, cache fallback for offline
-  if (req.mode === 'navigate' || url.pathname === '/' || url.pathname.endsWith('/index.html')) {
-    e.respondWith(
-      fetch(req).then(function (res) {
-        var copy = res.clone();
-        caches.open(CACHE).then(function (c) { c.put('./index.html', copy); });
-        return res;
-      }).catch(function () { return caches.match('./index.html'); })
-    );
+  // App shell (index, app.js, data.js): stale-while-revalidate — instant from cache, refreshed in the background.
+  if (url.origin === location.origin && isShell(url, req)) {
+    var key = req.mode === 'navigate' ? './index.html' : req;
+    e.respondWith(caches.open(CACHE).then(function (c) {
+      return c.match(key).then(function (hit) {
+        var net = fetch(req).then(function (res) {
+          if (res && res.ok) c.put(key, res.clone());
+          return res;
+        });
+        if (hit) { net.catch(function () {}); return hit; }
+        // Nothing cached yet: on a poor signal do not hang — race the network against 3 s, then fall back to the shell.
+        return (req.mode === 'navigate' ? withTimeout(net, 3000) : net).catch(function () { return c.match('./index.html'); });
+      });
+    }));
     return;
   }
 
@@ -43,7 +69,7 @@ self.addEventListener('fetch', function (e) {
     return;
   }
 
-  // Same-origin assets: cache-first with network fill
+  // Other same-origin assets: cache-first with network fill
   if (url.origin === location.origin) {
     e.respondWith(
       caches.match(req).then(function (hit) {

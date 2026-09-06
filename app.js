@@ -1,4 +1,7 @@
 /* Umrah Strivers — application logic */
+/* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
+var APP_VERSION='4.5.0';
+var APP_URL='https://umrah-strivers.vercel.app/';
 /* ════════════════════════ STATE ════════════════════════ */
 var ST={day:1,tripLen:10,theme:'light',tab:'home',dep:'',umrahs:0,tawaf:0,sai:0,quizBest:0,city:'Makkah'};
 var tasbih={};
@@ -19,26 +22,48 @@ function saveST(){localStorage.setItem('us-settings',JSON.stringify(ST));}
 function save(k,o){localStorage.setItem(k,JSON.stringify(o));}
 
 /* ════════════════════════ GENERIC UI ════════════════════════ */
-function toast(m,gold){var c=document.getElementById('toastC');var t=document.createElement('div');t.className='toast'+(gold?' gold':'');t.textContent=m;c.appendChild(t);setTimeout(function(){t.remove();},3200);}
+function toast(m,gold,actLabel,actFn){var c=document.getElementById('toastC');if(!c)return;var t=document.createElement('div');t.className='toast'+(gold?' gold':'')+(actLabel?' act':'');t.setAttribute('role','status');t.textContent=m;
+  if(actLabel){var b=document.createElement('button');b.textContent=actLabel;b.onclick=function(){t.remove();if(actFn)actFn();};t.appendChild(b);}
+  c.appendChild(t);setTimeout(function(){t.remove();},actLabel?6000:3200);}
+function totalUmrahs(){return (ST.umrahs||0)+(ST.umrahsPrev||0);}
+/* text size (M-09) */
+function applyText(){document.documentElement.setAttribute('data-text',ST.text||'');document.querySelectorAll('#textSeg button').forEach(function(b){b.classList.toggle('on',(b.getAttribute('data-t')||'')===(ST.text||''));});var o=document.getElementById('obText');if(o){o.classList.toggle('on',ST.text==='lg');o.setAttribute('aria-checked',ST.text==='lg'?'true':'false');}}
+function setText(v){ST.text=v||'';saveST();applyText();vib(8);}
+/* generic bottom sheet (reset, image export, certificate name…) */
+function openSheet(html){var o=document.getElementById('gSheet'),b=document.getElementById('gSheetBody');if(!o)return;b.innerHTML=html;o.classList.add('on');}
+function closeSheet(){var o=document.getElementById('gSheet');if(o)o.classList.remove('on');}
 function vib(ms){if(navigator.vibrate)try{navigator.vibrate(ms);}catch(e){}}
 function toggleTheme(){ST.theme=ST.theme==='light'?'dark':'light';applyTheme();saveST();}
-function applyTheme(){document.documentElement.setAttribute('data-theme',ST.theme);document.getElementById('themeIcon').textContent=ST.theme==='dark'?'☀️':'🌙';var t=document.getElementById('dmTgl');if(t)t.classList.toggle('on',ST.theme==='dark');var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',ST.theme==='dark'?'#0B120F':'#0E3B2E');}
-function togSec(el){el.closest('.sec').classList.toggle('shut');}
+function applyTheme(){document.documentElement.setAttribute('data-theme',ST.theme);document.getElementById('themeIcon').textContent=ST.theme==='dark'?'☀️':'🌙';var t=document.getElementById('dmTgl');if(t){t.classList.toggle('on',ST.theme==='dark');t.setAttribute('aria-checked',ST.theme==='dark'?'true':'false');}var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',ST.theme==='dark'?'#0B120F':'#0E3B2E');}
+function togSec(el){var sec=el.closest('.sec');sec.classList.toggle('shut');el.setAttribute('aria-expanded',sec.classList.contains('shut')?'false':'true');}
 function setRing(id,pct){var el=document.getElementById(id);if(el)el.style.strokeDashoffset=239*(1-Math.min(100,pct)/100);}
-function goTab(t){ST.tab=t;saveST();
+function goTab(t,sub,anchor){ST.tab=t;saveST();
+  var view=document.getElementById('view-'+t);if(!view)return;
   document.querySelectorAll('.view').forEach(function(e){e.classList.remove('on');});
-  document.getElementById('view-'+t).classList.add('on');
-  document.querySelectorAll('.nav button').forEach(function(e){e.classList.toggle('on',e.getAttribute('data-v')===t);});
+  view.classList.add('on');
+  document.querySelectorAll('.nav button').forEach(function(e){var on=e.getAttribute('data-v')===t;e.classList.toggle('on',on);if(on)e.setAttribute('aria-current','page');else e.removeAttribute('aria-current');});
+  if(sub)goSub(t,sub,true);
   if(t==='daily'){updDaily();updStats();loadPT();renderTB();}
   if(t==='places')updPlaces();
   if(t==='umrah')updRites();
   if(t==='plan')updPlan();
   if(t==='home')renderHome();
-  window.scrollTo({top:0,behavior:'smooth'});}
+  updChip();
+  if(!ST.segNudged&&view.querySelector('.seg')){ST.segNudged=true;saveST();var on=view.querySelector('.seg button.on');if(on)on.classList.add('nudge');}
+  if(anchor){requestAnimationFrame(function(){setTimeout(function(){jumpTo(anchor,true);},30);});}
+  else window.scrollTo({top:0,behavior:'smooth'});}
+/* deep links used by chips in checklists and knowledge bodies (M-05) */
+function goRef(tab,sub,anchor){if(tab==='places')placesReset();goTab(tab,sub||null,anchor||null);}
+function placesReset(){if(cityFilter!=='all')filterCity('all');var sr=document.getElementById('plSearch');if(sr&&sr.value){sr.value='';renderPlaces();}}
+function openPlace(id){var p=PLACES.filter(function(x){return x.id===id;})[0];if(!p)return;placesReset();var el=document.getElementById('pl-'+id);if(el)el.classList.add('open');goTab('places',null,'pl-'+id);}
+function openTour(){placesReset();goTab('places',null,'tourCard');}
+function goPost(enable){if(enable&&!ST.post){ST.post=true;saveST();renderPost();}goTab('more','guide','postCard');}
+function startPost(){goPost(true);toast('🌱 Post-Umrah mode on — 30 days, 3 habits',true);}
+function refChip(it){var q=function(v){return v?'\''+v+'\'':'null';};if(it.place)return '<button class="xchip" onclick="event.stopPropagation();openPlace('+q(it.place)+')">'+(it.goL||'📍 Open')+' →</button>';if(it.go)return '<button class="xchip" onclick="event.stopPropagation();goRef('+q(it.go[0])+','+q(it.go[1])+','+q(it.go[2])+')">'+(it.goL||'Open')+' →</button>';return '';}
 function mkSec(sec,shut,inner,countId){
   var apps='';
   if(sec.apps)apps='<div class="apps">'+sec.apps.map(function(x){var go=x.u?'href="'+x.u+'" target="_blank" rel="noopener"':'href="#" onclick="event.preventDefault();goTab(\''+x.go[0]+'\');goSub(\''+x.go[0]+'\',\''+x.go[1]+'\',true)"';return '<a class="applink" '+go+'><span class="app-i">'+x.i+'</span><span class="app-t"><b>'+x.n+'</b>'+x.d+'</span><span class="app-go">'+(x.u?'Open ↗':'Go →')+'</span></a>';}).join('')+'</div>';
-  return '<div class="sec'+(shut?' shut':'')+'"><div class="sec-hd" onclick="togSec(this)"><div class="sec-ico">'+(sec.ico||'•')+'</div><h2>'+sec.title+(sec.sub?'<small>'+sec.sub+'</small>':'')+'</h2><span class="sec-ct" id="sp-'+sec.id+'"></span><span class="sec-chev">▼</span></div><div class="sec-bd">'+(sec.hn?'<div class="note">'+sec.hn+'</div>':'')+apps+inner+'</div></div>';
+  return '<div class="sec'+(shut?' shut':'')+'"><div class="sec-hd" role="button" tabindex="0" aria-expanded="'+(shut?'false':'true')+'" onclick="togSec(this)"><div class="sec-ico">'+(sec.ico||'•')+'</div><h2>'+sec.title+(sec.sub?'<small>'+sec.sub+'</small>':'')+'</h2><span class="sec-ct" id="sp-'+sec.id+'"></span><span class="sec-chev">▼</span></div><div class="sec-bd">'+(sec.hn?'<div class="note">'+sec.hn+'</div>':'')+apps+inner+'</div></div>';
 }
 
 /* ════════════════════════ PLAN ════════════════════════ */
@@ -47,7 +72,7 @@ function renderPlan(){
   PLAN.forEach(function(sec,i){
     var inner='';
     sec.items.forEach(function(it){
-      inner+='<div class="row" id="pw-'+it.id+'"'+(it.bag?' data-bag="'+it.bag+'"':'')+' onclick="togPlan(\''+it.id+'\')"><span class="tick"></span><div class="row-t"><b>'+it.label+'</b>'+(it.exp?'<div class="x">'+it.exp+'</div>':'')+'</div></div>';
+      inner+='<div class="row" id="pw-'+it.id+'"'+(it.bag?' data-bag="'+it.bag+'"':'')+' role="checkbox" tabindex="0" aria-checked="false" onclick="togPlan(\''+it.id+'\')"><span class="tick"></span><div class="row-t"><b>'+it.label+'</b>'+(it.exp?'<div class="x">'+it.exp+'</div>':'')+refChip(it)+'</div></div>';
     });
     if(sec.id==='pack')inner='<div class="pills sm bagpills" style="margin:6px 0 10px;flex-wrap:wrap"><button class="pill on" onclick="event.stopPropagation();bagFilter(this,\'all\')">All</button><button class="pill" onclick="event.stopPropagation();bagFilter(this,\'ihram\')">🤍 Ihram bag</button><button class="pill" onclick="event.stopPropagation();bagFilter(this,\'carry\')">✈️ Carry-on</button><button class="pill" onclick="event.stopPropagation();bagFilter(this,\'case\')">🧳 Suitcase</button></div>'+inner;
     h+=mkSec(sec,i>0,inner);
@@ -67,7 +92,7 @@ function updPlan(){
   PLAN.forEach(function(sec){
     var sd=0;
     sec.items.forEach(function(it){tot++;var on=!!planChk[it.id];if(on){done++;sd++;}
-      var w=document.getElementById('pw-'+it.id);if(w)w.classList.toggle('done',on);});
+      var w=document.getElementById('pw-'+it.id);if(w){w.classList.toggle('done',on);w.setAttribute('aria-checked',on?'true':'false');}});
     var sp=document.getElementById('sp-'+sec.id);if(sp)sp.textContent=sd+'/'+sec.items.length;
   });
   var pct=tot?Math.round(done/tot*100):0;
@@ -110,7 +135,7 @@ function renderLevels(){
   var h='';
   QUIZ_LEVELS.forEach(function(lv,i){
     var un=qzUnlocked(i),ps=qzPassed(i),best=qzST.best[i];
-    h+='<div class="lvl'+(un?'':' locked')+(ps?' passed':'')+'" onclick="startLevel('+i+')">'
+    h+='<div class="lvl'+(un?'':' locked')+(ps?' passed':'')+'" role="button" tabindex="0"'+(un?'':' aria-disabled="true"')+' aria-label="'+lv.name.replace(/"/g,'')+(ps?', passed '+best+'%':(un?'':', locked'))+'" onclick="startLevel('+i+')">'
       +'<div class="lvl-n">'+(un?lv.icon:'🔒')+'</div>'
       +'<div class="lvl-t"><b>'+lv.name+'</b><small>'+lv.desc+' · '+lv.qs.length+' questions</small></div>'
       +'<div class="lvl-s">'+(ps?'✓ '+best+'%':(best!==undefined?best+'%':(un?'Start →':'Locked')))+'</div></div>';
@@ -134,14 +159,14 @@ function startMistakes(){
 }
 function qzOpts(q){return q.o?q.o:['True','False'];}
 function qzAns(q){return q.o?q.a:(q.a===0?0:1);}
-function qzDots(n){var h='';for(var i=0;i<n;i++){h+='<i class="'+(i<qzHist.length?(qzHist[i]?'f':'w'):'')+'"></i>';}return '<div class="qz-dots">'+h+'</div>';}
+function qzDots(n){var h='';for(var i=0;i<n;i++){h+='<i class="'+(i<qzHist.length?(qzHist[i]?'f':'w'):'')+'"></i>';}return '<div class="qz-dots" role="img" aria-label="Question '+(qzI+1)+' of '+n+'">'+h+'</div>';}
 function renderQz(){
   qzLock=false;
   var q=curQ(),tot=qzTotal();
   var head=qzMode==='mist'?'🔁 Mistake review':QUIZ_LEVELS[qzLevel].icon+' '+QUIZ_LEVELS[qzLevel].name.split(' · ')[0];
   var h='<div class="qz-top"><span>'+head+' · Q'+(qzI+1)+'/'+tot+'</span><span class="qz-exit" onclick="renderLevels()">✕ Exit</span></div>'+qzDots(tot)+'<div class="qz-q">'+q.q+'</div>';
   qzOpts(q).forEach(function(o,i){h+='<button class="qz-o" id="qzo-'+i+'" onclick="answerQz('+i+')">'+(q.o?String.fromCharCode(65+i)+'. ':'')+o+'</button>';});
-  h+='<div id="qzFb"></div>';
+  h+='<div id="qzFb" aria-live="polite"></div>';
   document.getElementById('qzArea').innerHTML=h;
 }
 function answerQz(i){
@@ -188,7 +213,7 @@ function renderRites(){
     var inner='';
     ph.steps.forEach(function(st){
       n++;
-      inner+='<div class="stp" id="rw-'+st.id+'" onclick="togRite(\''+st.id+'\')"><div class="stp-n">'+n+'</div><div class="stp-t"><b>'+st.b+'</b><p>'+st.p+(st.why?' <button class="why" onclick="event.stopPropagation();this.parentNode.nextSibling.classList.toggle(\'on\')">Why?</button>':'')+'</p>'+(st.why?'<div class="whyb">'+st.why+'</div>':'')+(st.dua?'<div class="dua" onclick="event.stopPropagation()"><div class="dua-top"><small>Dua</small><button class="say" data-ar="'+st.dua.ar+'" onclick="speakBtn(this)" aria-label="Play recitation">🔊 Listen</button></div><span class="ar">'+st.dua.ar+'</span><span class="tl">'+st.dua.tl+'</span><span class="tr">'+st.dua.tr+'</span></div>':'')+'</div></div>';
+      inner+='<div class="stp" id="rw-'+st.id+'" role="checkbox" tabindex="0" aria-checked="false" onclick="togRite(\''+st.id+'\')"><div class="stp-n">'+n+'</div><div class="stp-t"><b>'+st.b+'</b><p>'+st.p+(st.why?' <button class="why" onclick="event.stopPropagation();this.parentNode.nextSibling.classList.toggle(\'on\')">Why?</button>':'')+'</p>'+(st.why?'<div class="whyb">'+st.why+'</div>':'')+(st.dua?'<div class="dua tapable" onclick="event.stopPropagation();openRiteDua(\''+st.id+'\')"><div class="dua-top"><small>Dua</small><button class="say" data-ar="'+st.dua.ar+'" onclick="speakBtn(this)" aria-label="Play recitation">🔊 Listen</button></div><span class="ar">'+st.dua.ar+'</span><span class="tl">'+st.dua.tl+'</span><span class="tr">'+st.dua.tr+'</span><span class="enl">⛶ tap to enlarge</span></div>':'')+'</div></div>';
     });
     h+=mkSec(ph,i>0,inner);
   });
@@ -201,11 +226,11 @@ function togRite(id){riteChk[id]=!riteChk[id];save('us-rites',riteChk);vib(15);
   updRites();renderLog();}
 function updRites(){
   var tot=0,done=0;
-  RITES.forEach(function(ph){var sd=0;ph.steps.forEach(function(st){tot++;var on=!!riteChk[st.id];if(on){done++;sd++;}var w=document.getElementById('rw-'+st.id);if(w)w.classList.toggle('done',on);});var sp=document.getElementById('sp-'+ph.id);if(sp)sp.textContent=sd+'/'+ph.steps.length;});
+  RITES.forEach(function(ph){var sd=0;ph.steps.forEach(function(st){tot++;var on=!!riteChk[st.id];if(on){done++;sd++;}var w=document.getElementById('rw-'+st.id);if(w){w.classList.toggle('done',on);w.setAttribute('aria-checked',on?'true':'false');}});var sp=document.getElementById('sp-'+ph.id);if(sp)sp.textContent=sd+'/'+ph.steps.length;});
   var pct=tot?Math.round(done/tot*100):0;
   animPct('ritePct',pct);setRing('riteRing',pct);
   document.getElementById('riteHeroT').textContent=pct>=100?'Taqabbal Allah! 🎉':pct>0?done+' of '+tot+' steps':'Step by step';
-  document.getElementById('riteHeroS').textContent='🕋 Umrahs completed: '+ST.umrahs;
+  document.getElementById('riteHeroS').textContent='🕋 Umrahs completed: '+totalUmrahs()+(ST.umrahsPrev?' (incl. '+ST.umrahsPrev+' before this app)':'');
   renderCnt('tawaf');renderCnt('sai');renderLog();renderUmrahs();updWudu();
 }
 var TAWAF_TIPS=['Wudu first — then start at the Black Stone line: "Bismillahi wallahu akbar", Kaaba on your left.','Round 1 · men walk briskly (raml). Touch the Yamani corner if easy, then "Rabbana atina…"','Round 2 · keep the raml. Any dhikr or dua you love — nothing fixed.','Round 3 · last raml round. Guard your gaze and your tongue in the crowd.','Round 4 · normal pace now. Dua for your parents and those who asked you.','Round 5 · istighfar. Don’t push at the Stone — point and say Allahu Akbar.','Round 6 · salawat on the Prophet ﷺ. Stay close to your group.','Tawaf complete → cover both shoulders, 2 rakahs behind Maqam Ibrahim, then Zamzam.'];
@@ -218,9 +243,11 @@ function renderCnt(k){
   var ring=document.getElementById(k+'Ring');
   if(ring)ring.style.strokeDashoffset=565*(1-v/7);
   document.getElementById(k+'Done').style.display=v>=7?'block':'none';
+  var tp=document.getElementById(k+'Tap');if(tp)tp.textContent=v>=7?'Complete ✓':'tap to count';
+  var rb=document.getElementById(k+'RingBtn');if(rb)rb.setAttribute('aria-label',v>=7?(k==='tawaf'?'Tawaf complete, 7 of 7 rounds':'Sa’i complete, 7 of 7 laps'):(k==='tawaf'?'Count a tawaf round, '+v+' of 7 done':'Count a sa’i lap, '+v+' of 7 done'));
 }
 function togWudu(){ST.wudu=!ST.wudu;saveST();updWudu();if(ST.wudu)toast('💧 Wudu confirmed — bismillah, begin at the Black Stone line');}
-function updWudu(){var c=document.getElementById('wuduCard'),sw=document.getElementById('wuduSw');if(!c)return;c.classList.toggle('ok',!!ST.wudu);sw.classList.toggle('on',!!ST.wudu);}
+function updWudu(){var c=document.getElementById('wuduCard'),sw=document.getElementById('wuduSw');if(!c)return;c.classList.toggle('ok',!!ST.wudu);sw.classList.toggle('on',!!ST.wudu);sw.setAttribute('aria-checked',ST.wudu?'true':'false');}
 function cntr(k,d){
   if(k==='tawaf'&&d>0&&ST.tawaf===0&&!ST.wudu){
     if(confirm('Tawaf requires wudu. Are you in wudu right now?')){ST.wudu=true;saveST();updWudu();}
@@ -249,7 +276,7 @@ function renderDaily(){
   DAILY.forEach(function(sec,i){
     var inner='';
     sec.items.forEach(function(it){
-      inner+='<div class="row" id="dw-'+it.id+'" onclick="togDaily(\''+it.id+'\')"><span class="tick"></span><div class="row-t"><b>'+it.label+'</b>'+(it.exp?'<div class="x">'+it.exp+'</div>':'')+(it.ref?'<div class="rf">'+it.ref+'</div>':'')+'</div><span class="pts">+'+it.pts+'</span></div>';
+      inner+='<div class="row" id="dw-'+it.id+'" role="checkbox" tabindex="0" aria-checked="false" onclick="togDaily(\''+it.id+'\')"><span class="tick"></span><div class="row-t"><b>'+it.label+'</b>'+(it.exp?'<div class="x">'+it.exp+'</div>':'')+(it.ref?'<div class="rf">'+it.ref+'</div>':'')+refChip(it)+'</div><span class="pts">+'+it.pts+'</span></div>';
     });
     h+=mkSec(sec,i>0,inner);
   });
@@ -267,7 +294,7 @@ function updDaily(){renderTB();renderWater();
   document.getElementById('dayDisp').innerHTML='Day '+ST.day+'<small>of '+ST.tripLen+'</small>';
   var d=dailyChk[dayKey()]||{};var tot=0,done=0,pts=0;
   DAILY.forEach(function(sec){var sd=0;sec.items.forEach(function(it){tot++;var on=!!d[it.id];if(on){done++;sd++;pts+=it.pts;}
-    var w=document.getElementById('dw-'+it.id);if(w)w.classList.toggle('done',on);});
+    var w=document.getElementById('dw-'+it.id);if(w){w.classList.toggle('done',on);w.setAttribute('aria-checked',on?'true':'false');}});
     var sp=document.getElementById('sp-'+sec.id);if(sp)sp.textContent=sd+'/'+sec.items.length;});
   var pct=tot?Math.round(done/tot*100):0;
   animPct('dPct',pct);setRing('dRing',pct);
@@ -304,12 +331,12 @@ function updStats(){
   document.getElementById('stAvg').textContent=(logged?Math.round(sum/logged):0)+'%';
   document.getElementById('stBest').textContent=bestD?'Day '+bestD+' ('+best+'%)':'—';
   document.getElementById('stPerf').textContent=perf;
-  document.getElementById('stUmrahs').textContent=ST.umrahs;
+  document.getElementById('stUmrahs').textContent=totalUmrahs();
   var pv=Object.keys(placeVis).filter(function(k){return placeVis[k];}).length;
   document.getElementById('stPlaces').textContent=pv+' / '+PLACES.length;
   renderBadges();
 }
-function setTripLen(v){var n=parseInt(v)||10;n=Math.max(3,Math.min(30,n));ST.tripLen=n;if(ST.day>n)ST.day=n;saveST();document.getElementById('tripLen').value=n;updDaily();updStats();renderItin();}
+function setTripLen(v){var n=parseInt(v)||10;n=Math.max(3,Math.min(30,n));ST.tripLen=n;if(ST.day>n)ST.day=n;saveST();document.getElementById('tripLen').value=n;updDaily();updStats();renderItin();updChip();}
 
 /* ════════════════════════ PLACES ════════════════════════ */
 var cityFilter='all';
@@ -318,7 +345,7 @@ function renderPlaces(){
   var q=(document.getElementById('plSearch')||{}).value||'';q=q.trim().toLowerCase();
   function tourCard(){
     var st=TOUR.stops.map(function(x){return '<span class="stopchip '+x.r+'"><i></i>'+x.n+' · '+x.t+'</span>';}).join('');
-    return '<div class="tour"><div class="tour-h"><span class="tour-i">🚌</span><div><b>Madinah Hop-On Hop-Off — the easy ziyarah</b><small>City Sightseeing · 2 routes · 12 stops · buses every 30 min · 05:30–23:59</small></div></div>'
+    return '<div class="tour" id="tourCard"><div class="tour-h"><span class="tour-i">🚌</span><div><b>Madinah Hop-On Hop-Off — the easy ziyarah</b><small>City Sightseeing · 2 routes · 12 stops · buses every 30 min · 05:30–23:59</small></div></div>'
       +'<p>One 24-hour ticket covers Quba, Qiblatayn, Uhud, the Trench, Baqi’ and the Haram gates with audio commentary in 16 languages — no taxi haggling, wheelchair accessible, free cancellation up to 24 h before. The Red route is the history loop, the Green route circles the Prophet’s Mosque.</p>'
       +'<div class="stops">'+st+'</div>'
       +'<a class="btn gold" style="margin-top:12px;text-align:center;text-decoration:none" href="'+TOUR.url+'" target="_blank" rel="noopener">🎟️ Book the ziyarah bus on city-sightseeing.com →</a>'
@@ -337,7 +364,7 @@ function renderPlaces(){
         var url='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.q);
         var dist=distLbl(p);
         var stop=(p.stop?'<span class="stopbadge '+(p.stop[0]==='R'?'red':'green')+'">🚌 Stop '+p.stop.slice(1)+' · '+(p.stop[0]==='R'?'Red':'Green')+'</span>':'')+(dist?'<span class="distchip">'+dist+'</span>':'');
-        ch+='<div class="place'+(placeVis[p.id]?' vis':'')+(q?' open':'')+'" id="pl-'+p.id+'"><div class="place-h" onclick="this.parentNode.classList.toggle(\'open\')"><div class="place-ico">'+p.i+'</div><div class="place-t"><b>'+p.n+(placeVis[p.id]?' <span class="vtick">✓</span>':'')+'</b>'+stop+'<p>'+p.d+'</p><div class="tip">💡 '+p.tip+'</div></div><span class="place-ch">▾</span></div><div class="place-a"><a href="'+url+'" target="_blank" rel="noopener">🗺️ Open in Maps</a><button onclick="togPlace(\''+p.id+'\')">'+(placeVis[p.id]?'✓ Visited':'Mark visited')+'</button></div></div>';
+        ch+='<div class="place'+(placeVis[p.id]?' vis':'')+(q?' open':'')+'" id="pl-'+p.id+'"><div class="place-h" onclick="this.parentNode.classList.toggle(\'open\')"><div class="place-ico">'+p.i+'</div><div class="place-t"><b>'+p.n+(placeVis[p.id]?' <span class="vtick">✓</span>':'')+'</b>'+stop+'<p>'+p.d+'</p><div class="tip">💡 '+p.tip+'</div></div><span class="place-ch">▾</span></div><div class="place-a"><a href="'+url+'" target="_blank" rel="noopener">🗺️ Open in Maps</a><button onclick="togPlace(\''+p.id+'\')">'+(placeVis[p.id]?'✓ Visited':'Mark visited')+'</button></div>'+(['taneem','jiranah','miqat'].indexOf(p.id)>-1?'<div class="place-a" style="margin-top:8px"><button style="background:var(--gold-soft);color:var(--gold-ink);border-color:transparent" onclick="goTab(\'umrah\',\'steps\')">🤍 Umrah steps — ihram from here</button></div>':'')+'</div>';
       });
     });
     if(!cityAny)return;
@@ -388,13 +415,14 @@ function renderBadges(){
 /* ════════════════════════ DUAS / DATA ════════════════════════ */
 function renderDuas(){
   var h='';
-  DUAS.forEach(function(d){h+='<div class="duacard"><div class="dua-top"><h4 style="margin:0">'+d.t+'</h4><button class="say" data-ar="'+d.ar+'" onclick="speakBtn(this)" aria-label="Play recitation">🔊 Listen</button></div><div class="dua" style="margin:0;background:transparent;border:none;padding:0"><span class="ar">'+d.ar+'</span><span class="tl">'+d.tl+'</span><span class="tr">'+d.tr+'</span><span class="src">'+d.s+'</span></div></div>';});
+  DUAS.forEach(function(d,i){h+='<div class="duacard"><div class="dua-top"><h4 style="margin:0">'+d.t+'</h4><button class="say" data-ar="'+d.ar+'" onclick="speakBtn(this)" aria-label="Play recitation">🔊 Listen</button></div><div class="dua tapable" role="button" tabindex="0" aria-label="Open '+d.t.replace(/"/g,'')+' full screen" style="margin:0;background:transparent;border:none;padding:0" onclick="openDua('+i+')"><span class="ar">'+d.ar+'</span><span class="tl">'+d.tl+'</span><span class="tr">'+d.tr+'</span><span class="src">'+d.s+'</span><span class="enl">⛶ tap to enlarge</span></div></div>';});
   document.getElementById('duaContainer').innerHTML=h;
 }
 function exportData(){
-  var data={settings:ST,plan:planChk,rites:riteChk,daily:dailyChk,places:placeVis,badges:earned,v:2};
+  var ls={};for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&k.indexOf('us-')===0&&k!=='us-ptcache'&&k!=='us-remlast')ls[k]=localStorage.getItem(k);}
+  var data={v:3,exported:new Date().toISOString(),settings:ST,plan:planChk,rites:riteChk,daily:dailyChk,places:placeVis,badges:earned,ls:ls};
   var b=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-  var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='umrah-strivers-backup.json';a.click();
+  var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='umrah-strivers-'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();setTimeout(function(){a.remove();},500);
   toast('📤 Backup exported');
 }
 function importData(ev){
@@ -402,17 +430,27 @@ function importData(ev){
   var r=new FileReader();
   r.onload=function(){try{
     var d=JSON.parse(r.result);
-    if(d.settings)ST=Object.assign(ST,d.settings);
-    planChk=d.plan||{};riteChk=d.rites||{};dailyChk=d.daily||{};placeVis=d.places||{};earned=d.badges||{};
-    saveST();save('us-plan',planChk);save('us-rites',riteChk);save('us-daily',dailyChk);save('us-places',placeVis);save('us-badges',earned);
-    initUI();toast('📥 Backup imported!');
+    if(!d||typeof d!=='object'||(!d.ls&&!d.settings))throw new Error('bad');
+    if(!confirm('Replace all current data with this backup?')){ev.target.value='';return;}
+    if(d.ls&&typeof d.ls==='object'){
+      Object.keys(d.ls).forEach(function(k){if(k.indexOf('us-')===0&&typeof d.ls[k]==='string')localStorage.setItem(k,d.ls[k]);});
+    }else{
+      if(d.settings)ST=Object.assign(ST,d.settings);
+      planChk=d.plan||{};riteChk=d.rites||{};dailyChk=d.daily||{};placeVis=d.places||{};earned=d.badges||{};
+      saveST();save('us-plan',planChk);save('us-rites',riteChk);save('us-daily',dailyChk);save('us-places',placeVis);save('us-badges',earned);
+    }
+    toast('📥 Backup imported — reloading…');setTimeout(function(){location.reload();},600);
   }catch(e){toast('Import failed — invalid file');}};
   r.readAsText(f);ev.target.value='';
 }
 function confirmReset(){
-  if(!confirm('Reset ALL data? This cannot be undone. Export a backup first!'))return;
-  ['us-settings','us-plan','us-rites','us-daily','us-places','us-badges'].forEach(function(k){localStorage.removeItem(k);});
-  location.reload();
+  openSheet('<div class="sheet-h" style="background:linear-gradient(145deg,var(--danger),#7c2d12)">🗑️</div><h3>Reset everything?</h3><p>This wipes every checklist, counter, quiz score, dua list, journal and setting on this device — and the encrypted vault. It cannot be undone.</p><button class="btn" onclick="exportData()">📤 Export backup first</button><button class="btn danger" onclick="doReset()">🗑️ Reset everything</button><button class="btn ghost" onclick="closeSheet()">Cancel</button>');
+}
+function doReset(){
+  var keys=[];for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&k.indexOf('us-')===0)keys.push(k);}
+  keys.forEach(function(k){localStorage.removeItem(k);});
+  try{if(vDB){vDB.close();vDB=null;}indexedDB.deleteDatabase('us-vault');}catch(e){}
+  setTimeout(function(){location.reload();},150);
 }
 
 /* ════════════════════════ HOME ════════════════════════ */
@@ -426,9 +464,13 @@ function renderHome(){
   var d=ST.dep?Math.ceil((new Date(ST.dep+'T00:00:00')-new Date())/86400000):null;
   var phase,cta,pct,lbl,stageNow;
   var pd=postData||{},pc=0;Object.keys(pd).forEach(function(h){pc+=Object.keys(pd[h]||{}).filter(function(k){return pd[h][k];}).length;});
-  if((ST.post&&(d===null||d<=0))||(d!==null&&d<-ST.tripLen)){pct=ST.umrahs?100:0;phase=ST.umrahs?'🕋 '+ST.umrahs+' Umrah'+(ST.umrahs===1?'':'s')+' completed — alhamdulillah':'🧭 Your Umrah journey';cta=['Plan your next Umrah','plan','prep'];lbl=ST.post?'Post-Umrah habits are at the bottom of this page':'Set a new departure date to start again';stageNow=4;}
-  else if(d===null||d>0){var tot=0,done=0;PLAN.forEach(function(sc){sc.items.forEach(function(it){tot++;if(planChk[it.id])done++;});});pct=Math.round(done/tot*100);phase=d===null?'🧭 Planning — set your departure date':'✈️ '+d+' day'+(d===1?'':'s')+' until departure';cta=[pct<100?'Continue preparing':'Study & quiz','plan',pct<100?'prep':'learn'];lbl=done+' of '+tot+' prep items · '+qzPassedCount()+'/'+QUIZ_LEVELS.length+' quiz levels';stageNow=0;}
-  else{pct=dayPct(ST.day)||0;phase='🕋 Day '+ST.day+' of '+ST.tripLen+' in the Haramain';cta=['Log today’s worship','daily','today'];lbl=pct+'% of today’s deeds · '+ST.umrahs+' Umrah'+(ST.umrahs===1?'':'s')+' completed';stageNow=ST.umrahs?2:1;}
+  var tripOver=d!==null&&d<-ST.tripLen,tu=totalUmrahs();
+  if((ST.post&&(d===null||d<=0))||tripOver){pct=ST.post?Math.round(pc/90*100):(tu?100:0);phase=tu?'🕋 '+tu+' Umrah'+(tu===1?'':'s')+' completed — alhamdulillah':'🧭 Your Umrah journey';
+    if(ST.post){cta=['Log today’s habits','more','guide','postCard'];lbl=pc+' habit-day'+(pc===1?'':'s')+' logged of 90 · keep the Haram version of you';}
+    else{cta=['Plan your next Umrah','plan','prep','tlCard'];lbl='Set a new departure date to start again';}
+    stageNow=4;}
+  else if(d===null||d>0){var tot=0,done=0;PLAN.forEach(function(sc){sc.items.forEach(function(it){tot++;if(planChk[it.id])done++;});});pct=Math.round(done/tot*100);phase=d===null?'🧭 Planning — set your departure date':'✈️ '+d+' day'+(d===1?'':'s')+' until departure';cta=[pct<100?'Continue preparing':'Study & quiz','plan',pct<100?'prep':'learn',pct<100?'tlCard':null];lbl=done+' of '+tot+' prep items · '+qzPassedCount()+'/'+QUIZ_LEVELS.length+' quiz levels';stageNow=0;}
+  else{pct=dayPct(ST.day)||0;phase='🕋 Day '+ST.day+' of '+ST.tripLen+' in the Haramain';cta=['Log today’s worship','daily','today'];lbl=pct+'% of today’s deeds · '+tu+' Umrah'+(tu===1?'':'s')+' completed';stageNow=ST.umrahs?2:1;}
   var due=fcDue();var fcIdx0=due.length?due[0]:null;
   var nh=0;[HISTORY,VIRTUES,MADINAH,FIQHQA,KNOW,SCAMS].forEach(function(x){nh+=x.length;});
   var nq=0;QUIZ_LEVELS.forEach(function(l){nq+=l.qs.length;});
@@ -437,35 +479,37 @@ function renderHome(){
     {i:'🕋',t:'During your Umrah',s:'Ihram → Tawaf → Sa’i → Halq',d:'A step-by-step walkthrough with every dua in Arabic, transliteration and audio, and a "Why?" behind each step. Giant tap counters for tawaf and sa’i with a full-screen focus mode so you never lose count, a map of the mataf, and an automatic timeline that becomes a keepsake.',f:['Rites guide','Duas + audio','Tawaf & Sa’i counters','Focus mode','Mataf map','Keepsake card'],go:['umrah','count'],c:'Open the rites guide'},
     {i:'📿',t:'Every day in the Haramain',s:'Make every prayer count',d:'One prayer in the Haram is worth 100,000 — track all five in congregation, tahajjud, Quran, dhikr and extra deeds. Prayer times with reminders, a qibla compass, a tasbih counter, your personal dua list and a water counter, with streaks and achievements.',f:['Daily tracker','Prayer times','Qibla','Tasbih','Dua list','Streaks & badges'],go:['daily','today'],c:'Track today'},
     {i:'📍',t:'Ziyarah with purpose',s:'51 places, Makkah & Madinah',d:'Every sacred and historic site with why it matters, an etiquette tip and one-tap Google Maps. Save your hotel to see walking distances, sort by what’s near you, plan a nearest-first route, and book the Madinah hop-on hop-off bus.',f:['51 sites','Maps & distances','Route planner','Hop-on hop-off'],go:['places',null],c:'Explore places'},
-    {i:'🌱',t:'After you return',s:'Don’t let it fade',d:'A 30-day habit keeper for prayers on time, daily Quran and dhikr, plus a reflections journal — so the person who came back from the Haram stays.',f:['Habit keeper','Reflections'],go:['more','guide'],c:'Keep it alive'}
+    {i:'🌱',t:'After you return',s:'Don’t let it fade',d:'A 30-day habit keeper for prayers on time, daily Quran and dhikr, plus a reflections journal — so the person who came back from the Haram stays.',f:['Habit keeper','Reflections'],go:['more','guide','postCard'],oc:'goPost(true)',c:'Keep it alive'}
   ];
-  var acts=[['🔄','Counters','umrah','count'],['📋','Rites','umrah','steps'],['📿','Tasbih','daily','tools'],['🧭','Qibla','daily','tools'],['📍','Places','places',null],['🤲','Duas','more','duas'],['🃏','Cards','plan','learn'],['🗓️','Itinerary','plan','prep'],['🔐','Vault','plan','prep']];
-  function goStr(g){return 'goTab(\''+g[0]+'\');'+(g[1]?'goSub(\''+g[0]+'\',\''+g[1]+'\',true);':'');}
+  var acts=[['🔄','Counters','umrah','count'],['📋','Rites','umrah','steps'],['📿','Tasbih','daily','tools','tbCard'],['🧭','Qibla','daily','tools','qiblaCard'],['📍','Places','places',null],['🤲','Duas','more','duas'],['🃏','Cards','plan','learn','fcCard'],['🗓️','Itinerary','plan','prep','itinCard'],['🔐','Vault','plan','prep','vaultCard']];
+  function q(v){return v?'\''+v+'\'':'null';}
+  function goStr(g){return 'goTab('+q(g[0])+','+q(g[1])+','+q(g[2])+')';}
   var h='';
   // 1. What this app is
-  h+='<div class="hhero"><div class="hhero-mark">🕋</div><h2>Your complete Umrah companion</h2><p>Everything you need <b>before, during and after</b> Umrah — in one free, private app that works offline in the Haram.</p><div class="trust"><span>✓ Free</span><span>✓ Works offline</span><span>✓ Private — no account</span><span>✓ Every hadith verified</span></div><button class="btn" style="max-width:300px;margin:16px auto 0" onclick="'+goStr([cta[1],cta[2]])+'">'+(d===null&&!ST.umrahs?'Begin your journey →':cta[0]+' →')+'</button>'+(deferPrompt?'<button class="btn ghost" style="max-width:300px;margin:8px auto 0" onclick="installApp()">📲 Install on your phone</button>':(/iPhone|iPad/.test(navigator.userAgent)&&!window.navigator.standalone?'<p style="font-size:.74em;color:var(--ink3);margin-top:10px">📲 On iPhone: tap Share → “Add to Home Screen” to install</p>':''))+'</div>';
+  h+='<div class="hhero"><div class="hhero-mark">🕋</div><h2>Your complete Umrah companion</h2><p>Everything you need <b>before, during and after</b> Umrah — in one free, private app that works offline in the Haram.</p><div class="trust"><span>✓ Free</span><span>✓ Works offline</span><span>✓ Private — no account</span><span>✓ Every hadith verified</span></div><button class="btn" style="max-width:300px;margin:16px auto 0" onclick="'+goStr([cta[1],cta[2],cta[3]])+'">'+(d===null&&!tu?'Begin your journey →':cta[0]+' →')+'</button>'+(deferPrompt?'<button class="btn ghost" style="max-width:300px;margin:8px auto 0" onclick="installApp()">📲 Install on your phone</button>':(/iPhone|iPad/.test(navigator.userAgent)&&!window.navigator.standalone?'<p style="font-size:.74em;color:var(--ink3);margin-top:10px">📲 On iPhone: tap Share → “Add to Home Screen” to install</p>':''))+'</div>';
   // 2. Personal status
-  h+='<div class="hstatus" onclick="'+goStr([cta[1],cta[2]])+'"><div class="hs-t"><small>As-salamu alaykum'+name+' · '+greg+' · '+hij+'</small><b>'+phase+'</b><span>'+lbl+'</span></div><div class="hs-r"><div class="ring-wrap" style="width:64px;height:64px"><svg width="64" height="64" viewBox="0 0 92 92" style="width:64px;height:64px"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="hRing" cx="46" cy="46" r="38"/></svg><div class="ring-num" style="font-size:.9em"><span id="hPct">'+pct+'%</span></div></div><em>'+cta[0]+' →</em></div></div>';
+  h+='<div class="hstatus" role="button" tabindex="0" aria-label="'+cta[0]+'" onclick="'+goStr([cta[1],cta[2],cta[3]])+'"><div class="hs-t"><small>As-salamu alaykum'+name+' · '+greg+' · '+hij+'</small><b>'+phase+'</b><span>'+lbl+'</span>'+(ST.post&&stageNow===4?'<span class="hcta" onclick="event.stopPropagation();goTab(\'plan\',\'prep\',\'tlCard\')">🧳 Plan your next Umrah →</span>':'')+'</div><div class="hs-r"><div class="ring-wrap" style="width:64px;height:64px"><svg width="64" height="64" viewBox="0 0 92 92" style="width:64px;height:64px"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="hRing" cx="46" cy="46" r="38"/></svg><div class="ring-num" style="font-size:.9em"><span id="hPct">'+pct+'%</span></div></div><em>'+cta[0]+' →</em></div></div>';
+  if(tripOver&&!ST.post)h+='<div class="card card-pad hpost" role="button" tabindex="0" aria-label="Start the 30-day habit keeper" onclick="startPost()"><div class="hp-i" style="background:var(--gold-soft)">🌱</div><div class="hp-t"><small>Back home?</small><div>Start the 30-day habit keeper <span>· prayers on time, Quran, dhikr</span></div></div><span class="hp-go">›</span></div>';
+  if(ST.post)h+='<div class="card card-pad hpost" role="button" tabindex="0" aria-label="Open post-Umrah habits" onclick="goPost()"><div class="hp-i" style="background:var(--gold-soft)">🌱</div><div class="hp-t"><small>Post-Umrah mode · on</small><div>'+pc+' habit-days logged of 90 <span>· keep the Haram version of you</span></div></div><span class="hp-go">›</span></div>';
   // 3. Next prayer
-  h+='<div class="card card-pad hprayer" onclick="goTab(\'daily\');goSub(\'daily\',\'today\',true)"><div class="hp-i">🕌</div><div class="hp-t"><small>Next prayer</small><div id="hNext">Loading…</div></div><span class="hp-go">›</span></div>';
+  h+='<div class="card card-pad hprayer" role="button" tabindex="0" aria-label="Prayer times" onclick="goTab(\'daily\',\'today\')"><div class="hp-i">🕌</div><div class="hp-t"><small>Next prayer</small><div id="hNext">Loading…</div></div><span class="hp-go">›</span></div>';
   // 4. Journey stages
   h+='<div class="vh" style="margin-top:8px"><h2 style="font-size:1.35em">How it works — your journey in 5 stages</h2><p>Tap a stage to jump in. The app follows you from your living room to the mataf and back.</p></div>';
-  h+='<div class="stages">'+stages.map(function(st,i){return '<div class="stage'+(i===stageNow?' now':'')+'" onclick="'+goStr(st.go)+'"><div class="stage-n">'+(i+1)+'</div><div class="stage-b"><div class="stage-h"><span class="stage-i">'+st.i+'</span><div><b>'+st.t+'</b><small>'+st.s+'</small></div>'+(i===stageNow?'<span class="nowtag">You are here</span>':'')+'</div><p>'+st.d+'</p><div class="fchips">'+st.f.map(function(f){return '<span>'+f+'</span>';}).join('')+'</div><div class="stage-cta">'+st.c+' →</div></div></div>';}).join('')+'</div>';
+  h+='<div class="stages">'+stages.map(function(st,i){return '<div class="stage'+(i===stageNow?' now':'')+'" role="button" tabindex="0" aria-label="'+st.t+' — '+st.c+'" onclick="'+(st.oc||goStr(st.go))+'"><div class="stage-n">'+(i+1)+'</div><div class="stage-b"><div class="stage-h"><span class="stage-i">'+st.i+'</span><div><b>'+st.t+'</b><small>'+st.s+'</small></div>'+(i===stageNow?'<span class="nowtag">You are here</span>':'')+'</div><p>'+st.d+'</p><div class="fchips">'+st.f.map(function(f){return '<span>'+f+'</span>';}).join('')+'</div><div class="stage-cta">'+st.c+' →</div></div></div>';}).join('')+'</div>';
   // 5. Numbers
   h+='<div class="nums"><div><b>'+PLACES.length+'</b><small>sacred &amp; historic places</small></div><div><b>'+nq+'</b><small>quiz questions in '+QUIZ_LEVELS.length+' levels</small></div><div><b>'+nh+'</b><small>knowledge topics</small></div><div><b>'+DUAS.length+'</b><small>essential duas with audio</small></div></div>';
   // 6. Quick tools
   h+='<div class="vh" style="margin-top:6px"><h2 style="font-size:1.2em">Quick tools</h2></div>';
   h+='<div class="qa-grid">'+acts.map(function(x){return '<button class="qa" onclick="'+goStr([x[2],x[3]])+'"><span>'+x[0]+'</span>'+x[1]+'</button>';}).join('')+'</div>';
-  if(fcIdx0!==null)h+='<div class="card card-pad hfc" onclick="goTab(\'plan\');goSub(\'plan\',\'learn\',true)"><small>🃏 Today’s knowledge card · '+due.length+' due</small><b>'+FC_DECK[fcIdx0].f+'</b><span>Tap to study →</span></div>';
+  if(fcIdx0!==null)h+='<div class="card card-pad hfc" role="button" tabindex="0" aria-label="Study today’s knowledge card" onclick="startFC();goTab(\'plan\',\'learn\',\'fcCard\')"><small>🃏 Today’s knowledge card · '+due.length+' due</small><b>'+FC_DECK[fcIdx0].f+'</b><span>Tap to study →</span></div>';
   h+='<div class="note" style="margin:0 0 12px">'+QUOTES[Math.floor(Date.now()/86400000)%QUOTES.length]+'</div>';
-  if(ST.post)h+='<div class="card card-pad hpost" onclick="goTab(\'more\');goSub(\'more\',\'guide\',true)"><div class="hp-i" style="background:var(--gold-soft)">🌱</div><div class="hp-t"><small>Post-Umrah mode · on</small><div>'+pc+' habit-days logged of 90 <span>· keep the Haram version of you</span></div></div><span class="hp-go">›</span></div>';
   h+='<div class="card card-pad"><h3>Common questions</h3>'
     +'<div class="acc" onclick="this.classList.toggle(\'open\')"><div class="acc-h">Is it really free? <span class="acc-c">▶</span></div><div class="acc-b">Yes — no ads, no subscriptions, no “pro” tier. Built as sadaqah jariyah for the Ummah. If it helps you, share it and make dua for those who built it.</div></div>'
     +'<div class="acc" onclick="this.classList.toggle(\'open\')"><div class="acc-h">Does it work in the Haram without signal? <span class="acc-c">▶</span></div><div class="acc-b">Yes. Open it once with internet and it caches itself; the counters, rites guide, duas, places and your data all work offline. Prayer times cache for the day; the map links need signal.</div></div>'
     +'<div class="acc" onclick="this.classList.toggle(\'open\')"><div class="acc-h">Where is my data stored? <span class="acc-c">▶</span></div><div class="acc-b">Only on your phone. There is no account and no server. Export a backup from Settings before changing phones; the document vault is encrypted with your PIN and cannot be recovered without it.</div></div>'
     +'<div class="acc" onclick="this.classList.toggle(\'open\')"><div class="acc-h">Is the religious content reliable? <span class="acc-c">▶</span></div><div class="acc-b">Every hadith is cited to its collection and was checked against the source text; weak narrations are avoided or marked. It is a study companion, not a fatwa service — ask a scholar for rulings on your situation. Scholar review is pending; corrections are welcome.</div></div>'
     +'</div>';
-  h+='<div class="card card-pad" style="text-align:center"><h3 style="margin-bottom:6px">Made for the Ummah</h3><p style="font-size:.84em;color:var(--ink2);line-height:1.6">Free, no ads, no tracking. The sister app of <a href="https://www.ramadanstrivers.com/" target="_blank" rel="noopener" style="color:var(--brand-2);font-weight:700;text-decoration:none">Ramadan Strivers</a>. Share it with anyone going to Umrah.</p><button class="btn ghost" onclick="shareApp()">📤 Share the app</button></div>';
+  h+='<div class="card card-pad" style="text-align:center"><h3 style="margin-bottom:6px">Made for the Ummah</h3><p style="font-size:.84em;color:var(--ink2);line-height:1.6">Free, no ads, no tracking. The sister app of <a href="https://www.ramadanstrivers.com/" target="_blank" rel="noopener" style="color:var(--brand-2);font-weight:700;text-decoration:none">Ramadan Strivers</a>. Share it with anyone going to Umrah.</p><div style="display:flex;gap:8px;justify-content:center"><button class="btn ghost" style="margin-top:6px" onclick="shareApp()">📤 Share</button><button class="btn ghost" style="margin-top:6px" onclick="showQR()">▦ Show QR</button></div></div>';
   a.innerHTML=h;
   setTimeout(function(){setRing('hRing',pct);},50);
   loadPT();
@@ -484,14 +528,20 @@ function markPrepDay(){var days={};try{days=JSON.parse(localStorage.getItem('us-
 /* ════════════════════════ SWIPE BETWEEN SUB-TABS ════════════════════════ */
 (function(){
   var sx=0,sy=0,ok=false;
-  document.addEventListener('touchstart',function(e){var t=e.target;ok=!(t&&t.closest&&t.closest('.tapring,.tb-btn,input,textarea,.jumps,.stops,.tb-chips,.focus,.sheet-o,.heat,.ph-grid,.fc'));sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
-  document.addEventListener('touchend',function(e){if(!ok)return;var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)<70||Math.abs(dy)>50)return;
+  document.addEventListener('touchstart',function(e){var t=e.target;ok=ST.swipe!==false&&!(t&&t.closest&&t.closest('.tapring,.tb-btn,input,textarea,.jumps,.stops,.tb-chips,.focus,#duaFocus,.sheet-o,.heat,.ph-grid,.fc,.cnt,.wudu,.cnt-acts,.row'));sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
+  document.addEventListener('touchend',function(e){if(!ok)return;var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)<90||Math.abs(dx)<=2.5*Math.abs(dy))return;
     var view=document.querySelector('.view.on');if(!view)return;var btns=view.querySelectorAll('.seg button');if(!btns.length)return;
     var cur=0;btns.forEach(function(b,i){if(b.classList.contains('on'))cur=i;});
     var nx=dx<0?cur+1:cur-1;if(nx<0||nx>=btns.length)return;
     goSub(view.id.replace('view-',''),btns[nx].getAttribute('data-sub'));
+    if(!ST.swipeHint){ST.swipeHint=true;saveST();toast('Tip: swipe left/right to move between sections');}
   },{passive:true});
 })();
+
+function togSwipe(){ST.swipe=ST.swipe===false;saveST();updSwipeSw();}
+function updSwipeSw(){var sw=document.getElementById('swipeSw');if(!sw)return;var on=ST.swipe!==false;sw.classList.toggle('on',on);sw.setAttribute('aria-checked',on?'true':'false');}
+/* keyboard: Enter/Space activates role=button/checkbox/switch divs (M-14) */
+document.addEventListener('keydown',function(e){if(e.key!=='Enter'&&e.key!==' ')return;var t=e.target;if(!t||t.tagName==='BUTTON'||t.tagName==='A'||t.tagName==='INPUT'||t.tagName==='TEXTAREA')return;var r=t.getAttribute&&t.getAttribute('role');if(r==='button'||r==='checkbox'||r==='switch'){e.preventDefault();t.click();}});
 
 /* ════════════════════════ FOCUS MODE ════════════════════════ */
 var focusKey='tawaf',wakeLock=null;
@@ -504,7 +554,23 @@ function enterFocus(k){
 }
 function exitFocus(){document.getElementById('focus').classList.remove('on');document.body.style.overflow='';if(wakeLock){wakeLock.release().catch(function(){});wakeLock=null;}}
 function focusTap(){cntr(focusKey,1);}
-document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible'&&document.getElementById('focus').classList.contains('on')&&'wakeLock' in navigator){navigator.wakeLock.request('screen').then(function(w){wakeLock=w;}).catch(function(){});}});
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible'&&(document.getElementById('focus').classList.contains('on')||document.getElementById('duaFocus').classList.contains('on'))&&'wakeLock' in navigator){navigator.wakeLock.request('screen').then(function(w){wakeLock=w;}).catch(function(){});}});
+
+/* ════════════════════════ DUA READER (full-screen, M-11) ════════════════════════ */
+var dfList=[],dfIdx=0;
+function openDua(i){dfList=DUAS;dfIdx=i;renderDF();}
+function openRiteDua(stepId){var d=null,title='';RITES.forEach(function(ph){ph.steps.forEach(function(st){if(st.id===stepId&&st.dua){d=st.dua;title=st.b;}});});if(!d)return;dfList=[{t:title,ar:d.ar,tl:d.tl,tr:d.tr,s:d.s||''}];dfIdx=0;renderDF();}
+function renderDF(){
+  var d=dfList[dfIdx];if(!d)return;
+  document.getElementById('dfTitle').textContent='🤲 '+d.t;document.getElementById('dfAr').textContent=d.ar;document.getElementById('dfTl').textContent=d.tl||'';document.getElementById('dfTr').textContent=d.tr||'';document.getElementById('dfSrc').textContent=d.s||'';
+  document.getElementById('dfSay').setAttribute('data-ar',d.ar);
+  var multi=dfList.length>1;document.getElementById('dfPrev').hidden=!multi;document.getElementById('dfNext').hidden=!multi;
+  document.getElementById('dfPrev').disabled=dfIdx===0;document.getElementById('dfNext').disabled=dfIdx>=dfList.length-1;
+  var f=document.getElementById('duaFocus');if(!f.classList.contains('on')){f.classList.add('on');document.body.style.overflow='hidden';if('wakeLock' in navigator){navigator.wakeLock.request('screen').then(function(w){wakeLock=w;}).catch(function(){});}}
+  f.querySelector('.df-body').scrollTop=0;vib(8);
+}
+function duaNav(d){var n=dfIdx+d;if(n<0||n>=dfList.length)return;dfIdx=n;renderDF();}
+function closeDua(){document.getElementById('duaFocus').classList.remove('on');document.body.style.overflow='';try{speechSynthesis.cancel();}catch(e){}if(wakeLock&&!document.getElementById('focus').classList.contains('on')){wakeLock.release().catch(function(){});wakeLock=null;}}
 
 /* ════════════════════════ UMRAH TIMELINE & KEEPSAKE ════════════════════════ */
 function renderLog(){
@@ -520,7 +586,7 @@ function renderUmrahs(){
   var a=document.getElementById('umrahsArea');if(!a)return;
   var hist=[];try{hist=JSON.parse(localStorage.getItem('us-umrahlog')||'[]');}catch(e){}
   if(!hist.length){a.innerHTML='<p style="font-size:.82em;color:var(--ink3)">No Umrah recorded yet — when you tap "Record completed Umrah", it appears here with a keepsake card.</p>';return;}
-  a.innerHTML=hist.slice().reverse().map(function(u){var d=new Date(u.log.done||Date.now());return '<div class="lg on"><span class="lg-i">🕋</span><span class="lg-t">Umrah #'+u.n+' <em>'+d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})+'</em></span><button class="chip-btn" onclick="makeKeepsake('+u.n+')">🎴 Keepsake</button></div>';}).join('');
+  a.innerHTML=(ST.umrahsPrev?'<p style="font-size:.78em;color:var(--ink2);margin-bottom:6px">🔁 '+ST.umrahsPrev+' Umrah'+(ST.umrahsPrev===1?'':'s')+' before this app, alhamdulillah.</p>':'')+hist.slice().reverse().map(function(u){var d=new Date(u.log.done||Date.now());return '<div class="lg on"><span class="lg-i">🕋</span><span class="lg-t">Umrah #'+(u.n+(ST.umrahsPrev||0))+' <em>'+d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})+'</em></span><button class="chip-btn" onclick="makeKeepsake('+u.n+')">🎴 Keepsake</button></div>';}).join('');
 }
 function makeKeepsake(no){
   var hist=[];try{hist=JSON.parse(localStorage.getItem('us-umrahlog')||'[]');}catch(e){}
@@ -529,7 +595,7 @@ function makeKeepsake(no){
   var g=x.createLinearGradient(0,0,1080,1350);g.addColorStop(0,'#0E3B2E');g.addColorStop(1,'#13402F');x.fillStyle=g;x.fillRect(0,0,1080,1350);
   x.strokeStyle='#D9B45E';x.lineWidth=6;x.strokeRect(50,50,980,1250);
   x.textAlign='center';x.font='140px serif';x.fillText('🕋',540,300);
-  x.font='700 40px Georgia,serif';x.fillStyle='#D9B45E';x.fillText('MY UMRAH · #'+u.n,540,400);
+  x.font='700 40px Georgia,serif';x.fillStyle='#D9B45E';x.fillText('MY UMRAH · #'+(u.n+(ST.umrahsPrev||0)),540,400);
   x.font='700 64px Georgia,serif';x.fillStyle='#fff';x.fillText(ST.name||'A guest of Allah',540,500);
   x.font='30px Georgia,serif';x.fillStyle='rgba(255,255,255,.75)';x.fillText(new Date(lg.done||Date.now()).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}),540,555);
   var y=680;x.textAlign='left';x.font='32px Georgia,serif';
@@ -539,8 +605,25 @@ function makeKeepsake(no){
   if(lg.ihram&&lg.halq){x.fillStyle='#D9B45E';x.font='700 34px Georgia,serif';x.textAlign='center';x.fillText('Ihram to halq: '+fmtDur(lg.halq-lg.ihram),540,y+40);}
   x.textAlign='center';x.font='italic 30px Georgia,serif';x.fillStyle='#EFD494';x.fillText('"Umrah to Umrah is an expiation for what is between them."',540,1140);
   x.font='24px Georgia,serif';x.fillStyle='rgba(255,255,255,.55)';x.fillText('Bukhari 1773 · umrah-strivers.vercel.app',540,1190);
-  var a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='my-umrah-'+u.n+'.png';a.click();toast('🎴 Keepsake saved',true);
+  exportImage(c,'my-umrah-'+u.n+'.png','My Umrah keepsake');
 }
+/* ════════════════════════ IMAGE EXPORT (share sheet → in-app preview, M-07) ════════════════════════ */
+var imgExp=null;
+function inAppBrowser(){var ua=navigator.userAgent||'';return /FBAN|FBAV|Instagram|Line\/|Twitter|; wv\)|WebView/i.test(ua);}
+function exportImage(c,filename,title){
+  var url=c.toDataURL('image/png');imgExp={url:url,name:filename,title:title};
+  var canDl=!window.navigator.standalone&&!inAppBrowser();
+  var show=function(){openSheet('<div class="sheet-h">🖼️</div><h3>'+title+'</h3><p>'+(canDl?'Press and hold the image to save it to Photos, or download it.':'Press and hold the image to save it to Photos.')+'</p><img src="'+url+'" alt="'+title+'">'+(canDl?'<button class="btn" onclick="dlImage()">⬇️ Download</button>':'')+'<button class="btn ghost" onclick="closeSheet()">Close</button>');};
+  var done=function(){if(!c.toBlob){show();return;}
+    c.toBlob(function(blob){
+      var file=null;try{file=new File([blob],filename,{type:'image/png'});}catch(e){}
+      if(file&&navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){
+        navigator.share({files:[file],title:title}).then(function(){toast('✅ Shared — '+title,true);}).catch(function(err){if(err&&err.name==='AbortError')return;show();});
+      }else show();
+    },'image/png');};
+  done();
+}
+function dlImage(){if(!imgExp)return;var a=document.createElement('a');a.href=imgExp.url;a.download=imgExp.name;document.body.appendChild(a);a.click();setTimeout(function(){a.remove();},500);toast('⬇️ '+imgExp.title+' downloaded',true);}
 
 /* ════════════════════════ INTENTION ════════════════════════ */
 function saveNiyyah(){
@@ -569,7 +652,7 @@ function renderTimeline(){
   soon.sort(function(x,y){return y.it.wk-x.it.wk;});
   var tot=over.length+now.length+soon.length;
   sub.textContent=d+' days to go · '+tot+' items left'+(over.length?' · '+over.length+' overdue':'');
-  function row(o,cls,lbl){return '<div class="tli" onclick="togPlan(\''+o.it.id+'\')"><span class="tick"></span><div class="tli-t">'+o.it.label+'<small>'+o.sec.title+' · ideally '+(o.it.wk>=1?o.it.wk+' week'+(o.it.wk>1?'s':''):'days')+' before</small></div><span class="tli-when '+cls+'">'+lbl+'</span></div>';}
+  function row(o,cls,lbl){return '<div class="tli" role="checkbox" tabindex="0" aria-checked="false" onclick="togPlan(\''+o.it.id+'\')"><span class="tick"></span><div class="tli-t">'+o.it.label+'<small>'+o.sec.title+' · ideally '+(o.it.wk>=1?o.it.wk+' week'+(o.it.wk>1?'s':''):'days')+' before</small></div><span class="tli-when '+cls+'">'+lbl+'</span></div>';}
   var h='';
   if(over.length)h+='<div class="tli-h">Overdue — do these first</div>'+over.map(function(o){return row(o,'over','overdue');}).join('');
   if(now.length)h+='<div class="tli-h">This week</div>'+now.map(function(o){return row(o,'now','this week');}).join('');
@@ -580,7 +663,7 @@ function renderTimeline(){
 function renderCatTiles(){
   var a=document.getElementById('catTiles');if(!a)return;
   var ico={docs:'🛂',pack:'🧳',health:'🩺',knowledge:'🧠'},lbl={docs:'Docs',pack:'Packing',health:'Health',knowledge:'Knowledge'};
-  a.innerHTML=PLAN.map(function(sec){var t=sec.items.length,d=sec.items.filter(function(i){return planChk[i.id];}).length,p=Math.round(d/t*100);return '<div class="st'+(p===100?' on':'')+'" onclick="jumpTo(\'planContainer\')"><div class="i">'+ico[sec.id]+'</div><div class="n" style="font-size:1.1em">'+p+'%</div><div class="l">'+lbl[sec.id]+'</div><div class="mini"><i style="width:'+p+'%"></i></div></div>';}).join('');
+  a.innerHTML=PLAN.map(function(sec){var t=sec.items.length,d=sec.items.filter(function(i){return planChk[i.id];}).length,p=Math.round(d/t*100);return '<div class="st'+(p===100?' on':'')+'" role="button" tabindex="0" aria-label="'+lbl[sec.id]+' '+p+'% — open checklist" onclick="jumpTo(\'planContainer\')"><div class="i">'+ico[sec.id]+'</div><div class="n" style="font-size:1.1em">'+p+'%</div><div class="l">'+lbl[sec.id]+'</div><div class="mini"><i style="width:'+p+'%"></i></div></div>';}).join('');
 }
 function renderWeather(){
   var w=document.getElementById('cdW');if(!w)return;
@@ -637,8 +720,12 @@ function renderItin(){
   if(it.first==='makkah'){push(MK,mk,'Makkah');push(MD,mad,'Madinah');}else{push(MD,mad,'Madinah');days.push({city:'Makkah',e:['🚄','Train to Makkah · ihram at Masjid al-Miqat (Abyar Ali) · Umrah on arrival']});push(MK.slice(1),mk-1,'Makkah');}
   if(days.length){var last=days[days.length-1];last.e=[last.city==='Makkah'?'🕋':'🕌',last.city==='Makkah'?'Farewell tawaf (tawaf al-wada’) · last dua at the Multazam · depart':'Last salam to the Prophet ﷺ · depart'];}
   var base=ST.dep?new Date(ST.dep+'T00:00:00'):null;
-  a.innerHTML=days.map(function(d,idx){var dt=base?new Date(base.getTime()+idx*86400000).toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'}):'';return '<div class="it"><div class="it-d"><b>Day '+(idx+1)+'</b><small>'+(dt||d.city)+'</small></div><div class="it-t"><span class="it-c">'+(d.city==='Makkah'?'🕋':'🕌')+' '+d.city+'</span>'+d.e[0]+' '+d.e[1]+'</div></div>';}).join('')+'<p style="font-size:.72em;color:var(--ink3);margin-top:8px">A suggestion, not a rule — worship comes first; drop ziyarah if you are tired. Adjust the day split above.</p>';
+  a.innerHTML=days.map(function(d,idx){var dt=base?new Date(base.getTime()+idx*86400000).toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'}):'';return '<div class="it"><div class="it-d"><b>Day '+(idx+1)+'</b><small>'+(dt||d.city)+'</small></div><div class="it-t"><span class="it-c">'+(d.city==='Makkah'?'🕋':'🕌')+' '+d.city+'</span>'+d.e[0]+' '+linkPlaces(d.e[1])+'</div></div>';}).join('')+'<p style="font-size:.72em;color:var(--ink3);margin-top:8px">A suggestion, not a rule — worship comes first; drop ziyarah if you are tired. Adjust the day split above.</p>';
 }
+
+var ITIN_PLACES={'Tan’eem':'taneem','Ji’ranah':'jiranah','Quba Avenue':'qubasq','Quba':'quba','Uhud':'uhud','Rawdah':'rawdah','Abyar Ali':'miqat','Hira':'hira','Arafat':'arafat','Muzdalifah':'muzdalifah','Mina':'mina','Thawr':'thawr','Baqi’':'baqi','Qiblatayn':'qiblatain','Trench':'khandaq','Hijaz Railway':'hijazrail','Masjid al-Jinn':'jinn','Jannat al-Mu’alla':'mualla','Masjid al-Ijabah':'ijabah','Clock Tower museum':'clock','Quran & Seerah museums':'quranmuseum','Hijr Isma’il':'hijr','Zamzam':'zamzam'};
+var ITIN_RE=new RegExp(Object.keys(ITIN_PLACES).sort(function(a,b){return b.length-a.length;}).map(function(k){return k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}).join('|'),'g');
+function linkPlaces(str){return str.replace(ITIN_RE,function(m){return '<span class="pl-link" onclick="openPlace(\''+ITIN_PLACES[m]+'\')">'+m+'</span>';});}
 
 /* ════════════════════════ SHARE PROGRESS CARD ════════════════════════ */
 function shareCard(){
@@ -653,7 +740,7 @@ function shareCard(){
   var tiles=[[ST.umrahs,'Umrahs'],[(logged?Math.round(sum/logged):0)+'%','avg. daily deeds'],[pv,'places visited'],[tb,'dhikr counted'],[streakOf('fajr'),'Fajr streak'],[logged,'days logged']];
   tiles.forEach(function(t,i){var cx=230+(i%3)*310,cy=560+Math.floor(i/3)*230;x.fillStyle='rgba(255,255,255,.08)';x.beginPath();x.roundRect(cx-130,cy-90,260,180,28);x.fill();x.fillStyle='#EFD494';x.font='700 64px Georgia,serif';x.fillText(String(t[0]),cx,cy+10);x.fillStyle='rgba(255,255,255,.7)';x.font='24px Inter,sans-serif';x.fillText(t[1],cx,cy+55);});
   x.fillStyle='rgba(255,255,255,.5)';x.font='24px Georgia,serif';x.fillText('Make dua for me · umrah-strivers.vercel.app',540,1010);
-  var a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='umrah-progress.png';a.click();toast('📸 Progress card saved',true);
+  exportImage(c,'umrah-progress.png','My progress card');
 }
 
 /* ════════════════════════ DOCUMENT VAULT (AES-GCM, IndexedDB) ════════════════════════ */
@@ -720,12 +807,21 @@ function planRoute(city){
 }
 
 /* ════════════════════════ HELPERS ════════════════════════ */
-function jumpTo(id){var el=document.getElementById(id);if(!el)return;var y=el.getBoundingClientRect().top+window.scrollY-118;window.scrollTo({top:y,behavior:'smooth'});vib(8);}
+function jumpTo(id,quiet){var el=document.getElementById(id);if(!el)return;var y=el.getBoundingClientRect().top+window.scrollY-118;window.scrollTo({top:Math.max(0,y),behavior:'smooth'});if(!quiet)vib(8);}
 function shareApp(){
-  var data={title:'Umrah Strivers',text:'Plan, learn, perform & track your Umrah — rites walkthrough, tawaf counter, prayer times, ziyarah places & a knowledge quiz. Free, offline, private.',url:'https://umrah-strivers.vercel.app/'};
+  var data={title:'Umrah Strivers',text:'Plan, learn, perform & track your Umrah — rites walkthrough, tawaf counter, prayer times, ziyarah places & a knowledge quiz. Free, offline, private.',url:APP_URL};
+  if(ST.dep){var dt=new Date(ST.dep+'T00:00:00').toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});data.url=APP_URL+'?dep='+ST.dep;data.text='We fly on '+dt+'. Install Umrah Strivers (free, offline, no account): 1) open the link and Add to Home Screen, 2) set the departure date to '+dt+', 3) do the Prepare checklist and pass Quiz levels 1–3 before we go.';}
   if(navigator.share){navigator.share(data).catch(function(){});}
-  else if(navigator.clipboard){navigator.clipboard.writeText(data.url).then(function(){toast('🔗 Link copied — share it with your group');});}
-  else toast('umrah-strivers.vercel.app');
+  else if(navigator.clipboard){navigator.clipboard.writeText(data.text+' '+data.url).then(function(){toast('🔗 Link copied — share it with your group');}).catch(function(){toast(data.url);});}
+  else toast(data.url);
+}
+function showQR(){document.getElementById('qrShow').classList.add('on');vib(8);}
+/* group link: ?dep=YYYY-MM-DD pre-sets the departure date on first open */
+function applyDepLink(){
+  var m=/[?&]dep=(\d{4}-\d{2}-\d{2})/.exec(location.search||'');if(!m)return;
+  var dt=new Date(m[1]+'T00:00:00');
+  if(!isNaN(dt)&&dt>new Date()&&!ST.dep){ST.dep=m[1];ST.onboarded=true;ST.stage=ST.stage||'plan';ST.sub=Object.assign(ST.sub||{},{plan:'prep'});ST.tab='plan';saveST();setTimeout(function(){toast('✈️ Departure set to '+dt.toLocaleDateString('en-GB',{day:'numeric',month:'long'})+' from your group’s link',true);},600);}
+  try{history.replaceState(null,'',location.pathname);}catch(e){}
 }
 
 /* ════════════════════════ SUB-NAV ════════════════════════ */
@@ -750,29 +846,68 @@ function applySubs(){
 /* ════════════════════════ JOURNEY CHIP ════════════════════════ */
 function updChip(){
   var c=document.getElementById('jChip');if(!c)return;
-  var txt='🧭 Plan',go='plan';
-  if(ST.post){txt='🌱 Post-Umrah';go='more';}
+  var txt='🧭 Plan',go=['plan','prep',null],fn=null;
+  if(ST.post){txt='🌱 Post-Umrah';fn=function(){goPost();};}
   else if(ST.dep){
     var d=Math.ceil((new Date(ST.dep+'T00:00:00')-new Date())/86400000);
-    if(d>0){txt='✈️ '+d+' day'+(d===1?'':'s');go='plan';}
-    else if(d===0){txt='🛫 Today';go='umrah';}
-    else{txt='🕋 Day '+ST.day+' / '+ST.tripLen;go='daily';}
+    if(d>0){txt='✈️ '+d+' day'+(d===1?'':'s');go=['plan','prep','tlCard'];}
+    else if(d===0){txt='🛫 Today';go=['umrah','count',null];}
+    else if(d<-ST.tripLen){txt='🌱 After Umrah';fn=function(){goPost();};}
+    else{txt='🕋 Day '+ST.day+' / '+ST.tripLen;go=['daily','today',null];}
   }
-  c.textContent=txt;c.onclick=function(){goTab(go);};
+  c.textContent=txt;c.onclick=fn||function(){goTab(go[0],go[1],go[2]);};
+  var sl=document.getElementById('stageLbl');if(sl){var names={plan:'Planning my trip',soon:'Flying soon',now:'In Makkah / Madinah',back:'Returned',before:'Been before'};sl.textContent=(ST.stage&&names[ST.stage]?'Now: '+names[ST.stage]+' · ':'')+'re-declare where you are — nothing is reset';}
 }
 
 /* ════════════════════════ ONBOARDING ════════════════════════ */
-function showOnboard(){var o=document.getElementById('obSheet');if(o)o.classList.add('on');}
+var obStage=null;
+function showOnboard(){var o=document.getElementById('obSheet');if(!o)return;document.getElementById('obStep1').hidden=false;document.getElementById('obStep2').hidden=true;var n=document.getElementById('obName');if(n)n.value=ST.name||'';applyText();o.classList.add('on');}
+function closeOnboard(){var o=document.getElementById('obSheet');if(!o)return;o.classList.remove('on');if(!ST.onboarded){ST.onboarded=true;saveST();}}
+function obNum(id,lbl,val,min,max,hint){return '<div class="setrow"><div><b>'+lbl+'</b>'+(hint?'<small>'+hint+'</small>':'')+'</div><input type="number" class="numin" id="'+id+'" value="'+val+'" min="'+min+'" max="'+max+'" aria-label="'+lbl+'"></div>';}
 function chooseStage(st){
   var nm=(document.getElementById('obName').value||'').trim();if(nm)ST.name=nm;
-  ST.onboarded=true;
-  if(st==='plan'){ST.tab='home';ST.sub=Object.assign(ST.sub||{},{plan:'prep'});}
-  if(st==='soon'){ST.tab='plan';ST.sub=Object.assign(ST.sub||{},{plan:'quiz'});}
-  if(st==='now'){ST.tab='umrah';ST.sub=Object.assign(ST.sub||{},{umrah:'count'});if(!ST.dep){var d=new Date();d.setDate(d.getDate()-1);ST.dep=d.toISOString().slice(0,10);}}
-  if(st==='back'){ST.tab='more';ST.post=true;ST.sub=Object.assign(ST.sub||{},{more:'guide'});}
+  ST.onboarded=true;ST.stage=st;obStage=st;saveST();
+  var s2=document.getElementById('obStep2'),h='';
+  var today=new Date();today.setHours(0,0,0,0);
+  if(st==='plan'||st==='soon'){
+    h='<div class="sheet-h">✈️</div><h3>When do you fly?</h3><p>Your departure date drives the countdown, the dated to-do timeline and the itinerary. You can change it any time in Plan › Prepare.</p><input type="date" class="srch" id="obDep" value="'+(ST.dep||'')+'" aria-label="Departure date">';
+  }else if(st==='now'){
+    var cur=ST.city||'Makkah';
+    h='<div class="sheet-h">🕋</div><h3>Where are you today?</h3><p>So the prayer times, the day counter and the trip heatmap start in the right place.</p><div class="pills sm" style="justify-content:center;margin-bottom:10px"><button class="pill'+(cur==='Makkah'?' on':'')+'" id="obMk" onclick="obCity(\'Makkah\')">🕋 Makkah</button><button class="pill'+(cur==='Madinah'?' on':'')+'" id="obMd" onclick="obCity(\'Madinah\')">🕌 Madinah</button></div>'+obNum('obDay','Which day of your trip?',ST.day||1,1,30,'Day 1 = the day you arrived')+obNum('obLen','How many days in total?',ST.tripLen||10,3,30,'Both cities together');
+  }else if(st==='before'){
+    h='<div class="sheet-h">🔁</div><h3>Alhamdulillah — again!</h3><p>Umrahs you completed before using this app are counted in your totals (badges count only what this app records).</p>'+obNum('obPrev','How many Umrahs so far?',ST.umrahsPrev||1,0,99,'Before this trip');
+  }
+  if(!h){obFinish();return;}
+  h+='<button class="btn" onclick="obApply()">Continue →</button><button class="btn ghost" onclick="obFinish()">Skip</button>';
+  s2.innerHTML=h;document.getElementById('obStep1').hidden=true;s2.hidden=false;
+}
+function obCity(c){ST.city=c;saveST();document.getElementById('obMk').classList.toggle('on',c==='Makkah');document.getElementById('obMd').classList.toggle('on',c==='Madinah');var cm=document.getElementById('cityMakkah'),cd=document.getElementById('cityMadinah');if(cm){cm.classList.toggle('on',c==='Makkah');cd.classList.toggle('on',c==='Madinah');}}
+function obApply(){
+  var st=obStage;
+  if(st==='plan'||st==='soon'){var v=(document.getElementById('obDep')||{}).value;if(v)setDep(v);}
+  if(st==='now'){
+    var len=parseInt((document.getElementById('obLen')||{}).value)||ST.tripLen||10;len=Math.max(3,Math.min(30,len));
+    var day=parseInt((document.getElementById('obDay')||{}).value)||1;day=Math.max(1,Math.min(len,day));
+    ST.tripLen=len;ST.day=day;var t=document.getElementById('tripLen');if(t)t.value=len;
+    var d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-(day-1));ST.dep=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
+    saveST();updDaily();updStats();renderItin();updCountdown();
+  }
+  if(st==='before'){var p=parseInt((document.getElementById('obPrev')||{}).value);ST.umrahsPrev=Math.max(0,Math.min(99,isNaN(p)?0:p));saveST();updRites();updStats();}
+  obFinish();
+}
+function obFinish(){
+  var st=obStage,nm=ST.name;
+  if(st==='now'&&!ST.dep){var d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-((ST.day||1)-1));ST.dep=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
+  if(st==='back')ST.post=true;
   saveST();
   document.getElementById('obSheet').classList.remove('on');
-  applySubs();renderPost();updChip();updCountdown();goTab(ST.tab);
+  renderPost();updChip();updCountdown();
+  if(st==='plan')goTab('plan','prep','tlCard');
+  else if(st==='soon')goTab('plan','learn');
+  else if(st==='now')goTab('umrah','count');
+  else if(st==='back')goPost(true);
+  else if(st==='before')goTab('plan','prep','tlCard');
+  else goTab('home');
   toast(nm?'Welcome, '+nm+' 🕋':'Welcome 🕋');vib([30,40,60]);
 }
 
@@ -801,10 +936,12 @@ function animPct(id,to){
 
 /* ════════════════════════ CERTIFICATE ════════════════════════ */
 function makeCert(){
-  var name=ST.name||prompt('Name to print on the certificate:','');
-  if(name===null)return;
-  name=(name||'A Striving Pilgrim').trim()||'A Striving Pilgrim';
-  ST.name=name;saveST();
+  openSheet('<div class="sheet-h">🎖️</div><h3>Your certificate</h3><p>The name printed on your Certificate of Knowledge.</p><input class="srch" id="certName" value="'+(ST.name||'').replace(/"/g,'&quot;')+'" placeholder="Your name" aria-label="Name on certificate" onkeydown="if(event.key===\'Enter\')makeCertGo()"><button class="btn gold" onclick="makeCertGo()">🎖️ Make certificate</button><button class="btn ghost" onclick="closeSheet()">Cancel</button>');
+  setTimeout(function(){var i=document.getElementById('certName');if(i)i.focus();},300);
+}
+function makeCertGo(){
+  var name=((document.getElementById('certName')||{}).value||'').trim()||'A Striving Pilgrim';
+  ST.name=name;saveST();var ni=document.getElementById('nameIn');if(ni)ni.value=name;
   var c=document.createElement('canvas');c.width=1080;c.height=1350;
   var x=c.getContext('2d');
   var g=x.createLinearGradient(0,0,1080,1350);g.addColorStop(0,'#0E3B2E');g.addColorStop(.6,'#0B2E24');g.addColorStop(1,'#13402F');
@@ -829,8 +966,7 @@ function makeCert(){
   x.font='26px Georgia,serif';x.fillStyle='rgba(255,255,255,.6)';
   x.fillText(new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}),540,1170);
   x.fillText('umrah-strivers.vercel.app',540,1215);
-  var a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='umrah-knowledge-certificate.png';a.click();
-  toast('🎖️ Certificate downloaded — share it & inspire someone!',true);
+  exportImage(c,'umrah-knowledge-certificate.png','Certificate of Knowledge');
 }
 
 /* ════════════════════════ FLASHCARDS ════════════════════════ */
@@ -858,7 +994,7 @@ function renderFC(){
   }
   var i=fcQueue[fcIdx],c=FC_DECK[i];
   area.innerHTML='<div class="fc-prog">Card '+(fcIdx+1)+' / '+fcQueue.length+'</div>'
-   +'<div class="fc" id="fcCard" onclick="this.classList.toggle(\'flip\')"><div class="fc-in">'
+   +'<div class="fc" id="fcFlip" role="button" tabindex="0" aria-label="Flip the card" onclick="this.classList.toggle(\'flip\')"><div class="fc-in">'
    +'<div class="fc-face fc-front"><div class="t">'+c.f+'</div><div class="hint">Tap to reveal</div></div>'
    +'<div class="fc-face fc-back">'+c.b+'</div>'
    +'</div></div>'
@@ -908,7 +1044,7 @@ function nextKQ(){
 
 /* ════════════════════════ AUDIO (dua recitation) ════════════════════════ */
 function speakBtn(el){
-  if(event)event.stopPropagation();
+  if(window.event)window.event.stopPropagation();
   try{
     if(window.speechSynthesis.speaking){speechSynthesis.cancel();return;}
     var u=new SpeechSynthesisUtterance(el.getAttribute('data-ar'));
@@ -926,7 +1062,7 @@ function togPost(){ST.post=!ST.post;saveST();renderPost();updChip();}
 function renderPost(){
   var sw=document.getElementById('postSw'),area=document.getElementById('postArea');
   if(!sw)return;
-  sw.classList.toggle('on',!!ST.post);
+  sw.classList.toggle('on',!!ST.post);sw.setAttribute('aria-checked',ST.post?'true':'false');
   if(!ST.post){area.innerHTML='';return;}
   try{postData=JSON.parse(localStorage.getItem('us-post')||'{}');}catch(e){postData={};}
   var h='';
@@ -954,7 +1090,7 @@ function togRem(){
     });
   }else{ST.rem=false;saveST();updRemSw();}
 }
-function updRemSw(){var sw=document.getElementById('remSw');if(sw)sw.classList.toggle('on',!!ST.rem);}
+function updRemSw(){var sw=document.getElementById('remSw');if(sw){sw.classList.toggle('on',!!ST.rem);sw.setAttribute('aria-checked',ST.rem?'true':'false');}}
 function remTick(){
   if(!ST.rem||!ptData||!('Notification' in window)||Notification.permission!=='granted')return;
   var now=riyadhNow(),nowMin=now.getHours()*60+now.getMinutes();
@@ -1103,9 +1239,29 @@ var deferPrompt=null;
 window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferPrompt=e;var r=document.getElementById('installRow');if(r)r.style.display='flex';});
 function installApp(){if(deferPrompt){deferPrompt.prompt();deferPrompt=null;var r=document.getElementById('installRow');if(r)r.style.display='none';}}
 
+var swReg=null,swWaiting=null,swReloading=false;
+function showUpdate(w){swWaiting=w;var c=document.getElementById('updChip');if(c&&!sessionStorage.getItem('us-upd-dismiss'))c.hidden=false;}
+function dismissUpdate(){var c=document.getElementById('updChip');if(c)c.hidden=true;try{sessionStorage.setItem('us-upd-dismiss','1');}catch(e){}}
+function applyUpdate(){var c=document.getElementById('updChip');if(c)c.hidden=true;if(swWaiting){swReloading=true;swWaiting.postMessage({type:'SKIP_WAITING'});setTimeout(function(){location.reload();},1500);}else location.reload();}
+function checkUpdates(){
+  if(!swReg){toast(location.protocol==='https:'?'Checking… open the app again in a moment':'Updates arrive automatically when opened from umrah-strivers.vercel.app');return;}
+  toast('Checking for updates…');
+  swReg.update().then(function(){setTimeout(function(){if(swReg.waiting){showUpdate(swReg.waiting);toast('⬆️ Update ready — tap the chip to reload',true);}else if(swReg.installing)toast('⬆️ Update found — installing…');else toast('✅ You have the latest version (v'+APP_VERSION+')');},800);}).catch(function(){toast('Could not check — are you online?');});
+}
+function registerSW(){
+  if(!('serviceWorker' in navigator)||location.protocol!=='https:')return;
+  navigator.serviceWorker.register('sw.js').then(function(reg){
+    swReg=reg;
+    if(reg.waiting&&navigator.serviceWorker.controller)showUpdate(reg.waiting);
+    reg.addEventListener('updatefound',function(){var nw=reg.installing;if(!nw)return;nw.addEventListener('statechange',function(){if(nw.state==='installed'&&navigator.serviceWorker.controller)showUpdate(nw);});});
+  }).catch(function(){});
+  navigator.serviceWorker.addEventListener('controllerchange',function(){if(swReloading){swReloading=false;location.reload();}});
+}
+
 /* ════════════════════════ INIT ════════════════════════ */
 function initUI(){
-  applyTheme();
+  applyTheme();applyText();updSwipeSw();
+  document.querySelectorAll('#verLbl,#verLbl2').forEach(function(e){e.textContent=APP_VERSION;});
   document.getElementById('quoteLine').textContent=QUOTES[Math.floor(Math.random()*QUOTES.length)];
   document.getElementById('tripLen').value=ST.tripLen;
   var ni=document.getElementById('nameIn');if(ni)ni.value=ST.name||'';
@@ -1118,6 +1274,4 @@ function initUI(){
   updPlan();updRites();updDaily();updPlaces();updStats();renderBadges();
   goTab('home');
 }
-document.addEventListener('DOMContentLoaded',function(){loadAll();initUI();
-  if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js').catch(function(){});
-});
+document.addEventListener('DOMContentLoaded',function(){loadAll();applyDepLink();initUI();registerSW();});

@@ -2,7 +2,7 @@
 <html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Umrah Strivers">
@@ -16,7 +16,8 @@
 <meta property="og:url" content="https://umrah-strivers.vercel.app/">
 <meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 <style>
 /* ─────────── design tokens · mobile-first ─────────── */
 :root{
@@ -84,7 +85,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .ring-bg{fill:none;stroke:rgba(255,255,255,.16);stroke-width:8}
 .ring-fg{fill:none;stroke:url(#gld);stroke-width:8;stroke-linecap:round;stroke-dasharray:239;stroke-dashoffset:239;transition:stroke-dashoffset .7s cubic-bezier(.3,.7,.3,1)}
 .ring-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:1.25em;font-family:var(--fd)}
-.ring-num small{font-size:.5em;font-weight:600;opacity:.6;letter-spacing:.6px}
+.ring-num small{font-size:.62em;font-weight:600;opacity:.7;letter-spacing:.6px}
 
 /* ─────────── generic cards & sections ─────────── */
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh);margin-bottom:14px;overflow:hidden}
@@ -94,7 +95,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .sec-hd{display:flex;align-items:center;gap:12px;padding:15px 16px;cursor:pointer;user-select:none}
 .sec-ico{width:38px;height:38px;border-radius:12px;background:var(--brand-soft);color:var(--brand-2);display:flex;align-items:center;justify-content:center;font-size:1.05em;flex-shrink:0}
 .sec-hd h2{flex:1;font-size:.94em;font-weight:700;letter-spacing:.1px}
-.sec-hd h2 small{display:block;font-weight:500;font-size:.78em;color:var(--ink3);margin-top:1px}
+.sec-hd h2 small{display:block;font-weight:500;font-size:.78em;color:var(--ink2);margin-top:1px}
 .sec-ct{font-size:.72em;font-weight:700;color:var(--brand-2);background:var(--brand-soft);padding:4px 10px;border-radius:999px;white-space:nowrap}
 .sec-chev{color:var(--ink3);font-size:.7em;transition:transform .3s}
 .sec.shut .sec-chev{transform:rotate(-90deg)}
@@ -115,7 +116,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .row-t b{font-weight:600;font-size:.94em;line-height:1.45;display:block}
 .row.done .row-t b{text-decoration:line-through}
 .row-t .x{font-size:.8em;color:var(--ink2);margin-top:2px;line-height:1.5}
-.row-t .rf{font-size:.74em;color:var(--ink3);font-style:italic;margin-top:2px}
+.row-t .rf{font-size:.74em;color:var(--ink2);font-style:italic;margin-top:2px}
 .pts{font-size:.68em;font-weight:800;color:var(--gold-ink);background:var(--gold-soft);border-radius:999px;padding:3px 8px;flex-shrink:0;margin-top:3px}
 
 /* ─────────── progress pill bar ─────────── */
@@ -143,7 +144,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 [data-theme="dark"] .tr-mid{background:linear-gradient(150deg,#13402F,#0B241C)}
 .tr-mid .n{font-family:var(--fd);font-size:3.4em;font-weight:700;line-height:1}
 .tr-mid .of{font-size:.72em;opacity:.65;letter-spacing:1.6px;text-transform:uppercase;margin-top:4px;font-weight:700}
-.tr-mid .tap{font-size:.62em;opacity:.5;margin-top:6px;letter-spacing:1px;text-transform:uppercase}
+.tr-mid .tap{font-size:.74em;opacity:.75;margin-top:6px;letter-spacing:1px;text-transform:uppercase}
 .cnt-acts{display:flex;justify-content:center;gap:10px;margin-top:16px}
 .chip-btn{border:1px solid var(--line);background:var(--card);color:var(--ink2);font-family:var(--fb);font-weight:600;font-size:.8em;padding:9px 18px;border-radius:999px;cursor:pointer;transition:all .15s;box-shadow:var(--sh)}
 .chip-btn:active{transform:scale(.94)}
@@ -162,7 +163,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .dua{background:var(--gold-soft);border-left:3px solid var(--gold);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:10px 12px;margin-top:8px;font-size:.8em;line-height:1.6}
 .dua .ar{font-size:1.3em;direction:rtl;display:block;line-height:2;font-family:var(--fd);margin-bottom:4px}
 .dua .tl{font-style:italic;color:var(--ink2)}
-.dua .tr{display:block;color:var(--ink3);margin-top:3px}
+.dua .tr{display:block;color:var(--ink2);margin-top:3px}
 .dua .src{display:block;font-size:.85em;color:var(--gold-ink);margin-top:5px;font-style:italic;font-weight:600}
 
 /* ─────────── day nav & stats ─────────── */
@@ -170,15 +171,15 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .daynav button{width:44px;height:44px;border-radius:50%;border:none;background:var(--bg-soft);color:var(--ink);font-size:1em;cursor:pointer;transition:all .15s}
 .daynav button:active{transform:scale(.88);background:var(--brand-soft);color:var(--brand-2)}
 .daynav .dd{font-weight:800;font-size:.92em;letter-spacing:.4px}
-.daynav .dd small{display:block;text-align:center;font-weight:600;font-size:.7em;color:var(--ink3);letter-spacing:1.4px;text-transform:uppercase}
+.daynav .dd small{display:block;text-align:center;font-weight:600;font-size:.74em;color:var(--ink2);letter-spacing:1.4px;text-transform:uppercase}
 .stat4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
 .st{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:12px 6px;text-align:center;transition:all .3s}
 .st.on{border-color:var(--gold);background:var(--gold-soft)}
 .st .i{font-size:1.15em}
 .st .n{font-family:var(--fd);font-size:1.4em;font-weight:700;color:var(--brand-2);line-height:1.1;margin-top:2px}
-.st .l{font-size:.58em;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--ink3);margin-top:3px}
+.st .l{font-size:.74em;font-weight:700;letter-spacing:.3px;text-transform:uppercase;color:var(--ink2);margin-top:3px}
 .heat{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
-.hc{aspect-ratio:1;border-radius:8px;background:var(--bg-soft);display:flex;align-items:center;justify-content:center;font-size:.58em;font-weight:700;color:var(--ink3)}
+.hc{aspect-ratio:1;border-radius:8px;background:var(--bg-soft);display:flex;align-items:center;justify-content:center;font-size:.74em;font-weight:700;color:var(--ink2)}
 .hc.h1{background:#BBE3CB;color:#0E3B2E}.hc.h2{background:#6FCB9A;color:#0B2E24}.hc.h3{background:#2FAE74;color:#fff}.hc.h4{background:#0E7A4E;color:#fff}
 [data-theme="dark"] .hc.h1{background:#1B3A2B;color:#7FBF9C}[data-theme="dark"] .hc.h2{background:#1F5A3C;color:#CFEFDD}[data-theme="dark"] .hc.h3{background:#27825A;color:#fff}[data-theme="dark"] .hc.h4{background:#2FBE83;color:#08281B}
 .hc.now{outline:2px solid var(--gold);outline-offset:1px}
@@ -191,7 +192,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .bdg.ok{border-color:var(--gold);background:var(--gold-soft);box-shadow:var(--sh)}
 .bdg.no{opacity:.32;filter:grayscale(1)}
 .bdg .i{font-size:1.6em}
-.bdg .n{font-size:.6em;font-weight:700;color:var(--ink2);margin-top:3px;line-height:1.3}
+.bdg .n{font-size:.74em;font-weight:700;color:var(--ink2);margin-top:3px;line-height:1.3}
 
 /* ─────────── places ─────────── */
 .pills{display:flex;gap:8px;margin-bottom:14px}
@@ -239,7 +240,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .setrow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
 .setrow:last-child{border-bottom:none}
 .setrow b{font-size:.92em;font-weight:600;display:block}
-.setrow small{font-size:.78em;color:var(--ink3)}
+.setrow small{font-size:.78em;color:var(--ink2)}
 .sw{width:50px;height:28px;border-radius:99px;background:var(--bg-soft);border:1px solid var(--line);cursor:pointer;position:relative;transition:all .25s;flex-shrink:0}
 .sw::after{content:'';position:absolute;width:22px;height:22px;border-radius:50%;background:#fff;top:2px;left:2px;box-shadow:0 1px 4px rgba(0,0,0,.2);transition:transform .25s cubic-bezier(.4,0,.2,1)}
 .sw.on{background:var(--brand-2);border-color:var(--brand-2)}.sw.on::after{transform:translateX(22px)}
@@ -265,9 +266,9 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .nav{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + var(--sab));z-index:80;width:min(456px,calc(100% - 24px));
  display:flex;background:color-mix(in srgb,var(--card) 88%,transparent);border:1px solid var(--line);border-radius:999px;box-shadow:var(--sh-lg);
  backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);padding:6px}
-.nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 0 7px;border:none;background:transparent;border-radius:999px;cursor:pointer;color:var(--ink3);font-family:var(--fb);transition:all .2s}
-.nav button svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.nav button .l{font-size:.56em;font-weight:800;letter-spacing:.7px;text-transform:uppercase}
+.nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 0 7px;border:none;background:transparent;border-radius:999px;cursor:pointer;color:var(--ink3);font-family:var(--fb);font-size:inherit;transition:all .2s}
+.nav button svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.nav button .l{font-size:.72em;font-weight:800;letter-spacing:.3px;text-transform:uppercase}
 .nav button.on{background:var(--brand);color:#fff}
 [data-theme="dark"] .nav button.on{background:var(--brand-2);color:#08281B}
 
@@ -277,6 +278,44 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .toast.gold{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#231803}
 @keyframes tIn{from{transform:translateY(-14px);opacity:0}to{transform:none;opacity:1}}
 @keyframes tOut{from{opacity:1}to{opacity:0}}
+.toast.act{pointer-events:auto;animation:tIn .3s ease,tOut .3s ease 5.7s;display:flex;align-items:center;gap:10px}
+.toast button{border:none;background:rgba(255,255,255,.2);color:inherit;font-family:var(--fb);font-weight:800;font-size:.92em;border-radius:999px;padding:5px 11px;cursor:pointer;white-space:nowrap}
+.toast.gold button{background:rgba(0,0,0,.12)}
+.chip.gold{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#231803;border-color:transparent}
+.chip.gold span{margin-left:6px;opacity:.7;font-weight:900}
+html[data-text='lg'] body{font-size:17px}
+@media (max-width:400px){.brand small{display:none}}
+.row:focus-visible,.stp:focus-visible,.sec-hd:focus-visible,.lvl:focus-visible,.tapring:focus-visible,.sw:focus-visible,.stage:focus-visible,.hstatus:focus-visible,.st:focus-visible,.hfc:focus-visible,.hpost:focus-visible,.focus-tap:focus-visible,.tli:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--brand-2);outline-offset:2px}
+@keyframes segNudge{0%,100%{transform:none}40%{transform:translateX(6px)}}
+.seg button.nudge{animation:segNudge .7s ease .5s 2}
+.xchip{display:inline-block;margin-top:6px;border:1px solid var(--line);background:var(--bg);color:var(--brand-2);font-family:var(--fb);font-weight:800;font-size:.72em;padding:4px 10px;border-radius:999px;cursor:pointer;letter-spacing:.2px}
+.xchip:active{transform:scale(.95)}
+.pl-link{color:var(--brand-2);font-weight:700;text-decoration:underline dotted;cursor:pointer}
+.acc-b a,.card p a{color:var(--brand-2);font-weight:600}
+.dua.tapable{cursor:pointer}
+.dua .enl{display:block;font-size:.72em;color:var(--gold-ink);opacity:.8;margin-top:4px;letter-spacing:.4px;text-transform:uppercase;font-weight:700}
+.df-body{flex:1;overflow-y:auto;padding:6px 22px 10px;-webkit-overflow-scrolling:touch}
+.df-ar{font-size:2.4em;direction:rtl;text-align:right;line-height:2;font-family:var(--fd);color:#fff}
+.df-tl{font-style:italic;opacity:.85;margin-top:16px;font-size:1.05em;line-height:1.6}
+.df-tr{margin-top:12px;font-size:1em;opacity:.92;line-height:1.65}
+.df-src{margin-top:14px;font-size:.82em;color:#EFD494;font-style:italic}
+.df-hint{font-size:.7em;opacity:.4;letter-spacing:1.5px;text-transform:uppercase;margin-top:24px;text-align:center}
+.focus-bot .chip-btn{min-width:64px}
+.qr-box{width:70vw;max-width:300px;margin:6px auto 18px;background:#fff;padding:14px;border-radius:18px;border:1px solid #e5e5e5}
+.qr-box svg{width:100%;height:auto;display:block}
+.qr-url{font-family:var(--fd);font-size:1.5em;font-weight:700;text-align:center;color:#0E3B2E;word-break:break-all;line-height:1.3}
+.qr-steps{font-size:1.05em;text-align:center;color:#333;margin-top:14px;line-height:1.6}
+.qr-steps b{color:#0E3B2E}
+.sheet img{width:100%;border-radius:14px;display:block;margin-bottom:12px;border:1px solid var(--line)}
+.sheet .srch{margin-bottom:10px}
+.ob-x{position:absolute;top:14px;right:16px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink2);cursor:pointer;font-size:1em}
+.sheet{position:relative}
+.sheet .setrow{border-bottom:none;padding:6px 0 10px}
+.where{font-size:.78em;color:var(--ink2);line-height:1.7;margin-top:10px}
+.where a{color:var(--brand-2);font-weight:700;text-decoration:none;white-space:nowrap}
+.segmini{display:flex;gap:4px;background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;padding:3px}
+.segmini button{border:none;background:transparent;font-family:var(--fb);font-weight:700;font-size:.78em;color:var(--ink2);padding:6px 12px;border-radius:999px;cursor:pointer}
+.segmini button.on{background:var(--card);color:var(--brand-2);box-shadow:var(--sh)}
 .foot{text-align:center;color:var(--ink3);font-size:.78em;line-height:1.8;padding:26px 12px 8px}
 .foot .d{font-family:var(--fd);font-style:italic;font-size:1.15em;color:var(--gold);margin-bottom:6px}
 .foot a{color:var(--brand-2);text-decoration:none;font-weight:600}
@@ -537,7 +576,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 <div class="app">
 <div class="top">
   <div class="brand"><div class="brand-mark">🕋</div><h1>Umrah Strivers<small>Your Umrah companion</small></h1></div>
-  <div style="display:flex;align-items:center;gap:8px"><button class="chip" id="jChip" onclick="goTab('plan')" aria-label="Journey status">🧭 Plan</button><button class="iconbtn" onclick="toggleTheme()" aria-label="Toggle theme"><span id="themeIcon">🌙</span></button></div>
+  <div style="display:flex;align-items:center;gap:8px"><button class="chip gold" id="updChip" hidden onclick="applyUpdate()" title="A new version is ready — tap to reload" aria-label="Update ready, tap to reload">⬆️ Update<span onclick="event.stopPropagation();dismissUpdate()" role="button" aria-label="Dismiss">✕</span></button><button class="chip" id="jChip" onclick="goTab('plan')" aria-label="Journey status">🧭 Plan</button><button class="iconbtn" onclick="toggleTheme()" aria-label="Toggle theme"><span id="themeIcon">🌙</span></button></div>
 </div>
 
 <!-- ═══════ PLAN ═══════ -->
@@ -549,7 +588,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
   <div class="sub on" id="sub-plan-prep">
   <div class="hero"><div class="hero-t"><div class="k">Preparation</div><div class="v" id="planHeroT">Let's get ready</div><div class="s" id="planHeroS">Checklists, essential knowledge & a readiness quiz</div></div>
     <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="planRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="planPct">0%</span><small>READY</small></div></div></div>
-  <div class="niy"><div class="niy-k">Begin here</div><h3>Before the checklist — the intention</h3><p class="niy-p">Umrah is answered by the heart before it is booked by the hands. Three foundations, then everything else.</p>
+  <div class="niy" id="niyCard"><div class="niy-k">Begin here</div><h3>Before the checklist — the intention</h3><p class="niy-p">Umrah is answered by the heart before it is booked by the hands. Three foundations, then everything else.</p>
     <div class="niy-b"><b>1 · The Intention <i>(Niyyah)</i></b><p>Define your specific spiritual goals for this journey — what you are asking Allah for, what you want to leave behind. "Umrah to Umrah is an expiation for what is between them" (Bukhari 1773) — minor sins; major sins need sincere tawbah. Go purely for Allah, not for the photos.</p></div>
     <div class="niy-b"><b>2 · The Knowledge <i>(Fiqh)</i></b><p>Learning the rituals is mandatory. Do not obsess over the hotel and forget the rules of the worship. The Learn and Quiz tabs exist for this — finish the circuit before you fly.</p><button class="chip-btn" onclick="goSub('plan','learn')">📚 Start learning</button></div>
     <div class="niy-b"><b>3 · The Detachment</b><p>Cut ties with worldly distractions before departure — markets, debates, idle talk, the scroll. Settle debts, seek forgiveness from people, write your will, and travel light in the heart.</p></div>
@@ -560,7 +599,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
   <div class="card card-pad" id="tlCard"><h3>⏳ What to do when</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px" id="tlSub">Set your departure date to get a dated to-do timeline.</p><div id="tlArea"></div></div>
   <div class="stat4" id="catTiles"></div>
   <div id="planContainer"></div>
-  <div class="card card-pad"><h3>🏨 My hotel & emergency numbers</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Fill this in before you land — then tap “Show to driver” whenever you need a ride back.</p>
+  <div class="card card-pad" id="hotelCard"><h3>🏨 My hotel & emergency numbers</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Fill this in before you land — then tap “Show to driver” whenever you need a ride back.</p>
     <input class="srch" id="hName" placeholder="Hotel name (e.g. Swissôtel Makkah)" onchange="saveHotelInfo()"><input class="srch" id="hAddr" placeholder="Address / landmark (e.g. Abraj Al Bait, King Abdulaziz Gate)" onchange="saveHotelInfo()"><input class="srch" id="hPhone" placeholder="Hotel phone" onchange="saveHotelInfo()">
     <button class="btn" onclick="showDriver()">🚕 Show to driver (big screen)</button>
     <div class="subt" style="margin-top:14px">☎️ Emergency & help in Saudi Arabia</div>
@@ -569,14 +608,14 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
     <div class="kv"><span>Ministry of Hajj &amp; Umrah care</span><b><a href="tel:1966" style="color:inherit;text-decoration:none">1966</a></b></div>
     <div class="kv"><span>Tourism helpline</span><b><a href="tel:930" style="color:inherit;text-decoration:none">930</a></b></div>
     <p style="font-size:.72em;color:var(--ink3);margin-top:8px">Also save your embassy’s number and your group leader’s number in your phone contacts, and agree a meeting point (a gate number) with your family.</p></div>
-  <div class="card card-pad"><h3>🗓️ Suggested itinerary</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Generated from your departure date and trip length — a worship-first day plan you can adapt.</p>
+  <div class="card card-pad" id="itinCard"><h3>🗓️ Suggested itinerary</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Generated from your departure date and trip length — a worship-first day plan you can adapt.</p>
     <div class="pills sm" style="margin-bottom:10px"><button class="pill on" id="itMk" onclick="setItin('makkah')">🕋 Makkah first</button><button class="pill" id="itMd" onclick="setItin('madinah')">🕌 Madinah first</button></div>
     <div class="setrow" style="padding:6px 0 10px"><div><b>Days in Madinah</b><small>The rest go to Makkah</small></div><input type="number" class="numin" id="itMad" min="0" max="20" value="3" onchange="setItinDays(this.value)"></div>
     <div id="itinArea"></div></div>
-  <div class="card card-pad"><h3>🔐 Document vault</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Passport, visa, bookings — encrypted on this device with a PIN you choose (AES-256). Nothing is uploaded anywhere.</p><div id="vaultArea"></div></div>
+  <div class="card card-pad" id="vaultCard"><h3>🔐 Document vault</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Passport, visa, bookings — encrypted on this device with a PIN you choose (AES-256). Nothing is uploaded anywhere.</p><div id="vaultArea"></div></div>
   </div><div class="sub" id="sub-plan-learn">
   <div class="jumps"><button onclick="jumpTo('histCard')">🕰️ History</button><button onclick="jumpTo('virtCard')">🌟 Virtues</button><button onclick="jumpTo('madCard')">🕌 Madinah</button><button onclick="jumpTo('qaCard')">❓ Q&amp;A</button><button onclick="jumpTo('scamCard')">🚨 Scams</button><button onclick="jumpTo('knowCard')">📚 Practical</button></div>
-  <div class="card card-pad"><h3>🃏 Daily knowledge cards</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">A few minutes a day — spaced repetition until departure. <b id="fcDueLbl"></b></p><div id="fcArea"></div></div>
+  <div class="card card-pad" id="fcCard"><h3>🃏 Daily knowledge cards</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">A few minutes a day — spaced repetition until departure. <b id="fcDueLbl"></b></p><div id="fcArea"></div></div>
 
   <div class="card card-pad" id="histCard"><h3>🕰️ History & significance</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">Walk where the prophets walked — know the story behind every rite.</p><div id="histContainer"></div></div>
 
@@ -586,7 +625,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 
   <div class="card card-pad" id="qaCard"><h3>❓ Common questions (fiqh Q&amp;A)</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The questions every first-timer asks — answered with evidence.</p><div id="qaContainer"></div></div>
 
-  <div class="card card-pad" id="scamCard"><h3>🚨 Donations & scams — stay sharp</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">Generosity is worship; being fooled is not. Every provider on <b>umrah.nusuk.sa</b> is ministry-licensed, and Saudi Arabia’s official donation platform is <b>Ehsan</b> — here is what to watch for.</p><div id="scamContainer"></div></div>
+  <div class="card card-pad" id="scamCard"><h3>🚨 Donations & scams — stay sharp</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">Generosity is worship; being fooled is not. Every provider on <a href="https://umrah.nusuk.sa/" target="_blank" rel="noopener"><b>umrah.nusuk.sa</b></a> is ministry-licensed, and Saudi Arabia’s official donation platform is <a href="https://ehsan.sa/" target="_blank" rel="noopener"><b>Ehsan</b></a> — here is what to watch for.</p><div id="scamContainer"></div></div>
 
 
   <div class="card card-pad" id="knowCard"><h3>📚 Know before you go</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The knowledge that turns a trip into worship — tap to expand.</p><div id="knowContainer"></div></div>
@@ -608,15 +647,15 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
   <div class="hero"><div class="hero-t"><div class="k">Umrah rites</div><div class="v" id="riteHeroT">Step by step</div><div class="s" id="riteHeroS">🕋 Umrahs completed: 0</div></div>
     <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="riteRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="ritePct">0%</span><small>DONE</small></div></div></div>
 
-  <div class="wudu" id="wuduCard"><div class="wudu-t"><b>💧 Wudu check — tawaf requires wudu</b><span>"Tawaf around the House is like salah" (Tirmidhi 960). Make wudu before you start; if it breaks mid-tawaf, renew it and continue.</span></div><button class="sw" id="wuduSw" onclick="togWudu()"></button></div>
+  <div class="wudu" id="wuduCard"><div class="wudu-t"><b>💧 Wudu check — tawaf requires wudu</b><span>"Tawaf around the House is like salah" (Tirmidhi 960). Make wudu before you start; if it breaks mid-tawaf, renew it and continue.</span></div><button class="sw" id="wuduSw" role="switch" aria-checked="false" aria-label="I am in wudu" onclick="togWudu()"></button></div>
   <div class="card cnt"><h3>🕋 Tawaf</h3><div class="sub">7 rounds, counter-clockwise, from the Black Stone line.<br><b>Tap the circle after each round.</b></div>
-    <div class="tapring" onclick="cntr('tawaf',1)"><svg width="216" height="216" viewBox="0 0 216 216"><circle class="tr-bg" cx="108" cy="108" r="90"/><circle class="tr-seg" id="tawafRing" cx="108" cy="108" r="90"/></svg><div class="tr-mid"><div class="n" id="tawafN">0</div><div class="of">of 7 rounds</div><div class="tap">tap to count</div></div></div>
+    <div class="tapring" id="tawafRingBtn" role="button" tabindex="0" aria-label="Count a tawaf round, 0 of 7 done" onclick="cntr('tawaf',1)"><svg width="216" height="216" viewBox="0 0 216 216"><circle class="tr-bg" cx="108" cy="108" r="90"/><circle class="tr-seg" id="tawafRing" cx="108" cy="108" r="90"/></svg><div class="tr-mid" aria-live="polite" aria-atomic="true"><div class="n" id="tawafN">0</div><div class="of">of 7 rounds</div><div class="tap" id="tawafTap">tap to count</div></div></div>
     <div class="cnt-tip" id="tawafTip"></div>
     <div class="cnt-acts"><button class="chip-btn" onclick="event.stopPropagation();cntr('tawaf',-1)">− Undo</button><button class="chip-btn" onclick="cntrReset('tawaf')">Reset</button><button class="chip-btn" onclick="enterFocus('tawaf')">⛶ Focus</button></div>
     <div class="cnt-done" id="tawafDone">✅ Tawaf complete — pray 2 rakahs behind Maqam Ibrahim</div></div>
 
   <div class="card cnt"><h3>⛰️ Sa'i</h3><div class="sub">7 laps — begin at Safa, finish at Marwah (Safa → Marwah = 1).<br><b>Tap the circle after each lap.</b></div>
-    <div class="tapring" onclick="cntr('sai',1)"><svg width="216" height="216" viewBox="0 0 216 216"><circle class="tr-bg" cx="108" cy="108" r="90"/><circle class="tr-seg" id="saiRing" cx="108" cy="108" r="90"/></svg><div class="tr-mid"><div class="n" id="saiN">0</div><div class="of">of 7 laps</div><div class="tap">tap to count</div></div></div>
+    <div class="tapring" id="saiRingBtn" role="button" tabindex="0" aria-label="Count a sa’i lap, 0 of 7 done" onclick="cntr('sai',1)"><svg width="216" height="216" viewBox="0 0 216 216"><circle class="tr-bg" cx="108" cy="108" r="90"/><circle class="tr-seg" id="saiRing" cx="108" cy="108" r="90"/></svg><div class="tr-mid" aria-live="polite" aria-atomic="true"><div class="n" id="saiN">0</div><div class="of">of 7 laps</div><div class="tap" id="saiTap">tap to count</div></div></div>
     <div class="cnt-tip" id="saiTip"></div>
     <div class="cnt-acts"><button class="chip-btn" onclick="event.stopPropagation();cntr('sai',-1)">− Undo</button><button class="chip-btn" onclick="cntrReset('sai')">Reset</button><button class="chip-btn" onclick="enterFocus('sai')">⛶ Focus</button></div>
     <div class="cnt-done" id="saiDone">✅ Sa'i complete — proceed to halq / taqsir</div></div>
@@ -656,7 +695,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
   <div class="card card-pad"><h3>⏱️ This Umrah’s timeline</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:8px">Stamped automatically as you tick steps and tap the counters.</p><div id="logArea"></div></div>
   <div class="card card-pad" id="umrahsCard"><h3>🕋 My Umrahs</h3><div id="umrahsArea"></div></div>
   <button class="btn gold" onclick="finishUmrah()">🎉 Record completed Umrah & reset</button>
-  <p style="font-size:.76em;color:var(--ink3);text-align:center;margin-top:8px">Another Umrah? Take ihram from Masjid Aisha (Tan'eem) — see Places.</p>
+  <p style="font-size:.76em;color:var(--ink2);text-align:center;margin-top:8px">Another Umrah? Take ihram from <span class="pl-link" onclick="openPlace('taneem')">Masjid Aisha (Tan'eem)</span>.</p>
   </div>
 </div>
 
@@ -669,7 +708,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
   <div class="card card-pad"><div class="pt-top"><div><h3 style="margin-bottom:2px">🕌 Prayer times</h3><div class="pt-next" id="ptNext">Loading…</div><div class="pt-hijri" id="ptHijri"></div></div>
     <div class="pills sm"><button class="pill on" id="cityMakkah" onclick="setCity('Makkah')">Makkah</button><button class="pill" id="cityMadinah" onclick="setCity('Madinah')">Madinah</button></div></div>
     <div class="pt-grid" id="ptGrid"></div><div class="pt-note" id="ptNote">Umm al-Qura · local Makkah/Madinah time</div>
-    <div class="setrow" style="border:none;padding:10px 0 0"><div><b>🔔 Prayer reminders</b><small>Notifies ~20 min before each prayer, while the app is open</small></div><button class="sw" id="remSw" onclick="togRem()"></button></div></div>
+    <div class="setrow" style="border:none;padding:10px 0 0"><div><b>🔔 Prayer reminders</b><small>Notifies ~20 min before each prayer, while the app is open</small></div><button class="sw" id="remSw" role="switch" aria-checked="false" aria-label="Prayer reminders" onclick="togRem()"></button></div></div>
   <div class="hero"><div class="hero-t"><div class="k">Today's worship</div><div class="v" id="dHeroT">Bismillah</div><div class="s" id="dHeroS">0 of 0 completed · 0 pts</div></div>
     <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="dRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="dPct">0%</span><small>TODAY</small></div></div></div>
   <div class="stat4">
@@ -680,7 +719,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
   </div>
   <div id="dailyContainer"></div>
   </div><div class="sub" id="sub-daily-tools">
-  <div class="card card-pad"><h3>🤲 My dua list</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:8px">Write them before you fly; tick them as you ask in the Haram.</p>
+  <div class="card card-pad" id="duaCard"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px"><h3 style="margin:0">🤲 My dua list</h3><button class="xchip" style="margin:0" onclick="goTab('more','duas')">📖 Essential duas →</button></div><p style="font-size:.8em;color:var(--ink2);margin-bottom:8px">Write them before you fly; tick them as you ask in the Haram.</p>
     <div style="display:flex;gap:8px;margin-bottom:8px"><input class="srch" id="duaIn" placeholder="Add a dua…" style="margin:0" onkeydown="if(event.key==='Enter')addDua()"><button class="chip-btn" onclick="addDua()">＋</button></div>
     <div id="duaList"></div></div>
   <div class="card card-pad"><h3>💧 Water & 🚶 distance</h3>
@@ -688,11 +727,11 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
     <div class="meter" style="margin:4px 0 12px"><i id="waterBar" style="width:0%"></i></div>
     <div class="kv"><span>Walked in worship (est.)</span><b id="kmLbl">≈ 0 km</b></div>
     <p style="font-size:.72em;color:var(--ink3);margin-top:6px">Estimate: ~2.8 km per tawaf, ~3.2 km per sa’i, from your counters and logged nafl tawafs.</p></div>
-  <div class="card card-pad" style="text-align:center"><h3>📿 Tasbih counter</h3>
+  <div class="card card-pad" id="tbCard" style="text-align:center"><h3>📿 Tasbih counter</h3>
     <div class="tb-chips" id="tbChips"></div>
-    <div class="tb-btn" onclick="tbTap()"><div class="n" id="tbN">0</div><div class="t">of <span id="tbTarget">33</span> · tap</div></div>
+    <div class="tb-btn" role="button" tabindex="0" aria-label="Count one dhikr" onclick="tbTap()"><div class="n" id="tbN">0</div><div class="t">of <span id="tbTarget">33</span> · tap</div></div>
     <div class="tb-meta"><span>Today: <b id="tbToday">0</b></span><button class="chip-btn" onclick="tbReset()">Reset cycle</button></div></div>
-  <div class="card card-pad"><h3>🧭 Qibla compass</h3>
+  <div class="card card-pad" id="qiblaCard"><h3>🧭 Qibla compass</h3>
     <p style="font-size:.82em;color:var(--ink2)">Find the direction of the Kaaba from wherever you are.</p>
     <div class="qb-dial"><span class="qb-n">N</span><div class="qb-needle" id="qbNeedle"></div><div class="qb-deg" id="qbDeg">—</div></div>
     <div class="qb-status" id="qbStatus">Tap start and allow location & motion access.</div>
@@ -725,29 +764,45 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 
 <!-- ═══════ MORE ═══════ -->
 <div class="view" id="view-more">
-  <div class="vh"><h2>Guide & settings</h2><p>How the app works, essential duas, and your data.</p></div>
-  <div class="seg" data-tab="more"><button class="on" data-sub="guide" onclick="goSub('more','guide')">📘 Guide</button><button data-sub="duas" onclick="goSub('more','duas')">🤲 Duas</button><button data-sub="settings" onclick="goSub('more','settings')">⚙️ Settings</button></div>
+  <div class="vh"><h2>More</h2><p>Keep the change alive after Umrah, the essential duas, and your settings &amp; data.</p></div>
+  <div class="seg" data-tab="more"><button class="on" data-sub="guide" onclick="goSub('more','guide')">🌱 After</button><button data-sub="duas" onclick="goSub('more','duas')">🤲 Duas</button><button data-sub="settings" onclick="goSub('more','settings')">⚙️ Settings</button></div>
   <div class="sub on" id="sub-more-guide">
-  <div class="card card-pad"><h3>📘 How to use this app</h3><div id="guideContainer" style="margin-top:4px">
-    <div class="acc" onclick="this.classList.toggle('open')"><div class="acc-h">🧳 Plan — before you fly <span class="acc-c">▶</span></div><div class="acc-b">Set your departure date for a live countdown. Work through the preparation checklists (documents, packing, health, knowledge). Read every "Know Before You Go" topic — miqats, ihram rules, permits, transport and common mistakes. Then take the quiz until you score 80%+.</div></div>
-    <div class="acc" onclick="this.classList.toggle('open')"><div class="acc-h">🕋 Umrah — during the rites <span class="acc-c">▶</span></div><div class="acc-b">The Umrah tab walks you through every step from ihram to halq, with the duas inline. Tap the big Tawaf and Sa'i circles after each round — with haptic feedback — so you never lose count. Then record your completed Umrah; the steps reset for your next one.</div></div>
-    <div class="acc" onclick="this.classList.toggle('open')"><div class="acc-h">📿 Daily — every day in the Haramain <span class="acc-c">▶</span></div><div class="acc-b">Tick off your five congregational prayers, tahajjud, Quran, dhikr and extra deeds. The app tracks streaks, a consistency heatmap, points and achievements. Set your trip length in Settings.</div></div>
-    <div class="acc" onclick="this.classList.toggle('open')"><div class="acc-h">📍 Places — ziyarah <span class="acc-c">▶</span></div><div class="acc-b">Every major site in Makkah and Madinah with why it matters, an etiquette tip and one-tap Google Maps navigation. Ziyarah is a virtuous extra — the rites and prayers always come first.</div></div>
-    <div class="acc" onclick="this.classList.toggle('open')"><div class="acc-h">🔒 Privacy & data <span class="acc-c">▶</span></div><div class="acc-b">Everything lives on your device only — no accounts, no servers, no tracking. Export a backup anytime; the app works offline in the crowded Haram where signal drops.</div></div>
-  </div></div>
-
-  <div class="card card-pad"><h3>🌱 After Umrah — keep it alive</h3>
+  <div class="card card-pad" id="postCard"><h3>🌱 After Umrah — keep it alive</h3>
     <p style="font-size:.82em;color:var(--ink2);margin-bottom:4px">"The most beloved deeds to Allah are the most consistent, even if small." — Bukhari 6464. Don’t let the Haram version of you fade — hold three habits for 30 days after you return.</p>
-    <div class="setrow"><div><b>Post-Umrah mode</b><small>30-day habit keeper + reflections</small></div><button class="sw" id="postSw" onclick="togPost()"></button></div>
+    <div class="setrow"><div><b>Post-Umrah mode</b><small>30-day habit keeper + reflections</small></div><button class="sw" id="postSw" role="switch" aria-checked="false" aria-label="Post-Umrah mode" onclick="togPost()"></button></div>
     <div id="postArea"></div></div>
-
-
-  <div class="card card-pad"><h3>📖 Content & sources</h3>
-    <p style="font-size:.84em;color:var(--ink2);line-height:1.65">Every hadith in this app is cited to its collection (Bukhari, Muslim, Tirmidhi, Ibn Majah, Nasai, Abu Dawud) and has been checked against the source text; paraphrases are kept faithful and weak narrations are avoided or marked. This app is a study companion, <b>not a fatwa service</b> — for rulings about your specific situation, ask a qualified scholar. Scholars &amp; students of knowledge: corrections are warmly welcomed at the email below.</p><div class="note" style="margin:10px 0 0"><b>Review status:</b> citations verified against source texts · <b>scholar review: pending</b> — if you are a qualified scholar willing to review, please get in touch.</div></div>
+  <div class="card card-pad"><h3>🧭 Plan the next one</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:8px">"Umrah to Umrah is an expiation for what is between them" (Bukhari 1773). When Allah invites you again, the checklists and countdown are ready.</p><button class="btn ghost" style="margin:0" onclick="goTab('plan','prep','tlCard')">🧳 Plan my next Umrah →</button></div>
   </div><div class="sub" id="sub-more-duas">
-  <div class="card card-pad"><h3>🤲 Essential duas</h3><div id="duaContainer"></div></div>
+  <div class="card card-pad"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px"><h3 style="margin:0">🤲 Essential duas</h3><button class="xchip" style="margin:0" onclick="goTab('daily','tools','duaCard')">🤲 My dua list →</button></div><p style="font-size:.78em;color:var(--ink2);margin-bottom:10px">Tap any dua to open it full-screen for reading in the Haram.</p><div id="duaContainer"></div></div>
+  </div><div class="sub" id="sub-more-settings">
+  <div class="card card-pad"><h3>⚙️ Settings</h3>
+    <div class="setrow"><div><b>Dark mode</b><small>Easier on the eyes at night</small></div><button class="sw" id="dmTgl" role="switch" aria-checked="false" aria-label="Dark mode" onclick="toggleTheme()"></button></div>
+    <div class="setrow"><div><b>Text size</b><small>Larger text for duas, tips and the nav</small></div><div class="segmini" id="textSeg"><button class="on" data-t="" onclick="setText('')">Normal</button><button data-t="lg" onclick="setText('lg')">Large</button></div></div>
+    <div class="setrow"><div><b>Swipe between sections</b><small>Swipe left/right to change sub-tabs</small></div><button class="sw on" id="swipeSw" role="switch" aria-checked="true" aria-label="Swipe between sections" onclick="togSwipe()"></button></div>
+    <div class="setrow"><div><b>Trip length</b><small>How many days is your trip?</small></div><input type="number" class="numin" id="tripLen" min="3" max="30" onchange="setTripLen(this.value)" aria-label="Trip length in days"></div>
+    <div class="setrow"><div><b>Your name</b><small>Printed on your certificate</small></div><input class="numin" style="width:130px;text-align:left" id="nameIn" placeholder="Name" aria-label="Your name" onchange="ST.name=this.value.trim();saveST();"></div>
+    <div class="setrow"><div><b>🧭 Journey stage</b><small id="stageLbl">Re-declare where you are — nothing is reset</small></div><button class="chip-btn" onclick="showOnboard()">Change</button></div>
+    <div class="setrow"><div><b>Share the app</b><small>Send it to your group before you fly</small></div><div style="display:flex;gap:6px"><button class="chip-btn" onclick="shareApp()">📤 Share</button><button class="chip-btn" onclick="showQR()">▦ QR</button></div></div>
+    <div class="setrow" id="installRow" style="display:none"><div><b>Install app</b><small>Add to your home screen — works offline</small></div><button class="chip-btn" onclick="installApp()">📲 Install</button></div>
+    <div class="setrow"><div><b>Check for updates</b><small>Version <span id="verLbl2"></span> · updates install automatically</small></div><button class="chip-btn" onclick="checkUpdates()">🔄 Check</button></div>
+    <div class="where">Where things are: Departure date → <a href="#" onclick="event.preventDefault();goTab('plan','prep','tlCard')">Plan › Prepare</a> · Prayer city &amp; reminders → <a href="#" onclick="event.preventDefault();goTab('daily','today')">Daily › Today</a> · Hotel → <a href="#" onclick="event.preventDefault();goTab('plan','prep','hotelCard')">Plan › Prepare</a> / <a href="#" onclick="event.preventDefault();goTab('places')">Places</a></div>
+  </div>
 
-  <div class="card card-pad"><h3>🔗 Helpful resources</h3>
+  <div class="card card-pad"><h3>💾 Your data</h3>
+    <p style="font-size:.8em;color:var(--ink2);margin-bottom:6px">Backup includes your checklists, quiz, tasbih, dua list, niyyah and journal. Encrypted vault documents are not included.</p>
+    <button class="btn ghost" onclick="exportData()">📤 Export backup</button>
+    <button class="btn ghost" onclick="document.getElementById('impFile').click()">📥 Import backup</button>
+    <input type="file" id="impFile" accept=".json,application/json" onchange="importData(event)" style="display:none">
+    <button class="btn danger" onclick="confirmReset()">🗑️ Reset everything</button>
+  </div>
+
+  <div class="card card-pad" id="aboutCard"><h3>📖 About &amp; sources</h3>
+    <p style="font-size:.84em;color:var(--ink2);line-height:1.65">Everything lives on your device only — no accounts, no servers, no tracking. Every hadith in this app is cited to its collection (Bukhari, Muslim, Tirmidhi, Ibn Majah, Nasai, Abu Dawud) and has been checked against the source text; paraphrases are kept faithful and weak narrations are avoided or marked. This app is a study companion, <b>not a fatwa service</b> — for rulings about your specific situation, ask a qualified scholar.</p>
+    <div class="note" style="margin:10px 0 12px"><b>Review status:</b> citations verified against source texts · <b>scholar review: pending</b> — if you are a qualified scholar willing to review, please get in touch.</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap"><span style="font-size:.8em;color:var(--ink2)"><b style="color:var(--ink)">Umrah Strivers</b> · v<span id="verLbl"></span> · Free · Offline · Private · No ads</span><a class="chip-btn" style="text-decoration:none" href="mailto:m.farhan.bava@gmail.com?subject=Umrah%20Strivers%20correction">✉️ Send a correction</a></div>
+  </div>
+
+  <div class="card card-pad"><h3>🔗 Official &amp; helpful links</h3>
     <a href="https://www.nusuk.sa/" target="_blank" rel="noopener" class="res"><span class="i">🕌</span><span class="t"><b>Nusuk</b>Official Saudi platform — visas, Rawdah permits & bookings</span><span class="g">OPEN →</span></a>
     <a href="https://umrah.nusuk.sa/" target="_blank" rel="noopener" class="res"><span class="i">🧳</span><span class="t"><b>Nusuk Umrah packages</b>Book visas &amp; packages from ministry-licensed providers only</span><span class="g">OPEN →</span></a>
     <a href="https://ehsan.sa/" target="_blank" rel="noopener" class="res"><span class="i">💝</span><span class="t"><b>Ehsan</b>Saudi Arabia’s official donation platform — sadaqah without scams</span><span class="g">OPEN →</span></a>
@@ -757,24 +812,6 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
     <a href="https://sunnah.com/" target="_blank" rel="noopener" class="res"><span class="i">📚</span><span class="t"><b>Sunnah.com</b>Hadith collections — Bukhari, Muslim & more</span><span class="g">OPEN →</span></a>
     <a href="https://www.ramadanstrivers.com/" target="_blank" rel="noopener" class="res"><span class="i">🌙</span><span class="t"><b>Ramadan Strivers</b>Our sister app — the Ramadan planner & tracker</span><span class="g">OPEN →</span></a>
   </div>
-
-  </div><div class="sub" id="sub-more-settings">
-  <div class="card card-pad"><h3>⚙️ Settings</h3>
-    <div class="setrow"><div><b>Dark mode</b><small>Easier on the eyes at night</small></div><button class="sw" id="dmTgl" onclick="toggleTheme()"></button></div>
-    <div class="setrow"><div><b>Trip length</b><small>How many days is your trip?</small></div><input type="number" class="numin" id="tripLen" min="3" max="30" onchange="setTripLen(this.value)"></div>
-    <div class="setrow"><div><b>Your name</b><small>Printed on your certificate</small></div><input class="numin" style="width:130px;text-align:left" id="nameIn" placeholder="Name" onchange="ST.name=this.value.trim();saveST();"></div>
-    <div class="setrow"><div><b>Share the app</b><small>Send it to your group before you fly</small></div><button class="chip-btn" onclick="shareApp()">📤 Share</button></div>
-    <div class="setrow" id="installRow" style="display:none"><div><b>Install app</b><small>Add to your home screen — works offline</small></div><button class="chip-btn" onclick="installApp()">📲 Install</button></div>
-  </div>
-
-
-  <div class="card card-pad"><h3>💾 Your data</h3>
-    <button class="btn ghost" onclick="exportData()">📤 Export backup</button>
-    <button class="btn ghost" onclick="document.getElementById('impFile').click()">📥 Import backup</button>
-    <input type="file" id="impFile" accept=".json" onchange="importData(event)" style="display:none">
-    <button class="btn danger" onclick="confirmReset()">🗑️ Reset everything</button>
-  </div>
-  <div style="text-align:center;color:var(--ink3);font-size:.78em;line-height:1.7;padding:8px 0"><b style="color:var(--ink2)">Umrah Strivers</b> · v4.0<br>Free · Offline · Private · No ads</div>
   </div>
 </div>
 
@@ -782,7 +819,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 </div>
 
 <nav class="nav">
-<button data-v="home" onclick="goTab('home')"><svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg><span class="l">Home</span></button>
+<button data-v="home" aria-current="page" onclick="goTab('home')"><svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg><span class="l">Home</span></button>
 <button data-v="plan" onclick="goTab('plan')"><svg viewBox="0 0 24 24"><path d="M9 6V4.5A1.5 1.5 0 0 1 10.5 3h3A1.5 1.5 0 0 1 15 4.5V6"/><rect x="4" y="6" width="16" height="15" rx="3"/><path d="M9 13l2 2 4-4"/></svg><span class="l">Plan</span></button>
 <button data-v="umrah" onclick="goTab('umrah')"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M12 5V3.5"/></svg><span class="l">Umrah</span></button>
 <button data-v="daily" onclick="goTab('daily')"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><circle cx="6" cy="11" r="2"/><circle cx="18" cy="11" r="2"/><circle cx="9" cy="18" r="2"/><circle cx="15" cy="18" r="2"/></svg><span class="l">Daily</span></button>
@@ -790,16 +827,27 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 <button data-v="more" onclick="goTab('more')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.6"/><circle cx="5" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg><span class="l">More</span></button>
 </nav>
 <canvas id="confetti" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:190;display:none"></canvas>
-<div class="focus" id="focus"><div class="focus-top"><span id="focusTitle">🕋 Tawaf</span><button class="chip-btn" onclick="exitFocus()">✕ Exit</button></div><div class="focus-tap" onclick="focusTap()"><div class="focus-n" id="focusN">0</div><div class="focus-of" id="focusOf">of 7 rounds</div><div class="focus-tip" id="focusTip"></div><div class="focus-hint">tap anywhere to count · screen stays awake</div></div><div class="focus-bot"><button class="chip-btn" onclick="cntr(focusKey,-1)">− Undo</button></div></div>
+<div class="focus" id="focus"><div class="focus-top"><span id="focusTitle">🕋 Tawaf</span><button class="chip-btn" onclick="exitFocus()">✕ Exit</button></div><div class="focus-tap" role="button" tabindex="0" aria-label="Tap to count one round" onclick="focusTap()"><div class="focus-n" id="focusN">0</div><div class="focus-of" id="focusOf">of 7 rounds</div><div class="focus-tip" id="focusTip"></div><div class="focus-hint">tap anywhere to count · screen stays awake</div></div><div class="focus-bot"><button class="chip-btn" onclick="cntr(focusKey,-1)">− Undo</button></div></div>
 <div class="focus driver" id="driver" onclick="this.classList.remove('on')"><div class="focus-top"><span>🚕 Please take me to my hotel</span><button class="chip-btn">✕ Close</button></div><div class="focus-tap" style="justify-content:flex-start;padding:10px 24px"><div class="drv-ar">من فضلك خذني إلى هذا الفندق</div><div class="drv-name" id="drvName">—</div><div class="drv-addr" id="drvAddr"></div><div class="drv-phone" id="drvPhone"></div><div class="focus-hint">tap anywhere to close</div></div></div>
-<div class="sheet-o" id="obSheet"><div class="sheet">
+<div class="sheet-o" id="obSheet" onclick="if(event.target===this)closeOnboard()"><div class="sheet">
+  <button class="ob-x" onclick="closeOnboard()" aria-label="Close">✕</button>
+  <div id="obStep1">
   <div class="sheet-h">🕋</div><h3>As-salamu alaykum</h3><p>Where are you on your Umrah journey? We'll take you straight to the right place.</p>
-  <input class="srch" id="obName" placeholder="Your name (optional — for your certificate)" style="margin:0 0 12px">
+  <input class="srch" id="obName" placeholder="Your name (optional — for your certificate)" style="margin:0 0 8px" aria-label="Your name">
+  <div class="setrow"><div><b>Larger text</b><small>Easier to read without glasses</small></div><button class="sw" id="obText" role="switch" aria-checked="false" aria-label="Larger text" onclick="setText(ST.text==='lg'?'':'lg')"></button></div>
   <button class="opt" onclick="chooseStage('plan')"><span>🧳</span><b>Planning my trip<small>Checklists, countdown & knowledge</small></b></button>
-  <button class="opt" onclick="chooseStage('soon')"><span>✈️</span><b>Flying soon<small>Study & pass the quiz circuit</small></b></button>
+  <button class="opt" onclick="chooseStage('soon')"><span>✈️</span><b>Flying soon<small>Learn the rites step by step, then quiz</small></b></button>
   <button class="opt" onclick="chooseStage('now')"><span>🕋</span><b>I'm in Makkah / Madinah<small>Counters, rites & daily tracker</small></b></button>
   <button class="opt" onclick="chooseStage('back')"><span>🌱</span><b>I've returned<small>Keep the habits alive</small></b></button>
+  <button class="opt" onclick="chooseStage('before')"><span>🔁</span><b>I've been before<small>Count my earlier Umrahs, plan the next</small></b></button>
+  </div>
+  <div id="obStep2" hidden></div>
 </div></div>
+<div class="sheet-o" id="gSheet" onclick="if(event.target===this)closeSheet()"><div class="sheet" id="gSheetBody" role="dialog" aria-modal="true"></div></div>
+<div class="focus" id="duaFocus" role="dialog" aria-modal="true" aria-label="Dua reader"><div class="focus-top"><span id="dfTitle">Dua</span><button class="chip-btn" onclick="closeDua()">✕ Close</button></div>
+  <div class="df-body"><div class="df-ar" id="dfAr" lang="ar"></div><div class="df-tl" id="dfTl"></div><div class="df-tr" id="dfTr"></div><div class="df-src" id="dfSrc"></div><div class="df-hint">screen stays awake · swipe-free reading</div></div>
+  <div class="focus-bot" style="gap:10px"><button class="chip-btn" id="dfPrev" onclick="duaNav(-1)" aria-label="Previous dua">◀</button><button class="chip-btn" id="dfSay" data-ar="" onclick="speakBtn(this)" aria-label="Play recitation">🔊 Listen</button><button class="chip-btn" id="dfNext" onclick="duaNav(1)" aria-label="Next dua">▶</button></div></div>
+<div class="focus driver" id="qrShow" onclick="this.classList.remove('on')" role="dialog" aria-label="QR code to install the app"><div class="focus-top"><span>▦ Scan to install</span><button class="chip-btn">✕ Close</button></div><div class="focus-tap" style="justify-content:flex-start;padding:6px 24px"><div class="qr-box"><svg viewBox="0 0 29 29" shape-rendering="crispEdges"><path fill="#111" d="M0 0h7v1h-7zM8 0h2v1h-2zM12 0h4v1h-4zM17 0h3v1h-3zM22 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h2v1h-2zM11 1h1v1h-1zM13 1h1v1h-1zM16 1h1v1h-1zM18 1h1v1h-1zM22 1h1v1h-1zM28 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM9 2h3v1h-3zM16 2h1v1h-1zM22 2h1v1h-1zM24 2h3v1h-3zM28 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM8 3h3v1h-3zM12 3h1v1h-1zM14 3h2v1h-2zM17 3h1v1h-1zM20 3h1v1h-1zM22 3h1v1h-1zM24 3h3v1h-3zM28 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM9 4h2v1h-2zM12 4h1v1h-1zM14 4h1v1h-1zM16 4h4v1h-4zM22 4h1v1h-1zM24 4h3v1h-3zM28 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM9 5h1v1h-1zM11 5h3v1h-3zM15 5h5v1h-5zM22 5h1v1h-1zM28 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h7v1h-7zM8 7h3v1h-3zM12 7h1v1h-1zM15 7h3v1h-3zM19 7h2v1h-2zM0 8h1v1h-1zM2 8h2v1h-2zM5 8h3v1h-3zM9 8h1v1h-1zM11 8h3v1h-3zM15 8h6v1h-6zM22 8h1v1h-1zM25 8h1v1h-1zM27 8h2v1h-2zM0 9h1v1h-1zM4 9h1v1h-1zM8 9h8v1h-8zM18 9h7v1h-7zM28 9h1v1h-1zM1 10h3v1h-3zM5 10h2v1h-2zM8 10h1v1h-1zM13 10h1v1h-1zM16 10h3v1h-3zM22 10h1v1h-1zM26 10h2v1h-2zM1 11h2v1h-2zM5 11h1v1h-1zM7 11h1v1h-1zM10 11h1v1h-1zM15 11h1v1h-1zM18 11h3v1h-3zM22 11h1v1h-1zM28 11h1v1h-1zM0 12h4v1h-4zM5 12h4v1h-4zM10 12h1v1h-1zM12 12h1v1h-1zM14 12h1v1h-1zM17 12h1v1h-1zM21 12h1v1h-1zM25 12h2v1h-2zM2 13h2v1h-2zM7 13h1v1h-1zM9 13h3v1h-3zM14 13h2v1h-2zM17 13h3v1h-3zM22 13h1v1h-1zM26 13h3v1h-3zM0 14h2v1h-2zM3 14h1v1h-1zM5 14h6v1h-6zM13 14h1v1h-1zM16 14h2v1h-2zM19 14h1v1h-1zM21 14h1v1h-1zM24 14h1v1h-1zM26 14h3v1h-3zM1 15h2v1h-2zM4 15h1v1h-1zM7 15h2v1h-2zM11 15h1v1h-1zM14 15h2v1h-2zM18 15h3v1h-3zM24 15h1v1h-1zM27 15h1v1h-1zM0 16h1v1h-1zM3 16h1v1h-1zM5 16h2v1h-2zM8 16h3v1h-3zM12 16h1v1h-1zM14 16h1v1h-1zM16 16h1v1h-1zM18 16h1v1h-1zM21 16h1v1h-1zM24 16h2v1h-2zM27 16h1v1h-1zM2 17h1v1h-1zM4 17h1v1h-1zM7 17h1v1h-1zM10 17h2v1h-2zM14 17h2v1h-2zM20 17h2v1h-2zM23 17h1v1h-1zM25 17h3v1h-3zM0 18h1v1h-1zM2 18h2v1h-2zM5 18h3v1h-3zM11 18h5v1h-5zM17 18h2v1h-2zM20 18h2v1h-2zM23 18h2v1h-2zM26 18h1v1h-1zM4 19h1v1h-1zM8 19h2v1h-2zM11 19h4v1h-4zM17 19h2v1h-2zM20 19h3v1h-3zM24 19h1v1h-1zM26 19h1v1h-1zM1 20h1v1h-1zM5 20h2v1h-2zM8 20h4v1h-4zM13 20h2v1h-2zM17 20h2v1h-2zM20 20h7v1h-7zM8 21h1v1h-1zM11 21h2v1h-2zM16 21h1v1h-1zM18 21h1v1h-1zM20 21h1v1h-1zM24 21h5v1h-5zM0 22h7v1h-7zM8 22h1v1h-1zM10 22h1v1h-1zM14 22h1v1h-1zM16 22h5v1h-5zM22 22h1v1h-1zM24 22h2v1h-2zM27 22h1v1h-1zM0 23h1v1h-1zM6 23h1v1h-1zM8 23h1v1h-1zM13 23h2v1h-2zM16 23h1v1h-1zM18 23h1v1h-1zM20 23h1v1h-1zM24 23h2v1h-2zM0 24h1v1h-1zM2 24h3v1h-3zM6 24h1v1h-1zM9 24h2v1h-2zM12 24h1v1h-1zM15 24h1v1h-1zM17 24h1v1h-1zM20 24h5v1h-5zM26 24h2v1h-2zM0 25h1v1h-1zM2 25h3v1h-3zM6 25h1v1h-1zM8 25h2v1h-2zM12 25h2v1h-2zM15 25h2v1h-2zM21 25h1v1h-1zM23 25h3v1h-3zM28 25h1v1h-1zM0 26h1v1h-1zM2 26h3v1h-3zM6 26h1v1h-1zM8 26h1v1h-1zM10 26h1v1h-1zM13 26h1v1h-1zM16 26h1v1h-1zM18 26h2v1h-2zM21 26h1v1h-1zM23 26h1v1h-1zM26 26h1v1h-1zM28 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM9 27h1v1h-1zM12 27h1v1h-1zM14 27h1v1h-1zM16 27h1v1h-1zM18 27h3v1h-3zM23 27h3v1h-3zM27 27h1v1h-1zM0 28h7v1h-7zM8 28h1v1h-1zM10 28h1v1h-1zM12 28h1v1h-1zM14 28h2v1h-2zM19 28h2v1h-2zM25 28h1v1h-1zM27 28h1v1h-1z"/></svg></div><div class="qr-url">umrah-strivers.vercel.app</div><div class="qr-steps"><b>Scan</b> → <b>open</b> → <b>Add to Home Screen</b><br>Free · offline · no account</div><div class="focus-hint">tap anywhere to close</div></div></div>
 <div class="toasts" id="toastC"></div>
 
 <script src="data.js"></script>

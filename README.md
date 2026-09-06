@@ -88,11 +88,25 @@ It's one file — just open `index.html` in a browser. Installable to the home s
 - Confetti celebrations, animated count-ups on progress rings, skeleton loading for prayer times, places search
 - **v3.3 screen-by-screen polish** — gold departure countdown card, jump-chips on the long Learn and Places pages, compact tap-to-expand place cards, round-by-round guidance under the Tawaf/Sa'i counters, wrapped tasbih phrases, name + share-the-app in Settings
 
+## Releasing an update
+The service-worker cache is named after `APP_VERSION`. For every release **bump `APP_VERSION` in both `app.js` and `sw.js`** — installed apps then pick the new version up automatically (an "Update" chip appears in the header; Settings › Check for updates forces a check). The app shell is served stale-while-revalidate, so it opens instantly from cache regardless of signal.
+
+## v4.5 — global polish
+- Deep links everywhere: `goTab(tab, sub, anchor)` lands on the exact card (Qibla, Tasbih, Itinerary, Vault, Cards, After-Umrah…); `openPlace(id)` opens a place card from any cross-reference; checklist items carry "Open →" chips; itinerary site names are tappable
+- Post-Umrah mode has its own **After** section (first in More) and a one-tap "Back home? Start the habit keeper" card on Home when the trip is over
+- Full-screen **dua reader** (tap any dua — library or inline rite duas) with Listen and prev/next, screen kept awake
+- Onboarding: captures the departure date, city/day/trip length for pilgrims already there, "I've been before" (earlier Umrahs counted in totals), and can be re-run from Settings without touching data
+- Share: QR code overlay, briefing-ready share message with the group's date, and `?dep=YYYY-MM-DD` links that pre-set the departure date
+- Certificates, keepsakes and progress cards go through the OS share sheet (or an in-app preview with press-and-hold) so they reach Photos on iOS PWAs
+- Backup now covers every `us-` key; reset is a two-step sheet with "Export backup first" and also clears the vault
+- Accessibility: pinch-zoom allowed, Normal/Large text size, bigger nav labels, better contrast, keyboard & screen-reader roles on rows, steps, counters and switches, live regions for counters and quiz feedback
+- Swipe between sections is stricter (no accidental switches), discoverable (first-time tip + pill nudge) and can be turned off
+
 ## Development & testing
 
 ```
 npm install            # playwright-core only
-npm test               # end-to-end smoke suite (32 checks) in headless Chromium
+npm test               # end-to-end smoke suite (~50 checks) in headless Chromium
 ```
 Set `CHROME=/path/to/chromium` if Playwright cannot find a browser. Content lives in `data.js` (places, quiz, knowledge, duas); logic in `app.js`.
 
