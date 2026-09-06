@@ -70,7 +70,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   check('dua list add + tick', (await page.textContent('#duaList')).includes('1 of 1 asked'));
   await page.click('text=＋ cup');
   check('water counter', (await page.textContent('#waterLbl')).startsWith('1 of 8'));
-  await page.click('text=Start compass'); await page.waitForTimeout(800);
+  await page.evaluate(() => startQibla()); await page.waitForTimeout(800);
   check('qibla bearing computed', /\d+°/.test(await page.textContent('#qbDeg')));
   await page.evaluate(() => goSub('daily', 'stats', true));
   const dl2 = page.waitForEvent('download', { timeout: 6000 }).catch(() => null);

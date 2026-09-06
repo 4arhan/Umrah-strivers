@@ -36,7 +36,9 @@ function goTab(t){ST.tab=t;saveST();
   if(t==='home')renderHome();
   window.scrollTo({top:0,behavior:'smooth'});}
 function mkSec(sec,shut,inner,countId){
-  return '<div class="sec'+(shut?' shut':'')+'"><div class="sec-hd" onclick="togSec(this)"><div class="sec-ico">'+(sec.ico||'•')+'</div><h2>'+sec.title+(sec.sub?'<small>'+sec.sub+'</small>':'')+'</h2><span class="sec-ct" id="sp-'+sec.id+'"></span><span class="sec-chev">▼</span></div><div class="sec-bd">'+(sec.hn?'<div class="note">'+sec.hn+'</div>':'')+inner+'</div></div>';
+  var apps='';
+  if(sec.apps)apps='<div class="apps">'+sec.apps.map(function(x){var go=x.u?'href="'+x.u+'" target="_blank" rel="noopener"':'href="#" onclick="event.preventDefault();goTab(\''+x.go[0]+'\');goSub(\''+x.go[0]+'\',\''+x.go[1]+'\',true)"';return '<a class="applink" '+go+'><span class="app-i">'+x.i+'</span><span class="app-t"><b>'+x.n+'</b>'+x.d+'</span><span class="app-go">'+(x.u?'Open ↗':'Go →')+'</span></a>';}).join('')+'</div>';
+  return '<div class="sec'+(shut?' shut':'')+'"><div class="sec-hd" onclick="togSec(this)"><div class="sec-ico">'+(sec.ico||'•')+'</div><h2>'+sec.title+(sec.sub?'<small>'+sec.sub+'</small>':'')+'</h2><span class="sec-ct" id="sp-'+sec.id+'"></span><span class="sec-chev">▼</span></div><div class="sec-bd">'+(sec.hn?'<div class="note">'+sec.hn+'</div>':'')+apps+inner+'</div></div>';
 }
 
 /* ════════════════════════ PLAN ════════════════════════ */
@@ -416,7 +418,8 @@ function renderHome(){
   var greg=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
   var d=ST.dep?Math.ceil((new Date(ST.dep+'T00:00:00')-new Date())/86400000):null;
   var phase,cta,pct,lbl,stageNow;
-  if(ST.post){phase='🌱 Post-Umrah — keep it alive';cta=['Open habit keeper','more','guide'];var pd=postData||{};var c=0;Object.keys(pd).forEach(function(h){c+=Object.keys(pd[h]).filter(function(k){return pd[h][k];}).length;});pct=Math.min(100,Math.round(c/90*100));lbl=c+' habit-days logged';stageNow=4;}
+  var pd=postData||{},pc=0;Object.keys(pd).forEach(function(h){pc+=Object.keys(pd[h]||{}).filter(function(k){return pd[h][k];}).length;});
+  if((ST.post&&(d===null||d<=0))||(d!==null&&d<-ST.tripLen)){pct=ST.umrahs?100:0;phase=ST.umrahs?'🕋 '+ST.umrahs+' Umrah'+(ST.umrahs===1?'':'s')+' completed — alhamdulillah':'🧭 Your Umrah journey';cta=['Plan your next Umrah','plan','prep'];lbl=ST.post?'Post-Umrah habits are at the bottom of this page':'Set a new departure date to start again';stageNow=4;}
   else if(d===null||d>0){var tot=0,done=0;PLAN.forEach(function(sc){sc.items.forEach(function(it){tot++;if(planChk[it.id])done++;});});pct=Math.round(done/tot*100);phase=d===null?'🧭 Planning — set your departure date':'✈️ '+d+' day'+(d===1?'':'s')+' until departure';cta=[pct<100?'Continue preparing':'Study & quiz','plan',pct<100?'prep':'learn'];lbl=done+' of '+tot+' prep items · '+qzPassedCount()+'/'+QUIZ_LEVELS.length+' quiz levels';stageNow=0;}
   else{pct=dayPct(ST.day)||0;phase='🕋 Day '+ST.day+' of '+ST.tripLen+' in the Haramain';cta=['Log today’s worship','daily','today'];lbl=pct+'% of today’s deeds · '+ST.umrahs+' Umrah'+(ST.umrahs===1?'':'s')+' completed';stageNow=ST.umrahs?2:1;}
   var due=fcDue();var fcIdx0=due.length?due[0]:null;
@@ -433,7 +436,7 @@ function renderHome(){
   function goStr(g){return 'goTab(\''+g[0]+'\');'+(g[1]?'goSub(\''+g[0]+'\',\''+g[1]+'\',true);':'');}
   var h='';
   // 1. What this app is
-  h+='<div class="hhero"><div class="hhero-mark">🕋</div><h2>Your complete Umrah companion</h2><p>Everything you need <b>before, during and after</b> Umrah — in one free, private app that works offline in the Haram.</p><div class="trust"><span>✓ Free</span><span>✓ Works offline</span><span>✓ Private — no account</span><span>✓ Every hadith verified</span></div></div>';
+  h+='<div class="hhero"><div class="hhero-mark">🕋</div><h2>Your complete Umrah companion</h2><p>Everything you need <b>before, during and after</b> Umrah — in one free, private app that works offline in the Haram.</p><div class="trust"><span>✓ Free</span><span>✓ Works offline</span><span>✓ Private — no account</span><span>✓ Every hadith verified</span></div><button class="btn" style="max-width:300px;margin:16px auto 0" onclick="'+goStr([cta[1],cta[2]])+'">'+(d===null&&!ST.umrahs?'Begin your journey →':cta[0]+' →')+'</button>'+(deferPrompt?'<button class="btn ghost" style="max-width:300px;margin:8px auto 0" onclick="installApp()">📲 Install on your phone</button>':(/iPhone|iPad/.test(navigator.userAgent)&&!window.navigator.standalone?'<p style="font-size:.74em;color:var(--ink3);margin-top:10px">📲 On iPhone: tap Share → “Add to Home Screen” to install</p>':''))+'</div>';
   // 2. Personal status
   h+='<div class="hstatus" onclick="'+goStr([cta[1],cta[2]])+'"><div class="hs-t"><small>As-salamu alaykum'+name+' · '+greg+' · '+hij+'</small><b>'+phase+'</b><span>'+lbl+'</span></div><div class="hs-r"><div class="ring-wrap" style="width:64px;height:64px"><svg width="64" height="64" viewBox="0 0 92 92" style="width:64px;height:64px"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="hRing" cx="46" cy="46" r="38"/></svg><div class="ring-num" style="font-size:.9em"><span id="hPct">'+pct+'%</span></div></div><em>'+cta[0]+' →</em></div></div>';
   // 3. Next prayer
@@ -448,6 +451,13 @@ function renderHome(){
   h+='<div class="qa-grid">'+acts.map(function(x){return '<button class="qa" onclick="'+goStr([x[2],x[3]])+'"><span>'+x[0]+'</span>'+x[1]+'</button>';}).join('')+'</div>';
   if(fcIdx0!==null)h+='<div class="card card-pad hfc" onclick="goTab(\'plan\');goSub(\'plan\',\'learn\',true)"><small>🃏 Today’s knowledge card · '+due.length+' due</small><b>'+FC_DECK[fcIdx0].f+'</b><span>Tap to study →</span></div>';
   h+='<div class="note" style="margin:0 0 12px">'+QUOTES[Math.floor(Date.now()/86400000)%QUOTES.length]+'</div>';
+  if(ST.post)h+='<div class="card card-pad hpost" onclick="goTab(\'more\');goSub(\'more\',\'guide\',true)"><div class="hp-i" style="background:var(--gold-soft)">🌱</div><div class="hp-t"><small>Post-Umrah mode · on</small><div>'+pc+' habit-days logged of 90 <span>· keep the Haram version of you</span></div></div><span class="hp-go">›</span></div>';
+  h+='<div class="card card-pad"><h3>Common questions</h3>'
+    +'<div class="acc" onclick="this.classList.toggle(\'open\')"><div class="acc-h">Is it really free? <span class="acc-c">▶</span></div><div class="acc-b">Yes — no ads, no subscriptions, no “pro” tier. Built as sadaqah jariyah for the Ummah. If it helps you, share it and make dua for those who built it.</div></div>'
+    +'<div class="acc" onclick="this.classList.toggle(\'open\')"><div class="acc-h">Does it work in the Haram without signal? <span class="acc-c">▶</span></div><div class="acc-b">Yes. Open it once with internet and it caches itself; the counters, rites guide, duas, places and your data all work offline. Prayer times cache for the day; the map links need signal.</div></div>'
+    +'<div class="acc" onclick="this.classList.toggle(\'open\')"><div class="acc-h">Where is my data stored? <span class="acc-c">▶</span></div><div class="acc-b">Only on your phone. There is no account and no server. Export a backup from Settings before changing phones; the document vault is encrypted with your PIN and cannot be recovered without it.</div></div>'
+    +'<div class="acc" onclick="this.classList.toggle(\'open\')"><div class="acc-h">Is the religious content reliable? <span class="acc-c">▶</span></div><div class="acc-b">Every hadith is cited to its collection and was checked against the source text; weak narrations are avoided or marked. It is a study companion, not a fatwa service — ask a scholar for rulings on your situation. Scholar review is pending; corrections are welcome.</div></div>'
+    +'</div>';
   h+='<div class="card card-pad" style="text-align:center"><h3 style="margin-bottom:6px">Made for the Ummah</h3><p style="font-size:.84em;color:var(--ink2);line-height:1.6">Free, no ads, no tracking. The sister app of <a href="https://www.ramadanstrivers.com/" target="_blank" rel="noopener" style="color:var(--brand-2);font-weight:700;text-decoration:none">Ramadan Strivers</a>. Share it with anyone going to Umrah.</p><button class="btn ghost" onclick="shareApp()">📤 Share the app</button></div>';
   a.innerHTML=h;
   setTimeout(function(){setRing('hRing',pct);},50);

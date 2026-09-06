@@ -170,13 +170,13 @@ var DAILY=[
 {id:'madhkar',label:'Morning adhkar',pts:5},
 {id:'eadhkar',label:'Evening adhkar',pts:5}
 ]},
-{id:'quran',ico:'📖',title:'Quran',hn:'"Read the Quran, for it will come as an intercessor for its companions on the Day of Resurrection." — Muslim 804',items:[
+{id:'quran',ico:'📖',title:'Quran',hn:'"Read the Quran, for it will come as an intercessor for its companions on the Day of Resurrection." — Muslim 804',apps:[{i:'📖',n:'Tarteel AI',d:'Recite and get tajweed correction; memorisation tracking',u:'https://tarteel.ai/'},{i:'🕋',n:'Quran.com',d:'Read, listen and study with translations',u:'https://quran.com/'}],items:[
 {id:'recite',label:'Recited Quran (facing the Kaaba if you can)',pts:10,stk:'quran'},
 {id:'tadabbur',label:'Reflected on the meaning (tadabbur)',pts:8},
 {id:'memorize',label:'Memorised new ayah(s)',pts:8},
 {id:'listen',label:'Listened to the Haram recitation attentively',pts:5}
 ]},
-{id:'dhikr',ico:'📿',title:'Dhikr & dua',hn:'Fill your day with remembrance in the most sacred place on Earth.',items:[
+{id:'dhikr',ico:'📿',title:'Dhikr & dua',hn:'Fill your day with remembrance in the most sacred place on Earth.',apps:[{i:'🤲',n:'Life with Allah',d:'Morning & evening adhkar and duas from the Sunnah, with audio',u:'https://lifewithallah.com/app'},{i:'🛡️',n:'Hisnul Muslim (Fortress of the Muslim)',d:'The classic dua collection — every occasion, referenced',u:'https://hisnmuslim.com/'},{i:'📿',n:'Tasbih & my dua list',d:'Built in — Daily › Tools',go:['daily','tools']},{i:'🕋',n:'Umrah duas with audio',d:'Built in — More › Duas',go:['more','duas']}],items:[
 {id:'istighfar',label:'Istighfar ×100',pts:6},
 {id:'salawat',label:'Salawat on the Prophet ﷺ ×100',pts:6},
 {id:'dhikr100',label:'La ilaha illallah / SubhanAllah dhikr',pts:5},
