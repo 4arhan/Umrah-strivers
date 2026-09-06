@@ -296,7 +296,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .pt-note{font-size:.7em;color:var(--ink3);margin-top:8px;text-align:right}
 
 /* ─────────── tasbih ─────────── */
-.tb-chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:10px;scrollbar-width:none}
+.tb-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;padding-bottom:6px;margin-bottom:10px}
 .tb-chips::-webkit-scrollbar{display:none}
 .tb-chip{white-space:nowrap;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink2);font-size:.76em;font-weight:700;cursor:pointer;font-family:var(--fb);transition:all .2s;flex-shrink:0}
 .tb-chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
@@ -320,7 +320,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 /* ─────────── quiz levels ─────────── */
 .lvl{display:flex;align-items:center;gap:12px;padding:13px 14px;border:1px solid var(--line);border-radius:var(--r);margin-bottom:8px;cursor:pointer;background:var(--bg);transition:all .2s}
 .lvl:active{transform:scale(.985)}
-.lvl.locked{opacity:.45;filter:grayscale(.6)}
+.lvl.locked{opacity:.6;filter:grayscale(.7)}
 .lvl.passed{border-color:var(--brand-2);background:var(--brand-soft)}
 .lvl-n{width:40px;height:40px;border-radius:12px;background:var(--gold-soft);display:flex;align-items:center;justify-content:center;font-size:1.15em;flex-shrink:0}
 .lvl.passed .lvl-n{background:var(--brand-soft)}
@@ -379,7 +379,26 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .opt b{font-size:.94em;display:block}.opt small{display:block;font-weight:500;font-size:.8em;color:var(--ink3)}
 .pt.sk{background:linear-gradient(90deg,var(--bg-soft) 25%,var(--card) 50%,var(--bg-soft) 75%);background-size:200% 100%;animation:shimmer 1.2s infinite;min-height:52px;border-color:transparent}
 @keyframes shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
-.cityhd{font-family:var(--fd);font-size:1.25em;font-weight:700;margin:18px 4px 6px}
+.cityhd{font-family:var(--fd);font-size:1.25em;font-weight:700;margin:18px 4px 8px}
+.jumps{display:flex;gap:6px;overflow-x:auto;padding:2px 2px 8px;margin-bottom:8px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.jumps::-webkit-scrollbar{display:none}
+.jumps button{flex-shrink:0;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink2);font-family:var(--fb);font-weight:700;font-size:.72em;cursor:pointer;box-shadow:var(--sh);white-space:nowrap}
+.jumps button:active{transform:scale(.95);color:var(--brand-2)}
+.cd2{display:flex;align-items:stretch;gap:14px;background:linear-gradient(135deg,var(--gold-soft),var(--card));border:1.5px solid var(--gold);border-radius:var(--r-lg);padding:14px 16px;margin-bottom:14px;box-shadow:var(--sh)}
+.cd2-l{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:84px;padding-right:14px;border-right:1px solid var(--line)}
+.cd2-n{font-family:var(--fd);font-size:2.6em;font-weight:700;color:var(--brand-2);line-height:1}
+.cd2-u{font-size:.62em;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);margin-top:4px}
+.cd2-r{flex:1;min-width:0}.cd2-r b{font-size:.92em;display:block}.cd2-r span{font-size:.78em;color:var(--ink2);display:block;line-height:1.45}
+.cd2-r input[type="date"]{margin-top:8px;padding:9px 12px;border-radius:var(--r-sm);border:1px solid var(--line);background:var(--card);color:var(--ink);font-family:var(--fb);font-size:.9em;width:100%}
+.cnt-tip{font-size:.8em;color:var(--ink2);line-height:1.5;margin:12px auto 0;max-width:300px;min-height:1.5em;font-style:italic}
+.place-h{cursor:pointer;align-items:center}
+.place-ch{color:var(--ink3);font-size:.9em;transition:transform .25s;flex-shrink:0;margin-left:6px}
+.place.open .place-ch{transform:rotate(180deg)}
+.place-t p,.place-t .tip,.place-a{display:none}
+.place.open .place-t p,.place.open .place-t .tip{display:block}
+.place.open .place-a{display:flex}
+.place.open .place-h{align-items:flex-start}
+.vtick{color:var(--brand-2);font-weight:800}
 .stopbadge{display:inline-block;font-size:.66em;font-weight:800;letter-spacing:.4px;padding:2px 9px;border-radius:999px;margin:3px 0 2px;color:#fff}
 .stopbadge.red{background:#C2410C}.stopbadge.green{background:#177A52}
 .tour{background:linear-gradient(150deg,var(--gold-soft),var(--card));border:1.5px solid var(--gold);border-radius:var(--r-lg);padding:16px;margin-bottom:12px;box-shadow:var(--sh)}
@@ -403,7 +422,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 
 <div class="app">
 <div class="top">
-  <div class="brand"><div class="brand-mark">🕋</div><h1>Umrah Strivers<small>The journey of a lifetime</small></h1></div>
+  <div class="brand"><div class="brand-mark">🕋</div><h1>Umrah Strivers<small>Your Umrah companion</small></h1></div>
   <div style="display:flex;align-items:center;gap:8px"><button class="chip" id="jChip" onclick="goTab('plan')">🧭 Plan</button><button class="iconbtn" onclick="toggleTheme()" aria-label="Toggle theme"><span id="themeIcon">🌙</span></button></div>
 </div>
 
@@ -414,23 +433,24 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
   <div class="sub on" id="sub-plan-prep">
   <div class="hero"><div class="hero-t"><div class="k">Preparation</div><div class="v" id="planHeroT">Let's get ready</div><div class="s" id="planHeroS">Checklists, essential knowledge & a readiness quiz</div></div>
     <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="planRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="planPct">0%</span><small>READY</small></div></div></div>
-  <div class="card cd"><div class="cd-n" id="cdNum">—</div><div class="cd-t"><b id="cdT">Departure countdown</b><span id="cdS">Set your date and watch the days melt away</span><input type="date" id="depDate" onchange="setDep(this.value)"></div></div>
+  <div class="cd2"><div class="cd2-l"><div class="cd2-n" id="cdNum">—</div><div class="cd2-u" id="cdU">days</div></div><div class="cd2-r"><b id="cdT">Departure countdown</b><span id="cdS">Set your date and watch the days melt away</span><input type="date" id="depDate" onchange="setDep(this.value)"></div></div>
   <div id="planContainer"></div>
   </div><div class="sub" id="sub-plan-learn">
+  <div class="jumps"><button onclick="jumpTo('histCard')">🕰️ History</button><button onclick="jumpTo('virtCard')">🌟 Virtues</button><button onclick="jumpTo('madCard')">🕌 Madinah</button><button onclick="jumpTo('qaCard')">❓ Q&amp;A</button><button onclick="jumpTo('scamCard')">🚨 Scams</button><button onclick="jumpTo('knowCard')">📚 Practical</button></div>
   <div class="card card-pad"><h3>🃏 Daily knowledge cards</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">A few minutes a day — spaced repetition until departure. <b id="fcDueLbl"></b></p><div id="fcArea"></div></div>
 
-  <div class="card card-pad"><h3>🕰️ History & significance</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">Walk where the prophets walked — know the story behind every rite.</p><div id="histContainer"></div></div>
+  <div class="card card-pad" id="histCard"><h3>🕰️ History & significance</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">Walk where the prophets walked — know the story behind every rite.</p><div id="histContainer"></div></div>
 
-  <div class="card card-pad"><h3>🌟 Virtues of Umrah & the Haram</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">What Allah has promised the pilgrim — the rewards that await you.</p><div id="virtContainer"></div></div>
+  <div class="card card-pad" id="virtCard"><h3>🌟 Virtues of Umrah & the Haram</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">What Allah has promised the pilgrim — the rewards that await you.</p><div id="virtContainer"></div></div>
 
-  <div class="card card-pad"><h3>🕌 Madinah — virtues & visiting</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The City of the Prophet ﷺ deserves its own preparation.</p><div id="madContainer"></div></div>
+  <div class="card card-pad" id="madCard"><h3>🕌 Madinah — virtues & visiting</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The City of the Prophet ﷺ deserves its own preparation.</p><div id="madContainer"></div></div>
 
-  <div class="card card-pad"><h3>❓ Common questions (fiqh Q&amp;A)</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The questions every first-timer asks — answered with evidence.</p><div id="qaContainer"></div></div>
+  <div class="card card-pad" id="qaCard"><h3>❓ Common questions (fiqh Q&amp;A)</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The questions every first-timer asks — answered with evidence.</p><div id="qaContainer"></div></div>
 
-  <div class="card card-pad"><h3>🚨 Donations & scams — stay sharp</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">Generosity is worship; being fooled is not. Every provider on <b>umrah.nusuk.sa</b> is ministry-licensed, and Saudi Arabia’s official donation platform is <b>Ehsan</b> — here is what to watch for.</p><div id="scamContainer"></div></div>
+  <div class="card card-pad" id="scamCard"><h3>🚨 Donations & scams — stay sharp</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">Generosity is worship; being fooled is not. Every provider on <b>umrah.nusuk.sa</b> is ministry-licensed, and Saudi Arabia’s official donation platform is <b>Ehsan</b> — here is what to watch for.</p><div id="scamContainer"></div></div>
 
 
-  <div class="card card-pad"><h3>📚 Know before you go</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The knowledge that turns a trip into worship — tap to expand.</p><div id="knowContainer"></div></div>
+  <div class="card card-pad" id="knowCard"><h3>📚 Know before you go</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The knowledge that turns a trip into worship — tap to expand.</p><div id="knowContainer"></div></div>
 
   </div><div class="sub" id="sub-plan-quiz">
   <div class="card card-pad"><h3>🧠 Knowledge circuit — quiz levels</h3>
@@ -451,11 +471,13 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 
   <div class="card cnt"><h3>🕋 Tawaf</h3><div class="sub">7 rounds, counter-clockwise, from the Black Stone line.<br><b>Tap the circle after each round.</b></div>
     <div class="tapring" onclick="cntr('tawaf',1)"><svg width="216" height="216" viewBox="0 0 216 216"><circle class="tr-bg" cx="108" cy="108" r="90"/><circle class="tr-seg" id="tawafRing" cx="108" cy="108" r="90"/></svg><div class="tr-mid"><div class="n" id="tawafN">0</div><div class="of">of 7 rounds</div><div class="tap">tap to count</div></div></div>
+    <div class="cnt-tip" id="tawafTip"></div>
     <div class="cnt-acts"><button class="chip-btn" onclick="event.stopPropagation();cntr('tawaf',-1)">− Undo</button><button class="chip-btn" onclick="cntrReset('tawaf')">Reset</button></div>
     <div class="cnt-done" id="tawafDone">✅ Tawaf complete — pray 2 rakahs behind Maqam Ibrahim</div></div>
 
   <div class="card cnt"><h3>⛰️ Sa'i</h3><div class="sub">7 laps — begin at Safa, finish at Marwah (Safa → Marwah = 1).<br><b>Tap the circle after each lap.</b></div>
     <div class="tapring" onclick="cntr('sai',1)"><svg width="216" height="216" viewBox="0 0 216 216"><circle class="tr-bg" cx="108" cy="108" r="90"/><circle class="tr-seg" id="saiRing" cx="108" cy="108" r="90"/></svg><div class="tr-mid"><div class="n" id="saiN">0</div><div class="of">of 7 laps</div><div class="tap">tap to count</div></div></div>
+    <div class="cnt-tip" id="saiTip"></div>
     <div class="cnt-acts"><button class="chip-btn" onclick="event.stopPropagation();cntr('sai',-1)">− Undo</button><button class="chip-btn" onclick="cntrReset('sai')">Reset</button></div>
     <div class="cnt-done" id="saiDone">✅ Sa'i complete — proceed to halq / taqsir</div></div>
 
@@ -558,6 +580,8 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
   <div class="card card-pad"><h3>⚙️ Settings</h3>
     <div class="setrow"><div><b>Dark mode</b><small>Easier on the eyes at night</small></div><button class="sw" id="dmTgl" onclick="toggleTheme()"></button></div>
     <div class="setrow"><div><b>Trip length</b><small>How many days is your trip?</small></div><input type="number" class="numin" id="tripLen" min="3" max="30" onchange="setTripLen(this.value)"></div>
+    <div class="setrow"><div><b>Your name</b><small>Printed on your certificate</small></div><input class="numin" style="width:130px;text-align:left" id="nameIn" placeholder="Name" onchange="ST.name=this.value.trim();saveST();"></div>
+    <div class="setrow"><div><b>Share the app</b><small>Send it to your group before you fly</small></div><button class="chip-btn" onclick="shareApp()">📤 Share</button></div>
     <div class="setrow" id="installRow" style="display:none"><div><b>Install app</b><small>Add to your home screen — works offline</small></div><button class="chip-btn" onclick="installApp()">📲 Install</button></div>
   </div>
 
@@ -568,7 +592,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
     <input type="file" id="impFile" accept=".json" onchange="importData(event)" style="display:none">
     <button class="btn danger" onclick="confirmReset()">🗑️ Reset everything</button>
   </div>
-  <div style="text-align:center;color:var(--ink3);font-size:.78em;line-height:1.7;padding:8px 0"><b style="color:var(--ink2)">Umrah Strivers</b> · v3.2<br>Free · Offline · Private · No ads</div>
+  <div style="text-align:center;color:var(--ink3);font-size:.78em;line-height:1.7;padding:8px 0"><b style="color:var(--ink2)">Umrah Strivers</b> · v3.3<br>Free · Offline · Private · No ads</div>
   </div>
 </div>
 
@@ -1034,7 +1058,7 @@ function updPlan(){
   });
   var pct=tot?Math.round(done/tot*100):0;
   animPct('planPct',pct);setRing('planRing',pct);
-  document.getElementById('planHeroT').textContent=pct>=100?'Fully prepared! 🎉':pct>=60?'Almost there':pct>0?'Good progress':'Let’s get ready';
+  document.getElementById('planHeroT').textContent=pct>=100?'Fully prepared! 🎉':pct>=70?'Almost there':pct>=30?'Good progress':pct>0?'Getting started':'Let’s get ready';
   document.getElementById('planHeroS').textContent=done+' of '+tot+' preparation items done';
   updCountdown();
   renderLevels();
@@ -1044,11 +1068,12 @@ function updCountdown(){
   var n=document.getElementById('cdNum'),t=document.getElementById('cdT'),s=document.getElementById('cdS'),inp=document.getElementById('depDate');
   if(ST.dep){inp.value=ST.dep;
     var d=Math.ceil((new Date(ST.dep+'T00:00:00')-new Date())/86400000);
-    if(d>1){n.textContent=d;t.textContent='days until departure';s.textContent='Prepare with excellence — the countdown is on.';}
-    else if(d===1){n.textContent='1';t.textContent='day left!';s.textContent='Final checks — passport, ihram, dua list.';}
-    else if(d===0){n.textContent='🛫';t.textContent='Today is the day!';s.textContent='Safe travels — labbayk!';}
-    else{n.textContent='🕋';t.textContent='You’re on your journey';s.textContent='Switch to the Umrah & Daily tabs.';}
-  }else{n.textContent='—';t.textContent='Departure countdown';s.textContent='Set your date and watch the days melt away';}
+    var u=document.getElementById('cdU');
+    if(d>1){n.textContent=d;u.textContent='days';t.textContent='until departure';s.textContent='Prepare with excellence — the countdown is on.';}
+    else if(d===1){n.textContent='1';u.textContent='day';t.textContent='Tomorrow!';s.textContent='Final checks — passport, ihram, dua list.';}
+    else if(d===0){n.textContent='🛫';u.textContent='today';t.textContent='Today is the day!';s.textContent='Safe travels — labbayk!';}
+    else{n.textContent='🕋';u.textContent='on trip';t.textContent='You’re on your journey';s.textContent='Switch to the Umrah & Daily tabs.';}
+  }else{n.textContent='—';document.getElementById('cdU').textContent='days';t.textContent='Departure countdown';s.textContent='Set your date and watch the days melt away';}
 }
 
 /* ════════════════════════ QUIZ (levels) ════════════════════════ */
@@ -1165,8 +1190,11 @@ function updRites(){
   document.getElementById('riteHeroS').textContent='🕋 Umrahs completed: '+ST.umrahs;
   renderCnt('tawaf');renderCnt('sai');
 }
+var TAWAF_TIPS=['Start at the Black Stone line: "Bismillahi wallahu akbar" — Kaaba on your left.','Round 1 · men walk briskly (raml). Touch the Yamani corner if easy, then "Rabbana atina…"','Round 2 · keep the raml. Any dhikr or dua you love — nothing fixed.','Round 3 · last raml round. Guard your gaze and your tongue in the crowd.','Round 4 · normal pace now. Dua for your parents and those who asked you.','Round 5 · istighfar. Don’t push at the Stone — point and say Allahu Akbar.','Round 6 · salawat on the Prophet ﷺ. Stay close to your group.','Tawaf complete → cover both shoulders, 2 rakahs behind Maqam Ibrahim, then Zamzam.'];
+var SAI_TIPS=['On Safa: face the Kaaba, praise Allah, repeat the dhikr 3× with your own duas.','Lap 1 · Safa → Marwah. Men jog lightly between the green lights.','Lap 2 · back to Safa. Remember Hajar’s trust: "He will not abandon us."','Lap 3 · dua is accepted here — pour out your heart.','Lap 4 · halfway. Sip Zamzam from the coolers if you need to.','Lap 5 · dua for the ummah — the angel says "Amin, and for you the same."','Lap 6 · one to go. Salawat and istighfar.','Sa’i complete → halq or taqsir, then your Umrah is done. Taqabbal Allah!'];
 function renderCnt(k){
   var v=ST[k];
+  var tip=document.getElementById(k+'Tip');if(tip)tip.textContent=(k==='tawaf'?TAWAF_TIPS:SAI_TIPS)[v]||'';
   document.getElementById(k+'N').textContent=v;
   var ring=document.getElementById(k+'Ring');
   if(ring)ring.style.strokeDashoffset=565*(1-v/7);
@@ -1216,7 +1244,7 @@ function updDaily(){renderTB();
     var sp=document.getElementById('sp-'+sec.id);if(sp)sp.textContent=sd+'/'+sec.items.length;});
   var pct=tot?Math.round(done/tot*100):0;
   animPct('dPct',pct);setRing('dRing',pct);
-  document.getElementById('dHeroT').textContent=pct>=100?'Perfect day! 🌟':pct>=60?'Strong day':pct>0?'Keep going':'Bismillah';
+  document.getElementById('dHeroT').textContent=pct>=100?'Perfect day! 🌟':pct>=70?'Strong day':pct>=35?'Keep going':pct>0?'Good start':'Bismillah';
   document.getElementById('dHeroS').textContent=done+' of '+tot+' completed · '+pts+' pts';
   updStreaks();renderHeat();
 }
@@ -1276,15 +1304,16 @@ function renderPlaces(){
       var list=PLACES.filter(function(p){return p.city===city&&p.g===g&&(!q||(p.n+' '+p.d+' '+p.tip+' '+(p.stop?'hop-on hop-off bus stop':'')).toLowerCase().indexOf(q)>-1);});
       if(!list.length)return;
       cityAny=true;
-      ch+='<div class="subt">'+GLABEL[g]+'</div>';
+      ch+='<div class="subt" id="grp-'+city+'-'+g+'">'+GLABEL[g]+'</div>';
       list.forEach(function(p){
         var url='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.q);
         var stop=p.stop?'<span class="stopbadge '+(p.stop[0]==='R'?'red':'green')+'">🚌 Stop '+p.stop.slice(1)+' · '+(p.stop[0]==='R'?'Red':'Green')+'</span>':'';
-        ch+='<div class="place'+(placeVis[p.id]?' vis':'')+'" id="pl-'+p.id+'"><div class="place-h"><div class="place-ico">'+p.i+'</div><div class="place-t"><b>'+p.n+'</b>'+stop+'<p>'+p.d+'</p><div class="tip">💡 '+p.tip+'</div></div></div><div class="place-a"><a href="'+url+'" target="_blank" rel="noopener">🗺️ Open in Maps</a><button onclick="togPlace(\''+p.id+'\')">'+(placeVis[p.id]?'✓ Visited':'Mark visited')+'</button></div></div>';
+        ch+='<div class="place'+(placeVis[p.id]?' vis':'')+(q?' open':'')+'" id="pl-'+p.id+'"><div class="place-h" onclick="this.parentNode.classList.toggle(\'open\')"><div class="place-ico">'+p.i+'</div><div class="place-t"><b>'+p.n+(placeVis[p.id]?' <span class="vtick">✓</span>':'')+'</b>'+stop+'<p>'+p.d+'</p><div class="tip">💡 '+p.tip+'</div></div><span class="place-ch">▾</span></div><div class="place-a"><a href="'+url+'" target="_blank" rel="noopener">🗺️ Open in Maps</a><button onclick="togPlace(\''+p.id+'\')">'+(placeVis[p.id]?'✓ Visited':'Mark visited')+'</button></div></div>';
       });
     });
     if(!cityAny)return;
-    h+='<div class="cityhd">'+(city==='makkah'?'🕋 Makkah al-Mukarramah':'🕌 Madinah al-Munawwarah')+'</div>';
+    h+='<div class="cityhd" id="city-'+city+'">'+(city==='makkah'?'🕋 Makkah al-Mukarramah':'🕌 Madinah al-Munawwarah')+'</div>';
+    if(!q)h+='<div class="jumps">'+GORDER[city].map(function(g){return '<button onclick="jumpTo(\'grp-'+city+'-'+g+'\')">'+GLABEL[g]+'</button>';}).join('')+'</div>';
     if(city==='madinah'&&!q)h+=tourCard();
     h+=ch;
   });
@@ -1354,6 +1383,15 @@ function confirmReset(){
   if(!confirm('Reset ALL data? This cannot be undone. Export a backup first!'))return;
   ['us-settings','us-plan','us-rites','us-daily','us-places','us-badges'].forEach(function(k){localStorage.removeItem(k);});
   location.reload();
+}
+
+/* ════════════════════════ HELPERS ════════════════════════ */
+function jumpTo(id){var el=document.getElementById(id);if(!el)return;var y=el.getBoundingClientRect().top+window.scrollY-118;window.scrollTo({top:y,behavior:'smooth'});vib(8);}
+function shareApp(){
+  var data={title:'Umrah Strivers',text:'Plan, learn, perform & track your Umrah — rites walkthrough, tawaf counter, prayer times, ziyarah places & a knowledge quiz. Free, offline, private.',url:'https://umrah-strivers.vercel.app/'};
+  if(navigator.share){navigator.share(data).catch(function(){});}
+  else if(navigator.clipboard){navigator.clipboard.writeText(data.url).then(function(){toast('🔗 Link copied — share it with your group');});}
+  else toast('umrah-strivers.vercel.app');
 }
 
 /* ════════════════════════ SUB-NAV ════════════════════════ */
@@ -1733,6 +1771,7 @@ function initUI(){
   applyTheme();
   document.getElementById('quoteLine').textContent=QUOTES[Math.floor(Math.random()*QUOTES.length)];
   document.getElementById('tripLen').value=ST.tripLen;
+  var ni=document.getElementById('nameIn');if(ni)ni.value=ST.name||'';
   renderPlan();renderRites();renderDaily();renderPlaces();renderDuas();renderTB();
   buildDeck();renderFC();renderPost();updRemSw();applySubs();updChip();
   if(!ST.onboarded)setTimeout(showOnboard,400);

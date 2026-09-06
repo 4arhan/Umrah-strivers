@@ -69,6 +69,7 @@ It's one file — just open `index.html` in a browser. Installable to the home s
 - **First-launch onboarding sheet** — "Where are you on your journey?" jumps you to the right screen and captures your name for the certificate
 - **Journey chip** in the header — days to departure, current trip day, or post-Umrah state — tap to jump
 - Confetti celebrations, animated count-ups on progress rings, skeleton loading for prayer times, places search
+- **v3.3 screen-by-screen polish** — gold departure countdown card, jump-chips on the long Learn and Places pages, compact tap-to-expand place cards, round-by-round guidance under the Tawaf/Sa'i counters, wrapped tasbih phrases, name + share-the-app in Settings
 
 ## Tech
 
