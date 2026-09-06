@@ -154,7 +154,8 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 /* ─────────── steps ─────────── */
 .stp{display:flex;gap:12px;padding:12px;border-radius:var(--r);cursor:pointer;transition:background .2s;margin-bottom:2px;align-items:flex-start}
 .stp:active{background:var(--bg-soft)}
-.stp.done{opacity:.5}
+.stp.done .stp-n{opacity:.6}
+.stp.done .stp-t>b,.stp.done .stp-t>p{opacity:.5}
 .stp-n{width:28px;height:28px;border-radius:50%;background:var(--brand-soft);color:var(--brand-2);border:1.5px solid var(--brand-2);font-weight:800;font-size:.76em;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:all .2s}
 .stp.done .stp-n{background:var(--brand-2);color:#fff}
 .stp-t{flex:1;min-width:0}
@@ -372,7 +373,8 @@ html[data-text='lg'] body{font-size:17px}
 .qz-exit{font-size:.76em;font-weight:700;color:var(--ink3);cursor:pointer;text-decoration:underline}
 .dua-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
 .dua-top small{font-size:.72em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--gold-ink)}
-.say{border:1px solid var(--gold);background:var(--card);color:var(--gold-ink);border-radius:999px;padding:4px 11px;font-size:.78em;font-weight:700;cursor:pointer;transition:transform .15s;font-family:var(--fb)}
+.say{border:1px solid var(--gold);background:var(--card);color:var(--gold-ink);border-radius:999px;padding:10px 14px;min-height:44px;font-size:.88em;font-weight:700;cursor:pointer;transition:transform .15s;font-family:var(--fb);white-space:nowrap}
+.say.playing{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#231803;border-color:transparent}
 .say:active{transform:scale(.9)}
 .fc-wrap{margin-bottom:10px}
 .fc{perspective:1200px;min-height:150px;cursor:pointer;margin-bottom:10px;position:relative}
@@ -455,7 +457,7 @@ html[data-text='lg'] body{font-size:17px}
 .vtick{color:var(--brand-2);font-weight:800}
 .seg{position:sticky;overflow:visible}
 .seg::after{content:'';position:absolute;left:16px;bottom:-1px;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--brand-2),var(--gold-2));width:calc((100% - 32px) * var(--p,0));transition:width .6s cubic-bezier(.3,.7,.3,1)}
-.why{border:none;background:transparent;color:var(--brand-2);font-family:var(--fb);font-weight:700;font-size:.78em;padding:0;cursor:pointer;margin-left:4px;text-decoration:underline dotted}
+.why{border:none;background:transparent;color:var(--brand-2);font-family:var(--fb);font-weight:700;font-size:.78em;padding:8px 10px;margin:-8px -6px -8px 0;min-height:36px;cursor:pointer;text-decoration:underline dotted}
 .whyb{display:none;font-size:.78em;color:var(--ink2);line-height:1.55;margin-top:6px;padding:8px 10px;border-radius:10px;background:var(--bg-soft)}
 .whyb.on{display:block}
 .mataf{width:100%;height:auto;display:block;margin:4px 0}
@@ -762,6 +764,78 @@ html[data-text='lg'] body{font-size:17px}
 .sheet .btn.tall{min-height:56px}
 .sheet ul{padding-left:20px;font-size:.88em;color:var(--ink2);line-height:1.6;margin:8px 0}
 .sheet .lead{text-align:left;font-size:.9em;color:var(--ink);margin:0 0 8px;line-height:1.55}
+/* ─────────── Steps batch: you-are-here strip, walkthrough, completion block, trouble panel, print ─────────── */
+.now-strip{position:sticky;top:calc(108px + var(--sat));z-index:45;display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--brand),#0B2E24);color:#fff;border-radius:var(--r);padding:8px 8px 8px 14px;margin:0 0 12px;box-shadow:var(--sh-lg);min-height:56px}
+[data-theme="dark"] .now-strip{background:linear-gradient(135deg,#13402F,#0B241C)}
+.now-strip:empty{display:none}
+.now-l{flex:1;min-width:0;cursor:pointer}
+.now-k{display:block;font-size:.62em;letter-spacing:1.2px;text-transform:uppercase;opacity:.72;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.now-t{display:block;font-size:.92em;font-family:var(--fd);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35}
+.now-tick{border:none;background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#231803;font-weight:800;font-family:var(--fb);font-size:.82em;padding:0 14px;min-height:44px;border-radius:999px;cursor:pointer;white-space:nowrap;flex-shrink:0}
+.now-tick:active{transform:scale(.95)}
+.now-strip.done .now-t{color:#EFD494}
+.rite-tools{display:flex;gap:8px;margin:0 0 12px;flex-wrap:wrap}
+.rite-tools .chip-btn{flex:1;min-height:44px}
+.sec-ct.ok{background:var(--brand-2);color:#fff}
+[data-theme="dark"] .sec-ct.ok{color:#08281B}
+.sec .sec{margin:0 0 10px;box-shadow:none}
+.kn{display:flex;gap:8px;font-size:.78em;color:var(--ink2);line-height:1.55;background:var(--bg-soft);border-radius:var(--r-sm);padding:9px 12px;margin:0 2px 10px}
+.kn b{color:var(--ink)}
+.callout{display:flex;gap:10px;align-items:flex-start;background:var(--brand-soft);border-radius:var(--r-sm);padding:10px 12px;margin:0 12px 10px 52px;font-size:.8em;color:var(--ink2);line-height:1.55}
+.callout .co-i{font-size:1.2em;flex-shrink:0}.callout .co-t{flex:1;min-width:0}.callout .co-t b{color:var(--ink)}.callout .xchip{margin-top:4px}
+.dua-top small .rep{display:inline-block;margin-left:4px;padding:1px 8px;border-radius:999px;background:var(--gold);color:#231803;letter-spacing:.2px;font-size:.92em}
+.dua.duaopt{background:var(--bg-soft);border-left-color:var(--line)}
+.dua.duaopt .dua-top small{color:var(--ink3)}
+.sec-ct:empty{display:none}
+.focus-top>span:first-child{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.focus-top .chip-btn{padding:9px 11px;flex-shrink:0}
+.dua .dua-top{gap:8px;align-items:center}
+.dua .dua-top small{flex:1;min-width:0;line-height:1.4}
+.rite-done{margin:8px 2px 4px;padding:16px;border-radius:var(--r);border:1.5px dashed var(--line);text-align:center}
+.rite-done>b{display:block;font-family:var(--fd);font-size:1.1em}
+.rite-done>p{font-size:.82em;color:var(--ink2);line-height:1.55;margin-top:4px}
+.rite-done.ready{border:1.5px solid var(--gold);background:var(--gold-soft)}
+@keyframes rdPulse{0%,100%{transform:none;box-shadow:var(--sh)}50%{transform:scale(1.03);box-shadow:0 0 0 8px rgba(217,180,94,.35)}}
+.rite-done.ready .btn.gold{animation:rdPulse 1.1s ease .3s 2}
+.rite-done .lnk.fresh,#logArea .lnk.fresh{display:block;margin:10px auto 0;font-size:.78em;color:var(--ink3);text-decoration:underline dotted;font-weight:600}
+.rd-foot{font-size:.78em;color:var(--ink2);margin-top:12px}
+.rd-foot .xchip{margin:4px 0 0}
+.rd-note{margin-top:10px;background:var(--brand-soft);border-radius:var(--r-sm);padding:10px 12px;font-size:.86em;font-weight:700;color:var(--brand-ink)}
+.rd-acts{display:flex;gap:8px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+.note.stale{font-style:normal;font-family:var(--fb);font-size:.8em}
+.note.stale .lnk{font-size:1em;margin-left:4px}
+.focus.walk{background:var(--bg);color:var(--ink)}
+.focus.walk .focus-top{color:var(--ink);border-bottom:1px solid var(--line)}
+.focus.walk .chip-btn{background:var(--card);color:var(--ink2);border-color:var(--line)}
+.walk-body{flex:1;overflow-y:auto;padding:18px 20px 10px;-webkit-overflow-scrolling:touch}
+.wk-n{width:56px;height:56px;border-radius:18px;background:var(--brand-soft);display:flex;align-items:center;justify-content:center;font-size:1.6em;margin-bottom:12px}
+.wk-n.on{background:var(--brand-2);color:#fff;font-size:.9em;font-weight:800}
+.wk-t{font-family:var(--fd);font-size:1.5em;line-height:1.25;font-weight:700}
+.wk-p{font-size:1em;color:var(--ink2);line-height:1.6;margin-top:8px}
+.wk-why{margin-top:12px;background:var(--gold-soft);border-left:3px solid var(--gold);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:10px 12px;font-size:.88em;color:var(--ink2);line-height:1.6}
+.wk-why small{display:block;font-size:.72em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--gold-ink);margin-bottom:2px}
+.wk-cnt{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.wk-cnt b{font-family:var(--fd);font-size:1.6em;color:var(--brand-2)}.wk-cnt span{flex:1;font-size:.84em;color:var(--ink2)}.wk-cnt .btn{margin:0;width:auto;padding:12px 16px}
+.walk-body .dua{margin-top:14px;font-size:.92em}
+.walk-body .dua .ar{font-size:1.6em}
+.walk-body .xchip{margin-top:12px}
+.walk-bot{gap:10px;border-top:1px solid var(--line)}
+.walk-bot .btn{margin:0;flex:1;min-height:56px}
+.walk-bot .chip-btn{min-height:56px}
+.wk-done{text-align:center;padding:20px 0}
+.wk-done .big{font-size:3em}.wk-done h3{font-family:var(--fd);font-size:1.4em;margin:8px 0 6px}.wk-done p{font-size:.9em;color:var(--ink2);line-height:1.55;margin-bottom:8px}
+#printSheet{display:none}
+@media print{
+  .app,.nav,.focus,.sheet-o,.toasts,canvas,.top{display:none!important}
+  body{background:#fff;color:#000;font-size:11pt}
+  #printSheet{display:block;padding:0 6mm;font-family:Georgia,serif;color:#000}
+  #printSheet h1{font-size:18pt;margin:0 0 4pt}#printSheet .pr-sub{font-size:9pt;color:#555;margin:0 0 10pt}
+  #printSheet h2{font-size:13pt;margin:12pt 0 4pt;border-bottom:1px solid #999;padding-bottom:2pt;break-after:avoid}
+  #printSheet ol,#printSheet ul{padding-left:18pt;margin:0}#printSheet li{margin:0 0 6pt;line-height:1.4;break-inside:avoid}
+  #printSheet .pr-dua{margin:3pt 0 0 6pt;padding-left:6pt;border-left:2px solid #B8892F;font-size:10pt}
+  #printSheet .pr-dua .ar{display:block;direction:rtl;text-align:right;font-size:14pt;line-height:1.9}
+  #printSheet .pr-pack{columns:2;list-style:none;padding:0}
+}
 </style>
 </head>
 <body>
@@ -891,7 +965,9 @@ html[data-text='lg'] body{font-size:17px}
   </div></div>
 
   </div><div class="sub" id="sub-umrah-steps">
-  <div class="sec shut"><div class="sec-hd" onclick="togSec(this)"><div class="sec-ico">🗺️</div><h2>The mataf — where everything is<small>Tap to open the schematic</small></h2><span class="sec-chev">▼</span></div><div class="sec-bd">
+  <div class="now-strip" id="riteNow" aria-live="polite"></div>
+  <div class="rite-tools"><button class="chip-btn" onclick="startWalk()">▶ Walk me through it</button><button class="chip-btn" onclick="printSheet()">🖨️ Print / save PDF</button></div>
+  <div class="sec shut" id="matafSec"><div class="sec-hd" role="button" tabindex="0" aria-expanded="false" onclick="togSec(this)"><div class="sec-ico">🗺️</div><h2>The mataf — where everything is<small>Tap to open the schematic</small></h2><span class="sec-chev">▼</span></div><div class="sec-bd">
     <svg class="mataf" viewBox="0 0 340 320" role="img" aria-label="Schematic of the Kaaba and mataf">
       <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#D9B45E"/></marker></defs>
       <circle cx="170" cy="150" r="118" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="4 5"/>
@@ -904,16 +980,17 @@ html[data-text='lg'] body{font-size:17px}
       <circle cx="122" cy="198" r="5" fill="#D9B45E"/>
       <circle cx="262" cy="176" r="6" fill="var(--brand-2)"/>
       <circle cx="235" cy="235" r="5" fill="#60A5FA"/>
-      <g font-family="Inter,sans-serif" font-size="10" fill="var(--ink2)">
-        <text x="170" y="92" text-anchor="middle">Hijr Isma’il (inside the Kaaba)</text>
-        <text x="170" y="155" text-anchor="middle" fill="#fff" font-weight="700" font-size="13">KAABA</text>
+      <g font-family="Inter,sans-serif" font-size="10" fill="var(--ink2)" stroke="var(--card)" stroke-width="3" paint-order="stroke" stroke-linejoin="round">
+        <text x="170" y="62" text-anchor="middle" font-weight="700" fill="var(--ink)">Hijr Isma’il — part of the Kaaba</text>
+        <text x="170" y="90" text-anchor="middle" font-weight="800" font-size="9" fill="var(--danger)">walk AROUND it — never through it</text>
+        <text x="170" y="155" text-anchor="middle" fill="#fff" font-weight="700" font-size="13" stroke="none">KAABA</text>
         <text x="228" y="212" font-weight="700" fill="var(--ink)">Black Stone ● start line</text>
         <text x="228" y="224">tawaf begins &amp; ends here</text>
         <text x="228" y="140">Door &amp; Multazam</text>
-        <text x="270" y="172">Maqam Ibrahim</text>
-        <text x="270" y="184">(2 rakahs)</text>
-        <text x="60" y="212" text-anchor="end" fill="var(--ink)" font-weight="700">Yamani corner</text>
-        <text x="118" y="212" text-anchor="end">touch, don’t kiss</text>
+        <text x="262" y="164" text-anchor="middle" font-weight="700" fill="var(--ink)">Maqam Ibrahim</text>
+        <text x="262" y="196" text-anchor="middle">(2 rakahs)</text>
+        <text x="116" y="216" text-anchor="end" fill="var(--ink)" font-weight="700">Yamani corner</text>
+        <text x="116" y="228" text-anchor="end">touch, don’t kiss</text>
         <text x="243" y="250">Zamzam taps</text>
         <text x="300" y="300" text-anchor="end" fill="var(--brand-2)" font-weight="700">→ to Safa &amp; the Mas’a (SE)</text>
         <text x="170" y="22" text-anchor="middle" fill="#B8892F" font-weight="700">counter-clockwise · Kaaba on your LEFT</text>
@@ -924,8 +1001,6 @@ html[data-text='lg'] body{font-size:17px}
   <div id="riteContainer"></div>
   <div class="card card-pad"><h3>⏱️ This Umrah’s timeline</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:8px">Stamped automatically as you tick steps and tap the counters.</p><div id="logArea"></div></div>
   <div class="card card-pad" id="umrahsCard"><h3>🕋 My Umrahs</h3><div id="umrahsArea"></div></div>
-  <button class="btn gold" onclick="finishUmrah()">🎉 Record completed Umrah & reset</button>
-  <p style="font-size:.76em;color:var(--ink2);text-align:center;margin-top:8px">Another Umrah? Take ihram from <span class="pl-link" onclick="openPlace('taneem')">Masjid Aisha (Tan'eem)</span>.</p>
   </div>
 </div>
 
@@ -1013,6 +1088,7 @@ html[data-text='lg'] body{font-size:17px}
     <div class="setrow"><div><b>Trip length</b><small>How many days is your trip?</small></div><input type="number" class="numin" id="tripLen" min="3" max="30" onchange="setTripLen(this.value)" aria-label="Trip length in days"></div>
     <div class="setrow"><div><b>I am a…</b><small>Shows only the ihram, packing and halq/taqsir steps that apply to you</small></div><div class="segmini" id="profSeg"><button data-p="m" onclick="setProfile('m')">Brother</button><button data-p="w" onclick="setProfile('w')">Sister</button><button class="on" data-p="" onclick="setProfile('')">Both</button></div></div>
     <div class="setrow"><div><b>Travelling with children</b><small>Adds a children’s checklist to Plan › Prepare</small></div><button class="sw" id="kidsSw2" role="switch" aria-checked="false" aria-label="Travelling with children" onclick="togKids()"></button></div>
+    <div class="setrow"><div><b>Dua audio</b><small>Arabic voice missing? Install it in your phone’s text-to-speech settings, then test here.</small></div><button class="say" onclick="testVoice(this)" aria-label="Test the Arabic voice">🔊 Test</button></div>
     <div class="setrow"><div><b>Your name</b><small>Printed on your certificate</small></div><input class="numin" style="width:130px;text-align:left" id="nameIn" placeholder="Name" aria-label="Your name" onchange="ST.name=this.value.trim();saveST();"></div>
     <div class="setrow"><div><b>🧭 Journey stage</b><small id="stageLbl">Re-declare where you are — nothing is reset</small></div><button class="chip-btn" onclick="showOnboard()">Change</button></div>
     <div class="setrow"><div><b>Share the app</b><small>Send it to your group before you fly</small></div><div style="display:flex;gap:6px"><button class="chip-btn" onclick="shareApp()">📤 Share</button><button class="chip-btn" onclick="showQR()">▦ QR</button></div></div>
@@ -1060,9 +1136,11 @@ html[data-text='lg'] body{font-size:17px}
 <button data-v="more" onclick="goTab('more')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.6"/><circle cx="5" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg><span class="l">More</span></button>
 </nav>
 <canvas id="confetti" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:190;display:none"></canvas>
-<div class="focus" id="focus" role="dialog" aria-modal="true" aria-label="Big counter"><div class="focus-top"><span id="focusTitle">🕋 Tawaf</span><div style="display:flex;gap:8px"><button class="chip-btn" id="focusWudu" onclick="focusWudu()" aria-pressed="false">💧 wudu</button><button class="chip-btn" onclick="exitFocus()">✕ Exit</button></div></div><div class="focus-tap" role="button" tabindex="0" aria-label="Tap to count one round" onclick="focusTap()"><div class="focus-n" id="focusN">0</div><div class="focus-of" id="focusOf">of 7 rounds</div><div class="focus-tip" id="focusTip"></div><div class="focus-hint" id="focusHint">tap anywhere to count</div><div class="focus-done" id="focusDone" hidden></div></div><div class="focus-dua" id="focusDua" role="button" tabindex="0" aria-label="Dua for this rite — tap for transliteration and meaning" onclick="event.stopPropagation();fdToggle()"></div><div class="focus-bot"><button class="btn undo" onclick="cntr(focusKey,-1)">− Undo</button><button class="chip-btn" onclick="myDuasSheet()">🤲 My duas</button></div></div>
+<div class="focus" id="focus" role="dialog" aria-modal="true" aria-label="Big counter"><div class="focus-top"><span id="focusTitle">🕋 Tawaf</span><div style="display:flex;gap:8px"><button class="chip-btn" id="focusWudu" onclick="focusWudu()" aria-pressed="false">💧 wudu</button><button class="chip-btn" onclick="event.stopPropagation();troubleSheet()" aria-label="Something went wrong?">⚠️ Problem?</button><button class="chip-btn" onclick="exitFocus()">✕ Exit</button></div></div><div class="focus-tap" role="button" tabindex="0" aria-label="Tap to count one round" onclick="focusTap()"><div class="focus-n" id="focusN">0</div><div class="focus-of" id="focusOf">of 7 rounds</div><div class="focus-tip" id="focusTip"></div><div class="focus-hint" id="focusHint">tap anywhere to count</div><div class="focus-done" id="focusDone" hidden></div></div><div class="focus-dua" id="focusDua" role="button" tabindex="0" aria-label="Dua for this rite — tap for transliteration and meaning" onclick="event.stopPropagation();fdToggle()"></div><div class="focus-bot"><button class="btn undo" onclick="cntr(focusKey,-1)">− Undo</button><button class="chip-btn" onclick="myDuasSheet()">🤲 My duas</button></div></div>
 <div class="focus driver" id="driver" role="dialog" aria-modal="true" aria-label="Show to driver"><div class="focus-top"><span>🚕 Please take me to my hotel</span><button class="chip-btn" onclick="closeDriver()">✕ Close</button></div><div class="focus-tap lost-body" style="justify-content:flex-start;padding:10px 24px;cursor:default"><div class="drv-ar">من فضلك خذني إلى هذا الفندق</div><div class="drv-name" id="drvName">—</div><div class="drv-addr" id="drvAddr"></div><div class="drv-phone" id="drvPhone"></div><div class="drv-acts" id="drvActs"></div><div class="focus-hint" onclick="closeDriver()">tap here to close</div></div></div>
 <div class="focus driver" id="lost" role="dialog" aria-modal="true" aria-label="I am lost"><div class="focus-top"><span>🆘 I’m lost — please help</span><button class="chip-btn" onclick="closeLost()">✕ Close</button></div><div class="lost-body" id="lostBody"></div></div>
+<div class="focus walk" id="walk" role="dialog" aria-modal="true" aria-label="Step-by-step walkthrough"><div class="focus-top"><span id="walkHd">Step 1</span><button class="chip-btn" onclick="closeWalk()">✕ Exit</button></div><div class="walk-body" id="walkBody"></div><div class="focus-bot walk-bot"><button class="chip-btn" id="walkBack" onclick="walkNav(-1)">← Back</button><button class="btn" id="walkNext" onclick="walkDone()">✓ Done → Next</button></div></div>
+<div id="printSheet" aria-hidden="true"></div>
 <div class="sheet-o" id="obSheet" onclick="if(event.target===this)closeOnboard()"><div class="sheet">
   <button class="ob-x" onclick="closeOnboard()" aria-label="Close">✕</button>
   <div id="obStep1">

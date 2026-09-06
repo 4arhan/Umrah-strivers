@@ -139,11 +139,20 @@ The service-worker cache is named after `APP_VERSION`. For every release **bump 
 - **Duas where you count**: the Yamani-corner dua sits under the tawaf ring and the Safa/Marwah dhikr under the sa'i ring; the big counter has a fixed dua strip outside the tap zone (tap for meaning) and a *My duas* sheet that never touches the count; "screen stays awake" is shown only once the wake lock is actually held
 - **For sisters**: a *Period started? Your ihram is still valid* line under the wudu card opens the ruling (Bukhari 305) with what to keep doing and who to ask before flying
 
+## v4.10 — Steps & duas
+- **You are here**: a sticky *Now · step 9 of 17* strip under the Umrah segment names the next unticked step with a ✓ Done button (or *Umrah complete — record it*); opening Steps unfolds only the phase you are in, finished phases fold to *✓ done*, chips carry global numbering (*steps 6–12*, *3/7*); the first counted round ticks wudu + the Black Stone start
+- **Reading order = doing order**: Phase 2 is wudu → idtiba' → Black Stone (with *Bismillahi wallahu akbar*) → Yamani corner → 7 rounds → 2 rakahs → Zamzam (with the Zamzam dua); Phase 3 is Safa (with *Innas-Safa wal-Marwah…*) → Marwah → 7 laps; recurring duas carry an *↻ every round / every lap* pill; the optional conditional intention (ishtirat, Bukhari 5089) sits under the niyyah; a ✈️ *Flying?* callout links to the miqat article
+- **Safe ticking**: ticking dims only the title (the dua stays readable), toasts *tap again to undo*, and un-ticking removes the step's stamp; a counter reset removes its stamps; *↺ Start fresh (nothing recorded)* clears rehearsal ticks without recording an Umrah, and the timeline flags ticks older than a day
+- **▶ Walk me through it**: a one-step-at-a-time overlay (step n of N, why, duas with audio, live count + *Open counter* on the tawaf/sa'i steps, *✓ Done → Next*), and a **🖨️ Print / save PDF** briefing sheet (rites + duas, packing list, emergency numbers, hotel card)
+- **Closing the loop**: Phase 4 ends in a completion block with the gold *Record completed Umrah* button (pulses once the hair is cut) and, after recording, *🎴 Keepsake* / *📿 Log today's worship*; the mataf schematic now opens under Phase 2 with legible labels and a Hijr Isma'il warning
+- **🆘 If something goes wrong**: lost count · wudu broke · resting · forbidden by mistake (Bukhari 1536) · upper floors · talking · menses · missed the miqat — under Phase 4, inside the Learn Q&A and behind a ⚠️ *Problem?* chip in the big counter
+- **Audio**: one Arabic voice picked up front, a *⏹ Stop* playing state, and an honest toast when the device has no Arabic voice (with a test button in Settings); a children's fiqh entry and a 🧒 note at the top of Tawaf; the Umrah tab opens on Steps before departure and on Counters once flying
+
 ## Development & testing
 
 ```
 npm install            # playwright-core only
-npm test               # end-to-end smoke suite (~90 checks) in headless Chromium
+npm test               # end-to-end smoke suite (~100 checks) in headless Chromium
 ```
 Set `CHROME=/path/to/chromium` if Playwright cannot find a browser. Content lives in `data.js` (places, quiz, knowledge, duas); logic in `app.js`.
 

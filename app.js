@@ -1,6 +1,6 @@
 /* Umrah Strivers — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='4.9.0';
+var APP_VERSION='4.10.0';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* ════════════════════════ STATE ════════════════════════ */
 var ST={day:1,tripLen:10,theme:'light',tab:'home',dep:'',umrahs:0,tawaf:0,sai:0,quizBest:0,city:'Makkah'};
@@ -78,6 +78,7 @@ function goTab(t,sub,anchor){ST.tab=t;saveST();
   updChip();
   if(!ST.segNudged&&view.querySelector('.seg')){ST.segNudged=true;saveST();var on=view.querySelector('.seg button.on');if(on)on.classList.add('nudge');}
   if(!anchor&&t==='umrah'&&(ST.sub||{}).umrah==='count'&&cntStarted())anchor=cntActive()+'Card';
+  if(!anchor&&t==='umrah'&&(ST.sub||{}).umrah==='steps'){focusRites(false);var nxr=nextRite();anchor=nxr?'rw-'+nxr.st.id:'riteDone';}
   if(anchor){requestAnimationFrame(function(){setTimeout(function(){jumpTo(anchor,true);},30);});}
   else window.scrollTo({top:0,behavior:'smooth'});}
 /* deep links used by chips in checklists and knowledge bodies (M-05) */
@@ -87,7 +88,7 @@ function openPlace(id){var p=PLACES.filter(function(x){return x.id===id;})[0];if
 function openTour(){placesReset();goTab('places',null,'tourCard');}
 function goPost(enable){if(enable&&!ST.post){ST.post=true;saveST();renderPost();}goTab('more','guide','postCard');}
 function startPost(){goPost(true);toast('🌱 Post-Umrah mode on — 30 days, 3 habits',true);}
-function refChip(it){var q=function(v){return v?'\''+v+'\'':'null';};if(it.place)return '<button class="xchip" onclick="event.stopPropagation();openPlace('+q(it.place)+')">'+(it.goL||'📍 Open')+' →</button>';if(it.go)return '<button class="xchip" onclick="event.stopPropagation();goRef('+q(it.go[0])+','+q(it.go[1])+','+q(it.go[2])+')">'+(it.goL||'Open')+' →</button>';return '';}
+function refChip(it){var q=function(v){return v?'\''+v+'\'':'null';};if(typeof it.go==='string')return '<button class="xchip" onclick="event.stopPropagation();'+it.go+'">'+(it.goL||'Open')+' →</button>';if(it.place)return '<button class="xchip" onclick="event.stopPropagation();openPlace('+q(it.place)+')">'+(it.goL||'📍 Open')+' →</button>';if(it.go)return '<button class="xchip" onclick="event.stopPropagation();goRef('+q(it.go[0])+','+q(it.go[1])+','+q(it.go[2])+')">'+(it.goL||'Open')+' →</button>';return '';}
 function mkSec(sec,shut,inner,countId){
   var apps='';
   if(sec.apps)apps='<div class="apps">'+sec.apps.map(function(x){var go=x.u?'href="'+x.u+'" target="_blank" rel="noopener"':'href="#" onclick="event.preventDefault();goTab(\''+x.go[0]+'\');goSub(\''+x.go[0]+'\',\''+x.go[1]+'\',true)"';return '<a class="applink" '+go+'><span class="app-i">'+x.i+'</span><span class="app-t"><b>'+x.n+'</b>'+x.d+'</span><span class="app-go">'+(x.u?'Open ↗':'Go →')+'</span></a>';}).join('')+'</div>';
@@ -115,7 +116,7 @@ function renderPlan(){
 function accs(arr){return arr.map(function(g){return '<div class="acc"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)">'+g.t+' <span class="acc-c">▶</span></div><div class="acc-b">'+g.b+'</div></div>';}).join('');}
 function accToggle(h){var a=h.parentNode,o=a.classList.toggle('open');h.setAttribute('aria-expanded',o?'true':'false');}
 /* Learn hub: reading sections in reading order (P-13/P-21), topic counts (P-20), search (P-20), rites index (P-14) */
-var LN_CARDS=[['knowCard','knowContainer',KNOW],['qaCard','qaContainer',FIQHQA],['histCard','histContainer',HISTORY],['virtCard','virtContainer',VIRTUES],['madCard','madContainer',MADINAH],['sisCard','sisContainer',SISTERS],['scamCard','scamContainer',SCAMS]];
+var LN_CARDS=[['knowCard','knowContainer',KNOW],['qaCard','qaContainer',FIQHQA.concat(TROUBLE)],['histCard','histContainer',HISTORY],['virtCard','virtContainer',VIRTUES],['madCard','madContainer',MADINAH],['sisCard','sisContainer',SISTERS],['scamCard','scamContainer',SCAMS]];
 var LN_OTHER=['ritesCard','fcCard','lnQuizCard'],lnAuto=null;
 function fcText(html){return String(html||'').replace(/<[^>]+>/g,' ').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim();}
 function lnMeta(cardId,arr){var h3=document.querySelector('#'+cardId+' h3');if(!h3)return;var w=0;arr.forEach(function(g){w+=fcText(g.t+' '+g.b).split(' ').length;});var m=h3.querySelector('.lnm');if(!m){m=document.createElement('small');m.className='lnm';h3.appendChild(m);}m.textContent=arr.length+' topics · ≈'+Math.max(1,Math.round(w/200))+' min read';}
@@ -325,27 +326,70 @@ function nextQz(){
 }
 
 /* ════════════════════════ RITES ════════════════════════ */
+/* U-17: a step may carry one dua or an array of duas (an optional one is marked opt:'label') */
+function stDuas(st){return st.dua?(Array.isArray(st.dua)?st.dua:[st.dua]):[];}
+function duaHTML(st,d,i){var lbl=d.opt?d.opt:'Dua'+(st.rep?' · <span class="rep">↻ '+st.rep+'</span>':'');
+  return '<div class="dua tapable'+(d.opt?' duaopt':'')+'" role="button" tabindex="0" aria-label="Open this dua full screen" onclick="event.stopPropagation();openRiteDua(\''+st.id+'\','+(i||0)+')"><div class="dua-top"><small>'+lbl+'</small><button class="say" data-ar="'+d.ar+'" onclick="speakBtn(this)" aria-label="Play recitation">🔊 Listen</button></div><span class="ar" lang="ar">'+d.ar+'</span><span class="tl">'+d.tl+'</span><span class="tr">'+d.tr+'</span>'+(d.s?'<span class="src">'+d.s+'</span>':'')+'<span class="enl">⛶ tap to enlarge</span></div>';}
+/* the ordered list of visible steps with their global number (U-10) */
+function riteList(){var L=[],n=0;RITES.forEach(function(ph){ph.steps.forEach(function(st){if(!forMe(st))return;n++;L.push({st:st,ph:ph,n:n});});});return L;}
+/* U-19: the mataf schematic moves from the top of the tab into Phase 2, where tawaf begins */
+var MATAF_HTML='';
+function troubleList(){var qa={};FIQHQA.forEach(function(g){if(g.id)qa[g.id]=g;});var L=[TROUBLE[0],qa.wudu,qa.rest,TROUBLE[2],qa.floors,qa.talk,qa.menses,TROUBLE[1]].filter(function(x){return !!x;});return L.slice(0,8);}
 function renderRites(){
+  var m=document.getElementById('matafSec');if(m){MATAF_HTML=m.outerHTML;m.parentNode.removeChild(m);}
   var h='',n=0;
   RITES.forEach(function(ph,i){
     var inner='';
+    if(ph.id==='ph2'&&MATAF_HTML)inner+=MATAF_HTML;
+    if(ph.kn)inner+='<div class="kn">🧒 '+ph.kn+'</div>';
     ph.steps.forEach(function(st){
       if(!forMe(st))return;
       n++;
-      inner+='<div class="stp" id="rw-'+st.id+'" role="checkbox" tabindex="0" aria-checked="false" onclick="togRite(\''+st.id+'\')"><div class="stp-n">'+n+'</div><div class="stp-t"><b>'+st.b+'</b><p>'+st.p+(st.why?' <button class="why" onclick="event.stopPropagation();this.parentNode.nextSibling.classList.toggle(\'on\')">Why?</button>':'')+'</p>'+(st.why?'<div class="whyb">'+st.why+'</div>':'')+(st.kid?'<button class="xchip" onclick="event.stopPropagation();openStory(\''+st.kid+'\')">🧒 Story for the kids →</button>':'')+(st.id==='rounds'||st.id==='laps'?'<button class="xchip" id="live-'+st.id+'" onclick="event.stopPropagation();goCounter(\''+(st.id==='rounds'?'tawaf':'sai')+'\')">🔄 Open counter →</button>':'')+(st.dua?'<div class="dua tapable" onclick="event.stopPropagation();openRiteDua(\''+st.id+'\')"><div class="dua-top"><small>Dua</small><button class="say" data-ar="'+st.dua.ar+'" onclick="speakBtn(this)" aria-label="Play recitation">🔊 Listen</button></div><span class="ar">'+st.dua.ar+'</span><span class="tl">'+st.dua.tl+'</span><span class="tr">'+st.dua.tr+'</span><span class="enl">⛶ tap to enlarge</span></div>':'')+'</div></div>';
+      inner+='<div class="stp" id="rw-'+st.id+'" role="checkbox" tabindex="0" aria-checked="false" onclick="togRite(\''+st.id+'\')"><div class="stp-n">'+n+'</div><div class="stp-t"><b>'+st.b+'</b><p>'+st.p+(st.why?' <button class="why" onclick="event.stopPropagation();this.parentNode.nextSibling.classList.toggle(\'on\')" aria-label="Why this step?">Why?</button>':'')+'</p>'+(st.why?'<div class="whyb">'+st.why+'</div>':'')+(st.kid?'<button class="xchip" onclick="event.stopPropagation();openStory(\''+st.kid+'\')">🧒 Story for the kids →</button>':'')+(st.id==='rounds'||st.id==='laps'?'<button class="xchip" id="live-'+st.id+'" onclick="event.stopPropagation();goCounter(\''+(st.id==='rounds'?'tawaf':'sai')+'\')">🔄 Open counter →</button>':'')+stDuas(st).map(function(d,k){return duaHTML(st,d,k);}).join('')+'</div></div>';
+      if(st.call)inner+='<div class="callout"><span class="co-i">'+(st.call.ico||'💡')+'</span><div class="co-t">'+st.call.t+(st.call.go?' <button class="xchip" onclick="'+st.call.go+'">'+(st.call.goL||'Read more')+' →</button>':'')+'</div></div>';
     });
+    if(ph.id==='ph4')inner+='<div class="rite-done" id="riteDone"><b>🎉 Your Umrah is complete</b><p>All ihram restrictions are lifted. May Allah accept it — make shukr, and keep filling your days with worship.</p><button class="btn gold" id="recordBtn" onclick="finishUmrah()">🎉 Record completed Umrah &amp; reset</button><div id="riteDoneNote"></div><button class="lnk fresh" onclick="startFresh()">↺ Start fresh (nothing recorded)</button><p class="rd-foot">Another Umrah? Take ihram from <button class="xchip" onclick="openPlace(\'taneem\')">📍 Masjid Aisha (Tan’eem) →</button></p></div>';
     h+=mkSec(ph,i>0,inner);
   });
+  h+=mkSec({id:'trouble',ico:'🆘',title:'If something goes wrong',sub:'Lost count · wudu broke · forbidden by mistake · missed the miqat'},true,accs(troubleList()));
   document.getElementById('riteContainer').innerHTML=h;
   renderCnt('tawaf');renderCnt('sai');renderRiteTiles();
 }
+/* U-22: the same answers inside the big counter — the sheet sits above the tap zone, so the count is untouched */
+function troubleSheet(){openSheet('<div class="sheet-h" style="background:linear-gradient(145deg,var(--danger),#7c2d12)">⚠️</div><h3>Something wrong?</h3><p>Tap a question — your count is not touched.</p>'+accs(troubleList())+'<button class="btn ghost" onclick="closeSheet()">Back to the counter</button>');}
+/* U-17: deep link into a Know-before-you-go topic (0 = miqats, 2 = how to wear the ihram) */
+function openKnow(i){var a=document.querySelectorAll('#knowContainer .acc')[i];if(a){a.classList.add('open');var hd=a.querySelector('.acc-h');if(hd)hd.setAttribute('aria-expanded','true');}goTab('plan','learn',a?null:'knowCard');if(a)requestAnimationFrame(function(){setTimeout(function(){try{a.scrollIntoView({behavior:'smooth',block:'center'});}catch(e){}},60);});}
 function stamp(k){ST.log=ST.log||{};if(!ST.log[k]){ST.log[k]=Date.now();saveST();}}
-function togRite(id){riteChk[id]=!riteChk[id];save('us-rites',riteChk);vib(15);
+function togRite(id,quiet){riteChk[id]=!riteChk[id];save('us-rites',riteChk);vib(15);
   if(riteChk[id]){if(id==='niyyah'){stamp('ihram');if(ST.tmode==='nafl')setTmode('umrah',true);}if(id==='start')stamp('tawafStart');if(id==='cut'||id==='cutw')stamp('halq');}
-  updRites();renderLog();}
+  else{/* U-13: an un-ticked step takes its stamp with it — practice ticks never poison the keepsake */
+    var lg=ST.log||{};if(id==='niyyah'&&lg.ihram){delete lg.ihram;saveST();}if((id==='cut'||id==='cutw')&&lg.halq&&!riteChk.cut&&!riteChk.cutw){delete lg.halq;saveST();}}
+  updRites();renderLog();focusRites(false);
+  if(!quiet){var st=riteStep(id);if(riteChk[id])toast('✓ '+fcText(st?st.b:'Step')+' — tap again to undo');}}
+/* U-10: where am I in the rites? */
+function nextRite(){var L=riteList();for(var i=0;i<L.length;i++){var st=L[i].st;if(riteChk[st.id])continue;
+  if(st.pair&&L.some(function(x){return x.st.pair===st.pair&&x.st.id!==st.id&&riteChk[x.st.id];}))continue;return L[i];}return null;}
+function phaseDone(ph){var c=riteCounts(ph.steps);return c.tot>0&&c.done>=c.tot;}
+function setSecOpen(id,open){var sc=document.getElementById('sec-'+id);if(!sc)return;sc.classList.toggle('shut',!open);var hd=sc.querySelector('.sec-hd');if(hd)hd.setAttribute('aria-expanded',open?'true':'false');}
+/* open the phase that holds the next step; fully ticked phases fold away. scroll=true (fresh navigation) also folds every other phase and lands on the step */
+function focusRites(scroll){var nx=nextRite(),cur=nx?nx.ph.id:'ph4';
+  RITES.forEach(function(ph){if(ph.id===cur)setSecOpen(ph.id,true);else if(phaseDone(ph)||scroll)setSecOpen(ph.id,false);});
+  if(scroll){setTimeout(function(){jumpTo(nx?'rw-'+nx.st.id:'riteDone',true);},40);}}
+function openRiteStep(id){var st=null,ph=null;RITES.forEach(function(p){p.steps.forEach(function(x){if(x.id===id){st=x;ph=p;}});});if(!ph)return;setSecOpen(ph.id,true);
+  if(document.getElementById('view-umrah').classList.contains('on')&&(ST.sub||{}).umrah==='steps')jumpTo('rw-'+id);else goTab('umrah','steps','rw-'+id);}
+function renderRiteNow(){var s=document.getElementById('riteNow');if(!s)return;var nx=nextRite(),L=riteList();
+  if(!nx){s.classList.add('done');s.innerHTML='<div class="now-l" role="button" tabindex="0" onclick="setSecOpen(\'ph4\',true);jumpTo(\'riteDone\')"><span class="now-k">All '+L.length+' steps ticked</span><b class="now-t">Umrah complete — record it</b></div><button class="now-tick" onclick="finishUmrah()" aria-label="Record completed Umrah">🎉 Record</button>';}
+  else{s.classList.remove('done');s.innerHTML='<div class="now-l" role="button" tabindex="0" aria-label="Go to step '+nx.n+'" onclick="openRiteStep(\''+nx.st.id+'\')"><span class="now-k">Now · step '+nx.n+' of '+L.length+' · '+nx.ph.title.replace(/^Phase \d+ · /,'').split(' — ')[0]+'</span><b class="now-t">'+fcText(nx.st.b)+'</b></div><button class="now-tick" onclick="togRite(\''+nx.st.id+'\')" aria-label="Mark step '+nx.n+' done">✓ Done</button>';}}
 function updRites(){
   var R=riteTotals(),tot=R.tot,done=R.done;
-  RITES.forEach(function(ph){ph.steps.forEach(function(st){var on=!!riteChk[st.id];var w=document.getElementById('rw-'+st.id);if(w){w.classList.toggle('done',on);w.setAttribute('aria-checked',on?'true':'false');}});var c=riteCounts(ph.steps);var sp=document.getElementById('sp-'+ph.id);if(sp)sp.textContent=c.done+'/'+c.tot;});
+  var L=riteList();
+  RITES.forEach(function(ph){ph.steps.forEach(function(st){var on=!!riteChk[st.id];var w=document.getElementById('rw-'+st.id);if(w){w.classList.toggle('done',on);w.setAttribute('aria-checked',on?'true':'false');}});
+    var c=riteCounts(ph.steps),sp=document.getElementById('sp-'+ph.id);
+    if(sp){var mine=L.filter(function(x){return x.ph===ph;}),lo=mine.length?mine[0].n:0,hi=mine.length?mine[mine.length-1].n:0;
+      /* U-10: global numbering — pending 'steps 6–12', in progress '3/7', finished '✓ done' */
+      sp.textContent=c.done>=c.tot&&c.tot?'✓ done':c.done?c.done+'/'+c.tot:(lo===hi?'step '+lo:'steps '+lo+'–'+hi);sp.classList.toggle('ok',c.tot>0&&c.done>=c.tot);}});
+  var rd=document.getElementById('riteDone');if(rd)rd.classList.toggle('ready',!!(riteChk.cut||riteChk.cutw));
+  renderRiteNow();if(walkOpen)renderWalk();
   renderCnt('tawaf');renderCnt('sai');renderLog();renderUmrahs();updWudu();renderCntHd();renderRiteHero();updCntLayout();
 }
 /* ── live hero (U-05): where am I in the Umrah right now ── */
@@ -416,7 +460,7 @@ function doneHTML(k){
     var safa=riteStep('safa');
     return '<h4>Between tawaf and sa’i</h4>'+brg('maqam','Cover shoulders (men) · 2 rakahs behind Maqam Ibrahim')+brg('zamzam','Drink Zamzam + dua')+brg('safa','On Safa: face the Kaaba, dhikr 3×')
       +'<button class="lnk" onclick="togSafaDhikr()" aria-expanded="'+(safaOpen?'true':'false')+'">'+(safaOpen?'▴ Hide Safa dhikr':'▾ Show Safa dhikr')+'</button>'
-      +(safaOpen&&safa&&safa.dua?'<div class="dua tapable" onclick="openRiteDua(\'safa\')"><div class="dua-top"><small>On Safa &amp; Marwah</small><button class="say" data-ar="'+safa.dua.ar+'" onclick="speakBtn(this)" aria-label="Play recitation">🔊 Listen</button></div><span class="ar" lang="ar">'+safa.dua.ar+'</span><span class="tl">'+safa.dua.tl+'</span><span class="tr">'+safa.dua.tr+'</span></div>':'')
+      +(safaOpen&&safa?stDuas(safa).map(function(d,k){return duaHTML(safa,d,k);}).join(''):'')
       +'<button class="btn gold" onclick="startSai()">Start Sa’i →</button>';
   }
   var cut=!!(riteChk.cut||riteChk.cutw);
@@ -493,7 +537,10 @@ function cntr(k,d){
   ST[k]=v;saveST();
   var um=!(k==='tawaf'&&ST.tmode==='nafl');
   if(um){if(v===1&&d>0)stamp(k+'Start');if(v===7)stamp(k+'End');
-    var rk=k==='tawaf'?'rounds':'laps',on=v>=7;if(!!riteChk[rk]!==on){riteChk[rk]=on;save('us-rites',riteChk);}}
+    var rk=k==='tawaf'?'rounds':'laps',on=v>=7,ch=false;if(!!riteChk[rk]!==on){riteChk[rk]=on;ch=true;}
+    /* U-10: the first counted round means you made wudu and started at the Stone line */
+    if(k==='tawaf'&&v===1&&d>0&&!riteChk.start){riteChk.start=true;riteChk.wudu=true;ch=true;}
+    if(ch)save('us-rites',riteChk);}
   vib(v===7?[50,60,140]:35);
   if(v===7){layoutHold=now+1300;confetti(50);if(k==='tawaf')safaOpen=false;
     if(um)toast(k==='tawaf'?'🕋 Tawaf complete! 2 rakahs at Maqam Ibrahim, Zamzam, then Safa':'⛰️ Sa’i complete! Next: halq / taqsir',true);}
@@ -504,17 +551,24 @@ function cntr(k,d){
 function cntToast(m){if(document.getElementById('focus').classList.contains('on'))return;var c=document.getElementById('toastC');if(c)c.querySelectorAll('.toast[data-cnt]').forEach(function(t){t.remove();});toast(m);if(c&&c.lastElementChild)c.lastElementChild.setAttribute('data-cnt','1');}
 function cntrReset(k){var n=ST[k];if(!n){toast((k==='tawaf'?'Tawaf':'Sa’i')+' counter is already at 0');return;}
   openSheet('<div class="sheet-h" style="background:linear-gradient(145deg,var(--danger),#7c2d12)">↺</div><h3>Reset '+(k==='tawaf'?'tawaf':'sa’i')+' to 0?</h3><p>Your '+n+' completed '+(k==='tawaf'?'round':'lap')+(n===1?'':'s')+' will be cleared'+(k==='tawaf'?' — your wudu status is kept':'')+'. To fix one extra tap, use Undo instead.</p><button class="btn danger tall" onclick="cntrResetGo(\''+k+'\')">↺ Reset to 0</button><button class="btn ghost tall" onclick="closeSheet()">Cancel</button>');}
-function cntrResetGo(k){closeSheet();ST[k]=0;saveST();var rk=k==='tawaf'?'rounds':'laps';if(riteChk[rk]&&(k==='sai'||ST.tmode!=='nafl')){delete riteChk[rk];save('us-rites',riteChk);}if(k==='sai')saiGo=false;cntForce={};lastTap[k]=0;updRites();toast((k==='tawaf'?'Tawaf':'Sa’i')+' counter reset to 0');}
+function cntrResetGo(k){closeSheet();ST[k]=0;if(ST.log&&(k==='sai'||ST.tmode!=='nafl')){delete ST.log[k+'Start'];delete ST.log[k+'End'];}saveST();var rk=k==='tawaf'?'rounds':'laps';if(riteChk[rk]&&(k==='sai'||ST.tmode!=='nafl')){delete riteChk[rk];save('us-rites',riteChk);}if(k==='sai')saiGo=false;cntForce={};lastTap[k]=0;updRites();toast((k==='tawaf'?'Tawaf':'Sa’i')+' counter reset to 0');}
 function finishUmrah(){
   var R=riteTotals(),done=R.done,tot=R.tot;
   if(done<tot&&!confirm('Only '+done+' of '+tot+' steps are ticked. Record this Umrah as complete anyway?'))return;
   var lg=ST.log||{};lg.done=Date.now();var hist=[];try{hist=JSON.parse(localStorage.getItem('us-umrahlog')||'[]');}catch(e){}hist.push({n:ST.umrahs+1,log:lg});localStorage.setItem('us-umrahlog',JSON.stringify(hist));
   ST.umrahs++;ST.tawaf=0;ST.sai=0;ST.wudu=false;ST.wuduAt=null;ST.log={};ST.tmode='nafl';saveST();saiGo=false;cntForce={};lastTap={};renderUmrahs();updWudu();
   riteChk={};save('us-rites',riteChk);
-  updRites();renderLog();chkBadges();
-  toast('🎉 Umrah #'+ST.umrahs+' recorded — may Allah accept it!',true);confetti(140);
-  if(document.getElementById('view-umrah').classList.contains('on')&&(ST.sub||{}).umrah==='count')setTimeout(function(){jumpTo('riteHero',true);},400);
+  updRites();renderLog();chkBadges();confetti(140);
+  var onSteps=document.getElementById('view-umrah').classList.contains('on')&&(ST.sub||{}).umrah==='steps';
+  /* U-15: close the loop where the pilgrim is — keepsake + today's log in the completion block, or the hero on the counters */
+  var note=document.getElementById('riteDoneNote'),no=ST.umrahs;
+  if(note)note.innerHTML='<div class="rd-note">🎉 Umrah #'+totalUmrahs()+' recorded — may Allah accept it!<div class="rd-acts"><button class="chip-btn" onclick="makeKeepsake('+no+')">🎴 Keepsake</button><button class="chip-btn" onclick="goTab(\'daily\',\'today\')">📿 Log today’s worship</button></div></div>';
+  if(onSteps){if(walkOpen)closeWalk(true);setSecOpen('ph4',true);setTimeout(function(){jumpTo('umrahsCard',true);},400);}
+  else{toast('🎉 Umrah #'+totalUmrahs()+' recorded — may Allah accept it!',true);if(document.getElementById('view-umrah').classList.contains('on'))setTimeout(function(){jumpTo('riteHero',true);},400);}
 }
+/* U-13: clear practice ticks without recording a fake Umrah */
+function startFresh(){openSheet('<div class="sheet-h" style="background:linear-gradient(145deg,var(--danger),#7c2d12)">↺</div><h3>Start fresh?</h3><p>Clears every tick, both counters and this Umrah’s timeline <b>without recording an Umrah</b>. Recorded Umrahs and keepsakes are kept.</p><button class="btn danger tall" onclick="startFreshGo()">↺ Clear — nothing recorded</button><button class="btn ghost tall" onclick="closeSheet()">Cancel</button>');}
+function startFreshGo(){closeSheet();riteChk={};save('us-rites',riteChk);ST.log={};ST.tawaf=0;ST.sai=0;ST.wudu=false;ST.wuduAt=null;saveST();saiGo=false;cntForce={};lastTap={};var n=document.getElementById('riteDoneNote');if(n)n.innerHTML='';updRites();renderLog();focusRites(false);toast('Cleared — nothing was recorded');vib(10);}
 
 /* ════════════════════════ DAILY ════════════════════════ */
 function renderDaily(){
@@ -723,7 +777,7 @@ function renderHome(){
   var nq=0;QUIZ_LEVELS.forEach(function(l){nq+=l.qs.length;});
   var stages=[
     {i:'🧳',t:'Before you fly',s:'Prepare with ihsan',d:'Begin with your intention — then checklists for documents, packing and health, a departure countdown and a generated day-by-day itinerary. Then learn: the history of the Kaaba and Madinah, the virtues, the fiqh Q&A, a scam-awareness guide — and prove it in a 7-level quiz.',f:['Checklists','Itinerary','Knowledge hub','7-level quiz','Flashcards','Document vault',['Kids quiz','goTab(\'plan\',\'quiz\',\'kidsCard\')']],go:['plan','prep'],c:'Start preparing'},
-    {i:'🕋',t:'During your Umrah',s:'Ihram → Tawaf → Sa’i → Halq',d:'A step-by-step walkthrough with every dua in Arabic, transliteration and audio, and a "Why?" behind each step. Giant tap counters for tawaf and sa’i with a full-screen focus mode so you never lose count, a map of the mataf, and an automatic timeline that becomes a keepsake.',f:['Rites guide','Duas + audio','Tawaf & Sa’i counters','Focus mode','Mataf map','Keepsake card'],go:['umrah','count'],c:'Open the rites guide'},
+    {i:'🕋',t:'During your Umrah',s:'Ihram → Tawaf → Sa’i → Halq',d:'A step-by-step walkthrough with every dua in Arabic, transliteration and audio, and a "Why?" behind each step. Giant tap counters for tawaf and sa’i with a full-screen focus mode so you never lose count, a map of the mataf, and an automatic timeline that becomes a keepsake.',f:['Rites guide','Duas + audio','Tawaf & Sa’i counters','Focus mode','Mataf map','Keepsake card'],go:['umrah','steps'],c:'Open the rites guide'},
     {i:'📿',t:'Every day in the Haramain',s:'Make every prayer count',d:'One prayer in the Haram is worth 100,000 — track all five in congregation, tahajjud, Quran, dhikr and extra deeds. Prayer times with reminders, a qibla compass, a tasbih counter, your personal dua list and a water counter, with streaks and achievements.',f:['Daily tracker','Prayer times','Qibla','Tasbih','Dua list','Streaks & badges'],go:['daily','today'],c:'Track today'},
     {i:'📍',t:'Ziyarah with purpose',s:'51 places, Makkah & Madinah',d:'Every sacred and historic site with why it matters, an etiquette tip and one-tap Google Maps. Save your hotel to see walking distances, sort by what’s near you, plan a nearest-first route, and book the Madinah hop-on hop-off bus.',f:['51 sites','Maps & distances','Route planner','Hop-on hop-off'],go:['places',null],c:'Explore places'},
     {i:'🌱',t:'After you return',s:'Don’t let it fade',d:'A 30-day habit keeper for prayers on time, daily Quran and dhikr, plus a reflections journal — so the person who came back from the Haram stays.',f:['Habit keeper','Reflections'],go:['more','guide','postCard'],oc:'goPost(true)',c:'Keep it alive'}
@@ -806,7 +860,8 @@ function enterFocus(k){
   renderFocusDua();updWudu();renderCnt(k);
   if(ST[k]<7)reqWake();
 }
-function exitFocus(){document.getElementById('focus').classList.remove('on');document.body.style.overflow='';if(wakeLock){wakeLock.release().catch(function(){});wakeLock=null;}}
+function exitFocus(){document.getElementById('focus').classList.remove('on');document.body.style.overflow='';if(wakeLock){wakeLock.release().catch(function(){});wakeLock=null;}
+  if(walkReturn){walkReturn=false;openWalkAt(walkI);}}
 function focusTap(){cntr(focusKey,1);}
 /* U-03: at 7/7 the big number stays, the tip becomes the hand-off */
 function renderFocusDone(){var p=document.getElementById('focusDone'),t=document.getElementById('focusTip'),h=document.getElementById('focusHint');if(!p)return;
@@ -838,7 +893,7 @@ document.addEventListener('visibilitychange',function(){if(document.visibilitySt
 /* ════════════════════════ DUA READER (full-screen, M-11) ════════════════════════ */
 var dfList=[],dfIdx=0;
 function openDua(i){dfList=DUAS;dfIdx=i;renderDF();}
-function openRiteDua(stepId){var d=null,title='';RITES.forEach(function(ph){ph.steps.forEach(function(st){if(st.id===stepId&&st.dua){d=st.dua;title=st.b;}});});if(!d)return;dfList=[{t:title,ar:d.ar,tl:d.tl,tr:d.tr,s:d.s||''}];dfIdx=0;renderDF();}
+function openRiteDua(stepId,i){var st=riteStep(stepId);if(!st)return;var L=stDuas(st);if(!L.length)return;dfList=L.map(function(d){return {t:fcText(st.b)+(d.opt?' · optional':''),ar:d.ar,tl:d.tl,tr:d.tr,s:d.s||(d.opt||'')};});dfIdx=Math.min(L.length-1,i||0);renderDF();}
 function renderDF(){
   var d=dfList[dfIdx];if(!d)return;
   document.getElementById('dfTitle').textContent='🤲 '+d.t;document.getElementById('dfAr').textContent=d.ar;document.getElementById('dfTl').textContent=d.tl||'';document.getElementById('dfTr').textContent=d.tr||'';document.getElementById('dfSrc').textContent=d.s||'';
@@ -859,6 +914,9 @@ function renderLog(){
   var any=false,h='';
   rows.forEach(function(r){var on=!!r[2];if(on)any=true;h+='<div class="lg'+(on?' on':'')+'"><span class="lg-i">'+r[0]+'</span><span class="lg-t">'+r[1]+(on&&r[3]?' <em>'+fmtDur(r[2]-r[3])+'</em>':'')+'</span><span class="lg-v">'+(on?fmtTime(r[2]):'—')+'</span></div>';});
   if(any&&lg.ihram&&lg.halq)h+='<div class="note" style="margin:8px 0 0">Total from ihram to halq: <b>'+fmtDur(lg.halq-lg.ihram)+'</b></div>';
+  /* U-13: ticks older than a day with no halq are almost certainly a rehearsal */
+  if(lg.ihram&&!lg.halq&&Date.now()-lg.ihram>86400000)h='<div class="note stale" style="margin:0 0 10px">These ticks are from <b>'+new Date(lg.ihram).toLocaleDateString('en-GB',{day:'numeric',month:'short'})+'</b> — practising earlier? <button class="lnk" onclick="startFresh()">Start fresh</button></div>'+h;
+  if(any)h+='<button class="lnk fresh" onclick="startFresh()">↺ Start fresh (nothing recorded)</button>';
   a.innerHTML=h;
 }
 function renderUmrahs(){
@@ -1197,7 +1255,7 @@ function planRoute(city){
 }
 
 /* ════════════════════════ HELPERS ════════════════════════ */
-function jumpTo(id,quiet){var el=document.getElementById(id);if(!el)return;var y=el.getBoundingClientRect().top+window.scrollY-118;window.scrollTo({top:Math.max(0,y),behavior:'smooth'});if(!quiet)vib(8);}
+function jumpTo(id,quiet){var el=document.getElementById(id);if(!el)return;var off=118,strip=document.getElementById('riteNow');if(strip&&el.closest&&el.closest('#sub-umrah-steps')&&strip.offsetParent)off+=strip.offsetHeight+8;var y=el.getBoundingClientRect().top+window.scrollY-off;window.scrollTo({top:Math.max(0,y),behavior:'smooth'});if(!quiet)vib(8);}
 function shareApp(){
   var data={title:'Umrah Strivers',text:'Plan, learn, perform & track your Umrah — rites walkthrough, tawaf counter, prayer times, ziyarah places & a knowledge quiz. Free, offline, private.',url:APP_URL};
   if(ST.dep){var dt=new Date(ST.dep+'T00:00:00').toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});data.url=APP_URL+'?dep='+ST.dep;data.text='We fly on '+dt+'. Install Umrah Strivers (free, offline, no account): 1) open the link and Add to Home Screen, 2) set the departure date to '+dt+', 3) do the Prepare checklist and pass Quiz levels 1–3 before we go.';}
@@ -1249,9 +1307,13 @@ function goSub(tab,sub,silent){
   if(tab==='daily'&&sub==='stats'){updStats();}
   if(tab==='plan'&&sub==='learn'){renderFC();}
   if(tab==='umrah'&&sub==='count'&&!silent&&cntStarted()){updCntLayout();setTimeout(function(){jumpTo(cntActive()+'Card',true);},40);}
+  if(tab==='umrah'&&!silent){if(ST.subAuto&&ST.subAuto.umrah){delete ST.subAuto.umrah;saveST();}if(sub==='steps')focusRites(true);}
 }
 function applySubs(){
   ST.sub=ST.sub||{};
+  /* U-18: until the pilgrim taps the Umrah segment themselves, the tab opens on the rites before departure and on the counters once flying */
+  ST.subAuto=ST.subAuto||{};var dd=depDays();
+  if(!ST.sub.umrah||ST.subAuto.umrah){ST.sub.umrah=(dd!==null&&dd<=0)?'count':'steps';ST.subAuto.umrah=true;}
   ['plan','umrah','daily','more'].forEach(function(t){
     var v=document.getElementById('view-'+t),first=v&&v.querySelector('.seg button');
     var sub=ST.sub[t]||(first?first.getAttribute('data-sub'):null);
@@ -1282,7 +1344,9 @@ function closeOnboard(){var o=document.getElementById('obSheet');if(!o)return;o.
 function obNum(id,lbl,val,min,max,hint){return '<div class="setrow"><div><b>'+lbl+'</b>'+(hint?'<small>'+hint+'</small>':'')+'</div><input type="number" class="numin" id="'+id+'" value="'+val+'" min="'+min+'" max="'+max+'" aria-label="'+lbl+'"></div>';}
 function chooseStage(st){
   var nm=(document.getElementById('obName').value||'').trim();if(nm)ST.name=nm;
-  ST.onboarded=true;ST.stage=st;obStage=st;saveST();
+  ST.onboarded=true;ST.stage=st;obStage=st;
+  if(st==='plan'||st==='soon'){ST.sub=Object.assign(ST.sub||{},{umrah:'steps'});ST.subAuto=ST.subAuto||{};delete ST.subAuto.umrah;goSub('umrah','steps',true);}
+  saveST();
   var s2=document.getElementById('obStep2'),h='';
   var today=new Date();today.setHours(0,0,0,0);
   if(st==='plan'||st==='soon'){
@@ -1494,22 +1558,66 @@ function openStory(id){var hd=document.querySelector('#kidsCard .story-h');togSt
   goTab('plan','quiz','st-'+id);}
 
 /* ════════════════════════ AUDIO (dua recitation · read-aloud) ════════════════════════ */
-function speakText(text,lang,rate){
+/* U-16: one Arabic voice chosen up front, a visible playing state, and an honest message when the device has no Arabic voice */
+var AR_VOICE=null,voicesReady=false,curSay=null;
+function pickArVoice(){try{var vs=speechSynthesis.getVoices();if(vs.length)voicesReady=true;var ar=vs.filter(function(v){return /^ar/i.test(v.lang||'');}),sa=ar.filter(function(v){return /^ar[-_]SA/i.test(v.lang);});AR_VOICE=sa[0]||ar[0]||null;}catch(e){}}
+if('speechSynthesis' in window){pickArVoice();try{speechSynthesis.onvoiceschanged=pickArVoice;}catch(e){}}
+function sayReset(){if(!curSay)return;var b=curSay;curSay=null;b.textContent=b.getAttribute('data-lbl')||'🔊 Listen';b.classList.remove('playing');b.setAttribute('aria-pressed','false');}
+function speakText(text,lang,rate,btn){
   try{
-    if(window.speechSynthesis.speaking)speechSynthesis.cancel();
+    var same=!!btn&&btn===curSay;
+    if(speechSynthesis.speaking||speechSynthesis.pending)speechSynthesis.cancel();
+    sayReset();if(same)return true;
+    var pre=lang.split('-')[0];
+    if(pre==='ar'&&!AR_VOICE&&voicesReady){toast('No Arabic voice on this device — follow the transliteration');return false;}
     var u=new SpeechSynthesisUtterance(text);u.lang=lang;u.rate=rate;
-    var pre=lang.split('-')[0],v=speechSynthesis.getVoices().filter(function(x){return x.lang&&x.lang.replace('_','-').indexOf(pre)===0;});
-    if(v.length){var ex=v.filter(function(x){return x.lang.replace('_','-')===lang;});u.voice=ex[0]||v[0];}
+    if(pre==='ar'&&AR_VOICE)u.voice=AR_VOICE;
+    else{var v=speechSynthesis.getVoices().filter(function(x){return x.lang&&x.lang.replace('_','-').indexOf(pre)===0;});if(v.length){var ex=v.filter(function(x){return x.lang.replace('_','-')===lang;});u.voice=ex[0]||v[0];}}
+    if(btn){curSay=btn;if(!btn.getAttribute('data-lbl'))btn.setAttribute('data-lbl',btn.textContent);var on=function(){if(curSay!==btn)return;btn.textContent='⏹ Stop';btn.classList.add('playing');btn.setAttribute('aria-pressed','true');};on();u.onstart=on;}
+    u.onend=u.onerror=function(){if(curSay===btn)sayReset();};
     speechSynthesis.speak(u);return true;
   }catch(e){toast('Audio not supported on this browser');return false;}
 }
 function speakEn(text){return speakText(String(text||'').replace(/<[^>]+>/g,' '),'en',.9);}
-/* data-ar (Arabic dua, default) or data-text + data-lang / data-rate (stories) */
+/* data-ar (Arabic dua, default) or data-text + data-lang / data-rate (stories); tapping the playing button stops it */
 function speakBtn(el){
   if(window.event)window.event.stopPropagation();
-  try{if(window.speechSynthesis.speaking){speechSynthesis.cancel();return;}}catch(e){toast('Audio not supported on this browser');return;}
-  speakText(el.getAttribute('data-text')||el.getAttribute('data-ar')||'',el.getAttribute('data-lang')||'ar-SA',parseFloat(el.getAttribute('data-rate'))||.8);
+  if(!('speechSynthesis' in window)){toast('Audio not supported on this browser');return;}
+  speakText(el.getAttribute('data-text')||el.getAttribute('data-ar')||'',el.getAttribute('data-lang')||'ar-SA',parseFloat(el.getAttribute('data-rate'))||.8,el);
 }
+function testVoice(el){var t=DUAS[0];speakText(t.ar,'ar-SA',.8,el);}
+
+/* ════════════════════════ WALKTHROUGH (U-14) · PRINT SHEET ════════════════════════ */
+var walkOpen=false,walkI=0,walkReturn=false;
+function startWalk(){var L=riteList(),nx=nextRite(),i=0;if(nx){L.forEach(function(x,k){if(x.st.id===nx.st.id)i=k;});}else i=L.length;openWalkAt(i);vib(8);}
+function openWalkAt(i){walkI=i;walkOpen=true;document.getElementById('walk').classList.add('on');document.body.style.overflow='hidden';renderWalk();}
+function renderWalk(){
+  var L=riteList(),hd=document.getElementById('walkHd'),b=document.getElementById('walkBody'),nb=document.getElementById('walkNext'),bb=document.getElementById('walkBack');if(!b)return;
+  if(walkI>=L.length){hd.textContent='All '+L.length+' steps';
+    var cut=!!(riteChk.cut||riteChk.cutw);
+    b.innerHTML='<div class="wk-done"><div class="big">🎉</div><h3>'+(cut?'Your Umrah is complete':'Every step ticked?')+'</h3><p>'+(cut?'All ihram restrictions are lifted. Record it to keep the timeline and start a fresh checklist for the next one.':'Tick halq / taqsir when the hair is cut — ihram ends only then.')+'</p><button class="btn gold" onclick="finishUmrah()">🎉 Record completed Umrah</button><button class="btn ghost" onclick="closeWalk()">← Back to the list</button></div>';
+    nb.hidden=true;bb.hidden=false;b.scrollTop=0;return;}
+  var x=L[walkI],st=x.st,on=!!riteChk[st.id],k=st.id==='rounds'?'tawaf':st.id==='laps'?'sai':null;
+  hd.textContent='Step '+x.n+' of '+L.length+' · '+x.ph.title.replace(/^Phase \d+ · /,'').split(' — ')[0];
+  var h='<div class="wk-n'+(on?' on':'')+'">'+(on?'✓ done':x.ph.ico)+'</div><h2 class="wk-t">'+st.b+'</h2><p class="wk-p">'+st.p+'</p>';
+  if(st.why)h+='<div class="wk-why"><small>Why?</small>'+st.why+'</div>';
+  if(k)h+='<div class="wk-cnt"><b>'+ST[k]+' / 7</b><span>'+(k==='tawaf'?'rounds':'laps')+' counted'+(ST[k]>=7?' — complete':'')+'</span><button class="btn" onclick="walkReturn=true;closeWalk(true);enterFocus(\''+k+'\')">⛶ Open counter</button></div>';
+  h+=stDuas(st).map(function(d,i){return duaHTML(st,d,i);}).join('');
+  if(st.kid)h+='<button class="xchip" onclick="closeWalk(true);openStory(\''+st.kid+'\')">🧒 Story for the kids →</button>';
+  b.innerHTML=h;b.scrollTop=0;
+  nb.hidden=false;nb.textContent=on?'Next →':'✓ Done → Next';bb.hidden=walkI===0;
+}
+function walkNav(d){var L=riteList();walkI=Math.max(0,Math.min(L.length,walkI+d));renderWalk();vib(6);}
+function walkDone(){var L=riteList(),x=L[walkI];if(x&&!riteChk[x.st.id])togRite(x.st.id,true);walkNav(1);}
+function closeWalk(quiet){var L=riteList(),x=L[walkI];walkOpen=false;document.getElementById('walk').classList.remove('on');document.body.style.overflow='';
+  if(!quiet){if(x)openRiteStep(x.st.id);else{setSecOpen('ph4',true);jumpTo('riteDone',true);}}}
+/* U-14: a printable briefing — rites with duas, the packing list and the emergency numbers */
+function buildPrint(){var e=document.getElementById('printSheet');if(!e)return;var hi=ST.hotelInfo||{},n=0,h='<h1>🕋 Umrah Strivers — rites &amp; duas</h1><p class="pr-sub">Printed '+new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})+(ST.name?' for '+esc(ST.name):'')+' · umrah-strivers.vercel.app</p>';
+  RITES.forEach(function(ph){h+='<h2>'+ph.ico+' '+ph.title+'</h2><ol start="'+(n+1)+'">';ph.steps.forEach(function(st){if(!forMe(st))return;n++;h+='<li><b>'+st.b+'</b> — '+st.p+stDuas(st).map(function(d){return '<div class="pr-dua"><span class="ar">'+d.ar+'</span><i>'+d.tl+'</i><br>'+d.tr+'</div>';}).join('')+'</li>';});h+='</ol>';});
+  var pack=PLAN.filter(function(sc){return sc.id==='pack';})[0];if(pack)h+='<h2>🧳 Packing</h2><ul class="pr-pack">'+pack.items.filter(forMe).map(function(it){return '<li>☐ '+it.label+'</li>';}).join('')+'</ul>';
+  h+='<h2>☎️ Emergency &amp; help</h2><p>Police · ambulance · fire <b>911</b> · Health line <b>937</b> · Hajj &amp; Umrah care <b>1966</b> · Tourism <b>930</b>'+(hi.n?'<br>Hotel: <b>'+esc(hi.n)+'</b>'+(hi.a?' · '+esc(hi.a):'')+(hi.p?' · ☎ '+esc(hi.p):''):'')+(hi.m?'<br>Meeting point: <b>'+esc(hi.m)+'</b>':'')+(hi.l?'<br>Companion / leader: <b>'+esc(hi.l)+'</b>':'')+'</p>';
+  e.innerHTML=h;}
+function printSheet(){buildPrint();toast('🖨️ Use “Save as PDF” in the print dialog to keep a copy');setTimeout(function(){try{window.print();}catch(e){}},150);}
 
 /* ════════════════════════ POST-UMRAH MODE ════════════════════════ */
 var POST_HABITS=['🕌 Five prayers on time','📖 Daily Quran','📿 Daily dhikr'];

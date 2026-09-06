@@ -47,7 +47,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   check('driver card has Call + Maps actions', (await page.locator('#driver.on #drvActs a[href^="https://www.google.com/maps/dir/"]').count()) === 1);
   await page.evaluate(() => closeDriver());
   await page.evaluate(() => goSub('plan', 'learn', true));
-  check('knowledge accordions', (await page.locator('#histCard .acc').count()) >= 9 && (await page.locator('#qaContainer .acc').count()) === 10 && (await page.locator('#scamContainer .acc').count()) === 10);
+  check('knowledge accordions', (await page.locator('#histCard .acc').count()) >= 9 && (await page.locator('#qaContainer .acc').count()) === 14 && (await page.locator('#scamContainer .acc').count()) === 10);
   check('Learn order: rites index first, essentials next, sisters section, quiz hand-off last', (await page.locator('#riteTiles .rtile').count()) === 4 && (await page.evaluate(() => { const ids = [...document.querySelectorAll('#sub-plan-learn > .card')].map(e => e.id); return ids.indexOf('ritesCard') === 0 && ids.indexOf('knowCard') === 1 && ids.indexOf('knowCard') < ids.indexOf('qaCard') && ids.indexOf('sisCard') > ids.indexOf('madCard') && ids.indexOf('lnQuizCard') === ids.length - 1; })) && (await page.locator('#sisContainer .acc').count()) === 7 && (await page.textContent('#lnQuizSub')).includes('Level 1') && (await page.locator('#knowCard .lnm').count()) === 1);
   await page.click('#knowContainer .acc >> nth=1 >> .acc-h');
   await page.click('#knowContainer .acc >> nth=1 >> .acc-b');
@@ -95,7 +95,9 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   check('kids Done restores the Start row', (await page.locator('#kidsArea').isHidden()) && (await page.locator('#kidsStart').isVisible()));
 
   console.log('Umrah');
-  await page.evaluate(() => { goTab('umrah'); goSub('umrah', 'count', true); });
+  await page.evaluate(() => goTab('umrah')); await page.waitForTimeout(300);
+  check('before departure the Umrah tab defaults to Steps, with the you-are-here strip on step 1', (await page.evaluate(() => ST.sub.umrah)) === 'steps' && (await page.locator('#sub-umrah-steps.on').count()) === 1 && (await page.textContent('#riteNow')).includes('Now · step 1 of 17') && (await page.locator('#riteNow .now-tick').count()) === 1);
+  await page.evaluate(() => goSub('umrah', 'count', true));
   check('counters open: live hero, sa\u2019i card compact, tip for round 1, dua under the ring', (await page.textContent('#riteHeroT')) === 'Ready to begin' && (await page.locator('#saiCard.compact').count()) === 1 && (await page.locator('#tawafCard.compact').count()) === 0 && (await page.textContent('#tawafTip')).includes('Now: round 1 of 7') && (await page.locator('#tawafDua .dua .ar').count()) === 1);
   await page.click('#tawafRingBtn');
   check('wudu gate is a sheet (no confirm) and blocks the count', (await page.locator('#gSheet.on button:has-text("Yes, I have wudu")').count()) === 1 && (await page.textContent('#tawafN')) === '0');
@@ -114,6 +116,10 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   check('sa\u2019i done points to halq before cutting', (await page.textContent('#saiDone')).includes('halq') && (await page.locator('#saiDone button:has-text("Record this Umrah")').count()) === 0 && (await page.textContent('#saiTip')).includes('Finished on Marwah'));
   await page.evaluate(() => togRite('cut'));
   check('timeline stamped + Record button appears after cutting', (await page.locator('#logArea .lg.on').count()) === 6 && (await page.locator('#saiDone button:has-text("Record this Umrah")').count()) === 1 && (await page.textContent('#riteHeroT')).includes('Taqabbal'));
+  await page.evaluate(() => togRite('niyyah'));
+  check('un-ticking the intention removes its stamp', (await page.evaluate(() => ST.log.ihram === undefined)) && (await page.locator('#logArea .lg.on').count()) === 5);
+  await page.evaluate(() => togRite('niyyah'));
+  check('the first counted round ticked wudu + the Black Stone start', (await page.evaluate(() => riteChk.start === true && riteChk.wudu === true)));
   await page.waitForTimeout(1400);
   await page.click('#saiCard button:has-text("Big counter")');
   check('big counter opens with the dua strip and a completion panel at 7', (await page.locator('#focus.on').count()) === 1 && (await page.locator('#focusDua .ar').count()) === 1 && (await page.locator('#focusDone').isVisible()) && (await page.textContent('#focusDone')).includes('halq'));
@@ -129,7 +135,19 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   check('why explainer toggles', (await page.locator('#rw-ghusl .whyb.on').count()) === 1);
   check('rites step carries the live counter chip', (await page.textContent('#live-rounds')).includes('7 / 7 rounds'));
   check('story chips on ihram, Black Stone and Safa steps', (await page.locator('#rw-garb .xchip').count()) === 1 && (await page.locator('#rw-start .xchip').count()) === 1 && (await page.locator('#rw-safa .xchip').count()) === 1);
-  await page.click('button.btn.gold:has-text("Record completed Umrah")'); await page.waitForTimeout(300);
+  check('phase chips use global numbering; mataf map sits inside Phase 2; trouble panel has 8 rows', (await page.textContent('#sp-ph4')) === '✓ done' && (await page.textContent('#sp-ph3')) === '1/3' && (await page.locator('#sec-ph2 #matafSec').count()) === 1 && (await page.locator('#sub-umrah-steps > #matafSec').count()) === 0 && (await page.locator('#sec-trouble .acc').count()) === 8);
+  check('steps follow the physical order and carry every recitation', (await page.evaluate(() => { const ids = [...document.querySelectorAll('#riteContainer .stp')].map(e => e.id); return ids.indexOf('rw-yamani') < ids.indexOf('rw-rounds') && ids.indexOf('rw-marwah') < ids.indexOf('rw-laps') && ids.indexOf('rw-done') < 0; })) && (await page.locator('#rw-safa .dua').count()) === 2 && (await page.locator('#rw-start .dua').count()) === 1 && (await page.locator('#rw-zamzam .dua').count()) === 1 && (await page.locator('#rw-niyyah .dua.duaopt').count()) === 1 && (await page.locator('#sec-ph1 .callout').count()) === 1 && (await page.locator('#rw-yamani .rep').count()) === 1);
+  await page.evaluate(() => startWalk()); await page.waitForTimeout(150);
+  check('walkthrough opens at the first unticked step', (await page.locator('#walk.on').count()) === 1 && (await page.textContent('#walkHd')).includes('Step 1 of 17') && (await page.textContent('#walkNext')).includes('Done'));
+  await page.click('#walkNext'); await page.waitForTimeout(100);
+  check('Done → Next ticks the step and advances', (await page.evaluate(() => riteChk.ghusl === true)) && (await page.textContent('#walkHd')).includes('Step 2 of 17'));
+  await page.evaluate(() => closeWalk()); await page.waitForTimeout(100);
+  await page.evaluate(() => buildPrint());
+  check('print sheet lists the rites, duas and packing', (await page.locator('#printSheet h2').count()) >= 6 && (await page.locator('#printSheet .pr-dua').count()) >= 8 && (await page.locator('#printSheet .pr-pack li').count()) > 8);
+  check('completion block is ready after cutting', (await page.locator('#riteDone.ready #recordBtn').count()) === 1 && (await page.locator('#sub-umrah-steps > .btn.gold').count()) === 0);
+  await page.evaluate(() => setSecOpen('ph4', true)); await page.waitForTimeout(450);
+  await page.click('#recordBtn'); await page.waitForTimeout(300);
+  check('recording leaves a keepsake + log-today note in the completion block', (await page.textContent('#riteDoneNote')).includes('Keepsake') && (await page.locator('#riteDoneNote button:has-text("Log today")').count()) === 1);
   await page.evaluate(() => goSub('umrah', 'steps', true)); await page.click('#umrahsArea .chip-btn'); await page.waitForTimeout(300);
   check('keepsake opens the export sheet with preview', (await page.locator('#gSheet.on img').count()) === 1);
   const dl1 = page.waitForEvent('download', { timeout: 6000 }).catch(() => null);
@@ -141,9 +159,17 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   await page.click('#tawafDone button:has-text("Log nafl tawaf")');
   check('nafl tawaf logged to today, counter reset, wudu kept', (await page.evaluate(() => dailyChk.d1.ntawaf === true && dailyChk.d1.ntawafN === 1 && ST.tawaf === 0 && ST.wudu === true)));
   await page.evaluate(() => goSub('umrah', 'steps', true));
-  await page.click('#rw-niyyah .dua'); await page.waitForTimeout(200);
+  await page.click('#rw-talb .dua'); await page.waitForTimeout(200);
   check('inline rite dua opens the full-screen reader', (await page.locator('#duaFocus.on').count()) === 1 && (await page.textContent('#dfAr')).length > 5 && (await page.locator('#dfNext').isHidden()));
   await page.click('#duaFocus button:has-text("Close")');
+  await page.click('#rw-niyyah .dua.duaopt'); await page.waitForTimeout(200);
+  check('a step with two duas opens the reader on the tapped one with ◀ ▶', (await page.textContent('#dfTitle')).includes('optional') && (await page.locator('#dfPrev').isVisible()));
+  await page.click('#duaFocus button:has-text("Close")');
+  await page.evaluate(() => startFresh());
+  check('Start fresh asks first', (await page.locator('#gSheet.on button:has-text("nothing recorded")').count()) === 1);
+  await page.click('#gSheet button:has-text("nothing recorded")'); await page.waitForTimeout(100);
+  check('Start fresh clears ticks, counters and timeline without recording', (await page.evaluate(() => Object.keys(riteChk).length === 0 && Object.keys(ST.log).length === 0 && ST.umrahs === 1)));
+  await page.evaluate(() => { goSub('umrah', 'count', true); ST.wudu = true; saveST(); updWudu(); });
 
   console.log('Daily');
   await page.evaluate(() => { goTab('daily'); goSub('daily', 'today', true); }); await page.waitForTimeout(500);
