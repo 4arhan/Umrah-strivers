@@ -17,7 +17,7 @@ An offline-first web app (`index.html` + `data.js` + `app.js`, zero build step).
 - **Every hadith citation verified** against its collection (Bukhari, Muslim, Tirmidhi, Ibn Majah, Nasai, Abu Dawud) — paraphrases marked, weak-hadith claims avoided
 - **Daily knowledge flashcards** — spaced repetition (1/3/7-day boxes) over the whole knowledge hub, paced for the run-up to departure
 - **Donation & scam awareness** — 10 guides to the common rip-offs: fake packages & visas, badal-Umrah traps, Nusuk phishing, "VIP access" touts, street begging gangs, QR-code "sadaqah", prize scams — with the official alternatives (umrah.nusuk.sa, Ehsan) and how to report (911 / care line 1966)
-- **Kids corner** — an 8-question big-button mini quiz with stars, so children prepare too
+- **Kids corner** — an 8-question big-button mini quiz with stars and read-aloud, plus five story-time tales for ages 6–10, so children prepare too
 - **Quiz upgrades** — "Review my mistakes" mode re-drills only the questions you got wrong; completing the 7-level circuit unlocks a downloadable **certificate**
 
 ### 🕋 Umrah — during the rites
@@ -118,11 +118,20 @@ The service-worker cache is named after `APP_VERSION`. For every release **bump 
 - **Search Learn** across every topic (a single match opens itself); each section shows its topic count and reading time; accordions toggle from the header only and are keyboard/screen-reader accessible
 - **Flashcards v2**: cards are built from the quiz questions (options shown on the back) plus every reading section; your quiz mistakes come first, then — inside 28 days of departure — the ihram/tawaf levels and the essentials. First session is 5 cards, then 12; grading appears only after the reveal; honest end-of-session copy with a "Next" action
 
+## v4.8 — Quiz
+- **The list answers "what next?"**: one gold *Continue → Level N* button under the meter (or *Review N mistakes* / *Download my certificate* once the circuit is done), the current level outlined in gold, a "questions correct in your best runs" line, per-level "· k to review" counts and a *📚 study* link on every open level
+- **Nothing is lost**: leaving the tab, ticking a checklist item or reloading no longer wipes a running level — the list shows *▶ Resume Level 3 · Q6/11* with a Discard option
+- **Pass mark as a number**: every row says *pass = 9 correct*; the question header counts *5 ✓ · 4 more to pass* (and tells you honestly when the pass is out of reach); the fail screen says *you got 7 — you need 9 of 11*
+- **Fail → study → re-drill**: the fail screen lists the questions you missed and offers *Study this level* (jumps to the Learn card that teaches it; Level 3 also opens the rites guide), *Review the N I missed* and Retake; the pass screen starts the next level in one tap (certificate on the final one)
+- **Retakes shuffle** the answer options every time (True/False excepted) and the question order on a passed level
+- **Gating for veterans**: a locked row explains the gate and offers *Unlock all levels*; post-Umrah mode and any Umrah on record open every level automatically; the certificate still requires every level at 80%
+- **Kids corner** moved above the circuit as a one-row card (shuffled 8-question quiz with *🔊 Read it to me*, spoken feedback and a Done button) plus **Story time** — five read-aloud stories for ages 6–10 (Ibrahim & Isma'il build the Kaaba · Hajar and Zamzam · the Year of the Elephant · young Muhammad ﷺ and the Black Stone · why everyone wears white), each with a verified source and a "tell it when…" hint, reachable from *Story for the kids* chips on the ihram, Black Stone and Safa steps and a *Kids quiz* chip on Home
+
 ## Development & testing
 
 ```
 npm install            # playwright-core only
-npm test               # end-to-end smoke suite (~50 checks) in headless Chromium
+npm test               # end-to-end smoke suite (~75 checks) in headless Chromium
 ```
 Set `CHROME=/path/to/chromium` if Playwright cannot find a browser. Content lives in `data.js` (places, quiz, knowledge, duas); logic in `app.js`.
 

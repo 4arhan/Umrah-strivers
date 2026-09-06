@@ -1,6 +1,6 @@
 /* Umrah Strivers — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='4.7.0';
+var APP_VERSION='4.8.0';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* ════════════════════════ STATE ════════════════════════ */
 var ST={day:1,tripLen:10,theme:'light',tab:'home',dep:'',umrahs:0,tawaf:0,sai:0,quizBest:0,city:'Makkah'};
@@ -27,6 +27,7 @@ function toast(m,gold,actLabel,actFn){var c=document.getElementById('toastC');if
   c.appendChild(t);setTimeout(function(){t.remove();},actLabel?6000:3200);}
 function totalUmrahs(){return (ST.umrahs||0)+(ST.umrahsPrev||0);}
 function esc(v){return String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function numWord(n){var W=['zero','one','two','three','four','five','six','seven','eight','nine','ten'];return W[n]||String(n);}
 function fmtDate(iso,long){var d=new Date(iso+'T00:00:00');if(isNaN(d))return iso;return d.toLocaleDateString('en-GB',long?{day:'numeric',month:'long',year:'numeric'}:{day:'numeric',month:'short'});}
 /* days until departure (null when unset); onTrip = departed and not yet past the trip length */
 function depDays(){if(!ST.dep)return null;return Math.ceil((new Date(ST.dep+'T00:00:00')-new Date())/86400000);}
@@ -99,7 +100,8 @@ function renderPlan(){
     var inner='';
     sec.items.forEach(function(it){
       if(!forMe(it))return;
-      inner+='<div class="row" id="pw-'+it.id+'"'+(it.bag?' data-bag="'+it.bag+'"':'')+' role="checkbox" tabindex="0" aria-checked="false" onclick="togPlan(\''+it.id+'\')"><span class="tick"></span><div class="row-t"><b>'+it.label+'</b>'+(it.exp?'<div class="x">'+it.exp+'</div>':'')+refChip(it)+'</div></div>';
+      var exp=it.id==='quiz80'?'Pass all '+numWord(QUIZ_LEVELS.length)+' levels in the Quiz tab (80%+ each). This ticks itself when the circuit is complete.':it.exp;
+      inner+='<div class="row" id="pw-'+it.id+'"'+(it.bag?' data-bag="'+it.bag+'"':'')+' role="checkbox" tabindex="0" aria-checked="false" onclick="togPlan(\''+it.id+'\')"><span class="tick"></span><div class="row-t"><b>'+it.label+'</b>'+(exp?'<div class="x">'+exp+'</div>':'')+refChip(it)+'</div></div>';
     });
     if(sec.id==='pack')inner='<div class="pills sm bagpills" style="margin:6px 0 10px;flex-wrap:wrap"><button class="pill on" onclick="event.stopPropagation();bagFilter(this,\'all\')">All</button><button class="pill" onclick="event.stopPropagation();bagFilter(this,\'ihram\')">🤍 Ihram bag</button><button class="pill" onclick="event.stopPropagation();bagFilter(this,\'carry\')">✈️ Carry-on</button><button class="pill" onclick="event.stopPropagation();bagFilter(this,\'case\')">🧳 Suitcase</button></div>'+inner;
     h+=mkSec(sec,i>0,inner);
@@ -155,7 +157,7 @@ function updPlan(){
   renderTimeline();renderCatTiles();renderWeather();
   var stk=prepStreak();document.getElementById('planHeroS').textContent=done+' of '+tot+' preparation items done'+(stk>1?' · 🔥 '+stk+'-day streak':'');
   updCountdown();
-  renderLevels();
+  if(qzActive){qzMeterUpd();renderLearnQuiz();}else renderLevels();
 }
 function setDep(v){ST.dep=v;saveST();updCountdown();updChip();renderItin();renderTimeline();renderTodayTop();if(v)toast('✈️ '+fmtDate(v)+' — countdown, timeline & itinerary are now dated',true);}
 /* return date (P-05): derives the trip length; #tripLen in Settings stays as a mirror */
@@ -188,92 +190,137 @@ function updCountdown(){
 /* ════════════════════════ QUIZ (levels) ════════════════════════ */
 var qzST={best:{}};
 try{qzST=Object.assign(qzST,JSON.parse(localStorage.getItem('us-quiz')||'{}'));}catch(e){}
-var qzLevel=0,qzI=0,qzScore=0,qzLock=false,qzHist=[],qzMode='level',qzQueue=[];
+/* qzActive (P-23) keeps updPlan from wiping a running level; qzPerm (P-27) is the display order of the current options;
+   qzOrder shuffles question order on a retake of a passed level; qzMissed (P-26) collects this run's wrong stems */
+var qzLevel=0,qzI=0,qzScore=0,qzLock=false,qzHist=[],qzMode='level',qzQueue=[],qzActive=false,qzPerm=[],qzOrder=null,qzMissed=[];
 if(!qzST.wrong)qzST.wrong={};
 function qzSave(){localStorage.setItem('us-quiz',JSON.stringify(qzST));}
 function qzWrongCount(){return Object.keys(qzST.wrong).length;}
-function curRef(){return qzMode==='level'?{lv:qzLevel,qi:qzI}:qzQueue[qzI];}
+function qzWrongIn(lv){return Object.keys(qzST.wrong).filter(function(k){var m=k.match(/^l(\d+)q/);return m&&+m[1]===lv;}).length;}
+function qzShuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function curRef(){return qzMode==='level'?{lv:qzLevel,qi:qzOrder?qzOrder[qzI]:qzI}:qzQueue[qzI];}
 function curQ(){var r=curRef();return QUIZ_LEVELS[r.lv].qs[r.qi];}
 function curKey(){var r=curRef();return 'l'+r.lv+'q'+r.qi;}
 function qzTotal(){return qzMode==='level'?QUIZ_LEVELS[qzLevel].qs.length:qzQueue.length;}
 function qzPassed(i){return (qzST.best[i]||0)>=80;}
-function qzUnlocked(i){return i===0||qzPassed(i-1);}
+/* P-29: the smallest score that rounds to the 80% pass mark — same formula as nextQz */
+function qzNeed(n){for(var k=0;k<=n;k++){if(Math.round(k/n*100)>=80)return k;}return n;}
+/* P-30: returning pilgrims (post mode or an Umrah on record) and "Unlock all levels" (qzST.free) open every level */
+function qzFreeAll(){return !!(qzST.free||ST.post||totalUmrahs()>=1);}
+function qzUnlocked(i){return i===0||qzPassed(i-1)||qzFreeAll();}
 function qzPassedCount(){var n=0;QUIZ_LEVELS.forEach(function(_,i){if(qzPassed(i))n++;});return n;}
 function qzAllPassed(){return qzPassedCount()===QUIZ_LEVELS.length;}
+function qzNext(){for(var i=0;i<QUIZ_LEVELS.length;i++){if(qzUnlocked(i)&&!qzPassed(i))return i;}return -1;}
+function qzMeterUpd(){var pc=qzPassedCount(),b=document.getElementById('qzBest');if(b)b.textContent=pc+'/'+QUIZ_LEVELS.length;var m=document.getElementById('qzMeter');if(m)m.style.width=Math.round(pc/QUIZ_LEVELS.length*100)+'%';}
+function qzLvName(i,part){return QUIZ_LEVELS[i].name.split(' · ')[part===undefined?0:part];}
+/* P-26: each level names the Learn card that teaches it */
+function qzStudyGo(i){var st=QUIZ_LEVELS[i].study||{};goTab(st.tab||'plan',st.sub||'learn',st.id||'knowCard');}
+function qzFree(on){qzST.free=!!on;qzSave();renderLevels();toast(on?'🔓 All levels unlocked — the certificate still needs every level at 80%':'🔒 Guided order restored');vib(8);}
 function renderLevels(){
-  var h='';
+  qzActive=false;
+  var h='',wc=qzWrongCount(),nx=qzNext(),cur=qzST.cur,qc=0,qt=0;
+  QUIZ_LEVELS.forEach(function(lv,i){qt+=lv.qs.length;qc+=Math.round((qzST.best[i]||0)/100*lv.qs.length);});
+  /* P-23: a half-finished level survives tab changes and reloads */
+  if(cur&&cur.hist&&cur.hist.length){var L=cur.mode==='mist'?null:QUIZ_LEVELS[cur.lv],tot=cur.mode==='mist'?(cur.queue||[]).length:(L?L.qs.length:0);
+    if(tot&&cur.i<=tot)h+='<div class="qz-resume"><div class="t"><b>▶ Resume '+(L?L.name:'Mistake review')+'</b><small>Q'+(Math.min(cur.i,tot-1)+1)+'/'+tot+' · '+cur.score+' ✓ so far</small></div><button class="btn gold" onclick="qzResume()">Resume</button><button class="chip-btn" onclick="qzDiscard()" aria-label="Discard the unfinished level">✕ Discard</button></div>';
+    else{delete qzST.cur;qzSave();}}
+  /* P-25: one primary answer to "what next?" */
+  if(nx>-1)h+='<button class="btn gold qz-cta" onclick="startLevel('+nx+')">'+(qzST.best[nx]!==undefined?'↺ Retake':'Continue →')+' '+qzLvName(nx)+' · '+qzLvName(nx,1)+' ('+QUIZ_LEVELS[nx].qs.length+' q)</button>';
+  else if(wc>0)h+='<button class="btn gold qz-cta" onclick="startMistakes()">🔁 Review '+wc+' mistake'+(wc===1?'':'s')+'</button>';
+  else h+='<button class="btn gold qz-cta" onclick="makeCert()">🎖️ Download my certificate</button>';
+  h+='<div class="qz-sub"><span>'+qc+' of '+qt+' questions correct in your best runs</span>'+(nx>-1&&wc>0?'<button class="chip-btn gsoft" onclick="startMistakes()">🔁 Review '+wc+' mistake'+(wc===1?'':'s')+'</button>':'')+'</div>';
   QUIZ_LEVELS.forEach(function(lv,i){
-    var un=qzUnlocked(i),ps=qzPassed(i),best=qzST.best[i];
-    h+='<div class="lvl'+(un?'':' locked')+(ps?' passed':'')+'" role="button" tabindex="0"'+(un?'':' aria-disabled="true"')+' aria-label="'+lv.name.replace(/"/g,'')+(ps?', passed '+best+'%':(un?'':', locked'))+'" onclick="startLevel('+i+')">'
+    var un=qzUnlocked(i),ps=qzPassed(i),best=qzST.best[i],w=qzWrongIn(i),need=qzNeed(lv.qs.length);
+    h+='<div class="lvl'+(un?'':' locked')+(ps?' passed':'')+(i===nx?' next':'')+'" role="button" tabindex="0" aria-label="'+lv.name.replace(/"/g,'')+(ps?', passed '+best+'%':(un?(i===nx?', up next':''):', locked'))+'" onclick="startLevel('+i+')">'
       +'<div class="lvl-n">'+(un?lv.icon:'🔒')+'</div>'
-      +'<div class="lvl-t"><b>'+lv.name+'</b><small>'+lv.desc+' · '+lv.qs.length+' questions</small></div>'
+      +'<div class="lvl-t"><b>'+lv.name+'</b><small>'+lv.desc+' · '+lv.qs.length+' questions · pass = '+need+' correct'+(ps&&w?' · '+w+' to review':'')+'</small>'+(un&&!ps?'<button class="lvl-study" onclick="event.stopPropagation();qzStudyGo('+i+')" aria-label="Study for '+qzLvName(i)+'">📚 study</button>':'')+'</div>'
       +'<div class="lvl-s">'+(ps?'✓ '+best+'%':(best!==undefined?best+'%':(un?'Start →':'Locked')))+'</div></div>';
   });
-  var wc=qzWrongCount();
-  if(wc>0)h+='<button class="btn ghost" onclick="startMistakes()">🔁 Review my mistakes ('+wc+')</button>';
-  if(qzAllPassed())h+='<div class="note" style="margin-top:10px">🏆 Circuit complete! You have the knowledge — now go with presence of heart. Taqabbal Allah.</div><button class="btn gold" onclick="makeCert()">🎖️ Download my certificate</button>';
+  if(qzST.free)h+='<p class="qz-free">🔓 All levels unlocked · <button class="lnk" onclick="qzFree(false)">Restore guided order</button></p>';
+  else if(qzFreeAll())h+='<p class="qz-free">🔓 All levels open — you have been before.</p>';
+  if(qzAllPassed())h+='<div class="note" style="margin-top:10px">🏆 Circuit complete! You have the knowledge — now go with presence of heart. Taqabbal Allah.</div>'+(wc>0?'<button class="btn ghost" onclick="makeCert()">🎖️ Download my certificate</button>':'');
   document.getElementById('qzArea').innerHTML=h;
-  var pc=qzPassedCount();
-  document.getElementById('qzBest').textContent=pc+'/'+QUIZ_LEVELS.length;
-  var m=document.getElementById('qzMeter');if(m)m.style.width=Math.round(pc/QUIZ_LEVELS.length*100)+'%';
-  renderLearnQuiz();
+  qzMeterUpd();renderLearnQuiz();
 }
 function startLevel(i){
-  if(!qzUnlocked(i)){toast('🔒 Pass '+QUIZ_LEVELS[i-1].name.split(' · ')[0]+' first (80%+)');vib([50,40,50]);return;}
-  qzMode='level';qzLevel=i;qzI=0;qzScore=0;qzHist=[];renderQz();
+  if(!qzUnlocked(i)){qzLockCard(i);return;}
+  qzMode='level';qzLevel=i;qzI=0;qzScore=0;qzHist=[];qzMissed=[];qzActive=true;
+  qzOrder=null;if(qzPassed(i)){qzOrder=qzShuffle(QUIZ_LEVELS[i].qs.map(function(_,k){return k;}));}
+  delete qzST.cur;qzSave();renderQz();jumpTo('qzArea',true);
 }
-function startMistakes(){
-  qzQueue=Object.keys(qzST.wrong).map(function(k){var m=k.match(/^l(\d+)q(\d+)$/);return m?{lv:+m[1],qi:+m[2]}:null;}).filter(function(x){return x&&QUIZ_LEVELS[x.lv]&&QUIZ_LEVELS[x.lv].qs[x.qi];});
+/* P-30: a locked row explains the gate and offers to open every level */
+function qzLockCard(i){var p=QUIZ_LEVELS[i-1],need=qzNeed(p.qs.length);vib([50,40,50]);
+  document.getElementById('qzArea').innerHTML='<div class="qz-lock"><div class="big">🔒</div><h4>'+qzLvName(i)+' is locked</h4><p>Pass '+p.name+' first — '+need+' of '+p.qs.length+' correct (80%). Been before, or want the harder levels now? Open them all; the certificate still needs every level passed.</p><button class="btn gold" onclick="startLevel('+(i-1)+')">▶ Take '+qzLvName(i-1)+'</button><button class="btn ghost" onclick="qzFree(true)">🔓 Unlock all levels</button><button class="btn ghost" onclick="renderLevels()">← All levels</button></div>';
+  jumpTo('qzArea',true);}
+function startMistakes(level){
+  qzQueue=Object.keys(qzST.wrong).map(function(k){var m=k.match(/^l(\d+)q(\d+)$/);return m?{lv:+m[1],qi:+m[2]}:null;}).filter(function(x){return x&&QUIZ_LEVELS[x.lv]&&QUIZ_LEVELS[x.lv].qs[x.qi]&&(level===undefined||x.lv===level);});
   if(!qzQueue.length){toast('No mistakes to review — mashallah!');return;}
-  qzMode='mist';qzI=0;qzScore=0;qzHist=[];renderQz();
+  qzMode='mist';qzI=0;qzScore=0;qzHist=[];qzMissed=[];qzOrder=null;qzActive=true;delete qzST.cur;qzSave();renderQz();jumpTo('qzArea',true);
 }
+/* P-23: resume state = the next unanswered question */
+function qzCurSave(){qzST.cur={mode:qzMode,lv:qzLevel,i:qzHist.length,score:qzScore,hist:qzHist.slice(),queue:qzMode==='mist'?qzQueue:null,order:qzOrder,missed:qzMissed.slice()};}
+function qzResume(){var c=qzST.cur;if(!c||!c.hist||!c.hist.length){renderLevels();return;}
+  qzMode=c.mode==='mist'?'mist':'level';qzLevel=c.lv||0;qzQueue=(c.queue||[]).filter(function(x){return x&&QUIZ_LEVELS[x.lv]&&QUIZ_LEVELS[x.lv].qs[x.qi];});
+  if((qzMode==='level'&&!QUIZ_LEVELS[qzLevel])||(qzMode==='mist'&&!qzQueue.length)){qzDiscard();return;}
+  var tot=qzTotal();qzHist=c.hist.slice(0,tot);qzScore=Math.min(c.score||0,qzHist.length);qzMissed=c.missed||[];qzOrder=(c.order&&c.order.length===tot)?c.order:null;qzActive=true;
+  if(c.i>=tot){qzI=tot-1;nextQz();return;}
+  qzI=Math.max(0,c.i);renderQz();jumpTo('qzArea',true);}
+function qzDiscard(){delete qzST.cur;qzSave();renderLevels();}
+function qzExit(){if(qzHist.length)qzCurSave();else delete qzST.cur;qzSave();renderLevels();vib(8);}
 function qzOpts(q){return q.o?q.o:['True','False'];}
 function qzAns(q){return q.o?q.a:(q.a===0?0:1);}
 function qzDots(n){var h='';for(var i=0;i<n;i++){h+='<i class="'+(i<qzHist.length?(qzHist[i]?'f':'w'):'')+'"></i>';}return '<div class="qz-dots" role="img" aria-label="Question '+(qzI+1)+' of '+n+'">'+h+'</div>';}
 function renderQz(){
   qzLock=false;
-  var q=curQ(),tot=qzTotal();
-  var head=qzMode==='mist'?'🔁 Mistake review':QUIZ_LEVELS[qzLevel].icon+' '+QUIZ_LEVELS[qzLevel].name.split(' · ')[0];
-  var h='<div class="qz-top"><span>'+head+' · Q'+(qzI+1)+'/'+tot+'</span><span class="qz-exit" onclick="renderLevels()">✕ Exit</span></div>'+qzDots(tot)+'<div class="qz-q">'+q.q+'</div>';
-  qzOpts(q).forEach(function(o,i){h+='<button class="qz-o" id="qzo-'+i+'" onclick="answerQz('+i+')">'+(q.o?String.fromCharCode(65+i)+'. ':'')+o+'</button>';});
+  var q=curQ(),tot=qzTotal(),opts=qzOpts(q);
+  qzPerm=opts.map(function(_,i){return i;});if(q.o)qzShuffle(qzPerm);
+  var head=qzMode==='mist'?'🔁 Mistake review':QUIZ_LEVELS[qzLevel].icon+' '+qzLvName(qzLevel),need='';
+  if(qzMode==='level'){var left=qzNeed(tot)-qzScore,rem=tot-qzI;
+    need=left<=0?'<span class="qz-need ok">pass secured ✓</span>':left<=rem?'<span class="qz-need gold">'+left+' more to pass</span>':'<span class="qz-need">keep going — mistakes go to your review list</span>';}
+  var h='<div class="qz-top"><span>'+head+' · Q'+(qzI+1)+'/'+tot+(qzMode==='level'?' · '+qzScore+' ✓':'')+'</span><span class="qz-exit" role="button" tabindex="0" onclick="qzExit()">✕ Exit</span></div>'+(need?'<div class="qz-needrow">'+need+'</div>':'')+qzDots(tot)+'<div class="qz-q">'+q.q+'</div>';
+  qzPerm.forEach(function(j,i){h+='<button class="qz-o" id="qzo-'+i+'" onclick="answerQz('+i+')">'+(q.o?String.fromCharCode(65+i)+'. ':'')+opts[j]+'</button>';});
   h+='<div id="qzFb" aria-live="polite"></div>';
   document.getElementById('qzArea').innerHTML=h;
 }
 function answerQz(i){
   if(qzLock)return;qzLock=true;
-  var q=curQ(),ans=qzAns(q),ok=i===ans;
+  var q=curQ(),ans=qzAns(q),ok=qzPerm[i]===ans;
   qzHist.push(ok);
-  if(ok){qzScore++;vib(30);delete qzST.wrong[curKey()];}else{vib([60,40,60]);qzST.wrong[curKey()]=1;}
-  qzSave();
-  document.getElementById('qzo-'+ans).classList.add('right');
+  if(ok){qzScore++;vib(30);delete qzST.wrong[curKey()];}else{vib([60,40,60]);qzST.wrong[curKey()]=1;qzMissed.push(q.q);}
+  qzCurSave();qzSave();
+  var re=document.getElementById('qzo-'+qzPerm.indexOf(ans));if(re)re.classList.add('right');
   if(!ok)document.getElementById('qzo-'+i).classList.add('wrong');
   document.getElementById('qzFb').innerHTML='<div class="qz-x">'+(ok?'✅ Correct! ':'❌ ')+q.e+'</div><button class="btn" onclick="nextQz()">'+(qzI<qzTotal()-1?'Next question →':'See my score')+'</button>';
 }
 function nextQz(){
   if(qzI<qzTotal()-1){qzI++;renderQz();return;}
+  qzActive=false;delete qzST.cur;
   if(qzMode==='mist'){
-    var cleared=qzScore,tot0=qzQueue.length;
+    var cleared=qzScore,tot0=qzQueue.length;qzSave();
     document.getElementById('qzArea').innerHTML='<div class="qz-final"><div class="big">'+cleared+'/'+tot0+'</div><p>mistakes cleared'+(qzWrongCount()?' — '+qzWrongCount()+' still to master.':' — clean slate, mashallah! 🎉')+'</p><button class="btn ghost" onclick="renderLevels()">← All levels</button>'+(qzWrongCount()?'<button class="btn gold" onclick="startMistakes()">↺ Review remaining</button>':'')+'</div>';
     return;
   }
-  var lv=QUIZ_LEVELS[qzLevel];
-  var pct=Math.round(qzScore/lv.qs.length*100);
+  var lv=QUIZ_LEVELS[qzLevel],n=lv.qs.length,need=qzNeed(n);
+  var pct=Math.round(qzScore/n*100);
   var prevBest=qzST.best[qzLevel]||0;
   if(pct>prevBest){qzST.best[qzLevel]=pct;}
   qzSave();
-  var passed=pct>=80;
-  var msg;
-  if(passed&&qzLevel<QUIZ_LEVELS.length-1)msg='Level passed! '+QUIZ_LEVELS[qzLevel+1].icon+' '+QUIZ_LEVELS[qzLevel+1].name.split(' · ')[1]+' is now unlocked.';
-  else if(passed)msg='Final level passed — the whole circuit is yours!';
-  else msg='You need 80% to pass — review the knowledge cards above and retake.';
-  if(passed){toast('🎉 '+lv.name.split(' · ')[0]+' passed!',true);vib([40,60,120]);confetti(qzAllPassed()?160:70);}
-  if(qzAllPassed()&&!planChk['quiz80']){planChk['quiz80']=true;save('us-plan',planChk);updPlan();toast('🏆 Knowledge circuit complete!',true);}
+  var passed=pct>=80,all=qzAllPassed(),msg,btns,nx=-1;
+  if(passed&&!all)nx=(qzLevel+1<QUIZ_LEVELS.length&&!qzPassed(qzLevel+1))?qzLevel+1:qzNext();
+  if(passed&&all)msg=qzLevel===QUIZ_LEVELS.length-1?'Final level passed — the whole circuit is yours!':'Level passed — and that completes the whole circuit!';
+  else if(passed)msg='Level passed!'+(nx===qzLevel+1?' '+QUIZ_LEVELS[nx].icon+' '+qzLvName(nx,1)+' is now unlocked.':'');
+  else msg='You got '+qzScore+' — you need '+need+' of '+n+' to pass. Study the section below, then retake.';
+  if(passed){toast('🎉 '+qzLvName(qzLevel)+' passed!',true);vib([40,60,120]);confetti(all?160:70);}
+  if(all&&!planChk['quiz80']){planChk['quiz80']=true;save('us-plan',planChk);updPlan();toast('🏆 Knowledge circuit complete!',true);}
   ST.quizBest=Math.max(ST.quizBest||0,pct);saveST();
-  chkBadges();
-  var pc=qzPassedCount();
-  document.getElementById('qzBest').textContent=pc+'/'+QUIZ_LEVELS.length;
-  var m=document.getElementById('qzMeter');if(m)m.style.width=Math.round(pc/QUIZ_LEVELS.length*100)+'%';
-  document.getElementById('qzArea').innerHTML='<div class="qz-final"><div class="big">'+pct+'%</div><p>'+qzScore+' of '+lv.qs.length+' correct — '+msg+'</p><button class="btn gold" onclick="startLevel('+qzLevel+')">↺ Retake level</button><button class="btn ghost" onclick="renderLevels()">← All levels</button></div>';
+  chkBadges();qzMeterUpd();
+  var wl=qzWrongIn(qzLevel),wc=qzWrongCount();
+  /* P-24 / P-26: the primary button is always the next step */
+  if(passed&&all)btns='<button class="btn gold" onclick="makeCert()">🎖️ Get my certificate</button>'+(wc?'<button class="btn ghost" onclick="startMistakes()">🔁 Review my mistakes ('+wc+')</button>':'')+'<button class="btn ghost" onclick="renderLevels()">← All levels</button>';
+  else if(passed)btns='<button class="btn gold" onclick="startLevel('+nx+')">▶ Start '+QUIZ_LEVELS[nx].icon+' '+qzLvName(nx,1)+'</button>'+(pct<100?'<button class="btn ghost" onclick="startLevel('+qzLevel+')">↺ Retake level</button>':'')+'<button class="btn ghost" onclick="renderLevels()">← All levels</button>';
+  else btns='<button class="btn gold" onclick="startLevel('+qzLevel+')">↺ Retake level</button><button class="btn ghost" onclick="qzStudyGo('+qzLevel+')">📚 Study this level</button>'+(lv.rites?'<button class="btn ghost" onclick="goTab(\'umrah\',\'steps\')">📋 Open the rites guide</button>':'')+(wl?'<button class="btn ghost" onclick="startMistakes('+qzLevel+')">🔁 Review the '+wl+' I missed</button>':'')+'<button class="btn ghost" onclick="renderLevels()">← All levels</button>';
+  var missed=(!passed&&qzMissed.length)?'<div class="qz-missed"><b>Missed this run</b><ul>'+qzMissed.map(function(t){return '<li>'+t+'</li>';}).join('')+'</ul></div>':'';
+  document.getElementById('qzArea').innerHTML='<div class="qz-final"><div class="big">'+pct+'%</div><p>'+qzScore+' of '+n+' correct — '+msg+'</p>'+missed+btns+'</div>';
 }
 
 /* ════════════════════════ RITES ════════════════════════ */
@@ -284,7 +331,7 @@ function renderRites(){
     ph.steps.forEach(function(st){
       if(!forMe(st))return;
       n++;
-      inner+='<div class="stp" id="rw-'+st.id+'" role="checkbox" tabindex="0" aria-checked="false" onclick="togRite(\''+st.id+'\')"><div class="stp-n">'+n+'</div><div class="stp-t"><b>'+st.b+'</b><p>'+st.p+(st.why?' <button class="why" onclick="event.stopPropagation();this.parentNode.nextSibling.classList.toggle(\'on\')">Why?</button>':'')+'</p>'+(st.why?'<div class="whyb">'+st.why+'</div>':'')+(st.dua?'<div class="dua tapable" onclick="event.stopPropagation();openRiteDua(\''+st.id+'\')"><div class="dua-top"><small>Dua</small><button class="say" data-ar="'+st.dua.ar+'" onclick="speakBtn(this)" aria-label="Play recitation">🔊 Listen</button></div><span class="ar">'+st.dua.ar+'</span><span class="tl">'+st.dua.tl+'</span><span class="tr">'+st.dua.tr+'</span><span class="enl">⛶ tap to enlarge</span></div>':'')+'</div></div>';
+      inner+='<div class="stp" id="rw-'+st.id+'" role="checkbox" tabindex="0" aria-checked="false" onclick="togRite(\''+st.id+'\')"><div class="stp-n">'+n+'</div><div class="stp-t"><b>'+st.b+'</b><p>'+st.p+(st.why?' <button class="why" onclick="event.stopPropagation();this.parentNode.nextSibling.classList.toggle(\'on\')">Why?</button>':'')+'</p>'+(st.why?'<div class="whyb">'+st.why+'</div>':'')+(st.kid?'<button class="xchip" onclick="event.stopPropagation();openStory(\''+st.kid+'\')">🧒 Story for the kids →</button>':'')+(st.dua?'<div class="dua tapable" onclick="event.stopPropagation();openRiteDua(\''+st.id+'\')"><div class="dua-top"><small>Dua</small><button class="say" data-ar="'+st.dua.ar+'" onclick="speakBtn(this)" aria-label="Play recitation">🔊 Listen</button></div><span class="ar">'+st.dua.ar+'</span><span class="tl">'+st.dua.tl+'</span><span class="tr">'+st.dua.tr+'</span><span class="enl">⛶ tap to enlarge</span></div>':'')+'</div></div>';
     });
     h+=mkSec(ph,i>0,inner);
   });
@@ -546,7 +593,7 @@ function renderHome(){
   var nh=0;[HISTORY,VIRTUES,MADINAH,FIQHQA,KNOW,SISTERS,SCAMS].forEach(function(x){nh+=x.length;});
   var nq=0;QUIZ_LEVELS.forEach(function(l){nq+=l.qs.length;});
   var stages=[
-    {i:'🧳',t:'Before you fly',s:'Prepare with ihsan',d:'Begin with your intention — then checklists for documents, packing and health, a departure countdown and a generated day-by-day itinerary. Then learn: the history of the Kaaba and Madinah, the virtues, the fiqh Q&A, a scam-awareness guide — and prove it in a 7-level quiz.',f:['Checklists','Itinerary','Knowledge hub','7-level quiz','Flashcards','Document vault'],go:['plan','prep'],c:'Start preparing'},
+    {i:'🧳',t:'Before you fly',s:'Prepare with ihsan',d:'Begin with your intention — then checklists for documents, packing and health, a departure countdown and a generated day-by-day itinerary. Then learn: the history of the Kaaba and Madinah, the virtues, the fiqh Q&A, a scam-awareness guide — and prove it in a 7-level quiz.',f:['Checklists','Itinerary','Knowledge hub','7-level quiz','Flashcards','Document vault',['Kids quiz','goTab(\'plan\',\'quiz\',\'kidsCard\')']],go:['plan','prep'],c:'Start preparing'},
     {i:'🕋',t:'During your Umrah',s:'Ihram → Tawaf → Sa’i → Halq',d:'A step-by-step walkthrough with every dua in Arabic, transliteration and audio, and a "Why?" behind each step. Giant tap counters for tawaf and sa’i with a full-screen focus mode so you never lose count, a map of the mataf, and an automatic timeline that becomes a keepsake.',f:['Rites guide','Duas + audio','Tawaf & Sa’i counters','Focus mode','Mataf map','Keepsake card'],go:['umrah','count'],c:'Open the rites guide'},
     {i:'📿',t:'Every day in the Haramain',s:'Make every prayer count',d:'One prayer in the Haram is worth 100,000 — track all five in congregation, tahajjud, Quran, dhikr and extra deeds. Prayer times with reminders, a qibla compass, a tasbih counter, your personal dua list and a water counter, with streaks and achievements.',f:['Daily tracker','Prayer times','Qibla','Tasbih','Dua list','Streaks & badges'],go:['daily','today'],c:'Track today'},
     {i:'📍',t:'Ziyarah with purpose',s:'51 places, Makkah & Madinah',d:'Every sacred and historic site with why it matters, an etiquette tip and one-tap Google Maps. Save your hotel to see walking distances, sort by what’s near you, plan a nearest-first route, and book the Madinah hop-on hop-off bus.',f:['51 sites','Maps & distances','Route planner','Hop-on hop-off'],go:['places',null],c:'Explore places'},
@@ -566,7 +613,7 @@ function renderHome(){
   h+='<div class="card card-pad hprayer" role="button" tabindex="0" aria-label="Prayer times" onclick="goTab(\'daily\',\'today\')"><div class="hp-i">🕌</div><div class="hp-t"><small>Next prayer</small><div id="hNext">Loading…</div></div><span class="hp-go">›</span></div>';
   // 4. Journey stages
   h+='<div class="vh" style="margin-top:8px"><h2 style="font-size:1.35em">How it works — your journey in 5 stages</h2><p>Tap a stage to jump in. The app follows you from your living room to the mataf and back.</p></div>';
-  h+='<div class="stages">'+stages.map(function(st,i){return '<div class="stage'+(i===stageNow?' now':'')+'" role="button" tabindex="0" aria-label="'+st.t+' — '+st.c+'" onclick="'+(st.oc||goStr(st.go))+'"><div class="stage-n">'+(i+1)+'</div><div class="stage-b"><div class="stage-h"><span class="stage-i">'+st.i+'</span><div><b>'+st.t+'</b><small>'+st.s+'</small></div>'+(i===stageNow?'<span class="nowtag">You are here</span>':'')+'</div><p>'+st.d+'</p><div class="fchips">'+st.f.map(function(f){return '<span>'+f+'</span>';}).join('')+'</div><div class="stage-cta">'+st.c+' →</div></div></div>';}).join('')+'</div>';
+  h+='<div class="stages">'+stages.map(function(st,i){return '<div class="stage'+(i===stageNow?' now':'')+'" role="button" tabindex="0" aria-label="'+st.t+' — '+st.c+'" onclick="'+(st.oc||goStr(st.go))+'"><div class="stage-n">'+(i+1)+'</div><div class="stage-b"><div class="stage-h"><span class="stage-i">'+st.i+'</span><div><b>'+st.t+'</b><small>'+st.s+'</small></div>'+(i===stageNow?'<span class="nowtag">You are here</span>':'')+'</div><p>'+st.d+'</p><div class="fchips">'+st.f.map(function(f){return typeof f==='string'?'<span>'+f+'</span>':'<span class="go" role="button" tabindex="0" onclick="event.stopPropagation();'+f[1]+'">'+f[0]+' →</span>';}).join('')+'</div><div class="stage-cta">'+st.c+' →</div></div></div>';}).join('')+'</div>';
   // 5. Numbers
   h+='<div class="nums"><div><b>'+PLACES.length+'</b><small>sacred &amp; historic places</small></div><div><b>'+nq+'</b><small>quiz questions in '+QUIZ_LEVELS.length+' levels</small></div><div><b>'+nh+'</b><small>knowledge topics</small></div><div><b>'+DUAS.length+'</b><small>essential duas with audio</small></div></div>';
   // 6. Quick tools
@@ -1242,46 +1289,63 @@ function fcGrade(ok){
   renderFC();
 }
 
-/* ════════════════════════ KIDS QUIZ ════════════════════════ */
-var kqI=0,kqScore=0,kqLock=false;
-function startKids(){kqI=0;kqScore=0;renderKQ();}
+/* ════════════════════════ KIDS CORNER (quiz + story time) ════════════════════════ */
+var kqI=0,kqScore=0,kqLock=false,kqList=[],kqVoice=false;
+function kidsBestLbl(){var kb=document.getElementById('kidsBest'),v=localStorage.getItem('us-kids');if(kb&&v)kb.textContent=v+'/'+KIDSQ.length;}
+/* P-28: shuffled copy, inline in the collapsed card, ✕ Done restores the Start row */
+function startKids(){kqList=qzShuffle(KIDSQ.slice());kqI=0;kqScore=0;kqVoice=false;var a=document.getElementById('kidsArea');if(a)a.hidden=false;var sb=document.getElementById('kidsStart');if(sb)sb.hidden=true;renderKQ();jumpTo('kidsCard',true);}
+function kidsDone(){try{speechSynthesis.cancel();}catch(e){}var a=document.getElementById('kidsArea');if(a){a.hidden=true;a.innerHTML='';}var sb=document.getElementById('kidsStart');if(sb)sb.hidden=false;kqList=[];}
 function renderKQ(){
   kqLock=false;
-  var q=KIDSQ[kqI];
-  var h='<div class="fc-prog">Question '+(kqI+1)+' / '+KIDSQ.length+'</div><div class="kq-q">'+q.q+'</div>';
+  var q=kqList[kqI];if(!q){kidsDone();return;}
+  var h='<div class="fc-prog kq-hd"><span>Question '+(kqI+1)+' / '+kqList.length+'</span><button class="chip-btn" onclick="kidsDone()" aria-label="Finish the kids quiz">✕ Done</button></div><div class="kq-q">'+q.q+'</div>';
   q.o.forEach(function(o,i){h+='<button class="kq-o" id="kqo-'+i+'" onclick="answerKQ('+i+')">'+o+'</button>';});
-  h+='<div id="kqFb"></div>';
+  h+='<button class="say kq-say" onclick="kqSpeak()">🔊 Read it to me</button><div id="kqFb"></div>';
   document.getElementById('kidsArea').innerHTML=h;
 }
+function kqSpeak(){var q=kqList[kqI];if(!q)return;try{if(speechSynthesis.speaking){speechSynthesis.cancel();return;}}catch(e){}kqVoice=true;speakEn(q.q+'. '+q.o.map(function(o,i){return 'Option '+(i+1)+': '+o;}).join('. '));}
 function answerKQ(i){
   if(kqLock)return;kqLock=true;
-  var q=KIDSQ[kqI],ok=i===q.a;
+  var q=kqList[kqI],ok=i===q.a;
   if(ok){kqScore++;vib([30,30,30]);}else vib(80);
   document.getElementById('kqo-'+q.a).classList.add('right');
   if(!ok)document.getElementById('kqo-'+i).classList.add('wrong');
-  document.getElementById('kqFb').innerHTML='<div class="qz-x">'+(ok?'⭐ Yes! ':'💛 Almost! ')+q.e+'</div><button class="btn" onclick="nextKQ()">'+(kqI<KIDSQ.length-1?'Next →':'See my stars!')+'</button>';
+  document.getElementById('kqFb').innerHTML='<div class="qz-x">'+(ok?'⭐ Yes! ':'💛 Almost! ')+q.e+'</div><button class="btn" onclick="nextKQ()">'+(kqI<kqList.length-1?'Next →':'See my stars!')+'</button>';
+  if(kqVoice)speakEn((ok?'Yes! ':'Almost! ')+q.e);
 }
 function nextKQ(){
-  if(kqI<KIDSQ.length-1){kqI++;renderKQ();return;}
-  var stars=Math.max(1,Math.round(kqScore/KIDSQ.length*5));
+  if(kqI<kqList.length-1){kqI++;renderKQ();return;}
+  var stars=Math.max(1,Math.round(kqScore/kqList.length*5));
   var best=+(localStorage.getItem('us-kids')||0);
   if(kqScore>best){best=kqScore;localStorage.setItem('us-kids',String(best));}
-  document.getElementById('kidsArea').innerHTML='<div class="qz-final"><div class="kq-stars">'+'⭐'.repeat(stars)+'</div><p style="font-size:1em"><b>'+kqScore+' / '+KIDSQ.length+'</b> — '+(kqScore===KIDSQ.length?'Mashallah, a little hafiz of Umrah! 🎉':'Great job — play again and get all the stars!')+'</p><button class="btn gold" onclick="startKids()">↺ Play again</button></div>';
-  var kb=document.getElementById('kidsBest');if(kb)kb.textContent=best+'/'+KIDSQ.length;
-  vib([50,50,50,50,120]);if(kqScore===KIDSQ.length)confetti(120);
+  document.getElementById('kidsArea').innerHTML='<div class="qz-final"><div class="kq-stars">'+'⭐'.repeat(stars)+'</div><p style="font-size:1em"><b>'+kqScore+' / '+kqList.length+'</b> — '+(kqScore===kqList.length?'Mashallah, a little hafiz of Umrah! 🎉':'Great job — play again and get all the stars!')+'</p><button class="btn gold" onclick="startKids()">↺ Play again</button><button class="btn ghost" onclick="kidsDone()">✕ Done</button></div>';
+  kidsBestLbl();
+  vib([50,50,50,50,120]);if(kqScore===kqList.length)confetti(120);
 }
+/* P-37: story time — read-aloud stories under the kids quiz; openStory() is the target of the rite-step chips */
+function renderStories(){var a=document.getElementById('storyList');if(!a)return;
+  a.innerHTML=KIDS_STORIES.map(function(st){return '<div class="acc story" id="st-'+st.id+'"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)">'+st.emoji+' '+st.title+' <span class="acc-c">▶</span></div><div class="acc-b"><p>'+st.text+'</p><div class="story-when">🕰️ '+st.when+'</div><div class="story-acts"><button class="say" data-text="'+esc(st.title+'. '+st.text)+'" data-lang="en" data-rate=".9" onclick="speakBtn(this)" aria-label="Read the story aloud">🔊 Read aloud</button><span class="src">'+st.src+'</span></div></div></div>';}).join('');}
+function togStories(el,open){var l=document.getElementById('storyList');if(!l)return;var on=open===undefined?l.hidden:!!open;l.hidden=!on;if(el){el.classList.toggle('open',on);el.setAttribute('aria-expanded',on?'true':'false');}}
+function openStory(id){var hd=document.querySelector('#kidsCard .story-h');togStories(hd,true);
+  document.querySelectorAll('#storyList .acc').forEach(function(a){var me=a.id==='st-'+id;a.classList.toggle('open',me);var h=a.querySelector('.acc-h');if(h)h.setAttribute('aria-expanded',me?'true':'false');});
+  goTab('plan','quiz','st-'+id);}
 
-/* ════════════════════════ AUDIO (dua recitation) ════════════════════════ */
+/* ════════════════════════ AUDIO (dua recitation · read-aloud) ════════════════════════ */
+function speakText(text,lang,rate){
+  try{
+    if(window.speechSynthesis.speaking)speechSynthesis.cancel();
+    var u=new SpeechSynthesisUtterance(text);u.lang=lang;u.rate=rate;
+    var pre=lang.split('-')[0],v=speechSynthesis.getVoices().filter(function(x){return x.lang&&x.lang.replace('_','-').indexOf(pre)===0;});
+    if(v.length){var ex=v.filter(function(x){return x.lang.replace('_','-')===lang;});u.voice=ex[0]||v[0];}
+    speechSynthesis.speak(u);return true;
+  }catch(e){toast('Audio not supported on this browser');return false;}
+}
+function speakEn(text){return speakText(String(text||'').replace(/<[^>]+>/g,' '),'en',.9);}
+/* data-ar (Arabic dua, default) or data-text + data-lang / data-rate (stories) */
 function speakBtn(el){
   if(window.event)window.event.stopPropagation();
-  try{
-    if(window.speechSynthesis.speaking){speechSynthesis.cancel();return;}
-    var u=new SpeechSynthesisUtterance(el.getAttribute('data-ar'));
-    u.lang='ar-SA';u.rate=.8;
-    var v=speechSynthesis.getVoices().filter(function(x){return x.lang&&x.lang.indexOf('ar')===0;});
-    if(v.length)u.voice=v[0];
-    speechSynthesis.speak(u);
-  }catch(e){toast('Audio not supported on this browser');}
+  try{if(window.speechSynthesis.speaking){speechSynthesis.cancel();return;}}catch(e){toast('Audio not supported on this browser');return;}
+  speakText(el.getAttribute('data-text')||el.getAttribute('data-ar')||'',el.getAttribute('data-lang')||'ar-SA',parseFloat(el.getAttribute('data-rate'))||.8);
 }
 
 /* ════════════════════════ POST-UMRAH MODE ════════════════════════ */
@@ -1497,7 +1561,7 @@ function initUI(){
   renderPlan();renderRites();renderDaily();renderPlaces();renderDuas();renderTB();
   buildDeck();renderFC();renderPost();updRemSw();applySubs();updChip();renderItin();renderVault();renderDuaList();renderWater();updHotelLbl();loadHotelInfo();loadNiyyah();updKidsSw();applyProfile();renderCntHd();
   if(!ST.onboarded&&!pendingGroup)setTimeout(showOnboard,400);
-  var kb=document.getElementById('kidsBest'),kbv=localStorage.getItem('us-kids');if(kb&&kbv)kb.textContent=kbv+'/'+KIDSQ.length;
+  kidsBestLbl();renderStories();
   var cm=document.getElementById('cityMakkah'),cd=document.getElementById('cityMadinah');
   if(cm){cm.classList.toggle('on',(ST.city||'Makkah')==='Makkah');cd.classList.toggle('on',ST.city==='Madinah');}
   updPlan();updRites();updDaily();updPlaces();updStats();renderBadges();

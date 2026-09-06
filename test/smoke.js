@@ -68,12 +68,31 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   await page.evaluate(() => fcEnd());
   await page.evaluate(() => goSub('plan', 'quiz', true));
   check('7 quiz levels, 6 locked', (await page.locator('.lvl').count()) === 7 && (await page.locator('.lvl.locked').count()) === 6);
+  check('kids corner first and collapsed, with 5 stories; quiz CTA + pass marks', (await page.evaluate(() => [...document.querySelectorAll('#sub-plan-quiz > .card')].map(e => e.id)[0])) === 'kidsCard' && (await page.locator('#kidsArea').isHidden()) && (await page.locator('#storyList .acc').count()) === 5 && (await page.textContent('.qz-cta')).includes('Level 1') && (await page.textContent('.lvl >> nth=0')).includes('pass = 8 correct') && (await page.locator('.lvl.next').count()) === 1 && (await page.textContent('#qzBest')) === '0/7');
+  await page.click('.lvl >> nth=1');
+  check('locked level shows the lock card', (await page.locator('.qz-lock').count()) === 1 && (await page.textContent('.qz-lock')).includes('8 of 10 correct'));
+  await page.click('.qz-lock button:has-text("Unlock all levels")');
+  check('unlock all opens every level; restore re-locks', (await page.locator('.lvl.locked').count()) === 0 && (await page.textContent('.qz-free')).includes('Restore') && (await page.evaluate(() => { qzFree(false); return document.querySelectorAll('.lvl.locked').length; })) === 6);
   await page.click('.lvl >> nth=0');
+  check('question header shows the pass mark', (await page.textContent('.qz-needrow')).includes('8 more to pass') && (await page.textContent('.qz-top')).includes('Q1/10'));
   const n1 = await page.evaluate(() => QUIZ_LEVELS[0].qs.length);
-  for (let k = 0; k < n1; k++) { const c = await page.evaluate(kk => { const q = QUIZ_LEVELS[0].qs[kk]; return q.o ? q.a : (q.a === 0 ? 0 : 1); }, k); await page.click('#qzo-' + c); await page.click('#qzFb .btn'); }
-  check('level 1 passed at 100%', (await page.textContent('.qz-final .big')) === '100%');
+  const pick = async () => { const c = await page.evaluate(() => qzPerm.indexOf(qzAns(curQ()))); await page.click('#qzo-' + c); await page.click('#qzFb .btn'); };
+  for (let k = 0; k < 2; k++) await pick();
+  await page.evaluate(() => qzExit());
+  check('exit keeps a resume row at the next unanswered question', (await page.locator('.qz-resume').count()) === 1 && (await page.textContent('.qz-resume')).includes('Q3/10') && (await page.evaluate(() => JSON.parse(localStorage.getItem('us-quiz')).cur.i)) === 2);
+  await page.click('.qz-resume .btn');
+  check('resume restores the score and position', (await page.textContent('.qz-top')).includes('Q3/10') && (await page.textContent('.qz-top')).includes('2 ✓'));
+  for (let k = 2; k < n1; k++) await pick();
+  check('level 1 passed at 100%; pass screen starts the next level', (await page.textContent('.qz-final .big')) === '100%' && (await page.textContent('.qz-final .btn.gold')).includes('Ihram') && (await page.locator('.qz-final button:has-text("Retake")').count()) === 0);
   await page.click('text=← All levels');
-  check('level 2 unlocked', (await page.locator('.lvl.locked').count()) === 5);
+  check('level 2 unlocked', (await page.locator('.lvl.locked').count()) === 5 && (await page.locator('.qz-resume').count()) === 0);
+  await page.click('.lvl >> nth=1');
+  await page.evaluate(() => togPlan('visa'));
+  check('checklist updates do not wipe a running level', (await page.locator('.qz-top').count()) === 1 && (await page.evaluate(() => qzActive)));
+  await page.evaluate(() => { togPlan('visa'); qzExit(); startKids(); });
+  check('kids quiz: 3 big options, read-aloud and Done', (await page.locator('#kidsArea .kq-o').count()) === 3 && (await page.locator('#kidsArea .kq-say').count()) === 1 && (await page.locator('#kidsStart').isHidden()));
+  await page.evaluate(() => kidsDone());
+  check('kids Done restores the Start row', (await page.locator('#kidsArea').isHidden()) && (await page.locator('#kidsStart').isVisible()));
 
   console.log('Umrah');
   await page.evaluate(() => { goTab('umrah'); goSub('umrah', 'count', true); });
@@ -87,6 +106,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   await page.evaluate(() => goSub('umrah', 'steps', true));
   await page.click('#rw-ghusl .why');
   check('why explainer toggles', (await page.locator('#rw-ghusl .whyb.on').count()) === 1);
+  check('story chips on ihram, Black Stone and Safa steps', (await page.locator('#rw-garb .xchip').count()) === 1 && (await page.locator('#rw-start .xchip').count()) === 1 && (await page.locator('#rw-safa .xchip').count()) === 1);
   await page.click('button.btn.gold:has-text("Record completed Umrah")'); await page.waitForTimeout(300);
   await page.evaluate(() => goSub('umrah', 'steps', true)); await page.click('#umrahsArea .chip-btn'); await page.waitForTimeout(300);
   check('keepsake opens the export sheet with preview', (await page.locator('#gSheet.on img').count()) === 1);

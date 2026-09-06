@@ -658,6 +658,38 @@ html[data-text='lg'] body{font-size:17px}
 .lnq{display:flex;align-items:center;gap:12px;margin-top:8px}
 .lnq .lvl-n{width:44px;height:44px;font-size:1.3em}
 .lnq .t{flex:1;min-width:0;font-size:.86em;line-height:1.45;color:var(--ink2)}.lnq .t b{display:block;color:var(--ink);font-size:1.02em}
+/* ─────────── Quiz batch: CTA, resume, pass mark, lock card, kids corner & story time ─────────── */
+.qz-cta{margin:0 0 8px}
+.qz-sub{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:.74em;color:var(--ink3);margin:0 0 12px}
+.chip-btn.gsoft{background:var(--gold-soft);color:var(--gold-ink);border-color:transparent;box-shadow:none;padding:7px 12px;font-size:.92em}
+.lvl.next{border:1.5px solid var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+.lvl-study{display:inline-block;margin:3px 0 0 8px;border:none;background:transparent;color:var(--brand-2);font-family:var(--fb);font-weight:700;font-size:.74em;padding:2px 0;cursor:pointer}
+.qz-free{font-size:.76em;color:var(--ink3);margin:4px 2px 0;text-align:center}
+.lnk{border:none;background:transparent;color:var(--brand-2);font-family:var(--fb);font-weight:700;font-size:1em;cursor:pointer;text-decoration:underline;padding:0}
+.qz-resume{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--gold-soft);border:1px solid var(--gold);border-radius:var(--r);padding:12px 14px;margin-bottom:10px}
+.qz-resume .t{flex:1;min-width:150px}.qz-resume .t b{display:block;font-size:.88em}.qz-resume .t small{font-size:.74em;color:var(--ink3)}
+.qz-resume .btn{margin:0;width:auto;padding:10px 16px;box-shadow:none}
+.qz-top span:first-child{flex:1;min-width:0;line-height:1.5}
+.qz-needrow{font-size:.78em;margin:-6px 0 10px}
+.qz-need{font-weight:700;color:var(--ink3)}.qz-need.gold{color:var(--gold-ink)}.qz-need.ok{color:var(--brand-2)}
+.qz-lock{text-align:center;padding:8px 0}.qz-lock .big{font-size:2.4em;line-height:1.2}.qz-lock h4{font-family:var(--fd);font-size:1.1em;margin:6px 0}.qz-lock p{font-size:.84em;color:var(--ink2);line-height:1.55}
+.qz-missed{text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:10px 14px;margin:10px 0 4px;font-size:.8em;color:var(--ink2)}
+.qz-missed b{display:block;font-size:.9em;color:var(--danger);margin-bottom:4px}.qz-missed ul{padding-left:18px;margin:0}.qz-missed li{padding:2px 0;line-height:1.45}
+.kidscard .kidsrow{padding:14px 16px}
+.kidscard .kstart{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#231803;border-color:transparent;box-shadow:none;flex-shrink:0;padding:8px 14px}
+.kidscard #kidsBest{display:inline;color:var(--gold-ink);font-size:1em}
+.kidsbody{padding:2px 16px 16px}
+.story-h{border-top:1px solid var(--line);cursor:pointer}
+.story-h .acc-c{font-size:.62em;color:var(--ink3);transition:transform .2s}
+.story-h.open .acc-c{transform:rotate(90deg)}
+.kq-hd{display:flex;justify-content:space-between;align-items:center}
+.kq-hd .chip-btn{padding:5px 10px;font-size:.92em;letter-spacing:0;text-transform:none;box-shadow:none}
+.kq-say{display:block;margin:2px auto 8px}
+.story .acc-b p{margin:0;line-height:1.75}
+.story-when{font-size:.78em;color:var(--gold-ink);font-style:italic;margin-top:8px}
+.story-acts{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:8px}
+.story-acts .src{font-size:.72em;color:var(--ink3)}
+.fchips span.go{background:var(--gold-soft);color:var(--gold-ink);cursor:pointer}
 </style>
 </head>
 <body>
@@ -739,11 +771,16 @@ html[data-text='lg'] body{font-size:17px}
   <div class="card card-pad" id="lnQuizCard"><h3>🧠 Test what you learned</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:4px" id="lnQuizSub">Seven levels · 80% unlocks the next.</p><div id="lnQuizArea"></div></div>
 
   </div><div class="sub" id="sub-plan-quiz">
-  <div class="card card-pad"><h3>🧠 Knowledge circuit — quiz levels</h3>
-  <p style="font-size:.84em;color:var(--ink2);margin-bottom:8px">Seven levels · true/false &amp; multiple choice · score <b>80%+</b> to unlock the next. Complete the whole circuit before you fly. Passed: <b id="qzBest" style="color:var(--gold)">0/6</b></p>
+  <div class="card kidscard" id="kidsCard">
+    <div class="kidsrow"><span style="font-size:1.6em" aria-hidden="true">🧒</span><div class="kr-t"><b>Kids corner</b><small id="kidsSub">8 big-button questions · 2 minutes · Best ⭐ <b id="kidsBest">—</b></small></div><button class="chip-btn kstart" id="kidsStart" onclick="startKids()" aria-label="Start the kids quiz">▶ Start</button></div>
+    <div id="kidsArea" class="kidsbody" hidden></div>
+    <div class="kidsrow story-h" role="button" tabindex="0" aria-expanded="false" onclick="togStories(this)"><span style="font-size:1.3em" aria-hidden="true">📖</span><div class="kr-t"><b>Story time</b><small>5 read-aloud stories about the rites and the sites — ages 6–10</small></div><span class="acc-c" aria-hidden="true">▶</span></div>
+    <div id="storyList" class="kidsbody" hidden></div>
+  </div>
+  <div class="card card-pad" id="qzCard"><h3>🧠 Knowledge circuit — quiz levels</h3>
+  <p style="font-size:.84em;color:var(--ink2);margin-bottom:8px">Seven levels · true/false &amp; multiple choice · <b>80%+</b> passes a level and unlocks the next. Complete the whole circuit before you fly. Passed: <b id="qzBest" style="color:var(--gold)">0/7</b></p>
   <div class="meter" style="margin-bottom:12px"><i id="qzMeter" style="width:0%"></i></div>
   <div id="qzArea"></div></div>
-  <div class="card card-pad"><h3>🧒 Kids corner</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:10px">Taking little ones? Let them play the mini quiz — big buttons, 8 questions. Best: <b id="kidsBest" style="color:var(--gold)">—</b></p><div id="kidsArea"><button class="btn gold" onclick="startKids()">🧒 Start kids quiz</button></div></div>
   </div>
 </div>
 
