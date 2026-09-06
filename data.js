@@ -10,51 +10,52 @@ var QUOTES=[
 
 var PLAN=[
 {id:'docs',ico:'🛂',title:'Documents & bookings',items:[
-{id:'passport',label:'Passport valid 6+ months',exp:'Saudi Arabia requires at least six months of validity from arrival.'},
-{id:'visa',label:'Umrah visa / eVisa obtained (Nusuk)',exp:'Apply via the official Nusuk platform or an authorised agent — beware of unofficial sites.'},
-{id:'flights',label:'Flights booked',exp:'Jeddah (JED) for Makkah first, or Madinah (MED) if starting in Madinah.'},
-{id:'hotels',label:'Hotels booked (near the Haram if possible)',exp:'Proximity means more prayers in congregation — worth every riyal.'},
-{id:'nusuk',label:'Nusuk app installed & account created',exp:'Needed for Rawdah permits in Madinah and official services.'},
-{id:'rawdah',label:'Rawdah permit booked on Nusuk',exp:'Visiting the Rawdah in Masjid an-Nabawi requires a free timed permit — book early.'},
-{id:'insurance',label:'Travel insurance arranged',exp:'Often included with the Umrah visa — confirm your coverage.'},
-{id:'copies',label:'Copies of documents + emergency contacts',exp:'Physical and cloud copies of passport, visa, bookings; share your itinerary with family.'},
-{id:'hoho',label:'Madinah ziyarah bus booked (optional)',exp:'The City Sightseeing hop-on hop-off covers Quba, Qiblatayn, Uhud, the Trench and Baqi’ on one 24-hour ticket — see the Places tab to book.'},
-{id:'money',label:'Saudi Riyals + travel card ready',exp:'Cards are widely accepted, but keep cash for taxis, barbers and small shops.'}
+{id:'passport',wk:12,label:'Passport valid 6+ months',exp:'Saudi Arabia requires at least six months of validity from arrival.'},
+{id:'visa',wk:6,label:'Umrah visa / eVisa obtained (Nusuk)',exp:'Apply via the official Nusuk platform or an authorised agent — beware of unofficial sites.'},
+{id:'flights',wk:8,label:'Flights booked',exp:'Jeddah (JED) for Makkah first, or Madinah (MED) if starting in Madinah.'},
+{id:'hotels',wk:8,label:'Hotels booked (near the Haram if possible)',exp:'Proximity means more prayers in congregation — worth every riyal.'},
+{id:'nusuk',wk:4,label:'Nusuk app installed & account created',exp:'Needed for Rawdah permits in Madinah and official services.'},
+{id:'rawdah',wk:3,label:'Rawdah permit booked on Nusuk',exp:'Visiting the Rawdah in Masjid an-Nabawi requires a free timed permit — book early.'},
+{id:'insurance',wk:4,label:'Travel insurance arranged',exp:'Often included with the Umrah visa — confirm your coverage.'},
+{id:'copies',wk:1,label:'Copies of documents + emergency contacts',exp:'Physical and cloud copies of passport, visa, bookings; share your itinerary with family.'},
+{id:'hoho',wk:2,label:'Madinah ziyarah bus booked (optional)',exp:'The City Sightseeing hop-on hop-off covers Quba, Qiblatayn, Uhud, the Trench and Baqi’ on one 24-hour ticket — see the Places tab to book.'},
+{id:'money',wk:1,label:'Saudi Riyals + travel card ready',exp:'Cards are widely accepted, but keep cash for taxis, barbers and small shops.'}
 ]},
 {id:'pack',ico:'🧳',title:'Packing',items:[
-{id:'ihram',bag:'ihram',label:'2 sets of ihram (men)',exp:'A spare set is a mercy after tawaf in the heat. Unstitched white cloth: izar & rida.'},
-{id:'belt',bag:'ihram',label:'Ihram belt / money pouch',exp:'Keeps documents and cash secure — ihram has no pockets.'},
-{id:'abaya',bag:'case',label:'Loose, modest clothing (women)',exp:'Women wear normal modest dress in ihram — no face veil or gloves while in ihram.'},
-{id:'sandals',bag:'ihram',label:'Comfortable sandals + shoe bag',exp:'Men’s ihram footwear should leave the ankle exposed. Shoes get lost at mosque entrances.'},
-{id:'unscented',bag:'ihram',label:'Unscented soap, sunscreen & lip balm',exp:'Perfumed products are prohibited in ihram — buy unscented before you travel.'},
-{id:'meds',bag:'carry',label:'Medications + prescriptions',exp:'Carry prescriptions; include painkillers, rehydration salts, blister plasters.'},
-{id:'vaseline',bag:'ihram',label:'Petroleum jelly / anti-chafing balm',exp:'Unscented — long tawaf and sa’i walks in ihram cause chafing.'},
-{id:'adapter',bag:'carry',label:'Power adapter (Type G) + power bank',exp:'Saudi uses UK-style 3-pin plugs. A power bank saves you in the Haram.'},
-{id:'bottle',bag:'carry',label:'Collapsible water bottle / Zamzam cup',exp:'Zamzam dispensers are everywhere in the Haram — stay hydrated.'},
-{id:'umbrella',bag:'case',label:'Umbrella for sun protection',exp:'Midday courtyard marble is brutal — a light umbrella helps outside the mosque.'},
-{id:'dualist',bag:'carry',label:'Written personal dua list',exp:'In front of the Kaaba the mind goes blank — write your duas down beforehand.'}
+{id:'ihram',wk:2,bag:'ihram',label:'2 sets of ihram (men)',exp:'A spare set is a mercy after tawaf in the heat. Unstitched white cloth: izar & rida.'},
+{id:'belt',wk:2,bag:'ihram',label:'Ihram belt / money pouch',exp:'Keeps documents and cash secure — ihram has no pockets.'},
+{id:'abaya',wk:2,bag:'case',label:'Loose, modest clothing (women)',exp:'Women wear normal modest dress in ihram — no face veil or gloves while in ihram.'},
+{id:'sandals',wk:3,bag:'ihram',label:'Comfortable sandals + shoe bag',exp:'Men’s ihram footwear should leave the ankle exposed. Shoes get lost at mosque entrances.'},
+{id:'unscented',wk:2,bag:'ihram',label:'Unscented soap, sunscreen & lip balm',exp:'Perfumed products are prohibited in ihram — buy unscented before you travel.'},
+{id:'meds',wk:2,bag:'carry',label:'Medications + prescriptions',exp:'Carry prescriptions; include painkillers, rehydration salts, blister plasters.'},
+{id:'vaseline',wk:1,bag:'ihram',label:'Petroleum jelly / anti-chafing balm',exp:'Unscented — long tawaf and sa’i walks in ihram cause chafing.'},
+{id:'adapter',wk:1,bag:'carry',label:'Power adapter (Type G) + power bank',exp:'Saudi uses UK-style 3-pin plugs. A power bank saves you in the Haram.'},
+{id:'bottle',wk:1,bag:'carry',label:'Collapsible water bottle / Zamzam cup',exp:'Zamzam dispensers are everywhere in the Haram — stay hydrated.'},
+{id:'umbrella',wk:1,bag:'case',label:'Umbrella for sun protection',exp:'Midday courtyard marble is brutal — a light umbrella helps outside the mosque.'},
+{id:'dualist',wk:1,bag:'carry',label:'Written personal dua list',exp:'In front of the Kaaba the mind goes blank — write your duas down beforehand.'}
 ]},
 {id:'health',ico:'🩺',title:'Health',items:[
-{id:'menacwy',label:'Meningitis ACWY vaccination certificate',exp:'Required for Umrah visas — usually at least 10 days before arrival.'},
-{id:'jabs',label:'Routine vaccines / flu shot up to date',exp:'Millions of pilgrims from around the world — protect yourself and others.'},
-{id:'walk',label:'Walking practice (8–10k steps/day)',exp:'Tawaf + sa’i is 5+ km; you may walk 15–20 km a day. Train before you go.'},
-{id:'doctor',label:'Doctor check-up if needed',exp:'Especially for chronic conditions — carry a doctor’s letter for devices/medication.'},
-{id:'hygiene',label:'Hand sanitiser & masks packed',exp:'The "Umrah flu" is real — prevention keeps your worship strong.'}
+{id:'menacwy',wk:4,label:'Meningitis ACWY vaccination certificate',exp:'Required for Umrah visas — usually at least 10 days before arrival.'},
+{id:'jabs',wk:6,label:'Routine vaccines / flu shot up to date',exp:'Millions of pilgrims from around the world — protect yourself and others.'},
+{id:'walk',wk:8,label:'Walking practice (8–10k steps/day)',exp:'Tawaf + sa’i is 5+ km; you may walk 15–20 km a day. Train before you go.'},
+{id:'doctor',wk:6,label:'Doctor check-up if needed',exp:'Especially for chronic conditions — carry a doctor’s letter for devices/medication.'},
+{id:'hygiene',wk:1,label:'Hand sanitiser & masks packed',exp:'The "Umrah flu" is real — prevention keeps your worship strong.'}
 ]},
 {id:'knowledge',ico:'🧠',title:'Knowledge & spirit',items:[
-{id:'learn',label:'Learned the Umrah rites step by step',exp:'Review the Umrah tab of this app until each step feels familiar.'},
-{id:'talbiyah',label:'Memorised the talbiyah',exp:'Labbayk Allahumma labbayk — see the Duas section in More.'},
-{id:'tawbah',label:'Sincere tawbah (repentance) made',exp:'Arrive with a clean heart — resolve to leave sins behind.'},
-{id:'debts',label:'Debts settled / disputes resolved',exp:'Seek forgiveness from people you’ve wronged before travelling.'},
-{id:'will',label:'Wasiyyah (will) written or updated',exp:'A sunnah of preparedness for any traveller.'},
-{id:'halal',label:'Trip funded from halal earnings',exp:'A pilgrimage funded by the pure is more likely to be accepted.'},
-{id:'family',label:'Taught travel companions the rites',exp:'Especially children and first-timers — review the steps together.'},
-{id:'quiz80',label:'Completed the full knowledge circuit (all quiz levels 80%+)',exp:'Work through all six quiz levels below until every one is passed.'}
+{id:'learn',wk:4,label:'Learned the Umrah rites step by step',exp:'Review the Umrah tab of this app until each step feels familiar.'},
+{id:'talbiyah',wk:3,label:'Memorised the talbiyah',exp:'Labbayk Allahumma labbayk — see the Duas section in More.'},
+{id:'tawbah',wk:1,label:'Sincere tawbah (repentance) made',exp:'Arrive with a clean heart — resolve to leave sins behind.'},
+{id:'debts',wk:2,label:'Debts settled / disputes resolved',exp:'Seek forgiveness from people you’ve wronged before travelling.'},
+{id:'will',wk:2,label:'Wasiyyah (will) written or updated',exp:'A sunnah of preparedness for any traveller.'},
+{id:'halal',wk:8,label:'Trip funded from halal earnings',exp:'A pilgrimage funded by the pure is more likely to be accepted.'},
+{id:'family',wk:2,label:'Taught travel companions the rites',exp:'Especially children and first-timers — review the steps together.'},
+{id:'quiz80',wk:1,label:'Completed the full knowledge circuit (all quiz levels 80%+)',exp:'Work through all six quiz levels below until every one is passed.'}
 ]}];
 
 var KNOW=[
 {t:'📍 The 5 miqats — where ihram begins',b:'<p>You must enter ihram <strong>before</strong> crossing the miqat for your route:</p><ul><li><strong>Dhul-Hulayfah (Abyar Ali)</strong> — coming from Madinah (~450 km from Makkah)</li><li><strong>Al-Juhfah (near Rabigh)</strong> — from Egypt, Syria & the north-west</li><li><strong>Qarn al-Manazil (As-Sayl)</strong> — from Najd, Taif, UAE & most eastern flights</li><li><strong>Yalamlam</strong> — from Yemen & the south</li><li><strong>Dhat Irq</strong> — from Iraq & the north-east</li></ul><p><strong>Flying?</strong> Change into ihram garments before boarding or at a stopover; make your intention when the pilot announces the miqat approach (~30–45 min before Jeddah). Many pilgrims wear ihram from the departure airport to be safe.</p>'},
 {t:'🚫 Ihram — what is not allowed',b:'<p>Once in ihram, avoid until your Umrah is complete:</p><ul><li>Cutting hair or nails</li><li>Perfume or scented products (body or garments)</li><li>Men: stitched fitted clothing, covering the head</li><li>Women: face veil (niqab) and gloves — ordinary modest dress otherwise</li><li>Hunting; cutting plants of the Haram</li><li>Marriage contracts or proposals</li><li>Intimacy and anything leading to it</li><li>Arguing, foul language & sin (Quran 2:197)</li></ul><p>Unintentional mistakes are excused. Showering (unscented), changing ihram garments, belts, glasses, watches, umbrellas — all fine.</p>'},
+{t:'👕 How to wear the ihram (men) — step by step',b:'<ol style="padding-left:18px"><li><strong>Izar (lower cloth):</strong> hold it behind you at waist height, wrap the left side across the front, then the right side over it; fold the top edge down over itself 2–3 times to lock it. Wear a belt or money pouch over the fold — a belt is fine in ihram.</li><li><strong>Rida (upper cloth):</strong> drape it over both shoulders like a shawl, covering the back and chest; ends hang in front. For the arrival tawaf only, pass it under the right arm (idtiba’) — then cover both shoulders again before praying.</li><li><strong>Footwear:</strong> sandals or slides; the ankles should be uncovered.</li><li><strong>Practise at home</strong> until you can walk, sit and use the bathroom confidently — the number one first-timer anxiety. Safety pins on the izar are used by many pilgrims; scholars differ, so a belt is the cleanest option.</li><li><strong>Sisters:</strong> your normal modest clothing of any colour is your ihram — no face veil or gloves while in ihram.</li></ol>'},
 {t:'📱 Nusuk & permits',b:'<p><strong>Nusuk</strong> is the official Saudi pilgrim platform (app + website). You need it for:</p><ul><li><strong>Rawdah visit permit</strong> (Masjid an-Nabawi) — free but limited; book as soon as your dates are fixed</li><li>Umrah eVisa applications & official bookings</li></ul><p>Tawaf and general prayer in both Harams need <strong>no permit</strong> for Umrah pilgrims. Set Nusuk up with your passport details before you travel.</p>'},
 {t:'🚄 Getting around',b:'<ul><li><strong>Haramain High-Speed Rail</strong> — Jeddah Airport ↔ Makkah in ~50 min; Makkah ↔ Madinah in ~2.5 hrs. Book online in advance.</li><li><strong>Taxis / Uber / Careem</strong> — plentiful; agree street-taxi fares before riding.</li><li><strong>Buses</strong> — SAPTCO and shuttles connect the cities cheaply.</li><li>Hotels beyond walking distance run free Haram shuttles — ask reception.</li><li><strong>Madinah ziyarah:</strong> the City Sightseeing hop-on hop-off bus (2 routes, 12 stops, 24-hour ticket) reaches Quba, Qiblatayn, Uhud and the Trench with commentary — book it from the Places tab.</li></ul>'},
 {t:'💳 Money, SIM & apps',b:'<ul><li>Currency: <strong>Saudi Riyal (SAR)</strong>. Cards & Apple Pay widely accepted; carry some cash.</li><li><strong>eSIM or local SIM</strong> (STC, Mobily, Zain) at the airport — data is cheap and essential.</li><li>Must-have apps: <strong>Nusuk</strong>, <strong>Haramain Rail</strong>, <strong>Careem/Uber</strong>, a prayer-times app — and this one 😉</li><li>Keep small notes for sadaqah, barbers (10–20 SAR) and water.</li></ul>'},

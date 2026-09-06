@@ -441,6 +441,24 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .app-t{flex:1;min-width:0;font-size:.76em;color:var(--ink2);line-height:1.35}.app-t b{display:block;font-size:1.05em;color:var(--ink)}
 .app-go{font-size:.68em;font-weight:800;color:var(--brand-2);white-space:nowrap}
 .hpost{display:flex;align-items:center;gap:12px;cursor:pointer;padding:14px 16px;border-color:var(--gold)}
+.tli{display:flex;align-items:flex-start;gap:10px;padding:9px 8px;border-radius:var(--r-sm);margin-bottom:4px;cursor:pointer}
+.tli:active{background:var(--bg-soft)}
+.tli .tick{margin-top:1px}
+.tli-t{flex:1;min-width:0;font-size:.88em;line-height:1.4}.tli-t small{display:block;font-size:.78em;color:var(--ink3)}
+.tli-when{font-size:.66em;font-weight:800;letter-spacing:.4px;text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap;margin-top:3px}
+.tli-when.over{background:rgba(194,65,12,.12);color:var(--danger)}.tli-when.now{background:var(--gold-soft);color:var(--gold-ink)}.tli-when.soon{background:var(--brand-soft);color:var(--brand-2)}
+.tli-h{font-size:.7em;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink3);margin:10px 4px 6px}
+.st .mini{height:5px;border-radius:3px;background:var(--bg-soft);margin:6px 8px 0;overflow:hidden}.st .mini i{display:block;height:100%;background:linear-gradient(90deg,var(--brand-2),var(--gold-2))}
+.brow{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--line)}
+.brow label{flex:1;font-size:.86em;color:var(--ink2)}.brow label small{display:block;font-size:.8em;color:var(--ink3)}
+.brow input{width:96px;padding:8px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-family:var(--fb);font-weight:700;text-align:right;font-size:.9em}
+.focus.driver{background:#FFFFFF;color:#111}
+.focus.driver .focus-top{color:#111}.focus.driver .chip-btn{background:#f1f1f1;color:#111;border-color:#ddd}
+.drv-ar{font-size:2.2em;font-family:Georgia,serif;direction:rtl;text-align:center;line-height:1.5;margin:20px 0 26px;color:#0E3B2E}
+.drv-name{font-family:var(--fd);font-size:2.4em;font-weight:700;text-align:center;line-height:1.2;color:#111}
+.drv-addr{font-size:1.35em;text-align:center;margin-top:14px;line-height:1.45;color:#333}
+.drv-phone{font-size:1.4em;font-weight:700;text-align:center;margin-top:16px;color:#0E3B2E}
+.driver .focus-hint{color:#999;margin-top:40px}
 .hcta{display:inline-block;margin-top:10px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);padding:6px 12px;border-radius:999px;font-size:.78em;font-weight:700}
 .hprayer{display:flex;align-items:center;gap:12px;cursor:pointer;padding:14px 16px}
 .hp-i{width:42px;height:42px;border-radius:14px;background:var(--brand-soft);display:flex;align-items:center;justify-content:center;font-size:1.3em;flex-shrink:0}
@@ -513,8 +531,26 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
   <div class="sub on" id="sub-plan-prep">
   <div class="hero"><div class="hero-t"><div class="k">Preparation</div><div class="v" id="planHeroT">Let's get ready</div><div class="s" id="planHeroS">Checklists, essential knowledge & a readiness quiz</div></div>
     <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="planRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="planPct">0%</span><small>READY</small></div></div></div>
-  <div class="cd2"><div class="cd2-l"><div class="cd2-n" id="cdNum">—</div><div class="cd2-u" id="cdU">days</div></div><div class="cd2-r"><b id="cdT">Departure countdown</b><span id="cdS">Set your date and watch the days melt away</span><input type="date" id="depDate" onchange="setDep(this.value)"></div></div>
+  <div class="cd2"><div class="cd2-l"><div class="cd2-n" id="cdNum">—</div><div class="cd2-u" id="cdU">days</div></div><div class="cd2-r"><b id="cdT">Departure countdown</b><span id="cdS">Set your date and watch the days melt away</span><input type="date" id="depDate" onchange="setDep(this.value)"><span id="cdW" style="margin-top:6px;font-size:.74em;color:var(--gold-ink)"></span></div></div>
+  <div class="card card-pad" id="tlCard"><h3>⏳ What to do when</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px" id="tlSub">Set your departure date to get a dated to-do timeline.</p><div id="tlArea"></div></div>
+  <div class="stat4" id="catTiles"></div>
   <div id="planContainer"></div>
+  <div class="card card-pad"><h3>💰 Budget planner</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Rough it out so nothing surprises you. Saved on this device.</p>
+    <div class="setrow" style="padding:6px 0"><div><b>Travellers</b><small>Costs below are per person</small></div><input type="number" class="numin" id="bTrav" min="1" max="20" value="1" onchange="budget()"></div>
+    <div class="setrow" style="padding:6px 0"><div><b>Currency</b><small>Label only</small></div><input class="numin" id="bCur" style="width:74px" value="GBP" onchange="budget()"></div>
+    <div id="budgetRows"></div>
+    <div class="kv" style="font-size:1em;border-top:2px solid var(--line);margin-top:6px;padding-top:12px"><span><b>Total for everyone</b></span><b id="bTotal">0</b></div>
+    <div class="kv"><span>Per person</span><b id="bPer">0</b></div>
+    <p style="font-size:.72em;color:var(--ink3);margin-top:8px">Tip: Makkah hotels within 500 m of the Haram cost 2–4× more but save you an hour a day — for a short trip they are usually worth it.</p></div>
+  <div class="card card-pad"><h3>🏨 My hotel & emergency numbers</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Fill this in before you land — then tap “Show to driver” whenever you need a ride back.</p>
+    <input class="srch" id="hName" placeholder="Hotel name (e.g. Swissôtel Makkah)" onchange="saveHotelInfo()"><input class="srch" id="hAddr" placeholder="Address / landmark (e.g. Abraj Al Bait, King Abdulaziz Gate)" onchange="saveHotelInfo()"><input class="srch" id="hPhone" placeholder="Hotel phone" onchange="saveHotelInfo()">
+    <button class="btn" onclick="showDriver()">🚕 Show to driver (big screen)</button>
+    <div class="subt" style="margin-top:14px">☎️ Emergency & help in Saudi Arabia</div>
+    <div class="kv"><span>Police · ambulance · fire</span><b><a href="tel:911" style="color:inherit;text-decoration:none">911</a></b></div>
+    <div class="kv"><span>Health (Ministry of Health line)</span><b><a href="tel:937" style="color:inherit;text-decoration:none">937</a></b></div>
+    <div class="kv"><span>Ministry of Hajj &amp; Umrah care</span><b><a href="tel:1966" style="color:inherit;text-decoration:none">1966</a></b></div>
+    <div class="kv"><span>Tourism helpline</span><b><a href="tel:930" style="color:inherit;text-decoration:none">930</a></b></div>
+    <p style="font-size:.72em;color:var(--ink3);margin-top:8px">Also save your embassy’s number and your group leader’s number in your phone contacts, and agree a meeting point (a gate number) with your family.</p></div>
   <div class="card card-pad"><h3>🗓️ Suggested itinerary</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Generated from your departure date and trip length — a worship-first day plan you can adapt.</p>
     <div class="pills sm" style="margin-bottom:10px"><button class="pill on" id="itMk" onclick="setItin('makkah')">🕋 Makkah first</button><button class="pill" id="itMd" onclick="setItin('madinah')">🕌 Madinah first</button></div>
     <div class="setrow" style="padding:6px 0 10px"><div><b>Days in Madinah</b><small>The rest go to Makkah</small></div><input type="number" class="numin" id="itMad" min="0" max="20" value="3" onchange="setItinDays(this.value)"></div>
@@ -736,6 +772,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 </nav>
 <canvas id="confetti" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:190;display:none"></canvas>
 <div class="focus" id="focus"><div class="focus-top"><span id="focusTitle">🕋 Tawaf</span><button class="chip-btn" onclick="exitFocus()">✕ Exit</button></div><div class="focus-tap" onclick="focusTap()"><div class="focus-n" id="focusN">0</div><div class="focus-of" id="focusOf">of 7 rounds</div><div class="focus-tip" id="focusTip"></div><div class="focus-hint">tap anywhere to count · screen stays awake</div></div><div class="focus-bot"><button class="chip-btn" onclick="cntr(focusKey,-1)">− Undo</button></div></div>
+<div class="focus driver" id="driver" onclick="this.classList.remove('on')"><div class="focus-top"><span>🚕 Please take me to my hotel</span><button class="chip-btn">✕ Close</button></div><div class="focus-tap" style="justify-content:flex-start;padding:10px 24px"><div class="drv-ar">من فضلك خذني إلى هذا الفندق</div><div class="drv-name" id="drvName">—</div><div class="drv-addr" id="drvAddr"></div><div class="drv-phone" id="drvPhone"></div><div class="focus-hint">tap anywhere to close</div></div></div>
 <div class="sheet-o" id="obSheet"><div class="sheet">
   <div class="sheet-h">🕋</div><h3>As-salamu alaykum</h3><p>Where are you on your Umrah journey? We'll take you straight to the right place.</p>
   <input class="srch" id="obName" placeholder="Your name (optional — for your certificate)" style="margin:0 0 12px">

@@ -73,6 +73,7 @@ function updPlan(){
   var pct=tot?Math.round(done/tot*100):0;
   animPct('planPct',pct);setRing('planRing',pct);
   document.getElementById('planHeroT').textContent=pct>=100?'Fully prepared! 🎉':pct>=70?'Almost there':pct>=30?'Good progress':pct>0?'Getting started':'Let’s get ready';
+  renderTimeline();renderCatTiles();renderWeather();
   var stk=prepStreak();document.getElementById('planHeroS').textContent=done+' of '+tot+' preparation items done'+(stk>1?' · 🔥 '+stk+'-day streak':'');
   updCountdown();
   renderLevels();
@@ -534,6 +535,56 @@ function makeKeepsake(no){
   x.font='24px Georgia,serif';x.fillStyle='rgba(255,255,255,.55)';x.fillText('Bukhari 1773 · umrah-strivers.vercel.app',540,1190);
   var a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='my-umrah-'+u.n+'.png';a.click();toast('🎴 Keepsake saved',true);
 }
+
+/* ════════════════════════ PLAN TIMELINE · TILES · BUDGET · HOTEL ════════════════════════ */
+var CLIMATE={makkah:[30,32,35,38,41,43,42,42,41,38,34,31],madinah:[24,27,31,36,40,43,43,43,41,36,30,26]};
+function renderTimeline(){
+  var a=document.getElementById('tlArea'),sub=document.getElementById('tlSub');if(!a)return;
+  if(!ST.dep){a.innerHTML='';sub.textContent='Set your departure date above to get a dated to-do timeline.';return;}
+  var d=Math.ceil((new Date(ST.dep+'T00:00:00')-new Date())/86400000),wl=d/7;
+  if(d<0){a.innerHTML='';sub.textContent='You’re on your journey — this timeline is done. Switch to the Umrah and Daily tabs.';return;}
+  var over=[],now=[],soon=[];
+  PLAN.forEach(function(sec){sec.items.forEach(function(it){if(planChk[it.id]||it.wk===undefined)return;var lead=it.wk;var o={it:it,sec:sec};if(lead>wl+1)over.push(o);else if(lead>=wl-1)now.push(o);else soon.push(o);});});
+  soon.sort(function(x,y){return y.it.wk-x.it.wk;});
+  var tot=over.length+now.length+soon.length;
+  sub.textContent=d+' days to go · '+tot+' items left'+(over.length?' · '+over.length+' overdue':'');
+  function row(o,cls,lbl){return '<div class="tli" onclick="togPlan(\''+o.it.id+'\')"><span class="tick"></span><div class="tli-t">'+o.it.label+'<small>'+o.sec.title+' · ideally '+(o.it.wk>=1?o.it.wk+' week'+(o.it.wk>1?'s':''):'days')+' before</small></div><span class="tli-when '+cls+'">'+lbl+'</span></div>';}
+  var h='';
+  if(over.length)h+='<div class="tli-h">Overdue — do these first</div>'+over.map(function(o){return row(o,'over','overdue');}).join('');
+  if(now.length)h+='<div class="tli-h">This week</div>'+now.map(function(o){return row(o,'now','this week');}).join('');
+  if(soon.length)h+='<div class="tli-h">Coming up</div>'+soon.slice(0,5).map(function(o){return row(o,'soon',(o.it.wk>=1?'in '+Math.max(1,Math.round(wl-o.it.wk))+' wk':'last days'));}).join('')+(soon.length>5?'<p style="font-size:.74em;color:var(--ink3);margin:4px 8px">+ '+(soon.length-5)+' more in the checklists below</p>':'');
+  if(!tot)h='<div class="note" style="margin:0">✅ Everything on the list is done. Fully prepared — now study and make dua.</div>';
+  a.innerHTML=h;
+}
+function renderCatTiles(){
+  var a=document.getElementById('catTiles');if(!a)return;
+  var ico={docs:'🛂',pack:'🧳',health:'🩺',knowledge:'🧠'},lbl={docs:'Docs',pack:'Packing',health:'Health',knowledge:'Knowledge'};
+  a.innerHTML=PLAN.map(function(sec){var t=sec.items.length,d=sec.items.filter(function(i){return planChk[i.id];}).length,p=Math.round(d/t*100);return '<div class="st'+(p===100?' on':'')+'" onclick="jumpTo(\'planContainer\')"><div class="i">'+ico[sec.id]+'</div><div class="n" style="font-size:1.1em">'+p+'%</div><div class="l">'+lbl[sec.id]+'</div><div class="mini"><i style="width:'+p+'%"></i></div></div>';}).join('');
+}
+function renderWeather(){
+  var w=document.getElementById('cdW');if(!w)return;
+  if(!ST.dep){w.textContent='';return;}
+  var m=new Date(ST.dep+'T00:00:00').getMonth(),mk=CLIMATE.makkah[m],md=CLIMATE.madinah[m];
+  w.textContent='🌡️ Typical highs: Makkah ~'+mk+'°C · Madinah ~'+md+'°C — '+(mk>=40?'extreme heat: umbrella, electrolytes, tawaf at night.':mk>=35?'hot: hydrate, sunscreen (unscented), pace yourself.':'mild: still bring sun protection; nights can be cool.');
+}
+var BUDGET_ROWS=[['flights','Flights','return, per person'],['hotelMk','Makkah hotel','total for your nights'],['hotelMd','Madinah hotel','total for your nights'],['visa','Visa, insurance & fees','Nusuk / agent'],['transport','Transport','train, taxis, ziyarah tours'],['food','Food & water','~15–25 per day per person'],['gifts','Gifts, dates & Zamzam',''],['sadaqah','Sadaqah budget','give with a plan, not to touts'],['misc','Buffer 10%','the unexpected']];
+var bud={};try{bud=JSON.parse(localStorage.getItem('us-budget')||'{}');}catch(e){}
+function renderBudget(){
+  var a=document.getElementById('budgetRows');if(!a)return;
+  a.innerHTML=BUDGET_ROWS.map(function(r){return '<div class="brow"><label>'+r[1]+(r[2]?'<small>'+r[2]+'</small>':'')+'</label><input type="number" min="0" inputmode="decimal" id="b-'+r[0]+'" value="'+(bud[r[0]]||'')+'" placeholder="0" oninput="budget()"></div>';}).join('');
+  document.getElementById('bTrav').value=bud.trav||1;document.getElementById('bCur').value=bud.cur||'GBP';
+  budget(true);
+}
+function budget(silent){
+  var per=0;BUDGET_ROWS.forEach(function(r){var v=parseFloat((document.getElementById('b-'+r[0])||{}).value)||0;bud[r[0]]=v;per+=v;});
+  bud.trav=Math.max(1,parseInt(document.getElementById('bTrav').value)||1);bud.cur=(document.getElementById('bCur').value||'').trim()||'GBP';
+  localStorage.setItem('us-budget',JSON.stringify(bud));
+  var f=function(x){return bud.cur+' '+Math.round(x).toLocaleString();};
+  document.getElementById('bPer').textContent=f(per);document.getElementById('bTotal').textContent=f(per*bud.trav);
+}
+function saveHotelInfo(){ST.hotelInfo={n:document.getElementById('hName').value,a:document.getElementById('hAddr').value,p:document.getElementById('hPhone').value};saveST();}
+function loadHotelInfo(){var hi=ST.hotelInfo||{};var e=document.getElementById('hName');if(!e)return;e.value=hi.n||'';document.getElementById('hAddr').value=hi.a||'';document.getElementById('hPhone').value=hi.p||'';}
+function showDriver(){var hi=ST.hotelInfo||{};if(!hi.n){toast('Enter your hotel name first');return;}document.getElementById('drvName').textContent=hi.n;document.getElementById('drvAddr').textContent=hi.a||'';document.getElementById('drvPhone').textContent=hi.p?'☎ '+hi.p:'';document.getElementById('driver').classList.add('on');}
 
 /* ════════════════════════ PACKING BAGS ════════════════════════ */
 function bagFilter(btn,bag){
@@ -1053,7 +1104,7 @@ function initUI(){
   document.getElementById('tripLen').value=ST.tripLen;
   var ni=document.getElementById('nameIn');if(ni)ni.value=ST.name||'';
   renderPlan();renderRites();renderDaily();renderPlaces();renderDuas();renderTB();
-  buildDeck();renderFC();renderPost();updRemSw();applySubs();updChip();renderItin();renderVault();renderDuaList();renderWater();updHotelLbl();
+  buildDeck();renderFC();renderPost();updRemSw();applySubs();updChip();renderItin();renderVault();renderDuaList();renderWater();updHotelLbl();renderBudget();loadHotelInfo();
   if(!ST.onboarded)setTimeout(showOnboard,400);
   var kb=document.getElementById('kidsBest'),kbv=localStorage.getItem('us-kids');if(kb&&kbv)kb.textContent=kbv+'/'+KIDSQ.length;
   var cm=document.getElementById('cityMakkah'),cd=document.getElementById('cityMadinah');
