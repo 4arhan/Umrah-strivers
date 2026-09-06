@@ -188,7 +188,7 @@ function renderRites(){
     var inner='';
     ph.steps.forEach(function(st){
       n++;
-      inner+='<div class="stp" id="rw-'+st.id+'" onclick="togRite(\''+st.id+'\')"><div class="stp-n">'+n+'</div><div class="stp-t"><b>'+st.b+'</b><p>'+st.p+'</p>'+(st.why?'<button class="why" onclick="event.stopPropagation();this.nextSibling.classList.toggle(\'on\')">Why?</button><div class="whyb">'+st.why+'</div>':'')+(st.dua?'<div class="dua" onclick="event.stopPropagation()"><button class="say" data-ar="'+st.dua.ar+'" onclick="speakBtn(this)" aria-label="Play recitation">🔊</button><span class="ar">'+st.dua.ar+'</span><span class="tl">'+st.dua.tl+'</span><span class="tr">'+st.dua.tr+'</span></div>':'')+'</div></div>';
+      inner+='<div class="stp" id="rw-'+st.id+'" onclick="togRite(\''+st.id+'\')"><div class="stp-n">'+n+'</div><div class="stp-t"><b>'+st.b+'</b><p>'+st.p+(st.why?' <button class="why" onclick="event.stopPropagation();this.parentNode.nextSibling.classList.toggle(\'on\')">Why?</button>':'')+'</p>'+(st.why?'<div class="whyb">'+st.why+'</div>':'')+(st.dua?'<div class="dua" onclick="event.stopPropagation()"><div class="dua-top"><small>Dua</small><button class="say" data-ar="'+st.dua.ar+'" onclick="speakBtn(this)" aria-label="Play recitation">🔊 Listen</button></div><span class="ar">'+st.dua.ar+'</span><span class="tl">'+st.dua.tl+'</span><span class="tr">'+st.dua.tr+'</span></div>':'')+'</div></div>';
     });
     h+=mkSec(ph,i>0,inner);
   });
@@ -206,9 +206,9 @@ function updRites(){
   animPct('ritePct',pct);setRing('riteRing',pct);
   document.getElementById('riteHeroT').textContent=pct>=100?'Taqabbal Allah! 🎉':pct>0?done+' of '+tot+' steps':'Step by step';
   document.getElementById('riteHeroS').textContent='🕋 Umrahs completed: '+ST.umrahs;
-  renderCnt('tawaf');renderCnt('sai');renderLog();renderUmrahs();
+  renderCnt('tawaf');renderCnt('sai');renderLog();renderUmrahs();updWudu();
 }
-var TAWAF_TIPS=['Start at the Black Stone line: "Bismillahi wallahu akbar" — Kaaba on your left.','Round 1 · men walk briskly (raml). Touch the Yamani corner if easy, then "Rabbana atina…"','Round 2 · keep the raml. Any dhikr or dua you love — nothing fixed.','Round 3 · last raml round. Guard your gaze and your tongue in the crowd.','Round 4 · normal pace now. Dua for your parents and those who asked you.','Round 5 · istighfar. Don’t push at the Stone — point and say Allahu Akbar.','Round 6 · salawat on the Prophet ﷺ. Stay close to your group.','Tawaf complete → cover both shoulders, 2 rakahs behind Maqam Ibrahim, then Zamzam.'];
+var TAWAF_TIPS=['Wudu first — then start at the Black Stone line: "Bismillahi wallahu akbar", Kaaba on your left.','Round 1 · men walk briskly (raml). Touch the Yamani corner if easy, then "Rabbana atina…"','Round 2 · keep the raml. Any dhikr or dua you love — nothing fixed.','Round 3 · last raml round. Guard your gaze and your tongue in the crowd.','Round 4 · normal pace now. Dua for your parents and those who asked you.','Round 5 · istighfar. Don’t push at the Stone — point and say Allahu Akbar.','Round 6 · salawat on the Prophet ﷺ. Stay close to your group.','Tawaf complete → cover both shoulders, 2 rakahs behind Maqam Ibrahim, then Zamzam.'];
 var SAI_TIPS=['On Safa: face the Kaaba, praise Allah, repeat the dhikr 3× with your own duas.','Lap 1 · Safa → Marwah. Men jog lightly between the green lights.','Lap 2 · back to Safa. Remember Hajar’s trust: "He will not abandon us."','Lap 3 · dua is accepted here — pour out your heart.','Lap 4 · halfway. Sip Zamzam from the coolers if you need to.','Lap 5 · dua for the ummah — the angel says "Amin, and for you the same."','Lap 6 · one to go. Salawat and istighfar.','Sa’i complete → halq or taqsir, then your Umrah is done. Taqabbal Allah!'];
 function renderCnt(k){
   var v=ST[k];
@@ -219,19 +219,25 @@ function renderCnt(k){
   if(ring)ring.style.strokeDashoffset=565*(1-v/7);
   document.getElementById(k+'Done').style.display=v>=7?'block':'none';
 }
+function togWudu(){ST.wudu=!ST.wudu;saveST();updWudu();if(ST.wudu)toast('💧 Wudu confirmed — bismillah, begin at the Black Stone line');}
+function updWudu(){var c=document.getElementById('wuduCard'),sw=document.getElementById('wuduSw');if(!c)return;c.classList.toggle('ok',!!ST.wudu);sw.classList.toggle('on',!!ST.wudu);}
 function cntr(k,d){
+  if(k==='tawaf'&&d>0&&ST.tawaf===0&&!ST.wudu){
+    if(confirm('Tawaf requires wudu. Are you in wudu right now?')){ST.wudu=true;saveST();updWudu();}
+    else{toast('💧 Make wudu first — tawaf is like salah');vib([60,40,60]);return;}
+  }
   var v=Math.max(0,Math.min(7,ST[k]+d));
   if(v===ST[k])return;ST[k]=v;saveST();
   if(v===1&&d>0)stamp(k+'Start');if(v===7)stamp(k+'End');renderLog();vib(v===7?[50,60,140]:35);renderCnt(k);
   if(v===7)confetti(50);
   if(v===7)toast(k==='tawaf'?'🕋 Tawaf complete! Pray 2 rakahs at Maqam Ibrahim':'⛰️ Sa’i complete! Proceed to halq/taqsir');
 }
-function cntrReset(k){ST[k]=0;saveST();renderCnt(k);}
+function cntrReset(k){ST[k]=0;if(k==='tawaf')ST.wudu=false;saveST();renderCnt(k);updWudu();}
 function finishUmrah(){
   var done=0,tot=0;RITES.forEach(function(p){p.steps.forEach(function(s){tot++;if(riteChk[s.id])done++;});});
   if(done<tot&&!confirm('Only '+done+' of '+tot+' steps are ticked. Record this Umrah as complete anyway?'))return;
   var lg=ST.log||{};lg.done=Date.now();var hist=[];try{hist=JSON.parse(localStorage.getItem('us-umrahlog')||'[]');}catch(e){}hist.push({n:ST.umrahs+1,log:lg});localStorage.setItem('us-umrahlog',JSON.stringify(hist));
-  ST.umrahs++;ST.tawaf=0;ST.sai=0;ST.log={};saveST();renderUmrahs();
+  ST.umrahs++;ST.tawaf=0;ST.sai=0;ST.wudu=false;ST.log={};saveST();renderUmrahs();updWudu();
   riteChk={};save('us-rites',riteChk);
   updRites();renderLog();chkBadges();
   toast('🎉 Umrah #'+ST.umrahs+' recorded — may Allah accept it!',true);confetti(140);
@@ -382,7 +388,7 @@ function renderBadges(){
 /* ════════════════════════ DUAS / DATA ════════════════════════ */
 function renderDuas(){
   var h='';
-  DUAS.forEach(function(d){h+='<div class="duacard"><h4>'+d.t+'</h4><div class="dua" style="margin:0;background:transparent;border:none;padding:0"><button class="say" data-ar="'+d.ar+'" onclick="speakBtn(this)" aria-label="Play recitation">🔊</button><span class="ar">'+d.ar+'</span><span class="tl">'+d.tl+'</span><span class="tr">'+d.tr+'</span><span class="src">'+d.s+'</span></div></div>';});
+  DUAS.forEach(function(d){h+='<div class="duacard"><div class="dua-top"><h4 style="margin:0">'+d.t+'</h4><button class="say" data-ar="'+d.ar+'" onclick="speakBtn(this)" aria-label="Play recitation">🔊 Listen</button></div><div class="dua" style="margin:0;background:transparent;border:none;padding:0"><span class="ar">'+d.ar+'</span><span class="tl">'+d.tl+'</span><span class="tr">'+d.tr+'</span><span class="src">'+d.s+'</span></div></div>';});
   document.getElementById('duaContainer').innerHTML=h;
 }
 function exportData(){
@@ -551,7 +557,7 @@ function loadNiyyah(){
   st.textContent=v?'✓ Intention set · '+v.split(/\s+/).length+' words — re-read it every morning of the trip.':'Write it down — it becomes your compass for the whole trip.';
 }
 
-/* ════════════════════════ PLAN TIMELINE · TILES · BUDGET · HOTEL ════════════════════════ */
+/* ════════════════════════ PLAN TIMELINE · TILES · HOTEL ════════════════════════ */
 var CLIMATE={makkah:[30,32,35,38,41,43,42,42,41,38,34,31],madinah:[24,27,31,36,40,43,43,43,41,36,30,26]};
 function renderTimeline(){
   var a=document.getElementById('tlArea'),sub=document.getElementById('tlSub');if(!a)return;
@@ -581,21 +587,6 @@ function renderWeather(){
   if(!ST.dep){w.textContent='';return;}
   var m=new Date(ST.dep+'T00:00:00').getMonth(),mk=CLIMATE.makkah[m],md=CLIMATE.madinah[m];
   w.textContent='🌡️ Typical highs: Makkah ~'+mk+'°C · Madinah ~'+md+'°C — '+(mk>=40?'extreme heat: umbrella, electrolytes, tawaf at night.':mk>=35?'hot: hydrate, sunscreen (unscented), pace yourself.':'mild: still bring sun protection; nights can be cool.');
-}
-var BUDGET_ROWS=[['flights','Flights','return, per person'],['hotelMk','Makkah hotel','total for your nights'],['hotelMd','Madinah hotel','total for your nights'],['visa','Visa, insurance & fees','Nusuk / agent'],['transport','Transport','train, taxis, ziyarah tours'],['food','Food & water','~15–25 per day per person'],['gifts','Gifts, dates & Zamzam',''],['sadaqah','Sadaqah budget','give with a plan, not to touts'],['misc','Buffer 10%','the unexpected']];
-var bud={};try{bud=JSON.parse(localStorage.getItem('us-budget')||'{}');}catch(e){}
-function renderBudget(){
-  var a=document.getElementById('budgetRows');if(!a)return;
-  a.innerHTML=BUDGET_ROWS.map(function(r){return '<div class="brow"><label>'+r[1]+(r[2]?'<small>'+r[2]+'</small>':'')+'</label><input type="number" min="0" inputmode="decimal" id="b-'+r[0]+'" value="'+(bud[r[0]]||'')+'" placeholder="0" oninput="budget()"></div>';}).join('');
-  document.getElementById('bTrav').value=bud.trav||1;document.getElementById('bCur').value=bud.cur||'GBP';
-  budget(true);
-}
-function budget(silent){
-  var per=0;BUDGET_ROWS.forEach(function(r){var v=parseFloat((document.getElementById('b-'+r[0])||{}).value)||0;bud[r[0]]=v;per+=v;});
-  bud.trav=Math.max(1,parseInt(document.getElementById('bTrav').value)||1);bud.cur=(document.getElementById('bCur').value||'').trim()||'GBP';
-  localStorage.setItem('us-budget',JSON.stringify(bud));
-  var f=function(x){return bud.cur+' '+Math.round(x).toLocaleString();};
-  document.getElementById('bPer').textContent=f(per);document.getElementById('bTotal').textContent=f(per*bud.trav);
 }
 function saveHotelInfo(){ST.hotelInfo={n:document.getElementById('hName').value,a:document.getElementById('hAddr').value,p:document.getElementById('hPhone').value};saveST();}
 function loadHotelInfo(){var hi=ST.hotelInfo||{};var e=document.getElementById('hName');if(!e)return;e.value=hi.n||'';document.getElementById('hAddr').value=hi.a||'';document.getElementById('hPhone').value=hi.p||'';}
@@ -1119,7 +1110,7 @@ function initUI(){
   document.getElementById('tripLen').value=ST.tripLen;
   var ni=document.getElementById('nameIn');if(ni)ni.value=ST.name||'';
   renderPlan();renderRites();renderDaily();renderPlaces();renderDuas();renderTB();
-  buildDeck();renderFC();renderPost();updRemSw();applySubs();updChip();renderItin();renderVault();renderDuaList();renderWater();updHotelLbl();renderBudget();loadHotelInfo();loadNiyyah();
+  buildDeck();renderFC();renderPost();updRemSw();applySubs();updChip();renderItin();renderVault();renderDuaList();renderWater();updHotelLbl();loadHotelInfo();loadNiyyah();
   if(!ST.onboarded)setTimeout(showOnboard,400);
   var kb=document.getElementById('kidsBest'),kbv=localStorage.getItem('us-kids');if(kb&&kbv)kb.textContent=kbv+'/'+KIDSQ.length;
   var cm=document.getElementById('cityMakkah'),cd=document.getElementById('cityMadinah');

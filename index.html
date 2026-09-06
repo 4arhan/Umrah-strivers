@@ -328,7 +328,9 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .lvl-s{font-size:.72em;font-weight:800;color:var(--gold-ink);white-space:nowrap}
 .lvl.passed .lvl-s{color:var(--brand-2)}
 .qz-exit{font-size:.76em;font-weight:700;color:var(--ink3);cursor:pointer;text-decoration:underline}
-.say{border:none;background:var(--gold-soft);color:var(--gold);border-radius:10px;padding:3px 10px;font-size:.95em;cursor:pointer;float:right;margin:0 0 4px 8px;transition:transform .15s}
+.dua-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.dua-top small{font-size:.72em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--gold-ink)}
+.say{border:1px solid var(--gold);background:var(--card);color:var(--gold-ink);border-radius:999px;padding:4px 11px;font-size:.78em;font-weight:700;cursor:pointer;transition:transform .15s;font-family:var(--fb)}
 .say:active{transform:scale(.9)}
 .fc{perspective:1200px;min-height:190px;cursor:pointer;margin-bottom:10px;position:relative}
 .fc-in{position:relative;width:100%;min-height:190px;transition:transform .5s;transform-style:preserve-3d}
@@ -401,7 +403,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .vtick{color:var(--brand-2);font-weight:800}
 .seg{position:sticky;overflow:visible}
 .seg::after{content:'';position:absolute;left:16px;bottom:-1px;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--brand-2),var(--gold-2));width:calc((100% - 32px) * var(--p,0));transition:width .6s cubic-bezier(.3,.7,.3,1)}
-.why{border:none;background:var(--brand-soft);color:var(--brand-2);font-family:var(--fb);font-weight:800;font-size:.7em;padding:3px 10px;border-radius:999px;cursor:pointer;margin-top:6px}
+.why{border:none;background:transparent;color:var(--brand-2);font-family:var(--fb);font-weight:700;font-size:.78em;padding:0;cursor:pointer;margin-left:4px;text-decoration:underline dotted}
 .whyb{display:none;font-size:.78em;color:var(--ink2);line-height:1.55;margin-top:6px;padding:8px 10px;border-radius:10px;background:var(--bg-soft)}
 .whyb.on{display:block}
 .mataf{width:100%;height:auto;display:block;margin:4px 0}
@@ -472,6 +474,9 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .niy-t{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#fff;margin-top:6px;min-height:96px}
 .niy-t::placeholder{color:rgba(255,255,255,.4)}
 .niy-s{font-size:.76em;opacity:.7;margin-top:8px;font-style:italic}
+.wudu{display:flex;align-items:center;gap:12px;background:var(--card);border:1.5px solid var(--gold);border-radius:var(--r-lg);padding:14px 16px;margin-bottom:12px;box-shadow:var(--sh)}
+.wudu.ok{border-color:var(--brand-2);background:var(--brand-soft)}
+.wudu-t{flex:1;min-width:0}.wudu-t b{display:block;font-size:.92em}.wudu-t span{display:block;font-size:.76em;color:var(--ink2);line-height:1.45;margin-top:2px}
 .hcta{display:inline-block;margin-top:10px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);padding:6px 12px;border-radius:999px;font-size:.78em;font-weight:700}
 .hprayer{display:flex;align-items:center;gap:12px;cursor:pointer;padding:14px 16px}
 .hp-i{width:42px;height:42px;border-radius:14px;background:var(--brand-soft);display:flex;align-items:center;justify-content:center;font-size:1.3em;flex-shrink:0}
@@ -555,13 +560,6 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
   <div class="card card-pad" id="tlCard"><h3>⏳ What to do when</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px" id="tlSub">Set your departure date to get a dated to-do timeline.</p><div id="tlArea"></div></div>
   <div class="stat4" id="catTiles"></div>
   <div id="planContainer"></div>
-  <div class="card card-pad"><h3>💰 Budget planner</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Rough it out so nothing surprises you. Saved on this device.</p>
-    <div class="setrow" style="padding:6px 0"><div><b>Travellers</b><small>Costs below are per person</small></div><input type="number" class="numin" id="bTrav" min="1" max="20" value="1" onchange="budget()"></div>
-    <div class="setrow" style="padding:6px 0"><div><b>Currency</b><small>Label only</small></div><input class="numin" id="bCur" style="width:74px" value="GBP" onchange="budget()"></div>
-    <div id="budgetRows"></div>
-    <div class="kv" style="font-size:1em;border-top:2px solid var(--line);margin-top:6px;padding-top:12px"><span><b>Total for everyone</b></span><b id="bTotal">0</b></div>
-    <div class="kv"><span>Per person</span><b id="bPer">0</b></div>
-    <p style="font-size:.72em;color:var(--ink3);margin-top:8px">Tip: Makkah hotels within 500 m of the Haram cost 2–4× more but save you an hour a day — for a short trip they are usually worth it.</p></div>
   <div class="card card-pad"><h3>🏨 My hotel & emergency numbers</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Fill this in before you land — then tap “Show to driver” whenever you need a ride back.</p>
     <input class="srch" id="hName" placeholder="Hotel name (e.g. Swissôtel Makkah)" onchange="saveHotelInfo()"><input class="srch" id="hAddr" placeholder="Address / landmark (e.g. Abraj Al Bait, King Abdulaziz Gate)" onchange="saveHotelInfo()"><input class="srch" id="hPhone" placeholder="Hotel phone" onchange="saveHotelInfo()">
     <button class="btn" onclick="showDriver()">🚕 Show to driver (big screen)</button>
@@ -610,6 +608,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
   <div class="hero"><div class="hero-t"><div class="k">Umrah rites</div><div class="v" id="riteHeroT">Step by step</div><div class="s" id="riteHeroS">🕋 Umrahs completed: 0</div></div>
     <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="riteRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="ritePct">0%</span><small>DONE</small></div></div></div>
 
+  <div class="wudu" id="wuduCard"><div class="wudu-t"><b>💧 Wudu check — tawaf requires wudu</b><span>"Tawaf around the House is like salah" (Tirmidhi 960). Make wudu before you start; if it breaks mid-tawaf, renew it and continue.</span></div><button class="sw" id="wuduSw" onclick="togWudu()"></button></div>
   <div class="card cnt"><h3>🕋 Tawaf</h3><div class="sub">7 rounds, counter-clockwise, from the Black Stone line.<br><b>Tap the circle after each round.</b></div>
     <div class="tapring" onclick="cntr('tawaf',1)"><svg width="216" height="216" viewBox="0 0 216 216"><circle class="tr-bg" cx="108" cy="108" r="90"/><circle class="tr-seg" id="tawafRing" cx="108" cy="108" r="90"/></svg><div class="tr-mid"><div class="n" id="tawafN">0</div><div class="of">of 7 rounds</div><div class="tap">tap to count</div></div></div>
     <div class="cnt-tip" id="tawafTip"></div>
