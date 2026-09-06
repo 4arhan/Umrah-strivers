@@ -28,7 +28,7 @@ An offline-first web app (`index.html` + `data.js` + `app.js`, zero build step).
 ### 📿 Daily — maximise every day in the Haramain
 - Daily worship tracker: five prayers in congregation, tahajjud, Quran, dhikr & dua, nafl tawaf, sadaqah, serving pilgrims…
 - Points, streaks (Fajr jama'ah, tahajjud, Quran, nafl tawaf), a trip consistency heatmap, trip stats and 8 unlockable achievements
-- Configurable trip length (3–30 days)
+- Configurable trip length (3–30 days) — or set a return date next to the departure date
 
 ### 📍 Places — ziyarah with purpose
 - **51 sites** across Makkah (29) and Madinah (22), grouped — Makkah: The Haram · Ziyarah · The Hajj sites · Museums & culture · Day trips; Madinah: The Prophet's Mosque & around · Historic mosques · Battlefields, wells & history · Hop-on hop-off & practical
@@ -101,6 +101,16 @@ The service-worker cache is named after `APP_VERSION`. For every release **bump 
 - Backup now covers every `us-` key; reset is a two-step sheet with "Export backup first" and also clears the vault
 - Accessibility: pinch-zoom allowed, Normal/Large text size, bigger nav labels, better contrast, keyboard & screen-reader roles on rows, steps, counters and switches, live regions for counters and quiz feedback
 - Swipe between sections is stricter (no accidental switches), discoverable (first-time tip + pill nudge) and can be turned off
+
+## v4.6 — Prepare
+- **Countdown first**: with no date set, a single "Set my departure date" card sits at the top of Prepare (the timeline stays hidden until then); a **return date** next to it drives the trip length
+- **Intention** collapses to one row once written (tap to re-read / edit); a **jump bar** under the hero reaches every part of Prepare (trip-time cards first while on trip)
+- **Timeline**: "Should already be done" is capped and ordered with travel-blocking items (passport, visa, MenACWY, flights, hotels) in red first; ticking a row offers **Undo**; category tiles open exactly their checklist
+- **Brother / Sister profile** (onboarding + Settings): men-only / women-only packing and rite steps are shown and counted only for you; sisters get scissors for taqsir, sanitary supplies, hijab pins and a period-medication prompt
+- **Travelling with children**: an optional checklist (passports, visas, MenACWY, boys' ihram, stroller vs carrier, medicines, ID wristband, briefing) that joins the timeline and tiles
+- **Hotel & SOS**: meeting point and companion / group-leader fields; an offline **"I'm lost — show this"** card (Arabic + English, big tel: links, hotel, meeting point, 911 / 1966); the driver card can now **Call hotel** and **Open in Maps**; reachable from Umrah › Counters, Daily › Today (trip card) and a Home quick tool
+- **Itinerary**: a 1-day leg never drops the Umrah; today's day is highlighted and shown on Daily › Today; **Family pace** (later Umrah, one site a day, midday rest); every day is editable; **Share itinerary** as text
+- **Group tools**: "Share trip setup with group" sends one `#g=` link that applies dates, itinerary, prayer city and the hotel card on each phone without touching anyone's progress; "Share my readiness" posts a one-message checklist summary
 
 ## Development & testing
 

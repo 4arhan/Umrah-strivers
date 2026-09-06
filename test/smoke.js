@@ -23,13 +23,29 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   check('journey chip counts down + no update chip', (await page.textContent('#jChip')).includes('day') && (await page.locator('#updChip').isHidden()));
   check('explains the app + greets by name', (await page.textContent('.hhero h2')).includes('Umrah companion') && (await page.textContent('.hs-t')).includes('Test') && (await page.locator('.stage').count()) === 5);
   check('next prayer loaded', (await page.textContent('#hNext')).includes('in '));
-  check('9 quick actions', (await page.locator('.qa').count()) === 9);
+  check('9 quick actions + the wide Hotel / SOS row', (await page.locator('.qa').count()) === 10 && (await page.locator('.qa.wide').count()) === 1);
 
   console.log('Plan');
   await page.evaluate(() => { goTab('plan'); goSub('plan', 'prep', true); });
   await page.click('#pw-passport');
   check('checklist ticks', (await page.locator('#pw-passport.done').count()) === 1);
   check('itinerary renders 10 days', (await page.locator('.it').count()) === 10);
+  check('timeline: blocking items first, capped groups, neutral late pills', (await page.textContent('#tlArea')).includes('Should already be done') && (await page.locator('.tli-more').count()) >= 1 && (await page.locator('.tli-when.over').count()) <= 5 && (await page.locator('#prepJumps button').count()) === 7);
+  await page.click('.tli >> nth=0'); await page.waitForTimeout(600);
+  const tickedBefore = await page.evaluate(() => Object.keys(planChk).filter(k => planChk[k]).length);
+  await page.click('.toast.act button:has-text("Undo")'); await page.waitForTimeout(200);
+  check('timeline tick offers Undo', tickedBefore === 2 && (await page.evaluate(() => Object.keys(planChk).filter(k => planChk[k]).length)) === 1);
+  await page.evaluate(() => setProfile('w'));
+  check('sister profile hides men-only rows and adds sisters\u2019 items', (await page.locator('#pw-ihram').count()) === 0 && (await page.locator('#pw-scissors').count()) === 1 && (await page.locator('#rw-cut').count()) === 0 && (await page.locator('#rw-cutw').count()) === 1);
+  await page.evaluate(() => { setProfile(''); togKids(); });
+  check('children toggle adds a 5th checklist + tile', (await page.locator('#sec-kids .row').count()) === 8 && (await page.locator('#catTiles .st').count()) === 5);
+  await page.evaluate(() => togKids());
+  await page.fill('#hName', 'Swiss\u00f4tel Makkah'); await page.fill('#hLead', 'Ahmed \u00b7 +966 55 123 4567'); await page.dispatchEvent('#hLead', 'change');
+  await page.evaluate(() => showLost()); await page.waitForTimeout(200);
+  check('I\u2019m lost overlay: leader tel link + 911/1966', (await page.locator('#lost.on .lost-tel[href="tel:+966551234567"]').count()) === 1 && (await page.locator('#lost a[href="tel:911"]').count()) === 1 && (await page.locator('#lost a[href="tel:1966"]').count()) === 1);
+  await page.evaluate(() => { closeLost(); showDriver(); });
+  check('driver card has Call + Maps actions', (await page.locator('#driver.on #drvActs a[href^="https://www.google.com/maps/dir/"]').count()) === 1);
+  await page.evaluate(() => closeDriver());
   await page.evaluate(() => goSub('plan', 'learn', true));
   check('knowledge accordions', (await page.locator('#histCard .acc').count()) >= 9 && (await page.locator('#qaContainer .acc').count()) === 10 && (await page.locator('#scamContainer .acc').count()) === 10);
   check('flashcards due', (await page.textContent('#fcArea')).includes('Review'));
@@ -140,6 +156,13 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   console.log('Persistence');
   await page.reload(); await page.waitForTimeout(700);
   check('state survives reload', (await page.evaluate(() => ST.umrahs)) === 1 && (await page.evaluate(() => JSON.parse(localStorage.getItem('us-plan')).passport)) === true);
+
+  console.log('Group setup link');
+  const gHash = '#g=' + Buffer.from(encodeURIComponent(JSON.stringify({ by: 'Farhan', dep: '2030-10-12', tripLen: 12, itin: { first: 'madinah', mad: 4 }, city: 'Madinah', hotelInfo: { n: 'Hilton Makkah' } }))).toString('base64');
+  await page.goto('about:blank'); await page.goto(URL + gHash); await page.waitForTimeout(900);
+  check('group link opens the Apply sheet and strips the hash', (await page.textContent('#gSheetBody')).includes('Farhan') && (await page.evaluate(() => location.hash)) === '');
+  await page.click('#gSheetBody button:has-text("Apply")'); await page.waitForTimeout(600);
+  check('apply copies trip settings only', (await page.evaluate(() => ST.dep === '2030-10-12' && ST.tripLen === 12 && ST.itin.first === 'madinah' && ST.hotelInfo.n === 'Hilton Makkah' && ST.umrahs === 1 && JSON.parse(localStorage.getItem('us-plan')).passport === true)));
   check('no JS errors', errors.length === 0, errors);
   await browser.close();
   console.log(failed ? `\n${failed} check(s) FAILED` : '\nAll checks passed');

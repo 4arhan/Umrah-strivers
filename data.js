@@ -9,7 +9,7 @@ var QUOTES=[
 ];
 
 var PLAN=[
-{id:'docs',ico:'🛂',title:'Documents & bookings',items:[
+{id:'docs',ico:'🛂',short:'Docs',title:'Documents & bookings',items:[
 {id:'passport',wk:12,label:'Passport valid 6+ months',exp:'Saudi Arabia requires at least six months of validity from arrival.'},
 {id:'visa',wk:6,label:'Umrah visa / eVisa obtained (Nusuk)',exp:'Apply via the official Nusuk platform or an authorised agent — beware of unofficial sites.'},
 {id:'flights',wk:8,label:'Flights booked',exp:'Jeddah (JED) for Makkah first, or Madinah (MED) if starting in Madinah.'},
@@ -21,10 +21,13 @@ var PLAN=[
 {id:'hoho',wk:2,label:'Madinah ziyarah bus booked (optional)',exp:'The City Sightseeing hop-on hop-off covers Quba, Qiblatayn, Uhud, the Trench and Baqi’ on one 24-hour ticket — book it from the Places tab.',go:['places',null,'tourCard'],goL:'🚌 Ziyarah bus'},
 {id:'money',wk:1,label:'Saudi Riyals + travel card ready',exp:'Cards are widely accepted, but keep cash for taxis, barbers and small shops.'}
 ]},
-{id:'pack',ico:'🧳',title:'Packing',items:[
-{id:'ihram',wk:2,bag:'ihram',label:'2 sets of ihram (men)',exp:'A spare set is a mercy after tawaf in the heat. Unstitched white cloth: izar & rida.'},
-{id:'belt',wk:2,bag:'ihram',label:'Ihram belt / money pouch',exp:'Keeps documents and cash secure — ihram has no pockets.'},
-{id:'abaya',wk:2,bag:'case',label:'Loose, modest clothing (women)',exp:'Women wear normal modest dress in ihram — no face veil or gloves while in ihram.'},
+{id:'pack',ico:'🧳',short:'Packing',title:'Packing',items:[
+{id:'ihram',wk:2,who:'m',bag:'ihram',label:'2 sets of ihram (men)',exp:'A spare set is a mercy after tawaf in the heat. Unstitched white cloth: izar & rida.'},
+{id:'belt',wk:2,who:'m',bag:'ihram',label:'Ihram belt / money pouch',exp:'Keeps documents and cash secure — ihram has no pockets.'},
+{id:'abaya',wk:2,who:'w',bag:'case',label:'Loose, modest clothing (women)',exp:'Women wear normal modest dress in ihram — no face veil or gloves while in ihram.'},
+{id:'scissors',wk:2,who:'w',bag:'carry',label:'Small scissors for taqsir (women)',exp:'Women end ihram by trimming a fingertip’s length — there are no barbers for sisters, so carry your own. Pack them in checked luggage (hand-luggage rules vary by airline).'},
+{id:'sanitary',wk:2,who:'w',bag:'case',label:'Sanitary products for the whole trip (women)',exp:'Bring more than you expect — the heat and travel can shift cycles. Available locally, but not always near the Haram.'},
+{id:'hijabpins',wk:2,who:'w',bag:'case',label:'Hijab pins, undercaps & spare scarves (women)',exp:'Wind in the courtyard and hours of prostration — an undercap keeps everything in place. A hijab is worn as normal in ihram; only the face veil and gloves are left off.'},
 {id:'sandals',wk:3,bag:'ihram',label:'Comfortable sandals + shoe bag',exp:'Men’s ihram footwear should leave the ankle exposed. Shoes get lost at mosque entrances.'},
 {id:'unscented',wk:2,bag:'ihram',label:'Unscented soap, sunscreen & lip balm',exp:'Perfumed products are prohibited in ihram — buy unscented before you travel.'},
 {id:'meds',wk:2,bag:'carry',label:'Medications + prescriptions',exp:'Carry prescriptions; include painkillers, rehydration salts, blister plasters.'},
@@ -34,14 +37,15 @@ var PLAN=[
 {id:'umbrella',wk:1,bag:'case',label:'Umbrella for sun protection',exp:'Midday courtyard marble is brutal — a light umbrella helps outside the mosque.'},
 {id:'dualist',wk:1,bag:'carry',label:'Written personal dua list',exp:'In front of the Kaaba the mind goes blank — write your duas down beforehand.',go:['daily','tools','duaCard'],goL:'🤲 My dua list'}
 ]},
-{id:'health',ico:'🩺',title:'Health',items:[
+{id:'health',ico:'🩺',short:'Health',title:'Health',items:[
 {id:'menacwy',wk:4,label:'Meningitis ACWY vaccination certificate',exp:'Required for Umrah visas — usually at least 10 days before arrival.'},
 {id:'jabs',wk:6,label:'Routine vaccines / flu shot up to date',exp:'Millions of pilgrims from around the world — protect yourself and others.'},
 {id:'walk',wk:8,label:'Walking practice (8–10k steps/day)',exp:'Tawaf + sa’i is 5+ km; you may walk 15–20 km a day. Train before you go.'},
 {id:'doctor',wk:6,label:'Doctor check-up if needed',exp:'Especially for chronic conditions — carry a doctor’s letter for devices/medication.'},
+{id:'perioddelay',wk:6,who:'w',label:'Ask a doctor about period-delay medication if needed (women)',exp:'Menstruation does not stop you entering ihram, making dua or doing sa’i after a valid tawaf — but tawaf itself must wait for purity. If your dates clash with a short trip, a doctor can advise; many sisters choose not to and simply wait.'},
 {id:'hygiene',wk:1,label:'Hand sanitiser & masks packed',exp:'The "Umrah flu" is real — prevention keeps your worship strong.'}
 ]},
-{id:'knowledge',ico:'🧠',title:'Knowledge & spirit',items:[
+{id:'knowledge',ico:'🧠',short:'Knowledge',title:'Knowledge & spirit',items:[
 {id:'niyyah',wk:10,label:'Set my intention & spiritual goals for this Umrah',exp:'Write it at the top of the Plan tab — the journey begins in the heart, not at the airport.',go:['plan','prep','niyCard'],goL:'✍️ Write it'},
 {id:'learn',wk:4,label:'Learned the Umrah rites step by step',exp:'Review the Umrah tab of this app until each step feels familiar.',go:['umrah','steps'],goL:'📋 Umrah steps'},
 {id:'talbiyah',wk:3,label:'Memorised the talbiyah',exp:'Labbayk Allahumma labbayk — see the Duas section in More.',go:['more','duas'],goL:'🤲 Duas'},
@@ -51,6 +55,16 @@ var PLAN=[
 {id:'halal',wk:8,label:'Trip funded from halal earnings',exp:'A pilgrimage funded by the pure is more likely to be accepted.'},
 {id:'family',wk:2,label:'Taught travel companions the rites',exp:'Especially children and first-timers — review the steps together.'},
 {id:'quiz80',wk:1,label:'Completed the full knowledge circuit (all quiz levels 80%+)',exp:'Work through all seven quiz levels until every one is passed.',go:['plan','quiz'],goL:'🧠 Quiz'}
+]},
+{id:'kids',ico:'👨‍👩‍👧',short:'Kids',title:'Travelling with children',opt:'kids',hn:'A woman lifted up a child and asked, “Is there Hajj for this one?” The Prophet ﷺ said: “Yes, and you will have a reward.” — Sahih Muslim. A child’s Umrah is valid and rewarded; a guardian makes the intention for a small child.',items:[
+{id:'kidspass',wk:12,label:'Children’s passports valid 6+ months',exp:'Every child needs their own passport with six months’ validity from arrival — renewals for minors take longer.'},
+{id:'kidsvisa',wk:6,label:'Umrah visa for each child',exp:'Children need their own visa on Nusuk / through your agent, linked to a parent or guardian on the same booking.'},
+{id:'kidsmenacwy',wk:4,label:'Children’s Meningitis ACWY certificates',exp:'Required for the visa from early childhood (check the current Ministry of Health age rule with your clinic) — at least 10 days before travel.'},
+{id:'ihramboy',wk:3,bag:'case',label:'Ihram for boys · loose modest clothes for girls',exp:'A boy’s ihram is like a man’s (two unstitched cloths, no underwear); girls wear ordinary modest clothes. For a small child the guardian makes the intention and keeps them from the ihram prohibitions.'},
+{id:'stroller',wk:2,label:'Decide: stroller or carrier?',exp:'Strollers are often barred from the mataf at peak times and hard in crowds — a soft carrier is easier for tawaf and sa’i. Wheelchair/pram tawaf is allowed on the upper floors.'},
+{id:'kidsmeds',wk:2,bag:'carry',label:'Children’s medicines, rehydration salts & thermometer',exp:'Paracetamol/ibuprofen in child doses, oral rehydration sachets, plasters, sunscreen (unscented if the child is in ihram).'},
+{id:'kidsband',wk:1,bag:'carry',label:'Waterproof ID wristband with your phone number',exp:'Name, your Saudi-reachable number and hotel. Write the group leader’s number on paper in the child’s pocket every morning too.'},
+{id:'kidsprep',wk:1,label:'Brief the children: meeting point · “if lost, find a security guard” · snacks & a comfort item',exp:'Agree a gate number to meet at after each prayer. Teach them to stay put and ask a uniformed guard, never to wander looking for you. Pack snacks and something familiar for the long waits.'}
 ]}];
 
 var KNOW=[
@@ -142,7 +156,7 @@ var RITES=[
 ]},
 {id:'ph2',ico:'🕋',title:'Phase 2 · Tawaf — 7 rounds',hn:'"Whoever performs tawaf around this House seven times and keeps count of it, it is like freeing a slave." — Tirmidhi 959',steps:[
 {id:'wudu',why:'"Tawaf around the House is like salah" (Tirmidhi 960) — so it needs the purity of salah.',b:'Make wudu — required for tawaf',p:'Tawaf is not valid without wudu. Make it before you enter; if it breaks mid-tawaf, renew it and continue. Enter the mosque with the right foot:',dua:{ar:'اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ',tl:'Allahumma-ftah li abwaba rahmatik',tr:'O Allah, open the gates of Your mercy for me.'}},
-{id:'idtiba',why:'The companions bared their right shoulders to show Quraysh their strength; the Prophet ﷺ kept the practice in the arrival tawaf.',b:'Idtiba’ (men): uncover the right shoulder',p:'Pass the rida under the right arm and over the left shoulder — for this tawaf only.'},
+{id:'idtiba',who:'m',why:'The companions bared their right shoulders to show Quraysh their strength; the Prophet ﷺ kept the practice in the arrival tawaf.',b:'Idtiba’ (men): uncover the right shoulder',p:'Pass the rida under the right arm and over the left shoulder — for this tawaf only.'},
 {id:'start',why:'’Umar (RA) kissed the Stone saying "I know you are a stone… had I not seen the Prophet ﷺ kiss you I would not" (Bukhari 1597) — pure following, not superstition.',b:'Start at the Black Stone line',p:'Face the Stone, raise your hand and say "Bismillahi wallahu akbar". Kiss or touch it only if easy — never push.'},
 {id:'rounds',why:'Seven is the number the Prophet ﷺ performed; keeping count is itself part of the reward (Tirmidhi 959).',b:'Complete 7 rounds — use the counter above',p:'Counter-clockwise, Kaaba on your left. Men walk briskly (raml) in rounds 1–3. Make any dhikr and dua you love.'},
 {id:'yamani',why:'He touched the Yamani corner without kissing it and recited this dua between the two corners (Abu Dawud 1892).',b:'Between the Yamani corner & Black Stone',p:'Touch the Yamani corner if easy (don’t kiss it), and recite:',dua:{ar:'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ',tl:'Rabbana atina fid-dunya hasanah wa fil-akhirati hasanah wa qina ’adhaban-nar',tr:'Our Lord, give us good in this world and good in the Hereafter, and protect us from the Fire. (Quran 2:201)'}},
@@ -155,8 +169,8 @@ var RITES=[
 {id:'marwah',why:'He repeated the same praise and dua on each hill (Muslim 1218) — persistence in dua is the lesson of sa’i.',b:'On Marwah each lap: face the Kaaba & repeat',p:'Same praise and dua as on Safa. Sa’i commemorates Hajar’s trust in Allah — walk it with reflection.'}
 ]},
 {id:'ph4',ico:'✂️',title:'Phase 4 · Halq / Taqsir',hn:'"O Allah, forgive those who shave their heads." He said it three times, and the fourth: "…and those who shorten." — Bukhari 1727',steps:[
-{id:'cut',why:'Cutting the hair ends ihram; his dua for those who shave shows halq is the higher choice for men (Bukhari 1727).',b:'Men: shave (halq) or trim all around (taqsir)',p:'Shaving carries the greater reward. Licensed barbershops cluster around the Marwah exit.'},
-{id:'cutw',why:'Women are commanded to shorten, not shave — the Prophet ﷺ said "women do not shave, they trim" (Abu Dawud 1984).',b:'Women: trim a fingertip’s length',p:'Gather the hair and cut about 2 cm from the ends — never shave.'},
+{id:'cut',who:'m',pair:'hair',why:'Cutting the hair ends ihram; his dua for those who shave shows halq is the higher choice for men (Bukhari 1727).',b:'Men: shave (halq) or trim all around (taqsir)',p:'Shaving carries the greater reward. Licensed barbershops cluster around the Marwah exit.'},
+{id:'cutw',who:'w',pair:'hair',why:'Women are commanded to shorten, not shave — the Prophet ﷺ said "women do not shave, they trim" (Abu Dawud 1984).',b:'Women: trim a fingertip’s length',p:'Gather the hair and cut about 2 cm from the ends — never shave.'},
 {id:'done',b:'Your Umrah is complete! 🎉',p:'All ihram restrictions are lifted. May Allah accept it — make shukr, and keep filling your days with worship (Daily tab).'}
 ]}];
 

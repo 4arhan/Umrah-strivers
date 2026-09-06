@@ -42,6 +42,7 @@
   --sh-lg:0 6px 18px rgba(0,0,0,.5),0 22px 60px rgba(0,0,0,.5);
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth}
 body{font-family:var(--fb);background:var(--bg);color:var(--ink);min-height:100dvh;line-height:1.6;-webkit-font-smoothing:antialiased;font-size:15px}
 body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
@@ -565,6 +566,70 @@ html[data-text='lg'] body{font-size:17px}
 .stopchip.red i{background:#C2410C}.stopchip.green i{background:#177A52}
 .tour-note{font-size:.74em;color:var(--gold-ink);font-style:italic;margin-top:8px;line-height:1.5}
 .pnotes{width:100%;min-height:90px;border-radius:var(--r-sm);border:1px solid var(--line);background:var(--bg);color:var(--ink);font-family:var(--fb);font-size:.88em;padding:12px;margin-top:10px;resize:vertical}
+/* ─────────── Prepare batch: countdown zero state, intention collapse, timeline, hotel/SOS, itinerary ─────────── */
+.cd2-r label{display:block;font-size:.72em;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--gold-ink);margin-top:10px}
+.cd2-r label+input[type="date"]{margin-top:4px}
+.cd2.cd2-empty .cd2-l{display:none}
+.cd2.cd2-empty .cd2-r input[type="date"]{position:absolute;opacity:0;pointer-events:none;height:0;margin:0;padding:0;border:0}
+.cd2.cd2-empty .cd2-r label{display:none}
+.cd2.cd2-empty{position:relative}
+.cd2.cd2-empty .btn{margin-top:10px}
+.hero .hcta{cursor:pointer;border:1px solid rgba(255,255,255,.25);color:#fff;font-family:var(--fb);background:rgba(255,255,255,.14)}
+.niy-c{display:none;align-items:center;gap:10px;cursor:pointer}
+.niy-c .t{flex:1;min-width:0}.niy-c .t b{display:block;font-size:.92em;color:#EFD494}.niy-c .t span{display:block;font-size:.78em;opacity:.7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-style:italic}
+.niy-c .chip-btn{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#231803;border-color:transparent;box-shadow:none;padding:7px 12px;flex-shrink:0}
+.niy.set{padding:12px 16px}
+.niy.set .niy-k,.niy.set h3,.niy.set .niy-p,.niy.set .niy-b,.niy.set .niy-l,.niy.set .niy-t,.niy.set .niy-s{display:none}
+.niy.set .niy-c{display:flex}
+.niy-s .chip-btn{margin-left:8px;padding:4px 10px;font-size:.9em;background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.2);box-shadow:none}
+.tli-when.late{background:var(--bg-soft);color:var(--ink2)}
+.tli.done{opacity:.35;transition:opacity .3s}
+.tli-more{border:none;background:transparent;color:var(--brand-2);font-family:var(--fb);font-weight:700;font-size:.78em;padding:6px 8px;cursor:pointer}
+.st{cursor:pointer}
+#catTiles.five{grid-template-columns:repeat(5,1fr);gap:6px}
+#catTiles.five .st{padding:10px 2px}#catTiles.five .st .l{font-size:.6em;letter-spacing:0}#catTiles.five .st .mini{margin:6px 4px 0}
+.sec.hl{border-color:var(--brand-2);box-shadow:0 0 0 3px var(--brand-soft),var(--sh)}
+.hcard{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.hcard a,.hcard button{flex:1 1 40%;text-align:center;text-decoration:none;padding:10px 6px;border-radius:999px;font-size:.78em;font-weight:800;font-family:var(--fb);cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--brand-2);white-space:nowrap}
+.hcard .sos{background:rgba(194,65,12,.1);color:var(--danger);border-color:transparent}
+.hcard .main{background:var(--brand);color:#fff;border-color:var(--brand)}
+[data-theme="dark"] .hcard .main{background:var(--brand-2);color:#08281B;border-color:var(--brand-2)}
+.tripc{padding:12px 14px}
+.tripc .tc-h{display:flex;align-items:center;gap:8px;font-size:.84em}.tripc .tc-h b{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tripc .hcard{margin-top:8px}
+.tripc .srch{margin:8px 0 0}
+.todayit{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer}
+.todayit .ti-i{font-size:1.3em;flex-shrink:0}.todayit .ti-t{flex:1;min-width:0;font-size:.82em;line-height:1.45;color:var(--ink2)}.todayit .ti-t b{color:var(--ink);display:block;font-size:1.02em}
+.todayit .xchip{margin:0;flex-shrink:0}
+.hstat{font-size:.76em;color:var(--ink2);margin-top:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.hstat .chip-btn{padding:6px 12px;font-size:.9em}
+.meetchip{display:inline-flex;align-items:center;gap:6px;max-width:100%;margin:0 auto 12px;background:var(--gold-soft);color:var(--gold-ink);border:1px solid var(--gold);border-radius:999px;padding:6px 12px;font-size:.78em;font-weight:700;cursor:pointer}
+.meetchip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cnt-hd{display:flex;justify-content:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.cnt-hd .chip-btn.sos{color:var(--danger);border-color:rgba(194,65,12,.4)}
+.drv-acts{display:flex;gap:10px;margin-top:22px;width:100%}
+.drv-acts .btn{margin:0;flex:1;text-align:center;text-decoration:none;font-size:1em;padding:16px 8px}
+.drv-acts .btn.ghost{background:#fff;color:#0E3B2E;border-color:#0E3B2E}
+.drv-acts .btn.off{opacity:.55;pointer-events:none}
+.driver .focus-top .chip-btn{cursor:pointer}
+.lost-ar{font-size:2em;font-family:Georgia,serif;direction:rtl;text-align:center;line-height:1.5;margin:14px 0 18px;color:#0E3B2E}
+.lost-en{font-size:1.5em;font-weight:700;text-align:center;line-height:1.35;color:#111}
+.lost-tel{display:block;text-align:center;font-family:var(--fd);font-size:2.4em;font-weight:700;color:#0E3B2E;text-decoration:none;margin:8px 0 18px;line-height:1.2;word-break:break-all}
+.lost-kv{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-top:1px solid #e5e5e5;font-size:1.15em;color:#333;width:100%}
+.lost-kv b{color:#0E3B2E;font-size:1.1em}.lost-kv a{color:#0E3B2E;text-decoration:none;font-weight:800;font-size:1.25em}
+.lost-kv span:first-child{min-width:0}
+.lost-body{overflow-y:auto;width:100%;padding:0 22px 20px;-webkit-overflow-scrolling:touch;flex:1}
+.it{position:relative}
+.it.today{background:var(--brand-soft);border-radius:8px;padding:9px 8px;margin:0 -8px;border-bottom-color:transparent}
+.it-t{cursor:pointer}
+.it-t .cus{color:var(--gold-ink);font-weight:800;margin-left:4px;font-size:.9em}
+.it-ed{width:100%;min-height:70px;border-radius:var(--r-sm);border:1px solid var(--brand-2);background:var(--bg);color:var(--ink);font-family:var(--fb);font-size:.88em;padding:10px;margin-top:4px;resize:vertical}
+.it-acts{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.it-acts .chip-btn{padding:6px 12px;font-size:.74em}
+.qa.wide{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 10px;border-color:rgba(194,65,12,.35)}
+.qa.wide span{display:inline;font-size:1.3em;margin:0}
+.kidsrow{display:flex;align-items:center;gap:12px;padding:14px 16px}
+.kidsrow .kr-t{flex:1;min-width:0}.kidsrow .kr-t b{display:block;font-size:.92em}.kidsrow .kr-t small{display:block;font-size:.76em;color:var(--ink2);line-height:1.45;margin-top:2px}
 </style>
 </head>
 <body>
@@ -586,32 +651,40 @@ html[data-text='lg'] body{font-size:17px}
   <div class="vh"><h2>Prepare with ihsan</h2><p id="quoteLine"></p></div>
   <div class="seg" data-tab="plan"><button class="on" data-sub="prep" onclick="goSub('plan','prep')">🧳 Prepare</button><button data-sub="learn" onclick="goSub('plan','learn')">📚 Learn</button><button data-sub="quiz" onclick="goSub('plan','quiz')">🧠 Quiz</button></div>
   <div class="sub on" id="sub-plan-prep">
-  <div class="hero"><div class="hero-t"><div class="k">Preparation</div><div class="v" id="planHeroT">Let's get ready</div><div class="s" id="planHeroS">Checklists, essential knowledge & a readiness quiz</div></div>
+  <div class="hero"><div class="hero-t"><div class="k">Preparation</div><div class="v" id="planHeroT">Let's get ready</div><div class="s" id="planHeroS">Checklists, essential knowledge & a readiness quiz</div><button class="hcta" onclick="sharePrep()" aria-label="Share my readiness with my group">📤 Share my readiness</button></div>
     <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="planRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="planPct">0%</span><small>READY</small></div></div></div>
-  <div class="niy" id="niyCard"><div class="niy-k">Begin here</div><h3>Before the checklist — the intention</h3><p class="niy-p">Umrah is answered by the heart before it is booked by the hands. Three foundations, then everything else.</p>
+  <div class="jumps" id="prepJumps" aria-label="Jump to a section of Prepare"></div>
+  <div class="niy" id="niyCard"><div class="niy-c" id="niyCol" role="button" tabindex="0" aria-expanded="false" onclick="niyToggle()"><div class="t"><b id="niyColT">✓ Intention set</b><span id="niyColF"></span></div><button class="chip-btn" tabindex="-1">Re-read / edit ▾</button></div><div class="niy-k">Begin here</div><h3>Before the checklist — the intention</h3><p class="niy-p">Umrah is answered by the heart before it is booked by the hands. Three foundations, then everything else.</p>
     <div class="niy-b"><b>1 · The Intention <i>(Niyyah)</i></b><p>Define your specific spiritual goals for this journey — what you are asking Allah for, what you want to leave behind. "Umrah to Umrah is an expiation for what is between them" (Bukhari 1773) — minor sins; major sins need sincere tawbah. Go purely for Allah, not for the photos.</p></div>
     <div class="niy-b"><b>2 · The Knowledge <i>(Fiqh)</i></b><p>Learning the rituals is mandatory. Do not obsess over the hotel and forget the rules of the worship. The Learn and Quiz tabs exist for this — finish the circuit before you fly.</p><button class="chip-btn" onclick="goSub('plan','learn')">📚 Start learning</button></div>
     <div class="niy-b"><b>3 · The Detachment</b><p>Cut ties with worldly distractions before departure — markets, debates, idle talk, the scroll. Settle debts, seek forgiveness from people, write your will, and travel light in the heart.</p></div>
     <label class="niy-l" for="niyText">✍️ My intention &amp; spiritual goals</label>
     <textarea class="pnotes niy-t" id="niyText" placeholder="O Allah, I am going to Your House for… I ask You for… I want to return as someone who…" onchange="saveNiyyah()"></textarea>
     <div class="niy-s" id="niyStatus">Write it down — it becomes your compass for the whole trip.</div></div>
-  <div class="cd2"><div class="cd2-l"><div class="cd2-n" id="cdNum">—</div><div class="cd2-u" id="cdU">days</div></div><div class="cd2-r"><b id="cdT">Departure countdown</b><span id="cdS">Set your date and watch the days melt away</span><input type="date" id="depDate" onchange="setDep(this.value)"><span id="cdW" style="margin-top:6px;font-size:.74em;color:var(--gold-ink)"></span></div></div>
+  <div class="cd2" id="cdCard"><div class="cd2-l"><div class="cd2-n" id="cdNum">—</div><div class="cd2-u" id="cdU">days</div></div><div class="cd2-r"><b id="cdT">Departure countdown</b><span id="cdS">Set your date and watch the days melt away</span><label for="depDate">✈️ When do you fly?</label><input type="date" id="depDate" onchange="setDep(this.value)"><label for="retDate" id="retLbl">🛬 Return</label><input type="date" id="retDate" onchange="setRet(this.value)" aria-label="Return date"><button class="btn" id="cdSetBtn" hidden onclick="pickDep()">📅 Set my departure date</button><span id="cdW" style="margin-top:6px;font-size:.74em;color:var(--gold-ink)"></span></div></div>
   <div class="card card-pad" id="tlCard"><h3>⏳ What to do when</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px" id="tlSub">Set your departure date to get a dated to-do timeline.</p><div id="tlArea"></div></div>
   <div class="stat4" id="catTiles"></div>
-  <div id="planContainer"></div>
-  <div class="card card-pad" id="hotelCard"><h3>🏨 My hotel & emergency numbers</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Fill this in before you land — then tap “Show to driver” whenever you need a ride back.</p>
-    <input class="srch" id="hName" placeholder="Hotel name (e.g. Swissôtel Makkah)" onchange="saveHotelInfo()"><input class="srch" id="hAddr" placeholder="Address / landmark (e.g. Abraj Al Bait, King Abdulaziz Gate)" onchange="saveHotelInfo()"><input class="srch" id="hPhone" placeholder="Hotel phone" onchange="saveHotelInfo()">
-    <button class="btn" onclick="showDriver()">🚕 Show to driver (big screen)</button>
+  <div class="card card-pad" id="hotelCard"><h3>🏨 My hotel & emergency numbers</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Fill this in before you land — then tap “Show to driver” whenever you need a ride back, or “I’m lost” if you get separated.</p>
+    <input class="srch" id="hName" placeholder="Hotel name (e.g. Swissôtel Makkah)" onchange="saveHotelInfo()" aria-label="Hotel name"><input class="srch" id="hAddr" placeholder="Address / landmark (e.g. Abraj Al Bait, King Abdulaziz Gate)" onchange="saveHotelInfo()" aria-label="Hotel address"><input class="srch" id="hPhone" type="tel" placeholder="Hotel phone" onchange="saveHotelInfo()" aria-label="Hotel phone">
+    <input class="srch" id="hMeet" placeholder="Family meeting point (e.g. King Fahd Gate 79, after each prayer)" onchange="saveHotelInfo()" aria-label="Family meeting point"><input class="srch" id="hLead" placeholder="Companion / group leader name & phone" onchange="saveHotelInfo()" aria-label="Companion or group leader name and phone">
+    <div class="hstat"><span id="hotelLbl2">📍 Hotel location not pinned</span><button class="chip-btn" onclick="setHotel()">📍 Pin my hotel location</button></div>
+    <div class="hcard"><button class="main" onclick="showDriver()">🚕 Show to driver</button><button class="sos" onclick="showLost()">🆘 I’m lost — show this</button></div>
+    <p style="font-size:.74em;color:var(--ink3);margin-top:8px">💡 Write the leader’s number on a wristband or a paper in each child’s pocket every morning.</p>
     <div class="subt" style="margin-top:14px">☎️ Emergency & help in Saudi Arabia</div>
     <div class="kv"><span>Police · ambulance · fire</span><b><a href="tel:911" style="color:inherit;text-decoration:none">911</a></b></div>
     <div class="kv"><span>Health (Ministry of Health line)</span><b><a href="tel:937" style="color:inherit;text-decoration:none">937</a></b></div>
     <div class="kv"><span>Ministry of Hajj &amp; Umrah care</span><b><a href="tel:1966" style="color:inherit;text-decoration:none">1966</a></b></div>
     <div class="kv"><span>Tourism helpline</span><b><a href="tel:930" style="color:inherit;text-decoration:none">930</a></b></div>
-    <p style="font-size:.72em;color:var(--ink3);margin-top:8px">Also save your embassy’s number and your group leader’s number in your phone contacts, and agree a meeting point (a gate number) with your family.</p></div>
-  <div class="card card-pad" id="itinCard"><h3>🗓️ Suggested itinerary</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Generated from your departure date and trip length — a worship-first day plan you can adapt.</p>
-    <div class="pills sm" style="margin-bottom:10px"><button class="pill on" id="itMk" onclick="setItin('makkah')">🕋 Makkah first</button><button class="pill" id="itMd" onclick="setItin('madinah')">🕌 Madinah first</button></div>
-    <div class="setrow" style="padding:6px 0 10px"><div><b>Days in Madinah</b><small>The rest go to Makkah</small></div><input type="number" class="numin" id="itMad" min="0" max="20" value="3" onchange="setItinDays(this.value)"></div>
-    <div id="itinArea"></div></div>
+    <button class="btn ghost" onclick="shareSetup()">📤 Share trip setup with group</button>
+    <p style="font-size:.72em;color:var(--ink3);margin-top:6px">Sends one link that sets the departure date, trip length, itinerary split, prayer city and this hotel card on their phones — their own progress is never touched.</p></div>
+  <div id="planContainer"></div>
+  <div class="card kidsrow" id="kidsRow"><span style="font-size:1.5em">👨‍👩‍👧</span><div class="kr-t"><b>Travelling with children?</b><small>Add their passports, visas, vaccines, ID wristband and briefing to your timeline.</small></div><button class="sw" id="kidsSw" role="switch" aria-checked="false" aria-label="Travelling with children" onclick="togKids()"></button></div>
+  <div class="card card-pad" id="itinCard"><h3>🗓️ Suggested itinerary</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px" id="itinSub">Set your departure and return dates above</p>
+    <div class="pills sm" style="margin-bottom:8px"><button class="pill on" id="itMk" onclick="setItin('makkah')">🕋 Makkah first</button><button class="pill" id="itMd" onclick="setItin('madinah')">🕌 Madinah first</button></div>
+    <div class="pills sm" style="margin-bottom:10px"><button class="pill on" id="itPaceN" onclick="setPace('')">🚶 Standard pace</button><button class="pill" id="itPaceF" onclick="setPace('family')">🐢 Family pace</button></div>
+    <div class="setrow" style="padding:6px 0 10px"><div><b>Days in Madinah</b><small id="itMadSub">The rest go to Makkah</small></div><input type="number" class="numin" id="itMad" min="0" max="20" value="3" onchange="setItinDays(this.value)" aria-label="Days in Madinah"></div>
+    <div id="itinArea"></div>
+    <button class="btn ghost" onclick="shareItin()">📤 Share itinerary</button></div>
   <div class="card card-pad" id="vaultCard"><h3>🔐 Document vault</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Passport, visa, bookings — encrypted on this device with a PIN you choose (AES-256). Nothing is uploaded anywhere.</p><div id="vaultArea"></div></div>
   </div><div class="sub" id="sub-plan-learn">
   <div class="jumps"><button onclick="jumpTo('histCard')">🕰️ History</button><button onclick="jumpTo('virtCard')">🌟 Virtues</button><button onclick="jumpTo('madCard')">🕌 Madinah</button><button onclick="jumpTo('qaCard')">❓ Q&amp;A</button><button onclick="jumpTo('scamCard')">🚨 Scams</button><button onclick="jumpTo('knowCard')">📚 Practical</button></div>
@@ -647,6 +720,7 @@ html[data-text='lg'] body{font-size:17px}
   <div class="hero"><div class="hero-t"><div class="k">Umrah rites</div><div class="v" id="riteHeroT">Step by step</div><div class="s" id="riteHeroS">🕋 Umrahs completed: 0</div></div>
     <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="riteRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="ritePct">0%</span><small>DONE</small></div></div></div>
 
+  <div class="cnt-hd" id="cntHd"></div>
   <div class="wudu" id="wuduCard"><div class="wudu-t"><b>💧 Wudu check — tawaf requires wudu</b><span>"Tawaf around the House is like salah" (Tirmidhi 960). Make wudu before you start; if it breaks mid-tawaf, renew it and continue.</span></div><button class="sw" id="wuduSw" role="switch" aria-checked="false" aria-label="I am in wudu" onclick="togWudu()"></button></div>
   <div class="card cnt"><h3>🕋 Tawaf</h3><div class="sub">7 rounds, counter-clockwise, from the Black Stone line.<br><b>Tap the circle after each round.</b></div>
     <div class="tapring" id="tawafRingBtn" role="button" tabindex="0" aria-label="Count a tawaf round, 0 of 7 done" onclick="cntr('tawaf',1)"><svg width="216" height="216" viewBox="0 0 216 216"><circle class="tr-bg" cx="108" cy="108" r="90"/><circle class="tr-seg" id="tawafRing" cx="108" cy="108" r="90"/></svg><div class="tr-mid" aria-live="polite" aria-atomic="true"><div class="n" id="tawafN">0</div><div class="of">of 7 rounds</div><div class="tap" id="tawafTap">tap to count</div></div></div>
@@ -705,6 +779,7 @@ html[data-text='lg'] body{font-size:17px}
   <div class="seg" data-tab="daily"><button class="on" data-sub="today" onclick="goSub('daily','today')">📿 Today</button><button data-sub="tools" onclick="goSub('daily','tools')">🧭 Tools</button><button data-sub="stats" onclick="goSub('daily','stats')">📈 Stats</button></div>
   <div class="sub on" id="sub-daily-today">
   <div class="daynav"><button onclick="changeDay(-1)" aria-label="Previous day">◀</button><div class="dd" id="dayDisp">Day 1<small>of 10</small></div><button onclick="changeDay(1)" aria-label="Next day">▶</button></div>
+  <div id="todayTop"></div>
   <div class="card card-pad"><div class="pt-top"><div><h3 style="margin-bottom:2px">🕌 Prayer times</h3><div class="pt-next" id="ptNext">Loading…</div><div class="pt-hijri" id="ptHijri"></div></div>
     <div class="pills sm"><button class="pill on" id="cityMakkah" onclick="setCity('Makkah')">Makkah</button><button class="pill" id="cityMadinah" onclick="setCity('Madinah')">Madinah</button></div></div>
     <div class="pt-grid" id="ptGrid"></div><div class="pt-note" id="ptNote">Umm al-Qura · local Makkah/Madinah time</div>
@@ -771,7 +846,7 @@ html[data-text='lg'] body{font-size:17px}
     <p style="font-size:.82em;color:var(--ink2);margin-bottom:4px">"The most beloved deeds to Allah are the most consistent, even if small." — Bukhari 6464. Don’t let the Haram version of you fade — hold three habits for 30 days after you return.</p>
     <div class="setrow"><div><b>Post-Umrah mode</b><small>30-day habit keeper + reflections</small></div><button class="sw" id="postSw" role="switch" aria-checked="false" aria-label="Post-Umrah mode" onclick="togPost()"></button></div>
     <div id="postArea"></div></div>
-  <div class="card card-pad"><h3>🧭 Plan the next one</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:8px">"Umrah to Umrah is an expiation for what is between them" (Bukhari 1773). When Allah invites you again, the checklists and countdown are ready.</p><button class="btn ghost" style="margin:0" onclick="goTab('plan','prep','tlCard')">🧳 Plan my next Umrah →</button></div>
+  <div class="card card-pad"><h3>🧭 Plan the next one</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:8px">"Umrah to Umrah is an expiation for what is between them" (Bukhari 1773). When Allah invites you again, the checklists and countdown are ready.</p><button class="btn ghost" style="margin:0" onclick="goTab('plan','prep','cdCard')">🧳 Plan my next Umrah →</button></div>
   </div><div class="sub" id="sub-more-duas">
   <div class="card card-pad"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px"><h3 style="margin:0">🤲 Essential duas</h3><button class="xchip" style="margin:0" onclick="goTab('daily','tools','duaCard')">🤲 My dua list →</button></div><p style="font-size:.78em;color:var(--ink2);margin-bottom:10px">Tap any dua to open it full-screen for reading in the Haram.</p><div id="duaContainer"></div></div>
   </div><div class="sub" id="sub-more-settings">
@@ -780,12 +855,14 @@ html[data-text='lg'] body{font-size:17px}
     <div class="setrow"><div><b>Text size</b><small>Larger text for duas, tips and the nav</small></div><div class="segmini" id="textSeg"><button class="on" data-t="" onclick="setText('')">Normal</button><button data-t="lg" onclick="setText('lg')">Large</button></div></div>
     <div class="setrow"><div><b>Swipe between sections</b><small>Swipe left/right to change sub-tabs</small></div><button class="sw on" id="swipeSw" role="switch" aria-checked="true" aria-label="Swipe between sections" onclick="togSwipe()"></button></div>
     <div class="setrow"><div><b>Trip length</b><small>How many days is your trip?</small></div><input type="number" class="numin" id="tripLen" min="3" max="30" onchange="setTripLen(this.value)" aria-label="Trip length in days"></div>
+    <div class="setrow"><div><b>I am a…</b><small>Shows only the ihram, packing and halq/taqsir steps that apply to you</small></div><div class="segmini" id="profSeg"><button data-p="m" onclick="setProfile('m')">Brother</button><button data-p="w" onclick="setProfile('w')">Sister</button><button class="on" data-p="" onclick="setProfile('')">Both</button></div></div>
+    <div class="setrow"><div><b>Travelling with children</b><small>Adds a children’s checklist to Plan › Prepare</small></div><button class="sw" id="kidsSw2" role="switch" aria-checked="false" aria-label="Travelling with children" onclick="togKids()"></button></div>
     <div class="setrow"><div><b>Your name</b><small>Printed on your certificate</small></div><input class="numin" style="width:130px;text-align:left" id="nameIn" placeholder="Name" aria-label="Your name" onchange="ST.name=this.value.trim();saveST();"></div>
     <div class="setrow"><div><b>🧭 Journey stage</b><small id="stageLbl">Re-declare where you are — nothing is reset</small></div><button class="chip-btn" onclick="showOnboard()">Change</button></div>
     <div class="setrow"><div><b>Share the app</b><small>Send it to your group before you fly</small></div><div style="display:flex;gap:6px"><button class="chip-btn" onclick="shareApp()">📤 Share</button><button class="chip-btn" onclick="showQR()">▦ QR</button></div></div>
     <div class="setrow" id="installRow" style="display:none"><div><b>Install app</b><small>Add to your home screen — works offline</small></div><button class="chip-btn" onclick="installApp()">📲 Install</button></div>
     <div class="setrow"><div><b>Check for updates</b><small>Version <span id="verLbl2"></span> · updates install automatically</small></div><button class="chip-btn" onclick="checkUpdates()">🔄 Check</button></div>
-    <div class="where">Where things are: Departure date → <a href="#" onclick="event.preventDefault();goTab('plan','prep','tlCard')">Plan › Prepare</a> · Prayer city &amp; reminders → <a href="#" onclick="event.preventDefault();goTab('daily','today')">Daily › Today</a> · Hotel → <a href="#" onclick="event.preventDefault();goTab('plan','prep','hotelCard')">Plan › Prepare</a> / <a href="#" onclick="event.preventDefault();goTab('places')">Places</a></div>
+    <div class="where">Where things are: Departure date → <a href="#" onclick="event.preventDefault();goTab('plan','prep','cdCard')">Plan › Prepare</a> · Prayer city &amp; reminders → <a href="#" onclick="event.preventDefault();goTab('daily','today')">Daily › Today</a> · Hotel → <a href="#" onclick="event.preventDefault();goTab('plan','prep','hotelCard')">Plan › Prepare</a> / <a href="#" onclick="event.preventDefault();goTab('places')">Places</a></div>
   </div>
 
   <div class="card card-pad"><h3>💾 Your data</h3>
@@ -828,12 +905,14 @@ html[data-text='lg'] body{font-size:17px}
 </nav>
 <canvas id="confetti" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:190;display:none"></canvas>
 <div class="focus" id="focus"><div class="focus-top"><span id="focusTitle">🕋 Tawaf</span><button class="chip-btn" onclick="exitFocus()">✕ Exit</button></div><div class="focus-tap" role="button" tabindex="0" aria-label="Tap to count one round" onclick="focusTap()"><div class="focus-n" id="focusN">0</div><div class="focus-of" id="focusOf">of 7 rounds</div><div class="focus-tip" id="focusTip"></div><div class="focus-hint">tap anywhere to count · screen stays awake</div></div><div class="focus-bot"><button class="chip-btn" onclick="cntr(focusKey,-1)">− Undo</button></div></div>
-<div class="focus driver" id="driver" onclick="this.classList.remove('on')"><div class="focus-top"><span>🚕 Please take me to my hotel</span><button class="chip-btn">✕ Close</button></div><div class="focus-tap" style="justify-content:flex-start;padding:10px 24px"><div class="drv-ar">من فضلك خذني إلى هذا الفندق</div><div class="drv-name" id="drvName">—</div><div class="drv-addr" id="drvAddr"></div><div class="drv-phone" id="drvPhone"></div><div class="focus-hint">tap anywhere to close</div></div></div>
+<div class="focus driver" id="driver" role="dialog" aria-modal="true" aria-label="Show to driver"><div class="focus-top"><span>🚕 Please take me to my hotel</span><button class="chip-btn" onclick="closeDriver()">✕ Close</button></div><div class="focus-tap lost-body" style="justify-content:flex-start;padding:10px 24px;cursor:default"><div class="drv-ar">من فضلك خذني إلى هذا الفندق</div><div class="drv-name" id="drvName">—</div><div class="drv-addr" id="drvAddr"></div><div class="drv-phone" id="drvPhone"></div><div class="drv-acts" id="drvActs"></div><div class="focus-hint" onclick="closeDriver()">tap here to close</div></div></div>
+<div class="focus driver" id="lost" role="dialog" aria-modal="true" aria-label="I am lost"><div class="focus-top"><span>🆘 I’m lost — please help</span><button class="chip-btn" onclick="closeLost()">✕ Close</button></div><div class="lost-body" id="lostBody"></div></div>
 <div class="sheet-o" id="obSheet" onclick="if(event.target===this)closeOnboard()"><div class="sheet">
   <button class="ob-x" onclick="closeOnboard()" aria-label="Close">✕</button>
   <div id="obStep1">
   <div class="sheet-h">🕋</div><h3>As-salamu alaykum</h3><p>Where are you on your Umrah journey? We'll take you straight to the right place.</p>
   <input class="srch" id="obName" placeholder="Your name (optional — for your certificate)" style="margin:0 0 8px" aria-label="Your name">
+  <div class="setrow"><div><b>I am a…</b><small>Tailors ihram, packing &amp; halq/taqsir steps</small></div><div class="segmini" id="obProf"><button data-p="m" onclick="setProfile('m')">Brother</button><button data-p="w" onclick="setProfile('w')">Sister</button><button class="on" data-p="" onclick="setProfile('')">Both</button></div></div>
   <div class="setrow"><div><b>Larger text</b><small>Easier to read without glasses</small></div><button class="sw" id="obText" role="switch" aria-checked="false" aria-label="Larger text" onclick="setText(ST.text==='lg'?'':'lg')"></button></div>
   <button class="opt" onclick="chooseStage('plan')"><span>🧳</span><b>Planning my trip<small>Checklists, countdown & knowledge</small></b></button>
   <button class="opt" onclick="chooseStage('soon')"><span>✈️</span><b>Flying soon<small>Learn the rites step by step, then quiz</small></b></button>
