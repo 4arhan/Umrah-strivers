@@ -1,6 +1,6 @@
 /* Umrah Strivers — offline service worker */
 /* Release note: bump APP_VERSION here AND at the top of app.js for every release. */
-var APP_VERSION = '4.8.0';
+var APP_VERSION = '4.9.0';
 var CACHE = 'umrah-strivers-' + APP_VERSION;
 var CORE = ['./', './index.html', './data.js', './app.js', './manifest.json'];
 var SHELL = ['/', '/index.html', '/app.js', '/data.js'];

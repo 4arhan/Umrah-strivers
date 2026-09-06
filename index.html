@@ -690,6 +690,78 @@ html[data-text='lg'] body{font-size:17px}
 .story-acts{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:8px}
 .story-acts .src{font-size:.72em;color:var(--ink3)}
 .fchips span.go{background:var(--gold-soft);color:var(--gold-ink);cursor:pointer}
+/* ─────────── Counters batch: live hero, wudu card, tips, nafl mode, hand-off, focus dua strip ─────────── */
+.cnt-sub{font-size:.78em;color:var(--ink2);margin-bottom:14px;line-height:1.5}
+.tapring,.focus-tap{touch-action:manipulation}
+.cnt .btn.undo{margin:14px auto 0;min-height:56px;max-width:300px;background:var(--card);color:var(--ink);border:1.5px solid var(--line);box-shadow:none;font-size:.95em}
+.cnt .btn.undo:disabled{opacity:.4}
+.cnt-tip{font-size:.84em;font-style:normal;margin-top:14px;max-width:320px}
+.tip-a{display:block;font-size:1.45em;font-weight:700;line-height:1.3;color:var(--ink);font-family:var(--fd)}
+.tip-h{display:block;font-weight:800;color:var(--brand-2);margin-top:4px;font-size:1.05em}
+.tip-r{display:block;margin-top:4px;color:var(--ink2);font-style:italic}
+.focus-tip{opacity:1;font-style:normal;max-width:330px;margin-top:18px}
+.focus-tip .tip-a{font-size:1.35em;color:#fff}
+.focus-tip .tip-h{color:#EFD494}
+.focus-tip .tip-r{opacity:.75;color:#fff}
+.cnt-dua{margin:12px auto 0;max-width:320px;text-align:left}
+.cnt-dua .dua{margin-top:0}
+.cnt-dua .dua .ar{font-size:1.7em}
+.cnt-acts{flex-wrap:wrap;margin-top:14px}
+.cnt-acts .btn.big{margin:0;flex:1 1 100%;max-width:300px}
+.cnt .lnk.reset{font-size:.76em;color:var(--ink3);text-decoration:underline dotted;margin-top:14px;display:inline-block;font-weight:600}
+.cnt-sum{display:none;align-items:center;gap:10px;text-align:left;font-size:.9em}
+.cnt-sum b{flex:1;min-width:0}
+.cnt-sum .chip-btn{flex-shrink:0}
+.cnt.compact{padding:14px 18px}
+.cnt.compact .cnt-body{display:none}
+.cnt.compact .cnt-sum{display:flex}
+.cnt-done{text-align:left;color:var(--ink)}
+.cnt-done h4{font-family:var(--fd);font-size:1.02em;color:var(--brand-2);margin-bottom:6px}
+.cnt-done p{font-weight:500;color:var(--ink2);font-size:.95em;line-height:1.5}
+.brg{display:flex;align-items:center;gap:10px;padding:9px 6px;border-radius:12px;cursor:pointer}
+.brg:active{background:var(--bg-soft)}
+.brg .tick{margin:0}
+.brg.done{opacity:.55}
+.brg.done .tick{background:var(--brand-2);border-color:var(--brand-2)}
+.brg.done .tick::after{content:'✓'}
+.brg span:last-child{flex:1;font-weight:600;color:var(--ink);line-height:1.4}
+.brg.done span:last-child{text-decoration:line-through}
+.cnt-done .btn{margin-top:10px}
+.cnt-done .dua{margin-top:6px}
+.cnt-done .lnk{font-size:.85em;margin-top:6px}
+.tmode{margin:0 auto 12px;width:max-content;max-width:100%}
+.wudu{cursor:pointer}
+.wudu .sw{display:inline-block}
+.wudu-st{display:block;font-size:.78em;font-weight:700;color:var(--gold-ink);margin-top:6px}
+.wudu.ok .wudu-st{color:var(--brand-2)}
+.sis-line{display:block;width:100%;margin:-4px 0 14px;font-size:.78em;color:var(--ink2);text-decoration:none;text-align:center;font-weight:600;padding:6px}
+.started .hero{padding:12px 16px}
+.started .hero .k{display:none}
+.started .hero .v{font-size:1.15em;margin:0 0 2px}
+.started .hero .ring-wrap,.started .hero .ring-wrap svg{width:60px;height:60px}
+.started .hero .ring-num{font-size:.9em}
+.started .hero .ring-num small{display:none}
+.started .wudu.ok{padding:8px 14px;min-height:44px}
+.started .wudu.ok .wudu-x{display:none}
+.started .wudu.ok .wudu-t b{font-size:.86em;display:inline}
+.started .wudu.ok .wudu-st{margin:0 0 0 6px;display:inline}
+.focus-n{font-size:9em}
+.focus-done{margin-top:20px;text-align:center;max-width:320px}
+.focus-done p{font-size:1em;opacity:.85;line-height:1.5}
+.focus-done .btn{min-height:64px;font-size:1.05em;margin-top:14px;background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#231803}
+.focus-done .chip-btn{margin-top:12px}
+.focus-dua{padding:8px 20px 4px;text-align:center;cursor:pointer;user-select:none;-webkit-user-select:none;border-top:1px solid rgba(255,255,255,.08)}
+.focus-dua .ar{display:block;font-size:1.9em;direction:rtl;font-family:var(--fd);line-height:1.8;color:#fff}
+.focus-dua .fd-s{display:block;font-size:.82em;opacity:.78;margin-top:4px;line-height:1.45}
+.focus-dua .fd-k{display:block;font-size:.62em;letter-spacing:1.4px;text-transform:uppercase;opacity:.45;margin-top:4px}
+.focus-bot{gap:10px;align-items:center}
+.focus-bot .btn.undo{margin:0;flex:1;min-height:56px;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);box-shadow:none}
+.focus .chip-btn.on{background:var(--brand-2);color:#08281B;border-color:var(--brand-2)}
+.xn{display:inline-block;font-size:.7em;font-weight:800;color:var(--gold-ink);background:var(--gold-soft);border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:middle}
+.sheet .brg{padding:10px 6px}
+.sheet .btn.tall{min-height:56px}
+.sheet ul{padding-left:20px;font-size:.88em;color:var(--ink2);line-height:1.6;margin:8px 0}
+.sheet .lead{text-align:left;font-size:.9em;color:var(--ink);margin:0 0 8px;line-height:1.55}
 </style>
 </head>
 <body>
@@ -789,22 +861,34 @@ html[data-text='lg'] body{font-size:17px}
   <div class="vh"><h2>Labbayk Allahumma</h2><p>Every step from miqat to halq — with counters that keep count for you.</p></div>
   <div class="seg" data-tab="umrah"><button class="on" data-sub="count" onclick="goSub('umrah','count')">🔄 Counters</button><button data-sub="steps" onclick="goSub('umrah','steps')">📋 Steps & duas</button></div>
   <div class="sub on" id="sub-umrah-count">
-  <div class="hero"><div class="hero-t"><div class="k">Umrah rites</div><div class="v" id="riteHeroT">Step by step</div><div class="s" id="riteHeroS">🕋 Umrahs completed: 0</div></div>
-    <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="riteRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="ritePct">0%</span><small>DONE</small></div></div></div>
+  <div class="hero" id="riteHero"><div class="hero-t"><div class="k">Umrah · live</div><div class="v" id="riteHeroT">Ready to begin</div><div class="s" id="riteHeroS">Ihram – · Tawaf – · Sa’i – · Halq –</div></div>
+    <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="riteRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="ritePct">0%</span><small>UMRAH</small></div></div></div>
 
   <div class="cnt-hd" id="cntHd"></div>
-  <div class="wudu" id="wuduCard"><div class="wudu-t"><b>💧 Wudu check — tawaf requires wudu</b><span>"Tawaf around the House is like salah" (Tirmidhi 960). Make wudu before you start; if it breaks mid-tawaf, renew it and continue.</span></div><button class="sw" id="wuduSw" role="switch" aria-checked="false" aria-label="I am in wudu" onclick="togWudu()"></button></div>
-  <div class="card cnt"><h3>🕋 Tawaf</h3><div class="sub">7 rounds, counter-clockwise, from the Black Stone line.<br><b>Tap the circle after each round.</b></div>
+  <div class="wudu" id="wuduCard" role="switch" tabindex="0" aria-checked="false" aria-label="I am in wudu" onclick="togWudu()"><div class="wudu-t"><b>💧 Wudu check — tawaf requires wudu</b><span class="wudu-x">"Tawaf around the House is like salah" (Tirmidhi 960). Make wudu before you start; if it breaks mid-tawaf, renew it and continue.</span><span class="wudu-st" id="wuduSt">Not yet — tap to confirm</span></div><span class="sw" id="wuduSw" aria-hidden="true"></span></div>
+  <button class="lnk sis-line" onclick="periodSheet()">🌸 Period started? Your ihram is still valid — what to do</button>
+  <div class="card cnt" id="tawafCard"><div class="cnt-sum" id="tawafSum"></div><div class="cnt-body">
+    <div class="segmini tmode" id="tmodeSeg" role="group" aria-label="Which tawaf are you counting?"><button class="on" data-m="umrah" onclick="setTmode('umrah')">🕋 Umrah tawaf</button><button data-m="nafl" onclick="setTmode('nafl')">🔁 Nafl tawaf</button></div>
+    <h3 id="tawafH">🕋 Tawaf</h3><div class="cnt-sub" id="tawafSub">7 rounds, counter-clockwise, from the Black Stone line.<br><b>Tap the circle after each round.</b></div>
     <div class="tapring" id="tawafRingBtn" role="button" tabindex="0" aria-label="Count a tawaf round, 0 of 7 done" onclick="cntr('tawaf',1)"><svg width="216" height="216" viewBox="0 0 216 216"><circle class="tr-bg" cx="108" cy="108" r="90"/><circle class="tr-seg" id="tawafRing" cx="108" cy="108" r="90"/></svg><div class="tr-mid" aria-live="polite" aria-atomic="true"><div class="n" id="tawafN">0</div><div class="of">of 7 rounds</div><div class="tap" id="tawafTap">tap to count</div></div></div>
+    <button class="btn undo" id="tawafUndo" onclick="cntr('tawaf',-1)">− Undo last round</button>
     <div class="cnt-tip" id="tawafTip"></div>
-    <div class="cnt-acts"><button class="chip-btn" onclick="event.stopPropagation();cntr('tawaf',-1)">− Undo</button><button class="chip-btn" onclick="cntrReset('tawaf')">Reset</button><button class="chip-btn" onclick="enterFocus('tawaf')">⛶ Focus</button></div>
-    <div class="cnt-done" id="tawafDone">✅ Tawaf complete — pray 2 rakahs behind Maqam Ibrahim</div></div>
+    <div class="cnt-dua" id="tawafDua"></div>
+    <div class="cnt-acts"><button class="btn big" onclick="enterFocus('tawaf')">⛶ Big counter</button><button class="chip-btn" onclick="goSteps('tawaf')">📋 Steps &amp; duas for this phase</button></div>
+    <div class="cnt-done" id="tawafDone"></div>
+    <button class="lnk reset" onclick="cntrReset('tawaf')">Reset tawaf to 0</button>
+  </div></div>
 
-  <div class="card cnt"><h3>⛰️ Sa'i</h3><div class="sub">7 laps — begin at Safa, finish at Marwah (Safa → Marwah = 1).<br><b>Tap the circle after each lap.</b></div>
+  <div class="card cnt" id="saiCard"><div class="cnt-sum" id="saiSum"></div><div class="cnt-body">
+    <h3>⛰️ Sa'i</h3><div class="cnt-sub">7 laps — begin at Safa, finish at Marwah (Safa → Marwah = 1).<br><b>Tap the circle after each lap.</b></div>
     <div class="tapring" id="saiRingBtn" role="button" tabindex="0" aria-label="Count a sa’i lap, 0 of 7 done" onclick="cntr('sai',1)"><svg width="216" height="216" viewBox="0 0 216 216"><circle class="tr-bg" cx="108" cy="108" r="90"/><circle class="tr-seg" id="saiRing" cx="108" cy="108" r="90"/></svg><div class="tr-mid" aria-live="polite" aria-atomic="true"><div class="n" id="saiN">0</div><div class="of">of 7 laps</div><div class="tap" id="saiTap">tap to count</div></div></div>
+    <button class="btn undo" id="saiUndo" onclick="cntr('sai',-1)">− Undo last lap</button>
     <div class="cnt-tip" id="saiTip"></div>
-    <div class="cnt-acts"><button class="chip-btn" onclick="event.stopPropagation();cntr('sai',-1)">− Undo</button><button class="chip-btn" onclick="cntrReset('sai')">Reset</button><button class="chip-btn" onclick="enterFocus('sai')">⛶ Focus</button></div>
-    <div class="cnt-done" id="saiDone">✅ Sa'i complete — proceed to halq / taqsir</div></div>
+    <div class="cnt-dua" id="saiDua"></div>
+    <div class="cnt-acts"><button class="btn big" onclick="enterFocus('sai')">⛶ Big counter</button><button class="chip-btn" onclick="goSteps('sai')">📋 Steps &amp; duas for this phase</button></div>
+    <div class="cnt-done" id="saiDone"></div>
+    <button class="lnk reset" onclick="cntrReset('sai')">Reset sa’i to 0</button>
+  </div></div>
 
   </div><div class="sub" id="sub-umrah-steps">
   <div class="sec shut"><div class="sec-hd" onclick="togSec(this)"><div class="sec-ico">🗺️</div><h2>The mataf — where everything is<small>Tap to open the schematic</small></h2><span class="sec-chev">▼</span></div><div class="sec-bd">
@@ -976,7 +1060,7 @@ html[data-text='lg'] body{font-size:17px}
 <button data-v="more" onclick="goTab('more')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.6"/><circle cx="5" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg><span class="l">More</span></button>
 </nav>
 <canvas id="confetti" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:190;display:none"></canvas>
-<div class="focus" id="focus"><div class="focus-top"><span id="focusTitle">🕋 Tawaf</span><button class="chip-btn" onclick="exitFocus()">✕ Exit</button></div><div class="focus-tap" role="button" tabindex="0" aria-label="Tap to count one round" onclick="focusTap()"><div class="focus-n" id="focusN">0</div><div class="focus-of" id="focusOf">of 7 rounds</div><div class="focus-tip" id="focusTip"></div><div class="focus-hint">tap anywhere to count · screen stays awake</div></div><div class="focus-bot"><button class="chip-btn" onclick="cntr(focusKey,-1)">− Undo</button></div></div>
+<div class="focus" id="focus" role="dialog" aria-modal="true" aria-label="Big counter"><div class="focus-top"><span id="focusTitle">🕋 Tawaf</span><div style="display:flex;gap:8px"><button class="chip-btn" id="focusWudu" onclick="focusWudu()" aria-pressed="false">💧 wudu</button><button class="chip-btn" onclick="exitFocus()">✕ Exit</button></div></div><div class="focus-tap" role="button" tabindex="0" aria-label="Tap to count one round" onclick="focusTap()"><div class="focus-n" id="focusN">0</div><div class="focus-of" id="focusOf">of 7 rounds</div><div class="focus-tip" id="focusTip"></div><div class="focus-hint" id="focusHint">tap anywhere to count</div><div class="focus-done" id="focusDone" hidden></div></div><div class="focus-dua" id="focusDua" role="button" tabindex="0" aria-label="Dua for this rite — tap for transliteration and meaning" onclick="event.stopPropagation();fdToggle()"></div><div class="focus-bot"><button class="btn undo" onclick="cntr(focusKey,-1)">− Undo</button><button class="chip-btn" onclick="myDuasSheet()">🤲 My duas</button></div></div>
 <div class="focus driver" id="driver" role="dialog" aria-modal="true" aria-label="Show to driver"><div class="focus-top"><span>🚕 Please take me to my hotel</span><button class="chip-btn" onclick="closeDriver()">✕ Close</button></div><div class="focus-tap lost-body" style="justify-content:flex-start;padding:10px 24px;cursor:default"><div class="drv-ar">من فضلك خذني إلى هذا الفندق</div><div class="drv-name" id="drvName">—</div><div class="drv-addr" id="drvAddr"></div><div class="drv-phone" id="drvPhone"></div><div class="drv-acts" id="drvActs"></div><div class="focus-hint" onclick="closeDriver()">tap here to close</div></div></div>
 <div class="focus driver" id="lost" role="dialog" aria-modal="true" aria-label="I am lost"><div class="focus-top"><span>🆘 I’m lost — please help</span><button class="chip-btn" onclick="closeLost()">✕ Close</button></div><div class="lost-body" id="lostBody"></div></div>
 <div class="sheet-o" id="obSheet" onclick="if(event.target===this)closeOnboard()"><div class="sheet">
