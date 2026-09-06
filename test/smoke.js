@@ -20,7 +20,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
 
   console.log('Home');
   check('opens on Home', (await page.getAttribute('.view.on', 'id')) === 'view-home');
-  check('greeting uses name', (await page.textContent('#homeArea h2')).includes('Test'));
+  check('explains the app + greets by name', (await page.textContent('.hhero h2')).includes('Umrah companion') && (await page.textContent('.hs-t')).includes('Test') && (await page.locator('.stage').count()) === 5);
   check('next prayer loaded', (await page.textContent('#hNext')).includes('in '));
   check('9 quick actions', (await page.locator('.qa').count()) === 9);
 

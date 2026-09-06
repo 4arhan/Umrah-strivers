@@ -415,18 +415,40 @@ function renderHome(){
   var hij=(ptData&&ptData.h)?ptData.h:hijriIntl();
   var greg=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
   var d=ST.dep?Math.ceil((new Date(ST.dep+'T00:00:00')-new Date())/86400000):null;
-  var phase,cta,pct,lbl;
-  if(ST.post){phase='🌱 Post-Umrah — keep it alive';cta=['Open habit keeper','more','guide'];var pd=postData||{};var c=0;Object.keys(pd).forEach(function(h){c+=Object.keys(pd[h]).filter(function(k){return pd[h][k];}).length;});pct=Math.min(100,Math.round(c/90*100));lbl=c+' habit-days logged';}
-  else if(d===null||d>0){var tot=0,done=0;PLAN.forEach(function(sc){sc.items.forEach(function(it){tot++;if(planChk[it.id])done++;});});pct=Math.round(done/tot*100);phase=d===null?'🧭 Planning — set your departure date':'✈️ '+d+' day'+(d===1?'':'s')+' until departure';cta=[pct<100?'Continue preparing':'Study & quiz','plan',pct<100?'prep':'learn'];lbl=done+' of '+tot+' prep items · '+qzPassedCount()+'/'+QUIZ_LEVELS.length+' quiz levels';}
-  else{pct=dayPct(ST.day)||0;phase='🕋 Day '+ST.day+' of '+ST.tripLen+' in the Haramain';cta=['Log today’s worship','daily','today'];lbl=pct+'% of today’s deeds · '+ST.umrahs+' Umrah'+(ST.umrahs===1?'':'s')+' completed';}
+  var phase,cta,pct,lbl,stageNow;
+  if(ST.post){phase='🌱 Post-Umrah — keep it alive';cta=['Open habit keeper','more','guide'];var pd=postData||{};var c=0;Object.keys(pd).forEach(function(h){c+=Object.keys(pd[h]).filter(function(k){return pd[h][k];}).length;});pct=Math.min(100,Math.round(c/90*100));lbl=c+' habit-days logged';stageNow=4;}
+  else if(d===null||d>0){var tot=0,done=0;PLAN.forEach(function(sc){sc.items.forEach(function(it){tot++;if(planChk[it.id])done++;});});pct=Math.round(done/tot*100);phase=d===null?'🧭 Planning — set your departure date':'✈️ '+d+' day'+(d===1?'':'s')+' until departure';cta=[pct<100?'Continue preparing':'Study & quiz','plan',pct<100?'prep':'learn'];lbl=done+' of '+tot+' prep items · '+qzPassedCount()+'/'+QUIZ_LEVELS.length+' quiz levels';stageNow=0;}
+  else{pct=dayPct(ST.day)||0;phase='🕋 Day '+ST.day+' of '+ST.tripLen+' in the Haramain';cta=['Log today’s worship','daily','today'];lbl=pct+'% of today’s deeds · '+ST.umrahs+' Umrah'+(ST.umrahs===1?'':'s')+' completed';stageNow=ST.umrahs?2:1;}
   var due=fcDue();var fcIdx0=due.length?due[0]:null;
+  var nh=0;[HISTORY,VIRTUES,MADINAH,FIQHQA,KNOW,SCAMS].forEach(function(x){nh+=x.length;});
+  var nq=0;QUIZ_LEVELS.forEach(function(l){nq+=l.qs.length;});
+  var stages=[
+    {i:'🧳',t:'Before you fly',s:'Prepare with ihsan',d:'Checklists for documents, packing and health, a departure countdown and a generated day-by-day itinerary. Then learn: the history of the Kaaba and Madinah, the virtues, the fiqh Q&A, a scam-awareness guide — and prove it in a 7-level quiz.',f:['Checklists','Itinerary','Knowledge hub','7-level quiz','Flashcards','Document vault'],go:['plan','prep'],c:'Start preparing'},
+    {i:'🕋',t:'During your Umrah',s:'Ihram → Tawaf → Sa’i → Halq',d:'A step-by-step walkthrough with every dua in Arabic, transliteration and audio, and a "Why?" behind each step. Giant tap counters for tawaf and sa’i with a full-screen focus mode so you never lose count, a map of the mataf, and an automatic timeline that becomes a keepsake.',f:['Rites guide','Duas + audio','Tawaf & Sa’i counters','Focus mode','Mataf map','Keepsake card'],go:['umrah','count'],c:'Open the rites guide'},
+    {i:'📿',t:'Every day in the Haramain',s:'Make every prayer count',d:'One prayer in the Haram is worth 100,000 — track all five in congregation, tahajjud, Quran, dhikr and extra deeds. Prayer times with reminders, a qibla compass, a tasbih counter, your personal dua list and a water counter, with streaks and achievements.',f:['Daily tracker','Prayer times','Qibla','Tasbih','Dua list','Streaks & badges'],go:['daily','today'],c:'Track today'},
+    {i:'📍',t:'Ziyarah with purpose',s:'51 places, Makkah & Madinah',d:'Every sacred and historic site with why it matters, an etiquette tip and one-tap Google Maps. Save your hotel to see walking distances, sort by what’s near you, plan a nearest-first route, and book the Madinah hop-on hop-off bus.',f:['51 sites','Maps & distances','Route planner','Hop-on hop-off'],go:['places',null],c:'Explore places'},
+    {i:'🌱',t:'After you return',s:'Don’t let it fade',d:'A 30-day habit keeper for prayers on time, daily Quran and dhikr, plus a reflections journal — so the person who came back from the Haram stays.',f:['Habit keeper','Reflections'],go:['more','guide'],c:'Keep it alive'}
+  ];
   var acts=[['🔄','Counters','umrah','count'],['📋','Rites','umrah','steps'],['📿','Tasbih','daily','tools'],['🧭','Qibla','daily','tools'],['📍','Places','places',null],['🤲','Duas','more','duas'],['🃏','Cards','plan','learn'],['🗓️','Itinerary','plan','prep'],['🔐','Vault','plan','prep']];
-  var h='<div class="vh"><h2>As-salamu alaykum'+name+'</h2><p>'+greg+' · '+hij+'</p></div>';
-  h+='<div class="hero" style="cursor:pointer" onclick="goTab(\''+cta[1]+'\');'+(cta[2]?'goSub(\''+cta[1]+'\',\''+cta[2]+'\',true);':'')+'"><div class="hero-t"><div class="k">Your journey</div><div class="v" style="font-size:1.2em">'+phase+'</div><div class="s">'+lbl+'</div><div class="hcta">'+cta[0]+' →</div></div><div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="hRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="hPct">'+pct+'%</span><small>'+(ST.post?'HABITS':(d===null||d>0)?'READY':'TODAY')+'</small></div></div></div>';
+  function goStr(g){return 'goTab(\''+g[0]+'\');'+(g[1]?'goSub(\''+g[0]+'\',\''+g[1]+'\',true);':'');}
+  var h='';
+  // 1. What this app is
+  h+='<div class="hhero"><div class="hhero-mark">🕋</div><h2>Your complete Umrah companion</h2><p>Everything you need <b>before, during and after</b> Umrah — in one free, private app that works offline in the Haram.</p><div class="trust"><span>✓ Free</span><span>✓ Works offline</span><span>✓ Private — no account</span><span>✓ Every hadith verified</span></div></div>';
+  // 2. Personal status
+  h+='<div class="hstatus" onclick="'+goStr([cta[1],cta[2]])+'"><div class="hs-t"><small>As-salamu alaykum'+name+' · '+greg+' · '+hij+'</small><b>'+phase+'</b><span>'+lbl+'</span></div><div class="hs-r"><div class="ring-wrap" style="width:64px;height:64px"><svg width="64" height="64" viewBox="0 0 92 92" style="width:64px;height:64px"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="hRing" cx="46" cy="46" r="38"/></svg><div class="ring-num" style="font-size:.9em"><span id="hPct">'+pct+'%</span></div></div><em>'+cta[0]+' →</em></div></div>';
+  // 3. Next prayer
   h+='<div class="card card-pad hprayer" onclick="goTab(\'daily\');goSub(\'daily\',\'today\',true)"><div class="hp-i">🕌</div><div class="hp-t"><small>Next prayer</small><div id="hNext">Loading…</div></div><span class="hp-go">›</span></div>';
-  h+='<div class="qa-grid">'+acts.map(function(x){return '<button class="qa" onclick="goTab(\''+x[2]+'\');'+(x[3]?'goSub(\''+x[2]+'\',\''+x[3]+'\',true);':'')+'"><span>'+x[0]+'</span>'+x[1]+'</button>';}).join('')+'</div>';
+  // 4. Journey stages
+  h+='<div class="vh" style="margin-top:8px"><h2 style="font-size:1.35em">How it works — your journey in 5 stages</h2><p>Tap a stage to jump in. The app follows you from your living room to the mataf and back.</p></div>';
+  h+='<div class="stages">'+stages.map(function(st,i){return '<div class="stage'+(i===stageNow?' now':'')+'" onclick="'+goStr(st.go)+'"><div class="stage-n">'+(i+1)+'</div><div class="stage-b"><div class="stage-h"><span class="stage-i">'+st.i+'</span><div><b>'+st.t+'</b><small>'+st.s+'</small></div>'+(i===stageNow?'<span class="nowtag">You are here</span>':'')+'</div><p>'+st.d+'</p><div class="fchips">'+st.f.map(function(f){return '<span>'+f+'</span>';}).join('')+'</div><div class="stage-cta">'+st.c+' →</div></div></div>';}).join('')+'</div>';
+  // 5. Numbers
+  h+='<div class="nums"><div><b>'+PLACES.length+'</b><small>sacred &amp; historic places</small></div><div><b>'+nq+'</b><small>quiz questions in '+QUIZ_LEVELS.length+' levels</small></div><div><b>'+nh+'</b><small>knowledge topics</small></div><div><b>'+DUAS.length+'</b><small>essential duas with audio</small></div></div>';
+  // 6. Quick tools
+  h+='<div class="vh" style="margin-top:6px"><h2 style="font-size:1.2em">Quick tools</h2></div>';
+  h+='<div class="qa-grid">'+acts.map(function(x){return '<button class="qa" onclick="'+goStr([x[2],x[3]])+'"><span>'+x[0]+'</span>'+x[1]+'</button>';}).join('')+'</div>';
   if(fcIdx0!==null)h+='<div class="card card-pad hfc" onclick="goTab(\'plan\');goSub(\'plan\',\'learn\',true)"><small>🃏 Today’s knowledge card · '+due.length+' due</small><b>'+FC_DECK[fcIdx0].f+'</b><span>Tap to study →</span></div>';
   h+='<div class="note" style="margin:0 0 12px">'+QUOTES[Math.floor(Date.now()/86400000)%QUOTES.length]+'</div>';
+  h+='<div class="card card-pad" style="text-align:center"><h3 style="margin-bottom:6px">Made for the Ummah</h3><p style="font-size:.84em;color:var(--ink2);line-height:1.6">Free, no ads, no tracking. The sister app of <a href="https://www.ramadanstrivers.com/" target="_blank" rel="noopener" style="color:var(--brand-2);font-weight:700;text-decoration:none">Ramadan Strivers</a>. Share it with anyone going to Umrah.</p><button class="btn ghost" onclick="shareApp()">📤 Share the app</button></div>';
   a.innerHTML=h;
   setTimeout(function(){setRing('hRing',pct);},50);
   loadPT();
