@@ -427,7 +427,7 @@ function renderHome(){
   var nh=0;[HISTORY,VIRTUES,MADINAH,FIQHQA,KNOW,SCAMS].forEach(function(x){nh+=x.length;});
   var nq=0;QUIZ_LEVELS.forEach(function(l){nq+=l.qs.length;});
   var stages=[
-    {i:'🧳',t:'Before you fly',s:'Prepare with ihsan',d:'Checklists for documents, packing and health, a departure countdown and a generated day-by-day itinerary. Then learn: the history of the Kaaba and Madinah, the virtues, the fiqh Q&A, a scam-awareness guide — and prove it in a 7-level quiz.',f:['Checklists','Itinerary','Knowledge hub','7-level quiz','Flashcards','Document vault'],go:['plan','prep'],c:'Start preparing'},
+    {i:'🧳',t:'Before you fly',s:'Prepare with ihsan',d:'Begin with your intention — then checklists for documents, packing and health, a departure countdown and a generated day-by-day itinerary. Then learn: the history of the Kaaba and Madinah, the virtues, the fiqh Q&A, a scam-awareness guide — and prove it in a 7-level quiz.',f:['Checklists','Itinerary','Knowledge hub','7-level quiz','Flashcards','Document vault'],go:['plan','prep'],c:'Start preparing'},
     {i:'🕋',t:'During your Umrah',s:'Ihram → Tawaf → Sa’i → Halq',d:'A step-by-step walkthrough with every dua in Arabic, transliteration and audio, and a "Why?" behind each step. Giant tap counters for tawaf and sa’i with a full-screen focus mode so you never lose count, a map of the mataf, and an automatic timeline that becomes a keepsake.',f:['Rites guide','Duas + audio','Tawaf & Sa’i counters','Focus mode','Mataf map','Keepsake card'],go:['umrah','count'],c:'Open the rites guide'},
     {i:'📿',t:'Every day in the Haramain',s:'Make every prayer count',d:'One prayer in the Haram is worth 100,000 — track all five in congregation, tahajjud, Quran, dhikr and extra deeds. Prayer times with reminders, a qibla compass, a tasbih counter, your personal dua list and a water counter, with streaks and achievements.',f:['Daily tracker','Prayer times','Qibla','Tasbih','Dua list','Streaks & badges'],go:['daily','today'],c:'Track today'},
     {i:'📍',t:'Ziyarah with purpose',s:'51 places, Makkah & Madinah',d:'Every sacred and historic site with why it matters, an etiquette tip and one-tap Google Maps. Save your hotel to see walking distances, sort by what’s near you, plan a nearest-first route, and book the Madinah hop-on hop-off bus.',f:['51 sites','Maps & distances','Route planner','Hop-on hop-off'],go:['places',null],c:'Explore places'},
@@ -534,6 +534,21 @@ function makeKeepsake(no){
   x.textAlign='center';x.font='italic 30px Georgia,serif';x.fillStyle='#EFD494';x.fillText('"Umrah to Umrah is an expiation for what is between them."',540,1140);
   x.font='24px Georgia,serif';x.fillStyle='rgba(255,255,255,.55)';x.fillText('Bukhari 1773 · umrah-strivers.vercel.app',540,1190);
   var a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='my-umrah-'+u.n+'.png';a.click();toast('🎴 Keepsake saved',true);
+}
+
+/* ════════════════════════ INTENTION ════════════════════════ */
+function saveNiyyah(){
+  var v=(document.getElementById('niyText').value||'').trim();
+  localStorage.setItem('us-niyyah',v);
+  var had=!!planChk['niyyah'];
+  if(v&&!had){planChk['niyyah']=true;save('us-plan',planChk);markPrepDay();toast('🤍 Intention set — may Allah accept it',true);vib([30,40,60]);}
+  if(!v&&had){planChk['niyyah']=false;save('us-plan',planChk);}
+  loadNiyyah();updPlan();chkBadges();
+}
+function loadNiyyah(){
+  var t=document.getElementById('niyText'),st=document.getElementById('niyStatus');if(!t)return;
+  var v=localStorage.getItem('us-niyyah')||'';if(document.activeElement!==t)t.value=v;
+  st.textContent=v?'✓ Intention set · '+v.split(/\s+/).length+' words — re-read it every morning of the trip.':'Write it down — it becomes your compass for the whole trip.';
 }
 
 /* ════════════════════════ PLAN TIMELINE · TILES · BUDGET · HOTEL ════════════════════════ */
@@ -1104,7 +1119,7 @@ function initUI(){
   document.getElementById('tripLen').value=ST.tripLen;
   var ni=document.getElementById('nameIn');if(ni)ni.value=ST.name||'';
   renderPlan();renderRites();renderDaily();renderPlaces();renderDuas();renderTB();
-  buildDeck();renderFC();renderPost();updRemSw();applySubs();updChip();renderItin();renderVault();renderDuaList();renderWater();updHotelLbl();renderBudget();loadHotelInfo();
+  buildDeck();renderFC();renderPost();updRemSw();applySubs();updChip();renderItin();renderVault();renderDuaList();renderWater();updHotelLbl();renderBudget();loadHotelInfo();loadNiyyah();
   if(!ST.onboarded)setTimeout(showOnboard,400);
   var kb=document.getElementById('kidsBest'),kbv=localStorage.getItem('us-kids');if(kb&&kbv)kb.textContent=kbv+'/'+KIDSQ.length;
   var cm=document.getElementById('cityMakkah'),cd=document.getElementById('cityMadinah');

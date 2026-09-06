@@ -42,6 +42,7 @@ var PLAN=[
 {id:'hygiene',wk:1,label:'Hand sanitiser & masks packed',exp:'The "Umrah flu" is real — prevention keeps your worship strong.'}
 ]},
 {id:'knowledge',ico:'🧠',title:'Knowledge & spirit',items:[
+{id:'niyyah',wk:10,label:'Set my intention & spiritual goals for this Umrah',exp:'Write it at the top of the Plan tab — the journey begins in the heart, not at the airport.'},
 {id:'learn',wk:4,label:'Learned the Umrah rites step by step',exp:'Review the Umrah tab of this app until each step feels familiar.'},
 {id:'talbiyah',wk:3,label:'Memorised the talbiyah',exp:'Labbayk Allahumma labbayk — see the Duas section in More.'},
 {id:'tawbah',wk:1,label:'Sincere tawbah (repentance) made',exp:'Arrive with a clean heart — resolve to leave sins behind.'},

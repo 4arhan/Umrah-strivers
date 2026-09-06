@@ -459,6 +459,19 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .drv-addr{font-size:1.35em;text-align:center;margin-top:14px;line-height:1.45;color:#333}
 .drv-phone{font-size:1.4em;font-weight:700;text-align:center;margin-top:16px;color:#0E3B2E}
 .driver .focus-hint{color:#999;margin-top:40px}
+.niy{background:linear-gradient(160deg,#0B1F2A 0%,#0E3B2E 55%,#12302A 100%);color:#fff;border-radius:var(--r-lg);padding:20px 18px;margin-bottom:14px;box-shadow:var(--sh-lg);border:1px solid rgba(217,180,94,.3);position:relative;overflow:hidden}
+.niy::after{content:'۞';position:absolute;right:-10px;top:-18px;font-size:6em;opacity:.06;line-height:1}
+.niy-k{font-size:.66em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#D9B45E;opacity:.9}
+.niy h3{font-family:var(--fd);font-size:1.35em;font-weight:700;margin:4px 0 6px;color:#fff}
+.niy-p{font-size:.84em;opacity:.8;line-height:1.55;margin-bottom:14px}
+.niy-b{padding:12px 0;border-top:1px solid rgba(255,255,255,.1)}
+.niy-b b{display:block;font-family:var(--fd);font-size:1.02em;color:#EFD494;margin-bottom:4px;font-weight:600}.niy-b b i{font-weight:400;opacity:.85}
+.niy-b p{font-size:.84em;line-height:1.6;opacity:.88}
+.niy-b .chip-btn{margin-top:8px;background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.2);box-shadow:none}
+.niy-l{display:block;font-size:.72em;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:#D9B45E;margin-top:14px}
+.niy-t{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#fff;margin-top:6px;min-height:96px}
+.niy-t::placeholder{color:rgba(255,255,255,.4)}
+.niy-s{font-size:.76em;opacity:.7;margin-top:8px;font-style:italic}
 .hcta{display:inline-block;margin-top:10px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);padding:6px 12px;border-radius:999px;font-size:.78em;font-weight:700}
 .hprayer{display:flex;align-items:center;gap:12px;cursor:pointer;padding:14px 16px}
 .hp-i{width:42px;height:42px;border-radius:14px;background:var(--brand-soft);display:flex;align-items:center;justify-content:center;font-size:1.3em;flex-shrink:0}
@@ -531,6 +544,13 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
   <div class="sub on" id="sub-plan-prep">
   <div class="hero"><div class="hero-t"><div class="k">Preparation</div><div class="v" id="planHeroT">Let's get ready</div><div class="s" id="planHeroS">Checklists, essential knowledge & a readiness quiz</div></div>
     <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="planRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="planPct">0%</span><small>READY</small></div></div></div>
+  <div class="niy"><div class="niy-k">Begin here</div><h3>Before the checklist — the intention</h3><p class="niy-p">Umrah is answered by the heart before it is booked by the hands. Three foundations, then everything else.</p>
+    <div class="niy-b"><b>1 · The Intention <i>(Niyyah)</i></b><p>Define your specific spiritual goals for this journey — what you are asking Allah for, what you want to leave behind. "Umrah to Umrah is an expiation for what is between them" (Bukhari 1773) — minor sins; major sins need sincere tawbah. Go purely for Allah, not for the photos.</p></div>
+    <div class="niy-b"><b>2 · The Knowledge <i>(Fiqh)</i></b><p>Learning the rituals is mandatory. Do not obsess over the hotel and forget the rules of the worship. The Learn and Quiz tabs exist for this — finish the circuit before you fly.</p><button class="chip-btn" onclick="goSub('plan','learn')">📚 Start learning</button></div>
+    <div class="niy-b"><b>3 · The Detachment</b><p>Cut ties with worldly distractions before departure — markets, debates, idle talk, the scroll. Settle debts, seek forgiveness from people, write your will, and travel light in the heart.</p></div>
+    <label class="niy-l" for="niyText">✍️ My intention &amp; spiritual goals</label>
+    <textarea class="pnotes niy-t" id="niyText" placeholder="O Allah, I am going to Your House for… I ask You for… I want to return as someone who…" onchange="saveNiyyah()"></textarea>
+    <div class="niy-s" id="niyStatus">Write it down — it becomes your compass for the whole trip.</div></div>
   <div class="cd2"><div class="cd2-l"><div class="cd2-n" id="cdNum">—</div><div class="cd2-u" id="cdU">days</div></div><div class="cd2-r"><b id="cdT">Departure countdown</b><span id="cdS">Set your date and watch the days melt away</span><input type="date" id="depDate" onchange="setDep(this.value)"><span id="cdW" style="margin-top:6px;font-size:.74em;color:var(--gold-ink)"></span></div></div>
   <div class="card card-pad" id="tlCard"><h3>⏳ What to do when</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px" id="tlSub">Set your departure date to get a dated to-do timeline.</p><div id="tlArea"></div></div>
   <div class="stat4" id="catTiles"></div>
