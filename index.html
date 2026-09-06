@@ -9,7 +9,12 @@
 <meta name="theme-color" content="#0E3B2E">
 <meta name="description" content="Umrah Strivers — plan, learn, perform & track your Umrah. Places to visit, rites walkthrough, tawaf counter & daily worship tracker.">
 <title>Umrah Strivers</title>
-<link rel="manifest" href="data:application/json,%7B%22name%22%3A%22Umrah%20Strivers%22%2C%22short_name%22%3A%22Umrah%22%2C%22description%22%3A%22Plan%20and%20track%20your%20Umrah%20journey%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230E3B2E%22%2C%22theme_color%22%3A%22%230E3B2E%22%2C%22orientation%22%3A%22portrait%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%2520viewBox%3D%270%25200%2520100%2520100%27%253E%253Crect%2520fill%3D%27%25230E3B2E%27%2520width%3D%27100%27%2520height%3D%27100%27%2520rx%3D%2722%27%2F%253E%253Ctext%2520x%3D%2750%27%2520y%3D%2768%27%2520font-size%3D%2755%27%2520text-anchor%3D%27middle%27%253E%25F0%259F%2595%258B%253C%2Ftext%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+<link rel="manifest" href="manifest.json">
+<meta property="og:title" content="Umrah Strivers">
+<meta property="og:description" content="Plan, learn, perform & track your Umrah — rites walkthrough, tawaf counter, prayer times, qibla, ziyarah places & daily worship tracker.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://umrah-strivers.vercel.app/">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -274,6 +279,42 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .foot{text-align:center;color:var(--ink3);font-size:.78em;line-height:1.8;padding:26px 12px 8px}
 .foot .d{font-family:var(--fd);font-style:italic;font-size:1.15em;color:var(--gold);margin-bottom:6px}
 .foot a{color:var(--brand-2);text-decoration:none;font-weight:600}
+
+/* ─────────── prayer times ─────────── */
+.pt-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.pt-next{font-size:.84em;color:var(--ink2)}
+.pt-next b{color:var(--gold);font-weight:800}
+.pt-hijri{font-size:.74em;color:var(--ink3);margin-top:2px}
+.pills.sm{margin:0}.pills.sm .pill{flex:none;padding:7px 14px;font-size:.72em}
+.pt-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:12px}
+.pt{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-sm);padding:9px 2px;text-align:center}
+.pt.next{border-color:var(--gold);background:var(--gold-soft)}
+.pt .pn{font-size:.6em;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--ink3)}
+.pt .pv{font-size:.8em;font-weight:700;margin-top:2px}
+.pt.next .pv{color:var(--gold)}
+.pt-note{font-size:.7em;color:var(--ink3);margin-top:8px;text-align:right}
+
+/* ─────────── tasbih ─────────── */
+.tb-chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:10px;scrollbar-width:none}
+.tb-chips::-webkit-scrollbar{display:none}
+.tb-chip{white-space:nowrap;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink2);font-size:.76em;font-weight:700;cursor:pointer;font-family:var(--fb);transition:all .2s;flex-shrink:0}
+.tb-chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+[data-theme="dark"] .tb-chip.on{background:var(--brand-2);border-color:var(--brand-2);color:#08281B}
+.tb-btn{width:168px;height:168px;border-radius:50%;margin:8px auto 4px;background:linear-gradient(150deg,var(--brand),#0B2E24);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--sh-lg);user-select:none;transition:transform .1s}
+[data-theme="dark"] .tb-btn{background:linear-gradient(150deg,#13402F,#0B241C)}
+.tb-btn:active{transform:scale(.94)}
+.tb-btn .n{font-family:var(--fd);font-size:3em;font-weight:700;line-height:1}
+.tb-btn .t{font-size:.62em;opacity:.6;letter-spacing:1.4px;text-transform:uppercase;margin-top:5px}
+.tb-meta{display:flex;justify-content:center;align-items:center;gap:12px;margin-top:10px;font-size:.8em;color:var(--ink2)}
+.tb-meta b{color:var(--gold)}
+
+/* ─────────── qibla ─────────── */
+.qb-dial{width:196px;height:196px;border-radius:50%;border:2px solid var(--line);margin:12px auto;position:relative;background:radial-gradient(circle at 50% 50%,var(--bg) 55%,var(--bg-soft))}
+.qb-n{position:absolute;top:6px;left:50%;transform:translateX(-50%);font-size:.68em;font-weight:800;color:var(--danger)}
+.qb-needle{position:absolute;left:50%;top:50%;width:4px;height:74px;background:linear-gradient(var(--gold),transparent);transform-origin:bottom center;transform:translate(-50%,-100%) rotate(0deg);border-radius:4px;transition:transform .15s}
+.qb-needle::before{content:'🕋';position:absolute;top:-24px;left:50%;transform:translateX(-50%);font-size:20px}
+.qb-deg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:1.05em;color:var(--ink2);pointer-events:none;padding-top:66px}
+.qb-status{text-align:center;font-size:.8em;color:var(--ink2);line-height:1.55}
 </style>
 </head>
 <body>
@@ -328,6 +369,9 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 <div class="view" id="view-daily">
   <div class="vh"><h2>Maximise every day</h2><p>Every prayer here is multiplied — don't let a single day drift.</p></div>
   <div class="daynav"><button onclick="changeDay(-1)" aria-label="Previous day">◀</button><div class="dd" id="dayDisp">Day 1<small>of 10</small></div><button onclick="changeDay(1)" aria-label="Next day">▶</button></div>
+  <div class="card card-pad"><div class="pt-top"><div><h3 style="margin-bottom:2px">🕌 Prayer times</h3><div class="pt-next" id="ptNext">Loading…</div><div class="pt-hijri" id="ptHijri"></div></div>
+    <div class="pills sm"><button class="pill on" id="cityMakkah" onclick="setCity('Makkah')">Makkah</button><button class="pill" id="cityMadinah" onclick="setCity('Madinah')">Madinah</button></div></div>
+    <div class="pt-grid" id="ptGrid"></div><div class="pt-note" id="ptNote">Umm al-Qura · local Makkah/Madinah time</div></div>
   <div class="hero"><div class="hero-t"><div class="k">Today's worship</div><div class="v" id="dHeroT">Bismillah</div><div class="s" id="dHeroS">0 of 0 completed · 0 pts</div></div>
     <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="dRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="dPct">0%</span><small>TODAY</small></div></div></div>
   <div class="stat4">
@@ -337,6 +381,10 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
     <div class="st" id="skTawaf"><div class="i">🕋</div><div class="n" id="skTawafN">0</div><div class="l">Tawaf</div></div>
   </div>
   <div id="dailyContainer"></div>
+  <div class="card card-pad" style="text-align:center"><h3>📿 Tasbih counter</h3>
+    <div class="tb-chips" id="tbChips"></div>
+    <div class="tb-btn" onclick="tbTap()"><div class="n" id="tbN">0</div><div class="t">of <span id="tbTarget">33</span> · tap</div></div>
+    <div class="tb-meta"><span>Today: <b id="tbToday">0</b></span><button class="chip-btn" onclick="tbReset()">Reset cycle</button></div></div>
   <div class="card card-pad"><h3>🟩 Trip consistency</h3><div class="heat" id="heatGrid"></div></div>
   <div class="card card-pad"><h3>📈 Trip stats</h3>
     <div class="kv"><span>Days logged</span><b id="stDays">0</b></div>
@@ -369,6 +417,12 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
     <div class="acc" onclick="this.classList.toggle('open')"><div class="acc-h">🔒 Privacy & data <span class="acc-c">▶</span></div><div class="acc-b">Everything lives on your device only — no accounts, no servers, no tracking. Export a backup anytime; the app works offline in the crowded Haram where signal drops.</div></div>
   </div></div>
 
+  <div class="card card-pad"><h3>🧭 Qibla compass</h3>
+    <p style="font-size:.82em;color:var(--ink2)">Find the direction of the Kaaba from wherever you are.</p>
+    <div class="qb-dial"><span class="qb-n">N</span><div class="qb-needle" id="qbNeedle"></div><div class="qb-deg" id="qbDeg">—</div></div>
+    <div class="qb-status" id="qbStatus">Tap start and allow location & motion access.</div>
+    <button class="btn ghost" onclick="startQibla()">🧭 Start compass</button></div>
+
   <div class="card card-pad"><h3>🤲 Essential duas</h3><div id="duaContainer"></div></div>
 
   <div class="card card-pad"><h3>🔗 Helpful resources</h3>
@@ -383,6 +437,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
   <div class="card card-pad"><h3>⚙️ Settings</h3>
     <div class="setrow"><div><b>Dark mode</b><small>Easier on the eyes at night</small></div><button class="sw" id="dmTgl" onclick="toggleTheme()"></button></div>
     <div class="setrow"><div><b>Trip length</b><small>How many days is your trip?</small></div><input type="number" class="numin" id="tripLen" min="3" max="30" onchange="setTripLen(this.value)"></div>
+    <div class="setrow" id="installRow" style="display:none"><div><b>Install app</b><small>Add to your home screen — works offline</small></div><button class="chip-btn" onclick="installApp()">📲 Install</button></div>
   </div>
 
   <div class="card card-pad"><h3>💾 Your data</h3>
@@ -391,7 +446,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
     <input type="file" id="impFile" accept=".json" onchange="importData(event)" style="display:none">
     <button class="btn danger" onclick="confirmReset()">🗑️ Reset everything</button>
   </div>
-  <div style="text-align:center;color:var(--ink3);font-size:.78em;line-height:1.7;padding:8px 0"><b style="color:var(--ink2)">Umrah Strivers</b> · v2.0<br>Free · Offline · Private · No ads</div>
+  <div style="text-align:center;color:var(--ink3);font-size:.78em;line-height:1.7;padding:8px 0"><b style="color:var(--ink2)">Umrah Strivers</b> · v2.1<br>Free · Offline · Private · No ads</div>
 </div>
 
 <div class="foot"><div class="d">May Allah invite you to His House and accept your Umrah. 🕋</div>For corrections, suggestions &amp; feedback<br>reach out to <a href="mailto:m.farhan.bava@gmail.com">Farhan</a><br><span style="font-size:.9em;opacity:.6">Built with ❤️ for the Ummah</span></div>
@@ -592,7 +647,8 @@ var BADGES=[
 {id:'nightHaram',name:'Night in the Haram',icon:'🌙'}];
 
 /* ════════════════════════ STATE ════════════════════════ */
-var ST={day:1,tripLen:10,theme:'light',tab:'plan',dep:'',umrahs:0,tawaf:0,sai:0,quizBest:0};
+var ST={day:1,tripLen:10,theme:'light',tab:'plan',dep:'',umrahs:0,tawaf:0,sai:0,quizBest:0,city:'Makkah'};
+var tasbih={};
 var planChk={},riteChk={},dailyChk={},placeVis={},earned={};
 
 function loadAll(){
@@ -603,6 +659,7 @@ function loadAll(){
     dailyChk=JSON.parse(localStorage.getItem('us-daily')||'{}');
     placeVis=JSON.parse(localStorage.getItem('us-places')||'{}');
     earned=JSON.parse(localStorage.getItem('us-badges')||'{}');
+    tasbih=JSON.parse(localStorage.getItem('us-tasbih')||'{}');
   }catch(e){}
 }
 function saveST(){localStorage.setItem('us-settings',JSON.stringify(ST));}
@@ -619,7 +676,7 @@ function goTab(t){ST.tab=t;saveST();
   document.querySelectorAll('.view').forEach(function(e){e.classList.remove('on');});
   document.getElementById('view-'+t).classList.add('on');
   document.querySelectorAll('.nav button').forEach(function(e){e.classList.toggle('on',e.getAttribute('data-v')===t);});
-  if(t==='daily'){updDaily();updStats();}
+  if(t==='daily'){updDaily();updStats();loadPT();renderTB();}
   if(t==='places')updPlaces();
   if(t==='umrah')updRites();
   if(t==='plan')updPlan();
@@ -768,7 +825,7 @@ function dayPct(n){
   var tot=0,done=0;DAILY.forEach(function(s){s.items.forEach(function(it){tot++;if(d[it.id])done++;});});
   return Math.round(done/tot*100);
 }
-function updDaily(){
+function updDaily(){renderTB();
   document.getElementById('dayDisp').innerHTML='Day '+ST.day+'<small>of '+ST.tripLen+'</small>';
   var d=dailyChk[dayKey()]||{};var tot=0,done=0,pts=0;
   DAILY.forEach(function(sec){var sd=0;sec.items.forEach(function(it){tot++;var on=!!d[it.id];if(on){done++;sd++;pts+=it.pts;}
@@ -896,16 +953,149 @@ function confirmReset(){
   location.reload();
 }
 
+/* ════════════════════════ PRAYER TIMES ════════════════════════ */
+var PT_NAMES=['Fajr','Dhuhr','Asr','Maghrib','Isha'];
+var ptData=null,ptTimer=null,ptStale=false;
+function setCity(c){ST.city=c;saveST();document.getElementById('cityMakkah').classList.toggle('on',c==='Makkah');document.getElementById('cityMadinah').classList.toggle('on',c==='Madinah');loadPT();}
+function riyadhNow(){try{return new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Riyadh'}));}catch(e){return new Date();}}
+function hijriIntl(){try{return new Intl.DateTimeFormat('en-u-ca-islamic-umalqura',{day:'numeric',month:'long',year:'numeric'}).format(new Date());}catch(e){return '';}}
+function loadPT(){
+  var city=ST.city||'Makkah';
+  var today=riyadhNow();var dk=today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  var cache={};try{cache=JSON.parse(localStorage.getItem('us-ptcache')||'{}');}catch(e){}
+  var ck=city+'|'+dk;
+  if(cache[ck]){ptData=cache[ck];ptStale=false;renderPT();return;}
+  renderPTLoading();
+  var ctrl=('AbortController' in window)?new AbortController():null;
+  if(ctrl)setTimeout(function(){ctrl.abort();},8000);
+  fetch('https://api.aladhan.com/v1/timingsByCity?city='+city+'&country=Saudi%20Arabia&method=4',ctrl?{signal:ctrl.signal}:{})
+  .then(function(r){return r.json();})
+  .then(function(j){
+    var t=j.data.timings,h=j.data.date.hijri;
+    ptData={t:{Fajr:t.Fajr,Dhuhr:t.Dhuhr,Asr:t.Asr,Maghrib:t.Maghrib,Isha:t.Isha},h:h.day+' '+h.month.en+' '+h.year+' AH'};
+    ptStale=false;
+    var nc={};nc[ck]=ptData;localStorage.setItem('us-ptcache',JSON.stringify(nc));
+    renderPT();
+  }).catch(function(){
+    // offline: fall back to the most recent cached times for this city, marked stale
+    ptData=null;ptStale=false;
+    Object.keys(cache).forEach(function(k){if(k.indexOf(city+'|')===0){ptData=cache[k];ptStale=true;}});
+    renderPT();
+  });
+}
+function renderPTLoading(){var n=document.getElementById('ptNext');if(n)n.textContent='Loading times…';}
+function renderPT(){
+  var g=document.getElementById('ptGrid'),nx=document.getElementById('ptNext'),hj=document.getElementById('ptHijri');
+  if(!g)return;
+  hj.textContent=(ptData&&ptData.h)?ptData.h:hijriIntl();
+  if(!ptData){g.innerHTML='';nx.textContent='Times unavailable offline — reconnect to load.';return;}
+  var note=document.getElementById('ptNote');if(note)note.textContent=(ptStale?'Cached times · reconnect to refresh · ':'')+'Umm al-Qura · local Makkah/Madinah time';
+  var now=riyadhNow(),nowMin=now.getHours()*60+now.getMinutes();
+  var nextName=null,nextMin=null;
+  var h='';
+  PT_NAMES.forEach(function(nm){
+    var v=(ptData.t[nm]||'').split(' ')[0];
+    var parts=v.split(':'),m=parseInt(parts[0])*60+parseInt(parts[1]);
+    if(nextName===null&&m>nowMin){nextName=nm;nextMin=m;}
+    h+='<div class="pt" id="pt-'+nm+'"><div class="pn">'+nm+'</div><div class="pv">'+v+'</div></div>';
+  });
+  g.innerHTML=h;
+  if(nextName===null){
+    var f=(ptData.t.Fajr||'').split(' ')[0].split(':');
+    nextName='Fajr';nextMin=(parseInt(f[0])*60+parseInt(f[1]))+1440;
+  }
+  var el=document.getElementById('pt-'+nextName);if(el)el.classList.add('next');
+  var diff=nextMin-nowMin,hh=Math.floor(diff/60),mm=diff%60;
+  nx.innerHTML='Next: <b>'+nextName+'</b> in '+(hh>0?hh+'h ':'')+mm+'m';
+  if(ptTimer)clearInterval(ptTimer);
+  ptTimer=setInterval(function(){if(document.getElementById('view-daily').classList.contains('on'))renderPT_tick();},30000);
+}
+function renderPT_tick(){if(ptData)renderPT();}
+
+/* ════════════════════════ TASBIH ════════════════════════ */
+var TB_PHRASES=['SubhanAllah','Alhamdulillah','Allahu Akbar','La ilaha illallah','Astaghfirullah','Salawat ﷺ'];
+var tbPhrase=0,tbCount=0,tbTargetN=33;
+function renderTB(){
+  var c=document.getElementById('tbChips');if(!c)return;
+  var h='';TB_PHRASES.forEach(function(ph,i){h+='<button class="tb-chip'+(i===tbPhrase?' on':'')+'" onclick="tbSet('+i+')">'+ph+'</button>';});
+  c.innerHTML=h;
+  document.getElementById('tbN').textContent=tbCount;
+  document.getElementById('tbTarget').textContent=tbTargetN;
+  document.getElementById('tbToday').textContent=tasbih[dayKey()]||0;
+}
+function tbSet(i){tbPhrase=i;tbCount=0;renderTB();}
+function tbTap(){
+  tbCount++;tasbih[dayKey()]=(tasbih[dayKey()]||0)+1;save('us-tasbih',tasbih);
+  if(tbCount>=tbTargetN){
+    vib([40,60,100]);toast('✨ '+TB_PHRASES[tbPhrase]+' ×'+tbTargetN+' complete');
+    tbCount=0;tbPhrase=(tbPhrase+1)%TB_PHRASES.length;
+  }else vib(12);
+  var d=dailyChk[dayKey()]||{};
+  if((tasbih[dayKey()]||0)>=100&&!d.dhikr100){d.dhikr100=true;dailyChk[dayKey()]=d;save('us-daily',dailyChk);toast('📿 100 dhikr today — checklist updated!');updDaily();updStats();chkBadges();}
+  renderTB();
+}
+function tbReset(){tbCount=0;renderTB();}
+
+/* ════════════════════════ QIBLA ════════════════════════ */
+var KAABA={lat:21.4225,lng:39.8262};
+var qbBearing=null;
+function qbCalc(lat,lng){
+  var φ1=lat*Math.PI/180,φ2=KAABA.lat*Math.PI/180,Δλ=(KAABA.lng-lng)*Math.PI/180;
+  var y=Math.sin(Δλ)*Math.cos(φ2);
+  var x=Math.cos(φ1)*Math.sin(φ2)-Math.sin(φ1)*Math.cos(φ2)*Math.cos(Δλ);
+  return (Math.atan2(y,x)*180/Math.PI+360)%360;
+}
+function qbSetNeedle(deg){var n=document.getElementById('qbNeedle');if(n)n.style.transform='translate(-50%,-100%) rotate('+deg+'deg)';}
+function startQibla(){
+  var st=document.getElementById('qbStatus');
+  if(!navigator.geolocation){st.textContent='Location not supported on this device.';return;}
+  st.textContent='Locating…';
+  navigator.geolocation.getCurrentPosition(function(pos){
+    qbBearing=Math.round(qbCalc(pos.coords.latitude,pos.coords.longitude));
+    document.getElementById('qbDeg').textContent=qbBearing+'°';
+    qbSetNeedle(qbBearing);
+    st.innerHTML='Qibla is <b>'+qbBearing+'°</b> from North. Starting compass…';
+    startCompass(st);
+  },function(){st.textContent='Location denied — enable it in your browser settings and retry.';});
+}
+function startCompass(st){
+  function onOri(e){
+    var heading=null;
+    if(typeof e.webkitCompassHeading==='number')heading=e.webkitCompassHeading;
+    else if(e.absolute&&typeof e.alpha==='number')heading=360-e.alpha;
+    if(heading===null||qbBearing===null)return;
+    qbSetNeedle(qbBearing-heading);
+    st.innerHTML='Rotate until the 🕋 points straight up — that\'s the qibla.';
+  }
+  if(typeof DeviceOrientationEvent!=='undefined'&&typeof DeviceOrientationEvent.requestPermission==='function'){
+    DeviceOrientationEvent.requestPermission().then(function(p){
+      if(p==='granted')window.addEventListener('deviceorientation',onOri);
+      else st.innerHTML='Compass denied — face North yourself, then turn <b>'+qbBearing+'°</b> clockwise.';
+    }).catch(function(){st.innerHTML='No compass — face North, then turn <b>'+qbBearing+'°</b> clockwise.';});
+  }else if('ondeviceorientationabsolute' in window){window.addEventListener('deviceorientationabsolute',onOri);}
+  else if(window.DeviceOrientationEvent){window.addEventListener('deviceorientation',onOri);}
+  else st.innerHTML='No compass sensor — face North, then turn <b>'+qbBearing+'°</b> clockwise.';
+}
+
+/* ════════════════════════ PWA INSTALL + SW ════════════════════════ */
+var deferPrompt=null;
+window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferPrompt=e;var r=document.getElementById('installRow');if(r)r.style.display='flex';});
+function installApp(){if(deferPrompt){deferPrompt.prompt();deferPrompt=null;var r=document.getElementById('installRow');if(r)r.style.display='none';}}
+
 /* ════════════════════════ INIT ════════════════════════ */
 function initUI(){
   applyTheme();
   document.getElementById('quoteLine').textContent=QUOTES[Math.floor(Math.random()*QUOTES.length)];
   document.getElementById('tripLen').value=ST.tripLen;
-  renderPlan();renderRites();renderDaily();renderPlaces();renderDuas();
+  renderPlan();renderRites();renderDaily();renderPlaces();renderDuas();renderTB();
+  var cm=document.getElementById('cityMakkah'),cd=document.getElementById('cityMadinah');
+  if(cm){cm.classList.toggle('on',(ST.city||'Makkah')==='Makkah');cd.classList.toggle('on',ST.city==='Madinah');}
   updPlan();updRites();updDaily();updPlaces();updStats();renderBadges();
   goTab(ST.tab&&document.getElementById('view-'+ST.tab)?ST.tab:'plan');
 }
-document.addEventListener('DOMContentLoaded',function(){loadAll();initUI();});
+document.addEventListener('DOMContentLoaded',function(){loadAll();initUI();
+  if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js').catch(function(){});
+});
 </script>
 </body>
 </html>

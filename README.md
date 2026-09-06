@@ -26,6 +26,12 @@ A single-file, offline-first web app. No accounts, no servers, no tracking — a
 - 20 curated sites across Makkah and Madinah — each with why it matters, an etiquette tip, a **one-tap Google Maps** button, and a "visited" tracker
 - Includes Masjid al-Haram landmarks, Jabal an-Nour, Masjid Aisha (Tan'eem), Jannat al-Mu'alla, Arafat/Mina/Muzdalifah, Masjid an-Nabawi & the Rawdah (Nusuk permit), Quba, Qiblatayn, Uhud, and more
 
+### 🕌 Live tools (v2.1)
+- **Prayer times** for Makkah & Madinah (Umm al-Qura method) with next-prayer countdown and Hijri date — cached for offline use
+- **Qibla compass** — device compass points a 🕋 needle at the Kaaba from anywhere (with a degrees-from-North fallback)
+- **Digital tasbih** — six dhikr phrases, 33-count cycles with haptics, daily totals that auto-tick your checklist at 100
+- **Offline PWA** — service worker caches the app shell; installable from the browser with an in-app install button
+
 ### ⚙️ More
 - Essential duas library (talbiyah, tawaf, sa'i, Zamzam, travel…)
 - Resources: Nusuk, Haramain High-Speed Rail, Tarteel, Sunnah.com
