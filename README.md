@@ -62,6 +62,12 @@ Every push to the production branch auto-deploys. A `vercel.json` is included wi
 
 It's one file — just open `index.html` in a browser. Installable to the home screen as a PWA-style app.
 
+## UI (v3.1)
+- **Segmented sub-navigation** inside every tab (Plan: Prepare · Learn · Quiz; Umrah: Counters · Steps; Daily: Today · Tools · Stats; More: Guide · Duas · Settings) — sticky under the header, remembered per tab
+- **First-launch onboarding sheet** — "Where are you on your journey?" jumps you to the right screen and captures your name for the certificate
+- **Journey chip** in the header — days to departure, current trip day, or post-Umrah state — tap to jump
+- Confetti celebrations, animated count-ups on progress rings, skeleton loading for prayer times, places search
+
 ## Tech
 
 Mobile-first vanilla HTML/CSS/JS, zero build step, zero dependencies (Google Fonts only, with system fallbacks). Design system: desert emerald & gold, Fraunces + Inter, SVG progress rings, floating pill navigation, tap-ring counters, light & dark themes.
