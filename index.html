@@ -143,7 +143,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .tr-mid{position:absolute;inset:22px;border-radius:50%;background:linear-gradient(150deg,var(--brand),#0B2E24);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:inset 0 2px 14px rgba(0,0,0,.25),var(--sh)}
 [data-theme="dark"] .tr-mid{background:linear-gradient(150deg,#13402F,#0B241C)}
 .tr-mid .n{font-family:var(--fd);font-size:3.4em;font-weight:700;line-height:1}
-.tr-mid .of{font-size:.72em;opacity:.65;letter-spacing:1.6px;text-transform:uppercase;margin-top:4px;font-weight:700}
+.tr-mid .of{font-size:.72em;opacity:.82;letter-spacing:1.4px;text-transform:uppercase;margin-top:4px;font-weight:700}
 .tr-mid .tap{font-size:.74em;opacity:.75;margin-top:6px;letter-spacing:1px;text-transform:uppercase}
 .cnt-acts{display:flex;justify-content:center;gap:10px;margin-top:16px}
 .chip-btn{border:1px solid var(--line);background:var(--card);color:var(--ink2);font-family:var(--fb);font-weight:600;font-size:.8em;padding:9px 18px;border-radius:999px;cursor:pointer;transition:all .15s;box-shadow:var(--sh)}
@@ -542,6 +542,24 @@ html[data-text='lg'] body{font-size:17px}
 .qa span{display:block;font-size:1.6em;margin-bottom:4px}
 .hfc{cursor:pointer}.hfc small{font-size:.7em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--ink3);display:block}
 .hfc b{font-family:var(--fd);font-size:1.05em;display:block;margin:4px 0}.hfc span{font-size:.78em;color:var(--brand-2);font-weight:700}
+/* Home dashboard (H-01…H-07) */
+.hbrand{display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px;padding:10px 4px 12px;font-size:.8em;color:var(--ink3)}
+.hbrand .hb-n{font-family:var(--fd);font-weight:700;font-size:1.1em;color:var(--brand-2)}
+.hbrand small{font-size:.9em;font-weight:600;letter-spacing:.3px}
+.hbrand .chip-btn{margin-left:auto}.hbrand .hb-ios{margin-left:auto;color:var(--ink2)}
+.hs-t small.hs-g{font-size:.82em;opacity:.92;margin-bottom:1px}.hs-t small.hs-d{font-size:.72em;opacity:.8;margin-bottom:5px}
+.hs-t .hcta{cursor:pointer}
+.hcont{display:flex;align-items:center;gap:12px;cursor:pointer;padding:14px 16px;border-color:var(--brand-2)}
+.hcont .hp-t div{font-size:.98em}.hcont .hc-reset{font-size:.76em;color:var(--ink3);padding:8px 4px;flex-shrink:0}
+.stage-h>div{flex:1;min-width:0}.stage-b{position:relative}.stage-h .nowtag{position:absolute;top:-9px;right:12px;margin-left:0}
+.hnext h3{margin-bottom:4px}.hnext .tli{padding:9px 4px}.hnext .tli-i{width:22px;text-align:center;flex-shrink:0;font-size:1.05em;margin-top:1px}
+.hn-all{display:block;margin:6px auto 0;font-size:.8em}
+.vh.hq{margin:4px 2px 10px}.vh.hq h2{font-size:1.15em}
+.stage.cmp{margin-bottom:8px}.stage.cmp .stage-n{margin-top:9px;width:26px;height:26px;font-size:.72em}
+.stage.cmp .stage-b{padding:9px 12px}.stage.cmp .stage-i{width:32px;height:32px;font-size:1.05em;border-radius:10px}
+.stage.cmp .stage-h b{font-size:.9em}.stage.cmp .stage-h small{font-size:.72em}
+.stage-go{margin-left:auto;color:var(--ink3);font-size:1.3em;line-height:1}
+#sec-about .nums{margin:8px 0 12px}#sec-about .card{box-shadow:none;margin-top:8px;margin-bottom:0}
 .focus{position:fixed;inset:0;background:#07110D;color:#fff;z-index:170;display:none;flex-direction:column}
 .focus.on{display:flex}
 .focus-top{display:flex;justify-content:space-between;align-items:center;padding:calc(14px + var(--sat)) 18px 10px;font-weight:800;letter-spacing:.5px}
@@ -1285,6 +1303,7 @@ html[data-text='lg'] body{font-size:17px}
 <canvas id="confetti" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:190;display:none"></canvas>
 <div class="focus" id="focus" role="dialog" aria-modal="true" aria-label="Big counter"><div class="focus-top"><span id="focusTitle">🕋 Tawaf</span><div style="display:flex;gap:8px"><button class="chip-btn" id="focusWudu" onclick="focusWudu()" aria-pressed="false">💧 wudu</button><button class="chip-btn focus-prob" onclick="event.stopPropagation();troubleSheet()" aria-label="Something went wrong?">⚠️ Problem?</button><button class="chip-btn" onclick="exitFocus()">✕ Exit</button></div></div><div class="focus-tap" role="button" tabindex="0" aria-label="Tap to count one round" onclick="focusTap()"><div class="focus-n" id="focusN">0</div><div class="focus-of" id="focusOf">of 7 rounds</div><div class="focus-tip" id="focusTip"></div><div class="focus-hint" id="focusHint">tap anywhere to count</div><div class="focus-done" id="focusDone" hidden></div></div><div class="focus-dua" id="focusDua" role="button" tabindex="0" aria-label="Dua for this rite — tap for transliteration and meaning" onclick="event.stopPropagation();fdToggle()"></div><div class="focus-bot"><button class="btn undo" onclick="focusUndo()">− Undo</button><button class="chip-btn focus-my" onclick="myDuasSheet()">🤲 My duas</button></div></div>
 <div class="focus driver" id="driver" role="dialog" aria-modal="true" aria-label="Show to driver"><div class="focus-top"><span id="drvTop">🚕 Please take me to my hotel</span><button class="chip-btn" onclick="closeDriver()">✕ Close</button></div><div class="focus-tap lost-body" style="justify-content:flex-start;padding:10px 24px;cursor:default"><div class="drv-ar" id="drvLead">من فضلك خذني إلى هذا الفندق</div><div class="drv-arn" id="drvArName" lang="ar" dir="rtl" hidden></div><div class="drv-name" id="drvName">—</div><div class="drv-addr" id="drvAddr"></div><div class="drv-phone" id="drvPhone"></div><div class="drv-acts" id="drvActs"></div><div class="focus-hint" onclick="closeDriver()">tap here to close</div></div></div>
+<div class="focus driver" id="help" role="dialog" aria-modal="true" aria-label="Emergency help"><div class="focus-top"><span>🆘 Help — emergency numbers</span><button class="chip-btn" onclick="closeHelp()">✕ Close</button></div><div class="lost-body" id="helpBody"></div></div>
 <div class="focus driver" id="lost" role="dialog" aria-modal="true" aria-label="I am lost"><div class="focus-top"><span>🆘 I’m lost — please help</span><button class="chip-btn" onclick="closeLost()">✕ Close</button></div><div class="lost-body" id="lostBody"></div></div>
 <div class="focus walk" id="walk" role="dialog" aria-modal="true" aria-label="Step-by-step walkthrough"><div class="focus-top"><span id="walkHd">Step 1</span><button class="chip-btn" onclick="closeWalk()">✕ Exit</button></div><div class="walk-body" id="walkBody"></div><div class="focus-bot walk-bot"><button class="chip-btn" id="walkBack" onclick="walkNav(-1)">← Back</button><button class="btn" id="walkNext" onclick="walkDone()">✓ Done → Next</button></div></div>
 <div id="printSheet" aria-hidden="true"></div>

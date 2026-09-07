@@ -24,9 +24,23 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   console.log('Home');
   check('opens on Home', (await page.getAttribute('.view.on', 'id')) === 'view-home');
   check('journey chip counts down + no update chip', (await page.textContent('#jChip')).includes('day') && (await page.locator('#updChip').isHidden()));
-  check('explains the app + greets by name', (await page.textContent('.hhero h2')).includes('Umrah companion') && (await page.textContent('.hs-t')).includes('Test') && (await page.locator('.stage').count()) === 5);
-  check('next prayer loaded', (await page.textContent('#hNext')).includes('in '));
-  check('9 quick actions + the wide Hotel / SOS row', (await page.locator('.qa').count()) === 10 && (await page.locator('.qa.wide').count()) === 1);
+  check('onboarded: brand strip, greeting split from the date, one expanded stage + 4 compact rows, About folded', (await page.locator('.hhero').count()) === 0 && (await page.textContent('.hbrand')).includes('Umrah Strivers') && (await page.textContent('.hs-t .hs-g')).includes('Test') && (await page.locator('.hs-t .hs-d').count()) === 1 && (await page.locator('.stage.now').count()) === 1 && (await page.locator('.stage.cmp').count()) === 4 && (await page.locator('.stage.cmp p').count()) === 0 && (await page.locator('#sec-about.shut').count()) === 1 && (await page.evaluate(() => document.querySelector('.stage.now .stage-b p').textContent.includes(QUIZ_LEVELS.length + '-level quiz'))));
+  check('planner: Do next lists the overdue basics + the quiz level and names the CTA', (await page.locator('.hnext .tli').count()) === 4 && (await page.textContent('.hnext .tli >> nth=0')).includes('Passport') && (await page.textContent('.hnext .tli-when >> nth=0')) === 'overdue' && (await page.textContent('.hnext .tli >> nth=3')).includes('Quiz level 1') && (await page.textContent('.hs-t .hcta')).startsWith('Overdue: Passport') && (await page.textContent('.hs-r em')) === 'Go →' && (await page.evaluate(() => document.querySelector('.hnext').compareDocumentPosition(document.querySelector('.hfc')) & Node.DOCUMENT_POSITION_FOLLOWING)) > 0);
+  await page.click('.hnext .tli >> nth=0'); await page.waitForTimeout(600);
+  const homeFirst = await page.textContent('.hnext .tli >> nth=0');
+  await page.click('.toast.act button:has-text("Undo")'); await page.waitForTimeout(200);
+  check('ticking from Home re-renders the card and offers Undo', !homeFirst.includes('Passport') && (await page.textContent('.hnext .tli >> nth=0')).includes('Passport') && (await page.evaluate(() => !planChk.passport)));
+  check('next prayer before the trip: Makkah clock, no countdown, source hint', (await page.textContent('.hprayer small')) === 'Next prayer in Makkah' && /at \d\d:\d\d/.test(await page.textContent('#hNext')) && (await page.textContent('#hNext')).includes('time now') && !(await page.textContent('#hNext')).includes(' in '));
+  check('9 stage-aware quick tools (planner set), no wide row', (await page.locator('.qa').count()) === 9 && (await page.locator('.qa.wide').count()) === 0 && (await page.locator('.qa:has-text("Documents")').count()) === 1 && (await page.locator('.qa:has-text("Flashcards")').count()) === 1 && (await page.locator('.qa:has-text("Hotel")').count()) === 1);
+  await page.evaluate(() => { ST.onboarded = false; renderHome(); });
+  check('first launch keeps the landing page (hero, 5 full stages, FAQ, wide SOS row)', (await page.textContent('.hhero h2')).includes('Umrah companion') && (await page.locator('.stage p').count()) === 5 && (await page.locator('.qa').count()) === 10 && (await page.locator('.qa.wide').count()) === 1 && (await page.locator('#sec-about').count()) === 0);
+  await page.evaluate(() => { ST.onboarded = true; const keep = ST.dep; ST.dep = new Date(Date.now() - 2 * 86400000).toISOString().slice(0, 10); ST.tawaf = 3; ST.log = { ihram: Date.now() - 7200000, tawafStart: Date.now() - 600000 }; saveST(); renderHome(); updChip(); window.__keepDep = keep; });
+  check('on trip mid-tawaf: chip, Continue card with Reset, CTA resumes the count, trip tool set, live countdown', (await page.textContent('#jChip')) === '🕋 Tawaf 3/7' && (await page.textContent('.hcont')).includes('round 3 of 7') && (await page.locator('.hcont .hc-reset').count()) === 1 && (await page.textContent('.hs-r em')).includes('Resume tawaf (3/7)') && (await page.textContent('.hs-t > span')).includes('Step 2 of 4') && (await page.locator('.qa:has-text("Help")').count()) === 1 && (await page.locator('.qa:has-text("Driver")').count()) === 1 && (await page.textContent('.hprayer small')) === 'Next prayer' && (await page.textContent('#hNext')).includes(' in '));
+  await page.evaluate(() => { ST.tawaf = 0; ST.log = {}; saveST(); renderHome(); updChip(); });
+  check('on trip before ihram the CTA is step 1 of the rites', (await page.textContent('.hs-t .hcta')).includes('Begin your Umrah: Ihram') && (await page.locator('.hcont').count()) === 0);
+  await page.evaluate(() => showHelp());
+  check('Help overlay lists the four Saudi numbers', (await page.locator('#help.on').count()) === 1 && (await page.locator('#help a[href^="tel:"]').count()) === 4 && (await page.locator('#help a[href="tel:937"]').count()) === 1 && (await page.locator('#help a[href="tel:930"]').count()) === 1);
+  await page.evaluate(() => { closeHelp(); ST.dep = window.__keepDep; saveST(); renderHome(); updChip(); });
   await page.evaluate(() => { goTab('daily'); goSub('daily', 'stats', true); });
   check('empty stats point to Today and hold the share card back', (await page.locator('#stEmpty:visible').count()) === 1 && (await page.isDisabled('#shareBtn')) && (await page.textContent('#shareBtn')).includes('unlocks') && (await page.locator('#bdgGrid .bdg.no .mini').count()) === 9 && (await page.textContent('#bdgGrid .bdg >> nth=4')).includes('0/8'));
   await page.click('#bdgGrid .bdg >> nth=4');
@@ -38,8 +52,8 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   await page.click('#pw-passport');
   check('checklist ticks', (await page.locator('#pw-passport.done').count()) === 1);
   check('itinerary renders 10 days', (await page.locator('.it').count()) === 10);
-  check('timeline: blocking items first, capped groups, neutral late pills', (await page.textContent('#tlArea')).includes('Should already be done') && (await page.locator('.tli-more').count()) >= 1 && (await page.locator('.tli-when.over').count()) <= 5 && (await page.locator('#prepJumps button').count()) === 7);
-  await page.click('.tli >> nth=0'); await page.waitForTimeout(600);
+  check('timeline: blocking items first, capped groups, neutral late pills', (await page.textContent('#tlArea')).includes('Should already be done') && (await page.locator('#tlArea .tli-more').count()) >= 1 && (await page.locator('#tlArea .tli-when.over').count()) <= 5 && (await page.locator('#prepJumps button').count()) === 7);
+  await page.click('#tlArea .tli >> nth=0'); await page.waitForTimeout(600);
   const tickedBefore = await page.evaluate(() => Object.keys(planChk).filter(k => planChk[k]).length);
   await page.click('.toast.act button:has-text("Undo")'); await page.waitForTimeout(200);
   check('timeline tick offers Undo', tickedBefore === 2 && (await page.evaluate(() => Object.keys(planChk).filter(k => planChk[k]).length)) === 1);
@@ -332,6 +346,10 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   console.log('Persistence');
   await page.reload(); await page.waitForTimeout(700);
   check('state survives reload', (await page.evaluate(() => ST.umrahs)) === 1 && (await page.evaluate(() => JSON.parse(localStorage.getItem('us-plan')).passport)) === true);
+  await page.evaluate(() => { ST.tawaf = 2; ST.dep = new Date(Date.now() - 2 * 86400000).toISOString().slice(0, 10); ST.log = { tawafStart: Date.now() - 600000 }; saveST(); });
+  await page.reload(); await page.waitForTimeout(700);
+  check('reopening mid-tawaf lands straight in the big counter', (await page.locator('#focus.on').count()) === 1 && (await page.getAttribute('.view.on', 'id')) === 'view-umrah' && (await page.textContent('#focusN')) === '2' && (await page.textContent('#jChip')) === '🕋 Tawaf 2/7');
+  await page.evaluate(() => { exitFocus(); ST.tawaf = 0; ST.log = {}; ST.dep = new Date(Date.now() + 5 * 86400000).toISOString().slice(0, 10); saveST(); });
 
   console.log('Group setup link');
   const gHash = '#g=' + Buffer.from(encodeURIComponent(JSON.stringify({ by: 'Farhan', dep: '2030-10-12', tripLen: 12, itin: { first: 'madinah', mad: 4 }, city: 'Madinah', hotelInfo: { n: 'Hilton Makkah' } }))).toString('base64');

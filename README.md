@@ -94,6 +94,15 @@ It's one file — just open `index.html` in a browser. Installable to the home s
 ## Releasing an update
 The service-worker cache is named after `APP_VERSION`. For every release **bump `APP_VERSION` in both `app.js` and `sw.js`** — installed apps then pick the new version up automatically (an "Update" chip appears in the header; Settings › Check for updates forces a check). The app shell is served stale-while-revalidate, so it opens instantly from cache regardless of signal.
 
+## v4.14 — Home
+- **Dashboard once onboarded** — the landing page (hero, 5 full stages, FAQ) is shown only on first launch; afterwards Home opens with a one-line brand strip (+ install prompt), the personal status card, then your prayer line, quick tools and cards. The 5 stages become compact rows with only the current one expanded; the numbers, FAQ and share card fold into an **About this app** section
+- **The CTA is your real next action** — on trip, before this trip’s Umrah is recorded, it follows the rites (Begin ihram → Start / Resume tawaf (n/7) → 2 rakahs, Zamzam, then sa’i → Halq / taqsir); for planners it names the first overdue / this-week item from the timeline
+- **Resume where you left off** — reopening the app within 4 h of an interrupted tawaf or sa’i lands straight in the big counter; the header chip shows `🕋 Tawaf 3/7` (or `Tawaf ✓ · sa’i`) and a **Continue** card on Home resumes the count (with a Reset link), or an unfinished day log, or today’s flashcard
+- **📌 Do next** for planners — up to 3 timeline rows (overdue → this week → coming up; the travel-blocking basics when no date is set) plus the next unpassed quiz level, tickable from Home with Undo
+- **Stage-aware quick tools** — on trip: Counters, Rites, Qibla, Tasbih, Duas, Places, 🚕 Driver, 🆘 Help (full-screen card with 911 · 937 · 1966 · 930 and the meeting point), Prayer times; before: Itinerary, Flashcards, Documents, Rites, Duas, Places, Kids, Quiz, Hotel; after: Habits, Reflections, Duas, Tasbih, Places, Flashcards
+- **Next prayer** counts down only while you are in the Haramain; elsewhere it shows the prayer time with the Makkah clock (“Fajr at 05:12 · Makkah time now 16:19”) and a cached / computed hint
+- Copy: full 100,000-prayers wording with its citation, “Halq/Taqsir (shave or trim)”, greeting and date on separate readable lines
+
 ## v4.13 — Places
 - **Opens where you are**: the city pill is seeded from your prayer city and remembered; **Near me** switches to the city you are standing in, orders groups by distance and reads as a clearable state; distances say *inside the Haram*, *≈ 350 m · 5 min walk* or *you're here*
 - **Nothing resets under you**: marking a place visited patches the card in place (from the 44 px icon, storing *Visited · Day N*); routes and open cards survive filter, Near me and hotel changes
@@ -184,7 +193,7 @@ The service-worker cache is named after `APP_VERSION`. For every release **bump 
 
 ```
 npm install            # playwright-core only
-npm test               # end-to-end smoke suite (~125 checks) in headless Chromium
+npm test               # end-to-end smoke suite (~145 checks) in headless Chromium
 ```
 Set `CHROME=/path/to/chromium` if Playwright cannot find a browser. Content lives in `data.js` (places, quiz, knowledge, duas); logic in `app.js`.
 
