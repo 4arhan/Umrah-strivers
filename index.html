@@ -179,7 +179,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .st .i{font-size:1.15em}
 .st .n{font-family:var(--fd);font-size:1.4em;font-weight:700;color:var(--brand-2);line-height:1.1;margin-top:2px}
 .st .l{font-size:.74em;font-weight:700;letter-spacing:.3px;text-transform:uppercase;color:var(--ink2);margin-top:3px}
-.heat{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
+.heat{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
 .hc{aspect-ratio:1;border-radius:8px;background:var(--bg-soft);display:flex;align-items:center;justify-content:center;font-size:.74em;font-weight:700;color:var(--ink2)}
 .hc.h1{background:#BBE3CB;color:#0E3B2E}.hc.h2{background:#6FCB9A;color:#0B2E24}.hc.h3{background:#2FAE74;color:#fff}.hc.h4{background:#0E7A4E;color:#fff}
 [data-theme="dark"] .hc.h1{background:#1B3A2B;color:#7FBF9C}[data-theme="dark"] .hc.h2{background:#1F5A3C;color:#CFEFDD}[data-theme="dark"] .hc.h3{background:#27825A;color:#fff}[data-theme="dark"] .hc.h4{background:#2FBE83;color:#08281B}
@@ -580,7 +580,7 @@ html[data-text='lg'] body{font-size:17px}
 .it-t{flex:1;font-size:.84em;line-height:1.5;color:var(--ink2)}
 .it-c{display:inline-block;font-size:.7em;font-weight:800;color:var(--gold-ink);margin-right:6px;letter-spacing:.3px}
 .hotelrow{display:flex;align-items:center;gap:8px;margin-bottom:12px;font-size:.78em;color:var(--ink2)}
-.hotelrow span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hotelrow span{flex:1;min-width:0;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.4}
 .hotelrow .chip-btn{padding:7px 12px;font-size:.74em}
 .hotelrow .chip-btn.on{background:var(--brand);color:#fff;border-color:var(--brand)}
 .distchip{display:inline-block;font-size:.66em;font-weight:700;color:var(--ink2);background:var(--bg-soft);border-radius:999px;padding:2px 9px;margin:3px 4px 2px 0}
@@ -876,8 +876,16 @@ html[data-text='lg'] body{font-size:17px}
 .hero .daynav .dd{font-family:var(--fd);font-size:1.25em;letter-spacing:0;cursor:pointer;padding:0 4px;min-height:34px;display:flex;align-items:baseline;gap:5px;white-space:nowrap}
 .hero .daynav .dd small{display:inline;font-family:var(--fb);font-size:.58em;color:#fff;opacity:.7;letter-spacing:.8px}
 .hero .daynav .dtoday{width:auto;height:30px;padding:0 10px;border-radius:999px;font-family:var(--fb);font-weight:800;font-size:.72em;background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#231803}
-.dhero-date{font-size:.74em;opacity:.75;margin:0 0 4px;font-weight:600;line-height:1.4}
-.dhero .v{font-size:1.25em;margin:0 0 2px}
+.dhero-date{font-size:.74em;opacity:.75;margin:0 0 2px;font-weight:600;line-height:1.4}
+.dhero .v{font-size:1.2em;margin:0 0 1px}
+/* D-02: the checklist is the reason for the screen — everything above it is compact */
+.vh.dvh{margin:8px 2px 8px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}.vh.dvh h2{font-size:1.2em}.vh.dvh p{margin:0;font-size:.78em}
+.dhero{padding:12px 14px;gap:12px;margin-bottom:10px}
+.dhero .ring-wrap,.dhero .ring-wrap svg{width:72px;height:72px}.dhero .ring-num{font-size:1em}.dhero .ring-num small{font-size:.56em}
+.dhero .daynav button{width:32px;height:32px}.dhero .daynav .dd{font-size:1.15em;min-height:32px}
+.todayit{padding:8px 12px;gap:8px;margin-bottom:10px}.todayit .ti-t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:.8em;line-height:1.4}.todayit .ti-t b{display:inline;font-size:1em;margin-right:4px}
+.tripc{padding:8px 12px;margin-bottom:10px}
+.srx{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;padding:0;margin:-1px}
 .exc-line{display:block;margin-top:4px;font-style:italic;opacity:.9}
 .exc-line a{color:#EFD494;font-weight:700;text-decoration:underline dotted}
 .dtools{display:flex;flex-wrap:wrap;gap:6px;margin:-4px 0 12px}
@@ -886,13 +894,13 @@ html[data-text='lg'] body{font-size:17px}
 .dtools .chip-btn.sync{background:var(--gold-soft);border-color:var(--gold);color:var(--gold-ink)}
 .dtools .chip-btn.exc{color:#b0457a;border-color:rgba(176,69,122,.35)}
 .dtools .chip-btn.exc.on{background:rgba(176,69,122,.1)}
-.ptsec{margin-bottom:12px}
-.ptstrip{padding:8px 10px 8px 14px;gap:10px;min-height:52px}
+.ptsec{margin-bottom:10px}
+.ptstrip{padding:5px 8px 5px 12px;gap:8px;min-height:46px}
 .pt-ico{font-size:1.2em;flex-shrink:0}
 .ptstrip .pt-next{flex:1;min-width:0;font-size:.88em;line-height:1.35;color:var(--ink)}
 .ptstrip .pt-next b{color:var(--gold-ink)}
 .pt-next .ptc{color:var(--ink3);font-weight:500;font-size:.92em}
-.pt-bell{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:1em;flex-shrink:0;opacity:.5;transition:all .2s}
+.pt-bell{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:1em;flex-shrink:0;opacity:.5;transition:all .2s}
 .pt-bell.on{opacity:1;background:var(--gold-soft);border-color:var(--gold)}
 .ptsec .sec-bd{padding:0 14px 14px}
 .ptsec .pt-top{margin-top:2px}
@@ -923,7 +931,7 @@ html[data-text='lg'] body{font-size:17px}
 .stk-h .hint{font-weight:600;letter-spacing:.3px;text-transform:none;color:var(--gold-ink)}
 .stk .st .n{font-size:1.25em}
 .stk .st .n small{font-size:.58em;font-weight:700;color:var(--ink3);margin-left:1px}
-.heat .hc{cursor:pointer;min-height:44px;transition:transform .15s}
+.heat .hc{cursor:pointer;min-height:42px;min-width:0;transition:transform .15s}
 .heat .hc:active{transform:scale(.92)}
 .hc.exc{outline:1.5px dashed #b0457a;outline-offset:-1px}
 .hleg{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:10px;font-size:.72em;color:var(--ink3)}
@@ -1152,7 +1160,7 @@ html[data-text='lg'] body{font-size:17px}
 
 <!-- ═══════ DAILY ═══════ -->
 <div class="view" id="view-daily">
-  <div class="vh"><h2>Maximise every day</h2><p>Every prayer here is multiplied — make every day count.</p></div>
+  <div class="vh dvh"><h2>Maximise every day</h2><p>Every prayer here is multiplied — make every day count.</p></div>
   <div class="seg" data-tab="daily"><button class="on" data-sub="today" onclick="goSub('daily','today')">📿 Today</button><button data-sub="tools" onclick="goSub('daily','tools')">🧭 Tools</button><button data-sub="stats" onclick="goSub('daily','stats')">📈 Stats</button></div>
   <div class="sub on" id="sub-daily-today">
   <div class="hero dhero"><div class="hero-t">
@@ -1301,7 +1309,7 @@ html[data-text='lg'] body{font-size:17px}
 <button data-v="more" onclick="goTab('more')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.6"/><circle cx="5" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg><span class="l">More</span></button>
 </nav>
 <canvas id="confetti" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:190;display:none"></canvas>
-<div class="focus" id="focus" role="dialog" aria-modal="true" aria-label="Big counter"><div class="focus-top"><span id="focusTitle">🕋 Tawaf</span><div style="display:flex;gap:8px"><button class="chip-btn" id="focusWudu" onclick="focusWudu()" aria-pressed="false">💧 wudu</button><button class="chip-btn focus-prob" onclick="event.stopPropagation();troubleSheet()" aria-label="Something went wrong?">⚠️ Problem?</button><button class="chip-btn" onclick="exitFocus()">✕ Exit</button></div></div><div class="focus-tap" role="button" tabindex="0" aria-label="Tap to count one round" onclick="focusTap()"><div class="focus-n" id="focusN">0</div><div class="focus-of" id="focusOf">of 7 rounds</div><div class="focus-tip" id="focusTip"></div><div class="focus-hint" id="focusHint">tap anywhere to count</div><div class="focus-done" id="focusDone" hidden></div></div><div class="focus-dua" id="focusDua" role="button" tabindex="0" aria-label="Dua for this rite — tap for transliteration and meaning" onclick="event.stopPropagation();fdToggle()"></div><div class="focus-bot"><button class="btn undo" onclick="focusUndo()">− Undo</button><button class="chip-btn focus-my" onclick="myDuasSheet()">🤲 My duas</button></div></div>
+<div class="focus" id="focus" role="dialog" aria-modal="true" aria-label="Big counter"><div class="focus-top"><span id="focusTitle">🕋 Tawaf</span><div style="display:flex;gap:8px"><button class="chip-btn" id="focusWudu" onclick="focusWudu()" aria-pressed="false">💧 wudu</button><button class="chip-btn focus-prob" onclick="event.stopPropagation();troubleSheet()" aria-label="Something went wrong?">⚠️ Problem?</button><button class="chip-btn" onclick="exitFocus()">✕ Exit</button></div></div><div class="focus-tap" role="button" tabindex="0" aria-label="Tap to count one round" onclick="focusTap()"><div class="srx" id="focusLive" aria-live="polite" aria-atomic="true"></div><div class="focus-n" id="focusN">0</div><div class="focus-of" id="focusOf">of 7 rounds</div><div class="focus-tip" id="focusTip"></div><div class="focus-hint" id="focusHint">tap anywhere to count</div><div class="focus-done" id="focusDone" hidden></div></div><div class="focus-dua" id="focusDua" role="button" tabindex="0" aria-label="Dua for this rite — tap for transliteration and meaning" onclick="event.stopPropagation();fdToggle()"></div><div class="focus-bot"><button class="btn undo" onclick="focusUndo()">− Undo</button><button class="chip-btn focus-my" onclick="myDuasSheet()">🤲 My duas</button></div></div>
 <div class="focus driver" id="driver" role="dialog" aria-modal="true" aria-label="Show to driver"><div class="focus-top"><span id="drvTop">🚕 Please take me to my hotel</span><button class="chip-btn" onclick="closeDriver()">✕ Close</button></div><div class="focus-tap lost-body" style="justify-content:flex-start;padding:10px 24px;cursor:default"><div class="drv-ar" id="drvLead">من فضلك خذني إلى هذا الفندق</div><div class="drv-arn" id="drvArName" lang="ar" dir="rtl" hidden></div><div class="drv-name" id="drvName">—</div><div class="drv-addr" id="drvAddr"></div><div class="drv-phone" id="drvPhone"></div><div class="drv-acts" id="drvActs"></div><div class="focus-hint" onclick="closeDriver()">tap here to close</div></div></div>
 <div class="focus driver" id="help" role="dialog" aria-modal="true" aria-label="Emergency help"><div class="focus-top"><span>🆘 Help — emergency numbers</span><button class="chip-btn" onclick="closeHelp()">✕ Close</button></div><div class="lost-body" id="helpBody"></div></div>
 <div class="focus driver" id="lost" role="dialog" aria-modal="true" aria-label="I am lost"><div class="focus-top"><span>🆘 I’m lost — please help</span><button class="chip-btn" onclick="closeLost()">✕ Close</button></div><div class="lost-body" id="lostBody"></div></div>

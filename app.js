@@ -26,6 +26,7 @@ function save(k,o){localStorage.setItem(k,JSON.stringify(o));}
 /* ════════════════════════ GENERIC UI ════════════════════════ */
 function toast(m,gold,actLabel,actFn){var c=document.getElementById('toastC');if(!c)return;var t=document.createElement('div');t.className='toast'+(gold?' gold':'')+(actLabel?' act':'');t.setAttribute('role','status');t.textContent=m;
   if(actLabel){var b=document.createElement('button');b.textContent=actLabel;b.onclick=function(){t.remove();if(actFn)actFn();};t.appendChild(b);}
+  while(c.children.length>=3)c.firstChild.remove();
   c.appendChild(t);setTimeout(function(){t.remove();},actLabel?6000:3200);}
 function totalUmrahs(){return (ST.umrahs||0)+(ST.umrahsPrev||0);}
 function esc(v){return String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
@@ -237,7 +238,7 @@ function renderLevels(){
   h+='<div class="qz-sub"><span>'+qc+' of '+qt+' questions correct in your best runs</span>'+(nx>-1&&wc>0?'<button class="chip-btn gsoft" onclick="startMistakes()">🔁 Review '+wc+' mistake'+(wc===1?'':'s')+'</button>':'')+'</div>';
   QUIZ_LEVELS.forEach(function(lv,i){
     var un=qzUnlocked(i),ps=qzPassed(i),best=qzST.best[i],w=qzWrongIn(i),need=qzNeed(lv.qs.length);
-    h+='<div class="lvl'+(un?'':' locked')+(ps?' passed':'')+(i===nx?' next':'')+'" role="button" tabindex="0" aria-label="'+lv.name.replace(/"/g,'')+(ps?', passed '+best+'%':(un?(i===nx?', up next':''):', locked'))+'" onclick="startLevel('+i+')">'
+    h+='<div class="lvl'+(un?'':' locked')+(ps?' passed':'')+(i===nx?' next':'')+'" role="button" tabindex="0"'+(un?'':' aria-disabled="true"')+' aria-label="'+lv.name.replace(/"/g,'')+(ps?', passed '+best+'%':(un?(i===nx?', up next':''):', locked'))+'" onclick="startLevel('+i+')">'
       +'<div class="lvl-n">'+(un?lv.icon:'🔒')+'</div>'
       +'<div class="lvl-t"><b>'+lv.name+'</b><small>'+lv.desc+' · '+lv.qs.length+' questions · pass = '+need+' correct'+(ps&&w?' · '+w+' to review':'')+'</small>'+(un&&!ps?'<button class="lvl-study" onclick="event.stopPropagation();qzStudyGo('+i+')" aria-label="Study for '+qzLvName(i)+'">📚 study</button>':'')+'</div>'
       +'<div class="lvl-s">'+(ps?'✓ '+best+'%':(best!==undefined?best+'%':(un?'Start →':'Locked')))+'</div></div>';
@@ -475,7 +476,7 @@ function doneHTML(k){
 function renderCnt(k){
   var v=ST[k],nafl=k==='tawaf'&&ST.tmode==='nafl';
   var tip=document.getElementById(k+'Tip');if(tip)tip.innerHTML=tipHTML(k,v);
-  if(k===focusKey){var fn=document.getElementById('focusN'),ft=document.getElementById('focusTip');if(fn)fn.textContent=v;if(ft)ft.innerHTML=tipHTML(k,v);renderFocusDone();}
+  if(k===focusKey){var fn=document.getElementById('focusN'),ft=document.getElementById('focusTip'),fl=document.getElementById('focusLive');if(fn)fn.textContent=v;if(ft)ft.innerHTML=tipHTML(k,v);if(fl)fl.textContent=(k==='tawaf'?'Round ':'Lap ')+v+' of 7'+(v>=7?' — complete':'');renderFocusDone();}
   document.getElementById(k+'N').textContent=v;
   var ring=document.getElementById(k+'Ring');
   if(ring)ring.style.strokeDashoffset=565*(1-v/7);
@@ -588,7 +589,10 @@ function renderDaily(){
     sec.items.forEach(function(it){
       inner+='<div class="row" id="dw-'+it.id+'" role="checkbox" tabindex="0" aria-checked="false" onclick="togDaily(\''+it.id+'\')"><span class="tick"></span><div class="row-t"><b><span class="rl">'+it.label+'</span>'+(it.pts>=15?'<span class="prio">Priority</span>':'')+(it.id==='ntawaf'?'<span class="xn" id="ntawafN" hidden></span>':'')+'</b>'+(it.exp?'<div class="x">'+it.exp+'</div>':'')+(it.ref?'<div class="rf">'+it.ref+'</div>':'')+refChip(it)+'</div></div>';
     });
-    h+=mkSec(sec,i>0,inner);
+    /* D-02: the tick rows come first; the section's hadith sits under them */
+    var s2={};for(var k in sec)if(k!=='hn')s2[k]=sec[k];
+    if(sec.hn)inner+='<div class="note">'+sec.hn+'</div>';
+    h+=mkSec(s2,i>0,inner);
   });
   document.getElementById('dailyContainer').innerHTML=h;
 }
@@ -675,7 +679,7 @@ function renderHeat(){
     if(p!==null&&p>0){cls=p>=90?'h4':p>=70?'h3':p>=40?'h2':'h1';}
     h+='<div class="hc '+cls+(i===ST.day?' now':'')+(ex?' exc':'')+'" role="button" tabindex="0" onclick="heatGo('+i+')" title="Day '+i+(dt?' · '+dt:'')+(p!==null?': '+p+'%':'')+(ex?' (excused)':'')+'" aria-label="Day '+i+(dt?', '+dt:'')+(p!==null?', '+p+'%':', not logged')+(ex?', excused':'')+' — open to log it">'+i+'</div>';
   }
-  g.style.gridTemplateColumns='repeat('+Math.min(ST.tripLen,7)+',1fr)';
+  g.style.gridTemplateColumns='repeat('+Math.min(ST.tripLen,7)+',minmax(0,1fr))';
   g.innerHTML=h;
   var lg=document.getElementById('heatLeg');if(lg)lg.innerHTML='<i class="hc h1"></i>&lt;40% <i class="hc h2"></i>40% <i class="hc h3"></i>70% <i class="hc h4"></i>90%+ <span>· tap a day to log it</span>';
 }
@@ -1149,6 +1153,7 @@ function focusTap(){if(focusKey==='tasbih')tbTap();else cntr(focusKey,1);}
 function focusUndo(){if(focusKey==='tasbih')tbUndo();else cntr(focusKey,-1);}
 function renderFocusTB(){var t=document.getElementById('focusTitle'),o=document.getElementById('focusOf'),n=document.getElementById('focusN'),tip=document.getElementById('focusTip'),d=document.getElementById('focusDone');if(!t)return;
   t.textContent='📿 '+TB_PHRASES[tbPhrase];n.textContent=tbCount;o.textContent=(tbTargetN?'of '+tbTargetN:'no target')+' · today '+(tasbih[dayKey()]||0);
+  var fl=document.getElementById('focusLive');if(fl)fl.textContent=tbCount+(tbTargetN?' of '+tbTargetN:'');
   tip.hidden=false;tip.innerHTML='<span lang="ar">'+TB_AR[tbPhrase]+'</span>';if(d)d.hidden=true;}
 /* U-03: at 7/7 the big number stays, the tip becomes the hand-off */
 function renderFocusDone(){var p=document.getElementById('focusDone'),t=document.getElementById('focusTip'),h=document.getElementById('focusHint');if(!p||focusKey==='tasbih')return;
@@ -1366,7 +1371,7 @@ function renderCntHd(){var a=document.getElementById('cntHd');if(!a)return;var h
 /* Daily › Today: today's itinerary line (P-11) and the trip card while on trip (P-07) */
 function renderTodayTop(){var a=document.getElementById('todayTop');if(!a)return;var h='';
   var days=itinDays(),it=days[ST.day-1];
-  if(it)h+='<div class="card todayit" role="button" tabindex="0" aria-label="Today’s itinerary — edit" onclick="goTab(\'plan\',\'prep\',\'itinCard\')"><span class="ti-i">🗓️</span><div class="ti-t"><b>Day '+ST.day+' · '+(it.city==='Makkah'?'🕋':'🕌')+' '+it.city+'</b>'+it.e[0]+' '+esc(it.e[1])+'</div><span class="xchip">Edit →</span></div>';
+  if(it)h+='<div class="card todayit" role="button" tabindex="0" aria-label="Today’s itinerary: '+esc(it.e[1])+' — edit" title="'+esc(it.e[1])+'" onclick="goTab(\'plan\',\'prep\',\'itinCard\')"><span class="ti-i">🗓️</span><div class="ti-t"><b>'+(it.city==='Makkah'?'🕋':'🕌')+' '+it.city+'</b>'+it.e[0]+' '+esc(it.e[1])+'</div><span class="xchip">Edit →</span></div>';
   if(onTrip()){var hi=ST.hotelInfo||{};
     h+='<div class="card tripc"><div class="tc-h"><span>🏨</span><b'+(hi.m?' title="Meeting point: '+esc(hi.m)+'"':'')+'>'+(hi.n?esc(hi.n):'Your hotel')+'</b><button class="chip-btn" onclick="showDriver()" aria-label="Show to driver">🚕 Driver</button><button class="chip-btn sos" onclick="showLost()" aria-label="I’m lost — show this">🆘 Lost</button><button class="chip-btn" onclick="sosSheet()" aria-label="Emergency numbers 911 and 1966, hotel actions">☎ SOS</button></div>'
       +(hi.n?'':'<input class="srch" id="tcName" placeholder="Hotel name — so the driver card works" onchange="quickHotel(this.value)" aria-label="Hotel name">')+'</div>';}
@@ -1544,10 +1549,11 @@ function shareApp(){
 }
 function showQR(){document.getElementById('qrShow').classList.add('on');vib(8);}
 /* group link: ?dep=YYYY-MM-DD pre-sets the departure date on first open */
+var depLinked=false;
 function applyDepLink(){
   var m=/[?&]dep=(\d{4}-\d{2}-\d{2})/.exec(location.search||'');if(!m)return;
   var dt=new Date(m[1]+'T00:00:00');
-  if(!isNaN(dt)&&dt>new Date()&&!ST.dep){ST.dep=m[1];ST.onboarded=true;ST.stage=ST.stage||'plan';ST.sub=Object.assign(ST.sub||{},{plan:'prep'});ST.tab='plan';saveST();setTimeout(function(){toast('✈️ Departure set to '+dt.toLocaleDateString('en-GB',{day:'numeric',month:'long'})+' from your group’s link',true);},600);}
+  if(!isNaN(dt)&&dt>new Date()&&!ST.dep){ST.dep=m[1];ST.onboarded=true;ST.stage=ST.stage||'plan';ST.sub=Object.assign(ST.sub||{},{plan:'prep'});ST.tab='plan';depLinked=true;saveST();setTimeout(function(){toast('✈️ Departure set to '+dt.toLocaleDateString('en-GB',{day:'numeric',month:'long'})+' from your group’s link',true);},600);}
   try{history.replaceState(null,'',location.pathname);}catch(e){}
 }
 /* P-34 group setup link: #g=<base64 json> carries only trip settings — never progress */
@@ -2256,6 +2262,7 @@ function initUI(){
   var act=activeCount(),lg0=ST.log||{};
   if(act&&lg0[act+'Start']&&Date.now()-lg0[act+'Start']<4*3600000){goTab('umrah');goSub('umrah','count',true);enterFocus(act);}
   else if(onTrip()&&ST.tab&&ST.tab!=='home'&&document.getElementById('view-'+ST.tab))goTab(ST.tab);
+  else if(depLinked)goTab('plan','prep');
   else goTab('home');
 }
 document.addEventListener('DOMContentLoaded',function(){loadAll();pendingGroup=parseGroupLink();applyDepLink();initUI();if(pendingGroup)setTimeout(function(){showGroupSheet(pendingGroup);},350);registerSW();});

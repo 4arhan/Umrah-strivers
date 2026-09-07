@@ -89,9 +89,9 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   check('quiz-derived card shows the options with the correct one marked', (await page.locator('#fcWrap .fc-opts div').count()) === 4 && (await page.locator('#fcWrap .fc-opts div.ok').count()) === 1);
   await page.evaluate(() => fcEnd());
   await page.evaluate(() => goSub('plan', 'quiz', true));
-  check('7 quiz levels, 6 locked', (await page.locator('.lvl').count()) === 7 && (await page.locator('.lvl.locked').count()) === 6);
+  check('7 quiz levels, 6 locked (and aria-disabled)', (await page.locator('.lvl').count()) === 7 && (await page.locator('.lvl.locked').count()) === 6 && (await page.locator('.lvl.locked[aria-disabled="true"]').count()) === 6 && (await page.locator('.lvl:not(.locked)[aria-disabled]').count()) === 0);
   check('kids corner first and collapsed, with 5 stories; quiz CTA + pass marks', (await page.evaluate(() => [...document.querySelectorAll('#sub-plan-quiz > .card')].map(e => e.id)[0])) === 'kidsCard' && (await page.locator('#kidsArea').isHidden()) && (await page.locator('#storyList .acc').count()) === 5 && (await page.textContent('.qz-cta')).includes('Level 1') && (await page.textContent('.lvl >> nth=0')).includes('pass = 8 correct') && (await page.locator('.lvl.next').count()) === 1 && (await page.textContent('#qzBest')) === '0/7');
-  await page.click('.lvl >> nth=1');
+  await page.click('.lvl >> nth=1', { force: true }); // locked rows are aria-disabled, but a tap still explains the lock
   check('locked level shows the lock card', (await page.locator('.qz-lock').count()) === 1 && (await page.textContent('.qz-lock')).includes('8 of 10 correct'));
   await page.click('.qz-lock button:has-text("Unlock all levels")');
   check('unlock all opens every level; restore re-locks', (await page.locator('.lvl.locked').count()) === 0 && (await page.textContent('.qz-free')).includes('Restore') && (await page.evaluate(() => { qzFree(false); return document.querySelectorAll('.lvl.locked').length; })) === 6);
@@ -194,7 +194,8 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   await page.evaluate(() => { goSub('umrah', 'count', true); ST.wudu = true; saveST(); updWudu(); });
 
   console.log('Daily');
-  await page.evaluate(() => { goTab('daily'); goSub('daily', 'today', true); }); await page.waitForTimeout(500);
+  await page.evaluate(() => { goTab('daily'); goSub('daily', 'today', true); window.scrollTo(0, 0); }); await page.waitForTimeout(500);
+  check('checklist above the fold at 390x844: compact hero and strip, Fajr row fully above the nav, hadith under the rows', await page.evaluate(() => { const r = s => document.querySelector(s).getBoundingClientRect(); return r('.dhero').height <= 132 && r('#ptSec').height <= 52 && r('.todayit').height <= 56 && r('#dw-fajr').bottom <= r('.nav').top && !!(document.querySelector('#sec-salah .note').compareDocumentPosition(document.querySelector('#dw-fajr')) & Node.DOCUMENT_POSITION_PRECEDING); }));
   check('prayer grid 5 cells + next highlighted', (await page.locator('.pt').count()) === 5 && (await page.locator('.pt.next').count()) === 1);
   check('day nav lives in the hero; prayer strip is collapsed with the next prayer, time and city; live Umm al-Qura note', (await page.locator('.dhero #dayNav #dayDisp').count()) === 1 && (await page.locator('#ptSec.shut').count()) === 1 && /in .*05:12|12:21|15:42|18:33|20:03/.test(await page.textContent('#ptNext')) && (await page.textContent('#ptNext')).includes('Makkah') && (await page.textContent('#ptNote')).includes('Umm al-Qura (') && (await page.textContent('#ptNote')).includes('Duha from ~06:35'));
   check('month cache holds both cities and the row order follows the day', (await page.evaluate(() => { const c = JSON.parse(localStorage.getItem('us-ptcache')); return Object.keys(c).filter(k => k.indexOf('Madinah|') === 0).length > 27 && !!c['_mMakkah|' + new Date().getFullYear() + '-' + (new Date().getMonth() + 1)]; })) && (await page.evaluate(() => [...document.querySelectorAll('#sec-salah .row')].map(e => e.id).join(',').indexOf('dw-tahajjud,dw-fajr,dw-madhkar,dw-duha,dw-dhuhr') === 0)));
@@ -230,7 +231,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   await page.click('.tb-meta button:has-text("Focus")');
   check('full-screen tasbih: title, target, Arabic, tap counts, undo', (await page.locator('#focus.on.tasbih').count()) === 1 && (await page.textContent('#focusTitle')).includes('SubhanAllah') && (await page.textContent('#focusOf')).includes('of 33') && (await page.locator('#focus.tasbih #focusWudu:visible').count()) === 0);
   await page.click('#focus .focus-tap'); await page.click('#focus .focus-tap'); await page.click('#focus .btn.undo');
-  check('focus tasbih taps + undo feed the counter', (await page.textContent('#focusN')) === '1' && (await page.evaluate(() => tbCount)) === 1);
+  check('focus tasbih taps + undo feed the counter; the hidden live region follows', (await page.textContent('#focusN')) === '1' && (await page.evaluate(() => tbCount)) === 1 && (await page.getAttribute('#focusLive', 'aria-live')) === 'polite' && (await page.textContent('#focusLive')) === '1 of 33' && (await page.evaluate(() => { const k = focusKey; focusKey = 'tawaf'; ST.tawaf = 3; renderCnt('tawaf'); const t = document.getElementById('focusLive').textContent; ST.tawaf = 0; renderCnt('tawaf'); focusKey = k; return t; })) === 'Round 3 of 7');
   await page.click('#focus .focus-top button:has-text("Exit")');
   await page.fill('#duaIn', 'Test dua'); await page.press('#duaIn', 'Enter'); await page.click('#duaList .tick');
   check('dua list add + tick', (await page.textContent('#duaList')).includes('1 of 1 asked') && (await page.textContent('#sp-dualist')) === '1/1 asked' && (await page.locator('#duaList button:has-text("new round")').count()) === 1);
