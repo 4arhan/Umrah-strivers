@@ -159,11 +159,20 @@ The service-worker cache is named after `APP_VERSION`. For every release **bump 
 - **For children**: *Kids' day* — one row per child with five big tiles (prayed with us · Zamzam + dua · SubhanAllah ×10 / talbiyah · patient in the crowd · learned one thing), confetti and a ⭐ for 5/5, a *Little Pilgrim* badge for three full days; names are added in Kids corner; nothing touches the adult points
 - **Group timing**: meeting point (shared with the hotel/lost cards, echoed in Home's prayer strip), *leave hotel 30/45/60 min before*, *Share today's times* as one message; **calendar export** — a week of prayer alerts as .ics (TZID Asia/Riyadh, 20-min alarms, 60 for Jumu'ah) via the share sheet or download
 
+## v4.12 — Daily › Tools & Stats
+- **Tools in the order you need them**: a jump row (Tasbih · Qibla · Water · Duas) and, once flying, the tasbih and compass move to the top; the dua list becomes a collapsible section (shut by default in-trip once it has entries) with a *3/7 asked* count in its header
+- **Dua list that lasts the trip**: starter chips for an empty list (parents, forgiveness, shifa, spouse, family, the Ummah, husn al-khatimah, Hajj), *Untick all — new round* after a round of asking, and an **Undo** toast on delete
+- **Tasbih that counts like a pilgrim**: pickable targets 33 · 34 · 100 · 1000 · ∞; the post-salah chain runs SubhanAllah 33 → Alhamdulillah 33 → Allahu Akbar 34 and stops, every other phrase/target keeps counting past the mark; a **−1** for mis-taps; the live cycle survives a reload; a full-screen **Focus** mode (giant number, Arabic of the phrase, wake lock, Undo)
+- **Qibla compass that starts on iPhone**: motion permission is requested inside the tap, the sensor listener is registered up front, the button toggles Start/Stop and the sensors are released on leaving Tools; without location, Madinah offers *Use Madinah (approx. 176°)* and Makkah explains why a fixed bearing would mislead
+- **Water card does one thing**: *Zamzam & water* with *X cups today · aim for 8, 10–12 in summer heat* (8 is a floor, not a cap); the km estimate and the trip's Zamzam total moved to Trip stats
+- **One scoreboard**: Trip stats add Fajr streak, nafl tawafs, dhikr counted, duas asked, walked in worship (est.) and Zamzam cups; an empty Stats tab points to Today instead of a wall of zeros and holds the share card back until there is something to share
+- **Achievements that say how**: locked badges show progress (*2/3* + a bar) and, on tap, how to earn them
+
 ## Development & testing
 
 ```
 npm install            # playwright-core only
-npm test               # end-to-end smoke suite (~110 checks) in headless Chromium
+npm test               # end-to-end smoke suite (~125 checks) in headless Chromium
 ```
 Set `CHROME=/path/to/chromium` if Playwright cannot find a browser. Content lives in `data.js` (places, quiz, knowledge, duas); logic in `app.js`.
 

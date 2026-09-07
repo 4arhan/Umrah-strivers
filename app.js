@@ -1,6 +1,6 @@
 /* Umrah Strivers — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='4.11.0';
+var APP_VERSION='4.12.0';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* ════════════════════════ STATE ════════════════════════ */
 var ST={day:1,tripLen:10,theme:'light',tab:'home',dep:'',umrahs:0,tawaf:0,sai:0,quizBest:0,city:'Makkah'};
@@ -75,7 +75,7 @@ function goTab(t,sub,anchor){ST.tab=t;saveST();
   if(t==='umrah')updRites();
   if(t==='plan')updPlan();
   if(t==='home')renderHome();
-  updChip();
+  updChip();qbAutoStop();
   if(!ST.segNudged&&view.querySelector('.seg')){ST.segNudged=true;saveST();var on=view.querySelector('.seg button.on');if(on)on.classList.add('nudge');}
   if(!anchor&&t==='umrah'&&(ST.sub||{}).umrah==='count'&&cntStarted())anchor=cntActive()+'Card';
   if(!anchor&&t==='umrah'&&(ST.sub||{}).umrah==='steps'){focusRites(false);var nxr=nextRite();anchor=nxr?'rw-'+nxr.st.id:'riteDone';}
@@ -162,7 +162,7 @@ function updPlan(){
   updCountdown();
   if(qzActive){qzMeterUpd();renderLearnQuiz();}else renderLevels();
 }
-function setDep(v){ST.dep=v;saveST();updCountdown();updChip();renderItin();renderTimeline();renderTodayTop();if(v)toast('✈️ '+fmtDate(v)+' — countdown, timeline & itinerary are now dated',true);}
+function setDep(v){ST.dep=v;saveST();updCountdown();updChip();renderItin();renderTimeline();renderTodayTop();updToolsOrder();renderDuaSec();if(v)toast('✈️ '+fmtDate(v)+' — countdown, timeline & itinerary are now dated',true);}
 /* return date (P-05): derives the trip length; #tripLen in Settings stays as a mirror */
 function setRet(v){if(!v)return;if(!ST.dep){toast('Set your departure date first');updRetDate();return;}var days=Math.round((new Date(v+'T00:00:00')-new Date(ST.dep+'T00:00:00'))/86400000)+1;if(days<3||days>30){toast(days<3?'Trips here are at least 3 days — return date adjusted':'Trips here are up to 30 days — return date adjusted');}setTripLen(Math.max(3,Math.min(30,days)));}
 function updRetDate(){var r=document.getElementById('retDate');if(!r)return;if(!ST.dep){r.value='';r.removeAttribute('min');return;}var d=new Date(ST.dep+'T00:00:00');r.min=ST.dep;d.setDate(d.getDate()+(ST.tripLen-1));r.value=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
@@ -676,16 +676,22 @@ function renderHeat(){
   var lg=document.getElementById('heatLeg');if(lg)lg.innerHTML='<i class="hc h1"></i>&lt;40% <i class="hc h2"></i>40% <i class="hc h3"></i>70% <i class="hc h4"></i>90%+ <span>· tap a day to log it</span>';
 }
 function heatGo(i){setDay(i,true);goSub('daily','today',true);setTimeout(function(){jumpTo('dayNav',true);},60);vib(8);}
+function statsEmpty(){var logged=0;for(var i=1;i<=ST.tripLen;i++){var p=dayPct(i);if(p!==null&&p>0)logged++;}var pv=Object.keys(placeVis).filter(function(k){return placeVis[k];}).length;return logged===0&&!totalUmrahs()&&pv===0&&tbTotal()===0;}
 function updStats(){
-  var logged=0,sum=0,best=0,bestD=0,perf=0;
-  for(var i=1;i<=ST.tripLen;i++){var p=dayPct(i);if(p!==null&&p>0){logged++;sum+=p;if(p>best){best=p;bestD=i;}if(p>=80)perf++;}}
-  document.getElementById('stDays').textContent=logged;
-  document.getElementById('stAvg').textContent=(logged?Math.round(sum/logged):0)+'%';
-  document.getElementById('stBest').textContent=bestD?'Day '+bestD+' ('+best+'%)':'—';
-  document.getElementById('stPerf').textContent=perf;
-  document.getElementById('stUmrahs').textContent=totalUmrahs();
+  var logged=0,sum=0,best=0,bestD=0,perf=0,nt=0;
+  for(var i=1;i<=ST.tripLen;i++){var p=dayPct(i);if(p!==null&&p>0){logged++;sum+=p;if(p>best){best=p;bestD=i;}if(p>=80)perf++;}var dd=dailyChk['d'+i];if(dd)nt+=(dd.ntawafN||(dd.ntawaf?1:0));}
+  function set(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
+  set('stDays',logged);set('stAvg',(logged?Math.round(sum/logged):0)+'%');set('stBest',bestD?'Day '+bestD+' ('+best+'%)':'—');set('stPerf',perf);
+  var fs=streakOf('fajr');set('stFajr',fs+(fs===1?' day':' days'));
+  set('stUmrahs',totalUmrahs());set('stNafl',nt);set('stDhikr',tbTotal());
+  /* D-17: the numbers shown elsewhere, on one scoreboard */
+  set('stDuas',duas.filter(function(d){return d.done;}).length+' of '+duas.length);
+  set('stKm','≈ '+kmEst()+' km');set('stCups',cupsTotal());
   var pv=Object.keys(placeVis).filter(function(k){return placeVis[k];}).length;
-  document.getElementById('stPlaces').textContent=pv+' / '+PLACES.length;
+  set('stPlaces',pv+' / '+PLACES.length);
+  /* D-18: first-time visitors get a pointer to Today instead of a wall of zeros; the share card waits for real numbers */
+  var empty=statsEmpty(),se=document.getElementById('stEmpty'),sb=document.getElementById('shareBtn');
+  if(se)se.hidden=!empty;if(sb){sb.disabled=empty;sb.textContent=empty?'📸 Share card unlocks after your first day':'📸 Share my progress card';}
   renderBadges();
 }
 function setTripLen(v){var n=parseInt(v)||10;n=Math.max(3,Math.min(30,n));ST.tripLen=n;if(ST.day>n)ST.day=n;delete ST.dayAuto;saveST();document.getElementById('tripLen').value=n;updRetDate();updDaily();updStats();renderItin();updChip();renderPrepJumps();}
@@ -741,20 +747,23 @@ function updPlaces(){
 }
 
 /* ════════════════════════ BADGES ════════════════════════ */
-function badgeOK(id){
+/* D-19: every badge reports progress as {cur,need} so locked ones can show "2/3" and how to earn them */
+function badgeProg(id){
+  var i,n=0,d;
   switch(id){
-    case 'firstUmrah':return ST.umrahs>=1;
-    case 'again':return ST.umrahs>=2;
-    case 'quizMaster':return qzAllPassed();
-    case 'prepped':{var P=planTotals();return P.tot>0&&P.done===P.tot;}
-    case 'explorer':return Object.keys(placeVis).filter(function(k){return placeVis[k];}).length>=8;
-    case 'devoted':{var n=0;for(var i=1;i<=ST.tripLen;i++){var p=dayPct(i);if(p!==null&&p>=80)n++;}return n>=3;}
-    case 'quranComp':{var n=0;for(var i=1;i<=ST.tripLen;i++){var d=dailyChk['d'+i];if(d&&(d.recite||d.tadabbur||d.memorize))n++;}return n>=5;}
-    case 'nightHaram':{var n=0;for(var i=1;i<=ST.tripLen;i++){var d=dailyChk['d'+i];if(d&&d.tahajjud)n++;}return n>=3;}
-    case 'littlePilgrim':return kdBestStars()>=3;
+    case 'firstUmrah':return {cur:Math.min(ST.umrahs,1),need:1};
+    case 'again':return {cur:Math.min(ST.umrahs,2),need:2};
+    case 'quizMaster':return {cur:qzPassedCount(),need:QUIZ_LEVELS.length};
+    case 'prepped':{var P=planTotals();return {cur:P.done,need:P.tot||1};}
+    case 'explorer':return {cur:Object.keys(placeVis).filter(function(k){return placeVis[k];}).length,need:8};
+    case 'devoted':for(i=1;i<=ST.tripLen;i++){var p=dayPct(i);if(p!==null&&p>=80)n++;}return {cur:n,need:3};
+    case 'quranComp':for(i=1;i<=ST.tripLen;i++){d=dailyChk['d'+i];if(d&&(d.recite||d.tadabbur||d.memorize))n++;}return {cur:n,need:5};
+    case 'nightHaram':for(i=1;i<=ST.tripLen;i++){d=dailyChk['d'+i];if(d&&d.tahajjud)n++;}return {cur:n,need:3};
+    case 'littlePilgrim':return {cur:kdBestStars(),need:3};
   }
-  return false;
+  return {cur:0,need:1};
 }
+function badgeOK(id){var p=badgeProg(id);return p.cur>=p.need;}
 function chkBadges(){
   BADGES.forEach(function(b){
     if(!earned[b.id]&&badgeOK(b.id)){earned[b.id]=true;save('us-badges',earned);toast(b.icon+' Achievement unlocked: '+b.name+'!',true);vib([40,50,90]);}
@@ -764,9 +773,12 @@ function chkBadges(){
 function renderBadges(){
   var g=document.getElementById('bdgGrid');if(!g)return;
   var n=0,h='';
-  BADGES.forEach(function(b){var ok=!!earned[b.id];if(ok)n++;h+='<div class="bdg '+(ok?'ok':'no')+'"><div class="i">'+b.icon+'</div><div class="n">'+b.name+'</div></div>';});
+  BADGES.forEach(function(b){var ok=!!earned[b.id];if(ok)n++;var how=esc(b.how||''),p=ok?null:badgeProg(b.id),cur=p?Math.min(p.cur,p.need):0;
+    h+='<div class="bdg '+(ok?'ok':'no')+'" role="button" tabindex="0" aria-expanded="false" aria-label="'+b.name+(ok?', earned':', locked, '+cur+' of '+p.need+' — '+how)+'" onclick="togBadge(this)"><div class="i">'+b.icon+'</div><div class="n">'+b.name+'</div>'
+      +(ok?'<div class="how">✓ '+how+'</div>':'<div class="p">'+cur+'/'+p.need+'</div><div class="mini"><i style="width:'+Math.round(cur/p.need*100)+'%"></i></div><div class="how">'+how+'</div>')+'</div>';});
   g.innerHTML=h;document.getElementById('bdgCnt').textContent=n;var bt=document.getElementById('bdgTot');if(bt)bt.textContent=BADGES.length;
 }
+function togBadge(el){var open=!el.classList.contains('open');el.classList.toggle('open',open);el.setAttribute('aria-expanded',open?'true':'false');vib(6);}
 
 /* ════════════════════════ DUAS / DATA ════════════════════════ */
 function renderDuas(){
@@ -908,7 +920,11 @@ function reqWake(){if(!('wakeLock' in navigator))return;
     try{w.addEventListener('release',function(){if(wakeLock===w)wakeLock=null;var h2=document.getElementById('focusHint');if(h2)h2.textContent='tap anywhere to count';});}catch(e){}
   }).catch(function(){});}
 function enterFocus(k){
-  focusKey=k;fdOpen=false;document.getElementById('focus').classList.add('on');document.body.style.overflow='hidden';
+  focusKey=k;fdOpen=false;var f=document.getElementById('focus');f.classList.add('on');f.classList.toggle('tasbih',k==='tasbih');document.body.style.overflow='hidden';
+  var tap=f.querySelector('.focus-tap');if(tap)tap.setAttribute('aria-label','Tap to count one '+(k==='tasbih'?'dhikr':k==='tawaf'?'round':'lap'));
+  document.getElementById('focusHint').hidden=false;
+  /* D-15: the same overlay doubles as a full-screen tasbih (wake lock, giant number, Arabic of the phrase) */
+  if(k==='tasbih'){document.getElementById('focusHint').textContent='tap anywhere to count';renderFocusTB();reqWake();return;}
   document.getElementById('focusTitle').textContent=k==='tawaf'?(ST.tmode==='nafl'?'🔁 Nafl tawaf':'🕋 Tawaf'):'⛰️ Sa’i';
   document.getElementById('focusOf').textContent=k==='tawaf'?'of 7 rounds':'of 7 laps';
   document.getElementById('focusHint').textContent='tap anywhere to count';
@@ -918,9 +934,13 @@ function enterFocus(k){
 }
 function exitFocus(){document.getElementById('focus').classList.remove('on');document.body.style.overflow='';if(wakeLock){wakeLock.release().catch(function(){});wakeLock=null;}
   if(walkReturn){walkReturn=false;openWalkAt(walkI);}}
-function focusTap(){cntr(focusKey,1);}
+function focusTap(){if(focusKey==='tasbih')tbTap();else cntr(focusKey,1);}
+function focusUndo(){if(focusKey==='tasbih')tbUndo();else cntr(focusKey,-1);}
+function renderFocusTB(){var t=document.getElementById('focusTitle'),o=document.getElementById('focusOf'),n=document.getElementById('focusN'),tip=document.getElementById('focusTip'),d=document.getElementById('focusDone');if(!t)return;
+  t.textContent='📿 '+TB_PHRASES[tbPhrase];n.textContent=tbCount;o.textContent=(tbTargetN?'of '+tbTargetN:'no target')+' · today '+(tasbih[dayKey()]||0);
+  tip.hidden=false;tip.innerHTML='<span lang="ar">'+TB_AR[tbPhrase]+'</span>';if(d)d.hidden=true;}
 /* U-03: at 7/7 the big number stays, the tip becomes the hand-off */
-function renderFocusDone(){var p=document.getElementById('focusDone'),t=document.getElementById('focusTip'),h=document.getElementById('focusHint');if(!p)return;
+function renderFocusDone(){var p=document.getElementById('focusDone'),t=document.getElementById('focusTip'),h=document.getElementById('focusHint');if(!p||focusKey==='tasbih')return;
   var v=ST[focusKey],done=v>=7,open=document.getElementById('focus').classList.contains('on');
   p.hidden=!done;if(t)t.hidden=done;if(h)h.hidden=done;
   if(!done){p.innerHTML='';return;}
@@ -944,7 +964,7 @@ function myDuasSheet(){var h='<div class="sheet-h">🤲</div><h3>My duas</h3><p>
 function addDuaSheet(){var i=document.getElementById('duaIn2'),v=((i&&i.value)||'').trim();if(!v)return;duas.push({t:v,done:false});saveDuas();renderDuaList();myDuasSheet();vib(15);}
 document.addEventListener('visibilitychange',function(){if(document.visibilityState!=='visible'||!('wakeLock' in navigator))return;
   var fo=document.getElementById('focus').classList.contains('on');
-  if(fo&&ST[focusKey]<7)reqWake();else if(document.getElementById('duaFocus').classList.contains('on'))navigator.wakeLock.request('screen').then(function(w){wakeLock=w;}).catch(function(){});});
+  if(fo&&(focusKey==='tasbih'||ST[focusKey]<7))reqWake();else if(document.getElementById('duaFocus').classList.contains('on'))navigator.wakeLock.request('screen').then(function(w){wakeLock=w;}).catch(function(){});});
 
 /* ════════════════════════ DUA READER (full-screen, M-11) ════════════════════════ */
 var dfList=[],dfIdx=0;
@@ -1152,26 +1172,43 @@ function bagFilter(btn,bag){
 
 /* ════════════════════════ DUA LIST ════════════════════════ */
 var duas=[];try{duas=JSON.parse(localStorage.getItem('us-dualist')||'[]');}catch(e){}
+var DUA_SUG=['Parents','Forgiveness','Shifa for…','Righteous spouse','Guidance for family','The Ummah','Husn al-khatimah','Hajj next year'];
+var lastDeleted=null;
 function saveDuas(){localStorage.setItem('us-dualist',JSON.stringify(duas));}
-function addDua(){var i=document.getElementById('duaIn'),v=(i.value||'').trim();if(!v)return;duas.push({t:v,done:false});saveDuas();i.value='';renderDuaList();vib(15);}
-function togDua(i){duas[i].done=!duas[i].done;saveDuas();renderDuaList();vib(10);}
-function delDua(i){duas.splice(i,1);saveDuas();renderDuaList();}
+/* D-11: once flying, the in-Haram tools (tasbih, qibla) come first in the Tools column */
+function updToolsOrder(){var col=document.getElementById('toolsCol');if(!col)return;var d=depDays(),trip=d!==null&&d<=0,o=trip?{tbCard:1,qiblaCard:2,waterCard:3,duaCard:4}:{duaCard:1,waterCard:2,tbCard:3,qiblaCard:4};Object.keys(o).forEach(function(id){var e=document.getElementById(id);if(e)e.style.order=o[id];});}
+/* D-11: the dua card is a collapsible section — shut by default once flying when the list already has entries */
+function renderDuaSec(){var c=document.getElementById('duaCard');if(!c)return;var d=depDays(),shut=d!==null&&d<=0&&duas.length>0;
+  var inner='<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin:2px 0 8px"><p style="font-size:.8em;color:var(--ink2);margin:0;flex:1">Write them before you fly; tick them as you ask in the Haram.</p><button class="xchip" style="margin:0;flex-shrink:0" onclick="goTab(\'more\',\'duas\')">📖 Essential duas →</button></div>'
+    +'<div style="display:flex;gap:8px;margin-bottom:8px"><input class="srch" id="duaIn" placeholder="Add a dua…" style="margin:0" onkeydown="if(event.key===\'Enter\')addDua()" aria-label="Add a dua"><button class="chip-btn" onclick="addDua()" aria-label="Add">＋</button></div><div id="duaList"></div>';
+  c.innerHTML=mkSec({id:'dualist',ico:'🤲',title:'My dua list'},shut,inner);renderDuaList();}
+function addDua(){var i=document.getElementById('duaIn'),v=(i.value||'').trim();if(!v)return;duas.push({t:v,done:false});saveDuas();i.value='';renderDuaList();updStats();vib(15);}
+function togDua(i){duas[i].done=!duas[i].done;saveDuas();renderDuaList();updStats();vib(10);}
+/* D-12: a delete can be undone from the toast */
+function delDua(i){var d=duas.splice(i,1)[0];if(!d)return;lastDeleted={i:i,d:d};saveDuas();renderDuaList();updStats();vib(8);
+  toast('Removed “'+d.t.slice(0,32)+(d.t.length>32?'…':'')+'”',false,'Undo',function(){if(!lastDeleted)return;duas.splice(Math.min(lastDeleted.i,duas.length),0,lastDeleted.d);lastDeleted=null;saveDuas();renderDuaList();updStats();vib(10);});}
+function duaNewRound(){duas.forEach(function(d){d.done=false;});saveDuas();renderDuaList();updStats();vib(10);toast('🤲 New round — every dua is unticked');}
+function duaSuggest(el){var i=document.getElementById('duaIn');if(!i)return;i.value=el.textContent;i.focus();try{i.setSelectionRange(i.value.length,i.value.length);}catch(e){}vib(6);}
 function renderDuaList(){
   var a=document.getElementById('duaList');if(!a)return;
-  if(!duas.length){a.innerHTML='<p style="font-size:.8em;color:var(--ink3)">Your list is empty. Start with the people who asked you to pray for them.</p>';return;}
-  a.innerHTML=duas.map(function(d,i){return '<div class="row'+(d.done?' done':'')+'" style="padding:8px 6px"><span class="tick" onclick="togDua('+i+')"></span><div class="row-t" onclick="togDua('+i+')"><b>'+d.t.replace(/</g,'&lt;')+'</b></div><button class="chip-btn" style="padding:4px 10px" onclick="delDua('+i+')">✕</button></div>';}).join('')+'<p style="font-size:.74em;color:var(--ink3);margin-top:6px">'+duas.filter(function(d){return d.done;}).length+' of '+duas.length+' asked · <button class="lnk" style="font-size:1em" onclick="togDaily(\'dualist\')">'+((dailyChk[dayKey()]||{}).dualist?'✓ went through my list today':'Went through my list today? Tick it')+'</button></p>';
+  var done=duas.filter(function(d){return d.done;}).length,ct=document.getElementById('sp-dualist');if(ct)ct.textContent=duas.length?done+'/'+duas.length+' asked':'';
+  if(!duas.length){a.innerHTML='<p style="font-size:.8em;color:var(--ink3);margin:0 0 4px">Your list is empty. Start with the people who asked you to pray for them — or tap a starter:</p><div class="dua-sug">'+DUA_SUG.map(function(x){return '<button class="chip-btn" onclick="duaSuggest(this)">'+x+'</button>';}).join('')+'</div>';return;}
+  var today=(dailyChk[dayKey()]||{}).dualist;
+  a.innerHTML=duas.map(function(d,i){return '<div class="row'+(d.done?' done':'')+'" style="padding:8px 6px"><span class="tick" role="checkbox" tabindex="0" aria-checked="'+(d.done?'true':'false')+'" aria-label="'+esc(d.t)+'" onclick="togDua('+i+')"></span><div class="row-t" onclick="togDua('+i+')"><b>'+esc(d.t)+'</b></div><button class="chip-btn" style="padding:4px 10px" onclick="delDua('+i+')" aria-label="Remove '+esc(d.t)+'">✕</button></div>';}).join('')
+    +'<div class="dua-acts"><span>'+done+' of '+duas.length+' asked</span>'+(done?'<button class="chip-btn" onclick="duaNewRound()">↺ Untick all — new round</button>':'')+'<button class="lnk" onclick="togDaily(\'dualist\')">'+(today?'✓ went through my list today':'Went through my list today? Tick it')+'</button></div>';
 }
 
 /* ════════════════════════ WATER & DISTANCE ════════════════════════ */
 var waterD={};try{waterD=JSON.parse(localStorage.getItem('us-water')||'{}');}catch(e){}
-function water(d){var k=dayKey();waterD[k]=Math.max(0,(waterD[k]||0)+d);localStorage.setItem('us-water',JSON.stringify(waterD));vib(10);renderWater();if(waterD[k]===8)toast('💧 8 cups — well hydrated, alhamdulillah');}
+function water(d){var k=dayKey();waterD[k]=Math.max(0,(waterD[k]||0)+d);localStorage.setItem('us-water',JSON.stringify(waterD));vib(10);renderWater();updStats();if(d>0&&waterD[k]===8)toast('💧 8 cups — good, keep going in the heat');}
+/* D-13: the card does one thing; the 8 is a floor, not a cap */
 function renderWater(){
-  var l=document.getElementById('waterLbl'),b=document.getElementById('waterBar'),k=document.getElementById('kmLbl');if(!l)return;
-  var c=waterD[dayKey()]||0;l.textContent=c+' of 8 cups';b.style.width=Math.min(100,c/8*100)+'%';
-  var km=ST.umrahs*6+ST.tawaf*0.4+ST.sai*0.45;
-  for(var i=1;i<=ST.tripLen;i++){var d=dailyChk['d'+i];if(d)km+=(d.ntawafN||(d.ntawaf?1:0))*2.8;}
-  k.textContent='≈ '+(Math.round(km*10)/10)+' km';
+  var l=document.getElementById('waterLbl'),b=document.getElementById('waterBar');if(!l)return;
+  var c=waterD[dayKey()]||0;l.textContent=c+' cup'+(c===1?'':'s')+' today · aim for 8, 10–12 in summer heat';if(b)b.style.width=Math.min(100,c/8*100)+'%';
 }
+function cupsTotal(){var n=0;Object.keys(waterD).forEach(function(k){n+=waterD[k]||0;});return n;}
+/* D-13/D-17: one shared estimate — 6 km per recorded Umrah, the live counters, and every logged nafl tawaf */
+function kmEst(){var km=ST.umrahs*6+ST.tawaf*0.4+ST.sai*0.45;for(var i=1;i<=ST.tripLen;i++){var d=dailyChk['d'+i];if(d)km+=(d.ntawafN||(d.ntawaf?1:0))*2.8;}return Math.round(km*10)/10;}
 
 /* ════════════════════════ ITINERARY ════════════════════════ */
 function itinST(){var it=ST.itin=ST.itin||{};if(it.mad===undefined)it.mad=3;if(!it.first)it.first='makkah';if(!it.custom)it.custom={};return it;}
@@ -1229,11 +1266,12 @@ function linkPlaces(str){return str.replace(ITIN_RE,function(m){return '<span cl
 
 /* ════════════════════════ SHARE PROGRESS CARD ════════════════════════ */
 function shareCard(){
+  if(statsEmpty()){toast('Tick a few deeds in Today first');return;}
   var c=document.createElement('canvas');c.width=1080;c.height=1080;var x=c.getContext('2d');
   var g=x.createLinearGradient(0,0,1080,1080);g.addColorStop(0,'#0E3B2E');g.addColorStop(1,'#0B2E24');x.fillStyle=g;x.fillRect(0,0,1080,1080);
   x.strokeStyle='#D9B45E';x.lineWidth=6;x.strokeRect(46,46,988,988);
   var logged=0,sum=0;for(var i=1;i<=ST.tripLen;i++){var p=dayPct(i);if(p!==null&&p>0){logged++;sum+=p;}}
-  var pv=Object.keys(placeVis).filter(function(k){return placeVis[k];}).length,tb=0;Object.keys(tasbih).forEach(function(k){tb+=tasbih[k];});
+  var pv=Object.keys(placeVis).filter(function(k){return placeVis[k];}).length,tb=tbTotal();
   var nt=0;for(var j=1;j<=ST.tripLen;j++){var dd=dailyChk['d'+j];if(dd)nt+=(dd.ntawafN||(dd.ntawaf?1:0));}
   x.textAlign='center';x.font='100px serif';x.fillText('🕋',540,200);
   x.font='700 40px Georgia,serif';x.fillStyle='#D9B45E';x.fillText('UMRAH STRIVERS',540,280);
@@ -1360,6 +1398,8 @@ function goSub(tab,sub,silent){
   view.querySelectorAll('.seg button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-sub')===sub);});
   if(!silent){vib(8);var top=view.querySelector('.seg');if(top){var y=top.getBoundingClientRect().top+window.scrollY-(62);if(window.scrollY>y)window.scrollTo({top:y,behavior:'smooth'});}}
   if(tab==='daily'&&sub==='stats'){updStats();}
+  if(tab==='daily'&&sub==='tools'){updToolsOrder();}
+  qbAutoStop();
   if(tab==='plan'&&sub==='learn'){renderFC();}
   if(tab==='umrah'&&sub==='count'&&!silent&&cntStarted()){updCntLayout();setTimeout(function(){jumpTo(cntActive()+'Card',true);},40);}
   if(tab==='umrah'&&!silent){if(ST.subAuto&&ST.subAuto.umrah){delete ST.subAuto.umrah;saveST();}if(sub==='steps')focusRites(true);}
@@ -1879,37 +1919,59 @@ function exportICS(){var city=ST.city||'Makkah',B=buildICS(city,7),name='prayer-
 
 /* ════════════════════════ TASBIH ════════════════════════ */
 var TB_PHRASES=['SubhanAllah','Alhamdulillah','Allahu Akbar','La ilaha illallah','Astaghfirullah','Salawat ﷺ'];
+var TB_AR=['سُبْحَانَ اللهِ','الْحَمْدُ لِلهِ','اللهُ أَكْبَرُ','لَا إِلَهَ إِلَّا اللهُ','أَسْتَغْفِرُ اللهَ','اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ'];
 /* D-06: the two ×100 phrases keep their own target and tick their checklist row at 100 */
 var TB_LONG={4:'istighfar',5:'salawat'};
+/* D-14: pickable targets; 0 = no target (∞) */
+var TB_TARGETS=[33,34,100,1000,0];
 var tbPhrase=0,tbCount=0,tbTargetN=33;
 var tasbihP={};try{tasbihP=JSON.parse(localStorage.getItem('us-tasbih-p')||'{}');}catch(e){}
-function tbTarget(){return TB_LONG[tbPhrase]?100:33;}
+function tbDefault(i){return TB_LONG[i]?100:33;}
+function tbTarget(){return tbTargetN;}
+/* the live cycle survives a reload — stored beside the day totals under a non-day key (us-tasbih._cur) */
+function tbPersist(){tasbih._cur={p:tbPhrase,c:tbCount,t:tbTargetN};save('us-tasbih',tasbih);}
+function tbRestore(){var c=tasbih._cur;if(c&&typeof c==='object'){tbPhrase=TB_PHRASES[c.p]?c.p:0;tbCount=Math.max(0,parseInt(c.c,10)||0);tbTargetN=TB_TARGETS.indexOf(c.t)>-1?c.t:tbDefault(tbPhrase);}else tbTargetN=tbDefault(tbPhrase);}
+/* total dhikr counted on the trip — only the day keys, never the _cur record */
+function tbTotal(){var n=0;Object.keys(tasbih).forEach(function(k){if(k[0]==='d'&&typeof tasbih[k]==='number')n+=tasbih[k];});return n;}
 function renderTB(){
   var c=document.getElementById('tbChips');if(!c)return;
-  var h='';TB_PHRASES.forEach(function(ph,i){h+='<button class="tb-chip'+(i===tbPhrase?' on':'')+'" onclick="tbSet('+i+')">'+ph+'</button>';});
-  c.innerHTML=h;tbTargetN=tbTarget();
+  var h='';TB_PHRASES.forEach(function(ph,i){h+='<button class="tb-chip'+(i===tbPhrase?' on':'')+'" aria-pressed="'+(i===tbPhrase?'true':'false')+'" onclick="tbSet('+i+')">'+ph+'</button>';});
+  c.innerHTML=h;
+  var tg=document.getElementById('tbTargets');if(tg)tg.innerHTML=TB_TARGETS.map(function(t){return '<button class="tb-tg'+(t===tbTargetN?' on':'')+'" role="radio" aria-checked="'+(t===tbTargetN?'true':'false')+'" aria-label="Target '+(t||'unlimited')+'" onclick="tbSetTarget('+t+')">'+(t||'∞')+'</button>';}).join('');
   document.getElementById('tbN').textContent=tbCount;
-  document.getElementById('tbTarget').textContent=tbTargetN;
+  var of=document.getElementById('tbOf');if(of)of.innerHTML=!tbTargetN?'<span id="tbTarget">∞</span> · tap':tbCount>tbTargetN?'<span id="tbTarget">'+tbTargetN+'</span> done · keep going':'of <span id="tbTarget">'+tbTargetN+'</span> · tap';
   document.getElementById('tbToday').textContent=tasbih[dayKey()]||0;
   var pe=document.getElementById('tbPhraseN'),pp=(tasbihP[dayKey()]||{})[tbPhrase]||0;if(pe)pe.textContent='· '+TB_PHRASES[tbPhrase]+' '+pp+(TB_LONG[tbPhrase]?'/100':'');
+  var f=document.getElementById('focus');if(focusKey==='tasbih'&&f&&f.classList.contains('on'))renderFocusTB();
 }
-function tbSet(i){tbPhrase=i;tbCount=0;renderTB();}
+/* picking a phrase keeps a deliberate 1000/∞ target; 33/34/100 follow the phrase */
+function tbSet(i){tbPhrase=i;tbCount=0;if(tbTargetN!==1000&&tbTargetN!==0)tbTargetN=tbDefault(i);tbPersist();renderTB();vib(6);}
+function tbSetTarget(t){tbTargetN=t;tbPersist();renderTB();vib(6);}
 function tbTap(){
-  var k=dayKey(),ph=tbPhrase,long=TB_LONG[ph];
-  tbCount++;tasbih[k]=(tasbih[k]||0)+1;save('us-tasbih',tasbih);
+  var k=dayKey(),ph=tbPhrase,long=TB_LONG[ph],T=tbTargetN;
+  tbCount++;tasbih[k]=(tasbih[k]||0)+1;
   var P=tasbihP[k]||{};P[ph]=(P[ph]||0)+1;tasbihP[k]=P;save('us-tasbih-p',tasbihP);
-  if(tbCount>=tbTarget()){vib([40,60,100]);toast('✨ '+TB_PHRASES[ph]+' ×'+tbTarget()+' complete');tbCount=0;if(!long)tbPhrase=(tbPhrase+1)%TB_PHRASES.length;}
-  else vib(12);
+  if(T&&tbCount===T){
+    vib([40,60,100]);
+    /* the post-salah chain only: SubhanAllah 33 → Alhamdulillah 33 → Allahu Akbar 34 → stop; anything else keeps counting */
+    if((T===33||T===34)&&ph<3){
+      if(ph===2){tbCount=0;toast('✨ Post-salah tasbih complete — 33 · 33 · 34, alhamdulillah',true);}
+      else{tbCount=0;tbPhrase=ph+1;tbTargetN=tbPhrase===2?34:33;toast('✨ '+TB_PHRASES[ph]+' ×'+T+' — now '+TB_PHRASES[tbPhrase]+(tbPhrase===2?' ×34':''));}
+    }else toast('✨ '+TB_PHRASES[ph]+' ×'+T+' complete — keep going');
+  }else vib(12);
+  tbPersist();
   var d=dailyChk[k]||{},changed=false;
   if(long&&P[ph]>=100&&!d[long]){d[long]=true;changed=true;toast('📿 '+TB_PHRASES[ph]+' ×100 today — checklist ticked!');}
   if((tasbih[k]||0)>=100&&!d.dhikr100){d.dhikr100=true;changed=true;toast('📿 100 dhikr today — checklist updated!');}
   if(changed){dailyChk[k]=d;save('us-daily',dailyChk);updDaily();updStats();chkBadges();}
   renderTB();
 }
-function tbReset(){tbCount=0;renderTB();}
+/* D-15: one back for a mis-tap — the day and phrase totals follow */
+function tbUndo(){if(tbCount<=0){vib(6);return;}var k=dayKey(),ph=tbPhrase;tbCount--;tasbih[k]=Math.max(0,(tasbih[k]||0)-1);var P=tasbihP[k]||{};if(P[ph])P[ph]=Math.max(0,P[ph]-1);tasbihP[k]=P;save('us-tasbih-p',tasbihP);tbPersist();renderTB();vib(6);}
+function tbReset(){tbCount=0;tbPersist();renderTB();}
 /* ════════════════════════ QIBLA ════════════════════════ */
 var KAABA={lat:21.4225,lng:39.8262};
-var qbBearing=null;
+var qbBearing=null,qbActive=false,qbEvt=null;
 function qbCalc(lat,lng){
   var φ1=lat*Math.PI/180,φ2=KAABA.lat*Math.PI/180,Δλ=(KAABA.lng-lng)*Math.PI/180;
   var y=Math.sin(Δλ)*Math.cos(φ2);
@@ -1917,35 +1979,44 @@ function qbCalc(lat,lng){
   return (Math.atan2(y,x)*180/Math.PI+360)%360;
 }
 function qbSetNeedle(deg){var n=document.getElementById('qbNeedle');if(n)n.style.transform='translate(-50%,-100%) rotate('+deg+'deg)';}
-function startQibla(){
-  var st=document.getElementById('qbStatus');
-  if(!navigator.geolocation){st.textContent='Location not supported on this device.';return;}
-  st.textContent='Locating…';
-  navigator.geolocation.getCurrentPosition(function(pos){
-    qbBearing=Math.round(qbCalc(pos.coords.latitude,pos.coords.longitude));
-    document.getElementById('qbDeg').textContent=qbBearing+'°';
-    qbSetNeedle(qbBearing);
-    st.innerHTML='Qibla is <b>'+qbBearing+'°</b> from North. Starting compass…';
-    startCompass(st);
-  },function(){st.textContent='Location denied — enable it in your browser settings and retry.';});
+/* D-16: one module-level listener; it idles until a bearing exists */
+function qbOri(e){
+  var heading=null;
+  if(typeof e.webkitCompassHeading==='number')heading=e.webkitCompassHeading;
+  else if(typeof e.alpha==='number'&&(e.absolute||e.type==='deviceorientationabsolute'))heading=360-e.alpha;
+  if(heading===null||qbBearing===null)return;
+  qbSetNeedle(qbBearing-heading);
+  var st=document.getElementById('qbStatus');if(st&&!st.getAttribute('data-live')){st.setAttribute('data-live','1');st.textContent='Hold the phone flat, away from metal, and rotate until the 🕋 points up';}
 }
-function startCompass(st){
-  function onOri(e){
-    var heading=null;
-    if(typeof e.webkitCompassHeading==='number')heading=e.webkitCompassHeading;
-    else if(e.absolute&&typeof e.alpha==='number')heading=360-e.alpha;
-    if(heading===null||qbBearing===null)return;
-    qbSetNeedle(qbBearing-heading);
-    st.innerHTML='Rotate until the 🕋 points straight up — that\'s the qibla.';
-  }
-  if(typeof DeviceOrientationEvent!=='undefined'&&typeof DeviceOrientationEvent.requestPermission==='function'){
-    DeviceOrientationEvent.requestPermission().then(function(p){
-      if(p==='granted')window.addEventListener('deviceorientation',onOri);
-      else st.innerHTML='Compass denied — face North yourself, then turn <b>'+qbBearing+'°</b> clockwise.';
-    }).catch(function(){st.innerHTML='No compass — face North, then turn <b>'+qbBearing+'°</b> clockwise.';});
-  }else if('ondeviceorientationabsolute' in window){window.addEventListener('deviceorientationabsolute',onOri);}
-  else if(window.DeviceOrientationEvent){window.addEventListener('deviceorientation',onOri);}
-  else st.innerHTML='No compass sensor — face North, then turn <b>'+qbBearing+'°</b> clockwise.';
+function qbListen(){if(qbEvt||typeof DeviceOrientationEvent==='undefined')return;qbEvt=('ondeviceorientationabsolute' in window)?'deviceorientationabsolute':'deviceorientation';window.addEventListener(qbEvt,qbOri);}
+function qbUnlisten(){if(qbEvt){window.removeEventListener(qbEvt,qbOri);qbEvt=null;}}
+function qbBtnUpd(){var b=document.getElementById('qbBtn');if(!b)return;b.textContent=qbActive?'⏹ Stop compass':'🧭 Start compass';b.classList.toggle('on',qbActive);b.setAttribute('aria-pressed',qbActive?'true':'false');}
+function stopQibla(quiet){qbUnlisten();qbActive=false;qbBtnUpd();var st=document.getElementById('qbStatus');if(st){st.removeAttribute('data-live');if(!quiet)st.textContent=qbBearing!==null?'Compass stopped — qibla is '+qbBearing+'° from North.':'Tap start and allow location & motion access.';}}
+/* leaving Daily › Tools releases the sensors */
+function qbAutoStop(){if(!qbActive)return;var v=document.getElementById('view-daily'),su=document.getElementById('sub-daily-tools');if(!v||!v.classList.contains('on')||!su||!su.classList.contains('on'))stopQibla(true);}
+function qbSetBearing(b,note,motion){qbBearing=Math.round(b);document.getElementById('qbDeg').textContent=qbBearing+'°';qbSetNeedle(qbBearing);var st=document.getElementById('qbStatus'),fb=document.getElementById('qbFallback');if(fb)fb.innerHTML='';if(!st)return;st.removeAttribute('data-live');
+  st.innerHTML=(note||'')+'Qibla is <b>'+qbBearing+'°</b> from North. '+(motion===false?'No compass access — face North yourself (a map app helps), then turn '+qbBearing+'° clockwise.':'Hold the phone flat, away from metal, and rotate until the 🕋 points up.');}
+function qbUseMadinah(){qbSetBearing(176,'Madinah (approx.) · ',qbEvt?true:false);}
+function startQibla(){
+  var st=document.getElementById('qbStatus'),fb=document.getElementById('qbFallback');
+  if(qbActive){stopQibla();return;}
+  qbActive=true;qbBtnUpd();if(fb)fb.innerHTML='';
+  /* iOS grants motion access only inside the tap — ask first, synchronously, then locate */
+  var perm=(typeof DeviceOrientationEvent!=='undefined'&&typeof DeviceOrientationEvent.requestPermission==='function')?DeviceOrientationEvent.requestPermission().catch(function(){return 'denied';}):Promise.resolve('granted');
+  qbListen();
+  st.textContent='Locating…';
+  perm.then(function(p){
+    if(!qbActive)return;
+    var motion=p==='granted'&&!!qbEvt;
+    if(!motion)qbUnlisten();
+    function fail(){
+      qbBearing=null;
+      if(ST.city==='Madinah'){st.textContent='Location unavailable.';if(fb)fb.innerHTML='<button class="chip-btn" onclick="qbUseMadinah()">Use Madinah (approx. 176°)</button>';}
+      else st.textContent='Location unavailable. In Makkah the direction changes street to street — use the qibla sticker on the hotel ceiling, or allow location in your browser settings and retry.';
+    }
+    if(!navigator.geolocation){fail();return;}
+    navigator.geolocation.getCurrentPosition(function(pos){if(!qbActive)return;qbSetBearing(qbCalc(pos.coords.latitude,pos.coords.longitude),'',motion);},fail,{timeout:12000,maximumAge:600000});
+  });
 }
 
 /* ════════════════════════ PWA INSTALL + SW ════════════════════════ */
@@ -1979,8 +2050,8 @@ function initUI(){
   document.getElementById('quoteLine').textContent=QUOTES[Math.floor(Math.random()*QUOTES.length)];
   document.getElementById('tripLen').value=ST.tripLen;
   var ni=document.getElementById('nameIn');if(ni)ni.value=ST.name||'';
-  renderPlan();renderRites();renderDaily();renderPlaces();renderDuas();renderTB();
-  buildDeck();renderFC();renderPost();updRemSw();applySubs();updChip();renderItin();renderVault();renderDuaList();renderWater();updHotelLbl();loadHotelInfo();loadNiyyah();updKidsSw();applyProfile();renderCntHd();
+  renderPlan();renderRites();renderDaily();renderPlaces();renderDuas();tbRestore();renderTB();
+  buildDeck();renderFC();renderPost();updRemSw();applySubs();updChip();renderItin();renderVault();renderDuaSec();renderWater();updToolsOrder();updHotelLbl();loadHotelInfo();loadNiyyah();updKidsSw();applyProfile();renderCntHd();
   if(!ST.onboarded&&!pendingGroup)setTimeout(showOnboard,400);
   kidsBestLbl();renderStories();
   var cm=document.getElementById('cityMakkah'),cd=document.getElementById('cityMadinah');

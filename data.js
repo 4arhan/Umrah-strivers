@@ -401,12 +401,12 @@ var DUAS=[
 {t:'Salam upon the Prophet ﷺ (in Madinah)',ar:'السَّلَامُ عَلَيْكَ يَا رَسُولَ اللَّهِ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ',tl:'As-salamu ’alayka ya Rasulallah wa rahmatullahi wa barakatuh',tr:'Peace be upon you, O Messenger of Allah, and the mercy of Allah and His blessings. (Then salam upon Abu Bakr and ’Umar.)',s:'Etiquette: calm voice, no crowding'}];
 
 var BADGES=[
-{id:'firstUmrah',name:'First Umrah',icon:'🕋'},
-{id:'again',name:'Again & Again',icon:'🔁'},
-{id:'quizMaster',name:'Quiz Master',icon:'🧠'},
-{id:'prepped',name:'Fully Prepped',icon:'🧳'},
-{id:'explorer',name:'Explorer',icon:'📍'},
-{id:'devoted',name:'Devoted',icon:'🕌'},
-{id:'quranComp',name:'Quran Companion',icon:'📖'},
-{id:'nightHaram',name:'Night in the Haram',icon:'🌙'},
-{id:'littlePilgrim',name:'Little Pilgrim',icon:'🧒'}];
+{id:'firstUmrah',name:'First Umrah',icon:'🕋',how:'Complete 1 Umrah'},
+{id:'again',name:'Again & Again',icon:'🔁',how:'Complete 2 Umrahs'},
+{id:'quizMaster',name:'Quiz Master',icon:'🧠',how:'Pass every quiz level'},
+{id:'prepped',name:'Fully Prepped',icon:'🧳',how:'Tick every Prepare checklist item'},
+{id:'explorer',name:'Explorer',icon:'📍',how:'Mark 8 places visited'},
+{id:'devoted',name:'Devoted',icon:'🕌',how:'3 days at 80%+'},
+{id:'quranComp',name:'Quran Companion',icon:'📖',how:'Quran on 5 days'},
+{id:'nightHaram',name:'Night in the Haram',icon:'🌙',how:'Tahajjud on 3 nights'},
+{id:'littlePilgrim',name:'Little Pilgrim',icon:'🧒',how:'A child’s 5/5 day three times'}];

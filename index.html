@@ -191,7 +191,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .bdgs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .bdg{text-align:center;padding:12px 4px;border-radius:var(--r);border:1px solid var(--line);background:var(--bg);transition:all .3s}
 .bdg.ok{border-color:var(--gold);background:var(--gold-soft);box-shadow:var(--sh)}
-.bdg.no{opacity:.32;filter:grayscale(1)}
+.bdg.no{opacity:.55;filter:grayscale(1)}
 .bdg .i{font-size:1.6em}
 .bdg .n{font-size:.74em;font-weight:700;color:var(--ink2);margin-top:3px;line-height:1.3}
 
@@ -503,7 +503,7 @@ html[data-text='lg'] body{font-size:17px}
 .tli-when{font-size:.66em;font-weight:800;letter-spacing:.4px;text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap;margin-top:3px}
 .tli-when.over{background:rgba(194,65,12,.12);color:var(--danger)}.tli-when.now{background:var(--gold-soft);color:var(--gold-ink)}.tli-when.soon{background:var(--brand-soft);color:var(--brand-2)}
 .tli-h{font-size:.7em;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink3);margin:10px 4px 6px}
-.st .mini{height:5px;border-radius:3px;background:var(--bg-soft);margin:6px 8px 0;overflow:hidden}.st .mini i{display:block;height:100%;background:linear-gradient(90deg,var(--brand-2),var(--gold-2))}
+.mini{height:5px;border-radius:3px;background:var(--bg-soft);overflow:hidden}.mini i{display:block;height:100%;background:linear-gradient(90deg,var(--brand-2),var(--gold-2))}.st .mini{margin:6px 8px 0}
 .brow{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--line)}
 .brow label{flex:1;font-size:.86em;color:var(--ink2)}.brow label small{display:block;font-size:.8em;color:var(--ink3)}
 .brow input{width:96px;padding:8px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-family:var(--fb);font-weight:700;text-align:right;font-size:.9em}
@@ -900,6 +900,31 @@ html[data-text='lg'] body{font-size:17px}
 .kd-list{display:flex;flex-wrap:wrap;gap:6px}
 .kd-list .chip-btn{padding:6px 10px;font-size:.78em}
 .tb-ph{color:var(--ink3);font-size:.92em}
+/* ── Daily › Tools & Stats (D-11…D-19) ── */
+.tooljumps{margin:0 0 12px;flex-wrap:wrap}
+.tb-meta{flex-wrap:wrap;row-gap:6px}
+.tb-meta .chip-btn{padding:7px 12px;font-size:.92em;box-shadow:none;min-height:36px}
+.tb-targets{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;margin:-2px 0 6px}
+.tb-tg{min-width:44px;min-height:32px;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink3);font-size:.72em;font-weight:700;font-family:var(--fb);cursor:pointer;transition:all .15s}
+.tb-tg.on{border-color:var(--gold);background:var(--gold-soft);color:var(--gold-ink)}
+.tb-over{color:var(--gold-ink);font-weight:700}
+#qbFallback .chip-btn{margin-top:8px}
+#qbBtn.on{background:var(--brand-soft);border-color:var(--brand-soft)}
+.dua-sug{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 4px}
+.dua-sug .chip-btn,.dua-acts .chip-btn{padding:6px 11px;font-size:.76em;box-shadow:none}
+.dua-acts{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin-top:8px;font-size:.74em;color:var(--ink3)}
+.dua-acts .lnk{font-size:1em}
+.bdg{cursor:pointer}
+.bdg .p{font-size:.66em;color:var(--ink3);margin-top:4px;font-weight:700}
+.bdg .mini{margin:4px 6px 0}
+.bdg .how{display:none;font-size:.68em;color:var(--ink2);margin-top:5px;line-height:1.35}
+.bdg.open .how{display:block}
+.bdg.no.open{opacity:.9;filter:grayscale(.5)}
+@media (max-width:379px){.bdgs{grid-template-columns:repeat(2,1fr)}}
+.btn[disabled]{opacity:.5;cursor:default;box-shadow:none;filter:grayscale(.5)}
+.focus.tasbih #focusWudu,.focus.tasbih .focus-prob,.focus.tasbih .focus-dua,.focus.tasbih .focus-my,.focus.tasbih .focus-done{display:none!important}
+.focus.tasbih .focus-tip{font-size:2.1em;line-height:1.7;direction:rtl;font-family:var(--fd);font-style:normal;opacity:.92;min-height:0;margin-top:14px}
+.focus.tasbih .focus-of{letter-spacing:1.5px;text-transform:none}
 #printSheet{display:none}
 @media print{
   .app,.nav,.focus,.sheet-o,.toasts,canvas,.top{display:none!important}
@@ -1111,34 +1136,43 @@ html[data-text='lg'] body{font-size:17px}
     <div class="st" id="skTawaf" role="button" tabindex="0" onclick="stkGo('tawaf')"><div class="i">🕋</div><div class="n" id="skTawafN">0</div><div class="l">Tawaf</div></div>
   </div>
   </div><div class="sub" id="sub-daily-tools">
-  <div class="card card-pad" id="duaCard"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px"><h3 style="margin:0">🤲 My dua list</h3><button class="xchip" style="margin:0" onclick="goTab('more','duas')">📖 Essential duas →</button></div><p style="font-size:.8em;color:var(--ink2);margin-bottom:8px">Write them before you fly; tick them as you ask in the Haram.</p>
-    <div style="display:flex;gap:8px;margin-bottom:8px"><input class="srch" id="duaIn" placeholder="Add a dua…" style="margin:0" onkeydown="if(event.key==='Enter')addDua()"><button class="chip-btn" onclick="addDua()">＋</button></div>
-    <div id="duaList"></div></div>
-  <div class="card card-pad"><h3>💧 Water & 🚶 distance</h3>
-    <div class="setrow" style="border:none;padding:6px 0"><div><b>Zamzam / water today</b><small id="waterLbl">0 of 8 cups</small></div><div style="display:flex;gap:6px"><button class="chip-btn" onclick="water(-1)">−</button><button class="chip-btn" style="background:var(--brand);color:#fff;border-color:var(--brand)" onclick="water(1)">＋ cup</button></div></div>
-    <div class="meter" style="margin:4px 0 12px"><i id="waterBar" style="width:0%"></i></div>
-    <div class="kv"><span>Walked in worship (est.)</span><b id="kmLbl">≈ 0 km</b></div>
-    <p style="font-size:.72em;color:var(--ink3);margin-top:6px">Estimate: ~2.8 km per tawaf, ~3.2 km per sa’i, from your counters and logged nafl tawafs.</p></div>
+  <div class="pills sm tooljumps" role="navigation" aria-label="Jump to a tool"><button class="pill" onclick="jumpTo('tbCard')">📿 Tasbih</button><button class="pill" onclick="jumpTo('qiblaCard')">🧭 Qibla</button><button class="pill" onclick="jumpTo('waterCard')">💧 Water</button><button class="pill" onclick="jumpTo('duaCard')">🤲 Duas</button></div>
+  <div id="toolsCol" style="display:flex;flex-direction:column">
+  <div id="duaCard"></div>
+  <div class="card card-pad" id="waterCard"><h3>💧 Zamzam &amp; water</h3>
+    <div class="setrow" style="border:none;padding:6px 0"><div><b>Zamzam / water today</b><small id="waterLbl">0 cups today · aim for 8, 10–12 in summer heat</small></div><div style="display:flex;gap:6px"><button class="chip-btn" onclick="water(-1)" aria-label="Remove a cup">−</button><button class="chip-btn" style="background:var(--brand);color:#fff;border-color:var(--brand)" onclick="water(1)">＋ cup</button></div></div>
+    <div class="meter" style="margin:4px 0 4px"><i id="waterBar" style="width:0%"></i></div>
+    <p style="font-size:.72em;color:var(--ink3);margin-top:6px">Drink your fill and make dua — "Zamzam water is for whatever it is drunk for" (Ibn Majah 3062). Your trip total is in Stats.</p></div>
   <div class="card card-pad" id="tbCard" style="text-align:center"><h3>📿 Tasbih counter</h3>
     <div class="tb-chips" id="tbChips"></div>
-    <div class="tb-btn" role="button" tabindex="0" aria-label="Count one dhikr" onclick="tbTap()"><div class="n" id="tbN">0</div><div class="t">of <span id="tbTarget">33</span> · tap</div></div>
-    <div class="tb-meta"><span>Today: <b id="tbToday">0</b></span><span id="tbPhraseN" class="tb-ph"></span><button class="chip-btn" onclick="tbReset()">Reset cycle</button></div></div>
+    <div class="tb-targets" id="tbTargets" role="radiogroup" aria-label="Count target"></div>
+    <div class="tb-btn" role="button" tabindex="0" aria-label="Count one dhikr" onclick="tbTap()"><div class="n" id="tbN">0</div><div class="t" id="tbOf">of <span id="tbTarget">33</span> · tap</div></div>
+    <div class="tb-meta"><span>Today: <b id="tbToday">0</b></span><span id="tbPhraseN" class="tb-ph"></span><button class="chip-btn" onclick="tbUndo()" aria-label="Remove one mis-tap">−1</button><button class="chip-btn" onclick="enterFocus('tasbih')">⛶ Focus</button><button class="chip-btn" onclick="tbReset()">Reset cycle</button></div></div>
   <div class="card card-pad" id="qiblaCard"><h3>🧭 Qibla compass</h3>
     <p style="font-size:.82em;color:var(--ink2)">Find the direction of the Kaaba from wherever you are.</p>
     <div class="qb-dial"><span class="qb-n">N</span><div class="qb-needle" id="qbNeedle"></div><div class="qb-deg" id="qbDeg">—</div></div>
-    <div class="qb-status" id="qbStatus">Tap start and allow location & motion access.</div>
-    <button class="btn ghost" onclick="startQibla()">🧭 Start compass</button></div>
+    <div class="qb-status" id="qbStatus">Tap start and allow location &amp; motion access.</div>
+    <div id="qbFallback"></div>
+    <button class="btn ghost" id="qbBtn" onclick="startQibla()" aria-pressed="false">🧭 Start compass</button></div>
+  </div>
   </div><div class="sub" id="sub-daily-stats">
+  <div class="note" id="stEmpty" hidden>Your stats fill in as you tick prayers and deeds in <a href="#" onclick="event.preventDefault();goSub('daily','today')">Today →</a> and count umrahs in the Umrah tab.</div>
   <div class="card card-pad"><h3>🟩 Trip consistency</h3><div class="heat" id="heatGrid"></div><div class="hleg" id="heatLeg"></div></div>
   <div class="card card-pad"><h3>📈 Trip stats</h3>
-    <div class="kv"><span>Days logged</span><b id="stDays">0</b></div>
+    <div class="kv"><span>Days with worship logged</span><b id="stDays">0</b></div>
     <div class="kv"><span>Average completion</span><b id="stAvg">0%</b></div>
     <div class="kv"><span>Best day</span><b id="stBest">—</b></div>
     <div class="kv"><span>Days ≥ 80%</span><b id="stPerf">0</b></div>
+    <div class="kv"><span>Fajr streak (current)</span><b id="stFajr">0</b></div>
     <div class="kv"><span>Umrahs completed</span><b id="stUmrahs">0</b></div>
+    <div class="kv"><span>Nafl tawafs logged</span><b id="stNafl">0</b></div>
+    <div class="kv"><span>Dhikr counted</span><b id="stDhikr">0</b></div>
+    <div class="kv"><span>Duas asked</span><b id="stDuas">0 of 0</b></div>
+    <div class="kv"><span>Walked in worship (est.)</span><b id="stKm">≈ 0 km</b></div>
+    <div class="kv"><span>Zamzam cups this trip</span><b id="stCups">0</b></div>
     <div class="kv"><span>Places visited</span><b id="stPlaces">0</b></div></div>
-  <button class="btn gold" style="margin:0 0 14px" onclick="shareCard()">📸 Share my progress card</button>
-  <div class="card card-pad"><h3>🏅 Achievements (<span id="bdgCnt">0</span>/<span id="bdgTot">9</span>)</h3><div class="bdgs" id="bdgGrid"></div></div>
+  <div class="card card-pad"><h3>🏅 Achievements (<span id="bdgCnt">0</span>/<span id="bdgTot">9</span>)</h3><p style="font-size:.76em;color:var(--ink3);margin:-4px 0 10px">Tap a locked badge to see how to earn it.</p><div class="bdgs" id="bdgGrid"></div></div>
+  <button class="btn gold" id="shareBtn" style="margin:0 0 14px" onclick="shareCard()">📸 Share my progress card</button>
   </div>
 </div>
 
@@ -1224,7 +1258,7 @@ html[data-text='lg'] body{font-size:17px}
 <button data-v="more" onclick="goTab('more')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.6"/><circle cx="5" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg><span class="l">More</span></button>
 </nav>
 <canvas id="confetti" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:190;display:none"></canvas>
-<div class="focus" id="focus" role="dialog" aria-modal="true" aria-label="Big counter"><div class="focus-top"><span id="focusTitle">🕋 Tawaf</span><div style="display:flex;gap:8px"><button class="chip-btn" id="focusWudu" onclick="focusWudu()" aria-pressed="false">💧 wudu</button><button class="chip-btn" onclick="event.stopPropagation();troubleSheet()" aria-label="Something went wrong?">⚠️ Problem?</button><button class="chip-btn" onclick="exitFocus()">✕ Exit</button></div></div><div class="focus-tap" role="button" tabindex="0" aria-label="Tap to count one round" onclick="focusTap()"><div class="focus-n" id="focusN">0</div><div class="focus-of" id="focusOf">of 7 rounds</div><div class="focus-tip" id="focusTip"></div><div class="focus-hint" id="focusHint">tap anywhere to count</div><div class="focus-done" id="focusDone" hidden></div></div><div class="focus-dua" id="focusDua" role="button" tabindex="0" aria-label="Dua for this rite — tap for transliteration and meaning" onclick="event.stopPropagation();fdToggle()"></div><div class="focus-bot"><button class="btn undo" onclick="cntr(focusKey,-1)">− Undo</button><button class="chip-btn" onclick="myDuasSheet()">🤲 My duas</button></div></div>
+<div class="focus" id="focus" role="dialog" aria-modal="true" aria-label="Big counter"><div class="focus-top"><span id="focusTitle">🕋 Tawaf</span><div style="display:flex;gap:8px"><button class="chip-btn" id="focusWudu" onclick="focusWudu()" aria-pressed="false">💧 wudu</button><button class="chip-btn focus-prob" onclick="event.stopPropagation();troubleSheet()" aria-label="Something went wrong?">⚠️ Problem?</button><button class="chip-btn" onclick="exitFocus()">✕ Exit</button></div></div><div class="focus-tap" role="button" tabindex="0" aria-label="Tap to count one round" onclick="focusTap()"><div class="focus-n" id="focusN">0</div><div class="focus-of" id="focusOf">of 7 rounds</div><div class="focus-tip" id="focusTip"></div><div class="focus-hint" id="focusHint">tap anywhere to count</div><div class="focus-done" id="focusDone" hidden></div></div><div class="focus-dua" id="focusDua" role="button" tabindex="0" aria-label="Dua for this rite — tap for transliteration and meaning" onclick="event.stopPropagation();fdToggle()"></div><div class="focus-bot"><button class="btn undo" onclick="focusUndo()">− Undo</button><button class="chip-btn focus-my" onclick="myDuasSheet()">🤲 My duas</button></div></div>
 <div class="focus driver" id="driver" role="dialog" aria-modal="true" aria-label="Show to driver"><div class="focus-top"><span>🚕 Please take me to my hotel</span><button class="chip-btn" onclick="closeDriver()">✕ Close</button></div><div class="focus-tap lost-body" style="justify-content:flex-start;padding:10px 24px;cursor:default"><div class="drv-ar">من فضلك خذني إلى هذا الفندق</div><div class="drv-name" id="drvName">—</div><div class="drv-addr" id="drvAddr"></div><div class="drv-phone" id="drvPhone"></div><div class="drv-acts" id="drvActs"></div><div class="focus-hint" onclick="closeDriver()">tap here to close</div></div></div>
 <div class="focus driver" id="lost" role="dialog" aria-modal="true" aria-label="I am lost"><div class="focus-top"><span>🆘 I’m lost — please help</span><button class="chip-btn" onclick="closeLost()">✕ Close</button></div><div class="lost-body" id="lostBody"></div></div>
 <div class="focus walk" id="walk" role="dialog" aria-modal="true" aria-label="Step-by-step walkthrough"><div class="focus-top"><span id="walkHd">Step 1</span><button class="chip-btn" onclick="closeWalk()">✕ Exit</button></div><div class="walk-body" id="walkBody"></div><div class="focus-bot walk-bot"><button class="chip-btn" id="walkBack" onclick="walkNav(-1)">← Back</button><button class="btn" id="walkNext" onclick="walkDone()">✓ Done → Next</button></div></div>
