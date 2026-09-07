@@ -200,15 +200,15 @@ var TROUBLE_QA=['wudu','rest','floors','talk','menses'];
 
 var DAILY=[
 {id:'salah',ico:'🕌',title:'Salah in the Haram',hn:'"One prayer in al-Masjid al-Haram is better than one hundred thousand prayers elsewhere." — Ibn Majah 1406',items:[
+{id:'tahajjud',label:'Tahajjud in the Haram',ref:'Bukhari 1145',exp:'The Haram at 3am is an experience you will never forget.',pts:12,stk:'tahaj'},
 {id:'fajr',label:'Fajr in congregation',ref:'Muslim 656',exp:'Isha in congregation is like praying half the night; Fajr in congregation completes the whole night. (Muslim 656)',pts:15,stk:'fajr'},
+{id:'madhkar',label:'Morning adhkar',pts:5},
+{id:'duha',label:'Duha prayer',pts:6},
 {id:'dhuhr',label:'Dhuhr in congregation',pts:12},
 {id:'asr',label:'Asr in congregation',pts:12},
+{id:'eadhkar',label:'Evening adhkar',pts:5},
 {id:'maghrib',label:'Maghrib in congregation',pts:12},
-{id:'isha',label:'Isha in congregation',pts:15},
-{id:'tahajjud',label:'Tahajjud in the Haram',ref:'Bukhari 1145',exp:'The Haram at 3am is an experience you will never forget.',pts:12,stk:'tahaj'},
-{id:'duha',label:'Duha prayer',pts:6},
-{id:'madhkar',label:'Morning adhkar',pts:5},
-{id:'eadhkar',label:'Evening adhkar',pts:5}
+{id:'isha',label:'Isha in congregation',pts:15}
 ]},
 {id:'quran',ico:'📖',title:'Quran',hn:'"Read the Quran, for it will come as an intercessor for its companions on the Day of Resurrection." — Muslim 804',apps:[{i:'📖',n:'Tarteel AI',d:'Recite and get tajweed correction; memorisation tracking',u:'https://tarteel.ai/'},{i:'🕋',n:'Quran.com',d:'Read, listen and study with translations',u:'https://quran.com/'}],items:[
 {id:'recite',label:'Recited Quran (facing the Kaaba if you can)',pts:10,stk:'quran'},
@@ -216,7 +216,7 @@ var DAILY=[
 {id:'memorize',label:'Memorised new ayah(s)',pts:8},
 {id:'listen',label:'Listened to the Haram recitation attentively',pts:5}
 ]},
-{id:'dhikr',ico:'📿',title:'Dhikr & dua',hn:'Fill your day with remembrance in the most sacred place on Earth.',apps:[{i:'🤲',n:'Life with Allah',d:'Morning & evening adhkar and duas from the Sunnah, with audio',u:'https://lifewithallah.com/app'},{i:'🛡️',n:'Hisnul Muslim (Fortress of the Muslim)',d:'The classic dua collection — every occasion, referenced',u:'https://hisnmuslim.com/'},{i:'📿',n:'Tasbih & my dua list',d:'Built in — Daily › Tools',go:['daily','tools']},{i:'🕋',n:'Umrah duas with audio',d:'Built in — More › Duas',go:['more','duas']}],items:[
+{id:'dhikr',ico:'📿',title:'Dhikr & dua',hn:'Fill your day with remembrance in the most sacred place on Earth.',apps:[{i:'📿',n:'Tasbih & my dua list',d:'Built in — works offline',go:['daily','tools','tbCard']},{i:'🕋',n:'Umrah duas with audio',d:'Built in — works offline',go:['more','duas']},{i:'🤲',n:'Life with Allah',d:'Morning & evening adhkar and duas from the Sunnah, with audio',u:'https://lifewithallah.com/app'},{i:'🛡️',n:'Hisnul Muslim',d:'The classic dua collection — every occasion, referenced',u:'https://hisnmuslim.com/'}],items:[
 {id:'istighfar',label:'Istighfar ×100',pts:6},
 {id:'salawat',label:'Salawat on the Prophet ﷺ ×100',pts:6},
 {id:'dhikr100',label:'La ilaha illallah / SubhanAllah dhikr',pts:5},
@@ -408,4 +408,5 @@ var BADGES=[
 {id:'explorer',name:'Explorer',icon:'📍'},
 {id:'devoted',name:'Devoted',icon:'🕌'},
 {id:'quranComp',name:'Quran Companion',icon:'📖'},
-{id:'nightHaram',name:'Night in the Haram',icon:'🌙'}];
+{id:'nightHaram',name:'Night in the Haram',icon:'🌙'},
+{id:'littlePilgrim',name:'Little Pilgrim',icon:'🧒'}];

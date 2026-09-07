@@ -27,7 +27,8 @@ An offline-first web app (`index.html` + `data.js` + `app.js`, zero build step).
 
 ### 📿 Daily — maximise every day in the Haramain
 - Daily worship tracker: five prayers in congregation, tahajjud, Quran, dhikr & dua, nafl tawaf, sadaqah, serving pilgrims…
-- Points, streaks (Fajr jama'ah, tahajjud, Quran, nafl tawaf), a trip consistency heatmap, trip stats and 8 unlockable achievements
+- The day follows your departure date automatically (Day 1 = arrival), with the real date and Hijri date, weighted progress, labelled streaks (Fajr jama'ah, tahajjud, Quran, nafl tawaf), a tappable trip heatmap, trip stats and 9 unlockable achievements
+- **Excused days** for sisters (salah/tawaf rows pause without breaking streaks) and an opt-in **Kids' day** — five emoji tiles per child, stars for a 5/5 day, a Little Pilgrim badge
 - Configurable trip length (3–30 days) — or set a return date next to the departure date
 
 ### 📍 Places — ziyarah with purpose
@@ -38,11 +39,11 @@ An offline-first web app (`index.html` + `data.js` + `app.js`, zero build step).
 
 ### 🕌 Live tools
 - **Audio duas** — tap 🔊 on any dua (rites steps and the library) to hear the Arabic recited via speech synthesis
-- **Prayer reminders** — opt-in local notifications ~20 minutes before each prayer while the app is open (no server, no push backend)
+- **Prayer reminders** — opt-in local notifications ~20 minutes before each prayer while the app is open (60 for Jumu'ah; no server, no push backend) — plus **Add this week's prayer times to my calendar** (.ics with alarms, TZID Asia/Riyadh) for alerts with the screen off
 - **Post-Umrah mode** — a 30-day, 3-habit keeper (prayers on time, daily Quran, daily dhikr) plus a reflections journal, so the journey's change sticks
-- **Prayer times** for Makkah & Madinah (Umm al-Qura method) with next-prayer countdown and Hijri date — cached for offline use
+- **Prayer times** for Makkah & Madinah (Umm al-Qura method) with next-prayer countdown and Hijri date — the whole month is cached for both cities, and a built-in solar computation (Fajr 18.5°, Isha +90 min, +120 in Ramadan, ±2 min) guarantees times even with no cache; the grid doubles as the salah checklist, Friday shows Jumu'ah, and a one-tap message shares today's times with a meeting point
 - **Qibla compass** — device compass points a 🕋 needle at the Kaaba from anywhere (with a degrees-from-North fallback)
-- **Digital tasbih** — six dhikr phrases, 33-count cycles with haptics, daily totals that auto-tick your checklist at 100
+- **Digital tasbih** — six dhikr phrases, 33-count cycles with haptics, per-phrase daily counts; 100 dhikr, 100 istighfar and 100 salawat tick their checklist rows; marking a ziyarah site visited logs today's ziyarah
 - **Offline PWA** — service worker caches the app shell; installable from the browser with an in-app install button
 
 ### ⚙️ More
@@ -148,11 +149,21 @@ The service-worker cache is named after `APP_VERSION`. For every release **bump 
 - **🆘 If something goes wrong**: lost count · wudu broke · resting · forbidden by mistake (Bukhari 1536) · upper floors · talking · menses · missed the miqat — under Phase 4, inside the Learn Q&A and behind a ⚠️ *Problem?* chip in the big counter
 - **Audio**: one Arabic voice picked up front, a *⏹ Stop* playing state, and an honest toast when the device has no Arabic voice (with a test button in Settings); a children's fiqh entry and a 🧒 note at the top of Tawaf; the Umrah tab opens on Steps before departure and on Counters once flying
 
+## v4.11 — Daily
+- **The day is right by itself**: Day N follows the departure date (Day 1 = arrival) at boot, on return to the app and at midnight; a deliberately parked day gets a *Today is Day N — switch* pill instead; ◀ ▶ still work (a past/ahead day is labelled), the heatmap is a day picker, the journey chip and Home agree, and departure day has its own Home phase
+- **Checklist first**: the day nav lives inside the hero with the real date + Hijri date; prayer times are a one-line strip (*Fajr in 1h 12m · 05:12 · Makkah* + 🔔) that expands to the grid, city pills, meeting point and *Share today's times*; streak tiles moved below the checklist under a *Streaks · consecutive days* header, read *3d*, and open their row
+- **Prayer times that never dead-end**: the Umm al-Qura month is fetched once for both cities (current + next) and cached per day; a solar computation (Fajr 18.5°, Dhuhr = noon + 1, Asr factor 1, Isha = Maghrib + 90 / +120 in Ramadan) is the always-present baseline, verified within ±2 min; the note says *live*, *cached* or *Computed · follow the adhan*, with *Duha from ~HH:MM*
+- **One system, not five counters**: prayer tiles tick the salah rows (✓ badges sync both ways); the tasbih counts each phrase — 100× istighfar / salawat tick their rows and stop auto-advancing; a visited ziyarah site logs today's ziyarah; the dua list has a *Went through my list today?* tick; tools are compact chips *after* the tick rows (built-in ones first, external ones marked *needs internet*)
+- **Honest numbers**: progress honours the point weights (points pills gone, *Priority* on the 15-pt rows); salah rows run in the order of the day (tahajjud → Fajr → morning adhkar → Duha → Dhuhr → Asr → evening adhkar → Maghrib → Isha); Friday's Dhuhr is *Jumu'ah* with a 60-min reminder lead; ◀/▶ disable at the ends and the last day offers Stats / Post-Umrah habits
+- **For sisters**: *🌸 Excused today* — salah, tahajjud, duha and nafl tawaf drop out of the day's total (100% stays reachable), streaks pause instead of breaking, the heatmap marks the day, the hero links the ruling (Bukhari 305)
+- **For children**: *Kids' day* — one row per child with five big tiles (prayed with us · Zamzam + dua · SubhanAllah ×10 / talbiyah · patient in the crowd · learned one thing), confetti and a ⭐ for 5/5, a *Little Pilgrim* badge for three full days; names are added in Kids corner; nothing touches the adult points
+- **Group timing**: meeting point (shared with the hotel/lost cards, echoed in Home's prayer strip), *leave hotel 30/45/60 min before*, *Share today's times* as one message; **calendar export** — a week of prayer alerts as .ics (TZID Asia/Riyadh, 20-min alarms, 60 for Jumu'ah) via the share sheet or download
+
 ## Development & testing
 
 ```
 npm install            # playwright-core only
-npm test               # end-to-end smoke suite (~100 checks) in headless Chromium
+npm test               # end-to-end smoke suite (~110 checks) in headless Chromium
 ```
 Set `CHROME=/path/to/chromium` if Playwright cannot find a browser. Content lives in `data.js` (places, quiz, knowledge, duas); logic in `app.js`.
 

@@ -1,6 +1,6 @@
 /* Umrah Strivers — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='4.10.0';
+var APP_VERSION='4.11.0';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* ════════════════════════ STATE ════════════════════════ */
 var ST={day:1,tripLen:10,theme:'light',tab:'home',dep:'',umrahs:0,tawaf:0,sai:0,quizBest:0,city:'Makkah'};
@@ -91,8 +91,9 @@ function startPost(){goPost(true);toast('🌱 Post-Umrah mode on — 30 days, 3 
 function refChip(it){var q=function(v){return v?'\''+v+'\'':'null';};if(typeof it.go==='string')return '<button class="xchip" onclick="event.stopPropagation();'+it.go+'">'+(it.goL||'Open')+' →</button>';if(it.place)return '<button class="xchip" onclick="event.stopPropagation();openPlace('+q(it.place)+')">'+(it.goL||'📍 Open')+' →</button>';if(it.go)return '<button class="xchip" onclick="event.stopPropagation();goRef('+q(it.go[0])+','+q(it.go[1])+','+q(it.go[2])+')">'+(it.goL||'Open')+' →</button>';return '';}
 function mkSec(sec,shut,inner,countId){
   var apps='';
-  if(sec.apps)apps='<div class="apps">'+sec.apps.map(function(x){var go=x.u?'href="'+x.u+'" target="_blank" rel="noopener"':'href="#" onclick="event.preventDefault();goTab(\''+x.go[0]+'\');goSub(\''+x.go[0]+'\',\''+x.go[1]+'\',true)"';return '<a class="applink" '+go+'><span class="app-i">'+x.i+'</span><span class="app-t"><b>'+x.n+'</b>'+x.d+'</span><span class="app-go">'+(x.u?'Open ↗':'Go →')+'</span></a>';}).join('')+'</div>';
-  return '<div class="sec'+(shut?' shut':'')+'" id="sec-'+sec.id+'"><div class="sec-hd" role="button" tabindex="0" aria-expanded="'+(shut?'false':'true')+'" onclick="togSec(this)"><div class="sec-ico">'+(sec.ico||'•')+'</div><h2>'+sec.title+(sec.sub?'<small>'+sec.sub+'</small>':'')+'</h2><span class="sec-ct" id="sp-'+sec.id+'"></span><span class="sec-chev">▼</span></div><div class="sec-bd">'+(sec.hn?'<div class="note">'+sec.hn+'</div>':'')+apps+inner+'</div></div>';
+  /* D-05: the tick rows come first; tools are a wrapping row of chips underneath (external ones say they need signal) */
+  if(sec.apps)apps='<div class="apps"><span class="apps-h">Helpful tools</span>'+sec.apps.map(function(x){var go=x.u?'href="'+x.u+'" target="_blank" rel="noopener" title="'+esc(x.d||'')+' — opens in browser, needs internet"':'href="#" title="'+esc(x.d||'')+'" onclick="event.preventDefault();goTab(\''+x.go[0]+'\',\''+x.go[1]+'\''+(x.go[2]?',\''+x.go[2]+'\'':'')+')"';return '<a class="applink" '+go+'><span class="app-i">'+x.i+'</span><span class="app-t"><b>'+x.n+'</b></span><span class="app-go">'+(x.u?'Open ↗':'Go →')+'</span></a>';}).join('')+'</div>';
+  return '<div class="sec'+(shut?' shut':'')+'" id="sec-'+sec.id+'"><div class="sec-hd" role="button" tabindex="0" aria-expanded="'+(shut?'false':'true')+'" onclick="togSec(this)"><div class="sec-ico">'+(sec.ico||'•')+'</div><h2>'+sec.title+(sec.sub?'<small>'+sec.sub+'</small>':'')+'</h2><span class="sec-ct" id="sp-'+sec.id+'"></span><span class="sec-chev">▼</span></div><div class="sec-bd">'+(sec.hn?'<div class="note">'+sec.hn+'</div>':'')+inner+apps+'</div></div>';
 }
 
 /* ════════════════════════ PLAN ════════════════════════ */
@@ -571,60 +572,110 @@ function startFresh(){openSheet('<div class="sheet-h" style="background:linear-g
 function startFreshGo(){closeSheet();riteChk={};save('us-rites',riteChk);ST.log={};ST.tawaf=0;ST.sai=0;ST.wudu=false;ST.wuduAt=null;saveST();saiGo=false;cntForce={};lastTap={};var n=document.getElementById('riteDoneNote');if(n)n.innerHTML='';updRites();renderLog();focusRites(false);toast('Cleared — nothing was recorded');vib(10);}
 
 /* ════════════════════════ DAILY ════════════════════════ */
+/* D-20: rows a menstruating sister is excused from on a day flagged dailyChk['d<n>']._excused */
+var EXCUSED_IDS=['fajr','dhuhr','asr','maghrib','isha','tahajjud','duha','ntawaf'];
+function dayExcused(n){var d=dailyChk['d'+(n===undefined?ST.day:n)];return !!(d&&d._excused);}
+/* D-09 / D-20: totals for one day — excused rows drop out, points carry the weight */
+function itemCounts(n){var d=dailyChk['d'+n]||{},ex=!!d._excused,acc={tot:0,done:0,max:0,pts:0};DAILY.forEach(function(s){s.items.forEach(function(it){if(ex&&EXCUSED_IDS.indexOf(it.id)>-1)return;acc.tot++;acc.max+=it.pts;if(d[it.id]){acc.done++;acc.pts+=it.pts;}});});return acc;}
 function renderDaily(){
   var h='';
   DAILY.forEach(function(sec,i){
     var inner='';
     sec.items.forEach(function(it){
-      inner+='<div class="row" id="dw-'+it.id+'" role="checkbox" tabindex="0" aria-checked="false" onclick="togDaily(\''+it.id+'\')"><span class="tick"></span><div class="row-t"><b>'+it.label+(it.id==='ntawaf'?'<span class="xn" id="ntawafN" hidden></span>':'')+'</b>'+(it.exp?'<div class="x">'+it.exp+'</div>':'')+(it.ref?'<div class="rf">'+it.ref+'</div>':'')+refChip(it)+'</div><span class="pts">+'+it.pts+'</span></div>';
+      inner+='<div class="row" id="dw-'+it.id+'" role="checkbox" tabindex="0" aria-checked="false" onclick="togDaily(\''+it.id+'\')"><span class="tick"></span><div class="row-t"><b><span class="rl">'+it.label+'</span>'+(it.pts>=15?'<span class="prio">Priority</span>':'')+(it.id==='ntawaf'?'<span class="xn" id="ntawafN" hidden></span>':'')+'</b>'+(it.exp?'<div class="x">'+it.exp+'</div>':'')+(it.ref?'<div class="rf">'+it.ref+'</div>':'')+refChip(it)+'</div></div>';
     });
     h+=mkSec(sec,i>0,inner);
   });
   document.getElementById('dailyContainer').innerHTML=h;
 }
 function dayKey(){return 'd'+ST.day;}
-function togDaily(id){var d=dailyChk[dayKey()]||{};d[id]=!d[id];if(id==='ntawaf'&&!d[id])delete d.ntawafN;dailyChk[dayKey()]=d;save('us-daily',dailyChk);vib(15);updDaily();updStats();chkBadges();}
-function changeDay(d){var n=ST.day+d;if(n>=1&&n<=ST.tripLen){ST.day=n;saveST();updDaily();updChip();renderItin();var it=itinDays()[ST.day-1];if(it&&it.city!==(ST.city||'Makkah'))setCity(it.city);}}
+function togDaily(id){var d=dailyChk[dayKey()]||{};if(d._excused&&EXCUSED_IDS.indexOf(id)>-1){toast('🌸 Not required today — you are excused');return;}d[id]=!d[id];if(id==='ntawaf'&&!d[id])delete d.ntawafN;dailyChk[dayKey()]=d;save('us-daily',dailyChk);vib(15);updDaily();updStats();chkBadges();}
+/* ── D-01: which trip day is it really? Day 1 = the departure/arrival date (the itinerary's and onboarding's convention) ── */
+function localMidnight(d){var x=new Date(d);x.setHours(0,0,0,0);return x;}
+function expectedDay(){if(!ST.dep)return null;var since=Math.round((localMidnight(new Date())-localMidnight(new Date(ST.dep+'T00:00:00')))/86400000);if(isNaN(since)||since<0)return null;return Math.min(since+1,ST.tripLen);}
+function dayDateObj(n){if(!ST.dep)return null;var dt=new Date(ST.dep+'T00:00:00');if(isNaN(dt))return null;dt.setDate(dt.getDate()+(n-1));return dt;}
+function dayDateStr(n,long){var dt=dayDateObj(n);return dt?dt.toLocaleDateString('en-GB',long?{weekday:'long',day:'numeric',month:'long'}:{weekday:'short',day:'numeric',month:'short'}):'';}
+function dayHasTicks(n){var d=dailyChk['d'+n]||{};return Object.keys(d).some(function(k){return k[0]!=='_'&&d[k]===true;});}
+var daySyncHide=0,daySyncPending=0;
+/* manual=true from ◀ ▶ / the heatmap; ST.dayAuto records whether the shown day is in step with the calendar */
+function setDay(n,manual){n=Math.max(1,Math.min(ST.tripLen,n));var ex=expectedDay();ST.day=n;ST.dayAuto=!manual||ex===n;if(manual)daySyncPending=0;saveST();updDaily();updChip();renderItin();renderPT_tick();var it=itinDays()[ST.day-1];if(it&&it.city!==(ST.city||'Makkah'))setCity(it.city);}
+function changeDay(d){var n=ST.day+d;if(n>=1&&n<=ST.tripLen)setDay(n,true);}
+function goToday(){var ex=expectedDay();if(ex)setDay(ex,true);vib(8);}
+/* follows the calendar unless the pilgrim deliberately parked on another day that has ticks — then a pill offers the switch */
+function syncDay(){var ex=expectedDay();if(!ex||ex===ST.day){daySyncPending=0;return;}
+  if(ST.dayAuto!==false||!dayHasTicks(ST.day)){setDay(ex,false);toast('📅 Moved to Day '+ex+' of '+ST.tripLen);}
+  else{daySyncPending=ex;updDaily();}}
+function dismissSync(){daySyncHide=expectedDay()||0;updDaily();}
+(function(){function next(){var n=new Date(),m=new Date(n.getFullYear(),n.getMonth(),n.getDate()+1,0,0,5);setTimeout(function(){syncDay();next();},Math.max(1000,m-n));}next();})();
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')syncDay();});
 function dayPct(n){
   var d=dailyChk['d'+n];if(!d)return null;
-  var tot=0,done=0;DAILY.forEach(function(s){s.items.forEach(function(it){tot++;if(d[it.id])done++;});});
-  return Math.round(done/tot*100);
+  var c=itemCounts(n);return c.max?Math.round(c.pts/c.max*100):0;
 }
-function updDaily(){renderTB();renderWater();renderTodayTop();
-  document.getElementById('dayDisp').innerHTML='Day '+ST.day+'<small>of '+ST.tripLen+'</small>';
-  var d=dailyChk[dayKey()]||{};var tot=0,done=0,pts=0;
-  DAILY.forEach(function(sec){var sd=0;sec.items.forEach(function(it){tot++;var on=!!d[it.id];if(on){done++;sd++;pts+=it.pts;}
-    var w=document.getElementById('dw-'+it.id);if(w){w.classList.toggle('done',on);w.setAttribute('aria-checked',on?'true':'false');}});
-    var sp=document.getElementById('sp-'+sec.id);if(sp)sp.textContent=sd+'/'+sec.items.length;});
+function updDaily(){renderTB();renderWater();renderTodayTop();renderKidsDay();
+  var ex=expectedDay(),off=!!ex&&ex!==ST.day,dd=document.getElementById('dayDisp');
+  if(dd){dd.innerHTML='Day '+ST.day+' <small>of '+ST.tripLen+'</small>';dd.setAttribute('aria-label','Day '+ST.day+' of '+ST.tripLen+(off?(ST.day<ex?', a past day':', a day ahead'):'')+' — open trip stats');}
+  var dl=document.getElementById('dayDate');if(dl){var dt=dayDateObj(ST.day),ds=dayDateStr(ST.day),hj=dt?hijriFor(dt.getFullYear(),dt.getMonth(),dt.getDate()):'';dl.textContent=(off?(ST.day<ex?'Past day · ':'Ahead · '):'')+(ds?ds+(hj?' · '+hj:''):'Set your departure date in Plan › Prepare for real dates');}
+  var pv=document.getElementById('dayPrev'),nx=document.getElementById('dayNext'),td=document.getElementById('dayToday');
+  if(pv){pv.disabled=ST.day<=1;pv.setAttribute('aria-disabled',pv.disabled?'true':'false');}if(nx){nx.disabled=ST.day>=ST.tripLen;nx.setAttribute('aria-disabled',nx.disabled?'true':'false');}if(td)td.hidden=!off;
+  var d=dailyChk[dayKey()]||{},exc=!!d._excused;
+  DAILY.forEach(function(sec){var sd=0,st=0;sec.items.forEach(function(it){var on=!!d[it.id],skip=exc&&EXCUSED_IDS.indexOf(it.id)>-1;if(!skip){st++;if(on)sd++;}
+    var w=document.getElementById('dw-'+it.id);if(w){w.classList.toggle('done',on&&!skip);w.classList.toggle('excused',skip);w.setAttribute('aria-checked',on&&!skip?'true':'false');w.setAttribute('aria-disabled',skip?'true':'false');}});
+    var sp=document.getElementById('sp-'+sec.id);if(sp)sp.textContent=sd+'/'+st;});
   var xn=document.getElementById('ntawafN');if(xn){var nn=d.ntawafN||0;xn.hidden=nn<2;xn.textContent='×'+nn;}
-  var pct=tot?Math.round(done/tot*100):0;
+  var C=itemCounts(ST.day),pct=C.max?Math.round(C.pts/C.max*100):0;
   animPct('dPct',pct);setRing('dRing',pct);
   document.getElementById('dHeroT').textContent=pct>=100?'Perfect day! 🌟':pct>=70?'Strong day':pct>=35?'Keep going':pct>0?'Good start':'Bismillah';
-  document.getElementById('dHeroS').textContent=done+' of '+tot+' completed · '+pts+' pts';
+  document.getElementById('dHeroS').innerHTML=C.done+' of '+C.tot+(exc?' that count today<span class="exc-line">Ihram, dhikr, dua and listening continue — tawaf and salah wait until you are pure (<a href="#" onclick="event.preventDefault();openQA(\'menses\')">Bukhari 305</a>)</span>':' completed');
+  /* D-07: the real Friday's Dhuhr row is Jumu'ah */
+  var rl=document.querySelector('#dw-dhuhr .rl');if(rl)rl.textContent=(ST.day===ex&&isFriday())?'Jumu’ah in congregation':'Dhuhr in congregation';
+  renderDayTools(ex,off,exc);syncPTTiles();
   updStreaks();renderHeat();
 }
+/* D-01 / D-10 / D-20: the small row of day-level actions under the hero */
+function renderDayTools(ex,off,exc){var a=document.getElementById('dayTools');if(!a)return;var h='';
+  if(off&&daySyncPending===ex&&daySyncHide!==ex)h+='<button class="chip-btn sync" onclick="goToday()">📅 Today is Day '+ex+' — switch ▶</button><button class="chip-btn" onclick="dismissSync()" aria-label="Dismiss">✕</button>';
+  if(ST.profile!=='m')h+='<button class="chip-btn exc'+(exc?' on':'')+'" onclick="excusedSheet()" aria-pressed="'+(exc?'true':'false')+'">🌸 '+(exc?'Excused today ✓':'Excused today')+'</button>';
+  if(ST.day>=ST.tripLen&&ST.tripLen>1)h+='<button class="chip-btn" onclick="goSub(\'daily\',\'stats\')">🏁 Trip finished? Stats &amp; share card</button>'+(ST.post?'':'<button class="chip-btn" onclick="startPost()">🌱 Turn on Post-Umrah habits</button>');
+  a.innerHTML=h;}
+/* D-20: the ruling in one sheet, reversible */
+function excusedSheet(){var exc=dayExcused();
+  openSheet('<div class="sheet-h" style="background:linear-gradient(145deg,#b0457a,#7c2d5a)">🌸</div><h3>'+(exc?'Day '+ST.day+' is excused':'Excused today?')+'</h3><p class="lead">Menstruating? The Prophet ﷺ told Aishah (RA): <b>"Do what all the pilgrims do, except that you do not perform tawaf around the Ka’bah until you are clean"</b> (Bukhari 305).</p><ul><li>Salah, tahajjud, duha and nafl tawaf are <b>not required</b> today — they will not count against you.</li><li>Quran (listening or tafsir), adhkar, dhikr, dua, sadaqah, serving pilgrims, ziyarah and Zamzam continue and still count.</li><li>Streaks pause — they neither grow nor break on an excused day.</li></ul>'
+    +(exc?'<button class="btn tall" onclick="setExcused(false)">↩ Not excused today</button>':'<button class="btn tall" style="background:#b0457a;color:#fff" onclick="setExcused(true)">🌸 Mark Day '+ST.day+' excused</button>')+'<button class="btn ghost" onclick="closeSheet();openQA(\'menses\')">📖 Read the ruling</button><button class="btn ghost" onclick="closeSheet()">Close</button>');}
+function setExcused(on){var d=dailyChk[dayKey()]||{};if(on)d._excused=true;else delete d._excused;dailyChk[dayKey()]=d;save('us-daily',dailyChk);closeSheet();updDaily();updStats();chkBadges();toast(on?'🌸 Day '+ST.day+' marked excused — everything else still counts':'Day '+ST.day+' is a full day again');vib(10);}
+/* open one fiqh Q&A accordion by its id (FIQHQA/TROUBLE carry ids) */
+function openQA(id){var L=FIQHQA.concat(TROUBLE),i=-1;L.forEach(function(g,k){if(g.id===id)i=k;});var a=i>-1?document.querySelectorAll('#qaContainer .acc')[i]:null;if(a){a.classList.add('open');var hd=a.querySelector('.acc-h');if(hd)hd.setAttribute('aria-expanded','true');}goTab('plan','learn',a?null:'qaCard');if(a)requestAnimationFrame(function(){setTimeout(function(){try{a.scrollIntoView({behavior:'smooth',block:'center'});}catch(e){}},60);});}
+/* D-20: excused days neither count nor break the salah/tawaf streaks */
 function streakOf(stk){
   var ids=[];DAILY.forEach(function(s){s.items.forEach(function(it){if(it.stk===stk)ids.push(it.id);});});
-  var n=0;
+  var n=0,pause=stk!=='quran';
   for(var day=ST.day;day>=1;day--){
-    var d=dailyChk['d'+day];var hit=d&&ids.some(function(id){return d[id];});
+    var d=dailyChk['d'+day];if(pause&&d&&d._excused)continue;
+    var hit=d&&ids.some(function(id){return d[id];});
     if(hit)n++;else if(day<ST.day)break;
   }
   return n;
 }
+/* D-08: labelled, explained, tappable streak tiles */
+var STK_ROW={fajr:'fajr',tahaj:'tahajjud',quran:'recite',tawaf:'ntawaf'},STK_LBL={fajr:'Fajr',tahaj:'Tahajjud',quran:'Quran',tawaf:'Nafl tawaf'};
 function updStreaks(){
   var m={fajr:'skFajr',tahaj:'skTahaj',quran:'skQuran',tawaf:'skTawaf'};
-  Object.keys(m).forEach(function(k){var n=streakOf(k);document.getElementById(m[k]+'N').textContent=n;document.getElementById(m[k]).classList.toggle('on',n>=3);});
+  Object.keys(m).forEach(function(k){var n=streakOf(k),el=document.getElementById(m[k]);if(!el)return;var num=el.querySelector('.n');if(num)num.innerHTML=n+'<small>d</small>';el.classList.toggle('on',n>=3);var lbl=n+'-day '+STK_LBL[k]+' streak'+(n>=3?' 🔥':'');el.setAttribute('title',lbl);el.setAttribute('aria-label',lbl+' — open the row');var l=el.querySelector('.l');if(l)l.textContent=STK_LBL[k].replace('Nafl tawaf','Tawaf')+(n>=3?' 🔥':'');});
 }
+function stkGo(k){var id=STK_ROW[k],row=document.getElementById('dw-'+id);if(!row)return;var sec=row.closest('.sec');if(sec)setSecOpen(sec.id.replace('sec-',''),true);vib(8);setTimeout(function(){jumpTo('dw-'+id,true);row.classList.add('hl');setTimeout(function(){row.classList.remove('hl');},1600);},80);}
+/* D-10: the heatmap doubles as the day picker */
 function renderHeat(){
-  var h='';
+  var g=document.getElementById('heatGrid');if(!g)return;var h='';
   for(var i=1;i<=ST.tripLen;i++){
-    var p=dayPct(i),cls='';
+    var p=dayPct(i),ex=dayExcused(i),cls='',dt=dayDateStr(i);
     if(p!==null&&p>0){cls=p>=90?'h4':p>=70?'h3':p>=40?'h2':'h1';}
-    h+='<div class="hc '+cls+(i===ST.day?' now':'')+'" title="Day '+i+(p!==null?': '+p+'%':'')+'">'+i+'</div>';
+    h+='<div class="hc '+cls+(i===ST.day?' now':'')+(ex?' exc':'')+'" role="button" tabindex="0" onclick="heatGo('+i+')" title="Day '+i+(dt?' · '+dt:'')+(p!==null?': '+p+'%':'')+(ex?' (excused)':'')+'" aria-label="Day '+i+(dt?', '+dt:'')+(p!==null?', '+p+'%':', not logged')+(ex?', excused':'')+' — open to log it">'+i+'</div>';
   }
-  document.getElementById('heatGrid').innerHTML=h;
+  g.style.gridTemplateColumns='repeat('+Math.min(ST.tripLen,7)+',1fr)';
+  g.innerHTML=h;
+  var lg=document.getElementById('heatLeg');if(lg)lg.innerHTML='<i class="hc h1"></i>&lt;40% <i class="hc h2"></i>40% <i class="hc h3"></i>70% <i class="hc h4"></i>90%+ <span>· tap a day to log it</span>';
 }
+function heatGo(i){setDay(i,true);goSub('daily','today',true);setTimeout(function(){jumpTo('dayNav',true);},60);vib(8);}
 function updStats(){
   var logged=0,sum=0,best=0,bestD=0,perf=0;
   for(var i=1;i<=ST.tripLen;i++){var p=dayPct(i);if(p!==null&&p>0){logged++;sum+=p;if(p>best){best=p;bestD=i;}if(p>=80)perf++;}}
@@ -637,7 +688,7 @@ function updStats(){
   document.getElementById('stPlaces').textContent=pv+' / '+PLACES.length;
   renderBadges();
 }
-function setTripLen(v){var n=parseInt(v)||10;n=Math.max(3,Math.min(30,n));ST.tripLen=n;if(ST.day>n)ST.day=n;saveST();document.getElementById('tripLen').value=n;updRetDate();updDaily();updStats();renderItin();updChip();renderPrepJumps();}
+function setTripLen(v){var n=parseInt(v)||10;n=Math.max(3,Math.min(30,n));ST.tripLen=n;if(ST.day>n)ST.day=n;delete ST.dayAuto;saveST();document.getElementById('tripLen').value=n;updRetDate();updDaily();updStats();renderItin();updChip();renderPrepJumps();}
 
 /* ════════════════════════ PLACES ════════════════════════ */
 var cityFilter='all';
@@ -677,7 +728,10 @@ function renderPlaces(){
   });
   document.getElementById('placesContainer').innerHTML=h||'<div class="note" style="margin:0">No places match — try "Quba", "Uhud", "Hira" or "bus".</div>';
 }
-function togPlace(id){placeVis[id]=!placeVis[id];save('us-places',placeVis);renderPlaces();updPlaces();chkBadges();if(placeVis[id])vib(25);}
+function togPlace(id){placeVis[id]=!placeVis[id];save('us-places',placeVis);renderPlaces();updPlaces();
+  /* D-06: a real ziyarah site (not the Haram, a day trip or a bus stop) logs today's ziyarah row once */
+  if(placeVis[id]){vib(25);var p=PLACES.filter(function(x){return x.id===id;})[0];if(p&&['tour','trip','haram','mharam'].indexOf(p.g)<0){var k=dayKey(),d=dailyChk[k]||{};if(!d.ziyarah){d.ziyarah=true;dailyChk[k]=d;save('us-daily',dailyChk);updDaily();updStats();toast('📍 Ziyarah logged for Day '+ST.day);}}}
+  chkBadges();}
 function filterCity(c){cityFilter=c;['All','Makkah','Madinah'].forEach(function(x){document.getElementById('pill'+x).classList.toggle('on',c===x.toLowerCase());});renderPlaces();}
 function updPlaces(){
   var v=Object.keys(placeVis).filter(function(k){return placeVis[k];}).length;
@@ -697,6 +751,7 @@ function badgeOK(id){
     case 'devoted':{var n=0;for(var i=1;i<=ST.tripLen;i++){var p=dayPct(i);if(p!==null&&p>=80)n++;}return n>=3;}
     case 'quranComp':{var n=0;for(var i=1;i<=ST.tripLen;i++){var d=dailyChk['d'+i];if(d&&(d.recite||d.tadabbur||d.memorize))n++;}return n>=5;}
     case 'nightHaram':{var n=0;for(var i=1;i<=ST.tripLen;i++){var d=dailyChk['d'+i];if(d&&d.tahajjud)n++;}return n>=3;}
+    case 'littlePilgrim':return kdBestStars()>=3;
   }
   return false;
 }
@@ -710,7 +765,7 @@ function renderBadges(){
   var g=document.getElementById('bdgGrid');if(!g)return;
   var n=0,h='';
   BADGES.forEach(function(b){var ok=!!earned[b.id];if(ok)n++;h+='<div class="bdg '+(ok?'ok':'no')+'"><div class="i">'+b.icon+'</div><div class="n">'+b.name+'</div></div>';});
-  g.innerHTML=h;document.getElementById('bdgCnt').textContent=n;
+  g.innerHTML=h;document.getElementById('bdgCnt').textContent=n;var bt=document.getElementById('bdgTot');if(bt)bt.textContent=BADGES.length;
 }
 
 /* ════════════════════════ DUAS / DATA ════════════════════════ */
@@ -771,7 +826,8 @@ function renderHome(){
     else{cta=['Plan your next Umrah','plan','prep','cdCard'];lbl='Set a new departure date to start again';}
     stageNow=4;}
   else if(d===null||d>0){var P=planTotals(),tot=P.tot,done=P.done;pct=P.pct;phase=d===null?'🧭 Planning — set your departure date':'✈️ '+d+' day'+(d===1?'':'s')+' until departure';cta=[pct<100?'Continue preparing':'Study & quiz','plan',pct<100?'prep':'learn',pct<100?(ST.dep?'tlCard':'cdCard'):null];lbl=done+' of '+tot+' prep items · '+qzPassedCount()+'/'+QUIZ_LEVELS.length+' quiz levels';stageNow=0;}
-  else{pct=dayPct(ST.day)||0;phase='🕋 Day '+ST.day+' of '+ST.tripLen+' in the Haramain';cta=['Log today’s worship','daily','today'];lbl=pct+'% of today’s deeds · '+tu+' Umrah'+(tu===1?'':'s')+' completed';stageNow=ST.umrahs?2:1;}
+  else if(d===0&&!tu&&!dayHasTicks(1)){pct=planTotals().pct;phase='🛫 Departure day — safe travels, labbayk!';cta=['Open the rites guide','umrah','steps'];lbl='Ihram at the miqat → tawaf → sa’i → halq — every step and dua is in the guide';stageNow=1;}
+  else{var ed=expectedDay()||ST.day;pct=dayPct(ed)||0;phase='🕋 Day '+ed+' of '+ST.tripLen+' in the Haramain';cta=['Log today’s worship','daily','today'];lbl=pct+'% of today’s deeds · '+tu+' Umrah'+(tu===1?'':'s')+' completed';stageNow=ST.umrahs?2:1;}
   var due=fcDue();var fc0=due.length?FC_MAP[due[0]]:null;
   var nh=0;[HISTORY,VIRTUES,MADINAH,FIQHQA,KNOW,SISTERS,SCAMS].forEach(function(x){nh+=x.length;});
   var nq=0;QUIZ_LEVELS.forEach(function(l){nq+=l.qs.length;});
@@ -806,7 +862,7 @@ function renderHome(){
   h+='<div class="note" style="margin:0 0 12px">'+QUOTES[Math.floor(Date.now()/86400000)%QUOTES.length]+'</div>';
   h+='<div class="card card-pad"><h3>Common questions</h3>'
     +'<div class="acc"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)">Is it really free? <span class="acc-c">▶</span></div><div class="acc-b">Yes — no ads, no subscriptions, no “pro” tier. Built as sadaqah jariyah for the Ummah. If it helps you, share it and make dua for those who built it.</div></div>'
-    +'<div class="acc"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)">Does it work in the Haram without signal? <span class="acc-c">▶</span></div><div class="acc-b">Yes. Open it once with internet and it caches itself; the counters, rites guide, duas, places and your data all work offline. Prayer times cache for the day; the map links need signal.</div></div>'
+    +'<div class="acc"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)">Does it work in the Haram without signal? <span class="acc-c">▶</span></div><div class="acc-b">Yes. Open it once with internet and it caches itself; the counters, rites guide, duas, places and your data all work offline. Prayer times work offline too (the Umm al-Qura month is cached, and computed times fill any gap); the map links need signal.</div></div>'
     +'<div class="acc"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)">Where is my data stored? <span class="acc-c">▶</span></div><div class="acc-b">Only on your phone. There is no account and no server. Export a backup from Settings before changing phones; the document vault is encrypted with your PIN and cannot be recovered without it.</div></div>'
     +'<div class="acc"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)">Is the religious content reliable? <span class="acc-c">▶</span></div><div class="acc-b">Every hadith is cited to its collection and was checked against the source text; weak narrations are avoided or marked. It is a study companion, not a fatwa service — ask a scholar for rulings on your situation. Scholar review is pending; corrections are welcome.</div></div>'
     +'</div>';
@@ -1084,9 +1140,8 @@ function renderTodayTop(){var a=document.getElementById('todayTop');if(!a)return
   var days=itinDays(),it=days[ST.day-1];
   if(it)h+='<div class="card todayit" role="button" tabindex="0" aria-label="Today’s itinerary — edit" onclick="goTab(\'plan\',\'prep\',\'itinCard\')"><span class="ti-i">🗓️</span><div class="ti-t"><b>Day '+ST.day+' · '+(it.city==='Makkah'?'🕋':'🕌')+' '+it.city+'</b>'+it.e[0]+' '+esc(it.e[1])+'</div><span class="xchip">Edit →</span></div>';
   if(onTrip()){var hi=ST.hotelInfo||{};
-    h+='<div class="card tripc"><div class="tc-h"><span>🏨</span><b>'+(hi.n?esc(hi.n):'Your hotel')+'</b>'+(hi.m?'<button class="xchip" style="margin:0" onclick="showLost()">📍 '+esc(hi.m)+'</button>':'')+'</div>'
-      +(hi.n?'':'<input class="srch" id="tcName" placeholder="Hotel name — so the driver card works" onchange="quickHotel(this.value)" aria-label="Hotel name">')
-      +'<div class="hcard"><button class="main" onclick="showDriver()">🚕 Show to driver</button><button class="sos" onclick="showLost()">🆘 I’m lost</button><a href="tel:911">☎ 911</a><a href="tel:1966">☎ 1966 care line</a></div></div>';}
+    h+='<div class="card tripc"><div class="tc-h"><span>🏨</span><b'+(hi.m?' title="Meeting point: '+esc(hi.m)+'"':'')+'>'+(hi.n?esc(hi.n):'Your hotel')+'</b><button class="chip-btn" onclick="showDriver()" aria-label="Show to driver">🚕 Driver</button><button class="chip-btn sos" onclick="showLost()" aria-label="I’m lost — show this">🆘 Lost</button><button class="chip-btn" onclick="sosSheet()" aria-label="Emergency numbers 911 and 1966, hotel actions">☎ SOS</button></div>'
+      +(hi.n?'':'<input class="srch" id="tcName" placeholder="Hotel name — so the driver card works" onchange="quickHotel(this.value)" aria-label="Hotel name">')+'</div>';}
   a.innerHTML=h;}
 
 /* ════════════════════════ PACKING BAGS ════════════════════════ */
@@ -1104,7 +1159,7 @@ function delDua(i){duas.splice(i,1);saveDuas();renderDuaList();}
 function renderDuaList(){
   var a=document.getElementById('duaList');if(!a)return;
   if(!duas.length){a.innerHTML='<p style="font-size:.8em;color:var(--ink3)">Your list is empty. Start with the people who asked you to pray for them.</p>';return;}
-  a.innerHTML=duas.map(function(d,i){return '<div class="row'+(d.done?' done':'')+'" style="padding:8px 6px"><span class="tick" onclick="togDua('+i+')"></span><div class="row-t" onclick="togDua('+i+')"><b>'+d.t.replace(/</g,'&lt;')+'</b></div><button class="chip-btn" style="padding:4px 10px" onclick="delDua('+i+')">✕</button></div>';}).join('')+'<p style="font-size:.74em;color:var(--ink3);margin-top:6px">'+duas.filter(function(d){return d.done;}).length+' of '+duas.length+' asked</p>';
+  a.innerHTML=duas.map(function(d,i){return '<div class="row'+(d.done?' done':'')+'" style="padding:8px 6px"><span class="tick" onclick="togDua('+i+')"></span><div class="row-t" onclick="togDua('+i+')"><b>'+d.t.replace(/</g,'&lt;')+'</b></div><button class="chip-btn" style="padding:4px 10px" onclick="delDua('+i+')">✕</button></div>';}).join('')+'<p style="font-size:.74em;color:var(--ink3);margin-top:6px">'+duas.filter(function(d){return d.done;}).length+' of '+duas.length+' asked · <button class="lnk" style="font-size:1em" onclick="togDaily(\'dualist\')">'+((dailyChk[dayKey()]||{}).dualist?'✓ went through my list today':'Went through my list today? Tick it')+'</button></p>';
 }
 
 /* ════════════════════════ WATER & DISTANCE ════════════════════════ */
@@ -1331,7 +1386,7 @@ function updChip(){
     if(d>0){txt='✈️ '+d+' day'+(d===1?'':'s');go=['plan','prep','tlCard'];}
     else if(d===0){txt='🛫 Today';go=['umrah','count',null];}
     else if(d<-ST.tripLen){txt='🌱 After Umrah';fn=function(){goPost();};}
-    else{txt='🕋 Day '+ST.day+' / '+ST.tripLen;go=['daily','today',null];}
+    else{txt='🕋 Day '+(expectedDay()||ST.day)+' / '+ST.tripLen;go=['daily','today',null];}
   }
   c.textContent=txt;c.onclick=fn||function(){goTab(go[0],go[1],go[2]);};
   var sl=document.getElementById('stageLbl');if(sl){var names={plan:'Planning my trip',soon:'Flying soon',now:'In Makkah / Madinah',back:'Returned',before:'Been before'};sl.textContent=(ST.stage&&names[ST.stage]?'Now: '+names[ST.stage]+' · ':'')+'re-declare where you are — nothing is reset';}
@@ -1368,7 +1423,7 @@ function obApply(){
   if(st==='now'){
     var len=parseInt((document.getElementById('obLen')||{}).value)||ST.tripLen||10;len=Math.max(3,Math.min(30,len));
     var day=parseInt((document.getElementById('obDay')||{}).value)||1;day=Math.max(1,Math.min(len,day));
-    ST.tripLen=len;ST.day=day;var t=document.getElementById('tripLen');if(t)t.value=len;
+    ST.tripLen=len;ST.day=day;ST.dayAuto=true;var t=document.getElementById('tripLen');if(t)t.value=len;
     var d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-(day-1));ST.dep=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
     saveST();updDaily();updStats();renderItin();updCountdown();
   }
@@ -1619,6 +1674,28 @@ function buildPrint(){var e=document.getElementById('printSheet');if(!e)return;v
   e.innerHTML=h;}
 function printSheet(){buildPrint();toast('🖨️ Use “Save as PDF” in the print dialog to keep a copy');setTimeout(function(){try{window.print();}catch(e){}},150);}
 
+/* ════════════════════════ KIDS' DAY (D-21) ════════════════════════ */
+/* one row per child (ST.kidNames), five emoji tiles, no adult points; 'us-kids-daily' = {d<day>:{<childIdx>:{<tile>:true}}} */
+var KD_TILES=[['🕌','Prayed with us'],['💧','Zamzam + a dua'],['📿','SubhanAllah ×10 / talbiyah'],['🤝','Patient in the crowd'],['📖','Learned one thing']];
+var kidsD={};try{kidsD=JSON.parse(localStorage.getItem('us-kids-daily')||'{}');}catch(e){kidsD={};}
+function kidNames(){return Array.isArray(ST.kidNames)?ST.kidNames:[];}
+function kdFull(day,ci){var r=(kidsD['d'+day]||{})[ci]||{};return KD_TILES.every(function(t,i){return !!r[i];});}
+function kdStars(ci){var n=0;for(var i=1;i<=ST.tripLen;i++)if(kdFull(i,ci))n++;return n;}
+function kdBestStars(){var b=0;kidNames().forEach(function(_,i){b=Math.max(b,kdStars(i));});return b;}
+function renderKidsDay(){var a=document.getElementById('kidsDay');if(!a)return;var names=kidNames();
+  if(!names.length){a.innerHTML=ST.kids?'<div class="card kd"><div class="kd-h"><b>🧒 Kids’ day</b><button class="chip-btn" onclick="goTab(\'plan\',\'quiz\',\'kidsCard\')">+ Add a child</button></div><small style="font-size:.78em;color:var(--ink2);line-height:1.45;display:block">Add their names in Kids corner — each child then gets five stars to earn every day, separate from your own tracker.</small></div>':'';return;}
+  var D=kidsD['d'+ST.day]||{};
+  a.innerHTML='<div class="card kd"><div class="kd-h"><b>🧒 Kids’ day</b><small>tap what they did · 5 of 5 = ⭐</small></div>'+names.map(function(n,ci){var r=D[ci]||{},st=kdStars(ci);
+    return '<div class="kd-row"><div class="kd-name" title="'+esc(n)+'">'+esc(n)+'<small aria-label="'+st+' full day'+(st===1?'':'s')+'">'+(st?'⭐'.repeat(Math.min(st,6))+(st>6?'+'+(st-6):''):'')+'</small></div><div class="kd-tiles" role="group" aria-label="'+esc(n)+'’s day">'+KD_TILES.map(function(t,i){return '<button class="kd-t'+(r[i]?' on':'')+'" aria-pressed="'+(r[i]?'true':'false')+'" title="'+t[1]+'" aria-label="'+esc(n)+': '+t[1]+'" onclick="kdTap('+ci+','+i+')">'+t[0]+'</button>';}).join('')+'</div></div>';}).join('')+'</div>';}
+function kdTap(ci,i){var k='d'+ST.day,D=kidsD[k]||{},r=D[ci]||{};r[i]=!r[i];D[ci]=r;kidsD[k]=D;save('us-kids-daily',kidsD);vib(15);
+  if(kdFull(ST.day,ci)){confetti(60);vib([40,60,100]);toast('⭐ '+(kidNames()[ci]||'Little pilgrim')+' — 5 of 5 today, mashallah!',true);}
+  renderKidsDay();chkBadges();}
+function addKid(){var i=document.getElementById('kidIn'),v=((i&&i.value)||'').trim().slice(0,24);if(!v)return;var n=kidNames().slice();if(n.length>=6){toast('Up to 6 children');return;}n.push(v);ST.kidNames=n;if(!ST.kids){ST.kids=true;updKidsSw();renderPlan();updPlan();}saveST();if(i)i.value='';renderKidNames();renderKidsDay();vib(10);toast('🧒 '+v+' added — their stars live in Daily › Today');}
+function delKid(ci){var n=kidNames().slice();n.splice(ci,1);ST.kidNames=n;saveST();Object.keys(kidsD).forEach(function(k){var D=kidsD[k]||{},nd={};Object.keys(D).forEach(function(c){c=+c;if(c<ci)nd[c]=D[c];else if(c>ci)nd[c-1]=D[c];});kidsD[k]=nd;});save('us-kids-daily',kidsD);renderKidNames();renderKidsDay();}
+function renderKidNames(){var a=document.getElementById('kidNames');if(!a)return;var n=kidNames();
+  a.innerHTML=(n.length?'<div class="kd-list">'+n.map(function(x,i){var st=kdStars(i);return '<span class="chip-btn" style="display:inline-flex;align-items:center;gap:6px">'+esc(x)+(st?' <span style="color:var(--gold-ink)">⭐'+st+'</span>':'')+'<button class="lnk" style="text-decoration:none;color:var(--ink3)" onclick="delKid('+i+')" aria-label="Remove '+esc(x)+'">✕</button></span>';}).join('')+'</div>':'')
+    +'<div class="kd-add"><input class="srch" id="kidIn" placeholder="Child’s name" maxlength="24" aria-label="Child’s name" onkeydown="if(event.key===\'Enter\')addKid()"><button class="chip-btn" onclick="addKid()">+ Add a child</button></div><p style="font-size:.74em;color:var(--ink3);margin-top:6px">Each child gets five daily stars on Daily › Today — prayed with us, Zamzam, dhikr, patience, learned one thing. Three 5-of-5 days earn the Little Pilgrim badge.</p>';}
+
 /* ════════════════════════ POST-UMRAH MODE ════════════════════════ */
 var POST_HABITS=['🕌 Five prayers on time','📖 Daily Quran','📿 Daily dhikr'];
 var postData={};
@@ -1649,24 +1726,25 @@ function togRem(){
   if(!ST.rem){
     if(!('Notification' in window)){toast('Notifications not supported here');return;}
     Notification.requestPermission().then(function(p){
-      if(p==='granted'){ST.rem=true;saveST();updRemSw();toast('🔔 Reminders on — while the app is open');}
+      if(p==='granted'){ST.rem=true;saveST();updRemSw();toast('🔔 Reminders on — while the app is open. For screen-off alarms add the week to your calendar (Settings)');}
       else toast('Notifications blocked — allow them in browser settings');
     });
-  }else{ST.rem=false;saveST();updRemSw();}
+  }else{ST.rem=false;saveST();updRemSw();toast('🔕 Reminders off');}
 }
-function updRemSw(){var sw=document.getElementById('remSw');if(sw){sw.classList.toggle('on',!!ST.rem);sw.setAttribute('aria-checked',ST.rem?'true':'false');}}
+function updRemSw(){var sw=document.getElementById('remSw');if(sw){sw.classList.toggle('on',!!ST.rem);sw.setAttribute('aria-checked',ST.rem?'true':'false');}
+  var bell=document.getElementById('ptBell');if(bell){bell.classList.toggle('on',!!ST.rem);bell.setAttribute('aria-pressed',ST.rem?'true':'false');bell.title=ST.rem?'Reminders on (while the app is open) — tap to turn off':'Turn on prayer reminders';}}
+/* D-07: Jumu'ah gets a 60-minute lead — the Haram fills 1–2 h before */
 function remTick(){
   if(!ST.rem||!ptData||!('Notification' in window)||Notification.permission!=='granted')return;
-  var now=riyadhNow(),nowMin=now.getHours()*60+now.getMinutes();
+  var now=riyadhNow(),nowMin=now.getHours()*60+now.getMinutes(),fri=now.getDay()===5;
   for(var i=0;i<PT_NAMES.length;i++){
-    var nm=PT_NAMES[i],v=(ptData.t[nm]||'').split(' ')[0].split(':');
-    var m=parseInt(v[0])*60+parseInt(v[1]),diff=m-nowMin;
-    if(diff>0&&diff<=20){
+    var nm=PT_NAMES[i],jum=fri&&nm==='Dhuhr',m=ptMin(ptData.t[nm]),diff=m-nowMin,lead=jum?60:20,lbl=jum?'Jumu’ah':nm;
+    if(diff>0&&diff<=lead){
       var key=(ST.city||'Makkah')+'|'+now.getDate()+'|'+nm;
       if(localStorage.getItem('us-remlast')===key)return;
       localStorage.setItem('us-remlast',key);
-      try{new Notification('🕌 '+nm+' in '+diff+' min ('+(ST.city||'Makkah')+')',{body:'Head out with wudu — the Haram fills early. May it be accepted.'});}catch(e){}
-      toast('🔔 '+nm+' in '+diff+' minutes');vib([60,40,60]);
+      try{new Notification('🕌 '+lbl+' in '+diff+' min ('+(ST.city||'Makkah')+')',{body:jum?'Jumu’ah — the Haram fills 1–2 hours before. Head out with wudu.':'Head out with wudu — the Haram fills early. May it be accepted.'});}catch(e){}
+      toast('🔔 '+lbl+' in '+diff+' minutes');vib([60,40,60]);
       return;
     }
   }
@@ -1675,88 +1753,160 @@ setInterval(remTick,60000);
 
 /* ════════════════════════ PRAYER TIMES ════════════════════════ */
 var PT_NAMES=['Fajr','Dhuhr','Asr','Maghrib','Isha'];
-var ptData=null,ptTimer=null,ptStale=false;
+var PT_LL={Makkah:[21.4225,39.8262],Madinah:[24.4672,39.6112]};
+var ptData=null,ptTimer=null,ptSrc='calc',ptFetched={},ptBusy={};
 function setCity(c){ST.city=c;saveST();document.getElementById('cityMakkah').classList.toggle('on',c==='Makkah');document.getElementById('cityMadinah').classList.toggle('on',c==='Madinah');loadPT();}
 function riyadhNow(){try{return new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Riyadh'}));}catch(e){return new Date();}}
-function hijriIntl(){try{return new Intl.DateTimeFormat('en-u-ca-islamic-umalqura',{day:'numeric',month:'long',year:'numeric'}).format(new Date());}catch(e){return '';}}
-function loadPT(){
-  var city=ST.city||'Makkah';
-  var today=riyadhNow();var dk=today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-  var cache={};try{cache=JSON.parse(localStorage.getItem('us-ptcache')||'{}');}catch(e){}
-  var ck=city+'|'+dk;
-  if(cache[ck]){ptData=cache[ck];ptStale=false;renderPT();return;}
-  renderPTLoading();
-  var ctrl=('AbortController' in window)?new AbortController():null;
-  if(ctrl)setTimeout(function(){ctrl.abort();},8000);
-  fetch('https://api.aladhan.com/v1/timingsByCity?city='+city+'&country=Saudi%20Arabia&method=4',ctrl?{signal:ctrl.signal}:{})
-  .then(function(r){return r.json();})
-  .then(function(j){
-    var t=j.data.timings,h=j.data.date.hijri;
-    ptData={t:{Fajr:t.Fajr,Dhuhr:t.Dhuhr,Asr:t.Asr,Maghrib:t.Maghrib,Isha:t.Isha},h:h.day+' '+h.month.en+' '+h.year+' AH'};
-    ptStale=false;
-    var nc={};nc[ck]=ptData;localStorage.setItem('us-ptcache',JSON.stringify(nc));
-    renderPT();
-  }).catch(function(){
-    // offline: fall back to the most recent cached times for this city, marked stale
-    ptData=null;ptStale=false;
-    Object.keys(cache).forEach(function(k){if(k.indexOf(city+'|')===0){ptData=cache[k];ptStale=true;}});
-    renderPT();
-  });
+/* Hijri via Intl (Umm al-Qura calendar) evaluated in Makkah's zone, so it rolls at Makkah midnight */
+function hijriIntl(d){try{return new Intl.DateTimeFormat('en-u-ca-islamic-umalqura',{day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Riyadh'}).format(d||new Date());}catch(e){return '';}}
+function hijriMonth(d){try{var p=new Intl.DateTimeFormat('en-u-ca-islamic-umalqura',{month:'numeric',timeZone:'Asia/Riyadh'}).formatToParts(d||new Date());for(var i=0;i<p.length;i++)if(p[i].type==='month')return parseInt(p[i].value);}catch(e){}return 0;}
+/* y/m/d name a Riyadh-calendar day; noon Riyadh = 09:00 UTC keeps the Hijri lookup inside that day */
+function hijriFor(y,m,d){return hijriIntl(new Date(Date.UTC(y,m,d,9)));}
+function isRamadanFor(y,m,d){return hijriMonth(new Date(Date.UTC(y,m,d,9)))===9;}
+function cl(v){return String(v||'').split(' ')[0];}
+function ptMin(v){var p=cl(v).split(':');return (parseInt(p[0])||0)*60+(parseInt(p[1])||0);}
+function minHM(m){m=((Math.round(m)%1440)+1440)%1440;return ('0'+Math.floor(m/60)).slice(-2)+':'+('0'+(m%60)).slice(-2);}
+function fmtDiff(diff){var hh=Math.floor(diff/60),mm=diff%60;return (hh>0?hh+'h ':'')+mm+'m';}
+function isFriday(){return riyadhNow().getDay()===5;}
+function ptLabel(nm){return (nm==='Dhuhr'&&isFriday())?'Jumu’ah':nm;}
+/* D-03: solar computation with Umm al-Qura parameters — Fajr 18.5°, Dhuhr = solar noon + 1 min, Asr shadow factor 1, Maghrib = sunset,
+   Isha = Maghrib + 90 min (120 in Ramadan), fixed coordinates, UTC+3. Lands within ±2 min of the official table; the fetched table overrides it. */
+function computePT(city,y,m,d){
+  var ll=PT_LL[city]||PT_LL.Makkah,lat=ll[0],lng=ll[1],TZ=3,R=Math.PI/180;
+  var sin=function(x){return Math.sin(x*R);},cos=function(x){return Math.cos(x*R);},tan=function(x){return Math.tan(x*R);},asin=function(x){return Math.asin(x)/R;},acos=function(x){return Math.acos(Math.max(-1,Math.min(1,x)))/R;},atan2=function(a,b){return Math.atan2(a,b)/R;},acot=function(x){return Math.atan(1/x)/R;};
+  var fix=function(a,b){a=a-b*Math.floor(a/b);return a<0?a+b:a;};
+  var Y=y,M=m+1;if(M<=2){Y-=1;M+=12;}var A=Math.floor(Y/100),B=2-A+Math.floor(A/4);
+  var jd=Math.floor(365.25*(Y+4716))+Math.floor(30.6001*(M+1))+d+B-1524.5-lng/360;
+  function sun(t){var D=jd+t-2451545.0,g=fix(357.529+0.98560028*D,360),q=fix(280.459+0.98564736*D,360),L=fix(q+1.915*sin(g)+0.020*sin(2*g),360),e=23.439-0.00000036*D;var RA=fix(atan2(cos(e)*sin(L),cos(L))/15,24);return {dec:asin(sin(e)*sin(L)),eq:q/15-RA};}
+  function noon(t){return fix(12-sun(t).eq,24);}
+  function angleTime(ang,t,ccw){var dec=sun(t).dec,n=noon(t),v=acos((-sin(ang)-sin(dec)*sin(lat))/(cos(dec)*cos(lat)))/15;return n+(ccw?-v:v);}
+  function asr(t){var dec=sun(t).dec;return angleTime(-acot(1+tan(Math.abs(lat-dec))),t,false);}
+  var T={Fajr:5/24,Sunrise:6/24,Dhuhr:12/24,Asr:13/24,Maghrib:18/24};
+  for(var i=0;i<2;i++){T.Fajr=angleTime(18.5,T.Fajr,true)/24;T.Sunrise=angleTime(0.833,T.Sunrise,true)/24;T.Dhuhr=noon(T.Dhuhr)/24;T.Asr=asr(T.Asr)/24;T.Maghrib=angleTime(0.833,T.Maghrib,false)/24;}
+  var out={},adj=TZ-lng/15;Object.keys(T).forEach(function(k){out[k]=T[k]*24+adj;});
+  out.Dhuhr+=1/60;out.Isha=out.Maghrib+(isRamadanFor(y,m,d)?120:90)/60;
+  var hm=function(h){return minHM(fix(h,24)*60);};
+  return {t:{Fajr:hm(out.Fajr),Dhuhr:hm(out.Dhuhr),Asr:hm(out.Asr),Maghrib:hm(out.Maghrib),Isha:hm(out.Isha)},s:hm(out.Sunrise),h:hijriFor(y,m,d),calc:true};
 }
-function renderPTLoading(){var n=document.getElementById('ptNext');if(n)n.textContent='Loading times…';var g=document.getElementById('ptGrid');if(g&&!g.children.length){var h='';for(var i=0;i<5;i++)h+='<div class="pt sk"></div>';g.innerHTML=h;}}
+/* cache: 'City|Y-M-D' → {t,s,h} per day, '_mCity|Y-M' month markers; pruned past ~40 days */
+function ptCache(){try{var c=JSON.parse(localStorage.getItem('us-ptcache')||'{}');return (c&&typeof c==='object')?c:{};}catch(e){return {};}}
+function ptKeyOf(city,y,m,d){return city+'|'+y+'-'+(m+1)+'-'+d;}
+function ptSaveCache(c){var cut=Date.now()-40*86400000;
+  Object.keys(c).forEach(function(k){var p=((k.split('|')[1])||'').split('-'),t=k[0]==='_'?new Date(+p[0],+p[1],1).getTime():new Date(+p[0],+p[1]-1,+p[2]).getTime();if(isNaN(t)||t<cut)delete c[k];});
+  try{localStorage.setItem('us-ptcache',JSON.stringify(c));}catch(e){}}
+/* the exact Umm al-Qura row for a Riyadh-calendar day when cached, else the computed baseline — never null */
+function ptFor(city,y,m,d){var c=ptCache(),k=ptKeyOf(city,y,m,d);return c[k]||computePT(city,y,m,d);}
+function loadPT(){
+  var city=ST.city||'Makkah',now=riyadhNow(),y=now.getFullYear(),m=now.getMonth(),d=now.getDate(),cache=ptCache(),ck=ptKeyOf(city,y,m,d);
+  if(cache[ck]){ptData=cache[ck];ptSrc=ptFetched[ck]?'live':'cache';}else{ptData=computePT(city,y,m,d);ptSrc='calc';}
+  renderPT();ptFetchMonths(city,y,m);
+}
+/* D-03 / D-23: once per city per month pull the whole Umm al-Qura month (this month + next, both cities) so every offline day is exact */
+function ptFetchMonths(city,y,m){
+  if(navigator.onLine===false||typeof fetch!=='function')return;
+  var other=city==='Makkah'?'Madinah':'Makkah',n=new Date(y,m+1,1),cache=ptCache();
+  var jobs=[[city,y,m],[city,n.getFullYear(),n.getMonth()],[other,y,m],[other,n.getFullYear(),n.getMonth()]].filter(function(j){var mk='_m'+j[0]+'|'+j[1]+'-'+(j[2]+1);return !cache[mk]&&!ptBusy[mk];});
+  if(!jobs.length)return;
+  (function run(i){if(i>=jobs.length)return;var j=jobs[i],mk='_m'+j[0]+'|'+j[1]+'-'+(j[2]+1);ptBusy[mk]=true;
+    var ctrl=('AbortController' in window)?new AbortController():null;if(ctrl)setTimeout(function(){ctrl.abort();},10000);
+    fetch('https://api.aladhan.com/v1/calendarByCity?city='+j[0]+'&country=Saudi%20Arabia&method=4&month='+(j[2]+1)+'&year='+j[1],ctrl?{signal:ctrl.signal}:{})
+    .then(function(r){return r.json();}).then(function(res){
+      var arr=Array.isArray(res.data),rows=arr?res.data:(res.data&&res.data.timings?[res.data]:[]);if(!rows.length)throw new Error('empty');
+      var c=ptCache(),nn=riyadhNow();
+      rows.forEach(function(r,k){var t=r.timings||{},hj=(r.date&&r.date.hijri)||{},g=(r.date&&r.date.gregorian&&r.date.gregorian.date)?r.date.gregorian.date.split('-'):null;
+        var dd=g?+g[0]:nn.getDate(),mm=g?+g[1]-1:nn.getMonth(),yy=g?+g[2]:nn.getFullYear();if(!t.Fajr)return;
+        var key=ptKeyOf(j[0],yy,mm,dd);c[key]={t:{Fajr:cl(t.Fajr),Dhuhr:cl(t.Dhuhr),Asr:cl(t.Asr),Maghrib:cl(t.Maghrib),Isha:cl(t.Isha)},s:cl(t.Sunrise),h:hj.day?hj.day+' '+((hj.month&&hj.month.en)||'')+' '+hj.year+' AH':''};ptFetched[key]=true;});
+      if(arr)c[mk]=1;
+      ptSaveCache(c);delete ptBusy[mk];
+      var k0=ptKeyOf(ST.city||'Makkah',nn.getFullYear(),nn.getMonth(),nn.getDate());if(c[k0]&&(ptSrc!=='live'||JSON.stringify(ptData)!==JSON.stringify(c[k0]))){ptData=c[k0];ptSrc='live';renderPT();}
+      run(i+1);
+    }).catch(function(){delete ptBusy[mk];});
+  })(0);
+}
+function ptNextOf(){
+  var now=riyadhNow(),nowMin=now.getHours()*60+now.getMinutes(),name=null,min=null;
+  PT_NAMES.forEach(function(nm){var m=ptMin(ptData.t[nm]);if(name===null&&m>nowMin){name=nm;min=m;}});
+  if(name===null){name='Fajr';min=ptMin(ptData.t.Fajr)+1440;}
+  return {name:name,min:min,diff:min-nowMin,nowMin:nowMin};
+}
+/* D-02 strip + panel, D-04 tickable tiles, D-07 Jumu'ah/Duha, D-22 meeting point in the Home strip */
 function renderPT(){
   var g=document.getElementById('ptGrid'),nx=document.getElementById('ptNext'),hj=document.getElementById('ptHijri');
-  if(!g)return;
-  hj.textContent=(ptData&&ptData.h)?ptData.h:hijriIntl();
-  if(!ptData){g.innerHTML='';nx.textContent='Times unavailable offline — reconnect to load.';var hn0=document.getElementById('hNext');if(hn0)hn0.textContent='Times unavailable offline';return;}
-  var note=document.getElementById('ptNote');if(note)note.textContent=(ptStale?'Cached times · reconnect to refresh · ':'')+'Umm al-Qura · local Makkah/Madinah time';
-  var now=riyadhNow(),nowMin=now.getHours()*60+now.getMinutes();
-  var nextName=null,nextMin=null;
-  var h='';
-  PT_NAMES.forEach(function(nm){
-    var v=(ptData.t[nm]||'').split(' ')[0];
-    var parts=v.split(':'),m=parseInt(parts[0])*60+parseInt(parts[1]);
-    if(nextName===null&&m>nowMin){nextName=nm;nextMin=m;}
-    h+='<div class="pt" id="pt-'+nm+'"><div class="pn">'+nm+'</div><div class="pv">'+v+'</div></div>';
-  });
-  g.innerHTML=h;
-  if(nextName===null){
-    var f=(ptData.t.Fajr||'').split(' ')[0].split(':');
-    nextName='Fajr';nextMin=(parseInt(f[0])*60+parseInt(f[1]))+1440;
-  }
-  var el=document.getElementById('pt-'+nextName);if(el)el.classList.add('next');
-  var diff=nextMin-nowMin,hh=Math.floor(diff/60),mm=diff%60;
-  nx.innerHTML='Next: <b>'+nextName+'</b> in '+(hh>0?hh+'h ':'')+mm+'m';
-  var hn=document.getElementById('hNext');if(hn)hn.innerHTML='<b>'+nextName+'</b> in '+(hh>0?hh+'h ':'')+mm+'m <span>· '+(ST.city||'Makkah')+' · '+(ptData.t[nextName]||'').split(' ')[0]+'</span>';
+  if(!g||!ptData)return;
+  var city=ST.city||'Makkah';
+  if(hj)hj.textContent=(ptData.h||hijriIntl())+' · '+city;
+  var note=document.getElementById('ptNote');if(note)note.textContent=(ptSrc==='live'?'✓ Umm al-Qura (live)':ptSrc==='cache'?'Umm al-Qura (cached)':'Computed · ±2 min · follow the adhan')+(ptData.s?' · Duha from ~'+minHM(ptMin(ptData.s)+15):'')+' · '+city+' time';
+  var N=ptNextOf(),d=dailyChk[dayKey()]||{},exc=!!d._excused,fri=isFriday();
+  g.innerHTML=PT_NAMES.map(function(nm){var id=nm.toLowerCase(),on=!!d[id]&&!exc;return '<div class="pt'+(on?' done':'')+(exc?' excused':'')+'" id="pt-'+nm+'" role="checkbox" tabindex="0" aria-checked="'+(on?'true':'false')+'" aria-label="'+ptLabel(nm)+' '+cl(ptData.t[nm])+(on?', prayed in congregation':', tap when prayed in congregation')+'" onclick="togDaily(\''+id+'\')"><div class="pn">'+ptLabel(nm)+'</div><div class="pv">'+cl(ptData.t[nm])+'</div></div>';}).join('');
+  var el=document.getElementById('pt-'+N.name);if(el)el.classList.add('next');
+  var lbl=ptLabel(N.name),tm=cl(ptData.t[N.name]),jum=fri&&N.name==='Dhuhr',friNote=jum?' <span class="ptc">· arrive early — the Haram fills 1–2 h before</span>':'';
+  var pi=PT_NAMES.indexOf(N.name),prev=pi>0?PT_NAMES[pi-1]:null,miss=(prev&&!exc&&!d[prev.toLowerCase()]&&expectedDay()===ST.day)?' <span class="ptc">· '+ptLabel(prev)+' not ticked</span>':'';
+  nx.innerHTML='<b>'+lbl+'</b> in '+fmtDiff(N.diff)+' <span class="ptc">· '+tm+' · '+city+'</span>'+friNote+miss;
+  var hn=document.getElementById('hNext'),meet=(ST.hotelInfo||{}).m;if(hn)hn.innerHTML='<b>'+lbl+'</b> in '+fmtDiff(N.diff)+' <span>· '+city+' · '+tm+(meet?' · meet: '+esc(meet):'')+(jum?' · arrive early':'')+'</span>';
+  updRemSw();
+  var mi=document.getElementById('ptMeet');if(mi&&document.activeElement!==mi)mi.value=meet||'';var ml=document.getElementById('ptLead');if(ml)ml.value=ST.meetLead?String(ST.meetLead):'';
   if(ptTimer)clearInterval(ptTimer);
   ptTimer=setInterval(function(){if(document.getElementById('view-daily').classList.contains('on'))renderPT_tick();},30000);
 }
 function renderPT_tick(){if(ptData)renderPT();}
+/* D-04: the grid mirrors the salah rows the moment either is tapped */
+function syncPTTiles(){var d=dailyChk[dayKey()]||{},exc=!!d._excused;PT_NAMES.forEach(function(nm){var e=document.getElementById('pt-'+nm);if(!e)return;var on=!!d[nm.toLowerCase()]&&!exc;e.classList.toggle('done',on);e.classList.toggle('excused',exc);e.setAttribute('aria-checked',on?'true':'false');});}
+/* D-22: one meeting point (shared with the hotel card / lost card) and a one-tap timings message for the group */
+function setMeet(v){v=(v||'').trim().slice(0,120);ST.hotelInfo=Object.assign(ST.hotelInfo||{},{m:v});saveST();var e=document.getElementById('hMeet');if(e)e.value=v;renderCntHd();renderTodayTop();renderPT_tick();if(v)toast('📍 Meeting point saved — shown on Home, the lost card and the counters');}
+function setMeetLead(v){ST.meetLead=parseInt(v)||0;saveST();}
+function sharePT(){if(!ptData)return;var city=ST.city||'Makkah',ex=expectedDay(),hi=ST.hotelInfo||{},lead=ST.meetLead||0,lines=[];
+  lines.push('🕌 Prayer times · '+city+' · '+(ptData.h||hijriIntl())+(ST.dep?' · '+dayDateStr(ST.day):''));
+  if(ex)lines.push('Day '+ex+' of '+ST.tripLen);
+  PT_NAMES.forEach(function(nm){var t=cl(ptData.t[nm]);lines.push(ptLabel(nm)+' '+t+(lead?' → leave hotel '+minHM(ptMin(t)-lead):''));});
+  if(hi.m)lines.push('📍 Meet: '+hi.m);
+  if(isFriday())lines.push('Jumu’ah today — arrive 1–2 h early');
+  lines.push((ptSrc==='calc'?'Computed times (±2 min) — follow the adhan':'Umm al-Qura times')+' · via Umrah Strivers');
+  shareText('Prayer times · '+city,lines.join('\n'),APP_URL);}
+/* D-23: a week of prayer alerts as .ics (TZID=Asia/Riyadh) — share sheet on phones, download elsewhere */
+function icsDT(y,m,d,hm){return y+('0'+(m+1)).slice(-2)+('0'+d).slice(-2)+'T'+cl(hm).replace(':','')+'00';}
+function buildICS(city,days){var now=riyadhNow(),ev=[],calc=0,stamp=new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d+/,'');
+  for(var i=0;i<days;i++){var dt=new Date(now.getFullYear(),now.getMonth(),now.getDate()+i),y=dt.getFullYear(),m=dt.getMonth(),d=dt.getDate(),P=ptFor(city,y,m,d);if(P.calc)calc++;
+    PT_NAMES.forEach(function(nm){var t=cl(P.t[nm]),jum=dt.getDay()===5&&nm==='Dhuhr',lbl=jum?'Jumu’ah':nm;
+      ev.push(['BEGIN:VEVENT','UID:us-'+city.toLowerCase()+'-'+icsDT(y,m,d,t)+'-'+nm.toLowerCase()+'@umrah-strivers','DTSTAMP:'+stamp,'DTSTART;TZID=Asia/Riyadh:'+icsDT(y,m,d,t),'DTEND;TZID=Asia/Riyadh:'+icsDT(y,m,d,minHM(ptMin(t)+30)),'SUMMARY:'+lbl+' — '+city,'DESCRIPTION:'+(P.calc?'Computed times (±2 min) · follow the adhan':'Umm al-Qura times')+' · Umrah Strivers','BEGIN:VALARM','TRIGGER:-PT'+(jum?'60':'20')+'M','ACTION:DISPLAY','DESCRIPTION:'+lbl+' in '+(jum?'60':'20')+' min — '+city,'END:VALARM','END:VEVENT'].join('\r\n'));});}
+  return {calc:calc,n:ev.length,ics:['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Umrah Strivers//EN','CALSCALE:GREGORIAN','BEGIN:VTIMEZONE','TZID:Asia/Riyadh','BEGIN:STANDARD','DTSTART:19700101T000000','TZOFFSETFROM:+0300','TZOFFSETTO:+0300','TZNAME:AST','END:STANDARD','END:VTIMEZONE'].join('\r\n')+'\r\n'+ev.join('\r\n')+'\r\nEND:VCALENDAR\r\n'};}
+function exportICS(){var city=ST.city||'Makkah',B=buildICS(city,7),name='prayer-times-'+city.toLowerCase()+'-week.ics',blob=new Blob([B.ics],{type:'text/calendar'});
+  var s=document.getElementById('icsSub');if(s)s.textContent='7 days · '+city+' · '+(B.calc?B.calc+' day'+(B.calc===1?'':'s')+' computed (±2 min), the rest Umm al-Qura':'Umm al-Qura times')+' · 20-min alert (60 for Jumu’ah)';
+  var file=null;try{file=new File([blob],name,{type:'text/calendar'});}catch(e){}
+  var dl=function(){var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){a.remove();},500);toast('📅 '+B.n+' prayer alerts saved — open the .ics file to add them to your calendar',true);};
+  if(file&&navigator.share&&navigator.canShare&&navigator.canShare({files:[file]}))navigator.share({files:[file],title:'Prayer times · '+city}).then(function(){toast('📅 Sent — open it in Calendar to add the alerts',true);}).catch(function(err){if(err&&err.name==='AbortError')return;dl();});
+  else dl();
+}
 
 /* ════════════════════════ TASBIH ════════════════════════ */
 var TB_PHRASES=['SubhanAllah','Alhamdulillah','Allahu Akbar','La ilaha illallah','Astaghfirullah','Salawat ﷺ'];
+/* D-06: the two ×100 phrases keep their own target and tick their checklist row at 100 */
+var TB_LONG={4:'istighfar',5:'salawat'};
 var tbPhrase=0,tbCount=0,tbTargetN=33;
+var tasbihP={};try{tasbihP=JSON.parse(localStorage.getItem('us-tasbih-p')||'{}');}catch(e){}
+function tbTarget(){return TB_LONG[tbPhrase]?100:33;}
 function renderTB(){
   var c=document.getElementById('tbChips');if(!c)return;
   var h='';TB_PHRASES.forEach(function(ph,i){h+='<button class="tb-chip'+(i===tbPhrase?' on':'')+'" onclick="tbSet('+i+')">'+ph+'</button>';});
-  c.innerHTML=h;
+  c.innerHTML=h;tbTargetN=tbTarget();
   document.getElementById('tbN').textContent=tbCount;
   document.getElementById('tbTarget').textContent=tbTargetN;
   document.getElementById('tbToday').textContent=tasbih[dayKey()]||0;
+  var pe=document.getElementById('tbPhraseN'),pp=(tasbihP[dayKey()]||{})[tbPhrase]||0;if(pe)pe.textContent='· '+TB_PHRASES[tbPhrase]+' '+pp+(TB_LONG[tbPhrase]?'/100':'');
 }
 function tbSet(i){tbPhrase=i;tbCount=0;renderTB();}
 function tbTap(){
-  tbCount++;tasbih[dayKey()]=(tasbih[dayKey()]||0)+1;save('us-tasbih',tasbih);
-  if(tbCount>=tbTargetN){
-    vib([40,60,100]);toast('✨ '+TB_PHRASES[tbPhrase]+' ×'+tbTargetN+' complete');
-    tbCount=0;tbPhrase=(tbPhrase+1)%TB_PHRASES.length;
-  }else vib(12);
-  var d=dailyChk[dayKey()]||{};
-  if((tasbih[dayKey()]||0)>=100&&!d.dhikr100){d.dhikr100=true;dailyChk[dayKey()]=d;save('us-daily',dailyChk);toast('📿 100 dhikr today — checklist updated!');updDaily();updStats();chkBadges();}
+  var k=dayKey(),ph=tbPhrase,long=TB_LONG[ph];
+  tbCount++;tasbih[k]=(tasbih[k]||0)+1;save('us-tasbih',tasbih);
+  var P=tasbihP[k]||{};P[ph]=(P[ph]||0)+1;tasbihP[k]=P;save('us-tasbih-p',tasbihP);
+  if(tbCount>=tbTarget()){vib([40,60,100]);toast('✨ '+TB_PHRASES[ph]+' ×'+tbTarget()+' complete');tbCount=0;if(!long)tbPhrase=(tbPhrase+1)%TB_PHRASES.length;}
+  else vib(12);
+  var d=dailyChk[k]||{},changed=false;
+  if(long&&P[ph]>=100&&!d[long]){d[long]=true;changed=true;toast('📿 '+TB_PHRASES[ph]+' ×100 today — checklist ticked!');}
+  if((tasbih[k]||0)>=100&&!d.dhikr100){d.dhikr100=true;changed=true;toast('📿 100 dhikr today — checklist updated!');}
+  if(changed){dailyChk[k]=d;save('us-daily',dailyChk);updDaily();updStats();chkBadges();}
   renderTB();
 }
 function tbReset(){tbCount=0;renderTB();}
-
 /* ════════════════════════ QIBLA ════════════════════════ */
 var KAABA={lat:21.4225,lng:39.8262};
 var qbBearing=null;
@@ -1835,7 +1985,9 @@ function initUI(){
   kidsBestLbl();renderStories();
   var cm=document.getElementById('cityMakkah'),cd=document.getElementById('cityMadinah');
   if(cm){cm.classList.toggle('on',(ST.city||'Makkah')==='Makkah');cd.classList.toggle('on',ST.city==='Madinah');}
+  renderKidNames();
   updPlan();updRites();updDaily();updPlaces();updStats();renderBadges();
+  syncDay();
   goTab('home');
 }
 document.addEventListener('DOMContentLoaded',function(){loadAll();pendingGroup=parseGroupLink();applyDepLink();initUI();if(pendingGroup)setTimeout(function(){showGroupSheet(pendingGroup);},350);registerSW();});

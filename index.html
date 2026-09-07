@@ -118,7 +118,6 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .row.done .row-t b{text-decoration:line-through}
 .row-t .x{font-size:.8em;color:var(--ink2);margin-top:2px;line-height:1.5}
 .row-t .rf{font-size:.74em;color:var(--ink2);font-style:italic;margin-top:2px}
-.pts{font-size:.68em;font-weight:800;color:var(--gold-ink);background:var(--gold-soft);border-radius:999px;padding:3px 8px;flex-shrink:0;margin-top:3px}
 
 /* ─────────── progress pill bar ─────────── */
 .meter{background:var(--bg-soft);height:8px;border-radius:99px;overflow:hidden}
@@ -611,6 +610,8 @@ html[data-text='lg'] body{font-size:17px}
 .tripc{padding:12px 14px}
 .tripc .tc-h{display:flex;align-items:center;gap:8px;font-size:.84em}.tripc .tc-h b{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .tripc .hcard{margin-top:8px}
+.tripc .tc-h .chip-btn{padding:7px 10px;font-size:.74em;flex-shrink:0;box-shadow:none;white-space:nowrap}
+.tripc .tc-h .chip-btn.sos{color:var(--danger);border-color:rgba(194,65,12,.4)}
 .tripc .srch{margin:8px 0 0}
 .todayit{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer}
 .todayit .ti-i{font-size:1.3em;flex-shrink:0}.todayit .ti-t{flex:1;min-width:0;font-size:.82em;line-height:1.45;color:var(--ink2)}.todayit .ti-t b{color:var(--ink);display:block;font-size:1.02em}
@@ -824,6 +825,81 @@ html[data-text='lg'] body{font-size:17px}
 .walk-bot .chip-btn{min-height:56px}
 .wk-done{text-align:center;padding:20px 0}
 .wk-done .big{font-size:3em}.wk-done h3{font-family:var(--fd);font-size:1.4em;margin:8px 0 6px}.wk-done p{font-size:.9em;color:var(--ink2);line-height:1.55;margin-bottom:8px}
+/* ─────────── Daily batch: day nav in the hero, prayer strip, tickable tiles, tools row, streak header, excused days, kids’ day, heat legend ─────────── */
+.hero .daynav{background:transparent;border:none;box-shadow:none;padding:0;margin:0 0 2px;justify-content:flex-start;gap:6px;flex-wrap:wrap}
+.hero .daynav button{width:34px;height:34px;background:rgba(255,255,255,.14);color:#fff;font-size:.85em;flex-shrink:0}
+.hero .daynav button:active{background:rgba(255,255,255,.3);color:#fff}
+.daynav button:disabled{opacity:.3;pointer-events:none}
+.hero .daynav .dd{font-family:var(--fd);font-size:1.25em;letter-spacing:0;cursor:pointer;padding:0 4px;min-height:34px;display:flex;align-items:baseline;gap:5px;white-space:nowrap}
+.hero .daynav .dd small{display:inline;font-family:var(--fb);font-size:.58em;color:#fff;opacity:.7;letter-spacing:.8px}
+.hero .daynav .dtoday{width:auto;height:30px;padding:0 10px;border-radius:999px;font-family:var(--fb);font-weight:800;font-size:.72em;background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#231803}
+.dhero-date{font-size:.74em;opacity:.75;margin:0 0 4px;font-weight:600;line-height:1.4}
+.dhero .v{font-size:1.25em;margin:0 0 2px}
+.exc-line{display:block;margin-top:4px;font-style:italic;opacity:.9}
+.exc-line a{color:#EFD494;font-weight:700;text-decoration:underline dotted}
+.dtools{display:flex;flex-wrap:wrap;gap:6px;margin:-4px 0 12px}
+.dtools:empty{display:none}
+.dtools .chip-btn{padding:7px 12px;font-size:.76em;box-shadow:none;min-height:36px}
+.dtools .chip-btn.sync{background:var(--gold-soft);border-color:var(--gold);color:var(--gold-ink)}
+.dtools .chip-btn.exc{color:#b0457a;border-color:rgba(176,69,122,.35)}
+.dtools .chip-btn.exc.on{background:rgba(176,69,122,.1)}
+.ptsec{margin-bottom:12px}
+.ptstrip{padding:8px 10px 8px 14px;gap:10px;min-height:52px}
+.pt-ico{font-size:1.2em;flex-shrink:0}
+.ptstrip .pt-next{flex:1;min-width:0;font-size:.88em;line-height:1.35;color:var(--ink)}
+.ptstrip .pt-next b{color:var(--gold-ink)}
+.pt-next .ptc{color:var(--ink3);font-weight:500;font-size:.92em}
+.pt-bell{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:1em;flex-shrink:0;opacity:.5;transition:all .2s}
+.pt-bell.on{opacity:1;background:var(--gold-soft);border-color:var(--gold)}
+.ptsec .sec-bd{padding:0 14px 14px}
+.ptsec .pt-top{margin-top:2px}
+.pt-hijri{margin:0;font-size:.78em;color:var(--ink2)}
+.pt{min-height:52px;cursor:pointer;position:relative;transition:all .15s;display:flex;flex-direction:column;justify-content:center}
+.pt:active{transform:scale(.94)}
+.pt.done{border-color:var(--brand-2);background:var(--brand-soft)}
+.pt.done .pn{color:var(--brand-2)}
+.pt.done .pn::after{content:' ✓'}
+.pt.done .pv{color:var(--brand-2)}
+.pt.next.done{box-shadow:0 0 0 2px var(--gold-soft)}
+.pt.excused{opacity:.45;pointer-events:none}
+.pt-meet{display:flex;gap:6px;margin-top:10px;align-items:center}
+.pt-meet .srch{margin:0;flex:1;min-width:0;padding:10px 12px;font-size:.84em;box-shadow:none}
+.ptlead{width:auto;max-width:44%;padding:9px 6px;font-size:.76em;font-weight:600;text-align:left}
+.apps{display:flex;flex-direction:row;flex-wrap:wrap;gap:6px;margin:12px 2px 4px}
+.apps-h{flex:1 1 100%;font-size:.66em;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink3);margin:0 2px 2px}
+.applink{gap:6px;padding:7px 11px;border-radius:999px;font-size:.78em;min-height:36px}
+.app-i{font-size:1em}
+.app-t{flex:none;font-size:1em;color:var(--ink);line-height:1.2}.app-t b{display:inline;font-size:1em}
+.app-go{font-size:.8em}
+.prio{display:inline-block;vertical-align:middle;margin-left:6px;font-size:.6em;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--gold-ink);background:var(--gold-soft);border-radius:999px;padding:1px 7px}
+.row.excused{opacity:.45;pointer-events:none}
+.row.excused .tick{border-style:dashed}
+.row.excused .row-t b::after{content:' · not required today';font-weight:600;font-size:.82em;color:var(--ink2)}
+.row.hl{background:var(--gold-soft);transition:background .3s}
+.stk-h{font-size:.7em;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink3);margin:6px 4px 8px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.stk-h .hint{font-weight:600;letter-spacing:.3px;text-transform:none;color:var(--gold-ink)}
+.stk .st .n{font-size:1.25em}
+.stk .st .n small{font-size:.58em;font-weight:700;color:var(--ink3);margin-left:1px}
+.heat .hc{cursor:pointer;min-height:44px;transition:transform .15s}
+.heat .hc:active{transform:scale(.92)}
+.hc.exc{outline:1.5px dashed #b0457a;outline-offset:-1px}
+.hleg{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:10px;font-size:.72em;color:var(--ink3)}
+.hleg .hc{width:14px;height:14px;min-height:0;aspect-ratio:auto;font-size:0;cursor:default;border-radius:4px;display:inline-block}
+.kd{padding:12px 14px}
+.kd-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px}
+.kd-h b{font-size:.92em}.kd-h small{font-size:.74em;color:var(--ink3)}
+.kd-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-top:1px solid var(--line)}
+.kd-name{flex:0 0 78px;min-width:0;font-size:.84em;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.3}
+.kd-name small{display:block;font-size:.72em;color:var(--gold-ink);letter-spacing:1px;font-weight:800;min-height:1.2em}
+.kd-tiles{flex:1;display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.kd-t{aspect-ratio:1;min-height:44px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);font-size:1.3em;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s;font-family:var(--fb);padding:0}
+.kd-t.on{background:var(--brand-soft);border-color:var(--brand-2)}
+.kd-t:active{transform:scale(.9)}
+.kd-add{display:flex;gap:6px;margin-top:8px}
+.kd-add .srch{margin:0;flex:1;min-width:0;padding:9px 12px;font-size:.84em;box-shadow:none}
+.kd-list{display:flex;flex-wrap:wrap;gap:6px}
+.kd-list .chip-btn{padding:6px 10px;font-size:.78em}
+.tb-ph{color:var(--ink3);font-size:.92em}
 #printSheet{display:none}
 @media print{
   .app,.nav,.focus,.sheet-o,.toasts,canvas,.top{display:none!important}
@@ -922,6 +998,8 @@ html[data-text='lg'] body{font-size:17px}
     <div id="kidsArea" class="kidsbody" hidden></div>
     <div class="kidsrow story-h" role="button" tabindex="0" aria-expanded="false" onclick="togStories(this)"><span style="font-size:1.3em" aria-hidden="true">📖</span><div class="kr-t"><b>Story time</b><small>5 read-aloud stories about the rites and the sites — ages 6–10</small></div><span class="acc-c" aria-hidden="true">▶</span></div>
     <div id="storyList" class="kidsbody" hidden></div>
+    <div class="kidsrow" style="border-top:1px solid var(--line)"><span style="font-size:1.3em" aria-hidden="true">⭐</span><div class="kr-t"><b>Kids’ daily stars</b><small>Add each child by name — they get five tiles of their own on Daily › Today</small></div></div>
+    <div id="kidNames" class="kidsbody"></div>
   </div>
   <div class="card card-pad" id="qzCard"><h3>🧠 Knowledge circuit — quiz levels</h3>
   <p style="font-size:.84em;color:var(--ink2);margin-bottom:8px">Seven levels · true/false &amp; multiple choice · <b>80%+</b> passes a level and unlocks the next. Complete the whole circuit before you fly. Passed: <b id="qzBest" style="color:var(--gold)">0/7</b></p>
@@ -1006,24 +1084,32 @@ html[data-text='lg'] body{font-size:17px}
 
 <!-- ═══════ DAILY ═══════ -->
 <div class="view" id="view-daily">
-  <div class="vh"><h2>Maximise every day</h2><p>Every prayer here is multiplied — don't let a single day drift.</p></div>
+  <div class="vh"><h2>Maximise every day</h2><p>Every prayer here is multiplied — make every day count.</p></div>
   <div class="seg" data-tab="daily"><button class="on" data-sub="today" onclick="goSub('daily','today')">📿 Today</button><button data-sub="tools" onclick="goSub('daily','tools')">🧭 Tools</button><button data-sub="stats" onclick="goSub('daily','stats')">📈 Stats</button></div>
   <div class="sub on" id="sub-daily-today">
-  <div class="daynav"><button onclick="changeDay(-1)" aria-label="Previous day">◀</button><div class="dd" id="dayDisp">Day 1<small>of 10</small></div><button onclick="changeDay(1)" aria-label="Next day">▶</button></div>
-  <div id="todayTop"></div>
-  <div class="card card-pad"><div class="pt-top"><div><h3 style="margin-bottom:2px">🕌 Prayer times</h3><div class="pt-next" id="ptNext">Loading…</div><div class="pt-hijri" id="ptHijri"></div></div>
-    <div class="pills sm"><button class="pill on" id="cityMakkah" onclick="setCity('Makkah')">Makkah</button><button class="pill" id="cityMadinah" onclick="setCity('Madinah')">Madinah</button></div></div>
-    <div class="pt-grid" id="ptGrid"></div><div class="pt-note" id="ptNote">Umm al-Qura · local Makkah/Madinah time</div>
-    <div class="setrow" style="border:none;padding:10px 0 0"><div><b>🔔 Prayer reminders</b><small>Notifies ~20 min before each prayer, while the app is open</small></div><button class="sw" id="remSw" role="switch" aria-checked="false" aria-label="Prayer reminders" onclick="togRem()"></button></div></div>
-  <div class="hero"><div class="hero-t"><div class="k">Today's worship</div><div class="v" id="dHeroT">Bismillah</div><div class="s" id="dHeroS">0 of 0 completed · 0 pts</div></div>
+  <div class="hero dhero"><div class="hero-t">
+    <div class="daynav" id="dayNav"><button id="dayPrev" onclick="changeDay(-1)" aria-label="Previous day">◀</button><div class="dd" id="dayDisp" role="button" tabindex="0" aria-label="Day 1 of 10 — open trip stats" onclick="goSub('daily','stats')">Day 1 <small>of 10</small></div><button id="dayNext" onclick="changeDay(1)" aria-label="Next day">▶</button><button class="dtoday" id="dayToday" hidden onclick="goToday()" aria-label="Jump to today">Today ▸</button></div>
+    <div class="dhero-date" id="dayDate"></div>
+    <div class="v" id="dHeroT">Bismillah</div><div class="s" id="dHeroS">0 of 0 completed</div></div>
     <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="dRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="dPct">0%</span><small>TODAY</small></div></div></div>
-  <div class="stat4">
-    <div class="st" id="skFajr"><div class="i">🕌</div><div class="n" id="skFajrN">0</div><div class="l">Fajr</div></div>
-    <div class="st" id="skTahaj"><div class="i">🌙</div><div class="n" id="skTahajN">0</div><div class="l">Tahajjud</div></div>
-    <div class="st" id="skQuran"><div class="i">📖</div><div class="n" id="skQuranN">0</div><div class="l">Quran</div></div>
-    <div class="st" id="skTawaf"><div class="i">🕋</div><div class="n" id="skTawafN">0</div><div class="l">Tawaf</div></div>
-  </div>
+  <div class="dtools" id="dayTools"></div>
+  <div class="sec shut ptsec" id="ptSec"><div class="sec-hd ptstrip" role="button" tabindex="0" aria-expanded="false" aria-label="Prayer times — tap to expand" onclick="togSec(this)"><span class="pt-ico" aria-hidden="true">🕌</span><div class="pt-next" id="ptNext">Loading times…</div><button class="pt-bell" id="ptBell" onclick="event.stopPropagation();togRem()" aria-pressed="false" aria-label="Prayer reminders">🔔</button><span class="sec-chev" aria-hidden="true">▼</span></div>
+    <div class="sec-bd">
+      <div class="pt-top"><div class="pt-hijri" id="ptHijri"></div><div class="pills sm"><button class="pill on" id="cityMakkah" onclick="setCity('Makkah')">Makkah</button><button class="pill" id="cityMadinah" onclick="setCity('Madinah')">Madinah</button></div></div>
+      <div class="pt-grid" id="ptGrid"></div><div class="pt-note" id="ptNote">Umm al-Qura · local Makkah/Madinah time</div>
+      <div class="pt-meet"><input class="srch" id="ptMeet" placeholder="📍 Meeting point (e.g. King Fahd Gate 79)" maxlength="120" onchange="setMeet(this.value)" aria-label="Group meeting point after prayers"><select class="numin ptlead" id="ptLead" onchange="setMeetLead(this.value)" aria-label="Leave the hotel this long before each prayer"><option value="">Leave hotel: —</option><option value="30">30 min before</option><option value="45">45 min before</option><option value="60">60 min before</option></select></div>
+      <button class="btn ghost" style="margin-top:8px" onclick="sharePT()">📤 Share today’s times</button>
+    </div></div>
+  <div id="todayTop"></div>
+  <div id="kidsDay"></div>
   <div id="dailyContainer"></div>
+  <div class="stk-h">🔥 Streaks · consecutive days <span class="hint">gold at 3+ · tap to open the row</span></div>
+  <div class="stat4 stk" id="stkTiles">
+    <div class="st" id="skFajr" role="button" tabindex="0" onclick="stkGo('fajr')"><div class="i">🕌</div><div class="n" id="skFajrN">0</div><div class="l">Fajr</div></div>
+    <div class="st" id="skTahaj" role="button" tabindex="0" onclick="stkGo('tahaj')"><div class="i">🌙</div><div class="n" id="skTahajN">0</div><div class="l">Tahajjud</div></div>
+    <div class="st" id="skQuran" role="button" tabindex="0" onclick="stkGo('quran')"><div class="i">📖</div><div class="n" id="skQuranN">0</div><div class="l">Quran</div></div>
+    <div class="st" id="skTawaf" role="button" tabindex="0" onclick="stkGo('tawaf')"><div class="i">🕋</div><div class="n" id="skTawafN">0</div><div class="l">Tawaf</div></div>
+  </div>
   </div><div class="sub" id="sub-daily-tools">
   <div class="card card-pad" id="duaCard"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px"><h3 style="margin:0">🤲 My dua list</h3><button class="xchip" style="margin:0" onclick="goTab('more','duas')">📖 Essential duas →</button></div><p style="font-size:.8em;color:var(--ink2);margin-bottom:8px">Write them before you fly; tick them as you ask in the Haram.</p>
     <div style="display:flex;gap:8px;margin-bottom:8px"><input class="srch" id="duaIn" placeholder="Add a dua…" style="margin:0" onkeydown="if(event.key==='Enter')addDua()"><button class="chip-btn" onclick="addDua()">＋</button></div>
@@ -1036,14 +1122,14 @@ html[data-text='lg'] body{font-size:17px}
   <div class="card card-pad" id="tbCard" style="text-align:center"><h3>📿 Tasbih counter</h3>
     <div class="tb-chips" id="tbChips"></div>
     <div class="tb-btn" role="button" tabindex="0" aria-label="Count one dhikr" onclick="tbTap()"><div class="n" id="tbN">0</div><div class="t">of <span id="tbTarget">33</span> · tap</div></div>
-    <div class="tb-meta"><span>Today: <b id="tbToday">0</b></span><button class="chip-btn" onclick="tbReset()">Reset cycle</button></div></div>
+    <div class="tb-meta"><span>Today: <b id="tbToday">0</b></span><span id="tbPhraseN" class="tb-ph"></span><button class="chip-btn" onclick="tbReset()">Reset cycle</button></div></div>
   <div class="card card-pad" id="qiblaCard"><h3>🧭 Qibla compass</h3>
     <p style="font-size:.82em;color:var(--ink2)">Find the direction of the Kaaba from wherever you are.</p>
     <div class="qb-dial"><span class="qb-n">N</span><div class="qb-needle" id="qbNeedle"></div><div class="qb-deg" id="qbDeg">—</div></div>
     <div class="qb-status" id="qbStatus">Tap start and allow location & motion access.</div>
     <button class="btn ghost" onclick="startQibla()">🧭 Start compass</button></div>
   </div><div class="sub" id="sub-daily-stats">
-  <div class="card card-pad"><h3>🟩 Trip consistency</h3><div class="heat" id="heatGrid"></div></div>
+  <div class="card card-pad"><h3>🟩 Trip consistency</h3><div class="heat" id="heatGrid"></div><div class="hleg" id="heatLeg"></div></div>
   <div class="card card-pad"><h3>📈 Trip stats</h3>
     <div class="kv"><span>Days logged</span><b id="stDays">0</b></div>
     <div class="kv"><span>Average completion</span><b id="stAvg">0%</b></div>
@@ -1052,7 +1138,7 @@ html[data-text='lg'] body{font-size:17px}
     <div class="kv"><span>Umrahs completed</span><b id="stUmrahs">0</b></div>
     <div class="kv"><span>Places visited</span><b id="stPlaces">0</b></div></div>
   <button class="btn gold" style="margin:0 0 14px" onclick="shareCard()">📸 Share my progress card</button>
-  <div class="card card-pad"><h3>🏅 Achievements (<span id="bdgCnt">0</span>/8)</h3><div class="bdgs" id="bdgGrid"></div></div>
+  <div class="card card-pad"><h3>🏅 Achievements (<span id="bdgCnt">0</span>/<span id="bdgTot">9</span>)</h3><div class="bdgs" id="bdgGrid"></div></div>
   </div>
 </div>
 
@@ -1086,6 +1172,8 @@ html[data-text='lg'] body{font-size:17px}
     <div class="setrow"><div><b>Text size</b><small>Larger text for duas, tips and the nav</small></div><div class="segmini" id="textSeg"><button class="on" data-t="" onclick="setText('')">Normal</button><button data-t="lg" onclick="setText('lg')">Large</button></div></div>
     <div class="setrow"><div><b>Swipe between sections</b><small>Swipe left/right to change sub-tabs</small></div><button class="sw on" id="swipeSw" role="switch" aria-checked="true" aria-label="Swipe between sections" onclick="togSwipe()"></button></div>
     <div class="setrow"><div><b>Trip length</b><small>How many days is your trip?</small></div><input type="number" class="numin" id="tripLen" min="3" max="30" onchange="setTripLen(this.value)" aria-label="Trip length in days"></div>
+    <div class="setrow"><div><b>🔔 Prayer reminders</b><small>Notifies ~20 min before each prayer while the app is open — for alarms with the screen off, add the week to your calendar below</small></div><button class="sw" id="remSw" role="switch" aria-checked="false" aria-label="Prayer reminders" onclick="togRem()"></button></div>
+    <div class="setrow"><div><b>📅 Add this week’s prayer times to my calendar</b><small id="icsSub">7 days × 5 prayers for your prayer city, each with a 20-min alert (60 for Jumu’ah) — works offline, nothing is uploaded</small></div><button class="chip-btn" style="white-space:nowrap" onclick="exportICS()">📅 Add week</button></div>
     <div class="setrow"><div><b>I am a…</b><small>Shows only the ihram, packing and halq/taqsir steps that apply to you</small></div><div class="segmini" id="profSeg"><button data-p="m" onclick="setProfile('m')">Brother</button><button data-p="w" onclick="setProfile('w')">Sister</button><button class="on" data-p="" onclick="setProfile('')">Both</button></div></div>
     <div class="setrow"><div><b>Travelling with children</b><small>Adds a children’s checklist to Plan › Prepare</small></div><button class="sw" id="kidsSw2" role="switch" aria-checked="false" aria-label="Travelling with children" onclick="togKids()"></button></div>
     <div class="setrow"><div><b>Dua audio</b><small>Arabic voice missing? Install it in your phone’s text-to-speech settings, then test here.</small></div><button class="say" onclick="testVoice(this)" aria-label="Test the Arabic voice">🔊 Test</button></div>

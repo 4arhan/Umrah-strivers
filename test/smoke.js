@@ -13,7 +13,10 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   const page = await ctx.newPage();
   const errors = []; page.on('pageerror', e => errors.push(e.message));
   page.on('dialog', d => d.accept());
-  await page.route('**/api.aladhan.com/**', r => r.fulfill({ contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify(PT) }));
+  // calendarByCity (the app fetches whole months) → one row per day of the requested month; anything else → the single-day shape
+  await page.route('**/api.aladhan.com/**', r => { const m = /month=(\d+)&year=(\d+)/.exec(r.request().url()); let body = PT;
+    if (m) { const days = new Date(+m[2], +m[1], 0).getDate(); body = { code: 200, data: Array.from({ length: days }, (_, i) => ({ timings: Object.assign({ Sunrise: '06:20 (+03)' }, PT.data.timings), date: { gregorian: { date: String(i + 1).padStart(2, '0') + '-' + String(m[1]).padStart(2, '0') + '-' + m[2] }, hijri: PT.data.date.hijri } })) }; }
+    r.fulfill({ contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify(body) }); });
   await page.goto(URL);
   await page.evaluate(() => localStorage.setItem('us-settings', JSON.stringify({ onboarded: true, name: 'Test', dep: new Date(Date.now() + 5 * 86400000).toISOString().slice(0, 10), tripLen: 10, day: 1 })));
   await page.reload(); await page.waitForTimeout(900);
@@ -174,8 +177,26 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   console.log('Daily');
   await page.evaluate(() => { goTab('daily'); goSub('daily', 'today', true); }); await page.waitForTimeout(500);
   check('prayer grid 5 cells + next highlighted', (await page.locator('.pt').count()) === 5 && (await page.locator('.pt.next').count()) === 1);
-  await page.click('#dw-fajr');
-  check('daily tick + streak', (await page.textContent('#skFajrN')) === '1');
+  check('day nav lives in the hero; prayer strip is collapsed with the next prayer, time and city; live Umm al-Qura note', (await page.locator('.dhero #dayNav #dayDisp').count()) === 1 && (await page.locator('#ptSec.shut').count()) === 1 && /in .*05:12|12:21|15:42|18:33|20:03/.test(await page.textContent('#ptNext')) && (await page.textContent('#ptNext')).includes('Makkah') && (await page.textContent('#ptNote')).includes('Umm al-Qura (') && (await page.textContent('#ptNote')).includes('Duha from ~06:35'));
+  check('month cache holds both cities and the row order follows the day', (await page.evaluate(() => { const c = JSON.parse(localStorage.getItem('us-ptcache')); return Object.keys(c).filter(k => k.indexOf('Madinah|') === 0).length > 27 && !!c['_mMakkah|' + new Date().getFullYear() + '-' + (new Date().getMonth() + 1)]; })) && (await page.evaluate(() => [...document.querySelectorAll('#sec-salah .row')].map(e => e.id).join(',').indexOf('dw-tahajjud,dw-fajr,dw-madhkar,dw-duha,dw-dhuhr') === 0)));
+  check('computed prayer times match the Umm al-Qura table for Makkah, 6 Sep (Fajr 04:48, Dhuhr 12:20, Maghrib 18:32, Isha +90) and Ramadan Isha is +120', (await page.evaluate(() => { const m = v => +v.split(':')[0] * 60 + +v.split(':')[1], r = computePT('Makkah', 2026, 8, 6), z = computePT('Makkah', 2026, 1, 20); return Math.abs(m(r.t.Fajr) - 288) <= 3 && Math.abs(m(r.t.Maghrib) - 1112) <= 3 && m(r.t.Isha) - m(r.t.Maghrib) === 90 && Math.abs(m(r.t.Dhuhr) - 740) <= 3 && r.s === '06:05' && m(z.t.Isha) - m(z.t.Maghrib) === 120; })));
+  await page.click('#ptSec .sec-hd'); await page.waitForTimeout(500);
+  check('tapping the strip opens the prayer panel', (await page.locator('#ptSec.shut').count()) === 0 && (await page.locator('#ptGrid').isVisible()));
+  await page.click('#pt-Fajr'); await page.waitForTimeout(150);
+  check('prayer tile ticks the salah row (and back); streak tile reads 1d', (await page.locator('#dw-fajr.done').count()) === 1 && (await page.locator('#pt-Fajr.done').count()) === 1 && (await page.textContent('#skFajrN')) === '1d' && (await page.locator('#sec-quran .apps').count()) === 1 && (await page.evaluate(() => { const b = document.querySelector('#sec-quran .sec-bd'); return b.lastElementChild.classList.contains('apps') && b.querySelector('.apps .applink').textContent.includes('Open'); })) && (await page.locator('#sec-dhikr .apps .applink >> nth=0').textContent()).includes('Tasbih') && (await page.locator('.pts').count()) === 0 && (await page.textContent('#dHeroS')).includes('of 25 completed'));
+  await page.evaluate(() => { ST.dep = new Date(Date.now() - 3 * 86400000).toISOString().slice(0, 10); saveST(); syncDay(); });
+  check('the day follows the departure date (Day 4), chip agrees, date line shows', (await page.evaluate(() => ST.day)) === 4 && (await page.evaluate(() => expectedDay())) === 4 && (await page.textContent('#jChip')).includes('Day 4') && (await page.textContent('#dayDate')).length > 8 && (await page.locator('#dayToday').isHidden()));
+  await page.evaluate(() => changeDay(-1));
+  check('manual ◀ shows past + a Today chip; ▶ at the last day is disabled', (await page.textContent('#dayDate')).includes('Past day') && (await page.locator('#dayToday').isVisible()) && (await page.evaluate(() => { setDay(ST.tripLen, true); return document.getElementById('dayNext').disabled && document.getElementById('dayTools').textContent.includes('Trip finished'); })));
+  await page.evaluate(() => { goToday(); setExcused(true); });
+  check('excused day: salah rows greyed and locked, quran still counts, streaks pause', (await page.locator('#dw-fajr.excused').count()) === 1 && (await page.locator('#dw-recite.excused').count()) === 0 && (await page.textContent('#dHeroS')).includes('that count today') && (await page.textContent('#dHeroS')).includes('Bukhari 305') && (await page.locator('#pt-Fajr.excused').count()) === 1 && (await page.evaluate(() => { togDaily('fajr'); return !dailyChk[dayKey()].fajr; })));
+  await page.evaluate(() => { setExcused(false); ST.dep = new Date(Date.now() + 5 * 86400000).toISOString().slice(0, 10); ST.day = 1; saveST(); updDaily(); updChip(); });
+  await page.evaluate(() => { ST.kidNames = ['Ali']; saveST(); renderKidsDay(); });
+  for (let i = 0; i < 5; i++) await page.click('#kidsDay .kd-t >> nth=' + i);
+  check('kids’ day: 5 tiles per child, 5/5 earns a star, stays out of the adult total', (await page.locator('#kidsDay .kd-t.on').count()) === 5 && (await page.textContent('#kidsDay .kd-name')).includes('⭐') && (await page.textContent('#dHeroS')).includes('of 25'));
+  await page.evaluate(() => { ST.kidNames = []; saveST(); renderKidsDay(); });
+  await page.evaluate(() => { setMeet('Gate 79'); });
+  check('meeting point echoes to Home’s prayer strip and the hotel card', (await page.textContent('#hNext')).includes('meet: Gate 79') && (await page.inputValue('#hMeet')) === 'Gate 79');
   await page.evaluate(() => goSub('daily', 'tools', true));
   for (let i = 0; i < 33; i++) await page.click('.tb-btn');
   check('tasbih cycle advances phrase', (await page.locator('.tb-chip.on').textContent()) === 'Alhamdulillah');
@@ -186,6 +207,10 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   await page.evaluate(() => startQibla()); await page.waitForTimeout(800);
   check('qibla bearing computed', /\d+°/.test(await page.textContent('#qbDeg')));
   await page.evaluate(() => goSub('daily', 'stats', true));
+  check('heatmap is a day picker with a legend', (await page.locator('#heatGrid .hc[role="button"]').count()) === 10 && (await page.locator('#heatLeg .hc').count()) === 4 && (await page.evaluate(() => getComputedStyle(document.getElementById('heatGrid')).gridTemplateColumns.split(' ').length)) === 7);
+  await page.click('#heatGrid .hc >> nth=2'); await page.waitForTimeout(150);
+  check('tapping a heat cell opens that day on Today', (await page.evaluate(() => ST.day)) === 3 && (await page.locator('#sub-daily-today.on').count()) === 1);
+  await page.evaluate(() => { setDay(1, true); goSub('daily', 'stats', true); });
   await page.click('text=Share my progress card'); await page.waitForTimeout(300);
   const dl2 = page.waitForEvent('download', { timeout: 6000 }).catch(() => null);
   await page.click('#gSheet button:has-text("Download")');
@@ -221,6 +246,10 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   check('journey chip goes to post card', (await page.textContent('#jChip')).includes('Post-Umrah'));
   await page.evaluate(() => goSub('more', 'settings', true));
   check('about card: version + correction mailto + links', (await page.textContent('#verLbl')) === (await page.evaluate(() => APP_VERSION)) && (await page.locator('#aboutCard a[href^="mailto:"]').count()) === 1 && (await page.locator('#sub-more-settings .res').count()) === 8);
+  check('achievements total follows the badge list (Little Pilgrim added)', (await page.textContent('#bdgTot')) === '9' && (await page.locator('#bdgGrid .bdg').count()) === 9);
+  const dl3 = page.waitForEvent('download', { timeout: 6000 }).catch(() => null);
+  await page.click('button:has-text("Add week")');
+  check('week of prayer alerts exports as .ics with Riyadh TZID', !!(await dl3) && (await page.evaluate(() => { const B = buildICS('Makkah', 7); return B.n === 35 && B.ics.indexOf('DTSTART;TZID=Asia/Riyadh:') > -1 && B.ics.indexOf('TRIGGER:-PT20M') > -1 && B.ics.indexOf('SUMMARY:Fajr — Makkah') > -1; })) && (await page.locator('#sub-more-settings #remSw').count()) === 1);
   await page.click('#textSeg button:has-text("Large")');
   check('large text mode applies', (await page.getAttribute('html', 'data-text')) === 'lg' && (await page.evaluate(() => getComputedStyle(document.body).fontSize)) === '17px');
   await page.click('#textSeg button:has-text("Normal")');
