@@ -208,12 +208,12 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .place-t b{font-size:.95em;line-height:1.35;display:block}
 .place-t p{font-size:.8em;color:var(--ink2);line-height:1.55;margin-top:3px}
 .place-t .tip{font-size:.75em;color:var(--gold-ink);font-style:italic;margin-top:4px;line-height:1.5}
-.place-a{display:flex;gap:8px;margin-top:12px}
-.place-a a,.place-a button{flex:1;padding:10px 0;border-radius:999px;font-size:.78em;font-weight:700;text-align:center;text-decoration:none;cursor:pointer;font-family:var(--fb);transition:all .15s;letter-spacing:.3px;border:1px solid var(--line)}
+.place-a{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.place-a a,.place-a button{flex:1 1 44%;padding:10px 0;border-radius:999px;font-size:.78em;font-weight:700;text-align:center;text-decoration:none;cursor:pointer;font-family:var(--fb);transition:all .15s;letter-spacing:.3px;border:1px solid var(--line)}
 .place-a a{background:var(--brand-soft);border-color:transparent;color:var(--brand-2)}
 .place-a button{background:var(--card);color:var(--ink2)}
-.place.vis .place-a button{background:var(--brand-2);border-color:var(--brand-2);color:#fff}
-[data-theme="dark"] .place.vis .place-a button{color:#08281B}
+.place.vis .place-a button.mv{background:var(--brand-2);border-color:var(--brand-2);color:#fff}
+[data-theme="dark"] .place.vis .place-a button.mv{color:#08281B}
 .place-a a:active,.place-a button:active{transform:scale(.96)}
 
 /* ─────────── quiz ─────────── */
@@ -453,7 +453,7 @@ html[data-text='lg'] body{font-size:17px}
 .place.open .place-t p,.place.open .place-t .tip{display:block}
 .place.open .place-a{display:flex}
 .place.open .place-h{align-items:flex-start}
-.vtick{color:var(--brand-2);font-weight:800}
+.vtick{display:inline-block;font-size:.66em;font-weight:800;color:var(--brand-2);background:var(--brand-soft);border-radius:999px;padding:2px 8px;margin:3px 4px 2px 0}
 .seg{position:sticky;overflow:visible}
 .seg::after{content:'';position:absolute;left:16px;bottom:-1px;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--brand-2),var(--gold-2));width:calc((100% - 32px) * var(--p,0));transition:width .6s cubic-bezier(.3,.7,.3,1)}
 .why{border:none;background:transparent;color:var(--brand-2);font-family:var(--fb);font-weight:700;font-size:.78em;padding:8px 10px;margin:-8px -6px -8px 0;min-height:36px;cursor:pointer;text-decoration:underline dotted}
@@ -565,17 +565,42 @@ html[data-text='lg'] body{font-size:17px}
 .hotelrow span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .hotelrow .chip-btn{padding:7px 12px;font-size:.74em}
 .hotelrow .chip-btn.on{background:var(--brand);color:#fff;border-color:var(--brand)}
-.distchip{display:inline-block;font-size:.66em;font-weight:700;color:var(--ink2);background:var(--bg-soft);border-radius:999px;padding:2px 9px;margin:3px 0 2px 4px}
+.distchip{display:inline-block;font-size:.66em;font-weight:700;color:var(--ink2);background:var(--bg-soft);border-radius:999px;padding:2px 9px;margin:3px 4px 2px 0}
+.distchip.climb{background:var(--gold-soft);color:var(--gold-ink);font-size:.7em;vertical-align:middle}
+.ptag{display:inline-block;font-size:.66em;font-weight:700;color:var(--gold-ink);background:var(--gold-soft);border-radius:999px;padding:2px 8px;margin:3px 4px 2px 0}
+.plar{display:block;font-size:.8em;color:var(--ink3);line-height:1.4;margin-top:1px;text-align:left;font-family:Georgia,serif}
+.place-ico{position:relative;cursor:pointer}
+.place.vis .place-ico::after{content:'✓';position:absolute;right:-5px;top:-5px;width:18px;height:18px;border-radius:50%;background:var(--brand-2);color:#fff;font-size:.55em;font-weight:800;display:flex;align-items:center;justify-content:center;border:2px solid var(--card)}
+[data-theme="dark"] .place.vis .place-ico::after{color:#08281B}
+.place-a .rt.on{background:var(--gold-soft);color:var(--gold-ink);border-color:var(--gold)}
+.pills.four{overflow-x:auto;scrollbar-width:none}.pills.four::-webkit-scrollbar{display:none}.pills.four .pill{flex:1 1 auto;font-size:.72em;padding:9px 9px;white-space:nowrap}
+.pills.pl-sticky{position:sticky;top:calc(62px + var(--sat));z-index:50;background:var(--bg);padding:6px 0 8px;margin:-6px 0 8px}
+.jumps{-webkit-mask-image:linear-gradient(to right,#000 85%,transparent);mask-image:linear-gradient(to right,#000 85%,transparent)}
+.hero-side{flex-shrink:0;width:124px;position:relative}
+.pl-near{width:100%;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.1);color:#fff;border-radius:14px;padding:8px 10px;font-family:var(--fb);font-weight:700;font-size:.74em;text-align:left;line-height:1.35;cursor:pointer;display:block;overflow:hidden}
+.pl-near small{display:block;font-weight:600;opacity:.72;font-size:.9em}
+.pl-near.dim{opacity:.85}
+.rtc .lg{align-items:flex-start}.rtc .lg-i{padding-top:2px}.rtc .lg-t b{display:block;font-weight:700}.rtc .lg-t em{display:block;margin:0}.rtc .lg.vis .lg-t b{text-decoration:line-through;opacity:.6}
+.rtc .chip-btn{padding:5px 10px;font-size:.72em;box-shadow:none;flex-shrink:0;text-decoration:none}.rtc .chip-btn.on{background:var(--brand-2);color:#fff;border-color:var(--brand-2)}
+[data-theme="dark"] .rtc .chip-btn.on{color:#08281B}
+.rtc .lg.hj .lg-i{font-size:1em}
+.rl-w{display:block;font-size:.78em;color:var(--gold-ink);margin-top:1px}
+.rt-acts{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.rt-need{margin-bottom:12px}.rt-need .btn{margin-top:10px}
+.anch{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.anch .chip-btn{padding:7px 12px;font-size:.78em;box-shadow:none}.anch .chip-btn.on{background:var(--brand-soft);border-color:var(--brand-2);color:var(--brand-2)}.anch .chip-btn.clr{color:var(--danger)}
+[data-theme="dark"] .hotelrow .chip-btn.on{color:#08281B}
+.drv-arn{font-size:2.6em;font-family:Georgia,serif;direction:rtl;text-align:center;line-height:1.5;margin:-14px 0 14px;color:#111;font-weight:700}
 .stopbadge{display:inline-block;font-size:.66em;font-weight:800;letter-spacing:.4px;padding:2px 9px;border-radius:999px;margin:3px 0 2px;color:#fff}
 .stopbadge.red{background:#C2410C}.stopbadge.green{background:#177A52}
 .tour{background:linear-gradient(150deg,var(--gold-soft),var(--card));border:1.5px solid var(--gold);border-radius:var(--r-lg);padding:16px;margin-bottom:12px;box-shadow:var(--sh)}
-.tour-h{display:flex;gap:12px;align-items:center;margin-bottom:8px}
+.tour-h{display:flex;gap:12px;align-items:center;margin-bottom:0;cursor:pointer}.tour-h>div{flex:1;min-width:0}.tour.open .tour-h{margin-bottom:10px}
+.tour:not(.open)>:not(.tour-h){display:none}.tour.open .tour-h .place-ch{transform:rotate(180deg)}.tour{padding:12px 14px}
 .tour-i{width:44px;height:44px;border-radius:14px;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.4em;flex-shrink:0}
 .tour-h b{font-size:.95em;display:block;line-height:1.3}.tour-h small{font-size:.74em;color:var(--ink3)}
 .tour p{font-size:.82em;color:var(--ink2);line-height:1.55;margin-bottom:10px}
 .stops{display:flex;flex-wrap:wrap;gap:6px}
 .stopchip{font-size:.7em;font-weight:700;padding:5px 10px 5px 8px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--ink2);display:inline-flex;align-items:center;gap:6px}
-.stopchip i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.stopchip i{width:8px;height:8px;border-radius:50%;display:inline-block}.stopchip{cursor:pointer}.stopbadge{cursor:pointer}
 .stopchip.red i{background:#C2410C}.stopchip.green i{background:#177A52}
 .tour-note{font-size:.74em;color:var(--gold-ink);font-style:italic;margin-top:8px;line-height:1.5}
 .pnotes{width:100%;min-height:90px;border-radius:var(--r-sm);border:1px solid var(--line);background:var(--bg);color:var(--ink);font-family:var(--fb);font-size:.88em;padding:12px;margin-top:10px;resize:vertical}
@@ -974,7 +999,7 @@ html[data-text='lg'] body{font-size:17px}
   <div class="card card-pad" id="hotelCard"><h3>🏨 My hotel & emergency numbers</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Fill this in before you land — then tap “Show to driver” whenever you need a ride back, or “I’m lost” if you get separated.</p>
     <input class="srch" id="hName" placeholder="Hotel name (e.g. Swissôtel Makkah)" onchange="saveHotelInfo()" aria-label="Hotel name"><input class="srch" id="hAddr" placeholder="Address / landmark (e.g. Abraj Al Bait, King Abdulaziz Gate)" onchange="saveHotelInfo()" aria-label="Hotel address"><input class="srch" id="hPhone" type="tel" placeholder="Hotel phone" onchange="saveHotelInfo()" aria-label="Hotel phone">
     <input class="srch" id="hMeet" placeholder="Family meeting point (e.g. King Fahd Gate 79, after each prayer)" onchange="saveHotelInfo()" aria-label="Family meeting point"><input class="srch" id="hLead" placeholder="Companion / group leader name & phone" onchange="saveHotelInfo()" aria-label="Companion or group leader name and phone">
-    <div class="hstat"><span id="hotelLbl2">📍 Hotel location not pinned</span><button class="chip-btn" onclick="setHotel()">📍 Pin my hotel location</button></div>
+    <div class="hstat"><span id="hotelLbl2">📍 Hotel not pinned</span><button class="chip-btn" onclick="setHotel()">📍 Set hotel location</button></div>
     <div class="hcard"><button class="main" onclick="showDriver()">🚕 Show to driver</button><button class="sos" onclick="showLost()">🆘 I’m lost — show this</button></div>
     <p style="font-size:.74em;color:var(--ink3);margin-top:8px">💡 Write the leader’s number on a wristband or a paper in each child’s pocket every morning.</p>
     <div class="subt" style="margin-top:14px">☎️ Emergency & help in Saudi Arabia</div>
@@ -1178,13 +1203,13 @@ html[data-text='lg'] body{font-size:17px}
 
 <!-- ═══════ PLACES ═══════ -->
 <div class="view" id="view-places">
-  <div class="vh"><h2>Ziyarah with purpose</h2><p>Tap Maps to navigate. Mark what you've visited.</p></div>
-  <div class="hero"><div class="hero-t"><div class="k">Sacred places</div><div class="v">Makkah & Madinah</div><div class="s" id="plHeroS">0 of 20 visited</div></div>
-    <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="plRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="plPct">0%</span><small>SEEN</small></div></div></div>
-  <div class="pills"><button class="pill on" id="pillAll" onclick="filterCity('all')">All</button><button class="pill" id="pillMakkah" onclick="filterCity('makkah')">🕋 Makkah</button><button class="pill" id="pillMadinah" onclick="filterCity('madinah')">🕌 Madinah</button></div>
-  <input class="srch" id="plSearch" type="search" placeholder="🔍 Search places — Quba, Uhud, Hira…" oninput="renderPlaces()">
-  <div class="hotelrow"><span id="hotelLbl">🏨 No hotel saved</span><button class="chip-btn" onclick="setHotel()">Set hotel here</button><button class="chip-btn" id="nearBtn" onclick="nearMe()">📡 Near me</button></div>
-  <div class="note">"Do not set out on a journey except to three mosques: al-Masjid al-Haram, the Mosque of the Messenger ﷺ, and al-Masjid al-Aqsa." — <a href="https://sunnah.com/bukhari:1189" target="_blank" rel="noopener">Bukhari 1189</a></div>
+  <div class="vh"><h2>Ziyarah with purpose</h2><p>Tap a place for tips, Maps and to mark it visited.</p></div>
+  <div class="hero"><div class="hero-t"><div class="k">Sacred places</div><div class="v">Makkah & Madinah</div><div class="s" id="plHeroS">🕋 Makkah 0 visited · 🕌 Madinah 0 visited</div></div>
+    <div class="hero-side" id="plNear"></div></div>
+  <div class="pills four pl-sticky"><button class="pill on" id="pillAll" onclick="filterCity('all')">All</button><button class="pill" id="pillMakkah" onclick="filterCity('makkah')">🕋 Makkah</button><button class="pill" id="pillMadinah" onclick="filterCity('madinah')">🕌 Madinah</button><button class="pill unv" id="pillUnvis" aria-pressed="false" onclick="togUnvis()">⬜ Unvisited</button></div>
+  <input class="srch" id="plSearch" type="search" placeholder="🔍 Search places — Quba, Uhud, Hira, مسجد…" oninput="renderPlaces()">
+  <div class="hotelrow"><span id="hotelLbl">🏨 Save your hotel to see walking times</span><button class="chip-btn" onclick="setHotel()">🏨 Set hotel</button><button class="chip-btn" id="nearBtn" onclick="nearMe()">📡 Near me</button></div>
+  <div class="note">Ziyarah is a virtuous extra, never a rite. The journey itself is for the two Harams: "Do not set out on a journey except to three mosques: al-Masjid al-Haram, the Mosque of the Messenger ﷺ, and al-Masjid al-Aqsa." — <a href="https://sunnah.com/bukhari:1189" target="_blank" rel="noopener">Bukhari 1189</a>. At Baqi’ and Mu’alla: give salam, make dua for the deceased, don’t ask of them.</div>
   <div id="placesContainer"></div>
 </div>
 
@@ -1259,7 +1284,7 @@ html[data-text='lg'] body{font-size:17px}
 </nav>
 <canvas id="confetti" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:190;display:none"></canvas>
 <div class="focus" id="focus" role="dialog" aria-modal="true" aria-label="Big counter"><div class="focus-top"><span id="focusTitle">🕋 Tawaf</span><div style="display:flex;gap:8px"><button class="chip-btn" id="focusWudu" onclick="focusWudu()" aria-pressed="false">💧 wudu</button><button class="chip-btn focus-prob" onclick="event.stopPropagation();troubleSheet()" aria-label="Something went wrong?">⚠️ Problem?</button><button class="chip-btn" onclick="exitFocus()">✕ Exit</button></div></div><div class="focus-tap" role="button" tabindex="0" aria-label="Tap to count one round" onclick="focusTap()"><div class="focus-n" id="focusN">0</div><div class="focus-of" id="focusOf">of 7 rounds</div><div class="focus-tip" id="focusTip"></div><div class="focus-hint" id="focusHint">tap anywhere to count</div><div class="focus-done" id="focusDone" hidden></div></div><div class="focus-dua" id="focusDua" role="button" tabindex="0" aria-label="Dua for this rite — tap for transliteration and meaning" onclick="event.stopPropagation();fdToggle()"></div><div class="focus-bot"><button class="btn undo" onclick="focusUndo()">− Undo</button><button class="chip-btn focus-my" onclick="myDuasSheet()">🤲 My duas</button></div></div>
-<div class="focus driver" id="driver" role="dialog" aria-modal="true" aria-label="Show to driver"><div class="focus-top"><span>🚕 Please take me to my hotel</span><button class="chip-btn" onclick="closeDriver()">✕ Close</button></div><div class="focus-tap lost-body" style="justify-content:flex-start;padding:10px 24px;cursor:default"><div class="drv-ar">من فضلك خذني إلى هذا الفندق</div><div class="drv-name" id="drvName">—</div><div class="drv-addr" id="drvAddr"></div><div class="drv-phone" id="drvPhone"></div><div class="drv-acts" id="drvActs"></div><div class="focus-hint" onclick="closeDriver()">tap here to close</div></div></div>
+<div class="focus driver" id="driver" role="dialog" aria-modal="true" aria-label="Show to driver"><div class="focus-top"><span id="drvTop">🚕 Please take me to my hotel</span><button class="chip-btn" onclick="closeDriver()">✕ Close</button></div><div class="focus-tap lost-body" style="justify-content:flex-start;padding:10px 24px;cursor:default"><div class="drv-ar" id="drvLead">من فضلك خذني إلى هذا الفندق</div><div class="drv-arn" id="drvArName" lang="ar" dir="rtl" hidden></div><div class="drv-name" id="drvName">—</div><div class="drv-addr" id="drvAddr"></div><div class="drv-phone" id="drvPhone"></div><div class="drv-acts" id="drvActs"></div><div class="focus-hint" onclick="closeDriver()">tap here to close</div></div></div>
 <div class="focus driver" id="lost" role="dialog" aria-modal="true" aria-label="I am lost"><div class="focus-top"><span>🆘 I’m lost — please help</span><button class="chip-btn" onclick="closeLost()">✕ Close</button></div><div class="lost-body" id="lostBody"></div></div>
 <div class="focus walk" id="walk" role="dialog" aria-modal="true" aria-label="Step-by-step walkthrough"><div class="focus-top"><span id="walkHd">Step 1</span><button class="chip-btn" onclick="closeWalk()">✕ Exit</button></div><div class="walk-body" id="walkBody"></div><div class="focus-bot walk-bot"><button class="chip-btn" id="walkBack" onclick="walkNav(-1)">← Back</button><button class="btn" id="walkNext" onclick="walkDone()">✓ Done → Next</button></div></div>
 <div id="printSheet" aria-hidden="true"></div>

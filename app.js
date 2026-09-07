@@ -1,6 +1,6 @@
 /* Umrah Strivers — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='4.12.0';
+var APP_VERSION='4.13.0';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* ════════════════════════ STATE ════════════════════════ */
 var ST={day:1,tripLen:10,theme:'light',tab:'home',dep:'',umrahs:0,tawaf:0,sai:0,quizBest:0,city:'Makkah'};
@@ -16,7 +16,9 @@ function loadAll(){
     placeVis=JSON.parse(localStorage.getItem('us-places')||'{}');
     earned=JSON.parse(localStorage.getItem('us-badges')||'{}');
     tasbih=JSON.parse(localStorage.getItem('us-tasbih')||'{}');
+    routeSel=JSON.parse(localStorage.getItem('us-route')||'{}');if(!routeSel||typeof routeSel!=='object'||Array.isArray(routeSel))routeSel={};
   }catch(e){}
+  migrateHotel();
 }
 function saveST(){localStorage.setItem('us-settings',JSON.stringify(ST));}
 function save(k,o){localStorage.setItem(k,JSON.stringify(o));}
@@ -71,7 +73,7 @@ function goTab(t,sub,anchor){ST.tab=t;saveST();
   document.querySelectorAll('.nav button').forEach(function(e){var on=e.getAttribute('data-v')===t;e.classList.toggle('on',on);if(on)e.setAttribute('aria-current','page');else e.removeAttribute('aria-current');});
   if(sub)goSub(t,sub,true);
   if(t==='daily'){updDaily();updStats();loadPT();renderTB();}
-  if(t==='places')updPlaces();
+  if(t==='places'){placesSeed();updPlaces();}
   if(t==='umrah')updRites();
   if(t==='plan')updPlan();
   if(t==='home')renderHome();
@@ -83,9 +85,9 @@ function goTab(t,sub,anchor){ST.tab=t;saveST();
   else window.scrollTo({top:0,behavior:'smooth'});}
 /* deep links used by chips in checklists and knowledge bodies (M-05) */
 function goRef(tab,sub,anchor){if(tab==='places')placesReset();goTab(tab,sub||null,anchor||null);}
-function placesReset(){if(cityFilter!=='all')filterCity('all');var sr=document.getElementById('plSearch');if(sr&&sr.value){sr.value='';renderPlaces();}}
-function openPlace(id){var p=PLACES.filter(function(x){return x.id===id;})[0];if(!p)return;placesReset();var el=document.getElementById('pl-'+id);if(el)el.classList.add('open');goTab('places',null,'pl-'+id);}
-function openTour(){placesReset();goTab('places',null,'tourCard');}
+function placesReset(){var sr=document.getElementById('plSearch');if(sr&&sr.value)sr.value='';if(unvisOnly){unvisOnly=false;var e=document.getElementById('pillUnvis');if(e){e.classList.remove('on');e.setAttribute('aria-pressed','false');}}if(cityFilter!=='all')filterCity('all',true);else renderPlaces();}
+function openPlace(id){var p=placeById(id);if(!p)return;placesReset();plShow(id);goTab('places',null,'pl-'+id);}
+function openTour(){tourOpen=true;placesReset();var t=document.getElementById('tourCard');if(t){t.classList.add('open');var hd=t.querySelector('.tour-h');if(hd)hd.setAttribute('aria-expanded','true');}goTab('places',null,'tourCard');}
 function goPost(enable){if(enable&&!ST.post){ST.post=true;saveST();renderPost();}goTab('more','guide','postCard');}
 function startPost(){goPost(true);toast('🌱 Post-Umrah mode on — 30 days, 3 habits',true);}
 function refChip(it){var q=function(v){return v?'\''+v+'\'':'null';};if(typeof it.go==='string')return '<button class="xchip" onclick="event.stopPropagation();'+it.go+'">'+(it.goL||'Open')+' →</button>';if(it.place)return '<button class="xchip" onclick="event.stopPropagation();openPlace('+q(it.place)+')">'+(it.goL||'📍 Open')+' →</button>';if(it.go)return '<button class="xchip" onclick="event.stopPropagation();goRef('+q(it.go[0])+','+q(it.go[1])+','+q(it.go[2])+')">'+(it.goL||'Open')+' →</button>';return '';}
@@ -697,54 +699,191 @@ function updStats(){
 function setTripLen(v){var n=parseInt(v)||10;n=Math.max(3,Math.min(30,n));ST.tripLen=n;if(ST.day>n)ST.day=n;delete ST.dayAuto;saveST();document.getElementById('tripLen').value=n;updRetDate();updDaily();updStats();renderItin();updChip();renderPrepJumps();}
 
 /* ════════════════════════ PLACES ════════════════════════ */
-var cityFilter='all';
+var cityFilter='all',unvisOnly=false,tourOpen=false,nearPos=null,lastRoute={},routeSel={},routeClimbs={},routeWant=null;
+var KAABA_LL=[21.4225,39.8262],NABAWI_LL=[24.4672,39.6111],CITY_N={makkah:'Makkah',madinah:'Madinah'};
+/* L-06: landmark anchors — a hotel can be placed before travel, and a pin is always described by a name, never by coordinates */
+var HOTEL_ANCHORS={makkah:[['Clock Tower',21.4187,39.8256],['King Abdulaziz Gate',21.4200,39.8238],['Ajyad / Misfalah',21.4160,39.8280],['Jarwal',21.4290,39.8210],['Aziziyah',21.4020,39.8700],['Kudai',21.4090,39.8180]],
+  madinah:[['Bab as-Salam (west)',24.4677,39.6085],['Qiblatayn Rd',24.4790,39.6000],['Sultanah',24.4803,39.5966],['Quba Avenue',24.4500,39.6160],['Baqi’ side (east)',24.4675,39.6150]]};
+function placeById(id){for(var i=0;i<PLACES.length;i++)if(PLACES[i].id===id)return PLACES[i];return null;}
+function hav(a,b){var R=6371,dLat=(b[0]-a[0])*Math.PI/180,dLon=(b[1]-a[1])*Math.PI/180,x=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(a[0]*Math.PI/180)*Math.cos(b[0]*Math.PI/180)*Math.sin(dLon/2)*Math.sin(dLon/2);return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
+/* which city a coordinate belongs to (null when >100 km from both Harams) */
+function cityOf(ll){if(!ll)return null;var a=hav(ll,KAABA_LL),b=hav(ll,NABAWI_LL);if(Math.min(a,b)>100)return null;return a<b?'makkah':'madinah';}
+function hotelPin(city){var h=ST.hotel;if(!h||Array.isArray(h)||typeof h!=='object')return null;var v=h[city];return (Array.isArray(v)&&v.length===2&&isFinite(v[0])&&isFinite(v[1]))?v:null;}
+function anyPin(){return hotelPin('makkah')||hotelPin('madinah');}
+/* v4.13: ST.hotel was one [lat,lng]; it is now {makkah:[..],madinah:[..]} — the old pin is filed under the city it sits in */
+function migrateHotel(){var h=ST.hotel;if(Array.isArray(h)){var c=cityOf([+h[0],+h[1]]);ST.hotel={};if(c)ST.hotel[c]=[+h[0],+h[1]];saveST();}else if(h&&typeof h!=='object'){ST.hotel={};saveST();}}
+function nearAnchor(city,ll){var best=null,bd=1e9;(HOTEL_ANCHORS[city]||[]).forEach(function(a){var d=hav(ll,[a[1],a[2]]);if(d<bd){bd=d;best=a[0];}});return bd<=2.5?best:CITY_N[city]+' pin';}
+function pinName(city){var hi=ST.hotelInfo||{},pins=['makkah','madinah'].filter(hotelPin);return (hi.n&&pins.length===1)?hi.n:nearAnchor(city,hotelPin(city));}
+function originFor(city){return nearPos||hotelPin(city);}
+function kmStr(km){return km<0.05?'< 50 m':km<1?Math.round(km*1000/50)*50+' m':km<10?(Math.round(km*10)/10)+' km':Math.round(km)+' km';}
+/* L-01 / L-06 / L-11: distances come from your live position, else from the hotel pin of THAT city; nothing beyond 100 km */
+function distLbl(p){if(p.g==='haram')return 'inside the Haram';var from=nearPos||hotelPin(p.city);if(!from||!p.ll)return '';var km=hav(from,p.ll);if(km>100)return '';if(nearPos&&km<0.15)return '📍 you’re here';var walk=Math.round(km/4.5*60),suf=nearPos?' from you':' from hotel';return '≈ '+kmStr(km)+(km<3?' · '+walk+' min walk':'')+suf;}
+function updHotelLbl(){var pins=['makkah','madinah'].filter(hotelPin);if(pins.length>1&&cityFilter==='madinah')pins.reverse();
+  var l=document.getElementById('hotelLbl');if(l)l.textContent=pins.length?'🏨 '+pins.map(function(c){return pinName(c)+' · '+CITY_N[c];}).join(' | ')+(pins.length===1?' · distances from here':''):'🏨 Save your hotel to see walking times';
+  var l2=document.getElementById('hotelLbl2');if(l2)l2.textContent=pins.length?'📍 '+pins.map(function(c){return CITY_N[c]+': '+pinName(c);}).join(' · ')+' — Places shows distances from here':'📍 Hotel not pinned — use your location at the hotel, or pick a landmark now';}
+/* L-06: one sheet for both cities — GPS when you are there, a landmark when you are not, ✕ per city */
+function hotelSheet(){var h='<div class="sheet-h">🏨</div><h3>Where is your hotel?</h3><p style="font-size:.8em">Places measures walking times and routes from it — one pin per city, so you can set both before you fly.</p><button class="btn" onclick="closeSheet();setHotelGPS()">📡 Use my location — I’m at the hotel now</button>';
+  ['makkah','madinah'].forEach(function(c){var pin=hotelPin(c);h+='<div class="subt" style="margin-top:14px">'+(c==='makkah'?'🕋':'🕌')+' '+CITY_N[c]+(pin?' · near '+esc(nearAnchor(c,pin)):' · not set')+'</div><div class="anch">'+HOTEL_ANCHORS[c].map(function(a,i){return '<button class="chip-btn'+(pin&&hav(pin,[a[1],a[2]])<.3?' on':'')+'" onclick="setHotelAnchor(\''+c+'\','+i+')">'+a[0]+'</button>';}).join('')+(pin?'<button class="chip-btn clr" onclick="clearHotel(\''+c+'\')">✕ Clear '+CITY_N[c]+' pin</button>':'')+'</div>';});
+  openSheet(h);}
+function setHotel(){hotelSheet();}
+function setHotelAt(city,ll,label){ST.hotel=(ST.hotel&&!Array.isArray(ST.hotel)&&typeof ST.hotel==='object')?ST.hotel:{};ST.hotel[city]=[+ll[0],+ll[1]];saveST();updHotelLbl();renderPlaces();updPlaces();toast('🏨 '+CITY_N[city]+' hotel set near '+label+' — distances from here');if(routeWant===city)planRoute(city);}
+function setHotelAnchor(city,i){var a=HOTEL_ANCHORS[city][i];if(!a)return;closeSheet();setHotelAt(city,[a[1],a[2]],a[0]);}
+function clearHotel(city){if(ST.hotel&&!Array.isArray(ST.hotel))delete ST.hotel[city];saveST();closeSheet();updHotelLbl();renderPlaces();updPlaces();toast(CITY_N[city]+' hotel pin cleared');}
+function setHotelGPS(){if(!navigator.geolocation){toast('Location not supported — pick a landmark','','Pick',hotelSheet);return;}toast('Locating…');
+  navigator.geolocation.getCurrentPosition(function(pos){var ll=[pos.coords.latitude,pos.coords.longitude],c=cityOf(ll);if(!c){toast('Not in Makkah or Madinah — pick a landmark instead','','Pick',hotelSheet);return;}setHotelAt(c,ll,nearAnchor(c,ll));},function(){toast('Location denied — pick a landmark instead','','Pick',hotelSheet);});}
+/* L-01 / L-11: Near me switches to the city you are standing in and says so; the button reads as a clearable state */
+function nearMe(){var b=document.getElementById('nearBtn');
+  if(nearPos){nearPos=null;if(b){b.classList.remove('on');b.textContent='📡 Near me';}renderPlaces();updPlaces();return;}
+  if(!navigator.geolocation){toast('Location not supported');return;}toast('Locating…');
+  navigator.geolocation.getCurrentPosition(function(pos){nearPos=[pos.coords.latitude,pos.coords.longitude];if(b){b.classList.add('on');b.textContent='📡 Near me ✓ · tap to clear';}
+    var c=cityOf(nearPos);if(c&&cityFilter!==c)filterCity(c);else{renderPlaces();updPlaces();}
+    toast(c?'📡 Sorted by distance — showing '+CITY_N[c]:'📡 You’re far from both cities — distances hidden');if(routeWant)planRoute(routeWant);},function(){toast('Location denied');});}
+function plSearchable(p){return (p.n+' '+p.d+' '+p.tip+' '+(p.ar||'')+' '+(p.tags||[]).join(' ')+' '+(p.stop?'hop-on hop-off bus stop':'')).toLowerCase();}
+function mapsSearch(p){return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.q);}
+function countable(p){return p.g!=='hajj'&&!p.noroute;}
+function routable(p){return !!p.ll&&!p.noroute&&['tour','trip','haram','mharam'].indexOf(p.g)<0;}
+function inRoute(id){var p=placeById(id);return !!(p&&routeSel[p.city]&&routeSel[p.city].indexOf(id)>-1);}
+function visLbl(id){var v=placeVis[id];return v?'<span class="vtick">✓ '+(typeof v==='number'?'Visited · Day '+v:'Visited')+'</span>':'';}
+function tourCard(){
+  var st=TOUR.stops.map(function(x){return '<span class="stopchip '+x.r+'" role="button" tabindex="0" onclick="openPlace(\''+x.id+'\')"><i></i>'+x.n+' · '+x.t+'</span>';}).join('');
+  return '<div class="tour'+(tourOpen?' open':'')+'" id="tourCard"><div class="tour-h" role="button" tabindex="0" aria-expanded="'+(tourOpen?'true':'false')+'" onclick="togTour(this)"><span class="tour-i">🚌</span><div><b>Ziyarah bus (hop-on hop-off)</b><small>City Sightseeing · 2 routes · 12 stops · tap for stops &amp; booking</small></div><span class="place-ch">▾</span></div>'
+    +'<p>One ticket, two loops: the Red route is the history loop (Quba, Qiblatayn, the Trench, Uhud), the Green route circles the Prophet’s Mosque. Check the current timetable and price when booking.</p>'
+    +'<div class="stops">'+st+'</div>'
+    +'<a class="btn gold" style="margin-top:12px;text-align:center;text-decoration:none" href="'+TOUR.url+'" target="_blank" rel="noopener">🎟️ Book on city-sightseeing.com →</a>'
+    +'<div class="tour-note">Tip: ride the full Red loop once for orientation, then hop off at Quba and Uhud around Fajr/Asr when they are calmest. Tap a stop to open its card.</div></div>';
+}
+function togTour(h){var t=h.parentNode;tourOpen=!t.classList.contains('open');t.classList.toggle('open',tourOpen);h.setAttribute('aria-expanded',tourOpen?'true':'false');}
+/* one place card — collapsed header carries the Arabic name, access tags, distance and the visited day (L-04, L-05, L-10) */
+function placeCard(p,q){
+  var dist=distLbl(p),inR=inRoute(p.id),on=!!placeVis[p.id];
+  var meta=(p.stop?'<span class="stopbadge '+(p.stop[0]==='R'?'red':'green')+'" role="button" tabindex="0" aria-label="Hop-on hop-off stop — open the bus card" onclick="event.stopPropagation();openTour()">🚌 Stop '+p.stop.slice(1)+' · '+(p.stop[0]==='R'?'Red':'Green')+'</span>':'')
+    +(p.tags||[]).map(function(t){return '<span class="ptag">'+t+'</span>';}).join('')+(dist?'<span class="distchip">'+dist+'</span>':'')+visLbl(p.id);
+  return '<div class="place'+(on?' vis':'')+(q?' open':'')+'" id="pl-'+p.id+'"><div class="place-h" onclick="this.parentNode.classList.toggle(\'open\')"><div class="place-ico" role="button" tabindex="0" aria-label="'+(on?'Visited — tap to unmark':'Mark visited')+'" onclick="event.stopPropagation();togPlace(\''+p.id+'\')">'+p.i+'</div><div class="place-t"><b>'+p.n+'</b>'+(p.ar?'<span class="plar" lang="ar" dir="rtl">'+p.ar+'</span>':'')+meta+'<p>'+p.d+'</p><div class="tip">💡 '+p.tip+'</div></div><span class="place-ch">▾</span></div>'
+    +'<div class="place-a"><a href="'+mapsSearch(p)+'" target="_blank" rel="noopener">🗺️ Open in Maps</a><button onclick="showPlaceDriver(\''+p.id+'\')">🚕 Show driver</button>'+(routable(p)?'<button class="rt'+(inR?' on':'')+'" onclick="togRoute(\''+p.id+'\')">'+(inR?'✓ In route':'＋ Route')+'</button>':'')+'<button class="mv" onclick="togPlace(\''+p.id+'\')">'+(on?'✓ Visited':'Mark visited')+'</button></div>'
+    +(p.id==='rawdah'?'<div class="place-a" style="margin-top:8px"><a href="https://www.nusuk.sa/" target="_blank" rel="noopener">🎫 Get the free Rawdah permit on Nusuk</a></div>':'')
+    +(['taneem','jiranah','miqat'].indexOf(p.id)>-1?'<div class="place-a" style="margin-top:8px"><button style="background:var(--gold-soft);color:var(--gold-ink);border-color:transparent" onclick="goTab(\'umrah\',\'steps\')">🤍 Umrah steps — ihram from here</button></div>':'')+'</div>';
+}
 function renderPlaces(){
-  var h='';
+  var h='',c0=document.getElementById('placesContainer');if(!c0)return;
   var q=(document.getElementById('plSearch')||{}).value||'';q=q.trim().toLowerCase();
-  function tourCard(){
-    var st=TOUR.stops.map(function(x){return '<span class="stopchip '+x.r+'"><i></i>'+x.n+' · '+x.t+'</span>';}).join('');
-    return '<div class="tour" id="tourCard"><div class="tour-h"><span class="tour-i">🚌</span><div><b>Madinah Hop-On Hop-Off — the easy ziyarah</b><small>City Sightseeing · 2 routes · 12 stops · buses every 30 min · 05:30–23:59</small></div></div>'
-      +'<p>One 24-hour ticket covers Quba, Qiblatayn, Uhud, the Trench, Baqi’ and the Haram gates with audio commentary in 16 languages — no taxi haggling, wheelchair accessible, free cancellation up to 24 h before. The Red route is the history loop, the Green route circles the Prophet’s Mosque.</p>'
-      +'<div class="stops">'+st+'</div>'
-      +'<a class="btn gold" style="margin-top:12px;text-align:center;text-decoration:none" href="'+TOUR.url+'" target="_blank" rel="noopener">🎟️ Book the ziyarah bus on city-sightseeing.com →</a>'
-      +'<div class="tour-note">Tip: ride the full Red loop once for orientation, then hop off at Quba and Uhud around Fajr/Asr when they are calmest.</div></div>';
-  }
+  /* L-02: remember what is open so a rebuild (filter, Near me, hotel) never folds a card or a group under the reader */
+  var openSet={},secOpen={};c0.querySelectorAll('.place.open').forEach(function(e){openSet[e.id]=1;});c0.querySelectorAll('.sec:not(.shut)').forEach(function(e){secOpen[e.id]=1;});
   ['makkah','madinah'].forEach(function(city){
-    if(cityFilter!=='all'&&cityFilter!==city)return;
-    var cityAny=false,ch='';
-    GORDER[city].forEach(function(g){
-      var list=PLACES.filter(function(p){return p.city===city&&p.g===g&&(!q||(p.n+' '+p.d+' '+p.tip+' '+(p.stop?'hop-on hop-off bus stop':'')).toLowerCase().indexOf(q)>-1);});
-      if(nearPos)list=list.slice().sort(function(a,b){return (a.ll?hav(nearPos,a.ll):1e9)-(b.ll?hav(nearPos,b.ll):1e9);});
-      if(!list.length)return;
-      cityAny=true;
-      ch+='<div class="subt" id="grp-'+city+'-'+g+'">'+GLABEL[g]+'</div>';
-      list.forEach(function(p){
-        var url='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.q);
-        var dist=distLbl(p);
-        var stop=(p.stop?'<span class="stopbadge '+(p.stop[0]==='R'?'red':'green')+'">🚌 Stop '+p.stop.slice(1)+' · '+(p.stop[0]==='R'?'Red':'Green')+'</span>':'')+(dist?'<span class="distchip">'+dist+'</span>':'');
-        ch+='<div class="place'+(placeVis[p.id]?' vis':'')+(q?' open':'')+'" id="pl-'+p.id+'"><div class="place-h" onclick="this.parentNode.classList.toggle(\'open\')"><div class="place-ico">'+p.i+'</div><div class="place-t"><b>'+p.n+(placeVis[p.id]?' <span class="vtick">✓</span>':'')+'</b>'+stop+'<p>'+p.d+'</p><div class="tip">💡 '+p.tip+'</div></div><span class="place-ch">▾</span></div><div class="place-a"><a href="'+url+'" target="_blank" rel="noopener">🗺️ Open in Maps</a><button onclick="togPlace(\''+p.id+'\')">'+(placeVis[p.id]?'✓ Visited':'Mark visited')+'</button></div>'+(['taneem','jiranah','miqat'].indexOf(p.id)>-1?'<div class="place-a" style="margin-top:8px"><button style="background:var(--gold-soft);color:var(--gold-ink);border-color:transparent" onclick="goTab(\'umrah\',\'steps\')">🤍 Umrah steps — ihram from here</button></div>':'')+'</div>';
-      });
+    if(!q&&cityFilter!=='all'&&cityFilter!==city)return; /* a search always looks in both cities */
+    var cityAny=false,ch='',groups=GORDER[city].slice(),lists={};
+    groups.forEach(function(g){var list=PLACES.filter(function(p){return p.city===city&&p.g===g&&(!unvisOnly||!placeVis[p.id])&&(!q||plSearchable(p).indexOf(q)>-1);});
+      if(nearPos)list=list.slice().sort(function(a,b){return (a.ll?hav(nearPos,a.ll):1e9)-(b.ll?hav(nearPos,b.ll):1e9);});lists[g]=list;});
+    /* L-01: with a live position, groups follow their nearest member (the Haram / Prophet's Mosque stay first) */
+    if(nearPos){var pin=function(g){return g==='haram'||g==='mharam';},gd=function(g){var l=lists[g];return l.length&&l[0].ll?hav(nearPos,l[0].ll):1e9;};groups.sort(function(a,b){if(pin(a)!==pin(b))return pin(a)?-1:1;return gd(a)-gd(b);});}
+    groups.forEach(function(g){
+      if(city==='madinah'&&g==='tour'&&!q){ch+=tourCard();cityAny=true;}
+      var list=lists[g];if(!list.length)return;cityAny=true;
+      var inner=list.map(function(p){return placeCard(p,q);}).join(''),sid='grp-'+city+'-'+g;
+      if(!q&&GFOLD[city].indexOf(g)>-1){var vis=list.filter(function(p){return placeVis[p.id];}).length;ch+=mkSec({id:sid,ico:GLABEL[g].split(' ')[0],title:GLABEL[g].replace(/^\S+\s/,''),sub:list.length+' sites · '+vis+' visited · tap to show'},!secOpen['sec-'+sid],inner);}
+      else ch+='<div class="subt" id="'+sid+'">'+GLABEL[g]+'</div>'+inner;
     });
     if(!cityAny)return;
     h+='<div class="cityhd" id="city-'+city+'">'+(city==='makkah'?'🕋 Makkah al-Mukarramah':'🕌 Madinah al-Munawwarah')+'</div>';
-    if(!q)h+='<div class="jumps">'+GORDER[city].map(function(g){return '<button onclick="jumpTo(\'grp-'+city+'-'+g+'\')">'+GLABEL[g]+'</button>';}).join('')+'</div>';
-    if(city==='madinah'&&!q)h+=tourCard();
-    if(!q)h+='<button class="btn ghost" style="margin:0 0 12px" onclick="planRoute(\''+city+'\')">🧭 Plan a ziyarah route for '+(city==='makkah'?'Makkah':'Madinah')+'</button><div id="route-'+city+'"></div>';
+    if(!q)h+='<div class="jumps">'+groups.map(function(g){return lists[g].length?'<button onclick="plJump(\''+city+'\',\''+g+'\')">'+GSHORT[g]+'</button>':'';}).join('')+'</div>';
+    if(!q)h+='<button class="btn ghost" style="margin:0 0 12px" onclick="planRoute(\''+city+'\')">🧭 Plan a ziyarah route for '+CITY_N[city]+'</button><div id="route-'+city+'"></div>';
     h+=ch;
   });
-  document.getElementById('placesContainer').innerHTML=h||'<div class="note" style="margin:0">No places match — try "Quba", "Uhud", "Hira" or "bus".</div>';
+  c0.innerHTML=h||'<div class="note" style="margin:0">'+(unvisOnly&&!q?'Everything in this list is visited — mashallah! Switch off “Unvisited” to see all sites.':'No places match — try "Quba", "Uhud", "Hira" or "bus".')+'</div>';
+  Object.keys(openSet).forEach(function(id){var e=document.getElementById(id);if(e)e.classList.add('open');});
+  c0.querySelectorAll('.sec').forEach(function(s){var ct=s.querySelector('.sec-ct');if(ct)ct.textContent=s.querySelectorAll('.place').length+' sites';});
+  ['makkah','madinah'].forEach(function(c){if(lastRoute[c])drawRoute(c);});
+  updUnvisPill();
 }
-function togPlace(id){placeVis[id]=!placeVis[id];save('us-places',placeVis);renderPlaces();updPlaces();
+/* jump chips un-fold a collapsed group before scrolling to it (L-09) */
+function plJump(city,g){var id='grp-'+city+'-'+g,s=document.getElementById('sec-'+id);if(s){s.classList.remove('shut');var hd=s.querySelector('.sec-hd');if(hd)hd.setAttribute('aria-expanded','true');jumpTo('sec-'+id);}else jumpTo(id);}
+/* open a card that is already in the DOM (un-folding its group); false when the filters hide it */
+function plShow(id){var el=document.getElementById('pl-'+id);if(!el)return false;var s=el.closest('.sec');if(s&&s.classList.contains('shut')){s.classList.remove('shut');var hd=s.querySelector('.sec-hd');if(hd)hd.setAttribute('aria-expanded','true');}el.classList.add('open');return true;}
+function plGo(id){if(plShow(id))jumpTo('pl-'+id);else openPlace(id);}
+/* L-10: mark visited from the icon; the card is patched in place (scroll and open state untouched); the visit day is stored */
+function patchPlace(id){var el=document.getElementById('pl-'+id);if(!el)return;var on=!!placeVis[id];el.classList.toggle('vis',on);
+  var ico=el.querySelector('.place-ico');if(ico)ico.setAttribute('aria-label',on?'Visited — tap to unmark':'Mark visited');
+  var mv=el.querySelector('.place-a .mv');if(mv)mv.textContent=on?'✓ Visited':'Mark visited';
+  var t=el.querySelector('.vtick');if(t)t.remove();
+  if(on){var b=el.querySelector('.place-t'),sp=document.createElement('span');sp.className='vtick';sp.textContent='✓ '+(typeof placeVis[id]==='number'?'Visited · Day '+placeVis[id]:'Visited');b.insertBefore(sp,b.querySelector('p'));}}
+function togPlace(id){if(placeVis[id])delete placeVis[id];else placeVis[id]=ST.day||1;save('us-places',placeVis);patchPlace(id);updPlaces();updUnvisPill();
+  ['makkah','madinah'].forEach(function(c){if(lastRoute[c])drawRoute(c);});
   /* D-06: a real ziyarah site (not the Haram, a day trip or a bus stop) logs today's ziyarah row once */
-  if(placeVis[id]){vib(25);var p=PLACES.filter(function(x){return x.id===id;})[0];if(p&&['tour','trip','haram','mharam'].indexOf(p.g)<0){var k=dayKey(),d=dailyChk[k]||{};if(!d.ziyarah){d.ziyarah=true;dailyChk[k]=d;save('us-daily',dailyChk);updDaily();updStats();toast('📍 Ziyarah logged for Day '+ST.day);}}}
+  if(placeVis[id]){vib(25);var p=placeById(id);if(p&&['tour','trip','haram','mharam'].indexOf(p.g)<0){var k=dayKey(),d=dailyChk[k]||{};if(!d.ziyarah){d.ziyarah=true;dailyChk[k]=d;save('us-daily',dailyChk);updDaily();updStats();toast('📍 Ziyarah logged for Day '+ST.day);}}}
   chkBadges();}
-function filterCity(c){cityFilter=c;['All','Makkah','Madinah'].forEach(function(x){document.getElementById('pill'+x).classList.toggle('on',c===x.toLowerCase());});renderPlaces();}
-function updPlaces(){
-  var v=Object.keys(placeVis).filter(function(k){return placeVis[k];}).length;
-  var pct=Math.round(v/PLACES.length*100);
-  animPct('plPct',pct);setRing('plRing',pct);
-  document.getElementById('plHeroS').textContent=v+' of '+PLACES.length+' visited';
+/* L-01: the city pill is remembered; a quiet call (deep links) does not overwrite the choice */
+function filterCity(c,quiet){cityFilter=c;if(!quiet){ST.placesCity=c;saveST();}syncPills();renderPlaces();updPlaces();}
+function syncPills(){['All','Makkah','Madinah'].forEach(function(x){var e=document.getElementById('pill'+x);if(e)e.classList.toggle('on',cityFilter===x.toLowerCase());});}
+function placesBoot(){if(['all','makkah','madinah'].indexOf(ST.placesCity)>-1){cityFilter=ST.placesCity;syncPills();}}
+function placesSeed(){if(!ST.placesCity)filterCity(ST.city==='Madinah'?'madinah':'makkah');}
+/* L-12: a fourth pill narrows the current city scope to what is still unvisited */
+function togUnvis(){unvisOnly=!unvisOnly;var e=document.getElementById('pillUnvis');if(e){e.classList.toggle('on',unvisOnly);e.setAttribute('aria-pressed',unvisOnly?'true':'false');}renderPlaces();}
+function updUnvisPill(){var e=document.getElementById('pillUnvis');if(!e)return;var n=PLACES.filter(function(p){return (cityFilter==='all'||p.city===cityFilter)&&!placeVis[p.id];}).length;e.textContent='⬜ Unvisited · '+n;}
+/* L-08: the hero counts visits per city (no denominator, no ring) and points at the nearest unvisited site */
+function updPlaces(){var cnt={makkah:0,madinah:0};Object.keys(placeVis).forEach(function(k){if(!placeVis[k])return;var p=placeById(k);if(p&&countable(p))cnt[p.city]++;});
+  var s=document.getElementById('plHeroS');if(s)s.textContent='🕋 Makkah '+cnt.makkah+' visited · 🕌 Madinah '+cnt.madinah+' visited';
+  var slot=document.getElementById('plNear');if(!slot)return;
+  var city=cityFilter==='madinah'?'madinah':cityFilter==='makkah'?'makkah':(ST.city==='Madinah'?'madinah':'makkah');
+  if(nearPos){var c2=cityOf(nearPos);if(c2)city=c2;}
+  var from=nearPos||hotelPin(city);
+  if(!from){slot.innerHTML='<button class="pl-near dim" onclick="setHotel()">🏨 Set hotel →<small>see distances &amp; walking times</small></button>';return;}
+  var best=null,bd=1e9;PLACES.forEach(function(p){if(p.city!==city||!p.ll||placeVis[p.id]||!countable(p))return;var d=hav(from,p.ll);if(d<bd){bd=d;best=p;}});
+  if(!best||bd>100){slot.innerHTML='<div class="pl-near dim">'+(best?'📍 Too far to measure':'✅ Every '+CITY_N[city]+' site visited')+'</div>';return;}
+  slot.innerHTML='<button class="pl-near" onclick="plGo(\''+best.id+'\')"><small>Nearest unvisited</small>📍 '+best.n+'<small>≈ '+kmStr(bd)+(nearPos?' from you':' from hotel')+'</small></button>';}
+/* ── route planner (L-07, L-13, L-02) ── */
+function togRoute(id){var p=placeById(id);if(!p)return;var c=p.city;routeSel[c]=routeSel[c]||[];var i=routeSel[c].indexOf(id);if(i>-1)routeSel[c].splice(i,1);else routeSel[c].push(id);save('us-route',routeSel);
+  var el=document.querySelector('#pl-'+id+' .place-a .rt');if(el){el.classList.toggle('on',i<0);el.textContent=i<0?'✓ In route':'＋ Route';}
+  if(routeSel[c].length)planRoute(c);else if(lastRoute[c]){lastRoute[c]=null;drawRoute(c);}
+  if(i<0)toast('＋ Added to your '+CITY_N[c]+' route ('+routeSel[c].length+')','','See route',function(){jumpTo('route-'+c);});else toast('Removed from your route');}
+function clearRoute(c){lastRoute[c]=null;routeSel[c]=[];save('us-route',routeSel);routeClimbs[c]=false;renderPlaces();toast('Route cleared');}
+function planRoute(city,withClimbs){
+  if(withClimbs!==undefined)routeClimbs[city]=!!withClimbs;
+  var el=document.getElementById('route-'+city);if(!el)return;
+  var from=originFor(city);
+  if(!from){routeWant=city;el.innerHTML='<div class="card card-pad rt-need"><b>To plan a route I need a start point</b><p style="font-size:.8em;color:var(--ink2);margin-top:4px">Distances and the order of stops depend on where you begin.</p><button class="btn" onclick="setHotelGPS()">🏨 I’m at my hotel now — save it</button><button class="btn ghost" onclick="nearMe()">📡 Use my current location</button><button class="lnk" style="margin-top:10px;font-size:.82em" onclick="hotelSheet()">Not there yet? Pick a landmark near your hotel →</button></div>';return;}
+  routeWant=null;
+  var sel=routeSel[city]||[],pool,mode;
+  if(sel.length){pool=sel.map(placeById).filter(function(p){return p&&p.ll;});mode='sel';}
+  else{pool=PLACES.filter(function(p){return p.city===city&&routable(p)&&!placeVis[p.id]&&p.g!=='hajj'&&(routeClimbs[city]||!p.climb);});mode='auto';}
+  var route=[],cur=from,pl=pool.slice();
+  while(pl.length){pl.sort(function(a,b){return hav(cur,a.ll)-hav(cur,b.ll);});var nx=pl.shift();route.push(nx);cur=nx.ll;}
+  if(mode==='auto')route=route.slice(0,8);
+  lastRoute[city]={ids:route.map(function(p){return p.id;}),mode:mode};
+  drawRoute(city);
 }
+function drawRoute(city){var el=document.getElementById('route-'+city);if(!el)return;var lr=lastRoute[city];if(!lr){el.innerHTML='';return;}
+  var from=originFor(city),route=lr.ids.map(placeById).filter(function(p){return p&&p.ll;}),origin=from?from[0]+','+from[1]:'';
+  var hajj=[],notes=[];
+  if(city==='makkah'&&lr.mode==='auto'){hajj=['arafat','muzdalifah','mina','jamarat'].map(placeById).filter(function(p){return p&&p.ll&&!placeVis[p.id];});}
+  if(!route.length&&!hajj.length){el.innerHTML='<div class="note" style="margin:0 0 12px">Everything nearby is already visited — mashallah! <button class="lnk" style="font-size:1em" onclick="clearRoute(\''+city+'\')">Clear</button></div>';return;}
+  var legs=[],tot=0,allWalk=true,cur=from;route.forEach(function(p){var km=from?hav(cur,p.ll):0;legs.push(km);tot+=km;if(km>=2)allWalk=false;cur=p.ll;});
+  var mins=Math.round(tot/4.5*60),wp=route.map(function(p){return p.ll[0]+','+p.ll[1];});
+  var url=route.length?'https://www.google.com/maps/dir/?api=1'+(origin?'&origin='+origin:'')+'&destination='+wp[wp.length-1]+(wp.length>1?'&waypoints='+wp.slice(0,-1).join('|'):'')+'&travelmode='+(allWalk&&from?'walking':'driving'):'';
+  var rows=route.map(function(p,i){var km=legs[i],v=placeVis[p.id],warn=(p.tags||[]).filter(function(t){return /^(🕐|📅|🎫|👤)/.test(t);});
+    var d=from?(km<2?'≈ '+kmStr(km)+' · 🚶 '+Math.max(1,Math.round(km/4.5*60))+' min':'🚕 ≈ '+kmStr(km)):'';
+    return '<div class="lg on rl'+(v?' vis':'')+'"><span class="lg-i">'+(i+1)+'</span><span class="lg-t"><b>'+p.i+' '+p.n+(p.climb?' <span class="distchip climb">⛰️ climb</span>':'')+'</b>'+(d?'<em>'+d+'</em>':'')+(warn.length?'<span class="rl-w">⚠️ '+warn.join(' · ')+'</span>':'')+'</span><button class="chip-btn rv'+(v?' on':'')+'" onclick="togPlace(\''+p.id+'\')" aria-pressed="'+(v?'true':'false')+'">'+(v?'✓ Visited':'Visited')+'</button></div>';}).join('');
+  if(hajj.length){var hw=hajj.map(function(p){return p.ll[0]+','+p.ll[1];}),hu='https://www.google.com/maps/dir/?api=1'+(origin?'&origin='+origin:'')+'&destination='+hw[hw.length-1]+(hw.length>1?'&waypoints='+hw.slice(0,-1).join('|'):'')+'&travelmode=driving';
+    rows+='<div class="lg on hj"><span class="lg-i">🚕</span><span class="lg-t"><b>Hajj sites ('+hajj.map(function(p){return p.n.split(' &')[0].replace('Mount ','').replace('The ','');}).join(' · ')+')</b><em>one half-day taxi tour — agree the price first</em></span><a class="chip-btn" href="'+hu+'" target="_blank" rel="noopener">Maps</a></div>';}
+  if(lr.mode==='auto'&&!routeClimbs[city]){var cl=PLACES.filter(function(p){return p.city===city&&p.climb&&!placeVis[p.id];});if(cl.length)notes.push('⛰️ Left out: '+cl.map(function(p){return p.n.split(' &')[0];}).join(', ')+' (45–90 min climbs — not for young children or the elderly). <button class="lnk" style="font-size:1em" onclick="planRoute(\''+city+'\',true)">Include climbs</button>');}
+  var nr=PLACES.filter(function(p){return p.city===city&&!p.ll&&!placeVis[p.id]&&countable(p);});if(nr.length)notes.push('Not routable: '+nr.map(function(p){return '<a href="'+mapsSearch(p)+'" target="_blank" rel="noopener">'+p.n+'</a>';}).join(', ')+' (open in Maps).');
+  notes.push((lr.mode==='sel'?'Your picks, nearest-first':'Nearest-first, unvisited sites only')+' from '+(nearPos?'your location':'your hotel')+'. Check opening times; Baqi’ and Mu’alla open after Fajr/Asr.');
+  el.innerHTML='<div class="card card-pad rtc" style="margin-bottom:12px"><h3 style="font-size:1em">'+(lr.mode==='sel'?'🧭 Your route':'🧭 Suggested order')+(route.length?' · ≈ '+kmStr(tot)+' · '+(allWalk?'🚶 ':'')+(mins>=60?Math.floor(mins/60)+' h '+(mins%60?mins%60+' min':''):mins+' min'):'')+'</h3>'+rows
+    +(url?'<a class="btn" style="text-align:center;text-decoration:none" href="'+url+'" target="_blank" rel="noopener">🗺️ Open route in Google Maps</a>':'')
+    +'<div class="rt-acts"><button class="chip-btn" onclick="shareRoute(\''+city+'\')">📤 Share route</button><button class="lnk" style="font-size:.82em" onclick="clearRoute(\''+city+'\')">Clear route</button></div>'
+    +'<p style="font-size:.72em;color:var(--ink3);margin-top:8px;line-height:1.5">'+notes.join(' ')+'</p></div>';
+}
+function shareRoute(city){var lr=lastRoute[city];if(!lr)return;var from=originFor(city),route=lr.ids.map(placeById).filter(Boolean),cur=from,lines=[];
+  route.forEach(function(p,i){var km=(from&&p.ll)?hav(cur,p.ll):null;if(p.ll)cur=p.ll;lines.push((i+1)+'. '+p.n+(p.ar?' ('+p.ar+')':'')+(km!==null?' — ≈ '+kmStr(km):''));});
+  var wp=route.filter(function(p){return p.ll;}).map(function(p){return p.ll[0]+','+p.ll[1];}),url=wp.length?'https://www.google.com/maps/dir/?api=1'+(from?'&origin='+from[0]+','+from[1]:'')+'&destination='+wp[wp.length-1]+(wp.length>1?'&waypoints='+wp.slice(0,-1).join('|'):''):'';
+  shareText('Ziyarah route · '+CITY_N[city],'🧭 Ziyarah route · '+CITY_N[city]+'\n'+lines.join('\n')+'\n(planned with Umrah Strivers)',url);}
+/* L-05: the same offline driver card serves the hotel and every place (Arabic name in big type) */
+function showDriverCard(o){var tp=document.getElementById('drvTop');if(tp)tp.textContent=o.top||'🚕 Please take me here';
+  var lead=document.getElementById('drvLead');if(lead)lead.textContent=o.lead||'من فضلك خذني إلى';
+  var an=document.getElementById('drvArName');if(an){an.textContent=o.ar||'';an.hidden=!o.ar;}
+  document.getElementById('drvName').textContent=o.en||'—';document.getElementById('drvAddr').textContent=o.sub||'';document.getElementById('drvPhone').textContent=o.tel?'☎ '+o.tel:'';
+  var online=navigator.onLine!==false;
+  document.getElementById('drvActs').innerHTML=(o.tel?'<a href="tel:'+telOf(o.tel)+'" class="btn" onclick="event.stopPropagation()">☎ Call hotel</a>':'')+(o.maps?'<a class="btn ghost'+(online?'':' off')+'" href="'+o.maps+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">'+(online?'🗺️ Open in Maps':'🗺️ Map needs signal')+'</a>':'');
+  document.getElementById('driver').classList.add('on');vib(8);reqWake();}
+function showPlaceDriver(id){var p=placeById(id);if(!p)return;showDriverCard({top:'🚕 Please take me here',ar:p.ar,en:p.n,sub:CITY_N[p.city]+' · '+(p.g==='trip'?'day trip':p.g==='hajj'?'Hajj site':'ziyarah site')+' — agree the price (and a return) before you set off',maps:mapsSearch(p)});}
 
 /* ════════════════════════ BADGES ════════════════════════ */
 /* D-19: every badge reports progress as {cur,need} so locked ones can show "2/3" and how to earn them */
@@ -874,7 +1013,7 @@ function renderHome(){
   h+='<div class="note" style="margin:0 0 12px">'+QUOTES[Math.floor(Date.now()/86400000)%QUOTES.length]+'</div>';
   h+='<div class="card card-pad"><h3>Common questions</h3>'
     +'<div class="acc"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)">Is it really free? <span class="acc-c">▶</span></div><div class="acc-b">Yes — no ads, no subscriptions, no “pro” tier. Built as sadaqah jariyah for the Ummah. If it helps you, share it and make dua for those who built it.</div></div>'
-    +'<div class="acc"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)">Does it work in the Haram without signal? <span class="acc-c">▶</span></div><div class="acc-b">Yes. Open it once with internet and it caches itself; the counters, rites guide, duas, places and your data all work offline. Prayer times work offline too (the Umm al-Qura month is cached, and computed times fill any gap); the map links need signal.</div></div>'
+    +'<div class="acc"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)">Does it work in the Haram without signal? <span class="acc-c">▶</span></div><div class="acc-b">Yes. Open it once with internet and it caches itself; the counters, rites guide, duas, places and your data all work offline. Prayer times work offline too (the Umm al-Qura month is cached, and computed times fill any gap); the map links need signal — the 🚕 Show driver card on every place works offline.</div></div>'
     +'<div class="acc"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)">Where is my data stored? <span class="acc-c">▶</span></div><div class="acc-b">Only on your phone. There is no account and no server. Export a backup from Settings before changing phones; the document vault is encrypted with your PIN and cannot be recovered without it.</div></div>'
     +'<div class="acc"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)">Is the religious content reliable? <span class="acc-c">▶</span></div><div class="acc-b">Every hadith is cited to its collection and was checked against the source text; weak narrations are avoided or marked. It is a study companion, not a fatwa service — ask a scholar for rulings on your situation. Scholar review is pending; corrections are welcome.</div></div>'
     +'</div>';
@@ -1127,14 +1266,11 @@ function telOf(v){return String(v||'').replace(/[^\d+]/g,'');}
 /* the leader field is free text ("Ahmed · +966 5x xxx xxxx"): pull the number out of it */
 function leadPhone(){var l=(ST.hotelInfo||{}).l||'';var m=l.match(/\+?\d[\d\s\-().]{6,}\d/);return m?m[0]:'';}
 function leadName(){var l=(ST.hotelInfo||{}).l||'',p=leadPhone();return (p?l.replace(p,''):l).replace(/^[\s·,:\-–|()]+|[\s·,:\-–|()]+$/g,'').trim();}
-function mapsUrl(){var hi=ST.hotelInfo||{};return 'https://www.google.com/maps/dir/?api=1&destination='+(ST.hotel?ST.hotel[0]+','+ST.hotel[1]:encodeURIComponent((hi.n||'')+' '+(hi.a||'')+' Saudi Arabia'));}
+function mapsUrl(){var hi=ST.hotelInfo||{},pin=hotelPin(ST.city==='Madinah'?'madinah':'makkah')||anyPin();return 'https://www.google.com/maps/dir/?api=1&destination='+(pin?pin[0]+','+pin[1]:encodeURIComponent((hi.n||'')+' '+(hi.a||'')+' Saudi Arabia'));}
 function showDriver(){var hi=ST.hotelInfo||{};
   if(!hi.n){toast('Enter your hotel name first','','Add it',function(){goTab('plan','prep','hotelCard');setTimeout(function(){var e=document.getElementById('hName');if(e)e.focus();},700);});return;}
-  document.getElementById('drvName').textContent=hi.n;document.getElementById('drvAddr').textContent=hi.a||'';document.getElementById('drvPhone').textContent=hi.p?'☎ '+hi.p:'';
-  var online=navigator.onLine!==false;
-  document.getElementById('drvActs').innerHTML=(hi.p?'<a href="tel:'+telOf(hi.p)+'" class="btn" onclick="event.stopPropagation()">☎ Call hotel</a>':'')+'<a class="btn ghost'+(online?'':' off')+'" href="'+mapsUrl()+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">'+(online?'🗺️ Open in Maps':'🗺️ Map needs signal')+'</a>';
-  document.getElementById('driver').classList.add('on');vib(8);}
-function closeDriver(){document.getElementById('driver').classList.remove('on');}
+  showDriverCard({top:'🚕 Please take me to my hotel',lead:'من فضلك خذني إلى هذا الفندق',en:hi.n,sub:hi.a||'',tel:hi.p||'',maps:mapsUrl()});}
+function closeDriver(){document.getElementById('driver').classList.remove('on');if(wakeLock&&!document.getElementById('focus').classList.contains('on')){wakeLock.release().catch(function(){});wakeLock=null;}}
 /* P-08: offline reunification card — leader's number, hotel, meeting point, 911 / 1966 in big type */
 function showLost(){var hi=ST.hotelInfo||{},ph=leadPhone(),nm=leadName();
   var h='<div class="lost-ar">'+(ST.profile==='w'?'أنا ضائعة':'أنا ضائع')+'، من فضلك اتصل بهذا الرقم</div>';
@@ -1218,7 +1354,7 @@ function setItin(first){if(!itinClearOK()){renderItin();return;}itinST().first=f
 function setItinDays(v){if(!itinClearOK()){renderItin();return;}itinST().mad=Math.max(0,Math.min(20,parseInt(v)||0));saveST();renderItin();renderTodayTop();}
 function setPace(p){if(!itinClearOK()){renderItin();return;}itinST().pace=p||'';saveST();renderItin();renderTodayTop();}
 var MK=[['🛬','Arrive · ihram at the miqat (in flight) · Umrah tonight when rested'],['🕌','All five prayers in the Haram · nafl tawaf after Fajr · rest'],['🚐','Ziyarah taxi loop: Hira → Arafat → Muzdalifah → Mina → Thawr'],['🤍','Second Umrah from Tan’eem (or Ji’ranah) · Zamzam & long dua'],['📖','Quran facing the Kaaba · Hijr Isma’il late night · Clock Tower museum'],['🕋','Nafl tawaf · Jannat al-Mu’alla · Masjid al-Jinn · rest'],['🌙','Tahajjud in the Haram · dua list at the Multazam · shopping']];
-var MD=[['🚄','Haramain train · settle · Maghrib & Isha in Masjid an-Nabawi · salam to the Prophet ﷺ'],['🕌','Rawdah (Nusuk permit) · Baqi’ after Fajr · Quba with wudu from the hotel'],['🚌','Hop-on hop-off: Qiblatayn → Trench → Uhud → Hijaz Railway'],['📿','Masjid al-Ijabah · Quran & Seerah museums · Ajwa dates market'],['🌙','Tahajjud in the Nabawi · Quba Avenue walk · long dua']];
+var MD=[['🚄','Haramain train · settle · Maghrib & Isha in Masjid an-Nabawi · salam to the Prophet ﷺ'],['🕌','Rawdah (Nusuk permit) · Baqi’ after Fajr (brothers enter; sisters give salam from the gate) · Quba with wudu from the hotel'],['🚌','Hop-on hop-off: Qiblatayn → Trench → Uhud → Hijaz Railway'],['📿','Masjid al-Ijabah · Quran & Seerah museums · Ajwa dates market'],['🌙','Tahajjud in the Nabawi · Quba Avenue walk · long dua']];
 /* P-33 family pace: later Umrah, one site a day, no climbs, midday rest */
 var REST=' · ☀️ 12–4pm rest in hotel';
 var MK_F=[['🛬','Arrive in ihram · settle, rest · Isha in the Haram — you stay in ihram until tomorrow’s Umrah'],['🕋','Umrah after Fajr while it is cool · sleep after Dhuhr'+REST],['🕌','Prayers in the Haram · Zamzam · one short visit: Jannat al-Mu’alla'+REST],['🚐','One site by taxi: Arafat (view from the car, no climbing)'+REST],['📖','Quran after Fajr · Clock Tower museum (indoors, cool)'+REST],['🤍','Optional second Umrah from Tan’eem after Fajr — skip if anyone is tired'+REST],['🌙','Nafl tawaf after Isha when it is cooler · dua list'+REST]];
@@ -1325,28 +1461,6 @@ function renderVault(){
 }
 
 /* ════════════════════════ HOTEL · NEAR ME · ROUTE ════════════════════════ */
-var nearPos=null;
-function hav(a,b){var R=6371,dLat=(b[0]-a[0])*Math.PI/180,dLon=(b[1]-a[1])*Math.PI/180,x=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(a[0]*Math.PI/180)*Math.cos(b[0]*Math.PI/180)*Math.sin(dLon/2)*Math.sin(dLon/2);return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
-function distLbl(p){var from=nearPos||ST.hotel;if(!from||!p.ll)return '';var km=hav(from,p.ll);var walk=Math.round(km/4.5*60);return '≈ '+(km<10?(Math.round(km*10)/10)+' km':Math.round(km)+' km')+(km<3?' · '+walk+' min walk':'')+(nearPos?' from you':' from hotel');}
-function updHotelLbl(){var hi=ST.hotelInfo||{},pin=ST.hotel?ST.hotel[0].toFixed(3)+', '+ST.hotel[1].toFixed(3):'';
-  var l=document.getElementById('hotelLbl');if(l)l.textContent=hi.n?'🏨 '+hi.n+(ST.hotel?' · pinned':' · not pinned'):(ST.hotel?'🏨 Hotel pinned ('+pin+')':'🏨 No hotel saved');
-  var l2=document.getElementById('hotelLbl2');if(l2)l2.textContent=ST.hotel?'📍 Pinned at '+pin+' — Places shows distances from here':'📍 Location not pinned — tap while at the hotel';}
-function setHotel(){if(!navigator.geolocation){toast('Location not supported');return;}toast('Locating…');navigator.geolocation.getCurrentPosition(function(pos){ST.hotel=[pos.coords.latitude,pos.coords.longitude];saveST();updHotelLbl();renderPlaces();toast('🏨 Hotel location pinned — distances now show from here');},function(){toast('Location denied');});}
-function nearMe(){if(nearPos){nearPos=null;document.getElementById('nearBtn').classList.remove('on');renderPlaces();return;}if(!navigator.geolocation){toast('Location not supported');return;}toast('Locating…');navigator.geolocation.getCurrentPosition(function(pos){nearPos=[pos.coords.latitude,pos.coords.longitude];document.getElementById('nearBtn').classList.add('on');renderPlaces();toast('📡 Sorted by distance from you');},function(){toast('Location denied');});}
-function planRoute(city){
-  var from=nearPos||ST.hotel;
-  if(!from){toast('Set your hotel or tap Near me first');return;}
-  var pool=PLACES.filter(function(p){return p.city===city&&p.ll&&!placeVis[p.id]&&p.g!=='tour'&&p.g!=='trip'&&['haram','mharam'].indexOf(p.g)<0;});
-  var route=[],cur=from;
-  while(pool.length&&route.length<8){pool.sort(function(a,b){return hav(cur,a.ll)-hav(cur,b.ll);});var nx=pool.shift();route.push(nx);cur=nx.ll;}
-  var el=document.getElementById('route-'+city);if(!el)return;
-  if(!route.length){el.innerHTML='<div class="note" style="margin:0 0 12px">Everything nearby is already visited — mashallah!</div>';return;}
-  var wp=route.map(function(p){return p.ll[0]+','+p.ll[1];});
-  var url='https://www.google.com/maps/dir/?api=1&origin='+from[0]+','+from[1]+'&destination='+wp[wp.length-1]+(wp.length>1?'&waypoints='+wp.slice(0,-1).join('|'):'')+'&travelmode=driving';
-  var tot=0;cur=from;route.forEach(function(p){tot+=hav(cur,p.ll);cur=p.ll;});
-  el.innerHTML='<div class="card card-pad" style="margin-bottom:12px"><h3 style="font-size:1em">🧭 Suggested order · ≈ '+Math.round(tot)+' km</h3>'+route.map(function(p,i){return '<div class="lg on"><span class="lg-i">'+(i+1)+'</span><span class="lg-t">'+p.i+' '+p.n+'</span></div>';}).join('')+'<a class="btn" style="text-align:center;text-decoration:none" href="'+url+'" target="_blank" rel="noopener">🗺️ Open route in Google Maps</a><p style="font-size:.72em;color:var(--ink3);margin-top:6px">Nearest-first from '+(nearPos?'your location':'your hotel')+', unvisited sites only. Check opening times; Baqi’ and Mu’alla open after Fajr/Asr.</p></div>';
-}
-
 /* ════════════════════════ HELPERS ════════════════════════ */
 function jumpTo(id,quiet){var el=document.getElementById(id);if(!el)return;var off=118,strip=document.getElementById('riteNow');if(strip&&el.closest&&el.closest('#sub-umrah-steps')&&strip.offsetParent)off+=strip.offsetHeight+8;var y=el.getBoundingClientRect().top+window.scrollY-off;window.scrollTo({top:Math.max(0,y),behavior:'smooth'});if(!quiet)vib(8);}
 function shareApp(){
@@ -1383,10 +1497,12 @@ function applyGroup(){var g=pendingGroup;if(!g)return;var cl=function(v,a,b,d){v
   if(g.itin&&typeof g.itin==='object'){var cus={};if(g.itin.custom&&typeof g.itin.custom==='object')Object.keys(g.itin.custom).forEach(function(k){if(/^\d+$/.test(k)&&typeof g.itin.custom[k]==='string')cus[k]=g.itin.custom[k].slice(0,300);});ST.itin={first:g.itin.first==='madinah'?'madinah':'makkah',mad:cl(g.itin.mad,0,20,3),pace:g.itin.pace==='family'?'family':'',custom:cus};}
   if(g.city==='Makkah'||g.city==='Madinah')ST.city=g.city;
   if(g.hotelInfo&&typeof g.hotelInfo==='object'){var hi={};['n','a','p','m','l'].forEach(function(k){if(typeof g.hotelInfo[k]==='string')hi[k]=g.hotelInfo[k].slice(0,200);});ST.hotelInfo=hi;}
-  if(Array.isArray(g.hotel)&&g.hotel.length===2&&isFinite(g.hotel[0])&&isFinite(g.hotel[1]))ST.hotel=[+g.hotel[0],+g.hotel[1]];
+  if(g.hotel){var nh=(ST.hotel&&!Array.isArray(ST.hotel)&&typeof ST.hotel==='object')?ST.hotel:{},okLL=function(v){return Array.isArray(v)&&v.length===2&&isFinite(v[0])&&isFinite(v[1]);};
+    if(okLL(g.hotel)){var hc=cityOf([+g.hotel[0],+g.hotel[1]]);if(hc)nh[hc]=[+g.hotel[0],+g.hotel[1]];}else if(typeof g.hotel==='object')['makkah','madinah'].forEach(function(c){if(okLL(g.hotel[c]))nh[c]=[+g.hotel[c][0],+g.hotel[c][1]];});
+    ST.hotel=nh;}
   ST.onboarded=true;ST.stage=ST.stage||'plan';saveST();pendingGroup=null;closeSheet();
   var tl=document.getElementById('tripLen');if(tl)tl.value=ST.tripLen;var cm=document.getElementById('cityMakkah'),cd=document.getElementById('cityMadinah');if(cm){cm.classList.toggle('on',ST.city==='Makkah');cd.classList.toggle('on',ST.city==='Madinah');}
-  loadHotelInfo();updHotelLbl();updPlan();updDaily();updStats();renderItin();updChip();renderCntHd();
+  loadHotelInfo();updHotelLbl();renderPlaces();updPlaces();updPlan();updDaily();updStats();renderItin();updChip();renderCntHd();
   goTab('plan','prep','cdCard');toast('👥 Trip setup applied'+(g.by?' from '+g.by:''),true);vib([30,40,60]);}
 function declineGroup(){pendingGroup=null;closeSheet();if(!ST.onboarded)setTimeout(showOnboard,300);}
 
@@ -2050,7 +2166,7 @@ function initUI(){
   document.getElementById('quoteLine').textContent=QUOTES[Math.floor(Math.random()*QUOTES.length)];
   document.getElementById('tripLen').value=ST.tripLen;
   var ni=document.getElementById('nameIn');if(ni)ni.value=ST.name||'';
-  renderPlan();renderRites();renderDaily();renderPlaces();renderDuas();tbRestore();renderTB();
+  renderPlan();renderRites();renderDaily();placesBoot();renderPlaces();renderDuas();tbRestore();renderTB();
   buildDeck();renderFC();renderPost();updRemSw();applySubs();updChip();renderItin();renderVault();renderDuaSec();renderWater();updToolsOrder();updHotelLbl();loadHotelInfo();loadNiyyah();updKidsSw();applyProfile();renderCntHd();
   if(!ST.onboarded&&!pendingGroup)setTimeout(showOnboard,400);
   kidsBestLbl();renderStories();

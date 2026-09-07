@@ -33,7 +33,9 @@ An offline-first web app (`index.html` + `data.js` + `app.js`, zero build step).
 
 ### 📍 Places — ziyarah with purpose
 - **51 sites** across Makkah (29) and Madinah (22), grouped — Makkah: The Haram · Ziyarah · The Hajj sites · Museums & culture · Day trips; Madinah: The Prophet's Mosque & around · Historic mosques · Battlefields, wells & history · Hop-on hop-off & practical
-- Every site has its historical significance (with verified Quran/hadith references where applicable), an etiquette/practical tip, a **one-tap Google Maps** button, and a "visited" tracker; search box across all sites
+- Every site has its historical significance (with verified Quran/hadith references where applicable), an etiquette/practical tip, its **Arabic name** and an offline **🚕 Show driver** card, a **one-tap Google Maps** button, and a one-tap "visited" tracker that remembers the trip day; search box across all sites (English or Arabic)
+- **Access tags** on the collapsed card — men-only cemeteries, after-Fajr/Asr hours, Nusuk permits, climbs — so nobody is turned away at a gate; a ⬜ Unvisited pill, folded Hajj/museum/day-trip groups and a hotel pin per city (GPS or a landmark, set before you fly)
+- **Route planner** — nearest-first from your hotel or live position, per-stop walking time, Hajj sites as one taxi line, climbs left out unless you ask, your own ＋ Route shortlist, Visited ticks that keep the plan, Share route
 - **Madinah Hop-On Hop-Off card** — all 12 City Sightseeing stops (Red history loop, Green Haram loop) with route-coloured chips, a booking link, and stop badges on the matching places
 - New Makkah sites include Hijr Isma'il & Maqam Ibrahim, Zamzam, the Mas'a, the Prophet's ﷺ birthplace, Jabal Abu Qubays, Masjid ar-Rayah, Ji'ranah, Hudaybiyyah, Namirah, al-Mash'ar, al-Khayf, al-Bay'ah, the Jamarat, the Hira Cultural District, the Kiswah factory, Makkah Museum, Ta'if and historic Jeddah; new Madinah sites include Bab as-Salam, Al Manakha, the Quran & Seerah museums, Masjid al-Jumu'ah, al-Ijabah, al-Miqat (Abyar Ali), Wadi al-Aqiq, Bir Uthman, Salman's garden, the Hijaz Railway, Quba Avenue and the practical stops
 
@@ -91,6 +93,16 @@ It's one file — just open `index.html` in a browser. Installable to the home s
 
 ## Releasing an update
 The service-worker cache is named after `APP_VERSION`. For every release **bump `APP_VERSION` in both `app.js` and `sw.js`** — installed apps then pick the new version up automatically (an "Update" chip appears in the header; Settings › Check for updates forces a check). The app shell is served stale-while-revalidate, so it opens instantly from cache regardless of signal.
+
+## v4.13 — Places
+- **Opens where you are**: the city pill is seeded from your prayer city and remembered; **Near me** switches to the city you are standing in, orders groups by distance and reads as a clearable state; distances say *inside the Haram*, *≈ 350 m · 5 min walk* or *you're here*
+- **Nothing resets under you**: marking a place visited patches the card in place (from the 44 px icon, storing *Visited · Day N*); routes and open cards survive filter, Near me and hotel changes
+- **Hotel per city**: GPS when you are there, a landmark picker (Clock Tower, King Abdulaziz Gate, Jarwal… Bab as-Salam, Qiblatayn Rd, Quba Avenue…) when you are not, ✕ per city, labelled by name never coordinates — shared with the Prepare hotel card and the group link
+- **Route planner v2**: a start-point prompt instead of a dead end, non-visitable sites (Namirah, Abu Qubays, al-Bay'ah) excluded, Hajj sites as one half-day taxi line with its own Maps link, climbs left out by default (*Include climbs*), ⚠️ access tags on routed stops, per-stop *≈ km · 🚶 min*, total km + time, walking mode when every leg is short, **＋ Route** shortlist (*Your route*, persisted), Visited toggles per stop, Clear and **Share route**
+- **Access tags** (👤 Men enter · 🕐 After Fajr & Asr · 🌸 Sisters: salam from outside · 🎫 Free Nusuk permit · 🥾 45–90 min climb · 📅 Arafah day only) on the collapsed header; a *Get the free Rawdah permit on Nusuk* link; the Madinah itinerary tells sisters to give salam at the Baqi' gate
+- **Arabic names** on all 51 sites (as a driver reads them) with a per-place **🚕 Show driver** card that works offline — the same overlay the hotel card uses; coordinates added to the 13 sites that lacked them
+- **Hero**: per-city visit counts (no ring, no percentage), a *Nearest unvisited* chip that opens the card, and the three-mosques hadith framed as "ziyarah is a virtuous extra, never a rite"
+- **Navigation**: short jump chips with a right-edge fade, the city pills stick under the header, Hajj / Museums / Day trips and Bus stops fold into counted sections (Makkah drops from 29 to 14 visible rows), the hop-on hop-off card is a collapsed row with tappable stops placed right before the bus-stop group
 
 ## v4.5 — global polish
 - Deep links everywhere: `goTab(tab, sub, anchor)` lands on the exact card (Qibla, Tasbih, Itinerary, Vault, Cards, After-Umrah…); `openPlace(id)` opens a place card from any cross-reference; checklist items carry "Open →" chips; itinerary site names are tappable
