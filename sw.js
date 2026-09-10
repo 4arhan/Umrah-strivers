@@ -1,8 +1,10 @@
 /* Umrah Strivers — offline service worker */
 /* Release note: bump APP_VERSION here AND at the top of app.js for every release. */
-var APP_VERSION = '4.14.0';
+var APP_VERSION = '4.15.0';
 var CACHE = 'umrah-strivers-' + APP_VERSION;
-var CORE = ['./', './index.html', './data.js', './app.js', './manifest.json'];
+var CORE = ['./', './index.html', './data.js', './app.js', './manifest.json',
+  './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-192.png',
+  './icons/maskable-512.png', './icons/apple-touch-icon.png', './icons/favicon-32.png'];
 var SHELL = ['/', '/index.html', '/app.js', '/data.js'];
 
 self.addEventListener('install', function (e) {
@@ -20,7 +22,14 @@ self.addEventListener('message', function (e) {
   if (e.data && e.data.type === 'SKIP_WAITING') self.skipWaiting();
 });
 
+/* Standalone pages (marketing / legal) must never be answered with the app shell. */
+var PAGES = ['/install', '/install.html', '/privacy', '/privacy.html'];
+function isPage(url) {
+  var p = url.pathname.replace(/\/+$/, '') || '/';
+  return PAGES.indexOf(p) > -1;
+}
 function isShell(url, req) {
+  if (isPage(url)) return false;
   if (req.mode === 'navigate') return true;
   var p = url.pathname;
   for (var i = 0; i < SHELL.length; i++) { if (p === SHELL[i] || p.endsWith(SHELL[i])) return true; }
@@ -52,6 +61,17 @@ self.addEventListener('fetch', function (e) {
         return (req.mode === 'navigate' ? withTimeout(net, 3000) : net).catch(function () { return c.match('./index.html'); });
       });
     }));
+    return;
+  }
+
+  // Standalone pages: network-first so edits publish immediately, cache as an offline fallback.
+  if (url.origin === location.origin && isPage(url)) {
+    e.respondWith(
+      fetch(req).then(function (res) {
+        if (res && res.ok) { var copy = res.clone(); caches.open(CACHE).then(function (c) { c.put(req, copy); }); }
+        return res;
+      }).catch(function () { return caches.match(req); })
+    );
     return;
   }
 

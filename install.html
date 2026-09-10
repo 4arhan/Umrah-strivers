@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Get Umrah Strivers — free, offline Umrah companion</title>
+<meta name="description" content="Install Umrah Strivers on your phone. Plan, learn, perform and track your Umrah. Free, works offline in the Haram, no account, nothing leaves your phone.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="theme-color" content="#0E3B2E">
+<meta property="og:title" content="Umrah Strivers — free, offline Umrah companion">
+<meta property="og:description" content="Plan, learn, perform and track your Umrah. Free, offline, private.">
+<meta property="og:image" content="https://umrah-strivers.vercel.app/icons/og-image.png">
+<meta property="og:url" content="https://umrah-strivers.vercel.app/install">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F2EA;--card:#FFFFFF;--sunk:#EFE9DD;--ink:#17251F;--ink2:#54635B;--ink3:#93A29A;--line:#E2DCD0;
+  --brand:#0E3B2E;--brand2:#177A52;--brand-soft:#E3EFE7;--gold:#B8892F;--gold2:#D9B45E;--gold-soft:#F6EDDA;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0D1411;--card:#152019;--sunk:#1B2921;--ink:#E7EDE8;--ink2:#A2B2A8;--ink3:#6D7E74;--line:#26332B;
+  --brand:#5FC79C;--brand2:#79D7B0;--brand-soft:#172E24;--gold:#D9AF52;--gold2:#E7C670;--gold-soft:#2C2416;
+  color-scheme:dark;}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;margin:0;text-wrap:balance}
+p{margin:0}
+a{color:var(--brand2)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:3px solid var(--brand2);outline-offset:2px;border-radius:6px}
+.wrap{max-width:660px;margin:0 auto;padding:0 22px 80px}
+
+/* hero */
+.hero{text-align:center;padding:52px 0 8px}
+.hero img.mk{width:88px;height:88px;border-radius:21px;box-shadow:0 12px 30px -10px rgba(14,59,46,.5)}
+.hero h1{font-size:clamp(32px,7vw,44px);line-height:1.08;margin-top:22px;letter-spacing:-.01em}
+.hero .tag{color:var(--ink2);font-size:17px;margin-top:14px;max-width:30ch;margin-left:auto;margin-right:auto}
+.trust{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:20px}
+.trust span{font-size:12.5px;font-weight:500;padding:5px 11px;border-radius:999px;background:var(--brand-soft);color:var(--brand2);border:1px solid transparent}
+
+/* install card */
+.inst{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin-top:30px;
+  box-shadow:0 2px 4px rgba(23,37,31,.04),0 18px 40px -24px rgba(23,37,31,.28)}
+.inst .plat{font-size:11.5px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--ink3)}
+.inst h2{font-size:21px;margin-top:6px}
+.btn{display:block;width:100%;text-align:center;padding:15px 18px;border-radius:12px;font-weight:600;font-size:16.5px;
+  background:var(--brand);color:#fff;margin-top:16px;text-decoration:none;border:1px solid var(--brand)}
+:root:not([data-theme="light"]) .btn,:root[data-theme="dark"] .btn{color:#0B1A13}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn{color:#0B1A13}}
+.btn.ghost{background:transparent;color:var(--brand2);border:1px solid var(--line)}
+.steps{list-style:none;margin:16px 0 0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:30px 1fr;gap:12px;padding:9px 0;align-items:start;
+  border-top:1px solid var(--line);font-size:15px}
+.steps li:first-child{border-top:0}
+.steps li::before{content:counter(s);font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:14px;color:var(--gold);
+  width:26px;height:26px;border-radius:50%;border:1.5px solid var(--gold);display:grid;place-items:center}
+.steps b{font-weight:600}
+.steps li > span{min-width:0}
+.shr{display:inline-block;vertical-align:-3.5px;color:var(--brand2)}
+.note{font-size:13.5px;color:var(--ink2);margin-top:14px}
+
+/* sections */
+section{margin-top:46px}
+section > h2{font-size:25px;margin-bottom:6px}
+section > p.lead{color:var(--ink2);font-size:15.5px;margin-bottom:18px}
+.feats{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.feats > div{background:var(--card);padding:16px 18px}
+.feats h3{font-size:16.5px;margin-bottom:4px}
+.feats p{font-size:14px;color:var(--ink2)}
+.shots{display:flex;gap:14px;overflow-x:auto;padding:4px 0 12px;scroll-snap-type:x mandatory}
+.shots figure{margin:0;flex:none;width:210px;scroll-snap-align:start}
+.shots img{width:100%;border-radius:14px;border:1px solid var(--line);display:block;background:var(--card)}
+.shots figcaption{font-size:13px;color:var(--ink2);margin-top:8px;line-height:1.4}
+.q{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:8px;overflow:hidden}
+.q summary{padding:14px 17px;font-weight:600;font-size:15.5px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.q summary::-webkit-details-marker{display:none}
+.q summary::after{content:'+';color:var(--ink3);font-weight:400}
+.q[open] summary::after{content:'−'}
+.q .a{padding:0 17px 15px;font-size:14.5px;color:var(--ink2)}
+footer{margin-top:52px;padding-top:22px;border-top:1px solid var(--line);text-align:center;font-size:13.5px;color:var(--ink2)}
+footer p+p{margin-top:8px}
+.dua{font-family:'Fraunces',Georgia,serif;font-style:italic;color:var(--gold);font-size:15px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <img class="mk" src="icons/icon-512.png" alt="Umrah Strivers">
+    <h1>Arrive knowing exactly what to do</h1>
+    <p class="tag">Plan it, learn it, walk every rite with the duas in your hand, and count your tawaf without losing your place.</p>
+    <div class="trust"><span>Free</span><span>Works offline</span><span>No account</span><span>No ads or tracking</span><span>Every hadith verified</span></div>
+  </header>
+
+  <div class="inst" id="inst">
+    <div class="plat" id="platLbl">Install</div>
+    <h2 id="instTitle">Add it to your home screen</h2>
+    <div id="instBody"></div>
+    <a class="btn ghost" href="/" id="openWeb">Or just open it in this browser →</a>
+  </div>
+
+  <section>
+    <h2>What you get</h2>
+    <p class="lead">Everything for the journey, in one app that keeps working when the signal does not.</p>
+    <div class="feats">
+      <div><h3>🧳 Prepare without guessing</h3><p>Checklists dated by how far ahead each thing should be done, a departure countdown, a day-by-day itinerary and an encrypted vault for your documents.</p></div>
+      <div><h3>📖 Learn it before you fly</h3><p>The history, the virtues, the fiqh questions, guidance for sisters and a scam-awareness guide. Prove it in a seven-level quiz.</p></div>
+      <div><h3>🕋 Walk every rite with confidence</h3><p>Ihram, tawaf, sa'i and halq step by step, each dua in Arabic with transliteration and audio, and the evidence behind every action.</p></div>
+      <div><h3>🔢 Never lose count</h3><p>Giant tap counters for tawaf and sa'i with a full-screen mode that keeps the screen awake and remembers your round if the phone locks.</p></div>
+      <div><h3>📍 51 sacred sites</h3><p>Why each one matters, its etiquette and access rules, its Arabic name, a driver card that works with no signal, and a route planner for your ziyarah day.</p></div>
+      <div><h3>📿 Make every day count</h3><p>A daily worship tracker with streaks and achievements, offline prayer times for both cities, a qibla compass and a thirty-day habit keeper for when you get home.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>A look inside</h2>
+    <div class="shots">
+      <figure><img src="icons/shot-home.png" alt="The home screen showing your next step"><figcaption>Your real next step, every time you open it</figcaption></figure>
+      <figure><img src="icons/shot-counter.png" alt="The tawaf counter"><figcaption>The tawaf counter, with the dua for that round</figcaption></figure>
+      <figure><img src="icons/shot-steps.png" alt="The rites walkthrough"><figcaption>Every rite in order, with every dua</figcaption></figure>
+      <figure><img src="icons/shot-places.png" alt="Places to visit"><figcaption>51 sites across Makkah and Madinah</figcaption></figure>
+      <figure><img src="icons/shot-daily.png" alt="The daily worship tracker"><figcaption>A day in the Haramain, tracked</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Common questions</h2>
+    <details class="q"><summary>Is it really free?</summary><div class="a">Yes, completely. No purchase, no subscription, no advertising and no paid tier. It was built as sadaqah jariyah.</div></details>
+    <details class="q"><summary>Does it work without signal in the Haram?</summary><div class="a">Yes. The rites, the duas, all 51 places, the driver cards and even the prayer times work with the network off. Prayer times are cached a month ahead and can be calculated on the device if nothing is cached.</div></details>
+    <details class="q"><summary>Where is my data stored?</summary><div class="a">Only on your phone. There is no account and no server. You can export a backup file or erase everything from Settings at any time. Read the <a href="/privacy">privacy policy</a>.</div></details>
+    <details class="q"><summary>Is the religious content reliable?</summary><div class="a">Every hadith citation is checked against its collection. Paraphrases are marked as paraphrases and weak narrations are left out. It is a study and tracking aid, not a substitute for asking a scholar about your own situation.</div></details>
+    <details class="q"><summary>Do I need to install it at all?</summary><div class="a">No. It runs in any modern browser. Installing it just gives you an icon on your home screen and a full screen without the browser bars, which matters most when you are using it in the mataf.</div></details>
+  </section>
+
+  <footer>
+    <p><a href="/">Open the app</a> · <a href="/privacy">Privacy</a></p>
+    <p class="dua">May Allah invite you to His House and accept your Umrah.</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var ua = navigator.userAgent || '';
+  var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var isAndroid = /Android/.test(ua);
+  var standalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  var lbl = document.getElementById('platLbl');
+  var title = document.getElementById('instTitle');
+  var body = document.getElementById('instBody');
+  var deferred = null;
+  var SHARE_ICON = '<svg class="shr" viewBox="0 0 24 24" width="17" height="17" fill="none" ' +
+    'stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<path d="M12 15V3"/><path d="M8 7l4-4 4 4"/><path d="M4 13v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6"/></svg>';
+
+  function render(kind) {
+    if (kind === 'installed') {
+      lbl.textContent = 'Installed';
+      title.textContent = 'You already have it';
+      body.innerHTML = '<p class="note">This is running as an installed app. Open it from your home screen icon any time, with or without a connection.</p>';
+      document.getElementById('openWeb').textContent = 'Go to the app →';
+      return;
+    }
+    if (kind === 'prompt') {
+      lbl.textContent = 'Android · Chrome';
+      title.textContent = 'Install it in one tap';
+      body.innerHTML = '<button class="btn" id="doInstall">Install Umrah Strivers</button>' +
+        '<p class="note">It installs straight from this page. No store account, no download queue, about half a megabyte.</p>';
+      document.getElementById('doInstall').addEventListener('click', function () {
+        if (!deferred) return;
+        deferred.prompt();
+        deferred.userChoice.then(function () { deferred = null; });
+      });
+      return;
+    }
+    if (kind === 'ios') {
+      lbl.textContent = 'iPhone · iPad';
+      title.textContent = 'Add it to your home screen';
+      body.innerHTML =
+        '<ol class="steps">' +
+        '<li><span><b>Open this page in Safari.</b> Chrome and in-app browsers on iPhone cannot add to the home screen.</span></li>' +
+        '<li><span>Tap the <b>Share</b> button ' + SHARE_ICON + ' at the bottom of the screen.</span></li>' +
+        '<li><span>Scroll down and tap <b>Add to Home Screen</b>.</span></li>' +
+        '<li><span>Tap <b>Add</b>. The icon appears with your other apps.</span></li>' +
+        '</ol>' +
+        '<p class="note">Opening it from that icon gives you the full screen and keeps it working with no signal.</p>';
+      return;
+    }
+    if (kind === 'android') {
+      lbl.textContent = 'Android';
+      title.textContent = 'Add it to your home screen';
+      body.innerHTML =
+        '<ol class="steps">' +
+        '<li><span>Tap the <b>⋮</b> menu in the top right of your browser.</span></li>' +
+        '<li><span>Tap <b>Install app</b>, or <b>Add to Home screen</b>.</span></li>' +
+        '<li><span>Confirm. The icon appears with your other apps.</span></li>' +
+        '</ol>' +
+        '<p class="note">If you do not see the option, open this page in Chrome.</p>';
+      return;
+    }
+    lbl.textContent = 'Computer';
+    title.textContent = 'Install it, or send it to your phone';
+    body.innerHTML =
+      '<ol class="steps">' +
+      '<li><span>In Chrome or Edge, click the <b>install icon</b> in the address bar to add it as an app.</span></li>' +
+      '<li><span>On your phone, open <b>umrah-strivers.vercel.app/install</b> and follow the steps there.</span></li>' +
+      '</ol>' +
+      '<p class="note">The app is designed for a phone. That is where you will use it.</p>';
+  }
+
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    deferred = e;
+    render('prompt');
+  });
+
+  if (standalone) render('installed');
+  else if (isIOS) render('ios');
+  else if (isAndroid) render('android');
+  else render('desktop');
+
+  window.addEventListener('appinstalled', function () { render('installed'); });
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  }
+})();
+</script>
+</body>
+</html>

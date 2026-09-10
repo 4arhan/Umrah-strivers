@@ -1,3 +1,12 @@
 .vercel
 node_modules
 .env*
+
+# build artefacts and signing material — never commit
+android.keystore
+*.keystore
+*.jks
+*.aab
+*.apk
+.bubblewrap/
+twa-manifest.json.bak

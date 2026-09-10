@@ -53,6 +53,18 @@ An offline-first web app (`index.html` + `data.js` + `app.js`, zero build step).
 - Resources: Nusuk, Haramain High-Speed Rail, Tarteel, Sunnah.com
 - Dark/light theme, backup export/import, full reset
 
+## Getting the app
+
+| Where | Link |
+|---|---|
+| Web app | https://umrah-strivers.vercel.app |
+| Install instructions | https://umrah-strivers.vercel.app/install |
+| Privacy policy | https://umrah-strivers.vercel.app/privacy |
+
+Installable from any modern browser as a home-screen app. See **[LAUNCH.md](LAUNCH.md)** for the Google Play and App Store process, including what is already prepared and what still needs your developer accounts.
+
+Store and install assets live in `icons/` (app icons, screenshots, feature graphic, Open Graph image) and `store/` (framed 1080×1920 listing screenshots).
+
 ## Deploying to Vercel
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F4arhan%2FUmrah-strivers)
