@@ -1,4 +1,4 @@
-/* Umrah Strivers — content & data (edit here to change text, places, quiz, duas) */
+/* Miqah — content & data (edit here to change text, places, quiz, duas) */
 /* ════════════════════════ DATA ════════════════════════ */
 var QUOTES=[
 '"Perform Umrah after Umrah, for the two of them wipe away whatever sins came between them." — Bukhari 1773',

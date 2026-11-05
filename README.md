@@ -1,6 +1,8 @@
-# 🕋 Umrah Strivers
+# 🕋 Miqah
 
-**The Journey of a Lifetime** — plan, learn, perform and track your Umrah. The sister app to [Ramadan Strivers](https://www.ramadanstrivers.com/).
+**Hajj & Umrah companion** — plan, learn, perform and track your Umrah. The sister app to [Ramadan Strivers](https://www.ramadanstrivers.com/).
+
+> The app was previously called *Umrah Strivers*; the repository name `Umrah-strivers` and the `umrah-strivers.vercel.app` address are historical and still work.
 
 An offline-first web app (`index.html` + `data.js` + `app.js`, zero build step). No accounts, no servers, no tracking — all data stays on your device, with export/import backup and an encrypted document vault.
 

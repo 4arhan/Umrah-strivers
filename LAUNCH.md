@@ -1,4 +1,6 @@
-# Launching Umrah Strivers
+# Launching Miqah
+
+Store title: **Miqah: Hajj & Umrah**. Android package id: `com.miqah.app` (set in `twa-manifest.json` and `well-known/assetlinks.json`). The web address `umrah-strivers.vercel.app` is the historical name and stays as is.
 
 Everything in this repository is ready. What remains needs your accounts and your signing key, which only you should hold.
 
@@ -55,7 +57,8 @@ One payment of **$25**. It never renews.
    | App icon, 512×512 | `icons/store-icon-512.png` |
    | Feature graphic, 1024×500 | `icons/feature-graphic.png` |
    | Phone screenshots, 1080×1920 | ask me for the framed set, or use `icons/shot-*.png` |
-   | Short and full description | The **Umrah Strivers Brief**, copy blocks section |
+   | Store title | `Miqah: Hajj & Umrah` |
+   | Short and full description | The **Miqah Brief**, copy blocks section |
    | Privacy policy URL | `https://umrah-strivers.vercel.app/privacy` |
 
 5. **Data safety form.** Answer *no data collected* and *no data shared*. This is accurate. Declare the optional location, sensor and notification permissions as used on-device only.

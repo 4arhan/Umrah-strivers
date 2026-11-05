@@ -1,6 +1,6 @@
-/* Umrah Strivers — application logic */
+/* Miqah — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='4.15.0';
+var APP_VERSION='5.0.0';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* ════════════════════════ STATE ════════════════════════ */
 var ST={day:1,tripLen:10,theme:'light',tab:'home',dep:'',umrahs:0,tawaf:0,sai:0,quizBest:0,city:'Makkah'};
@@ -880,7 +880,7 @@ function drawRoute(city){var el=document.getElementById('route-'+city);if(!el)re
 function shareRoute(city){var lr=lastRoute[city];if(!lr)return;var from=originFor(city),route=lr.ids.map(placeById).filter(Boolean),cur=from,lines=[];
   route.forEach(function(p,i){var km=(from&&p.ll)?hav(cur,p.ll):null;if(p.ll)cur=p.ll;lines.push((i+1)+'. '+p.n+(p.ar?' ('+p.ar+')':'')+(km!==null?' — ≈ '+kmStr(km):''));});
   var wp=route.filter(function(p){return p.ll;}).map(function(p){return p.ll[0]+','+p.ll[1];}),url=wp.length?'https://www.google.com/maps/dir/?api=1'+(from?'&origin='+from[0]+','+from[1]:'')+'&destination='+wp[wp.length-1]+(wp.length>1?'&waypoints='+wp.slice(0,-1).join('|'):''):'';
-  shareText('Ziyarah route · '+CITY_N[city],'🧭 Ziyarah route · '+CITY_N[city]+'\n'+lines.join('\n')+'\n(planned with Umrah Strivers)',url);}
+  shareText('Ziyarah route · '+CITY_N[city],'🧭 Ziyarah route · '+CITY_N[city]+'\n'+lines.join('\n')+'\n(planned with Miqah)',url);}
 /* L-05: the same offline driver card serves the hotel and every place (Arabic name in big type) */
 function showDriverCard(o){var tp=document.getElementById('drvTop');if(tp)tp.textContent=o.top||'🚕 Please take me here';
   var lead=document.getElementById('drvLead');if(lead)lead.textContent=o.lead||'من فضلك خذني إلى';
@@ -935,7 +935,7 @@ function exportData(){
   var ls={};for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&k.indexOf('us-')===0&&k!=='us-ptcache'&&k!=='us-remlast')ls[k]=localStorage.getItem(k);}
   var data={v:3,exported:new Date().toISOString(),settings:ST,plan:planChk,rites:riteChk,daily:dailyChk,places:placeVis,badges:earned,ls:ls};
   var b=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-  var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='umrah-strivers-'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();setTimeout(function(){a.remove();},500);
+  var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='miqah-'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();setTimeout(function(){a.remove();},500);
   toast('📤 Backup exported');
 }
 function importData(ev){
@@ -1073,7 +1073,7 @@ function renderHome(){
     h+=fcHTML+quoteHTML+'<div class="card card-pad"><h3>Common questions</h3>'+faqHTML+'</div>'+shareHTML;
   }else{
     /* ── dashboard (H-01): brand strip → status → continue / do next → prayer → tools → cards → quote → compact stages → about ── */
-    h+='<div class="hbrand"><span class="hb-n">🕋 Umrah Strivers</span><small>free · offline · private</small>'+installHTML+'</div>';
+    h+='<div class="hbrand"><span class="hb-n">🕋 Miqah</span><small>free · offline · private</small>'+installHTML+'</div>';
     h+=statusHTML;
     /* H-04: one Continue card — in-progress count, then the sa'i hand-off, then an unfinished day log, then today's flashcard */
     var cont='',fcUsed=false;
@@ -1319,7 +1319,7 @@ function sharePrep(){
   var keys=['passport','visa','menacwy','nusuk','rawdah','insurance',ST.profile==='w'?'abaya':'ihram'];
   lines.push('Key items: '+keys.map(function(k){return (planChk[k]?'✓':'✗')+' '+KL[k];}).join(' · '));
   var B=tlBuckets();if(B&&B.over.length)lines.push('Overdue: '+B.over.length+(B.blocking?' ('+B.blocking+' travel-blocking)':''));
-  lines.push('via Umrah Strivers');
+  lines.push('via Miqah');
   shareText('Umrah readiness',lines.join('\n'),APP_URL);
 }
 function renderCatTiles(){
@@ -1471,7 +1471,7 @@ function itReset(idx){var it=itinST();delete it.custom[idx];saveST();renderItin(
 function shareItin(){var base=ST.dep?new Date(ST.dep+'T00:00:00'):null,it=itinST();
   var lines=[(ST.name?ST.name+'’s':'Our')+' Umrah itinerary · '+ST.tripLen+' days'+(base?' from '+fmtDate(ST.dep):'')+(it.pace==='family'?' · family pace':'')];
   itinDays().forEach(function(d,idx){var dt=base?new Date(base.getTime()+idx*86400000).toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'})+' · ':'';lines.push('Day '+(idx+1)+' · '+dt+(d.city==='Makkah'?'🕋':'🕌')+' '+d.city+' — '+d.e[0]+' '+d.e[1]);});
-  lines.push('via Umrah Strivers');shareText('Umrah itinerary',lines.join('\n'),APP_URL);}
+  lines.push('via Miqah');shareText('Umrah itinerary',lines.join('\n'),APP_URL);}
 
 var ITIN_PLACES={'Tan’eem':'taneem','Ji’ranah':'jiranah','Quba Avenue':'qubasq','Quba':'quba','Uhud':'uhud','Rawdah':'rawdah','Abyar Ali':'miqat','Hira':'hira','Arafat':'arafat','Muzdalifah':'muzdalifah','Mina':'mina','Thawr':'thawr','Baqi’':'baqi','Qiblatayn':'qiblatain','Trench':'khandaq','Hijaz Railway':'hijazrail','Masjid al-Jinn':'jinn','Jannat al-Mu’alla':'mualla','Masjid al-Ijabah':'ijabah','Clock Tower museum':'clock','Quran & Seerah museums':'quranmuseum','Hijr Isma’il':'hijr','Zamzam':'zamzam'};
 var ITIN_RE=new RegExp(Object.keys(ITIN_PLACES).sort(function(a,b){return b.length-a.length;}).map(function(k){return k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}).join('|'),'g');
@@ -1487,7 +1487,7 @@ function shareCard(){
   var pv=Object.keys(placeVis).filter(function(k){return placeVis[k];}).length,tb=tbTotal();
   var nt=0;for(var j=1;j<=ST.tripLen;j++){var dd=dailyChk['d'+j];if(dd)nt+=(dd.ntawafN||(dd.ntawaf?1:0));}
   x.textAlign='center';x.font='100px serif';x.fillText('🕋',540,200);
-  x.font='700 40px Georgia,serif';x.fillStyle='#D9B45E';x.fillText('UMRAH STRIVERS',540,280);
+  x.font='700 40px Georgia,serif';x.fillStyle='#D9B45E';x.fillText('MIQAH',540,280);
   x.font='700 56px Georgia,serif';x.fillStyle='#fff';x.fillText((ST.name||'My')+(ST.name?'’s':'')+' journey · Day '+ST.day+' of '+ST.tripLen,540,365);
   var tiles=[[ST.umrahs,'Umrahs'],[nt,'nafl tawafs'],[(logged?Math.round(sum/logged):0)+'%','avg. daily deeds'],[pv,'places visited'],[tb,'dhikr counted'],[streakOf('fajr'),'Fajr streak'],[logged,'days logged']];
   tiles.forEach(function(t,i){var cx=230+(i%3)*310,cy=500+Math.floor(i/3)*190;x.fillStyle='rgba(255,255,255,.08)';x.beginPath();x.roundRect(cx-130,cy-80,260,160,28);x.fill();x.fillStyle='#EFD494';x.font='700 58px Georgia,serif';x.fillText(String(t[0]),cx,cy+6);x.fillStyle='rgba(255,255,255,.7)';x.font='23px Inter,sans-serif';x.fillText(t[1],cx,cy+50);});
@@ -1541,8 +1541,8 @@ function renderVault(){
 /* ════════════════════════ HELPERS ════════════════════════ */
 function jumpTo(id,quiet){var el=document.getElementById(id);if(!el)return;var off=118,strip=document.getElementById('riteNow');if(strip&&el.closest&&el.closest('#sub-umrah-steps')&&strip.offsetParent)off+=strip.offsetHeight+8;var y=el.getBoundingClientRect().top+window.scrollY-off;window.scrollTo({top:Math.max(0,y),behavior:'smooth'});if(!quiet)vib(8);}
 function shareApp(){
-  var data={title:'Umrah Strivers',text:'Plan, learn, perform & track your Umrah — rites walkthrough, tawaf counter, prayer times, ziyarah places & a knowledge quiz. Free, offline, private.',url:APP_URL};
-  if(ST.dep){var dt=new Date(ST.dep+'T00:00:00').toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});data.url=APP_URL+'?dep='+ST.dep;data.text='We fly on '+dt+'. Install Umrah Strivers (free, offline, no account): 1) open the link and Add to Home Screen, 2) set the departure date to '+dt+', 3) do the Prepare checklist and pass Quiz levels 1–3 before we go.';}
+  var data={title:'Miqah',text:'Miqah — Hajj & Umrah companion. Plan, learn, perform & track your Umrah — rites walkthrough, tawaf counter, prayer times, ziyarah places & a knowledge quiz. Free, offline, private.',url:APP_URL};
+  if(ST.dep){var dt=new Date(ST.dep+'T00:00:00').toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});data.url=APP_URL+'?dep='+ST.dep;data.text='We fly on '+dt+'. Install Miqah (free, offline, no account): 1) open the link and Add to Home Screen, 2) set the departure date to '+dt+', 3) do the Prepare checklist and pass Quiz levels 1–3 before we go.';}
   if(navigator.share){navigator.share(data).catch(function(){});}
   else if(navigator.clipboard){navigator.clipboard.writeText(data.text+' '+data.url).then(function(){toast('🔗 Link copied — share it with your group');}).catch(function(){toast(data.url);});}
   else toast(data.url);
@@ -1569,7 +1569,7 @@ var pendingGroup=null;
 function shareSetup(){var hi=ST.hotelInfo||{};
   var g={by:ST.name||'',dep:ST.dep||'',tripLen:ST.tripLen,itin:ST.itin||null,city:ST.city||'Makkah',hotelInfo:hi,hotel:ST.hotel||null};
   var url=APP_URL+'#g='+btoa(encodeURIComponent(JSON.stringify(g)));
-  var txt=(ST.name?ST.name+'’s':'Our')+' Umrah trip setup'+(ST.dep?' — flying '+fmtDate(ST.dep,true):'')+(hi.n?' · '+hi.n:'')+'. Open the link on your phone and tap Apply: it sets the dates, itinerary and hotel card in Umrah Strivers (free, offline). Your own checklists are untouched.';
+  var txt=(ST.name?ST.name+'’s':'Our')+' Umrah trip setup'+(ST.dep?' — flying '+fmtDate(ST.dep,true):'')+(hi.n?' · '+hi.n:'')+'. Open the link on your phone and tap Apply: it sets the dates, itinerary and hotel card in Miqah (free, offline). Your own checklists are untouched.';
   shareText('Umrah trip setup',txt,url);}
 function parseGroupLink(){var h=location.hash||'';if(h.indexOf('#g=')!==0)return null;var out=null;
   try{var g=JSON.parse(decodeURIComponent(atob(h.slice(3))));if(g&&typeof g==='object'){out={};['by','dep','tripLen','itin','city','hotelInfo','hotel'].forEach(function(k){if(g[k]!==undefined)out[k]=g[k];});}}catch(e){out=null;}
@@ -1729,7 +1729,7 @@ function makeCertGo(){
   x.strokeStyle='rgba(217,180,94,.4)';x.lineWidth=2;x.strokeRect(70,70,940,1210);
   x.textAlign='center';x.fillStyle='#EFD494';
   x.font='120px serif';x.fillText('🕋',540,270);
-  x.font='700 44px Georgia,serif';x.fillStyle='#D9B45E';x.fillText('UMRAH STRIVERS',540,370);
+  x.font='700 44px Georgia,serif';x.fillStyle='#D9B45E';x.fillText('MIQAH',540,370);
   x.font='italic 30px Georgia,serif';x.fillStyle='rgba(255,255,255,.7)';x.fillText('Certificate of Knowledge',540,425);
   x.font='700 72px Georgia,serif';x.fillStyle='#FFFFFF';x.fillText(name,540,580);
   x.strokeStyle='rgba(217,180,94,.6)';x.lineWidth=2;x.beginPath();x.moveTo(240,620);x.lineTo(840,620);x.stroke();
@@ -1911,7 +1911,7 @@ function walkDone(){var L=riteList(),x=L[walkI];if(x&&!riteChk[x.st.id])togRite(
 function closeWalk(quiet){var L=riteList(),x=L[walkI];walkOpen=false;document.getElementById('walk').classList.remove('on');document.body.style.overflow='';
   if(!quiet){if(x)openRiteStep(x.st.id);else{setSecOpen('ph4',true);jumpTo('riteDone',true);}}}
 /* U-14: a printable briefing — rites with duas, the packing list and the emergency numbers */
-function buildPrint(){var e=document.getElementById('printSheet');if(!e)return;var hi=ST.hotelInfo||{},n=0,h='<h1>🕋 Umrah Strivers — rites &amp; duas</h1><p class="pr-sub">Printed '+new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})+(ST.name?' for '+esc(ST.name):'')+' · umrah-strivers.vercel.app</p>';
+function buildPrint(){var e=document.getElementById('printSheet');if(!e)return;var hi=ST.hotelInfo||{},n=0,h='<h1>🕋 Miqah — rites &amp; duas</h1><p class="pr-sub">Printed '+new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})+(ST.name?' for '+esc(ST.name):'')+' · umrah-strivers.vercel.app</p>';
   RITES.forEach(function(ph){h+='<h2>'+ph.ico+' '+ph.title+'</h2><ol start="'+(n+1)+'">';ph.steps.forEach(function(st){if(!forMe(st))return;n++;h+='<li><b>'+st.b+'</b> — '+st.p+stDuas(st).map(function(d){return '<div class="pr-dua"><span class="ar">'+d.ar+'</span><i>'+d.tl+'</i><br>'+d.tr+'</div>';}).join('')+'</li>';});h+='</ol>';});
   var pack=PLAN.filter(function(sc){return sc.id==='pack';})[0];if(pack)h+='<h2>🧳 Packing</h2><ul class="pr-pack">'+pack.items.filter(forMe).map(function(it){return '<li>☐ '+it.label+'</li>';}).join('')+'</ul>';
   h+='<h2>☎️ Emergency &amp; help</h2><p>Police · ambulance · fire <b>911</b> · Health line <b>937</b> · Hajj &amp; Umrah care <b>1966</b> · Tourism <b>930</b>'+(hi.n?'<br>Hotel: <b>'+esc(hi.n)+'</b>'+(hi.a?' · '+esc(hi.a):'')+(hi.p?' · ☎ '+esc(hi.p):''):'')+(hi.m?'<br>Meeting point: <b>'+esc(hi.m)+'</b>':'')+(hi.l?'<br>Companion / leader: <b>'+esc(hi.l)+'</b>':'')+'</p>';
@@ -2107,15 +2107,15 @@ function sharePT(){if(!ptData)return;var city=ST.city||'Makkah',ex=expectedDay()
   PT_NAMES.forEach(function(nm){var t=cl(ptData.t[nm]);lines.push(ptLabel(nm)+' '+t+(lead?' → leave hotel '+minHM(ptMin(t)-lead):''));});
   if(hi.m)lines.push('📍 Meet: '+hi.m);
   if(isFriday())lines.push('Jumu’ah today — arrive 1–2 h early');
-  lines.push((ptSrc==='calc'?'Computed times (±2 min) — follow the adhan':'Umm al-Qura times')+' · via Umrah Strivers');
+  lines.push((ptSrc==='calc'?'Computed times (±2 min) — follow the adhan':'Umm al-Qura times')+' · via Miqah');
   shareText('Prayer times · '+city,lines.join('\n'),APP_URL);}
 /* D-23: a week of prayer alerts as .ics (TZID=Asia/Riyadh) — share sheet on phones, download elsewhere */
 function icsDT(y,m,d,hm){return y+('0'+(m+1)).slice(-2)+('0'+d).slice(-2)+'T'+cl(hm).replace(':','')+'00';}
 function buildICS(city,days){var now=riyadhNow(),ev=[],calc=0,stamp=new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d+/,'');
   for(var i=0;i<days;i++){var dt=new Date(now.getFullYear(),now.getMonth(),now.getDate()+i),y=dt.getFullYear(),m=dt.getMonth(),d=dt.getDate(),P=ptFor(city,y,m,d);if(P.calc)calc++;
     PT_NAMES.forEach(function(nm){var t=cl(P.t[nm]),jum=dt.getDay()===5&&nm==='Dhuhr',lbl=jum?'Jumu’ah':nm;
-      ev.push(['BEGIN:VEVENT','UID:us-'+city.toLowerCase()+'-'+icsDT(y,m,d,t)+'-'+nm.toLowerCase()+'@umrah-strivers','DTSTAMP:'+stamp,'DTSTART;TZID=Asia/Riyadh:'+icsDT(y,m,d,t),'DTEND;TZID=Asia/Riyadh:'+icsDT(y,m,d,minHM(ptMin(t)+30)),'SUMMARY:'+lbl+' — '+city,'DESCRIPTION:'+(P.calc?'Computed times (±2 min) · follow the adhan':'Umm al-Qura times')+' · Umrah Strivers','BEGIN:VALARM','TRIGGER:-PT'+(jum?'60':'20')+'M','ACTION:DISPLAY','DESCRIPTION:'+lbl+' in '+(jum?'60':'20')+' min — '+city,'END:VALARM','END:VEVENT'].join('\r\n'));});}
-  return {calc:calc,n:ev.length,ics:['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Umrah Strivers//EN','CALSCALE:GREGORIAN','BEGIN:VTIMEZONE','TZID:Asia/Riyadh','BEGIN:STANDARD','DTSTART:19700101T000000','TZOFFSETFROM:+0300','TZOFFSETTO:+0300','TZNAME:AST','END:STANDARD','END:VTIMEZONE'].join('\r\n')+'\r\n'+ev.join('\r\n')+'\r\nEND:VCALENDAR\r\n'};}
+      ev.push(['BEGIN:VEVENT','UID:us-'+city.toLowerCase()+'-'+icsDT(y,m,d,t)+'-'+nm.toLowerCase()+'@umrah-strivers','DTSTAMP:'+stamp,'DTSTART;TZID=Asia/Riyadh:'+icsDT(y,m,d,t),'DTEND;TZID=Asia/Riyadh:'+icsDT(y,m,d,minHM(ptMin(t)+30)),'SUMMARY:'+lbl+' — '+city,'DESCRIPTION:'+(P.calc?'Computed times (±2 min) · follow the adhan':'Umm al-Qura times')+' · Miqah','BEGIN:VALARM','TRIGGER:-PT'+(jum?'60':'20')+'M','ACTION:DISPLAY','DESCRIPTION:'+lbl+' in '+(jum?'60':'20')+' min — '+city,'END:VALARM','END:VEVENT'].join('\r\n'));});}
+  return {calc:calc,n:ev.length,ics:['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Miqah//EN','CALSCALE:GREGORIAN','BEGIN:VTIMEZONE','TZID:Asia/Riyadh','BEGIN:STANDARD','DTSTART:19700101T000000','TZOFFSETFROM:+0300','TZOFFSETTO:+0300','TZNAME:AST','END:STANDARD','END:VTIMEZONE'].join('\r\n')+'\r\n'+ev.join('\r\n')+'\r\nEND:VCALENDAR\r\n'};}
 function exportICS(){var city=ST.city||'Makkah',B=buildICS(city,7),name='prayer-times-'+city.toLowerCase()+'-week.ics',blob=new Blob([B.ics],{type:'text/calendar'});
   var s=document.getElementById('icsSub');if(s)s.textContent='7 days · '+city+' · '+(B.calc?B.calc+' day'+(B.calc===1?'':'s')+' computed (±2 min), the rest Umm al-Qura':'Umm al-Qura times')+' · 20-min alert (60 for Jumu’ah)';
   var file=null;try{file=new File([blob],name,{type:'text/calendar'});}catch(e){}

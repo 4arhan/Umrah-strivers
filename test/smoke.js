@@ -1,4 +1,4 @@
-/* Umrah Strivers smoke tests — run: npm test  (needs Chromium; set CHROME=/path/to/chromium if not auto-detected) */
+/* Miqah smoke tests — run: npm test  (needs Chromium; set CHROME=/path/to/chromium if not auto-detected) */
 const path = require('path');
 const { chromium } = require('playwright-core');
 const URL = 'file://' + path.resolve(__dirname, '../index.html');
@@ -23,8 +23,9 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
 
   console.log('Home');
   check('opens on Home', (await page.getAttribute('.view.on', 'id')) === 'view-home');
+  check('brand is Miqah: title, header wordmark and tagline, no old name anywhere in the shell', (await page.title()) === 'Miqah' && (await page.textContent('.brand h1')).startsWith('Miqah') && (await page.textContent('.brand h1 small')) === 'Hajj & Umrah companion' && (await page.evaluate(() => !document.body.innerHTML.includes('Umrah Strivers'))));
   check('journey chip counts down + no update chip', (await page.textContent('#jChip')).includes('day') && (await page.locator('#updChip').isHidden()));
-  check('onboarded: brand strip, greeting split from the date, one expanded stage + 4 compact rows, About folded', (await page.locator('.hhero').count()) === 0 && (await page.textContent('.hbrand')).includes('Umrah Strivers') && (await page.textContent('.hs-t .hs-g')).includes('Test') && (await page.locator('.hs-t .hs-d').count()) === 1 && (await page.locator('.stage.now').count()) === 1 && (await page.locator('.stage.cmp').count()) === 4 && (await page.locator('.stage.cmp p').count()) === 0 && (await page.locator('#sec-about.shut').count()) === 1 && (await page.evaluate(() => document.querySelector('.stage.now .stage-b p').textContent.includes(QUIZ_LEVELS.length + '-level quiz'))));
+  check('onboarded: brand strip, greeting split from the date, one expanded stage + 4 compact rows, About folded', (await page.locator('.hhero').count()) === 0 && (await page.textContent('.hbrand')).includes('Miqah') && (await page.textContent('.hs-t .hs-g')).includes('Test') && (await page.locator('.hs-t .hs-d').count()) === 1 && (await page.locator('.stage.now').count()) === 1 && (await page.locator('.stage.cmp').count()) === 4 && (await page.locator('.stage.cmp p').count()) === 0 && (await page.locator('#sec-about.shut').count()) === 1 && (await page.evaluate(() => document.querySelector('.stage.now .stage-b p').textContent.includes(QUIZ_LEVELS.length + '-level quiz'))));
   check('planner: Do next lists the overdue basics + the quiz level and names the CTA', (await page.locator('.hnext .tli').count()) === 4 && (await page.textContent('.hnext .tli >> nth=0')).includes('Passport') && (await page.textContent('.hnext .tli-when >> nth=0')) === 'overdue' && (await page.textContent('.hnext .tli >> nth=3')).includes('Quiz level 1') && (await page.textContent('.hs-t .hcta')).startsWith('Overdue: Passport') && (await page.textContent('.hs-r em')) === 'Go →' && (await page.evaluate(() => document.querySelector('.hnext').compareDocumentPosition(document.querySelector('.hfc')) & Node.DOCUMENT_POSITION_FOLLOWING)) > 0);
   await page.click('.hnext .tli >> nth=0'); await page.waitForTimeout(600);
   const homeFirst = await page.textContent('.hnext .tli >> nth=0');
@@ -246,7 +247,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   check('water counter', (await page.textContent('#waterLbl')).startsWith('1 cup today') && (await page.locator('#waterCard #kmLbl').count()) === 0);
   await page.evaluate(() => startQibla()); await page.waitForTimeout(800);
   check('qibla bearing computed', /\d+°/.test(await page.textContent('#qbDeg')));
-  check('compass button toggles to Stop and the copy says how to hold the phone', (await page.textContent('#qbBtn')).includes('Stop') && (await page.evaluate(() => qbActive)) && (await page.textContent('#qbStatus')).includes('Hold the phone flat'));
+  check('compass button toggles to Stop and the copy says how to hold the phone', (await page.textContent('#qbBtn')).includes('Stop') && (await page.evaluate(() => qbActive)) && (await page.textContent('#qbStatus')).match(/Hold the phone flat|No compass access — face North/) !== null); // headless Chromium denies DeviceOrientationEvent.requestPermission without a gesture, so the no-compass copy is also correct
   await page.evaluate(() => goTab('home'));
   check('leaving Tools stops the compass', (await page.evaluate(() => qbActive)) === false && (await page.textContent('#qbBtn')).includes('Start'));
   await page.evaluate(() => goTab('daily'));
