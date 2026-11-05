@@ -43,7 +43,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   check('Help overlay lists the four Saudi numbers', (await page.locator('#help.on').count()) === 1 && (await page.locator('#help a[href^="tel:"]').count()) === 4 && (await page.locator('#help a[href="tel:937"]').count()) === 1 && (await page.locator('#help a[href="tel:930"]').count()) === 1);
   await page.evaluate(() => { closeHelp(); ST.dep = window.__keepDep; saveST(); renderHome(); updChip(); });
   await page.evaluate(() => { goTab('daily'); goSub('daily', 'stats', true); });
-  check('empty stats point to Today and hold the share card back', (await page.locator('#stEmpty:visible').count()) === 1 && (await page.isDisabled('#shareBtn')) && (await page.textContent('#shareBtn')).includes('unlocks') && (await page.locator('#bdgGrid .bdg.no .mini').count()) === 9 && (await page.textContent('#bdgGrid .bdg >> nth=4')).includes('0/8'));
+  check('empty stats point to Today and hold the share card back', (await page.locator('#stEmpty:visible').count()) === 1 && (await page.isDisabled('#shareBtn')) && (await page.textContent('#shareBtn')).includes('unlocks') && (await page.locator('#bdgGrid .bdg.no .mini').count()) === (await page.evaluate(() => BADGES.length)) && (await page.textContent('#bdgGrid .bdg >> nth=4')).includes('0/8'));
   await page.click('#bdgGrid .bdg >> nth=4');
   check('tapping a locked badge reveals how to earn it', (await page.locator('#bdgGrid .bdg.open .how:visible').count()) === 1 && (await page.textContent('#bdgGrid .bdg.open .how')).includes('8 places'));
   await page.evaluate(() => goTab('home'));
@@ -70,7 +70,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   check('driver card has Call + Maps actions', (await page.locator('#driver.on #drvActs a[href^="https://www.google.com/maps/dir/"]').count()) === 1);
   await page.evaluate(() => closeDriver());
   await page.evaluate(() => goSub('plan', 'learn', true));
-  check('knowledge accordions', (await page.locator('#histCard .acc').count()) >= 9 && (await page.locator('#qaContainer .acc').count()) === 14 && (await page.locator('#scamContainer .acc').count()) === 10);
+  check('knowledge accordions', (await page.locator('#histCard .acc').count()) >= 9 && (await page.locator('#qaContainer .acc').count()) === (await page.evaluate(() => FIQHQA.concat(TROUBLE).filter(forMe).length)) /* Umrah Q&A + the Hajj topics (j:'hajj'); forMe gates them per journey */ && (await page.locator('#scamContainer .acc').count()) === 10);
   check('Learn order: rites index first, essentials next, sisters section, quiz hand-off last', (await page.locator('#riteTiles .rtile').count()) === 4 && (await page.evaluate(() => { const ids = [...document.querySelectorAll('#sub-plan-learn > .card')].map(e => e.id); return ids.indexOf('ritesCard') === 0 && ids.indexOf('knowCard') === 1 && ids.indexOf('knowCard') < ids.indexOf('qaCard') && ids.indexOf('sisCard') > ids.indexOf('madCard') && ids.indexOf('lnQuizCard') === ids.length - 1; })) && (await page.locator('#sisContainer .acc').count()) === 7 && (await page.textContent('#lnQuizSub')).includes('Level 1') && (await page.locator('#knowCard .lnm').count()) === 1);
   await page.click('#knowContainer .acc >> nth=1 >> .acc-h');
   await page.click('#knowContainer .acc >> nth=1 >> .acc-b');
@@ -90,12 +90,13 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   check('quiz-derived card shows the options with the correct one marked', (await page.locator('#fcWrap .fc-opts div').count()) === 4 && (await page.locator('#fcWrap .fc-opts div.ok').count()) === 1);
   await page.evaluate(() => fcEnd());
   await page.evaluate(() => goSub('plan', 'quiz', true));
-  check('7 quiz levels, 6 locked (and aria-disabled)', (await page.locator('.lvl').count()) === 7 && (await page.locator('.lvl.locked').count()) === 6 && (await page.locator('.lvl.locked[aria-disabled="true"]').count()) === 6 && (await page.locator('.lvl:not(.locked)[aria-disabled]').count()) === 0);
-  check('kids corner first and collapsed, with 5 stories; quiz CTA + pass marks', (await page.evaluate(() => [...document.querySelectorAll('#sub-plan-quiz > .card')].map(e => e.id)[0])) === 'kidsCard' && (await page.locator('#kidsArea').isHidden()) && (await page.locator('#storyList .acc').count()) === 5 && (await page.textContent('.qz-cta')).includes('Level 1') && (await page.textContent('.lvl >> nth=0')).includes('pass = 8 correct') && (await page.locator('.lvl.next').count()) === 1 && (await page.textContent('#qzBest')) === '0/7');
+  const nLv = await page.evaluate(() => QUIZ_LEVELS.filter(forMe).length); /* 7 Umrah levels + the Hajj level (j:'hajj'), gated by forMe */
+  check(nLv + ' quiz levels, all but the first locked (and aria-disabled)', (await page.locator('.lvl').count()) === nLv && (await page.locator('.lvl.locked').count()) === nLv - 1 && (await page.locator('.lvl.locked[aria-disabled="true"]').count()) === nLv - 1 && (await page.locator('.lvl:not(.locked)[aria-disabled]').count()) === 0);
+  check('kids corner first and collapsed, with 5 stories; quiz CTA + pass marks', (await page.evaluate(() => [...document.querySelectorAll('#sub-plan-quiz > .card')].map(e => e.id)[0])) === 'kidsCard' && (await page.locator('#kidsArea').isHidden()) && (await page.locator('#storyList .acc').count()) === 5 && (await page.textContent('.qz-cta')).includes('Level 1') && (await page.textContent('.lvl >> nth=0')).includes('pass = 8 correct') && (await page.locator('.lvl.next').count()) === 1 && (await page.textContent('#qzBest')) === '0/' + nLv);
   await page.click('.lvl >> nth=1', { force: true }); // locked rows are aria-disabled, but a tap still explains the lock
   check('locked level shows the lock card', (await page.locator('.qz-lock').count()) === 1 && (await page.textContent('.qz-lock')).includes('8 of 10 correct'));
   await page.click('.qz-lock button:has-text("Unlock all levels")');
-  check('unlock all opens every level; restore re-locks', (await page.locator('.lvl.locked').count()) === 0 && (await page.textContent('.qz-free')).includes('Restore') && (await page.evaluate(() => { qzFree(false); return document.querySelectorAll('.lvl.locked').length; })) === 6);
+  check('unlock all opens every level; restore re-locks', (await page.locator('.lvl.locked').count()) === 0 && (await page.textContent('.qz-free')).includes('Restore') && (await page.evaluate(() => { qzFree(false); return document.querySelectorAll('.lvl.locked').length; })) === nLv - 1);
   await page.click('.lvl >> nth=0');
   check('question header shows the pass mark', (await page.textContent('.qz-needrow')).includes('8 more to pass') && (await page.textContent('.qz-top')).includes('Q1/10'));
   const n1 = await page.evaluate(() => QUIZ_LEVELS[0].qs.length);
@@ -108,7 +109,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   for (let k = 2; k < n1; k++) await pick();
   check('level 1 passed at 100%; pass screen starts the next level', (await page.textContent('.qz-final .big')) === '100%' && (await page.textContent('.qz-final .btn.gold')).includes('Ihram') && (await page.locator('.qz-final button:has-text("Retake")').count()) === 0);
   await page.click('text=← All levels');
-  check('level 2 unlocked', (await page.locator('.lvl.locked').count()) === 5 && (await page.locator('.qz-resume').count()) === 0);
+  check('level 2 unlocked', (await page.locator('.lvl.locked').count()) === nLv - 2 && (await page.locator('.qz-resume').count()) === 0);
   await page.click('.lvl >> nth=1');
   await page.evaluate(() => togPlan('visa'));
   check('checklist updates do not wipe a running level', (await page.locator('.qz-top').count()) === 1 && (await page.evaluate(() => qzActive)));
@@ -306,7 +307,8 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
 
   console.log('More');
   await page.evaluate(() => { goTab('more'); goSub('more', 'duas', true); });
-  check('8 duas with audio buttons', (await page.locator('.duacard').count()) === 8 && (await page.locator('.duacard .say').count()) === 8);
+  const nDua = await page.evaluate(() => DUAS.filter(forMe).length); /* 8 Umrah duas + the Hajj set (j:'hajj') + the returning-home dua */
+  check(nDua + ' duas with audio buttons', (await page.locator('.duacard').count()) === nDua && (await page.locator('.duacard .say').count()) === nDua);
   await page.click('.duacard >> nth=3 >> .dua'); await page.waitForTimeout(200);
   check('dua reader opens with prev/next', (await page.locator('#duaFocus.on').count()) === 1 && (await page.textContent('#dfTitle')).includes('Yamani') && (await page.locator('#dfNext').isVisible()));
   await page.click('#dfNext');
@@ -319,7 +321,8 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   check('journey chip goes to post card', (await page.textContent('#jChip')).includes('Post-Umrah'));
   await page.evaluate(() => goSub('more', 'settings', true));
   check('about card: version + correction mailto + links', (await page.textContent('#verLbl')) === (await page.evaluate(() => APP_VERSION)) && (await page.locator('#aboutCard a[href^="mailto:"]').count()) === 1 && (await page.locator('#sub-more-settings .res').count()) === 8);
-  check('achievements total follows the badge list (Little Pilgrim added)', (await page.textContent('#bdgTot')) === '9' && (await page.locator('#bdgGrid .bdg').count()) === 9);
+  const BADGES_N = await page.evaluate(() => BADGES.length); /* 9 + the Hajji badge */
+  check('achievements total follows the badge list (Little Pilgrim, Hajji added)', (await page.textContent('#bdgTot')) === String(BADGES_N) && (await page.locator('#bdgGrid .bdg').count()) === BADGES_N);
   const dl3 = page.waitForEvent('download', { timeout: 6000 }).catch(() => null);
   await page.click('button:has-text("Add week")');
   check('week of prayer alerts exports as .ics with Riyadh TZID', !!(await dl3) && (await page.evaluate(() => { const B = buildICS('Makkah', 7); return B.n === 35 && B.ics.indexOf('DTSTART;TZID=Asia/Riyadh:') > -1 && B.ics.indexOf('TRIGGER:-PT20M') > -1 && B.ics.indexOf('SUMMARY:Fajr — Makkah') > -1; })) && (await page.locator('#sub-more-settings #remSw').count()) === 1);
