@@ -1,6 +1,6 @@
 /* Miqah — offline service worker */
 /* Release note: bump APP_VERSION here AND at the top of app.js for every release. */
-var APP_VERSION = '5.2.0';
+var APP_VERSION = '5.2.1';
 var CACHE = 'umrah-strivers-' + APP_VERSION;
 var CORE = ['./', './index.html', './data.js', './app.js', './manifest.json',
   './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-192.png',
