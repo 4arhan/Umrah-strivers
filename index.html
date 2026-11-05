@@ -441,6 +441,15 @@ html[data-text='lg'] body{font-size:17px}
 .opt:active{transform:scale(.98);border-color:var(--brand-2)}
 .opt span{font-size:1.5em;width:36px;text-align:center}
 .opt b{font-size:.94em;display:block}.opt small{display:block;font-weight:500;font-size:.8em;color:var(--ink3)}
+/* J-03: the journey question — two big buttons */
+.opt.big{padding:18px 16px;border-color:var(--brand-2);min-height:72px}.opt.big span{font-size:1.9em;width:46px}.opt.big b{font-size:1.1em}.opt.big small{margin-top:2px;white-space:normal}
+.ob-hint{display:block;font-size:.76em;color:var(--ink2);margin:-4px 0 10px;line-height:1.45;text-align:center}
+.jbtns{display:flex;gap:8px}.jbtns .btn{margin:0;flex:1;min-height:52px}
+.hajjask{display:flex;align-items:center;gap:8px;background:var(--gold-soft);color:var(--gold-ink);border-radius:999px;padding:9px 14px;margin:0 0 12px;font-size:.82em;font-weight:700;cursor:pointer}.hajjask .x{margin-left:auto;opacity:.65;padding:0 4px;font-weight:600}
+.hday{border-color:var(--gold)}.hday-h{display:flex;align-items:center;gap:12px;margin-bottom:8px}.hday-h small{font-size:.68em;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink3);display:block}.hday-h b{display:block;font-size:1.05em}
+.hshift{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:.8em;color:var(--ink2);margin:6px 0 4px}.hshift div{display:flex;gap:6px}.hshift .chip-btn{padding:7px 13px;box-shadow:none}.hshift .chip-btn.on{background:var(--brand-2);color:#fff;border-color:var(--brand-2)}.hshift .chip-btn[disabled]{opacity:.35}
+[data-theme="dark"] .hshift .chip-btn.on{color:#08281B}
+.note.hajjnote{margin:0 0 10px}#campCard .srch{margin-bottom:8px}
 .pt.sk{background:linear-gradient(90deg,var(--bg-soft) 25%,var(--card) 50%,var(--bg-soft) 75%);background-size:200% 100%;animation:shimmer 1.2s infinite;min-height:52px;border-color:transparent}
 @keyframes shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
 .cityhd{font-family:var(--fd);font-size:1.25em;font-weight:700;margin:18px 4px 8px}
@@ -1095,7 +1104,7 @@ html[data-text='lg'] body{font-size:17px}
 
 <!-- ═══════ UMRAH ═══════ -->
 <div class="view" id="view-umrah">
-  <div class="vh"><h2>Labbayk Allahumma</h2><p>Every step from miqat to halq — with counters that keep count for you.</p></div>
+  <div class="vh"><h2>Labbayk Allahumma</h2><p id="umrahVhP">Every step from miqat to halq — with counters that keep count for you.</p></div>
   <div class="seg" data-tab="umrah"><button class="on" data-sub="count" onclick="goSub('umrah','count')">🔄 Counters</button><button data-sub="steps" onclick="goSub('umrah','steps')">📋 Steps & duas</button></div>
   <div class="sub on" id="sub-umrah-count">
   <div class="hero" id="riteHero"><div class="hero-t"><div class="k">Umrah · live</div><div class="v" id="riteHeroT">Ready to begin</div><div class="s" id="riteHeroS">Ihram – · Tawaf – · Sa’i – · Halq –</div></div>
@@ -1162,6 +1171,7 @@ html[data-text='lg'] body{font-size:17px}
     <p style="font-size:.76em;color:var(--ink3);margin:6px 2px 4px;line-height:1.5">Schematic, not to scale. Between the Yamani corner and the Black Stone recite "Rabbana atina…". The sa’i gallery entrance is on the Safa side, south-east of the Black Stone.</p>
   </div></div>
   <div id="riteContainer"></div>
+  <div id="hajjContainer"></div>
   <div class="card card-pad"><h3>⏱️ This Umrah’s timeline</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:8px">Stamped automatically as you tick steps and tap the counters.</p><div id="logArea"></div></div>
   <div class="card card-pad" id="umrahsCard"><h3>🕋 My Umrahs</h3><div id="umrahsArea"></div></div>
   </div>
@@ -1253,11 +1263,12 @@ html[data-text='lg'] body{font-size:17px}
   <div class="vh"><h2>More</h2><p>Keep the change alive after Umrah, the essential duas, and your settings &amp; data.</p></div>
   <div class="seg" data-tab="more"><button class="on" data-sub="guide" onclick="goSub('more','guide')">🌱 After</button><button data-sub="duas" onclick="goSub('more','duas')">🤲 Duas</button><button data-sub="settings" onclick="goSub('more','settings')">⚙️ Settings</button></div>
   <div class="sub on" id="sub-more-guide">
-  <div class="card card-pad" id="postCard"><h3>🌱 After Umrah — keep it alive</h3>
+  <div class="card card-pad" id="postCard"><h3 id="postH3">🌱 After Umrah — keep it alive</h3>
     <p style="font-size:.82em;color:var(--ink2);margin-bottom:4px">"The most beloved deeds to Allah are the most consistent, even if small." — Bukhari 6464. Don’t let the Haram version of you fade — hold three habits for 30 days after you return.</p>
     <div class="setrow"><div><b>Post-Umrah mode</b><small>30-day habit keeper + reflections</small></div><button class="sw" id="postSw" role="switch" aria-checked="false" aria-label="Post-Umrah mode" onclick="togPost()"></button></div>
     <div id="postArea"></div></div>
-  <div class="card card-pad"><h3>🧭 Plan the next one</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:8px">"Umrah to Umrah is an expiation for what is between them" (Bukhari 1773). When Allah invites you again, the checklists and countdown are ready.</p><button class="btn ghost" style="margin:0" onclick="goTab('plan','prep','cdCard')">🧳 Plan my next Umrah →</button></div>
+  <div class="card card-pad" id="nextCard"><h3>🧭 Plan your next journey</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:10px">"Umrah to Umrah is an expiation for what is between them" (Bukhari 1773). When Allah invites you again, the checklists and countdown are ready — nothing from this journey is deleted.</p><div class="jbtns"><button class="btn ghost" onclick="nextJourney('umrah')">🕋 Umrah</button><button class="btn ghost" onclick="nextJourney('hajj')">⛺ Hajj</button></div></div>
+  <div class="card card-pad" id="journeysCard"><h3>📜 My journeys</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:8px">Every Umrah and Hajj recorded on this phone, newest first.</p><div id="journeysArea"></div></div>
   </div><div class="sub" id="sub-more-duas">
   <div class="card card-pad"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px"><h3 style="margin:0">🤲 Essential duas</h3><button class="xchip" style="margin:0" onclick="goTab('daily','tools','duaCard')">🤲 My dua list →</button></div><p style="font-size:.78em;color:var(--ink2);margin-bottom:10px">Tap any dua to open it full-screen for reading in the Haram.</p><div id="duaContainer"></div></div>
   </div><div class="sub" id="sub-more-settings">
@@ -1265,18 +1276,29 @@ html[data-text='lg'] body{font-size:17px}
     <div class="setrow"><div><b>Dark mode</b><small>Easier on the eyes at night</small></div><button class="sw" id="dmTgl" role="switch" aria-checked="false" aria-label="Dark mode" onclick="toggleTheme()"></button></div>
     <div class="setrow"><div><b>Text size</b><small>Larger text for duas, tips and the nav</small></div><div class="segmini" id="textSeg"><button class="on" data-t="" onclick="setText('')">Normal</button><button data-t="lg" onclick="setText('lg')">Large</button></div></div>
     <div class="setrow"><div><b>Swipe between sections</b><small>Swipe left/right to change sub-tabs</small></div><button class="sw on" id="swipeSw" role="switch" aria-checked="true" aria-label="Swipe between sections" onclick="togSwipe()"></button></div>
-    <div class="setrow"><div><b>Trip length</b><small>How many days is your trip?</small></div><input type="number" class="numin" id="tripLen" min="3" max="30" onchange="setTripLen(this.value)" aria-label="Trip length in days"></div>
+    <div class="setrow"><div><b>🧭 My journey</b><small id="journeyLbl">🕋 Umrah</small></div><button class="chip-btn" onclick="showOnboard()">Change</button></div>
+    <div id="hajjSet" hidden>
+    <div class="setrow"><div><b>⛺ Hajj type</b><small>Your group leader knows which one your package follows — Tamattu’ is the usual. Tap a type to read what changes.</small></div><div class="segmini" id="hajjTypeSeg"><button data-ht="tamattu" onclick="setHajjType('tamattu')">Tamattu’</button><button data-ht="qiran" onclick="setHajjType('qiran')">Qiran</button><button data-ht="ifrad" onclick="setHajjType('ifrad')">Ifrad</button></div></div>
+    <div class="setrow"><div><b>📅 Hajj dates look one day off?</b><small id="hajjShiftLbl">Moon sighting can move the days by one</small></div><div class="segmini" id="hajjShiftSeg"><button data-s="-1" onclick="setHajjShift(-1)" aria-label="One day earlier">−1</button><button data-s="0" onclick="setHajjShift(0)">0</button><button data-s="1" onclick="setHajjShift(1)" aria-label="One day later">+1</button></div></div>
+    </div>
+    <div class="setrow"><div><b>Trip length</b><small>How many days is your trip? (3–45)</small></div><input type="number" class="numin" id="tripLen" min="3" max="45" onchange="setTripLen(this.value)" aria-label="Trip length in days"></div>
     <div class="setrow"><div><b>🔔 Prayer reminders</b><small>Notifies ~20 min before each prayer while the app is open — for alarms with the screen off, add the week to your calendar below</small></div><button class="sw" id="remSw" role="switch" aria-checked="false" aria-label="Prayer reminders" onclick="togRem()"></button></div>
     <div class="setrow"><div><b>📅 Add this week’s prayer times to my calendar</b><small id="icsSub">7 days × 5 prayers for your prayer city, each with a 20-min alert (60 for Jumu’ah) — works offline, nothing is uploaded</small></div><button class="chip-btn" style="white-space:nowrap" onclick="exportICS()">📅 Add week</button></div>
     <div class="setrow"><div><b>I am a…</b><small>Shows only the ihram, packing and halq/taqsir steps that apply to you</small></div><div class="segmini" id="profSeg"><button data-p="m" onclick="setProfile('m')">Brother</button><button data-p="w" onclick="setProfile('w')">Sister</button><button class="on" data-p="" onclick="setProfile('')">Both</button></div></div>
     <div class="setrow"><div><b>Travelling with children</b><small>Adds a children’s checklist to Plan › Prepare</small></div><button class="sw" id="kidsSw2" role="switch" aria-checked="false" aria-label="Travelling with children" onclick="togKids()"></button></div>
     <div class="setrow"><div><b>Dua audio</b><small>Arabic voice missing? Install it in your phone’s text-to-speech settings, then test here.</small></div><button class="say" onclick="testVoice(this)" aria-label="Test the Arabic voice">🔊 Test</button></div>
     <div class="setrow"><div><b>Your name</b><small>Printed on your certificate</small></div><input class="numin" style="width:130px;text-align:left" id="nameIn" placeholder="Name" aria-label="Your name" onchange="ST.name=this.value.trim();saveST();"></div>
-    <div class="setrow"><div><b>🧭 Journey stage</b><small id="stageLbl">Re-declare where you are — nothing is reset</small></div><button class="chip-btn" onclick="showOnboard()">Change</button></div>
+    <div class="setrow"><div><b>🧭 Journey stage</b><small id="stageLbl">Re-declare where you are — nothing is reset</small></div><button class="chip-btn" onclick="showOnboard('stage')">Change</button></div>
     <div class="setrow"><div><b>Share the app</b><small>Send it to your group before you fly</small></div><div style="display:flex;gap:6px"><button class="chip-btn" onclick="shareApp()">📤 Share</button><button class="chip-btn" onclick="showQR()">▦ QR</button></div></div>
     <div class="setrow" id="installRow" style="display:none"><div><b>Install app</b><small>Add to your home screen — works offline</small></div><button class="chip-btn" onclick="installApp()">📲 Install</button></div>
     <div class="setrow"><div><b>Check for updates</b><small>Version <span id="verLbl2"></span> · updates install automatically</small></div><button class="chip-btn" onclick="checkUpdates()">🔄 Check</button></div>
     <div class="where">Where things are: Departure date → <a href="#" onclick="event.preventDefault();goTab('plan','prep','cdCard')">Plan › Prepare</a> · Prayer city &amp; reminders → <a href="#" onclick="event.preventDefault();goTab('daily','today')">Daily › Today</a> · Hotel → <a href="#" onclick="event.preventDefault();goTab('plan','prep','hotelCard')">Plan › Prepare</a> / <a href="#" onclick="event.preventDefault();goTab('places')">Places</a></div>
+  </div>
+
+  <div class="card card-pad" id="campCard" hidden><h3>⛺ Mina camp &amp; group leader</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Every tent looks the same at 2 am. Save these before the 8th — they go on the driver card, the “I’m lost” card and the Help overlay.</p>
+    <input class="srch" id="cN" placeholder="Camp / tent number (e.g. Camp 43, tent 12)" onchange="saveCamp()" aria-label="Camp or tent number"><input class="srch" id="cM" placeholder="Maktab number" onchange="saveCamp()" aria-label="Maktab number">
+    <input class="srch" id="cL" placeholder="Group leader name" onchange="saveCamp()" aria-label="Group leader name"><input class="srch" id="cP" placeholder="Group leader phone" inputmode="tel" onchange="saveCamp()" aria-label="Group leader phone">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px"><button class="chip-btn" onclick="showCampDriver()">🚕 To my camp</button><button class="chip-btn sos" style="color:var(--danger)" onclick="showLost()">🆘 I’m lost</button></div>
   </div>
 
   <div class="card card-pad"><h3>💾 Your data</h3>
@@ -1326,7 +1348,13 @@ html[data-text='lg'] body{font-size:17px}
 <div id="printSheet" aria-hidden="true"></div>
 <div class="sheet-o" id="obSheet" onclick="if(event.target===this)closeOnboard()"><div class="sheet">
   <button class="ob-x" onclick="closeOnboard()" aria-label="Close">✕</button>
-  <div id="obStep1">
+  <div id="obStep0">
+  <div class="sheet-h">🕋</div><h3>As-salamu alaykum</h3><p>What has Allah invited you to?</p>
+  <div class="setrow"><div><b>Larger text</b><small>Easier to read without glasses</small></div><button class="sw" id="obText0" role="switch" aria-checked="false" aria-label="Larger text" onclick="setText(ST.text==='lg'?'':'lg')"></button></div>
+  <button class="opt big" onclick="chooseJourney('umrah')"><span>🕋</span><b>Umrah<small>Ihram → tawaf → sa’i → halq, any time of year</small></b></button>
+  <button class="opt big" onclick="chooseJourney('hajj')"><span>⛺</span><b>Hajj<small>Your Umrah first, then the five days of Dhul Hijjah</small></b></button>
+  </div>
+  <div id="obStep1" hidden>
   <div class="sheet-h">🕋</div><h3>As-salamu alaykum</h3><p>Where are you on your Umrah journey? We'll take you straight to the right place.</p>
   <input class="srch" id="obName" placeholder="Your name (optional — for your certificate)" style="margin:0 0 8px" aria-label="Your name">
   <div class="setrow"><div><b>I am a…</b><small>Tailors ihram, packing &amp; halq/taqsir steps</small></div><div class="segmini" id="obProf"><button data-p="m" onclick="setProfile('m')">Brother</button><button data-p="w" onclick="setProfile('w')">Sister</button><button class="on" data-p="" onclick="setProfile('')">Both</button></div></div>

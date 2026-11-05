@@ -31,7 +31,7 @@ An offline-first web app (`index.html` + `data.js` + `app.js`, zero build step).
 - Daily worship tracker: five prayers in congregation, tahajjud, Quran, dhikr & dua, nafl tawaf, sadaqah, serving pilgrims…
 - The day follows your departure date automatically (Day 1 = arrival), with the real date and Hijri date, weighted progress, labelled streaks (Fajr jama'ah, tahajjud, Quran, nafl tawaf), a tappable trip heatmap, trip stats and 9 unlockable achievements
 - **Excused days** for sisters (salah/tawaf rows pause without breaking streaks) and an opt-in **Kids' day** — five emoji tiles per child, stars for a 5/5 day, a Little Pilgrim badge
-- Configurable trip length (3–30 days) — or set a return date next to the departure date
+- Configurable trip length (3–45 days) — or set a return date next to the departure date
 
 ### 📍 Places — ziyarah with purpose
 - **51 sites** across Makkah (29) and Madinah (22), grouped — Makkah: The Haram · Ziyarah · The Hajj sites · Museums & culture · Day trips; Madinah: The Prophet's Mosque & around · Historic mosques · Battlefields, wells & history · Hop-on hop-off & practical
@@ -104,6 +104,14 @@ It's one file — just open `index.html` in a browser. Installable to the home s
 - **Journey chip** in the header — days to departure, current trip day, or post-Umrah state — tap to jump
 - Confetti celebrations, animated count-ups on progress rings, skeleton loading for prayer times, places search
 - **v3.3 screen-by-screen polish** — gold departure countdown card, jump-chips on the long Learn and Places pages, compact tap-to-expand place cards, round-by-round guidance under the Tawaf/Sa'i counters, wrapped tasbih phrases, name + share-the-app in Settings
+
+## v5.1 — Journey engine (Hajj)
+- **One question first**: onboarding opens with "What has Allah invited you to?" — 🕋 Umrah (the existing flow, unchanged) or ⛺ Hajj ("Hajj 1448 — when do you fly?" with the Gregorian dates of 8–13 Dhul Hijjah, Brother/Sister, name; "I'm already in Saudi Arabia" asks the trip day and whether the Umrah of Tamattu' is done; Skip). Closing with ✕ keeps Umrah and offers a one-line "Going for Hajj?" chip on Home
+- **Hajj is a superset of Umrah**: the Rites tab shows *Part 1 · Your Umrah* (the same steps, counters and stamps) and a rulings note; Part 2 (the five days) renders through `renderHajjRites()` when present
+- **Two calendars**: Umrah stays anchored to the departure date; the days of Hajj follow the Hijri calendar (`hajjDates(year)` via Intl `islamic-umalqura`, the `HAJJ_D8` table as fallback, `ST.hajjShift` ±1 for moon sighting). Home shows "Today is 9 Dhul Hijjah, correct? ◀ ✓ ▶" on each day of Hajj — the app never says "you missed it" from the calendar alone
+- **Gating**: rows carrying `j:'hajj'|'umrah'` and `ht:[…]` pass through `forMe()`, so checklists, rites, duas, quiz levels and knowledge topics follow the journey and the Hajj type (Tamattu' / Qiran / Ifrad in Settings)
+- **Links**: `?dep=YYYY-MM-DD&j=hajj` is the zero-question path; the `#g=` group link carries the journey, Hajj type and Mina camp card (camp / maktab / group leader — on the driver, I'm-lost and Help cards)
+- **After a trip**: "Plan your next journey" (Umrah / Hajj) and a "My journeys" archive under More › After; trip length up to 45 days
 
 ## Releasing an update
 The service-worker cache is named after `APP_VERSION`. For every release **bump `APP_VERSION` in both `app.js` and `sw.js`** — installed apps then pick the new version up automatically (an "Update" chip appears in the header; Settings › Check for updates forces a check). The app shell is served stale-while-revalidate, so it opens instantly from cache regardless of signal.
