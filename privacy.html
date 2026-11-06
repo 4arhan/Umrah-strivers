@@ -6,26 +6,53 @@
 <title>Privacy Policy — Miqah</title>
 <meta name="description" content="Miqah collects no data at all. No account, no servers, no analytics, no ads. Everything you enter stays on your device.">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
-<meta name="theme-color" content="#0E3B2E">
+<meta name="theme-color" content="#0C0F0E">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#F6F2EA;--card:#fff;--ink:#17251F;--ink2:#54635B;--line:#E2DCD0;--brand:#0E3B2E;--brand2:#177A52;--gold:#B8892F;color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0D1411;--card:#152019;--ink:#E7EDE8;--ink2:#A2B2A8;--line:#26332B;--brand:#5FC79C;--brand2:#79D7B0;--gold:#D9AF52;color-scheme:dark}}
+:root{
+  /* Kiswah tokens — the same palette as the app: paper by day, the cloth by night */
+  --bg:#F3EEE4;--bg-soft:#E9E2D4;--card:#FFFFFF;--ink:#13181A;--ink2:#4D5752;--ink3:#596158;--line:#E2DACB;
+  --kiswah:#0C0F0E;--ihram:#F6F2E8;--ihram-2:rgba(246,242,232,.72);
+  --brand:#0E3B2E;--brand-2:#156F4B;--brand-soft:#E1EFE6;--brand-ink:#0E3B2E;
+  --gold:#B8892F;--gold-2:#D9B45E;--gold-soft:#F6EEDA;--gold-ink:#775C1E;--gold-line:rgba(201,162,78,.55);--gold-hair:rgba(201,162,78,.32);
+  --mushaf:#FBF7EC;--act-bg:#0C0F0E;--act-ink:#F6F2E8;
+  --sh:0 1px 2px rgba(19,24,26,.05),0 6px 20px rgba(19,24,26,.06);--sh-k:0 8px 24px rgba(0,0,0,.28),0 1px 0 rgba(201,162,78,.25);
+  --hizam:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='10' viewBox='0 0 24 10'%3E%3Cpath d='M0 5l6-4 6 4 6-4 6 4M0 5l6 4 6-4 6 4 6-4' fill='none' stroke='%23C9A24E' stroke-width='1.1'/%3E%3Ccircle cx='6' cy='5' r='1' fill='%23C9A24E'/%3E%3Ccircle cx='18' cy='5' r='1' fill='%23C9A24E'/%3E%3C/svg%3E");
+  --kaaba:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect x='9' y='11' width='22' height='19' fill='%23070908' stroke='%23C9A24E' stroke-width='.9'/%3E%3Crect x='9' y='15.5' width='22' height='2.4' fill='%23D9B45E'/%3E%3Crect x='23.5' y='21' width='4.2' height='9' fill='%23D9B45E'/%3E%3Cpath d='M9 11l3-3h22v19l-3 3' fill='none' stroke='%23C9A24E' stroke-width='.9' stroke-linejoin='round'/%3E%3C/svg%3E");
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#090B0A;--bg-soft:#101312;--card:#171B19;--ink:#F2EEE4;--ink2:#B9B3A6;--ink3:#8B857A;--line:#2A312D;
+  --kiswah:#050706;--ihram:#F6F2E8;--ihram-2:rgba(246,242,232,.74);
+  --brand:#2FBE83;--brand-2:#3ED494;--brand-soft:#11261C;--brand-ink:#BFE8D4;
+  --gold:#D9B45E;--gold-2:#EACB80;--gold-soft:#1E1A10;--gold-ink:#E3C06E;--gold-line:rgba(217,180,94,.6);--gold-hair:rgba(217,180,94,.3);
+  --mushaf:#0C0E0D;--act-bg:#2FBE83;--act-ink:#06251A;
+  --sh:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);--sh-k:0 8px 24px rgba(0,0,0,.6),0 0 0 1px rgba(217,180,94,.22);
+  color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#090B0A;--bg-soft:#101312;--card:#171B19;--ink:#F2EEE4;--ink2:#B9B3A6;--ink3:#8B857A;--line:#2A312D;
+  --kiswah:#050706;--ihram:#F6F2E8;--ihram-2:rgba(246,242,232,.74);
+  --brand:#2FBE83;--brand-2:#3ED494;--brand-soft:#11261C;--brand-ink:#BFE8D4;
+  --gold:#D9B45E;--gold-2:#EACB80;--gold-soft:#1E1A10;--gold-ink:#E3C06E;--gold-line:rgba(217,180,94,.6);--gold-hair:rgba(217,180,94,.3);
+  --mushaf:#0C0E0D;--act-bg:#2FBE83;--act-ink:#06251A;
+  --sh:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);--sh-k:0 8px 24px rgba(0,0,0,.6),0 0 0 1px rgba(217,180,94,.22);
+  color-scheme:dark;}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
 .wrap{max-width:660px;margin:0 auto;padding:40px 22px 80px}
 h1,h2{font-family:'Fraunces',Georgia,serif;font-weight:600;margin:0;text-wrap:balance}
 h1{font-size:36px;line-height:1.12}
+h1::after{content:'';display:block;width:48px;height:10px;margin-top:10px;background:var(--hizam) left center/24px 10px repeat-x}
 h2{font-size:21px;line-height:1.25;margin-top:34px}
 p{margin:12px 0 0}
-a{color:var(--brand2)}
+a{color:var(--brand-2)}
 .top{display:flex;align-items:center;gap:12px;margin-bottom:26px}
-.top img{width:44px;height:44px;border-radius:11px}
+.top img{width:44px;height:44px;border-radius:11px;box-shadow:inset 0 0 0 1px var(--gold-line),var(--sh-k)}
 .top b{font-family:'Fraunces',Georgia,serif;font-size:17px;font-weight:600}
-.top small{display:block;color:var(--ink2);font-size:12.5px}
+.top small{display:block;color:var(--gold-ink);font-size:11.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase}
 .date{color:var(--ink2);font-size:14px;margin-top:10px}
-.hi{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:10px;padding:16px 18px;margin-top:24px}
+.hi{background:var(--mushaf);border:1px solid var(--gold-line);border-radius:6px;padding:16px 18px;margin-top:24px;box-shadow:inset 0 0 0 3px var(--mushaf),inset 0 0 0 4px var(--gold-hair);font-family:'Fraunces',Georgia,serif;font-style:italic;line-height:1.6}
 .hi p{margin:0}
 ul{margin:10px 0 0;padding-left:20px;color:var(--ink2)}
 li{margin:7px 0}

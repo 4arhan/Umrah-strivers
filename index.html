@@ -54,6 +54,9 @@
   --kiswah-ink:#F6F2E8;--ihram:#F6F2E8;--ihram-3:rgba(246,242,232,.6);--ihram-well:rgba(246,242,232,.08);
   --on-gold:#1A1200;--mushaf-frame:#C9A24E;--disc-num:#F6F2E8;--focus-ink:#F6F2E8;--ring-a:#6FE6B4;--ring-b:#2FBE83;
   --sheet-o:rgba(5,7,6,.62);--r-lg:18px;--r:14px;--r-sm:10px;
+  --rose:#B0457A;--rose-soft:rgba(176,69,122,.12);--knob:#FFFFFF;
+  /* the show-to-a-stranger cards (driver, lost, help, QR): always paper white and dark ink, in both themes, so a stranger in sun can read them */
+  --show-bg:#FFFFFF;--show-ink:#111111;--show-ink2:#4A4A4A;--show-acc:#0E3B2E;--show-line:#E5E5E5;--show-danger:#B4350F;
   --sat:env(safe-area-inset-top);--sab:env(safe-area-inset-bottom);
   --fd:'Fraunces',Georgia,'Times New Roman',serif;--fb:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   --fa:'Scheherazade New','Amiri','Noto Naskh Arabic','Traditional Arabic',serif;
@@ -78,6 +81,8 @@
   --sh:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
   --sh-lg:0 6px 18px rgba(0,0,0,.55),0 22px 60px rgba(0,0,0,.5);
   --sh-k:0 8px 24px rgba(0,0,0,.6),0 0 0 1px rgba(217,180,94,.22);
+  --rose:#E08BB5;--rose-soft:rgba(224,139,181,.16);--knob:#FFFFFF;
+  --show-bg:#FFFFFF;--show-ink:#111111;--show-ink2:#4A4A4A;--show-acc:#0E3B2E;--show-line:#E5E5E5;--show-danger:#B4350F;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#090B0A;--bg-soft:#101312;--card:#171B19;--ink:#F2EEE4;--ink2:#B9B3A6;--ink3:#8B857A;
@@ -93,6 +98,8 @@
   --sh:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
   --sh-lg:0 6px 18px rgba(0,0,0,.55),0 22px 60px rgba(0,0,0,.5);
   --sh-k:0 8px 24px rgba(0,0,0,.6),0 0 0 1px rgba(217,180,94,.22);
+  --rose:#E08BB5;--rose-soft:rgba(224,139,181,.16);--knob:#FFFFFF;
+  --show-bg:#FFFFFF;--show-ink:#111111;--show-ink2:#4A4A4A;--show-acc:#0E3B2E;--show-line:#E5E5E5;--show-danger:#B4350F;
 }}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 [hidden]{display:none!important}
@@ -319,7 +326,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 .setrow b{font-size:.92em;font-weight:600;display:block}
 .setrow small{font-size:.78em;color:var(--ink2)}
 .sw{width:50px;height:28px;border-radius:99px;background:var(--bg-soft);border:1px solid var(--line);cursor:pointer;position:relative;transition:all .25s;flex-shrink:0}
-.sw::after{content:'';position:absolute;width:22px;height:22px;border-radius:50%;background:#fff;top:2px;left:2px;box-shadow:0 1px 4px rgba(0,0,0,.2);transition:transform .25s cubic-bezier(.4,0,.2,1)}
+.sw::after{content:'';position:absolute;width:22px;height:22px;border-radius:50%;background:var(--knob);top:2px;left:2px;box-shadow:0 1px 4px rgba(0,0,0,.2);transition:transform .25s cubic-bezier(.4,0,.2,1)}
 .sw.on{background:var(--brand-2);border-color:var(--brand-2)}.sw.on::after{transform:translateX(22px)}
 .numin{width:74px;padding:9px;border-radius:var(--r-sm);border:1px solid var(--line);background:var(--bg);color:var(--ink);font-family:var(--fb);font-weight:700;font-size:.95em;text-align:center}
 .acc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:8px;overflow:hidden}
@@ -379,11 +386,11 @@ html[data-text='lg'] body{font-size:17.5px}
 .df-src{margin-top:14px;font-size:.82em;color:var(--gold-2);font-style:italic}
 .df-hint{font-size:.7em;opacity:.4;letter-spacing:1.5px;text-transform:uppercase;margin-top:24px;text-align:center}
 .focus-bot .chip-btn{min-width:64px}
-.qr-box{width:70vw;max-width:300px;margin:6px auto 18px;background:#fff;padding:14px;border-radius:18px;border:1px solid #e5e5e5}
+.qr-box{width:70vw;max-width:300px;margin:6px auto 18px;background:var(--show-bg);padding:14px;border-radius:18px;border:1px solid var(--show-line)}
 .qr-box svg{width:100%;height:auto;display:block}
-.qr-url{font-family:var(--fd);font-size:1.5em;font-weight:700;text-align:center;color:#0E3B2E;word-break:break-all;line-height:1.3}
-.qr-steps{font-size:1.05em;text-align:center;color:#333;margin-top:14px;line-height:1.6}
-.qr-steps b{color:#0E3B2E}
+.qr-url{font-family:var(--fd);font-size:1.5em;font-weight:600;text-align:center;color:var(--show-acc);word-break:break-all;line-height:1.3}
+.qr-steps{font-size:1.05em;text-align:center;color:var(--show-ink2);margin-top:14px;line-height:1.6}
+.qr-steps b{color:var(--show-acc)}
 .sheet img{width:100%;border-radius:14px;display:block;margin-bottom:12px;border:1px solid var(--line)}
 .sheet .srch{margin-bottom:10px}
 .ob-x{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink2);cursor:pointer;font-size:1em}
@@ -428,7 +435,7 @@ html[data-text='lg'] body{font-size:17.5px}
 .qb-dial{width:196px;height:196px;border-radius:50%;border:2px solid var(--gold-hair);margin:12px auto;position:relative;background:radial-gradient(circle at 50% 50%,var(--bg) 55%,var(--bg-soft))}
 .qb-n{position:absolute;top:6px;left:50%;transform:translateX(-50%);font-size:.68em;font-weight:800;color:var(--danger)}
 .qb-needle{position:absolute;left:50%;top:50%;width:4px;height:74px;background:linear-gradient(var(--gold),transparent);transform-origin:bottom center;transform:translate(-50%,-100%) rotate(0deg);border-radius:4px;transition:transform .15s}
-.qb-needle::before{content:'🕋';position:absolute;top:-24px;left:50%;transform:translateX(-50%);font-size:20px}
+.qb-needle::before{content:'';position:absolute;top:-26px;left:50%;transform:translateX(-50%);width:24px;height:24px;border-radius:6px;background:var(--kiswah) var(--kaaba) center/24px 24px no-repeat;box-shadow:inset 0 0 0 1px var(--gold-line)}
 .qb-deg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:1.05em;color:var(--ink2);pointer-events:none;padding-top:66px}
 .qb-status{text-align:center;font-size:.8em;color:var(--ink2);line-height:1.55}
 
@@ -614,13 +621,16 @@ html[data-text='lg'] body{font-size:17.5px}
 .brow{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--line)}
 .brow label{flex:1;font-size:.86em;color:var(--ink2)}.brow label small{display:block;font-size:.8em;color:var(--ink3)}
 .brow input{width:96px;padding:8px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-family:var(--fb);font-weight:700;text-align:right;font-size:.9em}
-.focus.driver{background:#FFFFFF;color:#111}
-.focus.driver .focus-top{color:#111}.focus.driver .chip-btn{background:#f1f1f1;color:#111;border-color:#ddd}
-.drv-ar{font-size:2.2em;direction:rtl;text-align:center;line-height:1.5;margin:20px 0 26px;color:#0E3B2E}
-.drv-name{font-family:var(--fd);font-size:2.4em;font-weight:700;text-align:center;line-height:1.2;color:#111}
-.drv-addr{font-size:1.35em;text-align:center;margin-top:14px;line-height:1.45;color:#333}
-.drv-phone{font-size:1.4em;font-weight:700;text-align:center;margin-top:16px;color:#0E3B2E}
-.driver .focus-hint{color:#999;margin-top:40px}
+.focus.driver{background:var(--show-bg);color:var(--show-ink)}
+.focus.driver .focus-top{background:var(--kiswah);color:var(--ihram);padding-bottom:20px;position:relative}
+.focus.driver .focus-top::after{content:'';position:absolute;left:0;right:0;bottom:0;height:10px;background:var(--hizam) left center/24px 10px repeat-x;opacity:.9;pointer-events:none}
+.focus.driver .chip-btn{background:var(--ihram-well);color:var(--ihram);border-color:var(--gold-hair)}
+.focus.driver .lnk{color:var(--show-acc)}.focus.driver .btn.danger{color:var(--show-danger);border-color:var(--show-danger)}.focus.driver .btn{background:var(--kiswah);color:var(--ihram)}
+.drv-ar{font-size:2.2em;direction:rtl;text-align:center;line-height:1.5;margin:20px 0 26px;color:var(--show-acc)}
+.drv-name{font-family:var(--fd);font-size:2.4em;font-weight:600;text-align:center;line-height:1.2;color:var(--show-ink)}
+.drv-addr{font-size:1.35em;text-align:center;margin-top:14px;line-height:1.45;color:var(--show-ink2)}
+.drv-phone{font-size:1.4em;font-weight:700;text-align:center;margin-top:16px;color:var(--show-acc)}
+.driver .focus-hint{color:var(--show-ink2);opacity:.75;margin-top:40px}
 .niy{padding:26px 18px 18px;margin-bottom:14px}
 .niy-k{font-size:.66em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold-2)}
 .niy h3{font-family:var(--fd);font-size:1.35em;font-weight:600;margin:4px 0 6px;color:var(--ihram)}
@@ -636,6 +646,9 @@ html[data-text='lg'] body{font-size:17.5px}
 .wudu{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--gold-line);border-radius:var(--r-lg);padding:14px 16px;margin-bottom:12px;box-shadow:var(--sh)}
 .wudu.ok{border-color:var(--brand-2);background:var(--brand-soft)}
 .wudu-t{flex:1;min-width:0}.wudu-t b{display:block;font-size:.98em}.wudu-t span{display:block;font-size:.76em;color:var(--ink2);line-height:1.45;margin-top:2px}
+.hcta .mk{color:var(--gold-2);width:1.2em;height:1.2em;vertical-align:-.25em}
+.setrow b .mk{color:var(--gold-ink);width:1.05em;height:1.05em;vertical-align:-.2em;margin-right:.3em}#journeyLbl .mk{color:var(--brand-2)}
+.ph-hd .mk{color:var(--gold-ink);width:1.15em;height:1.15em;vertical-align:-.25em;margin-right:.3em}
 .hcta{display:inline-block;margin-top:10px;background:var(--ihram-well);border:1px solid var(--gold-line);color:var(--gold-3);padding:8px 12px;border-radius:10px;font-size:.8em;font-weight:700;font-family:var(--fb);cursor:pointer}
 .hprayer{display:flex;align-items:center;gap:12px;cursor:pointer;padding:14px 16px}
 .hp-i{width:42px;height:42px;border-radius:12px;background:var(--gold-soft);box-shadow:inset 0 0 0 1px var(--gold-hair);display:flex;align-items:center;justify-content:center;font-size:1.3em;flex-shrink:0}
@@ -710,7 +723,7 @@ html[data-text='lg'] body{font-size:17.5px}
 .rt-acts{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
 .rt-need{margin-bottom:12px}.rt-need .btn{margin-top:10px}
 .anch{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.anch .chip-btn{padding:7px 12px;font-size:.78em;box-shadow:none}.anch .chip-btn.on{background:var(--brand-soft);border-color:var(--brand-2);color:var(--brand-2)}.anch .chip-btn.clr{color:var(--danger)}
-.drv-arn{font-size:2.6em;direction:rtl;text-align:center;line-height:1.5;margin:-14px 0 14px;color:#111;font-weight:700}
+.drv-arn{font-size:2.6em;direction:rtl;text-align:center;line-height:1.5;margin:-14px 0 14px;color:var(--show-ink);font-weight:700}
 .stopbadge{display:inline-block;font-size:.66em;font-weight:800;letter-spacing:.4px;padding:2px 9px;border-radius:999px;margin:3px 0 2px}
 .stopbadge.red{background:var(--danger);color:var(--on-danger)}.stopbadge.green{background:var(--brand-2);color:var(--on-brand)}
 .tour{background:var(--card);border:1px solid var(--gold-line);border-radius:var(--r-lg);padding:16px;margin-bottom:12px;box-shadow:var(--sh)}
@@ -768,14 +781,14 @@ html[data-text='lg'] body{font-size:17.5px}
 .cnt-hd .chip-btn.sos{color:var(--danger);border-color:rgba(194,65,12,.4)}
 .drv-acts{display:flex;gap:10px;margin-top:22px;width:100%}
 .drv-acts .btn{margin:0;flex:1;text-align:center;text-decoration:none;font-size:1em;padding:16px 8px}
-.drv-acts .btn.ghost{background:#fff;color:#0E3B2E;border-color:#0E3B2E}
+.focus.driver .drv-acts .btn.ghost{background:var(--show-bg);color:var(--show-acc);border-color:var(--show-acc)}
 .drv-acts .btn.off{opacity:.55;pointer-events:none}
 .driver .focus-top .chip-btn{cursor:pointer}
-.lost-ar{font-size:2em;direction:rtl;text-align:center;line-height:1.5;margin:14px 0 18px;color:#0E3B2E}
-.lost-en{font-size:1.5em;font-weight:700;text-align:center;line-height:1.35;color:#111}
-.lost-tel{display:block;text-align:center;font-family:var(--fd);font-size:2.4em;font-weight:700;color:#0E3B2E;text-decoration:none;margin:8px 0 18px;line-height:1.2;word-break:break-all}
-.lost-kv{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-top:1px solid #e5e5e5;font-size:1.15em;color:#333;width:100%}
-.lost-kv b{color:#0E3B2E;font-size:1.1em}.lost-kv a{color:#0E3B2E;text-decoration:none;font-weight:800;font-size:1.25em}
+.lost-ar{font-size:2em;direction:rtl;text-align:center;line-height:1.5;margin:14px 0 18px;color:var(--show-acc)}
+.lost-en{font-size:1.5em;font-weight:700;text-align:center;line-height:1.35;color:var(--show-ink)}
+.lost-tel{display:block;text-align:center;font-family:var(--fd);font-size:2.4em;font-weight:600;color:var(--show-acc);text-decoration:none;margin:8px 0 18px;line-height:1.2;word-break:break-all}
+.lost-kv{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--show-line);font-size:1.15em;color:var(--show-ink2);width:100%}
+.lost-kv b{color:var(--show-acc);font-size:1.1em}.lost-kv a{color:var(--show-acc);text-decoration:none;font-weight:800;font-size:1.25em}
 .lost-kv span:first-child{min-width:0}
 .lost-body{overflow-y:auto;width:100%;padding:0 22px 20px;-webkit-overflow-scrolling:touch;flex:1}
 .it{position:relative}
@@ -997,8 +1010,8 @@ html[data-text='lg'] body{font-size:17.5px}
 .dtools:empty{display:none}
 .dtools .chip-btn{padding:7px 12px;font-size:.76em;box-shadow:none;min-height:36px}
 .dtools .chip-btn.sync{background:var(--gold-soft);border-color:var(--gold);color:var(--gold-ink)}
-.dtools .chip-btn.exc{color:#b0457a;border-color:rgba(176,69,122,.35)}
-.dtools .chip-btn.exc.on{background:rgba(176,69,122,.1)}
+.dtools .chip-btn.exc{color:var(--rose);border-color:var(--rose)}
+.dtools .chip-btn.exc.on{background:var(--rose-soft)}
 .ptsec{margin-bottom:8px}
 .ptstrip{padding:5px 4px 5px 10px;gap:6px;min-height:46px}
 .pt-ico{font-size:1.2em;flex-shrink:0}
@@ -1038,7 +1051,7 @@ html[data-text='lg'] body{font-size:17.5px}
 .stk .st .n small{font-size:.58em;font-weight:700;color:var(--ink3);margin-left:1px}
 .heat .hc{cursor:pointer;min-height:42px;min-width:0;transition:transform .15s}
 .heat .hc:active{transform:scale(.92)}
-.hc.exc{outline:1.5px dashed #b0457a;outline-offset:-1px}
+.hc.exc{outline:1.5px dashed var(--rose);outline-offset:-1px}
 .hleg{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:10px;font-size:.72em;color:var(--ink3)}
 .hleg .hc{width:14px;height:14px;min-height:0;aspect-ratio:auto;font-size:0;cursor:default;border-radius:4px;display:inline-block}
 .kd{padding:12px 14px}
@@ -1081,6 +1094,24 @@ html[data-text='lg'] body{font-size:17.5px}
 .focus.tasbih #focusWudu,.focus.tasbih .focus-prob,.focus.tasbih .focus-dua,.focus.tasbih .focus-my,.focus.tasbih .focus-done{display:none!important}
 .focus.tasbih .focus-tip{font-size:2.3em;line-height:1.8;direction:rtl;font-style:normal;color:var(--gold-3);min-height:0;margin-top:14px}
 .focus.tasbih .focus-of{letter-spacing:1.5px;text-transform:none}
+/* ─────────── Kiswah · every screen: marks in card titles and tiles, sheet roundels, the rose of the excused day ─────────── */
+.card h3 .mk{width:.95em;height:.95em;vertical-align:-.12em;margin-right:.4em;color:var(--gold-ink)}
+.mkt-i{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;background:var(--gold-soft);box-shadow:inset 0 0 0 1px var(--gold-hair);flex-shrink:0;color:var(--brand-2)}.mkt-i .mk{width:22px;height:22px;margin:0}
+.st .i{line-height:1;min-height:24px;display:flex;align-items:center;justify-content:center}.st .i .mk{width:24px;height:24px;margin:0}
+.rtile .i{display:flex;justify-content:center;min-height:30px}.rtile .i .mk{width:28px;height:28px;margin:0}
+.lvl-n{color:var(--brand-2);box-shadow:inset 0 0 0 1px var(--gold-hair)}.lvl-n .mk{width:22px;height:22px;margin:0}.lvl.locked .lvl-n .mk{color:var(--ink3)}.lvl.passed .lvl-n{box-shadow:none}
+.bdg .i{display:flex;justify-content:center;min-height:30px}.bdg .i .mk{width:28px;height:28px;margin:0;color:var(--ink3)}.bdg.ok .i .mk{color:var(--gold-ink)}
+.pt-ico{display:flex}.pt-ico .mk{width:22px;height:22px;margin:0;color:var(--gold-ink)}
+.wudu-t b .mk{color:var(--brand-2)}
+.lg-i{display:flex;justify-content:center}.lg-i .mk{width:20px;height:20px;margin:0;color:var(--brand-2)}.lg:not(.on) .lg-i .mk{color:var(--ink3)}
+.wk-n{background:var(--gold-soft);box-shadow:inset 0 0 0 1px var(--gold-hair);color:var(--brand-2)}.wk-n .mk{width:28px;height:28px}
+.wk-done .big .mk,.qz-lock .big .mk{width:56px;height:56px;color:var(--gold)}
+.rite-lock b .mk{color:var(--gold-ink)}
+.qz-top .mk{width:1.25em;height:1.25em;vertical-align:-.32em;margin-right:.35em;color:var(--brand-2)}
+.sheet-h .mk{width:30px;height:30px;color:var(--gold-2)}.sheet-h.danger .mk{color:var(--danger)}.sheet-h.rose .mk{color:var(--rose)}
+.sec-ico .mk{margin:0;color:var(--brand-2)}
+.btn.rose{background:var(--rose);color:var(--on-brand)}
+.kidsrow .mkt-i{width:44px;height:44px;border-radius:12px}
 #printSheet{display:none}
 @media print{
   .app,.nav,.focus,.sheet-o,.toasts,canvas,.top{display:none!important}
@@ -1089,7 +1120,7 @@ html[data-text='lg'] body{font-size:17.5px}
   #printSheet h1{font-size:18pt;margin:0 0 4pt}#printSheet .pr-sub{font-size:9pt;color:#555;margin:0 0 10pt}
   #printSheet h2{font-size:13pt;margin:12pt 0 4pt;border-bottom:1px solid #999;padding-bottom:2pt;break-after:avoid}
   #printSheet ol,#printSheet ul{padding-left:18pt;margin:0}#printSheet li{margin:0 0 6pt;line-height:1.4;break-inside:avoid}
-  #printSheet .pr-dua{margin:3pt 0 0 6pt;padding-left:6pt;border-left:2px solid #B8892F;font-size:10pt}
+  #printSheet .pr-dua{margin:3pt 0 0 6pt;padding-left:6pt;border-left:2px solid var(--gold);font-size:10pt}
   #printSheet .pr-dua .ar{display:block;direction:rtl;text-align:right;font-family:var(--fa);font-size:14pt;line-height:1.9}
   #printSheet .pr-pack{columns:2;list-style:none;padding:0}
 }
@@ -1114,7 +1145,7 @@ html[data-text='lg'] body{font-size:17.5px}
   <div class="vh"><h2 data-mk="bag">Prepare with ihsan</h2><p id="quoteLine"></p></div>
   <div class="seg" data-tab="plan"><button class="on" data-sub="prep" data-mk="bag" onclick="goSub('plan','prep')">Prepare</button><button data-sub="learn" data-mk="book" onclick="goSub('plan','learn')">Learn</button><button data-sub="quiz" data-mk="quiz" onclick="goSub('plan','quiz')">Quiz</button></div>
   <div class="sub on" id="sub-plan-prep">
-  <div class="hero"><div class="hero-t"><div class="k">Preparation</div><div class="v" id="planHeroT">Let's get ready</div><div class="s" id="planHeroS">Checklists, essential knowledge & a readiness quiz</div><button class="hcta" onclick="sharePrep()" aria-label="Share my readiness with my group">📤 Share my readiness</button></div>
+  <div class="hero"><div class="hero-t"><div class="k">Preparation</div><div class="v" id="planHeroT">Let's get ready</div><div class="s" id="planHeroS">Checklists, essential knowledge & a readiness quiz</div><button class="hcta" data-mk="share" onclick="sharePrep()" aria-label="Share my readiness with my group">Share my readiness</button></div>
     <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="planRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="planPct">0%</span><small>READY</small></div></div></div>
   <div class="jumps" id="prepJumps" aria-label="Jump to a section of Prepare"></div>
   <div class="niy" id="niyCard"><div class="niy-c" id="niyCol" role="button" tabindex="0" aria-expanded="false" onclick="niyToggle()"><div class="t"><b id="niyColT">✓ Intention set</b><span id="niyColF"></span></div><button class="chip-btn" tabindex="-1">Re-read / edit ▾</button></div><div class="niy-k">Begin here</div><h3>Before the checklist — the intention</h3><p class="niy-p">Umrah is answered by the heart before it is booked by the hands. Three foundations, then everything else.</p>
@@ -1125,9 +1156,9 @@ html[data-text='lg'] body{font-size:17.5px}
     <textarea class="pnotes niy-t" id="niyText" placeholder="O Allah, I am going to Your House for… I ask You for… I want to return as someone who…" onchange="saveNiyyah()"></textarea>
     <div class="niy-s" id="niyStatus">Write it down — it becomes your compass for the whole trip.</div></div>
   <div class="cd2" id="cdCard"><div class="cd2-l"><div class="cd2-n" id="cdNum">—</div><div class="cd2-u" id="cdU">days</div></div><div class="cd2-r"><b id="cdT">Departure countdown</b><span id="cdS">Set your date and watch the days melt away</span><label for="depDate">✈️ When do you fly?</label><input type="date" id="depDate" onchange="setDep(this.value)"><label for="retDate" id="retLbl">🛬 Return</label><input type="date" id="retDate" onchange="setRet(this.value)" aria-label="Return date"><button class="btn" id="cdSetBtn" hidden onclick="pickDep()">📅 Set my departure date</button><span id="cdW" style="margin-top:6px;font-size:.74em;color:var(--gold-ink)"></span></div></div>
-  <div class="card card-pad" id="tlCard"><h3>⏳ What to do when</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px" id="tlSub">Set your departure date to get a dated to-do timeline.</p><div id="tlArea"></div></div>
+  <div class="card card-pad" id="tlCard"><h3 data-mk="clock">What to do when</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px" id="tlSub">Set your departure date to get a dated to-do timeline.</p><div id="tlArea"></div></div>
   <div class="stat4" id="catTiles"></div>
-  <div class="card card-pad" id="hotelCard"><h3>🏨 My hotel & emergency numbers</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Fill this in before you land — then tap “Show to driver” whenever you need a ride back, or “I’m lost” if you get separated.</p>
+  <div class="card card-pad" id="hotelCard"><h3 data-mk="hotel">My hotel & emergency numbers</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Fill this in before you land — then tap “Show to driver” whenever you need a ride back, or “I’m lost” if you get separated.</p>
     <input class="srch" id="hName" placeholder="Hotel name (e.g. Swissôtel Makkah)" onchange="saveHotelInfo()" aria-label="Hotel name"><input class="srch" id="hAddr" placeholder="Address / landmark (e.g. Abraj Al Bait, King Abdulaziz Gate)" onchange="saveHotelInfo()" aria-label="Hotel address"><input class="srch" id="hPhone" type="tel" placeholder="Hotel phone" onchange="saveHotelInfo()" aria-label="Hotel phone">
     <input class="srch" id="hMeet" placeholder="Family meeting point (e.g. King Fahd Gate 79, after each prayer)" onchange="saveHotelInfo()" aria-label="Family meeting point"><input class="srch" id="hLead" placeholder="Companion / group leader name & phone" onchange="saveHotelInfo()" aria-label="Companion or group leader name and phone">
     <div class="hstat"><span id="hotelLbl2">📍 Hotel not pinned</span><button class="chip-btn" onclick="setHotel()">📍 Set hotel location</button></div>
@@ -1141,48 +1172,48 @@ html[data-text='lg'] body{font-size:17.5px}
     <button class="btn ghost" onclick="shareSetup()">📤 Share trip setup with group</button>
     <p style="font-size:.72em;color:var(--ink3);margin-top:6px">Sends one link that sets the departure date, trip length, itinerary split, prayer city and this hotel card on their phones — their own progress is never touched.</p></div>
   <div id="planContainer"></div>
-  <div class="card kidsrow" id="kidsRow"><span style="font-size:1.5em">👨‍👩‍👧</span><div class="kr-t"><b>Travelling with children?</b><small>Add their passports, visas, vaccines, ID wristband and briefing to your timeline.</small></div><button class="sw" id="kidsSw" role="switch" aria-checked="false" aria-label="Travelling with children" onclick="togKids()"></button></div>
-  <div class="card card-pad" id="itinCard"><h3>🗓️ Suggested itinerary</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px" id="itinSub">Set your departure and return dates above</p>
+  <div class="card kidsrow" id="kidsRow"><span class="mkt-i" aria-hidden="true" data-mk="group"></span><div class="kr-t"><b>Travelling with children?</b><small>Add their passports, visas, vaccines, ID wristband and briefing to your timeline.</small></div><button class="sw" id="kidsSw" role="switch" aria-checked="false" aria-label="Travelling with children" onclick="togKids()"></button></div>
+  <div class="card card-pad" id="itinCard"><h3 data-mk="calendar">Suggested itinerary</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px" id="itinSub">Set your departure and return dates above</p>
     <div class="pills sm" style="margin-bottom:8px"><button class="pill on" id="itMk" onclick="setItin('makkah')">🕋 Makkah first</button><button class="pill" id="itMd" onclick="setItin('madinah')">🕌 Madinah first</button></div>
     <div class="pills sm" style="margin-bottom:10px"><button class="pill on" id="itPaceN" onclick="setPace('')">🚶 Standard pace</button><button class="pill" id="itPaceF" onclick="setPace('family')">🐢 Family pace</button></div>
     <div class="setrow" style="padding:6px 0 10px"><div><b>Days in Madinah</b><small id="itMadSub">The rest go to Makkah</small></div><input type="number" class="numin" id="itMad" min="0" max="20" value="3" onchange="setItinDays(this.value)" aria-label="Days in Madinah"></div>
     <div id="itinArea"></div>
     <button class="btn ghost" onclick="shareItin()">📤 Share itinerary</button></div>
-  <div class="card card-pad" id="vaultCard"><h3>🔐 Document vault</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Passport, visa, bookings — encrypted on this device with a PIN you choose (AES-256). Nothing is uploaded anywhere.</p><div id="vaultArea"></div></div>
+  <div class="card card-pad" id="vaultCard"><h3 data-mk="lock">Document vault</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Passport, visa, bookings — encrypted on this device with a PIN you choose (AES-256). Nothing is uploaded anywhere.</p><div id="vaultArea"></div></div>
   </div><div class="sub" id="sub-plan-learn">
   <input class="srch" id="lnSearch" type="search" placeholder="🔍 Search Learn — ihram, Zamzam, missed lap…" oninput="filterLearn()" aria-label="Search the Learn topics">
   <div class="jumps" id="lnJumps"><button data-for="ritesCard" onclick="jumpTo('ritesCard')">🗺️ Rites</button><button data-for="knowCard" onclick="jumpTo('knowCard')">📚 Essentials</button><button data-for="qaCard" onclick="jumpTo('qaCard')">❓ Q&amp;A</button><button data-for="histCard" onclick="jumpTo('histCard')">🕰️ History</button><button data-for="virtCard" onclick="jumpTo('virtCard')">🌟 Virtues</button><button data-for="madCard" onclick="jumpTo('madCard')">🕌 Madinah</button><button data-for="sisCard" onclick="jumpTo('sisCard')">🌸 Sisters</button><button data-for="scamCard" onclick="jumpTo('scamCard')">🚨 Scams</button><button data-for="fcCard" onclick="jumpTo('fcCard')">🃏 Cards</button><button data-for="lnQuizCard" onclick="jumpTo('lnQuizCard')">🧠 Quiz</button></div>
   <div class="note" id="lnNone" hidden style="margin:0 0 12px">No topics match — try “ihram”, “Zamzam”, “wudu” or “period”.</div>
-  <div class="card card-pad" id="ritesCard"><h3>🗺️ Umrah in 4 steps</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The whole rite in order — learn this first, then the cards below.</p><div class="rtiles" id="riteTiles"></div><button class="btn ghost" onclick="goTab('umrah','steps')">📋 Full walkthrough &amp; duas</button></div>
+  <div class="card card-pad" id="ritesCard"><h3 data-mk="compass">Umrah in 4 steps</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The whole rite in order — learn this first, then the cards below.</p><div class="rtiles" id="riteTiles"></div><button class="btn ghost" onclick="goTab('umrah','steps')">📋 Full walkthrough &amp; duas</button></div>
 
-  <div class="card card-pad" id="knowCard"><h3>📚 Know before you go <span class="pillmini">Start here</span></h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">Miqats, ihram &amp; the common mistakes — the knowledge that turns a trip into worship. Tap a topic to expand.</p><div id="knowContainer"></div></div>
+  <div class="card card-pad" id="knowCard"><h3 data-mk="book">Know before you go <span class="pillmini">Start here</span></h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">Miqats, ihram &amp; the common mistakes — the knowledge that turns a trip into worship. Tap a topic to expand.</p><div id="knowContainer"></div></div>
 
-  <div class="card card-pad" id="qaCard"><h3>❓ Common questions (fiqh Q&amp;A)</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The questions every first-timer asks — answered with evidence. <span class="lvlref">Covered in Level 7</span></p><div id="qaContainer"></div></div>
+  <div class="card card-pad" id="qaCard"><h3 data-mk="quiz">Common questions (fiqh Q&amp;A)</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The questions every first-timer asks — answered with evidence. <span class="lvlref">Covered in Level 7</span></p><div id="qaContainer"></div></div>
 
-  <div class="card card-pad" id="histCard"><h3>🕰️ History &amp; significance</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">Walk where the prophets walked — know the story behind every rite. <span class="lvlref">Covered in Level 4</span></p><div id="histContainer"></div></div>
+  <div class="card card-pad" id="histCard"><h3 data-mk="museum">History &amp; significance</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">Walk where the prophets walked — know the story behind every rite. <span class="lvlref">Covered in Level 4</span></p><div id="histContainer"></div></div>
 
-  <div class="card card-pad" id="virtCard"><h3>🌟 Virtues of Umrah &amp; the Haram</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">What Allah has promised the pilgrim — the rewards that await you. <span class="lvlref">Covered in Level 5</span></p><div id="virtContainer"></div></div>
+  <div class="card card-pad" id="virtCard"><h3 data-mk="star">Virtues of Umrah &amp; the Haram</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">What Allah has promised the pilgrim — the rewards that await you. <span class="lvlref">Covered in Level 5</span></p><div id="virtContainer"></div></div>
 
-  <div class="card card-pad" id="madCard"><h3>🕌 Madinah — virtues &amp; visiting</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The City of the Prophet ﷺ deserves its own preparation. <span class="lvlref">Covered in Level 6</span></p><div id="madContainer"></div></div>
+  <div class="card card-pad" id="madCard"><h3 data-mk="dome">Madinah — virtues &amp; visiting</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">The City of the Prophet ﷺ deserves its own preparation. <span class="lvlref">Covered in Level 6</span></p><div id="madContainer"></div></div>
 
-  <div class="card card-pad" id="sisCard"><h3>🌸 For sisters</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">Everything that differs for women, in one five-minute read — ihram clothing, pace, exiting ihram, periods, women’s areas and safety.</p><div id="sisContainer"></div></div>
+  <div class="card card-pad" id="sisCard"><h3 data-mk="flower">For sisters</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">Everything that differs for women, in one five-minute read — ihram clothing, pace, exiting ihram, periods, women’s areas and safety.</p><div id="sisContainer"></div></div>
 
-  <div class="card card-pad" id="scamCard"><h3>🚨 Donations &amp; scams — stay sharp</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">Generosity is worship; being fooled is not. Every provider on <a href="https://umrah.nusuk.sa/" target="_blank" rel="noopener"><b>umrah.nusuk.sa</b></a> is ministry-licensed, and Saudi Arabia’s official donation platform is <a href="https://ehsan.sa/" target="_blank" rel="noopener"><b>Ehsan</b></a> — here is what to watch for.</p><div id="scamContainer"></div></div>
+  <div class="card card-pad" id="scamCard"><h3 data-mk="sos">Donations &amp; scams — stay sharp</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:12px">Generosity is worship; being fooled is not. Every provider on <a href="https://umrah.nusuk.sa/" target="_blank" rel="noopener"><b>umrah.nusuk.sa</b></a> is ministry-licensed, and Saudi Arabia’s official donation platform is <a href="https://ehsan.sa/" target="_blank" rel="noopener"><b>Ehsan</b></a> — here is what to watch for.</p><div id="scamContainer"></div></div>
 
-  <div class="card card-pad" id="fcCard"><h3>🃏 Daily knowledge cards</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">A few minutes a day — spaced repetition over everything above and your quiz mistakes, paced to your departure. <b id="fcDueLbl"></b></p><div id="fcArea"></div></div>
+  <div class="card card-pad" id="fcCard"><h3 data-mk="cards">Daily knowledge cards</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">A few minutes a day — spaced repetition over everything above and your quiz mistakes, paced to your departure. <b id="fcDueLbl"></b></p><div id="fcArea"></div></div>
 
-  <div class="card card-pad" id="lnQuizCard"><h3>🧠 Test what you learned</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:4px" id="lnQuizSub">Seven levels · 80% unlocks the next.</p><div id="lnQuizArea"></div></div>
+  <div class="card card-pad" id="lnQuizCard"><h3 data-mk="quiz">Test what you learned</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:4px" id="lnQuizSub">Seven levels · 80% unlocks the next.</p><div id="lnQuizArea"></div></div>
 
   </div><div class="sub" id="sub-plan-quiz">
   <div class="card kidscard" id="kidsCard">
-    <div class="kidsrow"><span style="font-size:1.6em" aria-hidden="true">🧒</span><div class="kr-t"><b>Kids corner</b><small id="kidsSub">8 big-button questions · 2 minutes · Best ⭐ <b id="kidsBest">—</b></small></div><button class="chip-btn kstart" id="kidsStart" onclick="startKids()" aria-label="Start the kids quiz">▶ Start</button></div>
+    <div class="kidsrow"><span class="mkt-i" aria-hidden="true" data-mk="kid"></span><div class="kr-t"><b>Kids corner</b><small id="kidsSub">8 big-button questions · 2 minutes · Best ⭐ <b id="kidsBest">—</b></small></div><button class="chip-btn kstart" id="kidsStart" onclick="startKids()" aria-label="Start the kids quiz">▶ Start</button></div>
     <div id="kidsArea" class="kidsbody" hidden></div>
-    <div class="kidsrow story-h" role="button" tabindex="0" aria-expanded="false" onclick="togStories(this)"><span style="font-size:1.3em" aria-hidden="true">📖</span><div class="kr-t"><b>Story time</b><small>5 read-aloud stories about the rites and the sites — ages 6–10</small></div><span class="acc-c" aria-hidden="true">▶</span></div>
+    <div class="kidsrow story-h" role="button" tabindex="0" aria-expanded="false" onclick="togStories(this)"><span class="mkt-i" aria-hidden="true" data-mk="book"></span><div class="kr-t"><b>Story time</b><small>5 read-aloud stories about the rites and the sites — ages 6–10</small></div><span class="acc-c" aria-hidden="true">▶</span></div>
     <div id="storyList" class="kidsbody" hidden></div>
-    <div class="kidsrow" style="border-top:1px solid var(--line)"><span style="font-size:1.3em" aria-hidden="true">⭐</span><div class="kr-t"><b>Kids’ daily stars</b><small>Add each child by name — they get five tiles of their own on Daily › Today</small></div></div>
+    <div class="kidsrow" style="border-top:1px solid var(--line)"><span class="mkt-i" aria-hidden="true" data-mk="star"></span><div class="kr-t"><b>Kids’ daily stars</b><small>Add each child by name — they get five tiles of their own on Daily › Today</small></div></div>
     <div id="kidNames" class="kidsbody"></div>
   </div>
-  <div class="card card-pad" id="qzCard"><h3>🧠 Knowledge circuit — quiz levels</h3>
+  <div class="card card-pad" id="qzCard"><h3 data-mk="quiz">Knowledge circuit — quiz levels</h3>
   <p style="font-size:.84em;color:var(--ink2);margin-bottom:8px">Seven levels · true/false &amp; multiple choice · <b>80%+</b> passes a level and unlocks the next. Complete the whole circuit before you fly. Passed: <b id="qzBest" style="color:var(--gold)">0/7</b></p>
   <div class="meter" style="margin-bottom:12px"><i id="qzMeter" style="width:0%"></i></div>
   <div id="qzArea"></div></div>
@@ -1198,7 +1229,7 @@ html[data-text='lg'] body{font-size:17.5px}
     <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="riteRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="ritePct">0%</span><small>UMRAH</small></div></div></div>
 
   <div class="cnt-hd" id="cntHd"></div>
-  <div class="wudu" id="wuduCard" role="switch" tabindex="0" aria-checked="false" aria-label="I am in wudu" onclick="togWudu()"><div class="wudu-t"><b>💧 Wudu check — tawaf requires wudu</b><span class="wudu-x">"Tawaf around the House is like salah" (Tirmidhi 960). Make wudu before you start; if it breaks mid-tawaf, renew it and continue.</span><span class="wudu-st" id="wuduSt">Not yet — tap to confirm</span></div><span class="sw" id="wuduSw" aria-hidden="true"></span></div>
+  <div class="wudu" id="wuduCard" role="switch" tabindex="0" aria-checked="false" aria-label="I am in wudu" onclick="togWudu()"><div class="wudu-t"><b data-mk="drop">Wudu check — tawaf requires wudu</b><span class="wudu-x">"Tawaf around the House is like salah" (Tirmidhi 960). Make wudu before you start; if it breaks mid-tawaf, renew it and continue.</span><span class="wudu-st" id="wuduSt">Not yet — tap to confirm</span></div><span class="sw" id="wuduSw" aria-hidden="true"></span></div>
   <button class="lnk sis-line" onclick="periodSheet()">🌸 Period started? Your ihram is still valid — what to do</button>
   <div class="card cnt" id="tawafCard"><div class="cnt-sum" id="tawafSum"></div><div class="cnt-body">
     <div class="segmini tmode" id="tmodeSeg" role="group" aria-label="Which tawaf are you counting?"><button class="on" data-m="umrah" data-mk="kaaba" onclick="setTmode('umrah')">Umrah tawaf</button><button data-m="nafl" data-mk="refresh" onclick="setTmode('nafl')">Nafl tawaf</button></div>
@@ -1231,21 +1262,21 @@ html[data-text='lg'] body{font-size:17.5px}
   <div class="rite-tools"><button class="chip-btn" onclick="startWalk()">▶ Walk me through it</button><button class="chip-btn" onclick="printSheet()">🖨️ Print / save PDF</button></div>
   <div class="sec shut" id="matafSec"><div class="sec-hd" role="button" tabindex="0" aria-expanded="false" onclick="togSec(this)"><div class="sec-ico">🗺️</div><h2>The mataf — where everything is<small>Tap to open the schematic</small></h2><span class="sec-chev">▼</span></div><div class="sec-bd">
     <svg class="mataf" viewBox="0 0 340 320" role="img" aria-label="Schematic of the Kaaba and mataf">
-      <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#D9B45E"/></marker></defs>
+      <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--gold)"/></marker></defs>
       <circle cx="170" cy="150" r="118" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="4 5"/>
-      <path d="M 288 150 A 118 118 0 1 1 170 32" fill="none" stroke="#D9B45E" stroke-width="3" marker-end="url(#arr)"/>
+      <path d="M 288 150 A 118 118 0 1 1 170 32" fill="none" stroke="var(--gold)" stroke-width="3" marker-end="url(#arr)"/>
       <path d="M 122 102 A 48 30 0 0 1 218 102" fill="rgba(23,122,82,.15)" stroke="var(--brand-2)" stroke-width="2"/>
-      <rect x="122" y="102" width="96" height="96" fill="#17251F" stroke="#D9B45E" stroke-width="3"/>
-      <rect x="150" y="102" width="40" height="8" fill="#D9B45E"/>
-      <rect x="218" y="150" width="4" height="34" fill="#D9B45E"/>
-      <circle cx="218" cy="198" r="7" fill="#111" stroke="#D9B45E" stroke-width="2.5"/>
-      <circle cx="122" cy="198" r="5" fill="#D9B45E"/>
+      <rect x="122" y="102" width="96" height="96" fill="var(--kiswah)" stroke="var(--gold)" stroke-width="3"/>
+      <rect x="150" y="102" width="40" height="8" fill="var(--gold-2)"/>
+      <rect x="218" y="150" width="4" height="34" fill="var(--gold-2)"/>
+      <circle cx="218" cy="198" r="7" fill="var(--kiswah)" stroke="var(--gold-2)" stroke-width="2.5"/>
+      <circle cx="122" cy="198" r="5" fill="var(--gold)"/>
       <circle cx="262" cy="176" r="6" fill="var(--brand-2)"/>
-      <circle cx="235" cy="235" r="5" fill="#60A5FA"/>
+      <circle cx="235" cy="235" r="5" fill="var(--blue)"/>
       <g font-family="Inter,sans-serif" font-size="10" fill="var(--ink2)" stroke="var(--card)" stroke-width="3" paint-order="stroke" stroke-linejoin="round">
         <text x="170" y="62" text-anchor="middle" font-weight="700" fill="var(--ink)">Hijr Isma’il — part of the Kaaba</text>
         <text x="170" y="90" text-anchor="middle" font-weight="800" font-size="9" fill="var(--danger)">walk AROUND it — never through it</text>
-        <text x="170" y="155" text-anchor="middle" fill="#fff" font-weight="700" font-size="13" stroke="none">KAABA</text>
+        <text x="170" y="155" text-anchor="middle" fill="var(--ihram)" font-weight="700" font-size="13" stroke="none">KAABA</text>
         <text x="228" y="212" font-weight="700" fill="var(--ink)">Black Stone ● start line</text>
         <text x="228" y="224">tawaf begins &amp; ends here</text>
         <text x="228" y="140">Door &amp; Multazam</text>
@@ -1255,15 +1286,15 @@ html[data-text='lg'] body{font-size:17.5px}
         <text x="116" y="228" text-anchor="end">touch, don’t kiss</text>
         <text x="243" y="250">Zamzam taps</text>
         <text x="300" y="300" text-anchor="end" fill="var(--brand-2)" font-weight="700">→ to Safa &amp; the Mas’a (SE)</text>
-        <text x="170" y="22" text-anchor="middle" fill="#B8892F" font-weight="700">counter-clockwise · Kaaba on your LEFT</text>
+        <text x="170" y="22" text-anchor="middle" fill="var(--gold-ink)" font-weight="700">counter-clockwise · Kaaba on your LEFT</text>
       </g>
     </svg>
     <p style="font-size:.76em;color:var(--ink3);margin:6px 2px 4px;line-height:1.5">Schematic, not to scale. Between the Yamani corner and the Black Stone recite "Rabbana atina…". The sa’i gallery entrance is on the Safa side, south-east of the Black Stone.</p>
   </div></div>
   <div id="riteContainer"></div>
   <div id="hajjContainer"></div>
-  <div class="card card-pad"><h3>⏱️ This Umrah’s timeline</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:8px">Stamped automatically as you tick steps and tap the counters.</p><div id="logArea"></div></div>
-  <div class="card card-pad" id="umrahsCard"><h3>🕋 My Umrahs</h3><div id="umrahsArea"></div></div>
+  <div class="card card-pad"><h3 data-mk="clock">This Umrah’s timeline</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:8px">Stamped automatically as you tick steps and tap the counters.</p><div id="logArea"></div></div>
+  <div class="card card-pad" id="umrahsCard"><h3 data-mk="kaaba">My Umrahs</h3><div id="umrahsArea"></div></div>
   </div>
 </div>
 
@@ -1278,7 +1309,7 @@ html[data-text='lg'] body{font-size:17.5px}
     <div class="v" id="dHeroT">Bismillah</div><div class="s" id="dHeroS">0 of 0 completed</div></div>
     <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="dRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="dPct">0%</span><small>TODAY</small></div></div></div>
   <div class="dtools" id="dayTools"></div>
-  <div class="sec shut ptsec" id="ptSec"><div class="sec-hd ptstrip" role="button" tabindex="0" aria-expanded="false" aria-label="Prayer times — tap to expand" onclick="togSec(this)"><span class="pt-ico" aria-hidden="true">🕌</span><div class="pt-next" id="ptNext">Loading times…</div><button class="pt-bell" id="ptBell" onclick="event.stopPropagation();togRem()" aria-pressed="false" aria-label="Prayer reminders">🔔</button><span class="sec-chev" aria-hidden="true">▼</span></div>
+  <div class="sec shut ptsec" id="ptSec"><div class="sec-hd ptstrip" role="button" tabindex="0" aria-expanded="false" aria-label="Prayer times — tap to expand" onclick="togSec(this)"><span class="pt-ico" aria-hidden="true" data-mk="dome"></span><div class="pt-next" id="ptNext">Loading times…</div><button class="pt-bell" id="ptBell" onclick="event.stopPropagation();togRem()" aria-pressed="false" aria-label="Prayer reminders">🔔</button><span class="sec-chev" aria-hidden="true">▼</span></div>
     <div class="sec-bd">
       <div class="pt-top"><div class="pt-hijri" id="ptHijri"></div><div class="pills sm"><button class="pill on" id="cityMakkah" onclick="setCity('Makkah')">Makkah</button><button class="pill" id="cityMadinah" onclick="setCity('Madinah')">Madinah</button></div></div>
       <div class="pt-grid" id="ptGrid"></div><div class="pt-note" id="ptNote">Umm al-Qura · local Makkah/Madinah time</div>
@@ -1290,25 +1321,25 @@ html[data-text='lg'] body{font-size:17.5px}
   <div id="dailyContainer"></div>
   <div class="stk-h">🔥 Streaks · consecutive days <span class="hint">gold at 3+ · tap to open the row</span></div>
   <div class="stat4 stk" id="stkTiles">
-    <div class="st" id="skFajr" role="button" tabindex="0" onclick="stkGo('fajr')"><div class="i">🕌</div><div class="n" id="skFajrN">0</div><div class="l">Fajr</div></div>
-    <div class="st" id="skTahaj" role="button" tabindex="0" onclick="stkGo('tahaj')"><div class="i">🌙</div><div class="n" id="skTahajN">0</div><div class="l">Tahajjud</div></div>
-    <div class="st" id="skQuran" role="button" tabindex="0" onclick="stkGo('quran')"><div class="i">📖</div><div class="n" id="skQuranN">0</div><div class="l">Quran</div></div>
-    <div class="st" id="skTawaf" role="button" tabindex="0" onclick="stkGo('tawaf')"><div class="i">🕋</div><div class="n" id="skTawafN">0</div><div class="l">Tawaf</div></div>
+    <div class="st" id="skFajr" role="button" tabindex="0" onclick="stkGo('fajr')"><div class="i" data-mk="dome"></div><div class="n" id="skFajrN">0</div><div class="l">Fajr</div></div>
+    <div class="st" id="skTahaj" role="button" tabindex="0" onclick="stkGo('tahaj')"><div class="i" data-mk="moon"></div><div class="n" id="skTahajN">0</div><div class="l">Tahajjud</div></div>
+    <div class="st" id="skQuran" role="button" tabindex="0" onclick="stkGo('quran')"><div class="i" data-mk="book"></div><div class="n" id="skQuranN">0</div><div class="l">Quran</div></div>
+    <div class="st" id="skTawaf" role="button" tabindex="0" onclick="stkGo('tawaf')"><div class="i" data-mk="kaaba"></div><div class="n" id="skTawafN">0</div><div class="l">Tawaf</div></div>
   </div>
   </div><div class="sub" id="sub-daily-tools">
   <div class="pills sm tooljumps" role="navigation" aria-label="Jump to a tool"><button class="pill" onclick="jumpTo('tbCard')">📿 Tasbih</button><button class="pill" onclick="jumpTo('qiblaCard')">🧭 Qibla</button><button class="pill" onclick="jumpTo('waterCard')">💧 Water</button><button class="pill" onclick="jumpTo('duaCard')">🤲 Duas</button></div>
   <div id="toolsCol" style="display:flex;flex-direction:column">
   <div id="duaCard"></div>
-  <div class="card card-pad" id="waterCard"><h3>💧 Zamzam &amp; water</h3>
-    <div class="setrow" style="border:none;padding:6px 0"><div><b>Zamzam / water today</b><small id="waterLbl">0 cups today · aim for 8, 10–12 in summer heat</small></div><div style="display:flex;gap:6px"><button class="chip-btn" onclick="water(-1)" aria-label="Remove a cup">−</button><button class="chip-btn" style="background:var(--brand);color:#fff;border-color:var(--brand)" onclick="water(1)">＋ cup</button></div></div>
+  <div class="card card-pad" id="waterCard"><h3 data-mk="drop">Zamzam &amp; water</h3>
+    <div class="setrow" style="border:none;padding:6px 0"><div><b>Zamzam / water today</b><small id="waterLbl">0 cups today · aim for 8, 10–12 in summer heat</small></div><div style="display:flex;gap:6px"><button class="chip-btn" onclick="water(-1)" aria-label="Remove a cup">−</button><button class="chip-btn" style="background:var(--act-bg);color:var(--act-ink);border-color:var(--act-bg)" onclick="water(1)">＋ cup</button></div></div>
     <div class="meter" style="margin:4px 0 4px"><i id="waterBar" style="width:0%"></i></div>
     <p style="font-size:.72em;color:var(--ink3);margin-top:6px">Drink your fill and make dua — "Zamzam water is for whatever it is drunk for" (Ibn Majah 3062). Your trip total is in Stats.</p></div>
-  <div class="card card-pad" id="tbCard" style="text-align:center"><h3>📿 Tasbih counter</h3>
+  <div class="card card-pad" id="tbCard" style="text-align:center"><h3 data-mk="beads">Tasbih counter</h3>
     <div class="tb-chips" id="tbChips"></div>
     <div class="tb-targets" id="tbTargets" role="radiogroup" aria-label="Count target"></div>
     <div class="tb-btn" role="button" tabindex="0" aria-label="Count one dhikr" onclick="tbTap()"><div class="n" id="tbN">0</div><div class="t" id="tbOf">of <span id="tbTarget">33</span> · tap</div></div>
     <div class="tb-meta"><span>Today: <b id="tbToday">0</b></span><span id="tbPhraseN" class="tb-ph"></span><button class="chip-btn" onclick="tbUndo()" aria-label="Remove one mis-tap">−1</button><button class="chip-btn" onclick="enterFocus('tasbih')">⛶ Focus</button><button class="chip-btn" onclick="tbReset()">Reset cycle</button></div></div>
-  <div class="card card-pad" id="qiblaCard"><h3>🧭 Qibla compass</h3>
+  <div class="card card-pad" id="qiblaCard"><h3 data-mk="compass">Qibla compass</h3>
     <p style="font-size:.82em;color:var(--ink2)">Find the direction of the Kaaba from wherever you are.</p>
     <div class="qb-dial"><span class="qb-n">N</span><div class="qb-needle" id="qbNeedle"></div><div class="qb-deg" id="qbDeg">—</div></div>
     <div class="qb-status" id="qbStatus">Tap start and allow location &amp; motion access.</div>
@@ -1317,8 +1348,8 @@ html[data-text='lg'] body{font-size:17.5px}
   </div>
   </div><div class="sub" id="sub-daily-stats">
   <div class="note" id="stEmpty" hidden>Your stats fill in as you tick prayers and deeds in <a href="#" onclick="event.preventDefault();goSub('daily','today')">Today →</a> and count umrahs in the Umrah tab.</div>
-  <div class="card card-pad"><h3>🟩 Trip consistency</h3><div class="heat" id="heatGrid"></div><div class="hleg" id="heatLeg"></div></div>
-  <div class="card card-pad"><h3>📈 Trip stats</h3>
+  <div class="card card-pad"><h3 data-mk="grid">Trip consistency</h3><div class="heat" id="heatGrid"></div><div class="hleg" id="heatLeg"></div></div>
+  <div class="card card-pad"><h3 data-mk="chart">Trip stats</h3>
     <div class="kv"><span>Days with worship logged</span><b id="stDays">0</b></div>
     <div class="kv"><span>Average completion</span><b id="stAvg">0%</b></div>
     <div class="kv"><span>Best day</span><b id="stBest">—</b></div>
@@ -1331,7 +1362,7 @@ html[data-text='lg'] body{font-size:17.5px}
     <div class="kv"><span>Walked in worship (est.)</span><b id="stKm">≈ 0 km</b></div>
     <div class="kv"><span>Zamzam cups this trip</span><b id="stCups">0</b></div>
     <div class="kv"><span>Places visited</span><b id="stPlaces">0</b></div></div>
-  <div class="card card-pad"><h3>🏅 Achievements (<span id="bdgCnt">0</span>/<span id="bdgTot">9</span>)</h3><p style="font-size:.76em;color:var(--ink3);margin:-4px 0 10px">Tap a locked badge to see how to earn it.</p><div class="bdgs" id="bdgGrid"></div></div>
+  <div class="card card-pad"><h3 data-mk="medal">Achievements (<span id="bdgCnt">0</span>/<span id="bdgTot">9</span>)</h3><p style="font-size:.76em;color:var(--ink3);margin:-4px 0 10px">Tap a locked badge to see how to earn it.</p><div class="bdgs" id="bdgGrid"></div></div>
   <button class="btn gold" id="shareBtn" style="margin:0 0 14px" onclick="shareCard()">📸 Share my progress card</button>
   </div>
 </div>
@@ -1353,45 +1384,45 @@ html[data-text='lg'] body{font-size:17.5px}
   <div class="vh"><h2 data-mk="star">More</h2><p>Keep the change alive after Umrah, the essential duas, and your settings &amp; data.</p></div>
   <div class="seg" data-tab="more"><button class="on" data-sub="guide" data-mk="sprout" onclick="goSub('more','guide')">After</button><button data-sub="duas" data-mk="hands" onclick="goSub('more','duas')">Duas</button><button data-sub="settings" data-mk="gear" onclick="goSub('more','settings')">Settings</button></div>
   <div class="sub on" id="sub-more-guide">
-  <div class="card card-pad" id="postCard"><h3 id="postH3">🌱 After Umrah — keep it alive</h3>
+  <div class="card card-pad" id="postCard"><h3 id="postH3" data-mk="sprout">After Umrah — keep it alive</h3>
     <p style="font-size:.82em;color:var(--ink2);margin-bottom:4px">"The most beloved deeds to Allah are the most consistent, even if small." — Bukhari 6464. Don’t let the Haram version of you fade — hold three habits for 30 days after you return.</p>
     <div class="setrow"><div><b>Post-Umrah mode</b><small>30-day habit keeper + reflections</small></div><button class="sw" id="postSw" role="switch" aria-checked="false" aria-label="Post-Umrah mode" onclick="togPost()"></button></div>
     <div id="postArea"></div></div>
   <div class="card card-pad" id="nextCard"><h3 data-mk="compass">Plan your next journey</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:10px">"Umrah to Umrah is an expiation for what is between them" (Bukhari 1773). When Allah invites you again, the checklists and countdown are ready — nothing from this journey is deleted.</p><div class="jbtns"><button class="btn ghost" onclick="nextJourney('umrah')">🕋 Umrah</button><button class="btn ghost" onclick="nextJourney('hajj')">⛺ Hajj</button></div></div>
-  <div class="card card-pad" id="journeysCard"><h3>📜 My journeys</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:8px">Every Umrah and Hajj recorded on this phone, newest first.</p><div id="journeysArea"></div></div>
+  <div class="card card-pad" id="journeysCard"><h3 data-mk="scroll">My journeys</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:8px">Every Umrah and Hajj recorded on this phone, newest first.</p><div id="journeysArea"></div></div>
   </div><div class="sub" id="sub-more-duas">
-  <div class="card card-pad"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px"><h3 style="margin:0">🤲 Essential duas</h3><button class="xchip" style="margin:0" onclick="goTab('daily','tools','duaCard')">🤲 My dua list →</button></div><p style="font-size:.78em;color:var(--ink2);margin-bottom:10px">Tap any dua to open it full-screen for reading in the Haram.</p><div id="duaContainer"></div></div>
+  <div class="card card-pad"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px"><h3 style="margin:0" data-mk="hands">Essential duas</h3><button class="xchip" style="margin:0" onclick="goTab('daily','tools','duaCard')">🤲 My dua list →</button></div><p style="font-size:.78em;color:var(--ink2);margin-bottom:10px">Tap any dua to open it full-screen for reading in the Haram.</p><div id="duaContainer"></div></div>
   </div><div class="sub" id="sub-more-settings">
-  <div class="card card-pad"><h3>⚙️ Settings</h3>
+  <div class="card card-pad"><h3 data-mk="gear">Settings</h3>
     <div class="setrow"><div><b>Dark mode</b><small>Easier on the eyes at night</small></div><button class="sw" id="dmTgl" role="switch" aria-checked="false" aria-label="Dark mode" onclick="toggleTheme()"></button></div>
     <div class="setrow"><div><b>Text size</b><small>Larger text for duas, tips and the nav</small></div><div class="segmini" id="textSeg"><button class="on" data-t="" onclick="setText('')">Normal</button><button data-t="lg" onclick="setText('lg')">Large</button></div></div>
     <div class="setrow"><div><b>Swipe between sections</b><small>Swipe left/right to change sub-tabs</small></div><button class="sw on" id="swipeSw" role="switch" aria-checked="true" aria-label="Swipe between sections" onclick="togSwipe()"></button></div>
-    <div class="setrow"><div><b>🧭 My journey</b><small id="journeyLbl">🕋 Umrah</small></div><button class="chip-btn" onclick="showOnboard()">Change</button></div>
+    <div class="setrow"><div><b data-mk="compass">My journey</b><small id="journeyLbl">🕋 Umrah</small></div><button class="chip-btn" onclick="showOnboard()">Change</button></div>
     <div id="hajjSet" hidden>
-    <div class="setrow"><div><b>⛺ Hajj type</b><small>Your group leader knows which one your package follows — Tamattu’ is the usual. Tap a type to read what changes.</small></div><div class="segmini" id="hajjTypeSeg"><button data-ht="tamattu" onclick="setHajjType('tamattu')">Tamattu’</button><button data-ht="qiran" onclick="setHajjType('qiran')">Qiran</button><button data-ht="ifrad" onclick="setHajjType('ifrad')">Ifrad</button></div></div>
-    <div class="setrow"><div><b>📅 Hajj dates look one day off?</b><small id="hajjShiftLbl">Moon sighting can move the days by one</small></div><div class="segmini" id="hajjShiftSeg"><button data-s="-1" onclick="setHajjShift(-1)" aria-label="One day earlier">−1</button><button data-s="0" onclick="setHajjShift(0)">0</button><button data-s="1" onclick="setHajjShift(1)" aria-label="One day later">+1</button></div></div>
+    <div class="setrow"><div><b data-mk="tent">Hajj type</b><small>Your group leader knows which one your package follows — Tamattu’ is the usual. Tap a type to read what changes.</small></div><div class="segmini" id="hajjTypeSeg"><button data-ht="tamattu" onclick="setHajjType('tamattu')">Tamattu’</button><button data-ht="qiran" onclick="setHajjType('qiran')">Qiran</button><button data-ht="ifrad" onclick="setHajjType('ifrad')">Ifrad</button></div></div>
+    <div class="setrow"><div><b data-mk="calendar">Hajj dates look one day off?</b><small id="hajjShiftLbl">Moon sighting can move the days by one</small></div><div class="segmini" id="hajjShiftSeg"><button data-s="-1" onclick="setHajjShift(-1)" aria-label="One day earlier">−1</button><button data-s="0" onclick="setHajjShift(0)">0</button><button data-s="1" onclick="setHajjShift(1)" aria-label="One day later">+1</button></div></div>
     </div>
     <div class="setrow"><div><b>Trip length</b><small>How many days is your trip? (3–45)</small></div><input type="number" class="numin" id="tripLen" min="3" max="45" onchange="setTripLen(this.value)" aria-label="Trip length in days"></div>
-    <div class="setrow"><div><b>🔔 Prayer reminders</b><small>Notifies ~20 min before each prayer while the app is open — for alarms with the screen off, add the week to your calendar below</small></div><button class="sw" id="remSw" role="switch" aria-checked="false" aria-label="Prayer reminders" onclick="togRem()"></button></div>
-    <div class="setrow"><div><b>📅 Add this week’s prayer times to my calendar</b><small id="icsSub">7 days × 5 prayers for your prayer city, each with a 20-min alert (60 for Jumu’ah) — works offline, nothing is uploaded</small></div><button class="chip-btn" style="white-space:nowrap" onclick="exportICS()">📅 Add week</button></div>
+    <div class="setrow"><div><b data-mk="bell">Prayer reminders</b><small>Notifies ~20 min before each prayer while the app is open — for alarms with the screen off, add the week to your calendar below</small></div><button class="sw" id="remSw" role="switch" aria-checked="false" aria-label="Prayer reminders" onclick="togRem()"></button></div>
+    <div class="setrow"><div><b data-mk="calendar">Add this week’s prayer times to my calendar</b><small id="icsSub">7 days × 5 prayers for your prayer city, each with a 20-min alert (60 for Jumu’ah) — works offline, nothing is uploaded</small></div><button class="chip-btn" style="white-space:nowrap" onclick="exportICS()">📅 Add week</button></div>
     <div class="setrow"><div><b>I am a…</b><small>Shows only the ihram, packing and halq/taqsir steps that apply to you</small></div><div class="segmini" id="profSeg"><button data-p="m" onclick="setProfile('m')">Brother</button><button data-p="w" onclick="setProfile('w')">Sister</button><button class="on" data-p="" onclick="setProfile('')">Both</button></div></div>
     <div class="setrow"><div><b>Travelling with children</b><small>Adds a children’s checklist to Plan › Prepare</small></div><button class="sw" id="kidsSw2" role="switch" aria-checked="false" aria-label="Travelling with children" onclick="togKids()"></button></div>
     <div class="setrow"><div><b>Dua audio</b><small>Arabic voice missing? Install it in your phone’s text-to-speech settings, then test here.</small></div><button class="say" onclick="testVoice(this)" aria-label="Test the Arabic voice">🔊 Test</button></div>
     <div class="setrow"><div><b>Your name</b><small>Printed on your certificate</small></div><input class="numin" style="width:130px;text-align:left" id="nameIn" placeholder="Name" aria-label="Your name" onchange="ST.name=this.value.trim();saveST();"></div>
-    <div class="setrow"><div><b>🧭 Journey stage</b><small id="stageLbl">Re-declare where you are — nothing is reset</small></div><button class="chip-btn" onclick="showOnboard('stage')">Change</button></div>
+    <div class="setrow"><div><b data-mk="compass">Journey stage</b><small id="stageLbl">Re-declare where you are — nothing is reset</small></div><button class="chip-btn" onclick="showOnboard('stage')">Change</button></div>
     <div class="setrow"><div><b>Share the app</b><small>Send it to your group before you fly</small></div><div style="display:flex;gap:6px"><button class="chip-btn" onclick="shareApp()">📤 Share</button><button class="chip-btn" onclick="showQR()">▦ QR</button></div></div>
     <div class="setrow" id="installRow" style="display:none"><div><b>Install app</b><small>Add to your home screen — works offline</small></div><button class="chip-btn" onclick="installApp()">📲 Install</button></div>
     <div class="setrow"><div><b>Check for updates</b><small>Version <span id="verLbl2"></span> · updates install automatically</small></div><button class="chip-btn" onclick="checkUpdates()">🔄 Check</button></div>
     <div class="where">Where things are: Departure date → <a href="#" onclick="event.preventDefault();goTab('plan','prep','cdCard')">Plan › Prepare</a> · Prayer city &amp; reminders → <a href="#" onclick="event.preventDefault();goTab('daily','today')">Daily › Today</a> · Hotel → <a href="#" onclick="event.preventDefault();goTab('plan','prep','hotelCard')">Plan › Prepare</a> / <a href="#" onclick="event.preventDefault();goTab('places')">Places</a></div>
   </div>
 
-  <div class="card card-pad" id="campCard" hidden><h3>⛺ Mina camp &amp; group leader</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Every tent looks the same at 2 am. Save these before the 8th — they go on the driver card, the “I’m lost” card and the Help overlay.</p>
+  <div class="card card-pad" id="campCard" hidden><h3 data-mk="tent">Mina camp &amp; group leader</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:10px">Every tent looks the same at 2 am. Save these before the 8th — they go on the driver card, the “I’m lost” card and the Help overlay.</p>
     <input class="srch" id="cN" placeholder="Camp / tent number (e.g. Camp 43, tent 12)" onchange="saveCamp()" aria-label="Camp or tent number"><input class="srch" id="cM" placeholder="Maktab number" onchange="saveCamp()" aria-label="Maktab number">
     <input class="srch" id="cL" placeholder="Group leader name" onchange="saveCamp()" aria-label="Group leader name"><input class="srch" id="cP" placeholder="Group leader phone" inputmode="tel" onchange="saveCamp()" aria-label="Group leader phone">
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px"><button class="chip-btn" onclick="showCampDriver()">🚕 To my camp</button><button class="chip-btn sos" style="color:var(--danger)" onclick="showLost()">🆘 I’m lost</button></div>
   </div>
 
-  <div class="card card-pad"><h3>💾 Your data</h3>
+  <div class="card card-pad"><h3 data-mk="disk">Your data</h3>
     <p style="font-size:.8em;color:var(--ink2);margin-bottom:6px">Backup includes your checklists, quiz, tasbih, dua list, niyyah and journal. Encrypted vault documents are not included.</p>
     <button class="btn ghost" onclick="exportData()">📤 Export backup</button>
     <button class="btn ghost" onclick="document.getElementById('impFile').click()">📥 Import backup</button>
@@ -1399,13 +1430,13 @@ html[data-text='lg'] body{font-size:17.5px}
     <button class="btn danger" onclick="confirmReset()">🗑️ Reset everything</button>
   </div>
 
-  <div class="card card-pad" id="aboutCard"><h3>📖 About &amp; sources</h3>
+  <div class="card card-pad" id="aboutCard"><h3 data-mk="book">About &amp; sources</h3>
     <p style="font-size:.84em;color:var(--ink2);line-height:1.65">Everything lives on your device only — no accounts, no servers, no tracking. Every hadith in this app is cited to its collection (Bukhari, Muslim, Tirmidhi, Ibn Majah, Nasai, Abu Dawud) and has been checked against the source text; paraphrases are kept faithful and weak narrations are avoided or marked. This app is a study companion, <b>not a fatwa service</b> — for rulings about your specific situation, ask a qualified scholar.</p>
     <div class="note" style="margin:10px 0 12px"><b>Review status:</b> citations verified against source texts · <b>scholar review: pending</b> — if you are a qualified scholar willing to review, please get in touch.</div>
     <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap"><span style="font-size:.8em;color:var(--ink2)"><b style="color:var(--ink)">Miqah</b> · v<span id="verLbl"></span> · Free · Offline · Private · No ads</span><a class="chip-btn" style="text-decoration:none" href="mailto:m.farhan.bava@gmail.com?subject=Miqah%20correction">✉️ Send a correction</a></div>
   </div>
 
-  <div class="card card-pad"><h3>🔗 Official &amp; helpful links</h3>
+  <div class="card card-pad"><h3 data-mk="link">Official &amp; helpful links</h3>
     <a href="https://www.nusuk.sa/" target="_blank" rel="noopener" class="res"><span class="i">🕌</span><span class="t"><b>Nusuk</b>Official Saudi platform — visas, Rawdah permits & bookings</span><span class="g">OPEN →</span></a>
     <a href="https://umrah.nusuk.sa/" target="_blank" rel="noopener" class="res"><span class="i">🧳</span><span class="t"><b>Nusuk Umrah packages</b>Book visas &amp; packages from ministry-licensed providers only</span><span class="g">OPEN →</span></a>
     <a href="https://ehsan.sa/" target="_blank" rel="noopener" class="res"><span class="i">💝</span><span class="t"><b>Ehsan</b>Saudi Arabia’s official donation platform — sadaqah without scams</span><span class="g">OPEN →</span></a>
