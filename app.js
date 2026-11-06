@@ -1,6 +1,6 @@
 /* Miqah — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='6.1.1';
+var APP_VERSION='6.1.2';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* ════════════════════════ MARKS ════════════════════════ */
 /* Kiswah marks: one small inline-SVG set (24x24, 1.5px stroke, currentColor) drawn in the gold-line style of the Kaaba mark.

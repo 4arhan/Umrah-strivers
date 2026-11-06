@@ -97,7 +97,7 @@
   /* line-heights */
   --lh-meta:1.45;--lh-body:1.55;--lh-card:1.3;--lh-title:1.2;--lh-display:1.15;--lh-num:1;
   /* tracking: zero by default; one eyebrow; display titles tighten */
-  --track-0:0;--track-eyebrow:.06em;--track-tight:-.005em;--track-display:-.015em;
+  --track-0:0;--track-eyebrow:.06em;--track-tight:-.005em;--track-display:-.015em;--track-num:-.025em;
 }
 
 [data-theme="dark"]{
@@ -1180,10 +1180,10 @@ p,.s,.sub{text-wrap:pretty}
 /* hero & sheet title */
 .hero-t .v,.hs-t b,.hday-h b,.sheet h3,.wk-t,.wk-done h3{font-size:var(--t-6);line-height:var(--lh-title);letter-spacing:var(--track-display)}
 .hhero h2{font-size:var(--t-7);line-height:var(--lh-display);letter-spacing:var(--track-display)}
-/* numerals — counters, countdown, ring %: Fraunces pinned at opsz 40, 600 (the 9rem focus numeral at 500), lining.
-   Each is a single centred value, so Fraunces' proportional figures never shift a column. */
-.tr-mid .n,.focus-n,.tb-btn .n,.cd2-n,.cd-n,.ring-num span{font-family:var(--f-display);font-variation-settings:var(--fv-num);font-optical-sizing:none;font-weight:var(--w-display);letter-spacing:0;line-height:var(--lh-num);font-feature-settings:normal;font-variant-numeric:lining-nums}
-.focus-n{font-weight:var(--w-display-lt)}
+/* numerals — counters, countdown, ring %: Inter 600 at its display optical size, tabular lining figures.
+   Chosen over Fraunces for arm's-length reading in the mataf: an open, unambiguous 3 and a narrow 0 that cannot be
+   mistaken for O, and digits that do not shift width as the count changes. Fraunces stays for titles and the wordmark. */
+.tr-mid .n,.focus-n,.tb-btn .n,.cd2-n,.cd-n,.ring-num,.ring-num span{font-family:var(--f-text);font-optical-sizing:auto;font-variation-settings:normal;font-weight:var(--w-ui);letter-spacing:var(--track-num);line-height:var(--lh-num);font-feature-settings:var(--ff-num);font-variant-numeric:tabular-nums lining-nums}
 /* small Inter numerals that sit in rows keep tabular figures */
 .rring,.qz-final .big,.wk-cnt b{font-family:var(--f-text);font-optical-sizing:auto;font-variation-settings:normal;font-weight:var(--w-ui);letter-spacing:-.01em;line-height:var(--lh-num);font-feature-settings:var(--ff-num);font-variant-numeric:tabular-nums lining-nums}
 .stp-n,.stage-n{font-family:var(--f-display);font-variation-settings:var(--fv-small);font-optical-sizing:none;font-weight:var(--w-display);letter-spacing:0;line-height:var(--lh-num)}
