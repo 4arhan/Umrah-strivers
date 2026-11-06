@@ -21,11 +21,17 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   await page.evaluate(() => localStorage.setItem('us-settings', JSON.stringify({ onboarded: true, name: 'Test', dep: new Date(Date.now() + 5 * 86400000).toISOString().slice(0, 10), tripLen: 10, day: 1 })));
   await page.reload(); await page.waitForTimeout(900);
 
+  // Kiswah legibility floor: captions never below .7em of the body size — checked on every main screen below
+  const FLOOR = `(function(){var body=parseFloat(getComputedStyle(document.body).fontSize),floor=body*.7-.05,bad=[];var root=document.querySelector('.focus.on,.sheet-o.on')||document.querySelector('.view.on')||document.body;
+    root.querySelectorAll('*').forEach(function(e){var has=false;for(var i=0;i<e.childNodes.length;i++)if(e.childNodes[i].nodeType===3&&e.childNodes[i].textContent.trim())has=true;if(!has)return;var cs=getComputedStyle(e);if(cs.display==='none'||cs.visibility==='hidden')return;var r=e.getBoundingClientRect();if(!r.width||!r.height)return;var fs=parseFloat(cs.fontSize);if(fs<floor)bad.push(e.tagName.toLowerCase()+'.'+String(e.className).split(' ')[0]+' '+fs.toFixed(1)+'px "'+e.textContent.trim().slice(0,24)+'"');});
+    return bad.filter(function(x,i,a){return a.indexOf(x)===i;}).slice(0,8);})()`;
+  const floorCheck = async label => { const bad = await page.evaluate(FLOOR); check('caption floor (' + label + '): no visible text below .7em', bad.length === 0, bad); };
   console.log('Home');
   check('opens on Home', (await page.getAttribute('.view.on', 'id')) === 'view-home');
+  await floorCheck('Home');
   check('brand is Miqah: title, header wordmark and tagline, no old name anywhere in the shell', (await page.title()) === 'Miqah' && (await page.textContent('.brand h1')).startsWith('Miqah') && (await page.textContent('.brand h1 small')) === 'Hajj & Umrah companion' && (await page.evaluate(() => !document.body.innerHTML.includes('Umrah Strivers'))));
   check('journey chip counts down + no update chip', (await page.textContent('#jChip')).includes('day') && (await page.locator('#updChip').isHidden()));
-  check('onboarded: brand strip, greeting split from the date, one expanded stage + 4 compact rows, About folded', (await page.locator('.hhero').count()) === 0 && (await page.textContent('.hbrand')).includes('Miqah') && (await page.textContent('.hs-t .hs-g')).includes('Test') && (await page.locator('.hs-t .hs-d').count()) === 1 && (await page.locator('.stage.now').count()) === 1 && (await page.locator('.stage.cmp').count()) === 4 && (await page.locator('.stage.cmp p').count()) === 0 && (await page.locator('#sec-about.shut').count()) === 1 && (await page.evaluate(() => document.querySelector('.stage.now .stage-b p').textContent.includes(QUIZ_LEVELS.filter(forMe).length + '-level quiz'))));
+  check('onboarded: brand strip, greeting split from the date, one expanded stage + 4 compact rows, About folded', (await page.locator('.hhero').count()) === 0 && (await page.textContent('.hbrand')).includes('offline') && !(await page.textContent('.hbrand')).includes('Miqah') && (await page.locator('.hbrand .kmark').count()) === 1 && (await page.textContent('.hs-t .hs-g')).includes('Test') && (await page.locator('.hs-t .hs-d').count()) === 1 && (await page.locator('.stage.now').count()) === 1 && (await page.locator('.stage.cmp').count()) === 4 && (await page.locator('.stage.cmp p').count()) === 0 && (await page.locator('#sec-about.shut').count()) === 1 && (await page.evaluate(() => document.querySelector('.stage.now .stage-b p').textContent.includes(QUIZ_LEVELS.filter(forMe).length + '-level quiz'))));
   check('planner: Do next lists the overdue basics + the quiz level and names the CTA', (await page.locator('.hnext .tli').count()) === 4 && (await page.textContent('.hnext .tli >> nth=0')).includes('Passport') && (await page.textContent('.hnext .tli-when >> nth=0')) === 'overdue' && (await page.textContent('.hnext .tli >> nth=3')).includes('Quiz level 1') && (await page.textContent('.hs-t .hcta')).startsWith('Overdue: Passport') && (await page.textContent('.hs-r em')) === 'Go →' && (await page.evaluate(() => document.querySelector('.hnext').compareDocumentPosition(document.querySelector('.hfc')) & Node.DOCUMENT_POSITION_FOLLOWING)) > 0);
   await page.click('.hnext .tli >> nth=0'); await page.waitForTimeout(600);
   const homeFirst = await page.textContent('.hnext .tli >> nth=0');
@@ -56,6 +62,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   await page.evaluate(() => { goTab('plan'); goSub('plan', 'prep', true); });
   await page.click('#pw-passport');
   check('checklist ticks', (await page.locator('#pw-passport.done').count()) === 1);
+  await floorCheck('Plan prep');
   check('itinerary renders 10 days', (await page.locator('.it').count()) === 10);
   check('timeline: blocking items first, capped groups, neutral late pills', (await page.textContent('#tlArea')).includes('Should already be done') && (await page.locator('#tlArea .tli-more').count()) >= 1 && (await page.locator('#tlArea .tli-when.over').count()) <= 5 && (await page.locator('#prepJumps button').count()) === 7);
   await page.click('#tlArea .tli >> nth=0'); await page.waitForTimeout(600);
@@ -74,6 +81,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   check('driver card has Call + Maps actions', (await page.locator('#driver.on #drvActs a[href^="https://www.google.com/maps/dir/"]').count()) === 1);
   await page.evaluate(() => closeDriver());
   await page.evaluate(() => goSub('plan', 'learn', true));
+  await floorCheck('Plan learn');
   check('knowledge accordions', (await page.locator('#histCard .acc').count()) >= 9 && (await page.locator('#qaContainer .acc').count()) === (await page.evaluate(() => FIQHQA.concat(TROUBLE).filter(forMe).length)) /* Umrah Q&A + the Hajj topics (j:'hajj'); forMe gates them per journey */ && (await page.locator('#scamContainer .acc').count()) === 10);
   check('Learn order: rites index first, essentials next, sisters section, quiz hand-off last', (await page.locator('#riteTiles .rtile').count()) === 4 && (await page.evaluate(() => { const ids = [...document.querySelectorAll('#sub-plan-learn > .card')].map(e => e.id); return ids.indexOf('ritesCard') === 0 && ids.indexOf('knowCard') === 1 && ids.indexOf('knowCard') < ids.indexOf('qaCard') && ids.indexOf('sisCard') > ids.indexOf('madCard') && ids.indexOf('lnQuizCard') === ids.length - 1; })) && (await page.locator('#sisContainer .acc').count()) === 7 && (await page.textContent('#lnQuizSub')).includes('Level 1') && (await page.locator('#knowCard .lnm').count()) === 1);
   await page.click('#knowContainer .acc >> nth=1 >> .acc-h');
@@ -94,6 +102,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   check('quiz-derived card shows the options with the correct one marked', (await page.locator('#fcWrap .fc-opts div').count()) === 4 && (await page.locator('#fcWrap .fc-opts div.ok').count()) === 1);
   await page.evaluate(() => fcEnd());
   await page.evaluate(() => goSub('plan', 'quiz', true));
+  await floorCheck('Plan quiz');
   const nLv = await page.evaluate(() => QUIZ_LEVELS.filter(forMe).length); /* 7 Umrah levels + the Hajj level (j:'hajj'), gated by forMe */
   check(nLv + ' quiz levels, all but the first locked (and aria-disabled)', (await page.locator('.lvl').count()) === nLv && (await page.locator('.lvl.locked').count()) === nLv - 1 && (await page.locator('.lvl.locked[aria-disabled="true"]').count()) === nLv - 1 && (await page.locator('.lvl:not(.locked)[aria-disabled]').count()) === 0);
   check('kids corner first and collapsed, with 5 stories; quiz CTA + pass marks', (await page.evaluate(() => [...document.querySelectorAll('#sub-plan-quiz > .card')].map(e => e.id)[0])) === 'kidsCard' && (await page.locator('#kidsArea').isHidden()) && (await page.locator('#storyList .acc').count()) === 5 && (await page.textContent('.qz-cta')).includes('Level 1') && (await page.textContent('.lvl >> nth=0')).includes('pass = 8 correct') && (await page.locator('.lvl.next').count()) === 1 && (await page.textContent('#qzBest')) === '0/' + nLv);
@@ -126,6 +135,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   await page.evaluate(() => goTab('umrah')); await page.waitForTimeout(300);
   check('before departure the Umrah tab defaults to Steps, with the you-are-here strip on step 1', (await page.evaluate(() => ST.sub.umrah)) === 'steps' && (await page.locator('#sub-umrah-steps.on').count()) === 1 && (await page.textContent('#riteNow')).includes('Now · step 1 of 17') && (await page.locator('#riteNow .now-tick').count()) === 1);
   await page.evaluate(() => goSub('umrah', 'count', true));
+  await floorCheck('Umrah count');
   check('counters open: live hero, sa\u2019i card compact, tip for round 1, dua under the ring', (await page.textContent('#riteHeroT')) === 'Ready to begin' && (await page.locator('#saiCard.compact').count()) === 1 && (await page.locator('#tawafCard.compact').count()) === 0 && (await page.textContent('#tawafTip')).includes('Now: round 1 of 7') && (await page.locator('#tawafDua .dua .ar').count()) === 1);
   await page.click('#tawafRingBtn');
   check('wudu gate is a sheet (no confirm) and blocks the count', (await page.locator('#gSheet.on button:has-text("Yes, I have wudu")').count()) === 1 && (await page.textContent('#tawafN')) === '0');
@@ -159,6 +169,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   check('period line opens the ruling sheet', (await page.textContent('#gSheetBody')).includes('Bukhari 305'));
   await page.evaluate(() => closeSheet());
   await page.evaluate(() => goSub('umrah', 'steps', true));
+  await floorCheck('Umrah steps');
   await page.click('#rw-ghusl .why');
   check('why explainer toggles', (await page.locator('#rw-ghusl .whyb.on').count()) === 1);
   check('rites step carries the live counter chip', (await page.textContent('#live-rounds')).includes('7 / 7 rounds'));
@@ -201,6 +212,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
 
   console.log('Daily');
   await page.evaluate(() => { goTab('daily'); goSub('daily', 'today', true); window.scrollTo(0, 0); }); await page.waitForTimeout(500);
+  await floorCheck('Daily today');
   check('checklist above the fold at 390x844: compact hero and strip, Fajr row fully above the nav, hadith under the rows', await page.evaluate(() => { const r = s => document.querySelector(s).getBoundingClientRect(); return r('.dhero').height <= 132 && r('#ptSec').height <= 52 && r('.todayit').height <= 56 && r('#dw-fajr').bottom <= r('.nav').top && !!(document.querySelector('#sec-salah .note').compareDocumentPosition(document.querySelector('#dw-fajr')) & Node.DOCUMENT_POSITION_PRECEDING); }));
   check('prayer grid 5 cells + next highlighted', (await page.locator('.pt').count()) === 5 && (await page.locator('.pt.next').count()) === 1);
   check('day nav lives in the hero; prayer strip is collapsed with the next prayer, time and city; live Umm al-Qura note', (await page.locator('.dhero #dayNav #dayDisp').count()) === 1 && (await page.locator('#ptSec.shut').count()) === 1 && /in .*05:12|12:21|15:42|18:33|20:03/.test(await page.textContent('#ptNext')) && (await page.textContent('#ptNext')).includes('Makkah') && (await page.textContent('#ptNote')).includes('Umm al-Qura (') && (await page.textContent('#ptNote')).includes('Duha from ~06:35'));
@@ -224,6 +236,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   await page.evaluate(() => { setMeet('Gate 79'); });
   check('meeting point echoes to Home’s prayer strip and the hotel card', (await page.textContent('#hNext')).includes('meet: Gate 79') && (await page.inputValue('#hMeet')) === 'Gate 79');
   await page.evaluate(() => goSub('daily', 'tools', true));
+  await floorCheck('Daily tools');
   check('tools: jump chips + pre-trip order (duas first) + collapsible dua section', (await page.locator('.tooljumps .pill').count()) === 4 && (await page.evaluate(() => getComputedStyle(document.getElementById('duaCard')).order)) === '1' && (await page.evaluate(() => getComputedStyle(document.getElementById('tbCard')).order)) === '3' && (await page.locator('#duaCard #sec-dualist:not(.shut)').count()) === 1 && (await page.locator('#duaList .dua-sug .chip-btn').count()) === 8);
   for (let i = 0; i < 33; i++) await page.click('.tb-btn');
   check('tasbih cycle advances phrase', (await page.locator('.tb-chip.on').textContent()) === 'Alhamdulillah');
@@ -270,6 +283,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
 
   console.log('Places');
   await page.evaluate(() => goTab('places'));
+  await floorCheck('Places');
   check('first visit seeds the city pill from the prayer city (Makkah · 29 sites) and remembers it', (await page.locator('.place').count()) === 29 && (await page.locator('#pillMakkah.on').count()) === 1 && (await page.evaluate(() => ST.placesCity)) === 'makkah');
   check('every site carries an Arabic name and coordinates; access tags show on collapsed cards', (await page.evaluate(() => PLACES.every(p => p.ar && p.ll && p.ll.length === 2))) && (await page.locator('#pl-mualla .ptag').count()) === 3 && (await page.locator('#pl-hira .plar').count()) === 1);
   check('hajj, museum and day-trip groups fold by default; hero counts per city without a ring', (await page.locator('#placesContainer .sec.shut').count()) === 3 && (await page.locator('#plRing').count()) === 0 && (await page.textContent('#plHeroS')).includes('Makkah 0 visited') && (await page.textContent('#plNear')).includes('Set hotel'));
@@ -324,6 +338,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   check('post-umrah 90 habit chips', (await page.locator('.pchip').count()) === 90);
   check('journey chip goes to post card', (await page.textContent('#jChip')).includes('Post-Umrah'));
   await page.evaluate(() => goSub('more', 'settings', true));
+  await floorCheck('More settings');
   check('about card: version + correction mailto + links', (await page.textContent('#verLbl')) === (await page.evaluate(() => APP_VERSION)) && (await page.locator('#aboutCard a[href^="mailto:"]').count()) === 1 && (await page.locator('#sub-more-settings .res').count()) === 8);
   const BADGES_N = await page.evaluate(() => BADGES.length); /* 9 + the Hajji badge */
   check('achievements total follows the badge list (Little Pilgrim, Hajji added)', (await page.textContent('#bdgTot')) === String(BADGES_N) && (await page.locator('#bdgGrid .bdg').count()) === BADGES_N);
@@ -400,7 +415,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   await page.evaluate(() => { window.riyadhNow = () => new Date('2027-05-10T12:00:00'); renderHome(); updChip(); }); await page.waitForTimeout(300);
   check('on trip before the 8th: the Umrah-first chain reuses the rites CTA, chip says Umrah first; a lifetime Umrah count from an earlier trip changes nothing; once THIS trip’s Umrah is recorded — out of ihram until 8 Dhul Hijjah', (await page.evaluate(() => hajjDay() === 'pre')) && (await page.textContent('.hstatus b')).includes('Umrah first · Hajj begins in 4 days') && (await page.textContent('.hs-t .hcta')).includes('Begin your Umrah') && (await page.textContent('#jChip')) === 'Umrah first' && (await page.evaluate(() => { ST.umrahs = 2; saveST(); renderHome(); updChip(); return tripUmrahs() === 0 && !hajjPart2Active() && document.querySelector('.hstatus b').textContent.includes('Umrah first') && document.getElementById('jChip').textContent === 'Umrah first'; })) && (await page.evaluate(() => { localStorage.setItem('us-umrahlog', JSON.stringify([{ n: 3, log: { done: new Date('2027-05-03T20:00:00').getTime() } }])); renderHome(); updChip(); return tripUmrahs() === 1 && hajjPart2Active() && document.querySelector('.hstatus b').textContent.includes('Out of ihram until 8 Dhul Hijjah') && document.getElementById('jChip').textContent === 'Hajj in 4 d'; })));
   await page.evaluate(() => { window.riyadhNow = () => new Date('2027-05-15T12:00:00'); localStorage.removeItem('us-umrahlog'); ST.umrahs = 0; ST.hajjTypeConfirmed = false; saveST(); renderRites(); updRites(); goTab('umrah', 'steps'); }); await page.waitForTimeout(300);
-  check('9 Dhul Hijjah with the Umrah unrecorded: Part 2 drives the Now strip (not the miqat ghusl), Part 1 carries the not-recorded nudge, the Part 1 subtitle says the type is unconfirmed', (await page.evaluate(() => hajjPart2Active() && nextRite().hajj === true && nextRite().st.id === 'h8ghusl')) && (await page.textContent('#riteNow')).includes('Part 2') && (await page.locator('#umrahNudge').count()) === 1 && (await page.textContent('#hajjPart1')).includes('type unconfirmed'));
+  check('9 Dhul Hijjah with the Umrah unrecorded: Part 2 drives the Now strip (not the miqat ghusl), Part 1 carries the not-recorded nudge, the Part 1 subtitle says the type is unconfirmed', (await page.evaluate(() => hajjPart2Active() && nextRite().hajj === true && nextRite().st.id === 'h8ghusl')) && (await page.textContent('#riteNow')).includes('Part 2') && (await page.locator('#umrahNudge').count()) === 1 && (await page.textContent('#hajjPart1')).includes('unconfirmed until the halq step'));
   await page.evaluate(() => { delete window.riyadhNow; delete window.depDays; delete window.expectedDay; ST.umrahs = 0; ST.day = 1; saveST(); renderRites(); goTab('home'); });
   await page.evaluate(() => { showOnboard('hajj'); obHajjHere(); }); await page.waitForTimeout(200);
   await page.fill('#obHDay', '3'); await page.evaluate(() => { obUmPick(1); obHajjHereApply(); }); await page.waitForTimeout(500);
@@ -437,6 +452,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   check('the ifadah chip before Arafah never opens the counter in another mode: an inline "stood at Arafah?" sheet instead', (await page.textContent('#gSheetBody h3')).includes('Tawaf al-ifadah already?') && (await page.evaluate(() => tmode() === 'umrah' && !hajjChk.h9wuquf)));
   await page.evaluate(() => closeSheet());
   await page.evaluate(() => togHajj('h9wuquf'));
+  check('Kiswah: a two-mode tawaf toggle names tawaf al-ifadah (never "Nafl tawaf" twice) once the Umrah tawaf is done and Arafah is behind', (await page.evaluate(() => { const prev = ST.tmode; ST.tmode = 'nafl'; riteChk.rounds = true; renderTmodeSeg(); const t = [...document.querySelectorAll('#tmodeSeg button')]; const r = t.map(b => b.getAttribute('data-m')).join(',') + '|' + t.map(b => b.textContent.trim()).join('|'); riteChk.rounds = false; ST.tmode = prev; renderTmodeSeg(); return r; })) === 'nafl,ifadah|Nafl tawaf|Tawaf al-ifadah');
   check('togHajj ticks into hajjChk (us-hajj) and stamps ST.hlog, never riteChk', (await page.evaluate(() => hajjChk.h9wuquf === true && JSON.parse(localStorage.getItem('us-hajj')).h9wuquf === true && !!ST.hlog.h9wuquf && !riteChk.h9wuquf && document.getElementById('rw-h9wuquf').classList.contains('done') && document.getElementById('sp-hd9').textContent === '1/5')));
   await page.evaluate(() => { window.riyadhNow = () => new Date('2027-05-16T12:00:00'); window.depDays = () => -15; ST.log = { ihram: 1 }; saveST(); setTmode('ifadah'); ST.wudu = true; saveST(); updWudu(); for (let i = 0; i < 7; i++) { lastTap.tawaf = 0; cntr('tawaf', 1); } });
   check('ifadah at 7/7 ticks hajjChk.h10ifadah + stamps hlog.ifadahStart/End; riteChk.rounds and ST.log.tawafStart are untouched; tips have no raml; wada mode becomes due', (await page.evaluate(() => hajjChk.h10ifadah === true && !!ST.hlog.ifadahStart && !!ST.hlog.ifadahEnd && !riteChk.rounds && ST.log.tawafStart === undefined && tmodesDue().indexOf('wada') > -1 && document.getElementById('tawafH').textContent.includes('ifadah') && !document.getElementById('tawafTip').textContent.includes('raml') && document.getElementById('live-h10ifadah').textContent.includes('7 / 7') && document.getElementById('riteHeroT').textContent.includes('sa’i of Hajj'))) && (await page.textContent('#tawafDone')).includes('Tawaf al-ifadah complete'));
