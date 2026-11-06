@@ -115,6 +115,24 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 .brand-mark{width:40px;height:40px;border-radius:12px;background:var(--kiswah) var(--kaaba) center/40px 40px no-repeat;box-shadow:inset 0 0 0 1px var(--gold-line),var(--sh);font-size:0;flex-shrink:0}
 .kmark{display:inline-block;width:22px;height:22px;border-radius:6px;background:var(--kiswah) var(--kaaba) center/22px 22px no-repeat;box-shadow:inset 0 0 0 1px var(--gold-line);vertical-align:-5px}
 .kaaba-i{display:inline-block;width:40px;height:40px;border-radius:10px;background:var(--kiswah) var(--kaaba) center/40px 40px no-repeat;box-shadow:inset 0 0 0 1px var(--gold-line);flex-shrink:0}
+/* marks: the inline SVG set (mk() in app.js) — brand-2 on paper, gold on kiswah, inherited inside controls */
+.mk{width:1.1em;height:1.1em;vertical-align:-.18em;display:inline-block;flex-shrink:0;color:var(--brand-2)}
+.mkt{margin-right:.38em}
+.chip .mk{width:1.35em;height:1.35em;vertical-align:-.32em;margin-right:.3em}
+.hfc small .mk,.hp-t small .mk{width:1.45em;height:1.45em;vertical-align:-.38em}
+.hstatus .mk,.hero .mk,.niy .mk,.now-strip .mk,.fc-front .mk,.focus .mk,.toast .mk,.tr-mid .mk,.hhero-mark .mk,.mk-i .mk,.kaaba-i .mk,.nav .mk{color:var(--gold-2)}
+.seg button .mk,.segmini button .mk,.chip .mk,.btn .mk,.chip-btn .mk,.pill .mk,.hajjask .mk,.lnk .mk{color:inherit}
+.seg button .mk{width:1.05em;height:1.05em;vertical-align:-.17em;margin-right:.3em}
+.vh h2 .mk{width:.8em;height:.8em;vertical-align:-.05em;margin-right:.3em}
+.cityhd .mk{width:.9em;height:.9em;vertical-align:-.1em;margin-right:.35em}
+.subt .mk{width:1.3em;height:1.3em;margin-right:0}
+.qa span .mk{width:26px;height:26px;display:block;margin:0 auto}
+.stage-i .mk{width:22px;height:22px}.stage.cmp .stage-i .mk{width:18px;height:18px}
+.hp-i .mk{width:22px;height:22px}.sec-ico .mk{width:20px;height:20px}
+.mk-i{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;background:var(--kiswah);box-shadow:inset 0 0 0 1px var(--gold-line);flex-shrink:0}.mk-i .mk{width:24px;height:24px}
+.opt .mk-i{width:40px;height:40px}.opt.big .mk-i{width:46px;height:46px}.opt.big .mk-i .mk{width:27px;height:27px}
+.opt .opt-i{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;background:var(--gold-soft);box-shadow:inset 0 0 0 1px var(--gold-hair);flex-shrink:0}.opt .opt-i .mk{width:22px;height:22px}
+.hhero-mark .mk{width:40px;height:40px}
 .brand h1{font-family:var(--fd);font-size:1.2em;font-weight:600;letter-spacing:-.01em;line-height:1.15}
 .brand small{display:block;font-family:var(--fb);font-weight:700;font-size:.58em;color:var(--gold-ink);letter-spacing:1.4px;margin-top:1px;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .brand h1{min-width:0}
@@ -1093,8 +1111,8 @@ html[data-text='lg'] body{font-size:17.5px}
 <div class="view" id="view-home"><div id="homeArea"></div></div>
 
 <div class="view" id="view-plan">
-  <div class="vh"><h2>Prepare with ihsan</h2><p id="quoteLine"></p></div>
-  <div class="seg" data-tab="plan"><button class="on" data-sub="prep" onclick="goSub('plan','prep')">🧳 Prepare</button><button data-sub="learn" onclick="goSub('plan','learn')">📚 Learn</button><button data-sub="quiz" onclick="goSub('plan','quiz')">🧠 Quiz</button></div>
+  <div class="vh"><h2 data-mk="bag">Prepare with ihsan</h2><p id="quoteLine"></p></div>
+  <div class="seg" data-tab="plan"><button class="on" data-sub="prep" data-mk="bag" onclick="goSub('plan','prep')">Prepare</button><button data-sub="learn" data-mk="book" onclick="goSub('plan','learn')">Learn</button><button data-sub="quiz" data-mk="quiz" onclick="goSub('plan','quiz')">Quiz</button></div>
   <div class="sub on" id="sub-plan-prep">
   <div class="hero"><div class="hero-t"><div class="k">Preparation</div><div class="v" id="planHeroT">Let's get ready</div><div class="s" id="planHeroS">Checklists, essential knowledge & a readiness quiz</div><button class="hcta" onclick="sharePrep()" aria-label="Share my readiness with my group">📤 Share my readiness</button></div>
     <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="planRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="planPct">0%</span><small>READY</small></div></div></div>
@@ -1173,8 +1191,8 @@ html[data-text='lg'] body{font-size:17.5px}
 
 <!-- ═══════ UMRAH ═══════ -->
 <div class="view" id="view-umrah">
-  <div class="vh"><h2>Labbayk Allahumma</h2><p id="umrahVhP">Every step from miqat to halq — with counters that keep count for you.</p></div>
-  <div class="seg" data-tab="umrah"><button class="on" data-sub="count" onclick="goSub('umrah','count')">🔄 Counters</button><button data-sub="steps" onclick="goSub('umrah','steps')">📋 Steps & duas</button></div>
+  <div class="vh"><h2 data-mk="kaaba">Labbayk Allahumma</h2><p id="umrahVhP">Every step from miqat to halq — with counters that keep count for you.</p></div>
+  <div class="seg" data-tab="umrah"><button class="on" data-sub="count" data-mk="refresh" onclick="goSub('umrah','count')">Counters</button><button data-sub="steps" data-mk="list" onclick="goSub('umrah','steps')">Steps & duas</button></div>
   <div class="sub on" id="sub-umrah-count">
   <div class="hero" id="riteHero"><div class="hero-t"><div class="k">Umrah · live</div><div class="v" id="riteHeroT">Ready to begin</div><div class="s" id="riteHeroS">Ihram – · Tawaf – · Sa’i – · Halq –</div></div>
     <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="riteRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="ritePct">0%</span><small>UMRAH</small></div></div></div>
@@ -1183,8 +1201,8 @@ html[data-text='lg'] body{font-size:17.5px}
   <div class="wudu" id="wuduCard" role="switch" tabindex="0" aria-checked="false" aria-label="I am in wudu" onclick="togWudu()"><div class="wudu-t"><b>💧 Wudu check — tawaf requires wudu</b><span class="wudu-x">"Tawaf around the House is like salah" (Tirmidhi 960). Make wudu before you start; if it breaks mid-tawaf, renew it and continue.</span><span class="wudu-st" id="wuduSt">Not yet — tap to confirm</span></div><span class="sw" id="wuduSw" aria-hidden="true"></span></div>
   <button class="lnk sis-line" onclick="periodSheet()">🌸 Period started? Your ihram is still valid — what to do</button>
   <div class="card cnt" id="tawafCard"><div class="cnt-sum" id="tawafSum"></div><div class="cnt-body">
-    <div class="segmini tmode" id="tmodeSeg" role="group" aria-label="Which tawaf are you counting?"><button class="on" data-m="umrah" onclick="setTmode('umrah')">🕋 Umrah tawaf</button><button data-m="nafl" onclick="setTmode('nafl')">🔁 Nafl tawaf</button></div>
-    <h3 id="tawafH">🕋 Tawaf</h3><div class="cnt-sub" id="tawafSub">7 rounds, counter-clockwise, from the Black Stone line.<br><b>Tap the circle after each round.</b></div>
+    <div class="segmini tmode" id="tmodeSeg" role="group" aria-label="Which tawaf are you counting?"><button class="on" data-m="umrah" data-mk="kaaba" onclick="setTmode('umrah')">Umrah tawaf</button><button data-m="nafl" data-mk="refresh" onclick="setTmode('nafl')">Nafl tawaf</button></div>
+    <h3 id="tawafH" data-mk="kaaba">Tawaf</h3><div class="cnt-sub" id="tawafSub">7 rounds, counter-clockwise, from the Black Stone line.<br><b>Tap the circle after each round.</b></div>
     <div class="tapring" id="tawafRingBtn" role="button" tabindex="0" aria-label="Count a tawaf round, 0 of 7 done" onclick="cntr('tawaf',1)"><svg width="216" height="216" viewBox="0 0 216 216"><circle class="tr-bg" cx="108" cy="108" r="90"/><circle class="tr-seg" id="tawafRing" cx="108" cy="108" r="90"/><circle class="tr-tick" cx="108" cy="108" r="90"/></svg><div class="tr-mid" aria-live="polite" aria-atomic="true"><div class="n" id="tawafN">0</div><div class="of">of 7 rounds</div><div class="tap" id="tawafTap">tap to count</div></div></div>
     <button class="btn undo" id="tawafUndo" onclick="cntr('tawaf',-1)">− Undo last round</button>
     <div class="cnt-tip" id="tawafTip"></div>
@@ -1195,7 +1213,7 @@ html[data-text='lg'] body{font-size:17.5px}
   </div></div>
 
   <div class="card cnt" id="saiCard"><div class="cnt-sum" id="saiSum"></div><div class="cnt-body">
-    <h3>⛰️ Sa'i</h3><div class="cnt-sub">7 laps — begin at Safa, finish at Marwah (Safa → Marwah = 1).<br><b>Tap the circle after each lap.</b></div>
+    <h3 data-mk="hills">Sa'i</h3><div class="cnt-sub">7 laps — begin at Safa, finish at Marwah (Safa → Marwah = 1).<br><b>Tap the circle after each lap.</b></div>
     <div class="tapring" id="saiRingBtn" role="button" tabindex="0" aria-label="Count a sa’i lap, 0 of 7 done" onclick="cntr('sai',1)"><svg width="216" height="216" viewBox="0 0 216 216"><circle class="tr-bg" cx="108" cy="108" r="90"/><circle class="tr-seg" id="saiRing" cx="108" cy="108" r="90"/><circle class="tr-tick" cx="108" cy="108" r="90"/></svg><div class="tr-mid" aria-live="polite" aria-atomic="true"><div class="n" id="saiN">0</div><div class="of">of 7 laps</div><div class="tap" id="saiTap">tap to count</div></div></div>
     <button class="btn undo" id="saiUndo" onclick="cntr('sai',-1)">− Undo last lap</button>
     <div class="cnt-tip" id="saiTip"></div>
@@ -1251,8 +1269,8 @@ html[data-text='lg'] body{font-size:17.5px}
 
 <!-- ═══════ DAILY ═══════ -->
 <div class="view" id="view-daily">
-  <div class="vh dvh"><h2>Maximise every day</h2><p>Every prayer here is multiplied — make every day count.</p></div>
-  <div class="seg" data-tab="daily"><button class="on" data-sub="today" onclick="goSub('daily','today')">📿 Today</button><button data-sub="tools" onclick="goSub('daily','tools')">🧭 Tools</button><button data-sub="stats" onclick="goSub('daily','stats')">📈 Stats</button></div>
+  <div class="vh dvh"><h2 data-mk="beads">Maximise every day</h2><p>Every prayer here is multiplied — make every day count.</p></div>
+  <div class="seg" data-tab="daily"><button class="on" data-sub="today" data-mk="beads" onclick="goSub('daily','today')">Today</button><button data-sub="tools" data-mk="compass" onclick="goSub('daily','tools')">Tools</button><button data-sub="stats" data-mk="chart" onclick="goSub('daily','stats')">Stats</button></div>
   <div class="sub on" id="sub-daily-today">
   <div class="hero dhero"><div class="hero-t">
     <div class="daynav" id="dayNav"><button id="dayPrev" onclick="changeDay(-1)" aria-label="Previous day">◀</button><div class="dd" id="dayDisp" role="button" tabindex="0" aria-label="Day 1 of 10 — open trip stats" onclick="goSub('daily','stats')">Day 1 <small>of 10</small></div><button id="dayNext" onclick="changeDay(1)" aria-label="Next day">▶</button><button class="dtoday" id="dayToday" hidden onclick="goToday()" aria-label="Jump to today">Today ▸</button></div>
@@ -1320,7 +1338,7 @@ html[data-text='lg'] body{font-size:17.5px}
 
 <!-- ═══════ PLACES ═══════ -->
 <div class="view" id="view-places">
-  <div class="vh"><h2>Ziyarah with purpose</h2><p>Tap a place for tips, Maps and to mark it visited.</p></div>
+  <div class="vh"><h2 data-mk="pin">Ziyarah with purpose</h2><p>Tap a place for tips, Maps and to mark it visited.</p></div>
   <div class="hero"><div class="hero-t"><div class="k">Sacred places</div><div class="v">Makkah & Madinah</div><div class="s" id="plHeroS">🕋 Makkah 0 visited · 🕌 Madinah 0 visited</div></div>
     <div class="hero-side" id="plNear"></div></div>
   <div class="pills four pl-sticky"><button class="pill on" id="pillAll" onclick="filterCity('all')">All</button><button class="pill" id="pillMakkah" onclick="filterCity('makkah')">🕋 Makkah</button><button class="pill" id="pillMadinah" onclick="filterCity('madinah')">🕌 Madinah</button><button class="pill unv" id="pillUnvis" aria-pressed="false" onclick="togUnvis()">⬜ Unvisited</button></div>
@@ -1332,14 +1350,14 @@ html[data-text='lg'] body{font-size:17.5px}
 
 <!-- ═══════ MORE ═══════ -->
 <div class="view" id="view-more">
-  <div class="vh"><h2>More</h2><p>Keep the change alive after Umrah, the essential duas, and your settings &amp; data.</p></div>
-  <div class="seg" data-tab="more"><button class="on" data-sub="guide" onclick="goSub('more','guide')">🌱 After</button><button data-sub="duas" onclick="goSub('more','duas')">🤲 Duas</button><button data-sub="settings" onclick="goSub('more','settings')">⚙️ Settings</button></div>
+  <div class="vh"><h2 data-mk="star">More</h2><p>Keep the change alive after Umrah, the essential duas, and your settings &amp; data.</p></div>
+  <div class="seg" data-tab="more"><button class="on" data-sub="guide" data-mk="sprout" onclick="goSub('more','guide')">After</button><button data-sub="duas" data-mk="hands" onclick="goSub('more','duas')">Duas</button><button data-sub="settings" data-mk="gear" onclick="goSub('more','settings')">Settings</button></div>
   <div class="sub on" id="sub-more-guide">
   <div class="card card-pad" id="postCard"><h3 id="postH3">🌱 After Umrah — keep it alive</h3>
     <p style="font-size:.82em;color:var(--ink2);margin-bottom:4px">"The most beloved deeds to Allah are the most consistent, even if small." — Bukhari 6464. Don’t let the Haram version of you fade — hold three habits for 30 days after you return.</p>
     <div class="setrow"><div><b>Post-Umrah mode</b><small>30-day habit keeper + reflections</small></div><button class="sw" id="postSw" role="switch" aria-checked="false" aria-label="Post-Umrah mode" onclick="togPost()"></button></div>
     <div id="postArea"></div></div>
-  <div class="card card-pad" id="nextCard"><h3>🧭 Plan your next journey</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:10px">"Umrah to Umrah is an expiation for what is between them" (Bukhari 1773). When Allah invites you again, the checklists and countdown are ready — nothing from this journey is deleted.</p><div class="jbtns"><button class="btn ghost" onclick="nextJourney('umrah')">🕋 Umrah</button><button class="btn ghost" onclick="nextJourney('hajj')">⛺ Hajj</button></div></div>
+  <div class="card card-pad" id="nextCard"><h3 data-mk="compass">Plan your next journey</h3><p style="font-size:.82em;color:var(--ink2);margin-bottom:10px">"Umrah to Umrah is an expiation for what is between them" (Bukhari 1773). When Allah invites you again, the checklists and countdown are ready — nothing from this journey is deleted.</p><div class="jbtns"><button class="btn ghost" onclick="nextJourney('umrah')">🕋 Umrah</button><button class="btn ghost" onclick="nextJourney('hajj')">⛺ Hajj</button></div></div>
   <div class="card card-pad" id="journeysCard"><h3>📜 My journeys</h3><p style="font-size:.8em;color:var(--ink2);margin-bottom:8px">Every Umrah and Hajj recorded on this phone, newest first.</p><div id="journeysArea"></div></div>
   </div><div class="sub" id="sub-more-duas">
   <div class="card card-pad"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px"><h3 style="margin:0">🤲 Essential duas</h3><button class="xchip" style="margin:0" onclick="goTab('daily','tools','duaCard')">🤲 My dua list →</button></div><p style="font-size:.78em;color:var(--ink2);margin-bottom:10px">Tap any dua to open it full-screen for reading in the Haram.</p><div id="duaContainer"></div></div>
@@ -1412,7 +1430,7 @@ html[data-text='lg'] body{font-size:17.5px}
 <button data-v="more" onclick="goTab('more')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.6"/><circle cx="5" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg><span class="l">More</span></button>
 </nav>
 <canvas id="confetti" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:190;display:none"></canvas>
-<div class="focus" id="focus" role="dialog" aria-modal="true" aria-label="Big counter"><div class="focus-top"><span id="focusTitle">🕋 Tawaf</span><div style="display:flex;gap:8px"><button class="chip-btn" id="focusWudu" onclick="focusWudu()" aria-pressed="false">💧 wudu</button><button class="chip-btn focus-prob" onclick="event.stopPropagation();troubleSheet()" aria-label="Something went wrong?">⚠️ Problem?</button><button class="chip-btn" onclick="exitFocus()">✕ Exit</button></div></div><div class="focus-tap" role="button" tabindex="0" aria-label="Tap to count one round" onclick="focusTap()"><div class="srx" id="focusLive" aria-live="polite" aria-atomic="true"></div><div class="focus-n" id="focusN">0</div><div class="focus-of" id="focusOf">of 7 rounds</div><div class="focus-tip" id="focusTip"></div><div class="focus-hint" id="focusHint">tap anywhere to count</div><div class="focus-done" id="focusDone" hidden></div></div><div class="focus-dua" id="focusDua" role="button" tabindex="0" aria-label="Dua for this rite — tap for transliteration and meaning" onclick="event.stopPropagation();fdToggle()"></div><div class="focus-bot"><button class="btn undo" onclick="focusUndo()">− Undo</button><button class="chip-btn focus-my" onclick="myDuasSheet()">🤲 My duas</button></div></div>
+<div class="focus" id="focus" role="dialog" aria-modal="true" aria-label="Big counter"><div class="focus-top"><span id="focusTitle" data-mk="kaaba">Tawaf</span><div style="display:flex;gap:8px"><button class="chip-btn" id="focusWudu" onclick="focusWudu()" aria-pressed="false">💧 wudu</button><button class="chip-btn focus-prob" onclick="event.stopPropagation();troubleSheet()" aria-label="Something went wrong?">⚠️ Problem?</button><button class="chip-btn" onclick="exitFocus()">✕ Exit</button></div></div><div class="focus-tap" role="button" tabindex="0" aria-label="Tap to count one round" onclick="focusTap()"><div class="srx" id="focusLive" aria-live="polite" aria-atomic="true"></div><div class="focus-n" id="focusN">0</div><div class="focus-of" id="focusOf">of 7 rounds</div><div class="focus-tip" id="focusTip"></div><div class="focus-hint" id="focusHint">tap anywhere to count</div><div class="focus-done" id="focusDone" hidden></div></div><div class="focus-dua" id="focusDua" role="button" tabindex="0" aria-label="Dua for this rite — tap for transliteration and meaning" onclick="event.stopPropagation();fdToggle()"></div><div class="focus-bot"><button class="btn undo" onclick="focusUndo()">− Undo</button><button class="chip-btn focus-my" onclick="myDuasSheet()">🤲 My duas</button></div></div>
 <div class="focus driver" id="driver" role="dialog" aria-modal="true" aria-label="Show to driver"><div class="focus-top"><span id="drvTop">🚕 Please take me to my hotel</span><button class="chip-btn" onclick="closeDriver()">✕ Close</button></div><div class="focus-tap lost-body" style="justify-content:flex-start;padding:10px 24px;cursor:default"><div class="drv-ar" id="drvLead">من فضلك خذني إلى هذا الفندق</div><div class="drv-arn" id="drvArName" lang="ar" dir="rtl" hidden></div><div class="drv-name" id="drvName">—</div><div class="drv-addr" id="drvAddr"></div><div class="drv-phone" id="drvPhone"></div><div class="drv-acts" id="drvActs"></div><div class="focus-hint" onclick="closeDriver()">tap here to close</div></div></div>
 <div class="focus driver" id="help" role="dialog" aria-modal="true" aria-label="Emergency help"><div class="focus-top"><span>🆘 Help — emergency numbers</span><button class="chip-btn" onclick="closeHelp()">✕ Close</button></div><div class="lost-body" id="helpBody"></div></div>
 <div class="focus driver" id="lost" role="dialog" aria-modal="true" aria-label="I am lost"><div class="focus-top"><span>🆘 I’m lost — please help</span><button class="chip-btn" onclick="closeLost()">✕ Close</button></div><div class="lost-body" id="lostBody"></div></div>
@@ -1424,18 +1442,18 @@ html[data-text='lg'] body{font-size:17.5px}
   <div class="sheet-h kaaba" aria-hidden="true"></div><h3>As-salamu alaykum</h3><p>What has Allah invited you to?</p>
   <div class="setrow"><div><b>Larger text</b><small>Easier to read without glasses</small></div><button class="sw" id="obText0" role="switch" aria-checked="false" aria-label="Larger text" onclick="setText(ST.text==='lg'?'':'lg')"></button></div>
   <button class="opt big" onclick="chooseJourney('umrah')"><span class="kaaba-i" aria-hidden="true"></span><b>Umrah<small>Ihram → tawaf → sa’i → halq, any time of year</small></b></button>
-  <button class="opt big" onclick="chooseJourney('hajj')"><span>⛺</span><b>Hajj<small>Your Umrah first, then the five days of Dhul Hijjah</small></b></button>
+  <button class="opt big" onclick="chooseJourney('hajj')"><span class="mk-i" data-mk="tent" aria-hidden="true"></span><b>Hajj<small>Your Umrah first, then the five days of Dhul Hijjah</small></b></button>
   </div>
   <div id="obStep1" hidden>
   <div class="sheet-h kaaba" aria-hidden="true"></div><h3>As-salamu alaykum</h3><p>Where are you on your Umrah journey? We'll take you straight to the right place.</p>
   <input class="srch" id="obName" placeholder="Your name (optional — for your certificate)" style="margin:0 0 8px" aria-label="Your name">
   <div class="setrow"><div><b>I am a…</b><small>Tailors ihram, packing &amp; halq/taqsir steps</small></div><div class="segmini" id="obProf"><button data-p="m" onclick="setProfile('m')">Brother</button><button data-p="w" onclick="setProfile('w')">Sister</button><button class="on" data-p="" onclick="setProfile('')">Both</button></div></div>
   <div class="setrow"><div><b>Larger text</b><small>Easier to read without glasses</small></div><button class="sw" id="obText" role="switch" aria-checked="false" aria-label="Larger text" onclick="setText(ST.text==='lg'?'':'lg')"></button></div>
-  <button class="opt" onclick="chooseStage('plan')"><span>🧳</span><b>Planning my trip<small>Checklists, countdown & knowledge</small></b></button>
-  <button class="opt" onclick="chooseStage('soon')"><span>✈️</span><b>Flying soon<small>Learn the rites step by step, then quiz</small></b></button>
-  <button class="opt" onclick="chooseStage('now')"><span>🕋</span><b>I'm in Makkah / Madinah<small>Counters, rites & daily tracker</small></b></button>
-  <button class="opt" onclick="chooseStage('back')"><span>🌱</span><b>I've returned<small>Keep the habits alive</small></b></button>
-  <button class="opt" onclick="chooseStage('before')"><span>🔁</span><b>I've been before<small>Count my earlier Umrahs, plan the next</small></b></button>
+  <button class="opt" onclick="chooseStage('plan')"><span class="opt-i" data-mk="bag" aria-hidden="true"></span><b>Planning my trip<small>Checklists, countdown & knowledge</small></b></button>
+  <button class="opt" onclick="chooseStage('soon')"><span class="opt-i" data-mk="plane" aria-hidden="true"></span><b>Flying soon<small>Learn the rites step by step, then quiz</small></b></button>
+  <button class="opt" onclick="chooseStage('now')"><span class="opt-i" data-mk="kaaba" aria-hidden="true"></span><b>I'm in Makkah / Madinah<small>Counters, rites & daily tracker</small></b></button>
+  <button class="opt" onclick="chooseStage('back')"><span class="opt-i" data-mk="sprout" aria-hidden="true"></span><b>I've returned<small>Keep the habits alive</small></b></button>
+  <button class="opt" onclick="chooseStage('before')"><span class="opt-i" data-mk="refresh" aria-hidden="true"></span><b>I've been before<small>Count my earlier Umrahs, plan the next</small></b></button>
   </div>
   <div id="obStep2" hidden></div>
 </div></div>
