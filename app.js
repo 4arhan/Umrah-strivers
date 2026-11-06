@@ -1,6 +1,6 @@
 /* Miqah — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='5.2.1';
+var APP_VERSION='6.0.0';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* ════════════════════════ STATE ════════════════════════ */
 /* J-01: every new key has a default here so Object.assign over an old blob fills it — no migration writes.
@@ -135,7 +135,7 @@ function openSheet(html){var o=document.getElementById('gSheet'),b=document.getE
 function closeSheet(){var o=document.getElementById('gSheet');if(o)o.classList.remove('on');}
 function vib(ms){if(navigator.vibrate)try{navigator.vibrate(ms);}catch(e){}}
 function toggleTheme(){ST.theme=ST.theme==='light'?'dark':'light';applyTheme();saveST();}
-function applyTheme(){document.documentElement.setAttribute('data-theme',ST.theme);document.getElementById('themeIcon').textContent=ST.theme==='dark'?'☀️':'🌙';var t=document.getElementById('dmTgl');if(t){t.classList.toggle('on',ST.theme==='dark');t.setAttribute('aria-checked',ST.theme==='dark'?'true':'false');}var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',ST.theme==='dark'?'#0B120F':'#0E3B2E');}
+function applyTheme(){document.documentElement.setAttribute('data-theme',ST.theme);document.getElementById('themeIcon').textContent=ST.theme==='dark'?'☀️':'🌙';var t=document.getElementById('dmTgl');if(t){t.classList.toggle('on',ST.theme==='dark');t.setAttribute('aria-checked',ST.theme==='dark'?'true':'false');}var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',ST.theme==='dark'?'#090B0A':'#0C0F0E');}
 function togSec(el){var sec=el.closest('.sec');sec.classList.toggle('shut');el.setAttribute('aria-expanded',sec.classList.contains('shut')?'false':'true');}
 function setRing(id,pct){var el=document.getElementById(id);if(el)el.style.strokeDashoffset=239*(1-Math.min(100,pct)/100);}
 function goTab(t,sub,anchor){ST.tab=t;saveST();
@@ -1476,7 +1476,7 @@ function renderHome(){
   var h='';
   if(!ST.onboarded){
     /* ── first launch: the landing page explains the app ── */
-    h+='<div class="hhero"><div class="hhero-mark">'+(HJ?'⛺':'🕋')+'</div><h2>Your complete '+(ST.journeyAsked?(HJ?'Hajj':'Umrah'):'Hajj & Umrah')+' companion</h2><p>Everything you need <b>before, during and after</b> '+(ST.journeyAsked?(HJ?'Hajj':'Umrah'):'your journey')+' — in one free, private app that works offline in the Haram.</p><div class="trust"><span>✓ Free</span><span>✓ Works offline</span><span>✓ Private — no account</span><span>✓ Every hadith verified</span></div><button class="btn" style="max-width:300px;margin:16px auto 0" onclick="'+ctaGo+'">'+(d===null&&!tu?'Begin your journey →':esc(cta[0])+' →')+'</button>'+(deferPrompt?'<button class="btn ghost" style="max-width:300px;margin:8px auto 0" onclick="installApp()">📲 Install on your phone</button>':(/iPhone|iPad/.test(navigator.userAgent)&&!window.navigator.standalone?'<p style="font-size:.74em;color:var(--ink3);margin-top:10px">📲 On iPhone: tap Share → “Add to Home Screen” to install</p>':''))+'</div>';
+    h+='<div class="hhero"><div class="hhero-mark'+(HJ?'':' kaaba')+'" aria-hidden="true">'+(HJ?'⛺':'')+'</div><h2>Your complete '+(ST.journeyAsked?(HJ?'Hajj':'Umrah'):'Hajj & Umrah')+' companion</h2><p>Everything you need <b>before, during and after</b> '+(ST.journeyAsked?(HJ?'Hajj':'Umrah'):'your journey')+' — in one free, private app that works offline in the Haram.</p><div class="trust"><span>✓ Free</span><span>✓ Works offline</span><span>✓ Private — no account</span><span>✓ Every hadith verified</span></div><button class="btn" style="max-width:300px;margin:16px auto 0" onclick="'+ctaGo+'">'+(d===null&&!tu?'Begin your journey →':esc(cta[0])+' →')+'</button>'+(deferPrompt?'<button class="btn ghost" style="max-width:300px;margin:8px auto 0" onclick="installApp()">📲 Install on your phone</button>':(/iPhone|iPad/.test(navigator.userAgent)&&!window.navigator.standalone?'<p style="font-size:.74em;color:var(--ink3);margin-top:10px">📲 On iPhone: tap Share → “Add to Home Screen” to install</p>':''))+'</div>';
     h+=statusHTML+postHTML+prayerHTML;
     h+='<div class="vh" style="margin-top:8px"><h2 style="font-size:1.35em">How it works — your journey in 5 stages</h2><p>Tap a stage to jump in. The app follows you from your living room to the mataf and back.</p></div>';
     h+='<div class="stages">'+stages.map(function(st,i){return stageRow(st,i,false);}).join('')+'</div>';
@@ -1485,7 +1485,7 @@ function renderHome(){
     h+=fcHTML+quoteHTML+'<div class="card card-pad"><h3>Common questions</h3>'+faqHTML+'</div>'+shareHTML;
   }else{
     /* ── dashboard (H-01): brand strip → status → continue / do next → prayer → tools → cards → quote → compact stages → about ── */
-    h+='<div class="hbrand"><span class="hb-n">🕋 Miqah</span><small>free · offline · private</small>'+installHTML+'</div>';
+    h+='<div class="hbrand"><span class="hb-n"><i class="kmark" aria-hidden="true"></i>Miqah</span><small>free · offline · private</small>'+installHTML+'</div>';
     h+=askHTML+statusHTML+hdayHTML;
     /* H-04: one Continue card — in-progress count, then the sa'i hand-off, then an unfinished day log, then today's flashcard */
     var cont='',fcUsed=false;

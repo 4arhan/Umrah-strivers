@@ -327,7 +327,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   await page.click('button:has-text("Add week")');
   check('week of prayer alerts exports as .ics with Riyadh TZID', !!(await dl3) && (await page.evaluate(() => { const B = buildICS('Makkah', 7); return B.n === 35 && B.ics.indexOf('DTSTART;TZID=Asia/Riyadh:') > -1 && B.ics.indexOf('TRIGGER:-PT20M') > -1 && B.ics.indexOf('SUMMARY:Fajr — Makkah') > -1; })) && (await page.locator('#sub-more-settings #remSw').count()) === 1);
   await page.click('#textSeg button:has-text("Large")');
-  check('large text mode applies', (await page.getAttribute('html', 'data-text')) === 'lg' && (await page.evaluate(() => getComputedStyle(document.body).fontSize)) === '17px');
+  check('large text mode applies', (await page.getAttribute('html', 'data-text')) === 'lg' && (await page.evaluate(() => getComputedStyle(document.body).fontSize)) === '17.5px');
   await page.click('#textSeg button:has-text("Normal")');
   await page.click('button:has-text("▦ QR")');
   check('QR overlay with static SVG', (await page.locator('#qrShow.on .qr-box svg path').count()) === 1 && (await page.textContent('#qrShow')).includes('umrah-strivers.vercel.app'));
