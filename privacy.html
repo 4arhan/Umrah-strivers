@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
 <meta name="theme-color" content="#0C0F0E">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..700;1,14,400&family=Fraunces:opsz,wght,SOFT,WONK@9..144,500..600,0,0&display=swap" rel="stylesheet">
 <style>
 :root{
   /* Kiswah tokens — the same palette as the app: paper by day, the cloth by night */
@@ -39,9 +39,9 @@
   --sh:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);--sh-k:0 8px 24px rgba(0,0,0,.6),0 0 0 1px rgba(217,180,94,.22);
   color-scheme:dark;}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-optical-sizing:auto;font-synthesis:none;font-feature-settings:'calt','kern';-webkit-font-smoothing:antialiased}
 .wrap{max-width:660px;margin:0 auto;padding:40px 22px 80px}
-h1,h2{font-family:'Fraunces',Georgia,serif;font-weight:600;margin:0;text-wrap:balance}
+h1,h2{font-family:'Fraunces',Georgia,serif;font-weight:600;font-variation-settings:'opsz' 32;font-optical-sizing:none;letter-spacing:-.015em;margin:0;text-wrap:balance}
 h1{font-size:36px;line-height:1.12}
 h1::after{content:'';display:block;width:48px;height:10px;margin-top:10px;background:var(--hizam) left center/24px 10px repeat-x}
 h2{font-size:21px;line-height:1.25;margin-top:34px}
@@ -50,9 +50,9 @@ a{color:var(--brand-2)}
 .top{display:flex;align-items:center;gap:12px;margin-bottom:26px}
 .top img{width:44px;height:44px;border-radius:11px;box-shadow:inset 0 0 0 1px var(--gold-line),var(--sh-k)}
 .top b{font-family:'Fraunces',Georgia,serif;font-size:17px;font-weight:600}
-.top small{display:block;color:var(--gold-ink);font-size:11.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase}
+.top small{display:block;color:var(--gold-ink);font-size:13.6px;font-weight:600;letter-spacing:0;line-height:1.45}
 .date{color:var(--ink2);font-size:14px;margin-top:10px}
-.hi{background:var(--mushaf);border:1px solid var(--gold-line);border-radius:6px;padding:16px 18px;margin-top:24px;box-shadow:inset 0 0 0 3px var(--mushaf),inset 0 0 0 4px var(--gold-hair);font-family:'Fraunces',Georgia,serif;font-style:italic;line-height:1.6}
+.hi{background:var(--mushaf);border:1px solid var(--gold-line);border-radius:6px;padding:16px 18px;margin-top:24px;box-shadow:inset 0 0 0 3px var(--mushaf),inset 0 0 0 4px var(--gold-hair);font-family:'Inter',sans-serif;font-style:normal;line-height:1.6}
 .hi p{margin:0}
 ul{margin:10px 0 0;padding-left:20px;color:var(--ink2)}
 li{margin:7px 0}
