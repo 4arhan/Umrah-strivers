@@ -82,19 +82,18 @@
   --ff-text:'calt' 1,'kern' 1;--ff-num:'tnum' 1,'calt' 1,'kern' 1;
   /* scale — 7 text steps + numerals + Arabic */
   --t-base:15.5px;--t-base-lg:17.5px;
-  --t-1:.8125rem;  /* 12.6 caption: eyebrow, nav, badge */
+  --t-1:.84375rem; /* 13.1 caption: eyebrow, nav, badge (14.8 with Large text) */
   --t-2:.875rem;   /* 13.6 meta: secondary lines, citations, hints */
   --t-3:.9375rem;  /* 14.5 body-s: card copy, chips, secondary buttons */
   --t-4:1rem;      /* 15.5 body: rows, primary buttons, reading text */
   --t-5:1.125rem;  /* 17.4 card title, instruction line */
-  --t-6:1.375rem;  /* 21.3 hero & sheet title */
+  --t-6:1.5rem;    /* 23.3 hero & sheet title */
   --t-7:1.75rem;   /* 27.1 view title */
   --t-show:1.25rem; /* 19.4 show-to-a-stranger intro line */
-  --t-tl:1.0625rem; /* 16.5 transliteration */
   --t-n1:2.5rem;--t-n2:3rem;--t-n3:4rem;--t-n4:9rem; /* countdown · tasbih · tawaf disc · focus */
   --t-ar-s:1rem;--t-ar:1.75rem;--t-ar-l:2.125rem;--t-ar-xl:2.875rem;
-  /* weights: Inter 400 / 600 / 700 · Fraunces 600 */
-  --w-text:400;--w-ui:600;--w-num:700;--w-display:600;
+  /* weights: Inter 400 / 600 / 700 · Fraunces 600 (500 for the 9rem focus numeral only) */
+  --w-text:400;--w-ui:600;--w-num:700;--w-display:600;--w-display-lt:500;
   /* line-heights */
   --lh-meta:1.45;--lh-body:1.55;--lh-card:1.3;--lh-title:1.2;--lh-display:1.15;--lh-num:1;
   /* tracking: zero by default; one eyebrow; display titles tighten */
@@ -940,7 +939,7 @@ a.lost-kv .num{color:var(--show-acc);font-weight:var(--w-num);font-size:var(--t-
 .sis-line{display:block;width:100%;margin:-4px 0 14px;font-size:var(--t-2);color:var(--ink2);text-decoration:none;text-align:center;font-weight:var(--w-ui);padding:6px}
 .started .hero{padding:18px 16px 14px}
 .started .hero .k{display:none}
-.started .hero .v{font-size:var(--t-5);margin:0 0 2px}
+.started .hero .v{margin:0 0 2px}
 .started .hero .ring-wrap,.started .hero .ring-wrap svg{width:60px;height:60px}
 .started .hero .ring-num{font-size:var(--t-3)}
 .started .hero .ring-num small{display:none}
@@ -1043,7 +1042,7 @@ a.lost-kv .num{color:var(--show-acc);font-weight:var(--w-num);font-size:var(--t-
 .dhero .v{font-size:var(--t-5);margin:0 0 1px}
 /* D-02: the checklist is the reason for the screen — everything above it is compact */
 .vh.dvh{margin:6px 2px 6px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}.vh.dvh h2{font-size:var(--t-5)}.vh.dvh p{margin:0;font-size:var(--t-2)}
-.dhero{padding:13px 14px 9px;gap:12px;margin-bottom:8px}
+.dhero{padding:12px 14px 8px;gap:12px;margin-bottom:8px}
 .dhero .ring-wrap,.dhero .ring-wrap svg{width:72px;height:72px}.dhero .ring-num{font-size:1em}.dhero .ring-num small{font-size:var(--t-2)}
 .dhero .daynav{margin:-6px 0 -4px}.dhero .daynav button{width:44px;height:44px}.dhero .daynav .dd{font-size:var(--t-5);min-height:44px}
 .todayit{padding:8px 12px;gap:8px;margin-bottom:6px}.todayit .ti-t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:var(--t-2);line-height:var(--lh-meta)}.todayit .ti-t b{display:inline;font-size:1em;margin-right:4px}
@@ -1160,13 +1159,14 @@ a.lost-kv .num{color:var(--show-acc);font-weight:var(--w-num);font-size:var(--t-
 #printSheet{display:none}
 /* ═══════════ TYPE ROLES · "Disciplined" ═══════════
    Every text role resolves to one family / size / weight / tracking from the tokens above.
-   Fraunces appears in four places only: the wordmark, screen titles, hero & sheet titles, and the step index.
-   Counters and every other numeral are Inter (display optical size at large sizes), tabular and lining. */
+   Fraunces appears in five roles only: the wordmark, screen titles, hero & sheet titles, counter numerals and the step index.
+   Every other numeral is Inter, tabular and lining. */
 b,strong{font-weight:var(--w-ui)}
 button,input,select,textarea{font-family:var(--f-text);font-feature-settings:var(--ff-text)}
-h1,h2,h3,h4,.hero-t .v,.tip-a,.tip-r,.lost-en,.cnt .sub,.focus-of,.ob-hint{text-wrap:balance}
+h1,h2,h3,h4,.hero-t .v,.hs-t b,.tip-a,.tip-r,.lost-en,.cnt .sub,.focus-of,.ob-hint,.sec-hd h2,.fc-front .t,.kq-q,.qz-q{text-wrap:balance}
 /* tie spans (app.js tieAll) are invisible to every descendant rule: they only stop a line break */
 span.ty-nw{all:unset!important;white-space:nowrap!important}
+span.ty-dot{all:unset!important}span.ty-dot.ty-sol{display:none!important}span.ty-dot.ty-br{display:block!important;height:0!important;overflow:hidden!important}
 p,.s,.sub{text-wrap:pretty}
 
 /* display face: one cut, pinned optical size */
@@ -1180,19 +1180,21 @@ p,.s,.sub{text-wrap:pretty}
 /* hero & sheet title */
 .hero-t .v,.hs-t b,.hday-h b,.sheet h3,.wk-t,.wk-done h3{font-size:var(--t-6);line-height:var(--lh-title);letter-spacing:var(--track-display)}
 .hhero h2{font-size:var(--t-7);line-height:var(--lh-display);letter-spacing:var(--track-display)}
-/* numerals — counters, countdown, ring %: Inter Display (opsz 32 at these sizes), 600, tabular lining, tight.
-   Sturdy at arm's length and 1→7 never shifts. Fraunces keeps only the small step index. */
-.tr-mid .n,.focus-n,.tb-btn .n,.cd2-n,.cd-n,.rring,.ring-num span,.qz-final .big,.wk-cnt b{font-family:var(--f-text);font-optical-sizing:auto;font-variation-settings:normal;font-weight:var(--w-ui);letter-spacing:-.02em;line-height:var(--lh-num);font-feature-settings:var(--ff-num);font-variant-numeric:tabular-nums lining-nums}
+/* numerals — counters, countdown, ring %: Fraunces pinned at opsz 40, 600 (the 9rem focus numeral at 500), lining.
+   Each is a single centred value, so Fraunces' proportional figures never shift a column. */
+.tr-mid .n,.focus-n,.tb-btn .n,.cd2-n,.cd-n,.ring-num span{font-family:var(--f-display);font-variation-settings:var(--fv-num);font-optical-sizing:none;font-weight:var(--w-display);letter-spacing:0;line-height:var(--lh-num);font-feature-settings:normal;font-variant-numeric:lining-nums}
+.focus-n{font-weight:var(--w-display-lt)}
+/* small Inter numerals that sit in rows keep tabular figures */
+.rring,.qz-final .big,.wk-cnt b{font-family:var(--f-text);font-optical-sizing:auto;font-variation-settings:normal;font-weight:var(--w-ui);letter-spacing:-.01em;line-height:var(--lh-num);font-feature-settings:var(--ff-num);font-variant-numeric:tabular-nums lining-nums}
 .stp-n,.stage-n{font-family:var(--f-display);font-variation-settings:var(--fv-small);font-optical-sizing:none;font-weight:var(--w-display);letter-spacing:0;line-height:var(--lh-num)}
 .tr-mid .n{font-size:var(--t-n3)}
 /* the 9rem focus numeral never clips on short phones (667px tall) */
 .focus-n{font-size:clamp(4.5rem,19dvh,var(--t-n4))}
 .tb-btn .n{font-size:var(--t-n2)}
 .cd2-n,.cd-n{font-size:var(--t-n1)}
-.ring-num{font-family:var(--f-text)}
-.ring-num span{font-size:var(--t-6);letter-spacing:-.01em}
+.ring-num span{font-size:var(--t-6)}
 .started .hero .ring-num span{font-size:var(--t-5)}
-.stp-n,.stage-n{font-size:var(--t-2)}
+.stp-n,.stage-n{font-size:var(--t-2);border-width:1px}
 .stage.cmp .stage-n{font-size:var(--t-1)}
 
 /* eyebrow — the only uppercase in the app: hero kickers & section overlines */
@@ -1235,7 +1237,7 @@ p,.s,.sub{text-wrap:pretty}
 .foot .kmark{display:none}
 
 /* transliteration — Inter's real italic, one size */
-.dua .tl,.df-tl,.fd-s i{font-family:var(--f-text);font-style:italic;font-weight:var(--w-text);font-size:var(--t-tl);line-height:1.5;font-variation-settings:normal}
+.dua .tl,.df-tl,.fd-s i{font-family:var(--f-text);font-style:italic;font-weight:var(--w-text);font-size:var(--t-4);line-height:1.5;font-variation-settings:normal}
 /* mushaf detail: the Arabic term after a gold title is an italic gloss */
 .niy-b b i{font-family:var(--f-text);font-style:italic;font-weight:var(--w-text);font-size:inherit;opacity:1}
 .df-tl{opacity:1}
@@ -1260,7 +1262,7 @@ p,.s,.sub{text-wrap:pretty}
 .tr-mid .tap,.focus-hint,.df-hint,.fc-front .hint{color:var(--ihram-2)}
 .driver .focus-hint{color:var(--show-ink2);opacity:1}
 .niy-l,.cd2-r label,.hp-t small,.hfc small,.now-k,.pt .pn,.st .l,.daynav .dd small,.wk-why small,.kd-name small{font-size:var(--t-2);font-weight:var(--w-ui)}
-.ring-num small{font-family:var(--f-text);font-size:var(--t-1);font-weight:var(--w-ui);letter-spacing:0;text-transform:none;font-variation-settings:normal}
+.ring-num small,.dhero .ring-num small,.hero .ring-num small{font-family:var(--f-text);font-size:var(--t-1);font-weight:var(--w-ui);letter-spacing:0;text-transform:none;font-variation-settings:normal}
 /* nav labels */
 .nav button .l{font-size:var(--t-1);font-weight:var(--w-ui);letter-spacing:0;text-transform:none}
 
@@ -1293,7 +1295,22 @@ p,.s,.sub{text-wrap:pretty}
 .hero .daynav .dtoday{font-weight:var(--w-ui);font-size:var(--t-2)}
 
 /* tabular figures wherever numbers align */
-.pt .pv,#ptNext,.pt-next b,#hPct,#ritePct,#dPct,#planPct,.sec-ct,.kv b,.hc,#jChip,.nums b,.st .n,#bdgCnt,#bdgTot,.lg-v,.lvl-n,.qz-top,.fc-prog,.hs-r em,.tli-when,.lost-kv .num,.num,.kd-name small,.wk-cnt span,.tb-chip,.qb-n,.qb-deg,.cd-t b,.rami-t small,.lnm,.tr-mid .of,#tbOf,.focus-of,.cd2-r input,.it-d b{font-feature-settings:var(--ff-num);font-variant-numeric:tabular-nums lining-nums}
+.pt .pv,#ptNext,.pt-next b,#hPct,#ritePct,#dPct,#planPct,.sec-ct,.kv b,.hc,#jChip,.nums b,.st .n,#bdgCnt,#bdgTot,.lg-v,.lvl-n,.qz-top,.fc-prog,.hs-r em,.tli-when,.lost-kv .num,.num,.kd-name small,.wk-cnt span,.tb-chip,.qb-n,.qb-deg,.cd-t b,.rami-t small,.lnm,.tr-mid .of,#tbOf,.focus-of,.cd2-r input,.it-d b,#hNext,.tip-a,.tb-tg,#tbToday,.bdg .p,#qzBest,#riteHeroS,.pt .pv,.daynav .dd{font-feature-settings:var(--ff-num);font-variant-numeric:tabular-nums lining-nums}
+.place-t .tip .mk,p[data-mk="bulb"]>.mk{color:var(--gold-ink)}
+/* prayer-time values are key data, never caption-sized */
+.pt .pv{font-size:var(--t-2)}
+/* the water row: the text column shrinks, the buttons never leave the card */
+#waterCard .setrow{flex-wrap:wrap;gap:8px 12px}
+#waterCard .setrow>div:first-child{flex:1 1 160px;min-width:0}
+#waterCard .setrow>div:last-child{flex-shrink:0;margin-left:auto}
+/* toasts lead with a stroke mark; on the gold toast it takes the ink colour */
+.toast .mk.mkt{width:1.15em;height:1.15em;vertical-align:-.22em}.toast.act .mk.mkt{margin-right:0}.toast.gold .mk{color:currentColor}
+/* one tagline at the top of Home: the strip under the header carries it */
+body:has(#view-home.on .hbrand) .brand h1 small{display:none}
+/* mataf schematic: labels on the caption step (12.6px rendered at 390), scaling with Large text */
+.mataf text{font-family:var(--f-text);font-size:14px;font-feature-settings:var(--ff-text)}
+.mataf .mt-k{font-size:16px}
+html[data-text='lg'] .mataf text{font-size:15.5px}html[data-text='lg'] .mataf .mt-k{font-size:17px}
 /* stat numerals in Inter */
 .nums b,.st .n,#bdgCnt,#bdgTot,.kv b,.hfc b .n{font-family:var(--f-text);font-weight:var(--w-num);letter-spacing:var(--track-tight);font-variation-settings:normal}
 .nums b{font-size:var(--t-6)}
@@ -1441,7 +1458,7 @@ p,.s,.sub{text-wrap:pretty}
     <input class="srch" id="hMeet" placeholder="Family meeting point (e.g. King Fahd Gate 79, after each prayer)" onchange="saveHotelInfo()" aria-label="Family meeting point"><input class="srch" id="hLead" placeholder="Companion / group leader name & phone" onchange="saveHotelInfo()" aria-label="Companion or group leader name and phone">
     <div class="hstat"><span id="hotelLbl2">📍 Hotel not pinned</span><button class="chip-btn" onclick="setHotel()">📍 Set hotel location</button></div>
     <div class="hcard"><button class="main" onclick="showDriver()">🚕 Show to driver</button><button class="sos" onclick="showLost()">🆘 I’m lost — show this</button></div>
-    <p style="font-size:var(--t-2);color:var(--ink3);margin-top:8px">💡 Write the leader’s number on a wristband or a paper in each child’s pocket every morning.</p>
+    <p style="font-size:var(--t-2);color:var(--ink3);margin-top:8px" data-mk="bulb">Write the leader’s number on a wristband or a paper in each child’s pocket every morning.</p>
     <div class="subt" style="margin-top:14px">☎️ Emergency & help in Saudi Arabia</div>
     <div class="kv"><span>Police · ambulance · fire</span><b><a href="tel:911" style="color:inherit;text-decoration:none">911</a></b></div>
     <div class="kv"><span>Health (Ministry of Health line)</span><b><a href="tel:937" style="color:inherit;text-decoration:none">937</a></b></div>
@@ -1540,7 +1557,7 @@ p,.s,.sub{text-wrap:pretty}
   <div class="rite-tools"><button class="chip-btn" onclick="startWalk()">▶ Walk me through it</button><button class="chip-btn" onclick="printSheet()" data-mk="print">Print / save PDF</button></div>
   <div class="sec shut" id="matafSec"><div class="sec-hd" role="button" tabindex="0" aria-expanded="false" onclick="togSec(this)"><div class="sec-ico" data-mk="map"></div><h2>The mataf — where everything is<small>Tap to open the schematic</small></h2><span class="sec-chev">▼</span></div><div class="sec-bd">
     <svg class="mataf" viewBox="0 0 340 320" role="img" aria-label="Schematic of the Kaaba and mataf">
-      <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--gold)"/></marker></defs>
+      <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--gold)"/></marker><marker id="arrB" markerWidth="8" markerHeight="8" refX="5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 z" fill="var(--brand-2)"/></marker></defs>
       <circle cx="170" cy="150" r="118" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="4 5"/>
       <path d="M 288 150 A 118 118 0 1 1 170 32" fill="none" stroke="var(--gold)" stroke-width="3" marker-end="url(#arr)"/>
       <path d="M 122 102 A 48 30 0 0 1 218 102" fill="rgba(23,122,82,.15)" stroke="var(--brand-2)" stroke-width="2"/>
@@ -1551,21 +1568,22 @@ p,.s,.sub{text-wrap:pretty}
       <circle cx="122" cy="198" r="5" fill="var(--gold)"/>
       <circle cx="262" cy="176" r="6" fill="var(--brand-2)"/>
       <circle cx="235" cy="235" r="5" fill="var(--blue)"/>
-      <g font-family="Inter,sans-serif" font-size="11" fill="var(--ink2)" stroke="var(--card)" stroke-width="3" paint-order="stroke" stroke-linejoin="round">
-        <text x="170" y="62" text-anchor="middle" font-weight="600" fill="var(--ink)">Hijr Isma’il — part of the Kaaba</text>
-        <text x="170" y="90" text-anchor="middle" font-weight="600" font-size="11" fill="var(--danger)">walk AROUND it — never through it</text>
-        <text x="170" y="155" text-anchor="middle" fill="var(--ihram)" font-weight="600" font-size="13" stroke="none">KAABA</text>
-        <text x="228" y="212" font-weight="600" fill="var(--ink)">Black Stone ● start line</text>
-        <text x="228" y="224">tawaf begins &amp; ends here</text>
-        <text x="228" y="140">Door &amp; Multazam</text>
-        <text x="262" y="164" text-anchor="middle" font-weight="600" fill="var(--ink)">Maqam Ibrahim</text>
-        <text x="262" y="196" text-anchor="middle">(2 rakahs)</text>
-        <text x="116" y="216" text-anchor="end" fill="var(--ink)" font-weight="600">Yamani corner</text>
-        <text x="116" y="228" text-anchor="end">touch, don’t kiss</text>
-        <text x="243" y="250">Zamzam taps</text>
-        <text x="300" y="300" text-anchor="end" fill="var(--brand-2)" font-weight="600">→ to Safa &amp; the Mas’a (SE)</text>
-        <text x="170" y="22" text-anchor="middle" fill="var(--gold-ink)" font-weight="600">counter-clockwise · Kaaba on your LEFT</text>
+      <g fill="var(--ink2)" stroke="var(--card)" stroke-width="3" paint-order="stroke" stroke-linejoin="round">
+        <text x="170" y="20" text-anchor="middle" fill="var(--gold-ink)" font-weight="600">Counter-clockwise · Kaaba on your left</text>
+        <text x="170" y="58" text-anchor="middle" font-weight="600" fill="var(--ink)">Hijr Isma’il — part of the Kaaba</text>
+        <text x="170" y="90" text-anchor="middle" font-weight="600" fill="var(--danger)">walk around it — never through it</text>
+        <text class="mt-k" x="170" y="156" text-anchor="middle" fill="var(--ihram)" font-weight="600" stroke="none">Kaaba</text>
+        <text x="338" y="136" text-anchor="end">Door &amp; Multazam</text>
+        <text x="279" y="166" text-anchor="middle" font-weight="600" fill="var(--ink)">Maqam Ibrahim</text>
+        <text x="276" y="198" text-anchor="middle">(2 rakahs)</text>
+        <text x="208" y="219" text-anchor="end" font-weight="600" fill="var(--ink)">Black Stone ● start line</text>
+        <text x="208" y="235" text-anchor="end">tawaf begins &amp; ends here</text>
+        <text x="120" y="172" text-anchor="end" fill="var(--ink)" font-weight="600">Yamani corner</text>
+        <text x="120" y="188" text-anchor="end">touch, don’t kiss</text>
+        <text x="238" y="260" text-anchor="middle">Zamzam taps</text>
+        <text x="296" y="302" text-anchor="end" fill="var(--brand-2)" font-weight="600">To Safa &amp; the Mas’a (SE)</text>
       </g>
+      <path d="M302 297.5h16" stroke="var(--brand-2)" stroke-width="2" stroke-linecap="round" marker-end="url(#arrB)"/>
     </svg>
     <p style="font-size:var(--t-2);color:var(--ink3);margin:6px 2px 4px;line-height:var(--lh-body)">Schematic, not to scale. Between the Yamani corner and the Black Stone recite "Rabbana atina…". The sa’i gallery entrance is on the Safa side, south-east of the Black Stone.</p>
   </div></div>
@@ -1631,7 +1649,7 @@ p,.s,.sub{text-wrap:pretty}
     <div class="kv"><span>Days with worship logged</span><b id="stDays">0</b></div>
     <div class="kv"><span>Average completion</span><b id="stAvg">0%</b></div>
     <div class="kv"><span>Best day</span><b id="stBest">—</b></div>
-    <div class="kv"><span>Days ≥ 80%</span><b id="stPerf">0</b></div>
+    <div class="kv"><span>Days at 80% or more</span><b id="stPerf">0</b></div>
     <div class="kv"><span>Fajr streak (current)</span><b id="stFajr">0</b></div>
     <div class="kv"><span>Umrahs completed</span><b id="stUmrahs">0</b></div>
     <div class="kv"><span>Nafl tawafs logged</span><b id="stNafl">0</b></div>

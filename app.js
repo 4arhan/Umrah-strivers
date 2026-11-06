@@ -1,6 +1,6 @@
 /* Miqah — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='6.1.0';
+var APP_VERSION='6.1.1';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* ════════════════════════ MARKS ════════════════════════ */
 /* Kiswah marks: one small inline-SVG set (24x24, 1.5px stroke, currentColor) drawn in the gold-line style of the Kaaba mark.
@@ -67,12 +67,15 @@ var MARKS={
   map:'<path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/>',
   question:'<path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"/><path d="M9.5 9.5a2.5 2.5 0 0 1 5 0c0 1.7-2.5 2-2.5 4"/><path d="M12 17v.2"/>',
   chevr:'<path d="M9.5 6l6 6-6 6"/>',chevl:'<path d="M14.5 6l-6 6 6 6"/>',chevd:'<path d="M6 9.5l6 6 6-6"/>',chevu:'<path d="M6 14.5l6-6 6 6"/>',close:'<path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/>',expand:'<path d="M4.5 9V4.5H9M15 4.5h4.5V9M19.5 15v4.5H15M9 19.5H4.5V15"/>',plus:'<path d="M12 5v14M5 12h14"/>',arrow:'<path d="M5 12h13.5"/><path d="M13 6.5l5.5 5.5-5.5 5.5"/>',ext:'<path d="M8 16L17 7"/><path d="M9 7h8v8"/>',
+  image:'<rect x="3.5" y="5" width="17" height="14" rx="1.5"/><circle cx="9" cy="10" r="1.6"/><path d="M20.5 15.5l-4.5-4.5-8.5 8"/>',
+  bulb:'<path d="M9.5 17.5h5M10.5 20.5h3"/><path d="M12 3.5a5.5 5.5 0 0 0-3.2 10c.7.5 1.2 1.3 1.2 2.2v.3h4v-.3c0-.9.5-1.7 1.2-2.2A5.5 5.5 0 0 0 12 3.5z"/>',
+  lr:'<path d="M4 12h16"/><path d="M7.5 8.5L4 12l3.5 3.5"/><path d="M16.5 8.5L20 12l-3.5 3.5"/>',
   print:'<path d="M7 8V3.5h10V8"/><path d="M5 8h14a1.5 1.5 0 0 1 1.5 1.5V16H17v4.5H7V16H3.5V9.5A1.5 1.5 0 0 1 5 8z"/><path d="M7 13h10"/>'
 };
 /* mk('tent') → the inline SVG; cls adds classes (mkt = text-leading, with a right margin) */
 function mk(n,cls){var p=MARKS[n];if(!p)return '';return '<svg class="mk mk-'+n+(cls?' '+cls:'')+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'+p+'</svg>';}
 /* emoji → mark (keys without the VS16 selector) */
-var EMOJI_MK={'🕋':'kaaba','⛺':'tent','⛰':'hills','🏔':'mount','🕌':'dome','📍':'pin','📌':'tack','📚':'book','📓':'book','📖':'book','📿':'beads','🌙':'moon','📜':'scroll','🤲':'hands','🔥':'flame','💧':'drop','🧭':'compass','🚌':'bus','🧳':'bag','✈':'plane','🛫':'plane','🌱':'sprout','🔄':'refresh','🔁':'refresh','📋':'list','🚕':'car','🚗':'car','🆘':'sos','🗓':'calendar','📅':'calendar','🃏':'cards','🔐':'lock','🧒':'kid','🧠':'quiz','🏨':'hotel','🪨':'stone','🚶':'stone','👋':'wave','📈':'chart','⚙':'gear','🏛':'museum','🌅':'sun','🤍':'heart','ℹ':'info','✨':'spark','✂':'scissors','🌸':'flower','⏳':'clock','⏱':'clock','⏰':'clock','🕰':'clock','🏅':'medal','🎖':'medal','💾':'disk','🔗':'link','❓':'quiz','🔒':'lock','🔓':'lock','🟩':'grid','👥':'group','👨‍👩‍👧':'group','🩺':'cross','🛂':'scroll','🚨':'sos','🎉':'spark','⭐':'star','🌟':'star','⚖':'book','🎴':'cards','🏢':'hotel','🚓':'car','🤝':'hands','☎':'phone','📞':'phone','🗺':'map','✅':'check','💝':'heart','🔊':'speaker','🎯':'tack','🔔':'bell','📤':'share','📸':'share','🧕':'kid','🚶‍♀':'stone','💪':'wave','⚠':'alert','🗑':'trash','✍':'pen','📡':'antenna','❓':'question','🏥':'cross','❤':'heart','🚨':'sos','🏆':'medal','👳':'kid','🖨':'print'};
+var EMOJI_MK={'🕋':'kaaba','⛺':'tent','⛰':'hills','🏔':'mount','🕌':'dome','📍':'pin','📌':'tack','📚':'book','📓':'book','📖':'book','📿':'beads','🌙':'moon','📜':'scroll','🤲':'hands','🔥':'flame','💧':'drop','🧭':'compass','🚌':'bus','🧳':'bag','✈':'plane','🛫':'plane','🌱':'sprout','🔄':'refresh','🔁':'refresh','📋':'list','🚕':'car','🚗':'car','🆘':'sos','🗓':'calendar','📅':'calendar','🃏':'cards','🔐':'lock','🧒':'kid','🧠':'quiz','🏨':'hotel','🪨':'stone','🚶':'stone','👋':'wave','📈':'chart','⚙':'gear','🏛':'museum','🌅':'sun','🤍':'heart','ℹ':'info','✨':'spark','✂':'scissors','🌸':'flower','⏳':'clock','⏱':'clock','⏰':'clock','🕰':'clock','🏅':'medal','🎖':'medal','💾':'disk','🔗':'link','❓':'quiz','🔒':'lock','🔓':'lock','🟩':'grid','👥':'group','👨‍👩‍👧':'group','🩺':'cross','🛂':'scroll','🚨':'sos','🎉':'spark','⭐':'star','🌟':'star','⚖':'book','🎴':'cards','🏢':'hotel','🚓':'car','🤝':'hands','☎':'phone','📞':'phone','🗺':'map','✅':'check','💝':'heart','🔊':'speaker','🎯':'tack','🔔':'bell','📤':'share','📸':'share','🧕':'kid','🚶‍♀':'stone','💪':'wave','⚠':'alert','🗑':'trash','✍':'pen','📡':'antenna','❓':'question','🏥':'cross','❤':'heart','🚨':'sos','🏆':'medal','👳':'kid','🖨':'print','🖼':'image','💡':'bulb','🏠':'museum','🏘':'museum','🏙':'pin','🚩':'dome','🚪':'dome','🌌':'star','🍽':'pin','🏞':'hills','🌄':'mount','🌴':'sprout','🌳':'sprout','🌿':'sprout','🌹':'flower','🚂':'bus','🚄':'bus','🛍':'bag','🧵':'kaaba','🛡':'book','📲':'share','📥':'disk','🔍':'quiz','🐢':'stone','⬆':'refresh','⬇':'disk','☎':'phone','🎫':'calendar'};
 /* one leading emoji (+ variation selectors / ZWJ sequences) and the space after it; "✓" (2713) is kept */
 var EMOJI_RE=/^\s*(?:[☀-✒✔-➿⬆⬇]|[\ud83c-\ud83e][\udc00-\udfff])(?:[️‍]|[\ud83c-\ud83e][\udc00-\udfff]|[☀-➿])*\s*/;
 function stripEmoji(s){return String(s==null?'':s).replace(EMOJI_RE,'');}
@@ -114,7 +117,7 @@ function saveST(){localStorage.setItem('us-settings',JSON.stringify(ST));}
 function save(k,o){localStorage.setItem(k,JSON.stringify(o));}
 
 /* ════════════════════════ GENERIC UI ════════════════════════ */
-function toast(m,gold,actLabel,actFn){var c=document.getElementById('toastC');if(!c)return;var t=document.createElement('div');t.className='toast'+(gold?' gold':'')+(actLabel?' act':'');t.setAttribute('role','status');t.textContent=m;
+function toast(m,gold,actLabel,actFn){var c=document.getElementById('toastC');if(!c)return;var t=document.createElement('div');t.className='toast'+(gold?' gold':'')+(actLabel?' act':'');t.setAttribute('role','status');var tm=String(m==null?'':m),tn=emk(leadEmoji(tm),'');tm=stripEmoji(tm);if(/^✓\s*/.test(tm)){tn=tn||'check';tm=tm.replace(/^✓\s*/,'');}t.innerHTML=(tn?mk(tn,'mkt'):'')+'<span>'+esc(tm)+'</span>';
   if(actLabel){var b=document.createElement('button');b.textContent=actLabel;b.onclick=function(){t.remove();if(actFn)actFn();};t.appendChild(b);}
   while(c.children.length>=3)c.firstChild.remove();
   c.appendChild(t);setTimeout(function(){t.remove();},actLabel?6000:3200);}
@@ -216,7 +219,7 @@ function setText(v){ST.text=v||'';saveST();applyText();vib(8);}
 /* generic bottom sheet (reset, image export, certificate name…) */
 function openSheet(html){var o=document.getElementById('gSheet'),b=document.getElementById('gSheetBody');if(!o)return;b.innerHTML=html;
   /* the sheet roundel is kiswah with a gold mark: a single leading emoji becomes its mark */
-  var sh=b.querySelector('.sheet-h');if(sh&&!sh.querySelector('.mk')){var t=sh.textContent.trim(),n=t==='↺'?'refresh':emk(t,'');if(n)sh.innerHTML=mk(n);}
+  var sh=b.querySelector('.sheet-h');if(sh&&!sh.querySelector('.mk')&&!sh.classList.contains('kaaba')){var t=sh.textContent.trim(),n=t==='↺'?'refresh':emk(t,'kaaba');sh.innerHTML=mk(n);}
   o.classList.add('on');}
 function closeSheet(){var o=document.getElementById('gSheet');if(o)o.classList.remove('on');}
 function vib(ms){if(navigator.vibrate)try{navigator.vibrate(ms);}catch(e){}}
@@ -720,7 +723,7 @@ function togWudu(){ST.wudu=!ST.wudu;ST.wuduAt=ST.wudu?Date.now():null;saveST();u
 function updWudu(){var c=document.getElementById('wuduCard'),sw=document.getElementById('wuduSw'),st=document.getElementById('wuduSt');if(!c)return;
   c.classList.toggle('ok',!!ST.wudu);c.setAttribute('aria-checked',ST.wudu?'true':'false');if(sw)sw.classList.toggle('on',!!ST.wudu);
   if(st)st.textContent=ST.wudu?'✓ Wudu made'+(ST.wuduAt?' · '+fmtTime(ST.wuduAt):''):'Not yet — tap to confirm';
-  var fw=document.getElementById('focusWudu');if(fw){fw.innerHTML=mk('drop','mkt')+(ST.wudu?'wudu ✓':'wudu?');fw.classList.toggle('on',!!ST.wudu);fw.setAttribute('aria-pressed',ST.wudu?'true':'false');fw.hidden=focusKey!=='tawaf';}}
+  var fw=document.getElementById('focusWudu');if(fw){fw.innerHTML=mk('drop','mkt')+(ST.wudu?'Wudu ✓':'Wudu?');fw.classList.toggle('on',!!ST.wudu);fw.setAttribute('aria-pressed',ST.wudu?'true':'false');fw.hidden=focusKey!=='tawaf';}}
 function wuduSheet(){openSheet('<div class="sheet-h">'+mk('drop')+'</div><h3>Are you in wudu?</h3><p>"Tawaf around the House is like salah" (Tirmidhi 960) — it needs wudu. Sa’i does not.</p><button class="btn tall" onclick="wuduYes()">✓ Yes, I have wudu — begin</button><button class="btn ghost tall" onclick="closeSheet()">'+markify('💧 Not yet — I’ll make wudu first')+'</button>');}
 function wuduYes(){ST.wudu=true;ST.wuduAt=Date.now();saveST();updWudu();renderRiteHero();closeSheet();cntr('tawaf',1);}
 function focusWudu(){
@@ -1022,9 +1025,9 @@ function makeHajjKeepsake(i){var hist=[];try{hist=JSON.parse(localStorage.getIte
   var y=660;x.textAlign='left';x.font='30px '+KB;
   [['Arafah',lg.h9wuquf],['Rami of the 10th',lg.h10rami],['Halq / taqsir',lg.h10halq||lg.h10halqw],['Tawaf al-ifadah',lg.ifadahStart,lg.ifadahEnd||lg.h10ifadah],['Sa’i of Hajj',lg.hsaiStart,lg.hsaiEnd||lg.h10sai],['Tawaf al-wada',lg.wadaStart,lg.wadaEnd||lg.hwada||lg.hwadaw]].forEach(function(r){
     x.fillStyle=K.gold3;x.fillText(r[0],130,y);x.fillStyle=K.ihram;x.textAlign='right';var a=r[1],b=r[2];
-    x.fillText(a?fmtTime(a)+(b&&b>a?' → '+fmtTime(b)+'  ('+fmtDur(b-a)+')':''):(b?fmtTime(b):'—'),950,y);x.textAlign='left';y+=66;});
+    x.fillText(a?fmtTime(a)+(b&&b>a?' – '+fmtTime(b)+'  ('+fmtDur(b-a)+')':''):(b?fmtTime(b):'—'),950,y);x.textAlign='left';y+=66;});
   x.textAlign='center';x.font='italic 400 28px '+KB;x.fillStyle=K.gold3;x.fillText('“…he will return as if he were born anew.” — Bukhari 1521',540,1140);
-  kFoot(x,'MIQAH · umrah-strivers.vercel.app',540,1190);
+  kFoot(x,'Miqah · umrah-strivers.vercel.app',540,1190);
   exportImage(c,'my-hajj-'+(u.y||'')+'.png','My Hajj keepsake');}
 
 /* ════════════════════════ DAILY ════════════════════════ */
@@ -1217,7 +1220,7 @@ function placeCard(p,q){
   var dist=distLbl(p),inR=inRoute(p.id),on=!!placeVis[p.id];
   var meta=(p.stop?'<span class="stopbadge '+(p.stop[0]==='R'?'red':'green')+'" role="button" tabindex="0" aria-label="Hop-on hop-off stop — open the bus card" onclick="event.stopPropagation();openTour()">🚌 Stop '+p.stop.slice(1)+' · '+(p.stop[0]==='R'?'Red':'Green')+'</span>':'')
     +(p.tags||[]).map(function(t){return '<span class="ptag">'+t+'</span>';}).join('')+(dist?'<span class="distchip">'+dist+'</span>':'')+visLbl(p.id);
-  return '<div class="place'+(on?' vis':'')+(q?' open':'')+'" id="pl-'+p.id+'"><div class="place-h" onclick="this.parentNode.classList.toggle(\'open\')"><div class="place-ico" role="button" tabindex="0" aria-label="'+(on?'Visited — tap to unmark':'Mark visited')+'" onclick="event.stopPropagation();togPlace(\''+p.id+'\')">'+p.i+'</div><div class="place-t"><b>'+p.n+'</b>'+(p.ar?'<span class="plar" lang="ar" dir="rtl">'+p.ar+'</span>':'')+meta+'<p>'+p.d+'</p><div class="tip">💡 '+p.tip+'</div></div><span class="place-ch">▾</span></div>'
+  return '<div class="place'+(on?' vis':'')+(q?' open':'')+'" id="pl-'+p.id+'"><div class="place-h" onclick="this.parentNode.classList.toggle(\'open\')"><div class="place-ico" role="button" tabindex="0" aria-label="'+(on?'Visited — tap to unmark':'Mark visited')+'" onclick="event.stopPropagation();togPlace(\''+p.id+'\')">'+p.i+'</div><div class="place-t"><b>'+p.n+'</b>'+(p.ar?'<span class="plar" lang="ar" dir="rtl">'+p.ar+'</span>':'')+meta+'<p>'+p.d+'</p><div class="tip">'+mk('bulb','mkt')+p.tip+'</div></div><span class="place-ch">▾</span></div>'
     +'<div class="place-a"><a href="'+mapsSearch(p)+'" target="_blank" rel="noopener">🗺️ Open in Maps</a><button onclick="showPlaceDriver(\''+p.id+'\')">🚕 Show driver</button>'+(routable(p)?'<button class="rt'+(inR?' on':'')+'" onclick="togRoute(\''+p.id+'\')">'+(inR?'✓ In route':'＋ Route')+'</button>':'')+'<button class="mv" onclick="togPlace(\''+p.id+'\')">'+(on?'✓ Visited':'Mark visited')+'</button></div>'
     +(p.id==='rawdah'?'<div class="place-a" style="margin-top:8px"><a href="https://www.nusuk.sa/" target="_blank" rel="noopener">🎫 Get the free Rawdah permit on Nusuk</a></div>':'')
     +(['taneem','jiranah','miqat'].indexOf(p.id)>-1?'<div class="place-a" style="margin-top:8px"><button style="background:var(--gold-soft);color:var(--gold-ink);border-color:transparent" onclick="goTab(\'umrah\',\'steps\')">🤍 Umrah steps — ihram from here</button></div>':'')+'</div>';
@@ -1753,7 +1756,7 @@ function makeKeepsake(no){
   var y=680;x.textAlign='left';x.font='32px '+KB;
   [['Ihram',lg.ihram],['Tawaf',lg.tawafStart,lg.tawafEnd],['Sa’i',lg.saiStart,lg.saiEnd],['Halq / taqsir',lg.halq]].forEach(function(r){
     x.fillStyle=K.gold3;x.fillText(r[0],180,y);x.fillStyle=K.ihram;x.textAlign='right';
-    x.fillText(r[1]?fmtTime(r[1])+(r[2]?' → '+fmtTime(r[2])+'  ('+fmtDur(r[2]-r[1])+')':''):'—',900,y);x.textAlign='left';y+=70;});
+    x.fillText(r[1]?fmtTime(r[1])+(r[2]?' – '+fmtTime(r[2])+'  ('+fmtDur(r[2]-r[1])+')':''):'—',900,y);x.textAlign='left';y+=70;});
   if(lg.ihram&&lg.halq){x.fillStyle=K.gold2;x.font='600 34px '+KB;x.textAlign='center';x.fillText('Ihram to halq: '+fmtDur(lg.halq-lg.ihram),540,y+40);}
   x.textAlign='center';x.font='italic 400 30px '+KB;x.fillStyle=K.gold3;x.fillText('“Umrah to Umrah is an expiation for what is between them.”',540,1140);
   kFoot(x,'Bukhari 1773 · umrah-strivers.vercel.app',540,1190);
@@ -1785,6 +1788,8 @@ function kBadge(x,cx,cy,name,size){var s=size||170,r=s*.22;x.save();x.fillStyle=
     var cs=MARKS[name].match(/<circle[^>]*>/g)||[];cs.forEach(function(c){var m=/cx="([\d.]+)" cy="([\d.]+)" r="([\d.]+)"/.exec(c);if(m){x.beginPath();x.arc(+m[1],+m[2],+m[3],0,6.2832);x.stroke();}});}
   x.restore();}
 function kLabel(x,t,cx,y,px){x.save();x.font='600 '+px+'px '+KB;x.fillStyle=K.gold2;try{x.letterSpacing=Math.round(px*.06)+'px';}catch(e){}x.fillText(String(t).toUpperCase(),cx,y);x.restore();}
+/* the wordmark on canvases: Fraunces 600, as set (never the uppercase eyebrow) */
+function kBrand(x,cx,y,px){x.save();x.font='600 '+px+'px '+KF;x.fillStyle=K.gold2;x.textAlign='center';x.fillText('Miqah',cx,y);x.restore();}
 function kFoot(x,t,cx,y){x.save();x.font='24px '+KB;x.fillStyle=K.ihram3;x.textAlign='center';x.fillText(t,cx,y);x.restore();}
 /* ════════════════════════ IMAGE EXPORT (share sheet → in-app preview, M-07) ════════════════════════ */
 var imgExp=null;
@@ -2051,7 +2056,7 @@ function shareCard(){
   var logged=0,sum=0;for(var i=1;i<=ST.tripLen;i++){var p=dayPct(i);if(p!==null&&p>0){logged++;sum+=p;}}
   var pv=Object.keys(placeVis).filter(function(k){return placeVis[k];}).length,tb=tbTotal();
   var nt=0;for(var j=1;j<=ST.tripLen;j++){var dd=dailyChk['d'+j];if(dd)nt+=(dd.ntawafN||(dd.ntawaf?1:0));}
-  kBadge(x,540,172,'kaaba',130);x.textAlign='center';kLabel(x,'MIQAH',540,290,36);
+  kBadge(x,540,172,'kaaba',130);x.textAlign='center';kBrand(x,540,292,40);
   x.font='600 56px '+KF;x.fillStyle=K.ihram;x.fillText((ST.name||'My')+(ST.name?'’s':'')+' journey · Day '+ST.day+' of '+ST.tripLen,540,365);
   var tiles=[[ST.umrahs,'Umrahs'],[nt,'Nafl tawafs'],[(logged?Math.round(sum/logged):0)+'%','Avg. daily deeds'],[pv,'Places visited'],[tb,'Dhikr counted'],[streakOf('fajr'),'Fajr streak'],[logged,'Days logged']];
   tiles.forEach(function(t,i){var cx=230+(i%3)*310,cy=500+Math.floor(i/3)*190;x.fillStyle=K.well;x.beginPath();x.roundRect(cx-130,cy-80,260,160,28);x.fill();x.strokeStyle=K.goldHair;x.lineWidth=1.5;x.stroke();x.fillStyle=K.ihram;x.font='700 60px '+KB;try{x.letterSpacing='-1px';}catch(e){}x.fillText(String(t[0]),cx,cy+8);try{x.letterSpacing='0px';}catch(e){}x.fillStyle=K.gold2;x.font='600 24px '+KB;x.fillText(t[1],cx,cy+52);});
@@ -2378,7 +2383,7 @@ function makeCertGo(){
   var c=document.createElement('canvas');c.width=1080;c.height=1350;
   var x=c.getContext('2d');
   kCloth(x,1080,1350);kBadge(x,540,235,'kaaba');
-  x.textAlign='center';kLabel(x,'MIQAH',540,370,44);
+  x.textAlign='center';kBrand(x,540,372,48);
   x.font='italic 400 30px '+KB;x.fillStyle=K.ihram2;x.fillText('Certificate of Knowledge',540,425);
   x.font='600 72px '+KF;x.fillStyle=K.ihram;x.fillText(name,540,580);
   kHizam(x,340,740,625);
@@ -2935,27 +2940,35 @@ document.addEventListener('DOMContentLoaded',function(){loadAll();pendingGroup=p
    Chrome strings (buttons, chips, labels, list rows) render their emoji as stroke marks (or drop them) and their
    ▶ ◀ ▾ ✕ ⛶ ＋ → glyphs as stroke chevrons — content strings are untouched. ﷺ is set in Scheherazade New; straight quotes curl. */
 var CHROME_SEL='button,a,.res .i,.btn,.chip-btn,.lnk,.pill,.xchip,.chip,label,.acc-h,.res .g,.focus-top,.lost-kv>span,.it-t,.it-d,.todayit,.ti-t,.tli-t,.hcta,.sec-chev,.qa,.hn-all,.tli-more,.stage-cta,.app-go,.place-a,.say,.why,.whyb,.cd2-r label,.dua .enl,.fchips span,.hp-go,.stage-go,.rarr,.lg-t,.tour-h,.kr-t,.daynav,.hcard,.trust span,.ob-x,.iconbtn,.tb-chip,.tb-tg,.meetchip,.stopchip,.distchip,.ptag,.nowtag,.tli-when,.pillmini,.prio,.ph-hd,.pt-next,.dtools,.rd-foot,.hs-t span,.go,.hp-t div span,.kn,.stk-h,.apps-h,.tli-h,.subt,.niy-c,.sheet .opt small,.kd-h,.wk-why,.place-ico,.st .l,.rtile small,.tour-note,.pl-near,.hotelrow span,.hleg span,.co-i,.app-i,#cdW,#hotelLbl2,.hs-r,.ring-wrap';
-var GLYPH_MK={'↻':'refresh','✓':'check','✔':'check','▶':'chevr','►':'chevr','◀':'chevl','◄':'chevl','←':'chevl','▾':'chevd','▼':'chevd','▴':'chevu','▲':'chevu','✕':'close','✖':'close','×':'close','⛶':'expand','＋':'plus','↗':'ext','→':'arrow'};
-var CHROME_RE=/(?:[⌚⌛⏩-⏺☀-✒✔-➿⬆⬇⬛⬜⭐]|[\ud83c-\ud83e][\udc00-\udfff])(?:[️‍]|[\ud83c-\ud83e][\udc00-\udfff]|[☀-➿])*|[↻✓✔▶►◀◄←▾▼▴▲✕✖⛶＋↗→]/g;
+var GLYPH_MK={'↻':'refresh','✓':'check','✔':'check','▶':'chevr','►':'chevr','◀':'chevl','◄':'chevl','←':'chevl','▾':'chevd','▼':'chevd','▴':'chevu','▲':'chevu','✕':'close','✖':'close','×':'close','⛶':'expand','＋':'plus','↗':'ext','→':'arrow','↺':'refresh','↔':'lr'};
+var CHROME_RE=/(?:[⌚⌛⏩-⏺☀-✒✔-➿⬆⬇⬛⬜⭐]|[\ud83c-\ud83e][\udc00-\udfff])(?:[️‍]|[\ud83c-\ud83e][\udc00-\udfff]|[☀-➿])*|[↻↺↔✓✔▶►◀◄←▾▼▴▲✕✖⛶＋↗→]/g;
 function chromeText(tn){
   var el=tn.parentElement;if(!el||el.closest('.ar,[lang="ar"],script,style,textarea,svg'))return;
   var v=tn.nodeValue;
   if(v.indexOf('"')>=0)curlBlock(el);v=tn.nodeValue;
   if(v.indexOf('ﷺ')>=0){var f=document.createDocumentFragment(),parts=[];v.split('ﷺ').forEach(function(p,i){if(i){var sp=document.createElement('span');sp.className='ty-saw';sp.lang='ar';sp.textContent='ﷺ';f.appendChild(sp);}var t=document.createTextNode(p);parts.push(t);f.appendChild(t);});tn.parentNode.replaceChild(f,tn);parts.forEach(function(t){if(t.nodeValue)chromeText(t);});return;}
-  if(el.classList.contains('place-ico')){var m0=v.trim();var n0=emk(m0);if(n0){el.innerHTML=mk(n0);}return;}
+  if(el.classList.contains('place-ico')){var m0=v.trim();if(m0){el.innerHTML=mk(emk(m0,'pin'));}return;}
   var t0=v.trim();if(t0==='›'||t0==='‹'){tn.parentNode.replaceChild(document.createRange().createContextualFragment(mk(t0==='›'?'chevr':'chevl','ty-g ty-solo')),tn);return;}
-  var host=el.closest(CHROME_SEL);if(!host&&(GLYPH_MK[t0]||/^\s*[✓↻]/.test(v)||/\s→\s*$/.test(v))&&!el.closest('p,.note,.acc-b'))host=el;if(!host)return;
+  var host=el.closest(CHROME_SEL);if(!host&&(GLYPH_MK[t0]||/^\s*[✓↻↺]/.test(v)||/\s→\s*$/.test(v))&&!el.closest('p,.note,.acc-b'))host=el;if(!host){copyGlyphs(tn);return;}
   CHROME_RE.lastIndex=0;if(!CHROME_RE.test(v))return;CHROME_RE.lastIndex=0;
   var BTN=host.matches('button,.btn,.chip-btn,.pill,.chip,.xchip,.lnk,a');var row=BTN?host:(host.closest('.todayit,.it,.tli,.acc-h,.lost-kv,.tc-h,.place-h,.res')||host);var out='',last=0,m,used=row.getAttribute('data-ty')==='1'||!!row.querySelector('svg.mk:not(.ty-g)');
   while((m=CHROME_RE.exec(v))){var g=m[0],name=GLYPH_MK[g]||'';
     var pre=v.slice(last,m.index);out+=escT(pre);last=m.index+g.length;
-    if(name){var lead=/^\s*$/.test(out+pre),trail=!lead&&/^\s*$/.test(v.slice(last));out+=mk(name,'ty-g ty-'+name+(lead?' ty-lead':trail?' ty-trail':''));if(lead&&v.charAt(last)===' ')last++;if(trail)out=out.replace(/\s+(<svg[^>]*ty-trail[^>]*>[\s\S]*<\/svg>)$/,'$1');continue;}
+    if(name){var lead=/^\s*$/.test(out+pre),trail=!lead&&/^\s*$/.test(v.slice(last));out+=mk(name,'ty-g ty-'+name+(lead?' ty-lead':trail?' ty-trail':''));if(lead&&v.charAt(last)===' ')last++;if(trail)out=out.replace(/\s+(<svg[^>]*ty-trail[^>]*>[\s\S]*<\/svg>)$/,'$1');if(trail&&inFlow(el))out=out.replace(/([^\s<>]+)(<svg[^>]*ty-trail[^>]*>[\s\S]*?<\/svg>)$/,'<span class="ty-nw">$1$2</span>');continue;}
     var en=emk(g);if(en&&!used){out+=mk(en,'mkt');used=true;}
     if(v.slice(last,last+1)===' '&&!out.length)last++;}
   out+=escT(v.slice(last));
   row.setAttribute('data-ty','1');
   var tp=document.createElement('template');tp.innerHTML=out.replace(/^\s+/,'');tn.parentNode.replaceChild(tp.content,tn);
 }
+/* a trailing mark is tied to its last word only in inline flow (in a flex box the tie span would swallow the space before it) */
+function inFlow(el){try{return !/flex|grid/.test(getComputedStyle(el).display);}catch(e){return true;}}
+/* in copy (paragraphs, notes, meta lines) → ✓ ↺ ↻ ↔ would fall back to a system font: each becomes its stroke mark, in place */
+var COPY_RE=/[→✓✔↺↻↔]/g;
+function copyGlyphs(tn){var el=tn.parentElement;if(!el||el.closest('input,textarea,select,option,title,.ar,[lang="ar"],svg,script,style'))return;var v=tn.nodeValue;COPY_RE.lastIndex=0;if(!COPY_RE.test(v))return;COPY_RE.lastIndex=0;
+  var out='',last=0,m;while((m=COPY_RE.exec(v))){var g=m[0],pre=v.slice(last,m.index),lead=!out&&/^\s*$/.test(pre),trail=/^\s*$/.test(v.slice(m.index+1));out+=escT(lead?'':pre);out+=mk(GLYPH_MK[g]||'check','ty-g ty-'+(GLYPH_MK[g]||'check')+(lead?' ty-lead':trail?' ty-trail':' ty-mid'));last=m.index+1;if(lead&&v.charAt(last)===' ')last++;}
+  out+=escT(v.slice(last));if(/ty-trail[^>]*>[\s\S]*<\/svg>$/.test(out))out=out.replace(/\s+(<svg[^>]*ty-trail[^>]*>[\s\S]*?<\/svg>)$/,'$1');if(inFlow(el))out=out.replace(/([^\s<>]+)(<svg[^>]*ty-trail[^>]*>[\s\S]*?<\/svg>)$/,'<span class="ty-nw">$1$2</span>');
+  var tp=document.createElement('template');tp.innerHTML=out;tn.parentNode.replaceChild(tp.content,tn);}
 /* straight quotes → curly, paired across the whole block (a quote may span a ﷺ or a link) */
 function curlBlock(el){var bl=el.closest('p,li,.note,.tr,.vh,.acc-b,.card,div')||el;if(bl.closest('input,textarea,code,pre'))return;var all=bl.textContent;if((all.match(/"/g)||[]).length%2)return;
   var tw=document.createTreeWalker(bl,NodeFilter.SHOW_TEXT),n,open=false;while((n=tw.nextNode())){if(n.nodeValue.indexOf('"')<0)continue;n.nodeValue=n.nodeValue.replace(/"/g,function(){open=!open;return open?'“':'”';});}}
@@ -2966,24 +2979,37 @@ function chromeGlyphs(root){if(!root)return;if(root.nodeType===3){chromeText(roo
 /* typographic ties: a number stays with its noun ("0 of 5 steps", "30 days", "Hajj 1448 ·"), a separator stays on the line
    it closes, and a short last word never drops to a line of its own. Tied runs are wrapped in nowrap spans, so the text
    (and textContent) is unchanged. Only titles, hero lines and short instruction copy are touched. */
-var TIE_SEL='h1,h2,h3,h4,.hero-t .v,.hero-t .s,.hs-t b,.hs-t>span,.hs-t small,.hcta,.tip-a,.tip-r,.lost-en,.tli-t,.hday-h b,.stage-h b,.stage-h small,.rite-done>b,.vh p,.focus-of,.cnt .sub,.cd2-r>span,.ob-hint,small,p';
+var TIE_SEL='.fd-k,.focus-hint,.df-hint,.ptc,#hNext span,.tli-t small,.row-t .x,h1,h2,h3,h4,.hero-t .v,.hero-t .s,.hs-t b,.hs-t>span,.hs-t small,.hcta,.tip-a,.tip-r,.lost-en,.tli-t,.hday-h b,.stage-h b,.stage-h small,.rite-done>b,.vh p,.focus-of,.cnt .sub,.cd2-r>span,.ob-hint,small,p';
 var TIE_W=/^(?:Hajj|Umrah|Day|day|Step|step|Round|round|Level|level|Part|Lap|lap|Q)$/;
 function tieAll(root){if(!root)return;if(root.nodeType===3)root=root.parentElement;if(!root||!root.closest)return;var els=[],c=root.closest(TIE_SEL);if(c)els.push(c);if(root.querySelectorAll)els=els.concat([].slice.call(root.querySelectorAll(TIE_SEL)));
   els.forEach(function(el){var tw=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),a=[],n,last=null;while((n=tw.nextNode())){if(n.nodeValue.trim())last=n;if(/ \S/.test(n.nodeValue))a.push(n);}a.forEach(function(t){tieNode(t,t===last);});});}
 function tieNode(tn,isLast){var p=tn.parentElement;if(!p||p.closest('.ty-nw,.ar,[lang="ar"],input,textarea,svg,script,style'))return;
   var w=tn.nodeValue.split(' '),N=w.length;if(N<2)return;var tie=[],any=false,i,a,b;
   for(i=1;i<N;i++){a=w[i-1];b=w[i];var t=false;
-    if(a&&b&&/\d[%+]?[,.:;]?$/.test(a)&&/^[\w%’'\/·]{1,8}[.,;:)?!]?$/.test(b))t=true;           // 30 days · 5 steps · 1448 AH · 0 of
+    if(a&&b&&/\d[%+]?[,.:;]?$/.test(a)&&/^[\w%’'\/]{1,8}[.,;:)?!]?$/.test(b))t=true;           // 30 days · 5 steps · 1448 AH · 0 of
     else if((a==='of'||a==='/')&&/^\d/.test(b))t=true;                                              // of 5 · / 10
-    else if(a&&(b==='·'||b==='—'||b==='–'))t=true;                                                    // Hajj 1448 · | word —
+    else if(a&&(b==='—'||b==='–'))t=true;                                                             // word — (a dash closes its line)
+    else if(a==='·'&&b)t=true;                                                                        // · next (a dot never ends a line)
     else if(TIE_W.test(a)&&/^\d/.test(b))t=true;                                                     // Hajj 1448 · Step 3 · Day 2
+    else if(/^(?:Dhul|Dhu|Rabi|Rabi’|Jumada)$/.test(a)&&b)t=true;
+    else if(/^(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)$/.test(a)&&/^\d{4}\b/.test(b))t=true; // 15 May 2027                                    // Dhul Hijjah · Rabi’ al-Awwal (a month name never splits)
     else if(/^(?:I|II)$/.test(b)&&/^[A-Z][a-z]+$/.test(a)||/^(?:I|II)$/.test(a)&&/^\d/.test(b))t=true; // Jumada I 26
     else if(isLast&&i===N-1&&a&&a!=='·'&&a!=='—'&&/^\S{1,7}$/.test(b)&&N>3)t=true;                   // no lone last word
     tie[i]=t;if(t)any=true;}
   if(!any)return;var f=document.createDocumentFragment(),run=[w[0]],txt='';
-  function flush(){if(run.length>1){if(txt){f.appendChild(document.createTextNode(txt));txt='';}var sp=document.createElement('span');sp.className='ty-nw';sp.textContent=run.join(' ');f.appendChild(sp);}else txt+=run[0];}
+  function flush(){if(run.length>1){if(txt){f.appendChild(document.createTextNode(txt));txt='';}var sp=document.createElement('span');sp.className='ty-nw';if(run[0]==='·'){var dt=document.createElement('span');dt.className='ty-dot';dt.textContent='· ';sp.appendChild(dt);sp.appendChild(document.createTextNode(run.slice(1).join(' ')));sepFix();}else sp.textContent=run.join(' ');f.appendChild(sp);}else txt+=run[0];}
   for(i=1;i<N;i++){if(tie[i])run.push(w[i]);else{flush();txt+=' ';run=[w[i]];}}flush();if(txt)f.appendChild(document.createTextNode(txt));
   tn.parentNode.replaceChild(f,tn);}
+/* a separator never starts a line: when a "· next" run wraps, its dot is hidden (re-measured after every layout change) */
+var sepQ=0;
+function sepFix(){if(sepQ)return;sepQ=(window.requestAnimationFrame||setTimeout)(function(){sepQ=0;var ds=[].slice.call(document.querySelectorAll('.ty-dot')),hit=[];
+  ds.forEach(function(d){d.classList.remove('ty-sol','ty-br');});
+  ds.forEach(function(d){if(!d.getClientRects().length)return;var r=d.getBoundingClientRect(),pr=prevRect(d.parentNode);if(pr&&r.top>pr.top+pr.height*.5)hit.push(d);});
+  /* hiding a dot narrows its run: if the run would then fit back on the line above, the dot becomes a hard break instead */
+  hit.forEach(function(d){d.classList.add('ty-sol');var w=d.parentNode,wr=w.getClientRects()[0],pr=prevRect(w);if(!wr||!pr||wr.top<=pr.top+pr.height*.5){d.classList.remove('ty-sol');d.classList.add('ty-br');}});});}
+function prevRect(n){for(var up=0;n&&up<3;up++){var p=n.previousSibling;while(p){if(p.nodeType===3&&p.nodeValue.trim()){var rg=document.createRange();rg.selectNodeContents(p);var rs=rg.getClientRects();if(rs.length)return rs[rs.length-1];}else if(p.nodeType===1){var es=p.getClientRects();if(es.length)return es[es.length-1];}p=p.previousSibling;}n=n.parentNode;if(!n||n.nodeType!==1||/^(P|DIV|LI|H\d|B|BUTTON)$/.test(n.tagName)&&getComputedStyle(n).display!=='inline')return null;}return null;}
+if(window.ResizeObserver)try{new ResizeObserver(sepFix).observe(document.documentElement);}catch(e){}
+window.addEventListener('resize',sepFix);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(sepFix);
 (function(){var busy=false;function run(muts){if(busy)return;busy=true;try{muts.forEach(function(m){if(m.type==='characterData'){chromeText(m.target);tieAll(m.target);}else m.addedNodes.forEach(chromeGlyphs);});}catch(e){}busy=false;}
   function start(){chromeGlyphs(document.body);new MutationObserver(run).observe(document.body,{childList:true,subtree:true,characterData:true});}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(start,0);});else start();})();

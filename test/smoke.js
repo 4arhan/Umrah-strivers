@@ -135,7 +135,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   await page.evaluate(() => qzExit());
   check('exit keeps a resume row at the next unanswered question', (await page.locator('.qz-resume').count()) === 1 && (await page.textContent('.qz-resume')).includes('Q3/10') && (await page.evaluate(() => JSON.parse(localStorage.getItem('us-quiz')).cur.i)) === 2);
   await page.click('.qz-resume .btn');
-  check('resume restores the score and position', (await page.textContent('.qz-top')).includes('Q3/10') && (await page.textContent('.qz-top')).includes('2 ✓'));
+  check('resume restores the score and position', (await page.textContent('.qz-top')).includes('Q3/10') && /· 2(?!\d)/.test(await page.textContent('.qz-top')) && (await page.locator('.qz-top svg.mk-check').count()) >= 1);
   for (let k = 2; k < n1; k++) await pick();
   check('level 1 passed at 100%; pass screen starts the next level', (await page.textContent('.qz-final .big')) === '100%' && (await page.textContent('.qz-final .btn.gold')).includes('Ihram') && (await page.locator('.qz-final button:has-text("Retake")').count()) === 0);
   await page.click('button:has-text("All levels")');
@@ -166,7 +166,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   check('hand-off tick rows drive the rites checklist', (await page.evaluate(() => riteChk.maqam === true)) && (await page.locator('#rw-maqam.done').count()) === 1);
   await page.waitForTimeout(1400);
   await page.click('#tawafDone button:has-text("Start Sa")'); await page.waitForTimeout(500);
-  check('Start Sa\u2019i makes sa\u2019i the one big ring; sa\u2019i tip names the hill', (await page.locator('#saiCard.compact').count()) === 0 && (await page.locator('#tawafCard.compact').count()) === 1 && (await page.textContent('#saiTip')).includes('On Safa \u2192 walk to Marwah'));
+  check('Start Sa\u2019i makes sa\u2019i the one big ring; sa\u2019i tip names the hill', (await page.locator('#saiCard.compact').count()) === 0 && (await page.locator('#tawafCard.compact').count()) === 1 && /On Safa\s*walk to Marwah/.test(await page.textContent('#saiTip')) && (await page.locator('#saiTip svg.mk-arrow').count()) >= 1);
   await page.evaluate(() => { togRite('niyyah'); for (let i = 0; i < 7; i++) { lastTap.sai = 0; cntr('sai', 1); } });
   check('sa\u2019i done points to halq before cutting', (await page.textContent('#saiDone')).includes('halq') && (await page.locator('#saiDone button:has-text("Record this Umrah")').count()) === 0 && (await page.textContent('#saiTip')).includes('Finished on Marwah'));
   await page.evaluate(() => togRite('cut'));
