@@ -1,6 +1,6 @@
 /* Miqah — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='6.1.2';
+var APP_VERSION='6.2.0';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* ════════════════════════ MARKS ════════════════════════ */
 /* Kiswah marks: one small inline-SVG set (24x24, 1.5px stroke, currentColor) drawn in the gold-line style of the Kaaba mark.
@@ -1460,13 +1460,22 @@ function planNext(){var B=tlBuckets(),rows=[];
     B.soon.forEach(function(o){rows.push({o:o,cls:'soon',when:'coming up',pre:'Next: '});});}
   else activePlan().forEach(function(sec){sec.items.forEach(function(it){if(TL_BLOCK.indexOf(it.id)>-1&&forMe(it)&&!planChk[it.id])rows.push({o:{it:it,sec:sec},cls:'soon',when:'first',pre:'Next: '});});});
   return rows;}
+/* 6.2 status card: the phase string split into kicker · hero · unit. "⛺ Hajj 1448 · 30 days until you fly" → (Hajj 1448 · ) "30" "days until you fly";
+   "🕋 Day 2 of 10 in the Haramain" → small "Day", "2", "of 10 in the Haramain"; "⛺ Hajj 1448 — when do you fly?" → (Hajj 1448 — ) title "when do you fly?".
+   Only the kicker (shown by .hs-k), the separators and a closing "— alhamdulillah" sit in display:none .hs-x spans, so the hero b's textContent is still the phase. */
+function hsPhase(s){var t=stripEmoji(s),i=t.indexOf(' — '),head=i>-1?t.slice(0,i):t,tail=i>-1?t.slice(i):'',k='',ti=head,
+  x=function(v){return v?'<span class="hs-x">'+v+'</span>':'';},m=/^(.+? · )?(Day )?(\d+)( .+)?$/.exec(head);
+  if(m)return {k:m[1]?m[1].slice(0,-3):'',num:true,h:x(m[1])+'<span class="hs-nr">'+(m[2]?'<span class="hs-pre">'+m[2]+'</span>':'')+'<span class="hs-n'+(m[3].length>3?' hs-nl':'')+'">'+m[3]+'</span></span>'+(m[4]?'<span class="hs-u">'+m[4]+'</span>':'')+x(tail)};
+  if(tail&&tail!==' — alhamdulillah'){k=head;ti=tail.slice(3);return {k:k,num:false,h:x(head+' — ')+'<span class="hs-n hs-nt">'+ti+'</span>'};}
+  var j=head.indexOf(' · ');if(j>0){k=head.slice(0,j);ti=head.slice(j+3);}
+  return {k:k,num:false,h:x(k?k+' · ':'')+'<span class="hs-n hs-nt">'+ti+'</span>'+x(tail)};}
 function renderHome(){
   var a=document.getElementById('homeArea');if(!a)return;
   var name=ST.name?', '+ST.name:'';
   var hij=(ptData&&ptData.h)?ptData.h:hijriIntl();
   var greg=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
   var d=depDays();
-  var phase,cta,pct,lbl,stageNow,dp=0;
+  var phase,cta,pct,lbl,stageNow,dp=0,hsK='trip';
   var pd=postData||{},pc=0;Object.keys(pd).forEach(function(h){pc+=Object.keys(pd[h]||{}).filter(function(k){return pd[h][k];}).length;});
   var tripOver=d!==null&&d<-ST.tripLen,tu=totalUmrahs(),lg=ST.log||{},act=activeCount(),inHaram=onTrip(),nextRows=[];
   /* J-06: Hajj mode — the Hijri days of Hajj drive the phase once flying; before that the planner and the "Umrah first" chain */
@@ -1477,7 +1486,7 @@ function renderHome(){
     var hsteps=hsec?hsec.steps.filter(forMe):[],hdone=hsteps.filter(function(s){return hajjChk[s.id];}).length,hnx=null;hsteps.forEach(function(s){if(!hnx&&!hajjChk[s.id]&&!s.info)hnx=s;});
     pct=hsteps.length?Math.round(hdone/hsteps.length*100):0;phase='⛺ '+hd+' Dhul Hijjah · '+DH_NAME[hd];
     cta=hnx?[fcText(hnx.b),'umrah','steps','rw-'+hnx.id]:['Today’s steps all ticked — log your worship','daily','today'];
-    lbl=(hsec?hsec.sub+' · ':'')+hdone+' of '+hsteps.length+' steps today';stageNow=2;
+    lbl=(hsec?hsec.sub+' · ':'')+hdone+' of '+hsteps.length+' steps today';stageNow=2;hsK='hday';
     if(act)cta=['Resume '+(act==='tawaf'?'tawaf':'sa’i')+' ('+ST[act]+'/7)','umrah','count'];
     var conf=ST.hajjConf===hy;
     hdayHTML='<div class="card card-pad hday"><div class="hday-h"><span class="hp-i" style="background:var(--gold-soft)">'+mk(hsec?emk(hsec.ico,'tent'):'tent')+'</span><div><small>Today · Hajj '+hy+'</small><b>'+(conf?hd+' Dhul Hijjah · '+DH_NAME[hd]:'Is today '+hd+' Dhul Hijjah?')+'</b></div></div>'
@@ -1489,14 +1498,14 @@ function renderHome(){
     else{cta=['Plan your next journey','more','guide','nextCard'];lbl='Umrah or Hajj — the checklists and countdown are ready when Allah invites you again';}
     /* (review) Part 2 ticks waiting with no Hajj recorded: say so before offering the next journey */
     if(HJ&&!ST.hajjs&&Object.keys(hajjChk).some(function(k){return hajjChk[k];})){phase='⛺ Your Hajj — not yet recorded';cta=['Record completed Hajj','umrah','steps','hajjDone'];lbl='Your Part 2 ticks are waiting — record the Hajj to keep its timeline and keepsake';pct=0;var HT0=hajjTotals();if(HT0.tot)pct=Math.round(HT0.done/HT0.tot*100);}
-    stageNow=4;}
+    stageNow=4;hsK='after';}
   else if(d===null||d>0){var P=planTotals(),tot=P.tot,done=P.done;pct=P.pct;
     if(HJ){phase=d===null?'⛺ Hajj '+hy+' — when do you fly?':'⛺ Hajj '+hy+' · '+d+' day'+(d===1?'':'s')+' until you fly';lbl=(HD[9]?'Arafah on '+fmtDate(HD[9],true)+' · ':'')+done+' of '+tot+' prep items';}
     else{phase=d===null?'🧭 Planning — set your departure date':'✈️ '+d+' day'+(d===1?'':'s')+' until departure';lbl=done+' of '+tot+' prep items · '+qzPassedCount()+'/'+qzVisible().length+' quiz levels';}
-    cta=[pct<100?'Continue preparing':'Study & quiz','plan',pct<100?'prep':'learn',pct<100?(ST.dep?'tlCard':'cdCard'):null];stageNow=0;
+    cta=[pct<100?'Continue preparing':'Study & quiz','plan',pct<100?'prep':'learn',pct<100?(ST.dep?'tlCard':'cdCard'):null];stageNow=0;hsK='plan';
     /* H-05: the CTA names the first thing to do next */
     if(ST.onboarded){nextRows=planNext();if(nextRows.length){var r0=nextRows[0];cta=[r0.pre+fcText(r0.o.it.label),'plan','prep',ST.dep?'tlCard':'sec-'+r0.o.sec.id];}}}
-  else if(d===0&&!tu&&!dayHasTicks(1)){pct=planTotals().pct;phase='🛫 Departure day — safe travels, labbayk!';cta=['Open the rites guide','umrah','steps'];lbl='Ihram at the miqat → tawaf → sa’i → halq — every step and dua is in the guide';stageNow=1;}
+  else if(d===0&&!tu&&!dayHasTicks(1)){pct=planTotals().pct;phase='🛫 Departure day — safe travels, labbayk!';cta=['Open the rites guide','umrah','steps'];lbl='Ihram at the miqat → tawaf → sa’i → halq — every step and dua is in the guide';stageNow=1;hsK='dep';}
   else{var ed=expectedDay()||ST.day;dp=dayPct(ed)||0;pct=dp;phase='🕋 Day '+ed+' of '+ST.tripLen+' in the Haramain';cta=['Log today’s worship','daily','today'];lbl=dp+'% of today’s deeds · '+tu+' Umrah'+(tu===1?'':'s')+' completed';stageNow=tuT?2:1;
     var hLeft=(HJ&&HD[8])?daysUntil(HD[8]):null,qf=HJ&&ST.hajjTypeConfirmed&&hajjType()!=='tamattu';
     /* (review) the Hajj phase keys off THIS trip's Umrah (tripUmrahs), never the lifetime count; a Qarin / Mufrid is "in ihram" only once the type is confirmed */
@@ -1542,8 +1551,39 @@ function renderHome(){
   if(HJ&&tools===TOOLS.trip)tools=tools.slice(0,2).concat([['stone','Rami','goRami()'],['tent','Camp','campSheet()']],tools.slice(2));
   var toolsHTML='<div class="qa-grid">'+tools.map(function(x){return '<button class="qa" onclick="'+x[2]+'" aria-label="'+x[1]+'"><span>'+mk(x[0])+'</span>'+x[1]+'</button>';}).join('')+'</div>';
   var installHTML=deferPrompt?'<button class="chip-btn" onclick="installApp()" aria-label="Install the app on your phone">📲 Install</button>':(/iPhone|iPad/.test(navigator.userAgent)&&!window.navigator.standalone?'<small class="hb-ios">📲 Share → Add to Home Screen</small>':'');
-  var longCta=cta[0].length>22;
-  var statusHTML='<div class="hstatus" role="button" tabindex="0" aria-label="'+esc(cta[0])+'" onclick="'+ctaGo+'"><div class="hs-t"><small class="hs-g">As-salamu alaykum'+esc(name)+'</small><small class="hs-d">'+greg+' · '+hij+'</small><b>'+markify(phase)+'</b><span>'+lbl+'</span>'+(longCta?'<span class="hcta">'+esc(cta[0])+' →</span>':'')+(ST.post&&stageNow===4?'<span class="hcta" onclick="event.stopPropagation();goTab(\'more\',\'guide\',\'nextCard\')">'+mk('compass','mkt')+'Plan your next journey →</span>':'')+'</div><div class="hs-r"><div class="ring-wrap" style="width:64px;height:64px"><svg width="64" height="64" viewBox="0 0 92 92" style="width:64px;height:64px"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="hRing" cx="46" cy="46" r="38"/></svg><div class="ring-num" style="font-size:var(--t-3)"><span id="hPct">'+pct+'%</span></div></div><em>'+(longCta?'Go':esc(cta[0]))+' →</em></div></div>';
+  /* 6.2 status card (dark aubergine · Manrope): kicker → hero numeral beside the ring → hairline metrics → the rites bar → one note → a glass pill.
+     Every value is one this function already computes (depDays, planTotals, quiz levels, Hajj dates, today's Hajj steps, the rite ticks, trip day, deeds, habit-days). */
+  var hp=hsPhase(phase),sK='',sS=[],sR='ready',sNote='',sBar='';
+  function M(l,v,of){sS.push([l,String(v),of===undefined?'':'/'+of]);}
+  if(hsK==='hday'){sK='⛺ Hajj '+hy;sR='today';if(act)M(act==='tawaf'?'Tawaf':'Sa’i',ST[act],7);M('Steps today',hdone,hsteps.length);var ed9=expectedDay();if(ed9)M('Trip day',Math.min(ed9,ST.tripLen),ST.tripLen);}
+  else if(hsK==='after'){sK=ST.post?'🌱 Back home':'🧭 After your journey';
+    if(phase.indexOf('not yet recorded')>-1){sK='⛺ Your Hajj';sR='Part 2';var HT1=hajjTotals();if(HT1.tot)M('Part 2 steps',HT1.done,HT1.tot);sNote=lbl;}
+    else if(ST.post){sR='habits';POST_HABITS.forEach(function(h,i){var o=pd[i]||{},n=Object.keys(o).filter(function(k){return o[k];}).length,l=stripEmoji(h).replace(/^(Five|Daily) /,'');M(l.charAt(0).toUpperCase()+l.slice(1),n,30);});sNote='Alhamdulillah — keep the Haram version of you';}
+    else{sR='complete';sNote=lbl;}}
+  else if(hsK==='plan'){sK=HJ?'⛺ Hajj '+hy:d===null?'🧭 Planning your Umrah':'✈️ Your Umrah';sR='prepared';M('Prep',done,tot);M('Quiz levels',qzPassedCount(),qzVisible().length);if(HJ&&HD[9])M('Arafah',fmtDate(HD[9]));}
+  else if(hsK==='dep'){sK='🛫 Departure day';sR='prepared';var P2=planTotals();M('Prep',P2.done,P2.tot);sNote='Ihram at the miqat, then tawaf, sa’i and halq — every step and dua is in the guide';}
+  else{var stp=/^Step (\d) of 4 · (.*)$/.exec(lbl||'');sK=HJ?(hp.k?leadEmoji(phase)+' '+hp.k:'⛺ Hajj '+hy):'🕋 Umrah';sR=stp?'Umrah':'today';
+    if(!hp.num)M('Trip day',Math.min(ed,ST.tripLen),ST.tripLen);
+    if(act)M(act==='tawaf'?'Tawaf':'Sa’i',ST[act],7);
+    if(HJ&&hd==='pre'&&(tuT||qf)&&HD[8])M('Mina',fmtDate(HD[8]));
+    M('Today’s deeds',dp+'%');
+    if(sS.length<3&&!(HJ&&hd==='post'))M('Umrahs',tu);
+    if(stp){sNote=stp[2].replace(/ → /g,' to ');
+      /* the four rites from the same chain that wrote "Step n of 4": done ones full, the current one filled by its own count */
+      var cur=+stp[1]-1,RL=['Ihram','Tawaf','Sa’i','Halq'],sb='',sl='';
+      RL.forEach(function(r,i){var f=i<cur?1:i>cur?0:i===1?Math.min(7,umrahTawaf())/7:i===2?Math.min(7,umrahSai())/7:0;
+        sb+='<i class="hs-sb'+(i===cur?' on':'')+'"><b style="width:'+Math.round(f*100)+'%"></b></i>';sl+='<small class="hs-sl'+(i===cur?' on':'')+'">'+r+'</small>';});
+      sBar='<div class="hs-sg">'+sb+sl+'</div>';}
+    else if(lbl.indexOf('% of today’s deeds')<0)sNote=lbl;}
+  /* the planner's when-word becomes the pill's eyebrow (Overdue gets a rose dot as a non-colour cue); every other CTA says Today or Next step */
+  var sCe=/^(Overdue|This week|Next): (.+)$/.exec(cta[0]),sEb=sCe?sCe[1]:(/today/i.test(cta[0])||(hsK==='hday'&&!act))?'Today':'Next step',sLb=sCe?sCe[2]:cta[0];
+  var sMet=sS.length?'<div class="hs-m">'+sS.slice(0,3).map(function(m){return '<div class="hs-mi"><small class="hs-ml">'+esc(m[0])+'</small><span class="hs-mv">'+esc(m[1])+(m[2]?'<i>'+m[2]+'</i>':'')+'</span></div>';}).join('')+'</div>':'';
+  var statusHTML='<div class="hstatus hs-o" role="button" tabindex="0" aria-label="'+esc(cta[0])+'" onclick="'+ctaGo+'"><div class="hs-t"><small class="hs-g">As-salamu alaykum'+esc(name)+'</small><small class="hs-d">'+greg+' · '+hij+'</small><span class="hs-l">'+lbl+'</span>'
+    +'<div class="hs-hero"><div class="hs-main"><small class="hs-k">'+markify(sK)+'</small><b class="hs-b">'+hp.h+'</b></div>'
+    +'<div class="hs-r"><div class="ring-wrap"><svg viewBox="0 0 92 92" aria-hidden="true" focusable="false"><defs><linearGradient id="hsGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--hs-ring-a)"/><stop offset="1" style="stop-color:var(--hs-ring-b)"/></linearGradient></defs><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="hs-nub" cx="84" cy="46" r="3"/><circle class="ring-fg" id="hRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="hPct">'+pct+'%</span><small>'+esc(sR)+'</small></div></div></div></div>'
+    +sMet+sBar+(sNote?'<span class="hs-note">'+esc(sNote)+'</span>':'')
+    +'<span class="hcta"><span class="hs-cw"><small class="hs-ce'+(sEb==='Overdue'?' hs-due':'')+'">'+(sEb==='Overdue'?'<i class="hs-dot" aria-hidden="true"></i>':'')+sEb+'<span class="hs-x">: </span></small><span class="hs-ct">'+esc(sLb)+'</span></span><i class="hs-go">'+mk('arrow')+'</i></span>'
+    +(ST.post&&stageNow===4?'<span class="hcta hs-alt" onclick="event.stopPropagation();goTab(\'more\',\'guide\',\'nextCard\')">'+mk('compass','mkt')+'<span class="hs-ct">Plan your next journey</span></span>':'')+'</div></div>';
   var prayerHTML='<div class="card card-pad hprayer" role="button" tabindex="0" aria-label="Prayer times" onclick="goTab(\'daily\',\'today\')"><div class="hp-i">'+mk('dome')+'</div><div class="hp-t"><small>'+(inHaram?'Next prayer':'Next prayer in '+esc(ST.city||'Makkah'))+'</small><div id="hNext">Loading…</div></div><span class="hp-go">›</span></div>';
   var fcHTML=fc0?'<div class="card card-pad hfc" role="button" tabindex="0" aria-label="Study today’s knowledge card" onclick="startFC();goTab(\'plan\',\'learn\',\'fcCard\')"><small>'+mk('cards','mkt')+'Today’s knowledge card · '+due.length+(fcStarted()?' due':' ready')+'</small><b>'+markify(fc0.f)+'</b><span>Tap to study →</span></div>':'';
   var postHTML='';
