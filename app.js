@@ -1,6 +1,6 @@
 /* Miqah — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='6.3.1';
+var APP_VERSION='6.3.2';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* prefers-reduced-motion: JS motion (confetti, the % count-up, smooth scrolling) honours it like the CSS does */
 var RM=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
@@ -52,7 +52,8 @@ var MARKS={
   /* 'spark' is kept as a name only (the owner retired the sparkle): it draws a circled check, so no sparkle can render anywhere */
   spark:'<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.5"/>',
   starf:'<path d="M12 3.6l2.5 5.2 5.7.8-4.1 4 1 5.7L12 16.6l-5.1 2.7 1-5.7-4.1-4 5.7-.8z"/>',
-  flower:'<circle cx="12" cy="12" r="2.4"/><path d="M12 9.6c-1.8-1-2.2-3.6-.8-5.3a1 1 0 0 1 1.6 0c1.4 1.7 1 4.3-.8 5.3z"/><path d="M14.4 12c1-1.8 3.6-2.2 5.3-.8a1 1 0 0 1 0 1.6c-1.7 1.4-4.3 1-5.3-.8z"/><path d="M12 14.4c1.8 1 2.2 3.6.8 5.3a1 1 0 0 1-1.6 0c-1.4-1.7-1-4.3.8-5.3z"/><path d="M9.6 12c-1 1.8-3.6 2.2-5.3.8a1 1 0 0 1 0-1.6c1.7-1.4 4.3-1 5.3.8z"/>',
+  /* 'flower' is drawn as a tulip in profile: at 14px a four-petal bloom read as a sparkle */
+  flower:'<path d="M7 5.5V10a5 5 0 0 0 10 0V5.5L14.5 8 12 4.5 9.5 8z"/><path d="M12 15v6"/><path d="M12 19.5c-.4-2.4-2.4-3.9-5-3.9.3 2.4 2.3 3.9 5 3.9z"/>',
   clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
   medal:'<circle cx="12" cy="14.5" r="5.5"/><path d="M9.2 9.5L6.5 3h4l1.5 3.5L13.5 3h4l-2.7 6.5"/><path d="M9.8 14.7l1.5 1.5 3-3"/>',
   disk:'<path d="M4 5a1 1 0 0 1 1-1h11l4 4v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M8 4v5h7V4"/><path d="M7 20v-6h10v6"/>',
@@ -406,7 +407,7 @@ function renderLevels(){
     else{delete qzST.cur;qzSave();}}
   /* P-25: one primary answer to "what next?" */
   function qzPill(ey,ln,ic){return '<span class="hs-cw"><small class="hs-ce">'+ey+'</small><span class="hs-ct">'+ln+'</span></span><span class="hs-go">'+mk(ic)+'</span>';}
-  if(nx>-1)h+='<button class="btn gold qz-cta" onclick="startLevel('+nx+')">'+qzPill((qzST.best[nx]!==undefined?'Retake':'Continue')+' · '+QUIZ_LEVELS[nx].qs.length+' questions',qzLvName(nx)+' · '+qzLvName(nx,1),qzST.best[nx]!==undefined?'refresh':'arrow')+'</button>';
+  if(nx>-1)h+='<button class="btn gold qz-cta" onclick="startLevel('+nx+')">'+qzPill((qzST.best[nx]!==undefined?'Retake':'Continue')+' · '+qzLvName(nx)+'<span class="qzc-n"> · '+QUIZ_LEVELS[nx].qs.length+' questions</span>',qzLvName(nx,1),qzST.best[nx]!==undefined?'refresh':'arrow')+'</button>';
   else if(wc>0)h+='<button class="btn gold qz-cta" onclick="startMistakes()">'+qzPill('Practice','Review '+wc+' mistake'+(wc===1?'':'s'),'refresh')+'</button>';
   else h+='<button class="btn gold qz-cta" onclick="makeCert()">'+qzPill('All levels passed','Download my certificate','medal')+'</button>';
   h+='<div class="qz-sub"><span>'+qc+' of '+qt+' questions correct in your best runs</span>'+(nx>-1&&wc>0?'<button class="chip-btn gsoft" onclick="startMistakes()">🔁 Review '+wc+' mistake'+(wc===1?'':'s')+'</button>':'')+'</div>';
@@ -627,7 +628,7 @@ function renderRiteHero(){
   else if(tw>0){title='Tawaf · round '+(tw+1)+' of 7';sub='Kaaba on your left · tap the ring after each round';}
   else if(ih){title='Next: Tawaf';sub=ST.wudu?'Start at the Black Stone line':'Make wudu, then start at the Black Stone line';}
   else{title='Ready to begin';sub='Ghusl & ihram at the miqat · wudu before tawaf';}
-  t.textContent=title;
+  var tq=/^(.*\S) · ((?:round|lap) \d of 7)$/.exec(title);if(tq)t.innerHTML=esc(tq[1])+'<span class="rh-dot"> ·</span> <span class="rh-2">'+tq[2]+'</span>';else t.textContent=title;
   /* the four Umrah rites as the Home card's segmented bar (the ihram time and durations live in the log under the counters) */
   var cur=!ih?0:tw<7?1:sa<7?2:!hq?3:4,segs=(tmHajj()||hajjPart2Active())?'':riteSegs(cur,[ih?1:0,Math.min(7,tw)/7,Math.min(7,sa)/7,hq?1:0]);
   var n=totalUmrahs();
@@ -976,7 +977,7 @@ function ramiDone(d){var r=(ST.rami||{})[d]||{};return !!r.del||ramiJams(d).ever
 function ramiVisible(){if(journey()!=='hajj')return false;var hd=hajjDay();return ramiForce||(typeof hd==='number'&&hd>=10)||hd==='post'||Object.keys(ST.rami||{}).length>0;}
 function ramiSetDay(d){ramiDay=d;ramiJ=0;renderRami();vib(6);}
 function renderRami(){var c=document.getElementById('ramiCard');if(!c)return;var HJ=journey()==='hajj';c.hidden=!HJ;if(!HJ)return;
-  if(!ramiVisible()){c.classList.add('compact');c.innerHTML='<div class="cnt-sum" style="display:flex"><b>'+mk('stone','mkt')+'Rami — opens on 10 Dhul Hijjah</b><button class="chip-btn" onclick="ramiForce=true;renderRami()">Open now</button></div>';return;}
+  if(!ramiVisible()){c.classList.add('compact');c.innerHTML='<div class="cnt-sum" style="display:flex"><b>'+mk('stone','mkt')+'Rami — opens on 10&nbsp;Dhul&nbsp;Hijjah</b><button class="chip-btn" onclick="ramiForce=true;renderRami()">Open now</button></div>';return;}
   c.classList.remove('compact');if(!ramiDay)ramiDay=ramiDefaultDay();var d=ramiDay,r=(ST.rami||{})[d]||{},js=ramiJams(d),i=duaIdx('pebble'),dua=i>-1?DUAS[i]:null;
   var h='<h3>'+mk('stone','mkt')+'Rami — '+d+' Dhul Hijjah'+(DH_NAME[d]?' · '+DH_NAME[d]:'')+'</h3><div class="segmini rami-days" role="group" aria-label="Day of stoning">'+[10,11,12,13].map(function(x){return '<button'+(x===d?' class="on"':'')+' onclick="ramiSetDay('+x+')">'+x+(ramiDone(x)?' ✓':'')+'</button>';}).join('')+'</div>';
   h+='<div class="cnt-sub">'+(d===10?'Jamrat al-Aqabah only — the big one nearest Makkah. From sunrise; the weak who left Muzdalifah early: Shafi’is / Hanbalis from after midnight, Hanafis / Malikis from Fajr — if unsure, wait for Fajr. Stop the talbiyah at the first pebble.':'After midday: small → middle → Aqabah, in this order. One pebble at a time, "Allahu akbar" with each, into the basin. Dua after the first two, not after Aqabah.')+'<br><b>Tap the number after each pebble.</b></div>';
@@ -1013,7 +1014,7 @@ function ramiResetGo(d){closeSheet();var stId='h'+d+'rami';delete ST.rami[d];if(
 function openRami(d){ramiForce=true;if(d>=10&&d<=13)ramiDay=d;else if(!ramiDay)ramiDay=ramiDefaultDay();ramiJ=0;renderRami();goTab('umrah','count','ramiCard');}
 function renderFocusRami(){var d=ramiDay||ramiDefaultDay(),r=ramiD(d),js=ramiJams(d);if(ramiJ>=js.length)ramiJ=js.length-1;
   while(ramiJ<js.length-1&&(r[js[ramiJ]]||0)>=7)ramiJ++;var j=js[ramiJ],n=Math.min(7,r[j]||0),done=ramiDone(d);
-  document.getElementById('focusTitle').innerHTML=mk('stone','mkt')+esc(JAM[j][0])+' · '+d+' DH';document.getElementById('focusOf').textContent='of 7 pebbles · '+(ramiJ+1)+' of '+js.length;
+  document.getElementById('focusTitle').innerHTML=mk('stone','mkt')+esc(JAM[j][0])+'<span class="ft-d"> · '+d+'&nbsp;DH</span>';document.getElementById('focusOf').innerHTML='of 7 pebbles · '+(ramiJ+1)+' of '+js.length+'<span class="fo-d"> · '+d+'&nbsp;DH</span>';
   var fn=document.getElementById('focusN'),fl=document.getElementById('focusLive'),t=document.getElementById('focusTip'),p=document.getElementById('focusDone'),h=document.getElementById('focusHint');
   if(fn)fn.textContent=n;if(fl)fl.textContent=JAM[j][0]+' '+n+' of 7';
   if(t){t.hidden=done;t.innerHTML='<b class="tip-a">'+(n<7?'Pebble '+(n+1)+' of 7 · "Allahu akbar"':'7 of 7 — done')+'</b><span class="tip-r">'+(d===10?'One at a time, into the basin. Stop the talbiyah at the first pebble. No dua after Aqabah.':ramiJ<2?'One at a time, into the basin. Then step aside, face the qiblah and make dua.':'One at a time, into the basin. No dua after Aqabah — back to the tent.')+'</span>';}
@@ -1362,7 +1363,7 @@ function shareRoute(city){var lr=lastRoute[city];if(!lr)return;var from=originFo
 /* L-05: the same offline driver card serves the hotel and every place (Arabic name in big type) */
 function showDriverCard(o){var tp=document.getElementById('drvTop');if(tp)tp.textContent=o.top||'🚕 Please take me here';
   var lead=document.getElementById('drvLead');if(lead)lead.textContent=o.lead||'من فضلك خذني إلى';
-  var an=document.getElementById('drvArName');if(an){an.textContent=o.ar||'';an.hidden=!o.ar;}
+  var an=document.getElementById('drvArName');if(an){if(o.arH)an.innerHTML=o.arH;else an.textContent=o.ar||'';an.hidden=!(o.ar||o.arH);}
   document.getElementById('drvName').textContent=o.en||'—';document.getElementById('drvAddr').textContent=o.sub||'';document.getElementById('drvPhone').innerHTML=o.tel?mk('phone','mkt')+esc(o.tel):'';
   var online=navigator.onLine!==false;
   document.getElementById('drvActs').innerHTML=(o.tel?'<a href="tel:'+telOf(o.tel)+'" class="btn" onclick="event.stopPropagation()">'+(o.telL||mk('phone','mkt')+'Call hotel')+'</a>':'')+(o.maps?'<a class="btn ghost'+(online?'':' off')+'" href="'+o.maps+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">'+(online?'🗺️ Open in Maps':'🗺️ Map needs signal')+'</a>':'');
@@ -1985,7 +1986,7 @@ function showLost(){var hi=ST.hotelInfo||{},ph=leadPhone(),nm=leadName();
   if(hi.m)h+='<div class="lost-kv"><span>'+mkOr('🤝','pin')+' Family meeting point</span><b style="text-align:right">'+esc(hi.m)+'</b></div>';
   /* J-05: in Hajj mode the Mina camp, maktab and group leader sit on the same card — the numbers a steward or policeman needs */
   var cp=ST.camp||{};if(journey()==='hajj'&&(cp.n||cp.m||cp.l||cp.p)){
-    if(cp.n||cp.m)h+='<div class="lost-ar" style="font-size:var(--t-5);margin-top:10px">مخيمي في منى'+(cp.n?' · مخيم '+esc(cp.n):'')+(cp.m?' · مكتب '+esc(cp.m):'')+'</div>';
+    if(cp.n||cp.m)h+='<div class="lost-ar" style="font-size:var(--t-5);margin-top:10px">مخيمي في منى'+(cp.n?' · مخيم <bdi>'+esc(campN(cp))+'</bdi>':'')+(cp.m?' · مكتب <bdi>'+esc(campM(cp))+'</bdi>':'')+'</div>';
     if(cp.n)h+='<div class="lost-kv"><span>'+mkOr('⛺')+' Mina camp / tent</span><b>'+esc(cp.n)+'</b></div>';if(cp.m)h+='<div class="lost-kv"><span>'+mkOr('🏢','hotel')+' Maktab</span><b>'+esc(cp.m)+'</b></div>';
     if(cp.l||cp.p)h+=cp.p?telRow(mkOr('👥')+' '+esc(cp.l||'Group leader'),telOf(cp.p),esc(cp.p)):'<div class="lost-kv"><span>'+mkOr('👥')+' '+esc(cp.l)+'</span><b></b></div>';}
   h+=telRow(mkOr('🚓','alert')+' Police · ambulance','911','911')+telRow(mkOr('🕋')+' Hajj &amp; Umrah care line','1966','1966');
@@ -1997,13 +1998,18 @@ function closeLost(){document.getElementById('lost').classList.remove('on');}
 function sosSheet(){var hi=ST.hotelInfo||{};
   openSheet('<div class="sheet-h danger">'+mk('car')+'</div><h3>Hotel &amp; SOS</h3><p>'+(hi.n?esc(hi.n)+(hi.m?' · meet at '+esc(hi.m):''):'No hotel saved yet — add it in Plan › Prepare so the driver card works offline.')+'</p><button class="btn" onclick="closeSheet();showDriver()">'+markify('🚕 Show to driver')+'</button>'+(journey()==='hajj'?'<button class="btn" onclick="closeSheet();showCampDriver()">'+markify('⛺ Take me to my camp in Mina')+'</button>':'')+'<button class="btn danger" onclick="closeSheet();showLost()">'+markify('🆘 I’m lost — show this')+'</button><div style="display:flex;gap:8px;margin-top:10px"><a class="btn ghost" style="margin:0;text-align:center;text-decoration:none" href="tel:911">☎ 911</a><a class="btn ghost" style="margin:0;text-align:center;text-decoration:none" href="tel:1966">☎ 1966 care</a></div><button class="btn ghost" onclick="closeSheet();goTab(\'plan\',\'prep\',\'hotelCard\')">'+markify('✍️ Edit hotel &amp; contacts')+'</button>');}
 /* ── J-05: Mina camp / maktab / group leader (Settings card) — feeds the driver card, the lost card, Help and the Camp quick tool ── */
+/* a camp or maktab value that already starts with its own label ("Camp 43", "maktab 12") is shown once, never "camp Camp 43" */
+function campStrip(v,re){v=String(v||'').trim();var x=v.replace(re,'').trim();return x||v;}
+function campN(c){return campStrip(c.n,/^(?:camp|tent)(?:\s*\/\s*tent)?\b[\s:#.\-]*/i);}
+function campM(c){return campStrip(c.m,/^maktab\b[\s:#.\-]*/i);}
 function saveCamp(){ST.camp={n:hv('cN'),m:hv('cM'),l:hv('cL'),p:hv('cP')};saveST();}
 function loadCamp(){var c=ST.camp||{},e=document.getElementById('cN');if(!e)return;e.value=c.n||'';document.getElementById('cM').value=c.m||'';document.getElementById('cL').value=c.l||'';document.getElementById('cP').value=c.p||'';}
 function showCampDriver(){var c=ST.camp||{};
   if(!c.n&&!c.m){toast('Add your camp or maktab number first','','Add it',function(){goTab('more','settings','campCard');setTimeout(function(){var e=document.getElementById('cN');if(e)e.focus();},700);});return;}
-  showDriverCard({top:'🚕 Please take me to my camp in Mina',lead:'من فضلك خذني إلى مخيمي في منى',ar:(c.n?'مخيم '+c.n:'')+(c.n&&c.m?' · ':'')+(c.m?'مكتب '+c.m:''),en:'Mina'+(c.n?' · camp / tent '+c.n:'')+(c.m?' · maktab '+c.m:''),sub:c.l?'Group leader: '+c.l:'',tel:c.p||'',telL:'☎ Call group leader',maps:'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent('Mina Makkah'+(c.m?' maktab '+c.m:''))});}
+  var cn=campN(c),cm=campM(c);
+  showDriverCard({top:'🚕 Please take me to my camp in Mina',lead:'من فضلك خذني إلى مخيمي في منى',arH:(c.n?'مخيم <bdi>'+esc(cn)+'</bdi>':'')+(c.n&&c.m?' · ':'')+(c.m?'مكتب <bdi>'+esc(cm)+'</bdi>':''),en:'Mina'+(c.n?' · camp / tent '+cn:'')+(c.m?' · maktab '+cm:''),sub:c.l?'Group leader: '+c.l:'',tel:c.p||'',telL:'☎ Call leader',maps:'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent('Mina Makkah'+(c.m?' maktab '+c.m:''))});}
 function campSheet(){var c=ST.camp||{},has=!!(c.n||c.m||c.l||c.p);
-  openSheet('<div class="sheet-h">'+mk('tent')+'</div><h3>Mina camp</h3><p>'+(has?[c.n?'Camp / tent '+esc(c.n):'',c.m?'Maktab '+esc(c.m):'',c.l?esc(c.l):''].filter(Boolean).join(' · '):'Save your camp and maktab number and the group leader’s phone — the way back when every tent looks the same.')+'</p>'
+  openSheet('<div class="sheet-h">'+mk('tent')+'</div><h3>Mina camp</h3><p>'+(has?[c.n?'Camp / tent '+esc(campN(c)):'',c.m?'Maktab '+esc(campM(c)):'',c.l?esc(c.l):''].filter(Boolean).join(' · '):'Save your camp and maktab number and the group leader’s phone — the way back when every tent looks the same.')+'</p>'
     +(c.p?'<a class="btn" href="tel:'+telOf(c.p)+'" style="text-align:center;text-decoration:none">'+mk('phone','mkt')+'Call '+esc(c.l||'group leader')+'</a>':'')+'<button class="btn" onclick="closeSheet();showCampDriver()">'+markify('🚕 Take me to my camp')+'</button><button class="btn danger" onclick="closeSheet();showLost()">'+markify('🆘 I’m lost — show this')+'</button><button class="btn ghost" onclick="closeSheet();goTab(\'more\',\'settings\',\'campCard\')">'+markify('✍️ '+(has?'Edit':'Add')+' camp details')+'</button>');}
 /* Rami counter arrives with Part 2; until then the quick tool lands on the rites */
 function goRami(){if(typeof openRami==='function')openRami();else goTab('umrah','steps','hajjContainer');}

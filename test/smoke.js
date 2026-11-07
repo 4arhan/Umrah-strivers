@@ -612,6 +612,21 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
     const spark = document.querySelectorAll('svg.mk-spark').length; ST.theme = keep; applyTheme(); goTab('home');
     return { emo: [...new Set(emo)].slice(0, 8), fade, swBg, spark }; });
   check('6.3.1: no colour emoji in any tab’s copy, no sparkle mark, a ticked step keeps full opacity, a switch that is on is the aubergine pill by day', CLEAN.emo.length === 0 && CLEAN.fade.length === 0 && CLEAN.spark === 0 && CLEAN.swBg === 'rgb(30, 16, 51)', CLEAN);
+  console.log('Polish (6.3.2)');
+  // the Update chip stands in for the journey chip on a phone, so the brand keeps its mark and its whole wordmark
+  const TOP = await page.evaluate(async () => { goTab('home'); showUpdate({}); await new Promise(r => setTimeout(r, 60));
+    const h1 = document.querySelector('.brand h1'), mk = document.querySelector('.brand-mark').getBoundingClientRect(), up = document.getElementById('updChip').getBoundingClientRect();
+    const o = { j: getComputedStyle(document.getElementById('jChip')).display, h1: getComputedStyle(h1).display === 'none' || h1.scrollWidth <= h1.clientWidth + 1, clear: mk.right <= up.left, sw: document.documentElement.scrollWidth };
+    document.getElementById('updChip').hidden = true; return o; });
+  check('6.3.2: with an update waiting the journey chip steps aside, the brand mark is never covered and the wordmark is never cut', TOP.j === 'none' && TOP.h1 && TOP.clear && TOP.sw <= 390, TOP);
+  // Learn rows draw their whole focus ring; the About numbers are one hairline card (label over value); a camp value is shown once and bidi-isolated
+  const POL = await page.evaluate(async () => { goTab('plan', 'learn'); await new Promise(r => setTimeout(r, 60));
+    const acc = document.querySelector('#view-plan .acc'), accOv = acc ? getComputedStyle(acc).overflow : '';
+    const nums = document.querySelector('.nums'), cell = nums && nums.querySelector('div'), ncs = cell ? getComputedStyle(cell) : null;
+    const keep = ST.camp; ST.camp = { n: 'Camp 43', m: 'maktab 12' }; showCampDriver(); const ar = document.getElementById('drvArName'), en = document.getElementById('drvName').textContent;
+    const o = { accOv, numsOne: !!nums && ncs.boxShadow === 'none' && ncs.borderTopWidth === '0px' && getComputedStyle(nums.querySelector('small')).order === '-1', bdi: ar.querySelectorAll('bdi').length, en };
+    closeDriver(); ST.camp = keep; goTab('home'); return o; });
+  check('6.3.2: accordion rows never clip their focus ring, the numbers card is one hairline card, a camp value is shown once and bidi-isolated', POL.accOv === 'visible' && POL.numsOne && POL.bdi === 2 && POL.en === 'Mina · camp / tent 43 · maktab 12', POL);
   check('no JS errors', errors.length === 0, errors);
   await browser.close();
   console.log(failed ? `\n${failed} check(s) FAILED` : '\nAll checks passed');
