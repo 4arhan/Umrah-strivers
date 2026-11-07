@@ -21,7 +21,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   await page.evaluate(() => localStorage.setItem('us-settings', JSON.stringify({ onboarded: true, name: 'Test', dep: new Date(Date.now() + 5 * 86400000).toISOString().slice(0, 10), tripLen: 10, day: 1 })));
   await page.reload(); await page.waitForTimeout(900);
 
-  // Kiswah legibility floor: captions never below .7em of the body size — checked on every main screen below
+  // legibility floor: captions never below .7em of the body size — checked on every main screen below
   const FLOOR = `(function(){var body=parseFloat(getComputedStyle(document.body).fontSize),floor=body*.7-.05,bad=[];var root=document.querySelector('.focus.on,.sheet-o.on')||document.querySelector('.view.on')||document.body;
     root.querySelectorAll('*').forEach(function(e){var has=false;for(var i=0;i<e.childNodes.length;i++)if(e.childNodes[i].nodeType===3&&e.childNodes[i].textContent.trim())has=true;if(!has)return;var cs=getComputedStyle(e);if(cs.display==='none'||cs.visibility==='hidden')return;var r=e.getBoundingClientRect();if(!r.width||!r.height)return;var fs=parseFloat(cs.fontSize);if(fs<floor)bad.push(e.tagName.toLowerCase()+'.'+String(e.className).split(' ')[0]+' '+fs.toFixed(1)+'px "'+e.textContent.trim().slice(0,24)+'"');});
     return bad.filter(function(x,i,a){return a.indexOf(x)===i;}).slice(0,8);})()`;
@@ -32,21 +32,21 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   check('brand is Miqah: title, header wordmark and tagline, no old name anywhere in the shell', (await page.title()) === 'Miqah' && (await page.textContent('.brand h1')).startsWith('Miqah') && (await page.textContent('.brand h1 small')) === 'Hajj & Umrah companion' && (await page.evaluate(() => !document.body.innerHTML.includes('Umrah Strivers'))));
   // type system: every face the CSS asks for resolves, and no rule or visible element reaches for a family outside it
   const TYPE = await page.evaluate(async () => {
-    const faces = ['400 16px Inter', '600 16px Inter', '700 16px Inter', 'italic 400 16px Inter', '600 16px Fraunces', '300 16px Manrope', '500 16px Manrope', '600 16px Manrope', '400 16px "Scheherazade New"', '700 16px "Scheherazade New"'];
+    const faces = ['300 16px Manrope', '400 16px Manrope', '500 16px Manrope', '600 16px Manrope', '700 16px Manrope', '400 16px "Scheherazade New"', '700 16px "Scheherazade New"'];
     const sample = f => f.includes('Scheherazade') ? 'بسم' : 'Ag1';
     await Promise.all(faces.map(f => document.fonts.load(f, sample(f)).catch(() => {}))); await document.fonts.ready;
     const unresolved = faces.filter(f => !document.fonts.check(f, sample(f)));
-    const SYS = /^(Inter|Fraunces|Manrope|Scheherazade New|Amiri|Noto Naskh Arabic|Traditional Arabic|-apple-system|BlinkMacSystemFont|Segoe UI|Georgia|Times New Roman|sans-serif|serif|inherit|unset)$/;
+    const SYS = /^(Manrope|Scheherazade New|Amiri|Noto Naskh Arabic|Traditional Arabic|-apple-system|BlinkMacSystemFont|Segoe UI|sans-serif|serif|inherit|unset)$/;
     const norm = f => f.trim().replace(/^["']|["']$/g, '');
     const root = getComputedStyle(document.documentElement); const resolve = v => v.replace(/var\((--[\w-]+)\)/g, (m, n) => root.getPropertyValue(n));
     const badRules = [];
     for (const sh of document.styleSheets) { let rules; try { rules = sh.cssRules; } catch (e) { continue; } const walk = rs => { for (const r of rs) { if (r.cssRules) walk(r.cssRules); if (r.style && r.style.fontFamily && !(r instanceof CSSFontFaceRule)) resolve(r.style.fontFamily).split(',').map(norm).filter(Boolean).forEach(f => { if (!SYS.test(f)) badRules.push(r.selectorText + ' → ' + f); }); } }; walk(rules); }
     const badEls = [];
-    for (const tab of ['home', 'plan', 'umrah', 'daily', 'places', 'more']) { goTab(tab); document.querySelectorAll('body *').forEach(e => { let t = false; for (const n of e.childNodes) if (n.nodeType === 3 && n.nodeValue.trim()) t = true; if (!t || !e.getClientRects().length) return; const f = norm(getComputedStyle(e).fontFamily.split(',')[0]); if (!/^(Inter|Fraunces|Scheherazade New)$/.test(f) && !(f === 'Manrope' && e.closest('.hstatus'))) badEls.push(tab + ':' + e.tagName + '.' + e.className + ' → ' + f); }); }
+    for (const tab of ['home', 'plan', 'umrah', 'daily', 'places', 'more']) { goTab(tab); document.querySelectorAll('body *').forEach(e => { let t = false; for (const n of e.childNodes) if (n.nodeType === 3 && n.nodeValue.trim()) t = true; if (!t || !e.getClientRects().length) return; const f = norm(getComputedStyle(e).fontFamily.split(',')[0]); if (!/^(Manrope|Scheherazade New)$/.test(f)) badEls.push(tab + ':' + e.tagName + '.' + e.className + ' → ' + f); }); }
     goTab('home');
     return { unresolved, badRules: badRules.slice(0, 8), badEls: badEls.slice(0, 8) };
   });
-  check('type system: Inter 400/600/700 + italic, Fraunces 600, Manrope 300/500/600 (Home status card only) and Scheherazade New 400/700 resolve; no rule or visible element uses another family', TYPE.unresolved.length === 0 && TYPE.badRules.length === 0 && TYPE.badEls.length === 0, TYPE);
+  check('type system (6.3): Manrope 300/400/500/600/700 is the only Latin face and Scheherazade New 400/700 the Arabic; both resolve, and no rule or visible element uses another family', TYPE.unresolved.length === 0 && TYPE.badRules.length === 0 && TYPE.badEls.length === 0, TYPE);
   check('journey chip counts down + no update chip', (await page.textContent('#jChip')).includes('day') && (await page.locator('#updChip').isHidden()));
   check('onboarded: brand strip, greeting split from the date, one expanded stage + 4 compact rows, About folded', (await page.locator('.hhero').count()) === 0 && (await page.textContent('.hbrand')).includes('offline') && !(await page.textContent('.hbrand')).includes('Miqah') && (await page.locator('.hbrand .kmark').count()) === 1 && (await page.textContent('.hs-t .hs-g')).includes('Test') && (await page.locator('.hs-t .hs-d').count()) === 1 && (await page.locator('.stage.now').count()) === 1 && (await page.locator('.stage.cmp').count()) === 4 && (await page.locator('.stage.cmp p').count()) === 0 && (await page.locator('#sec-about.shut').count()) === 1 && (await page.evaluate(() => document.querySelector('.stage.now .stage-b p').textContent.includes(QUIZ_LEVELS.filter(forMe).length + '-level quiz'))));
   check('planner: Do next lists the overdue basics + the quiz level and names the CTA', (await page.locator('.hnext .tli').count()) === 4 && (await page.textContent('.hnext .tli >> nth=0')).includes('Passport') && (await page.textContent('.hnext .tli-when >> nth=0')) === 'overdue' && (await page.textContent('.hnext .tli >> nth=3')).includes('Quiz level 1') && (await page.textContent('.hs-t .hcta')).startsWith('Overdue: Passport') && (await page.textContent('.hcta .hs-ce.hs-due')).startsWith('Overdue') && (await page.locator('.hcta .hs-ce .hs-dot').count()) === 1 && (await page.textContent('.hcta .hs-ct')).startsWith('Passport') && (await page.locator('.hcta .hs-go svg.mk').count()) === 1 && (await page.textContent('.hstatus .hs-k')).includes('Your Umrah') && /^\d+$/.test(await page.textContent('.hstatus .hs-n')) && (await page.textContent('.hstatus .hs-u')).includes('until departure') && (await page.locator('.hstatus .hs-m .hs-mi').count()) === 2 && (await page.evaluate(() => document.querySelector('.hnext').compareDocumentPosition(document.querySelector('.hfc')) & Node.DOCUMENT_POSITION_FOLLOWING)) > 0);
@@ -56,7 +56,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   check('ticking from Home re-renders the card and offers Undo', !homeFirst.includes('Passport') && (await page.textContent('.hnext .tli >> nth=0')).includes('Passport') && (await page.evaluate(() => !planChk.passport)));
   check('next prayer before the trip: Makkah clock, no countdown, source hint', (await page.textContent('.hprayer small')) === 'Next prayer in Makkah' && /at \d\d:\d\d/.test(await page.textContent('#hNext')) && (await page.textContent('#hNext')).includes('time now') && !(await page.textContent('#hNext')).includes(' in '));
   check('9 stage-aware quick tools (planner set), no wide row', (await page.locator('.qa').count()) === 9 && (await page.locator('.qa.wide').count()) === 0 && (await page.locator('.qa:has-text("Documents")').count()) === 1 && (await page.locator('.qa:has-text("Flashcards")').count()) === 1 && (await page.locator('.qa:has-text("Hotel")').count()) === 1);
-  // Kiswah marks: heroes, segment labels, stage cards, counter titles and the journey chip carry inline SVG marks, never emoji
+  // marks: heroes, segment labels, stage cards, counter titles and the journey chip carry inline SVG marks, never emoji
   const EMO = /[\u{1F000}-\u{1FAFF}\u2600-\u26FF\u2705\u2708\u2728\u2B06]/u;
   const noEmoji = async sel => { const t = await page.evaluate(s => Array.from(document.querySelectorAll(s)).map(e => e.textContent).join('|'), sel); return !EMO.test(t); };
   check('no emoji in the status hero, segment labels, stage cards or the journey chip; marks are inline SVGs', (await noEmoji('.hstatus b')) && (await noEmoji('.hstatus')) && (await noEmoji('.seg button')) && (await noEmoji('.stage-h b')) && (await noEmoji('#jChip')) && (await noEmoji('.vh h2')) && (await noEmoji('.qa')) && (await page.locator('.hstatus .hs-k svg.mk').count()) === 1 && (await page.locator('.hstatus b svg.mk').count()) === 0 && (await page.locator('.seg button svg.mk').count()) === 11 && (await page.locator('.stage-i svg.mk').count()) === 5 && (await page.locator('#jChip svg.mk').count()) === 1 && (await page.locator('.qa svg.mk').count()) === 9 && (await page.evaluate(() => stripEmoji('⛺ Hajj 1448') === 'Hajj 1448' && markify('🕋 Tawaf 3/7').indexOf('<svg class="mk mk-kaaba mkt"') === 0 && mk('tent').indexOf('aria-hidden="true"') > 0 && mk('nope') === '')), await page.evaluate(() => document.querySelector('.hstatus').textContent));
@@ -365,8 +365,8 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   await page.click('#textSeg button:has-text("Large")');
   check('large text mode applies', (await page.getAttribute('html', 'data-text')) === 'lg' && (await page.evaluate(() => getComputedStyle(document.body).fontSize)) === '17.5px');
   await page.click('#textSeg button:has-text("Normal")');
-  await page.click('button:has-text("▦ QR")');
-  check('QR overlay with static SVG', (await page.locator('#qrShow.on .qr-box svg path').count()) === 1 && (await page.textContent('#qrShow')).includes('umrah-strivers.vercel.app'));
+  await page.click('.set-acts button[onclick="showQR()"]');
+  check('QR overlay with static SVG (from the round QR button in Settings › Share the app)', (await page.locator('#qrShow.on .qr-box svg path').count()) === 1 && (await page.textContent('#qrShow')).includes('umrah-strivers.vercel.app'));
   await page.evaluate(() => document.getElementById('qrShow').classList.remove('on'));
   const bk = await page.evaluate(() => { const ls = {}; for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k.indexOf('us-') === 0 && k !== 'us-ptcache' && k !== 'us-remlast') ls[k] = 1; } return Object.keys(ls).length; });
   check('backup covers every us- key', bk >= 8);
@@ -537,6 +537,52 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
     const pick = r => Array.from(r.style).filter(n => n.startsWith('--hs-')).sort().map(n => n + ':' + r.style.getPropertyValue(n).trim()).join(';');
     const dark = get(r => r.selectorText === '[data-theme="dark"]'), mirror = get(r => r.selectorText === ':root:not([data-theme="light"])' && r.parentRule && /prefers-color-scheme/.test(r.parentRule.conditionText || ''));
     return !!dark && !!mirror && pick(dark).length > 200 && pick(dark) === pick(mirror); }));
+  console.log('Aubergine everywhere (6.3)');
+  // the whole app speaks one language: no retired face, no retired colour, the three token blocks in sync, the status bar follows the theme
+  check('no Fraunces or Inter anywhere: not requested from Google Fonts, not loaded, not named by any rule, element or canvas face', await page.evaluate(async () => { await document.fonts.ready;
+    const OLD = f => /^(Fraunces|Inter)$/i.test(f.trim().replace(/^["']|["']$/g, ''));
+    const links = [...document.querySelectorAll('link[href*="fonts.googleapis"]')].some(l => /family=(Fraunces|Inter)\b/i.test(l.href));
+    const loaded = [...document.fonts].some(f => OLD(f.family));
+    let rules = false; for (const sh of document.styleSheets) { let rs; try { rs = sh.cssRules; } catch (e) { continue; } const walk = list => { for (const r of list) { if (r.cssRules) walk(r.cssRules); if (r.style && r.style.fontFamily && r.style.fontFamily.split(',').some(OLD)) rules = true; } }; walk(rs); }
+    const els = [...document.querySelectorAll('*')].some(e => getComputedStyle(e).fontFamily.split(',').some(OLD));
+    const canvas = [window.KF, window.KB].some(f => String(f).split(',').some(OLD));
+    return !links && !loaded && !rules && !els && !canvas; }));
+  const PALETTE = await page.evaluate(async () => {
+    const OLD = ['156F4B', '2FBE83', '3ED494', '0E3B2E', 'B8892F', 'D9B45E', 'C9A24E', '0C0F0E', '090B0A'];
+    const RGB = OLD.map(h => [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)].join(','));
+    const hit = v => { if (!v || v === 'none') return false; const u = v.toUpperCase(); if (OLD.some(h => u.includes('#' + h) || u.includes('%23' + h))) return true; return (v.match(/rgba?\(\s*\d+\s*,\s*\d+\s*,\s*\d+/g) || []).some(m => RGB.includes(m.replace(/rgba?\(|\s/g, ''))); };
+    const PROPS = ['color', 'backgroundColor', 'backgroundImage', 'borderTopColor', 'borderRightColor', 'borderBottomColor', 'borderLeftColor', 'outlineColor', 'boxShadow', 'textShadow', 'textDecorationColor', 'caretColor', 'fill', 'stroke'];
+    const SCENES = [['home'], ['plan', 'learn'], ['umrah', 'steps'], ['daily', 'today'], ['more', 'settings']]; const bad = []; const keep = ST.theme;
+    for (const th of ['light', 'dark']) { ST.theme = th; applyTheme();
+      for (const [t, s] of SCENES) { goTab(t, s); await new Promise(r => setTimeout(r, 60));
+        for (const e of document.querySelectorAll('body *')) { if (!e.getClientRects().length || e.closest('.focus.driver,.lost-body,.qr-box,#printSheet')) continue;
+          for (const ps of [null, '::before', '::after']) { const cs = getComputedStyle(e, ps); if (ps && (cs.content === 'none' || cs.content === 'normal')) continue;
+            for (const p of PROPS) if (hit(cs[p])) bad.push(th + ' ' + t + ': ' + e.tagName.toLowerCase() + '.' + String(e.className && e.className.baseVal !== undefined ? e.className.baseVal : e.className).split(' ')[0] + (ps || '') + ' ' + p); } } } }
+    ST.theme = keep; applyTheme(); goTab('home');
+    return [...new Set(bad)].slice(0, 10); });
+  check('no retired palette (emerald, gold, kiswah black) in computed styles on Home, Learn, Steps, Today and Settings, in both themes', PALETTE.length === 0, PALETTE);
+  check('token blocks in sync: the [data-theme=dark] block and its prefers-color-scheme mirror carry identical values for EVERY token, and every dark token is defined by day', await page.evaluate(() => {
+    const find = test => { for (const sh of document.styleSheets) { let rs; try { rs = sh.cssRules; } catch (e) { continue; } const walk = list => { for (const r of list) { if (r.cssRules && !r.style) { const x = walk(r.cssRules); if (x) return x; } else if (r.style && test(r)) return r; } return null; }; const f = walk(rs); if (f) return f; } return null; };
+    const toks = r => Array.from(r.style).filter(n => n.startsWith('--')).sort();
+    const pick = r => toks(r).map(n => n + ':' + r.style.getPropertyValue(n).trim()).join(';');
+    const light = find(r => r.selectorText === ':root' && r.style.getPropertyValue('--bg'));
+    const dark = find(r => r.selectorText === '[data-theme="dark"]'), mirror = find(r => r.selectorText === ':root:not([data-theme="light"])' && r.parentRule && /prefers-color-scheme/.test(r.parentRule.conditionText || ''));
+    if (!light || !dark || !mirror) return false; const day = new Set(toks(light));
+    return toks(dark).length > 60 && pick(dark) === pick(mirror) && toks(dark).every(n => day.has(n)); }));
+  check('theme-color: a meta for each colour scheme, and applyTheme() keeps both on the page colour of the chosen theme (paper by day, aubergine-black by night)', await page.evaluate(() => {
+    const ms = [...document.querySelectorAll('meta[name="theme-color"]')]; const media = ms.map(m => (m.getAttribute('media') || '').replace(/\s/g, ''));
+    const hex = v => { const m = v.match(/\d+/g); return m ? '#' + m.slice(0, 3).map(x => (+x).toString(16).padStart(2, '0')).join('').toUpperCase() : v.trim().toUpperCase(); };
+    const bg = () => { const d = document.createElement('div'); d.style.color = 'var(--bg)'; document.body.appendChild(d); const c = hex(getComputedStyle(d).color); d.remove(); return c; };
+    const keep = ST.theme, out = {};
+    for (const th of ['dark', 'light']) { ST.theme = th; applyTheme(); out[th] = ms.every(m => m.getAttribute('content').toUpperCase() === bg()) && bg() === (th === 'dark' ? '#0B0812' : '#F4F2F8'); }
+    ST.theme = keep; applyTheme();
+    return ms.length === 2 && media.includes('(prefers-color-scheme:light)') && media.includes('(prefers-color-scheme:dark)') && out.dark && out.light; }));
+  const VIOLET = await page.evaluate(async () => {
+    const keep = ST.theme; ST.theme = 'light'; applyTheme(); const bad = [];
+    for (const [t, s] of [['home'], ['plan', 'learn'], ['plan', 'quiz'], ['umrah', 'steps'], ['daily', 'today']]) { goTab(t, s); await new Promise(r => setTimeout(r, 60));
+      document.querySelectorAll('.btn,.chip-btn,.pill,.xchip,.nowtag,.pillmini,.req,.stage-n,.say,.tb-chip,.seg button,.segmini button,.lvl-n,.kstart').forEach(e => { if (!e.getClientRects().length) return; const cs = getComputedStyle(e); if (/rgba?\((109,\s*40,\s*217|124,\s*58,\s*237)(,\s*1)?\)/.test(cs.backgroundColor + ' ' + cs.backgroundImage)) bad.push(t + ':' + e.className); }); }
+    ST.theme = keep; applyTheme(); goTab('home'); return bad; });
+  check('no bright violet fill by day: every filled button, badge and selected chip is the aubergine CTA (#6D28D9 / #7C3AED survive only in small marks)', VIOLET.length === 0, VIOLET);
   check('no JS errors', errors.length === 0, errors);
   await browser.close();
   console.log(failed ? `\n${failed} check(s) FAILED` : '\nAll checks passed');

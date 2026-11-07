@@ -1,11 +1,11 @@
 /* Miqah — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='6.2.1';
+var APP_VERSION='6.3.0';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* ════════════════════════ MARKS ════════════════════════ */
-/* Kiswah marks: one small inline-SVG set (24x24, 1.5px stroke, currentColor) drawn in the gold-line style of the Kaaba mark.
+/* Marks: one small inline-SVG set (24x24, 1.5px stroke, currentColor) drawn in the line style of the Kaaba mark.
    Heroes, segment labels, stage cards, card titles, counter titles, the journey chip and the onboarding rows carry these instead of emoji;
-   content rows (checklist items, places, FAQ, toasts) keep their emoji. Colour comes from context: gold on kiswah, --brand-2 on paper (see .mk in index.html). */
+   content rows (checklist items, places, FAQ, toasts) keep their emoji. Colour comes from context: lavender on aubergine, --brand-2 on paper (see .mk in index.html). */
 var MARKS={
   kaaba:'<path d="M4 8.5h13v12H4z"/><path d="M4 8.5l3-3h13v12l-3 3"/><path d="M4 12h13m0 0l3-3"/><path d="M12.5 20.5v-5h2.5v5"/>',
   tent:'<path d="M2 19L8.5 6.5h7L22 19z"/><path d="M9 19l3-6 3 6"/><path d="M8.5 6.5L12 13l3.5-6.5"/>',
@@ -218,13 +218,13 @@ function applyText(){document.documentElement.setAttribute('data-text',ST.text||
 function setText(v){ST.text=v||'';saveST();applyText();vib(8);}
 /* generic bottom sheet (reset, image export, certificate name…) */
 function openSheet(html){var o=document.getElementById('gSheet'),b=document.getElementById('gSheetBody');if(!o)return;b.innerHTML=html;
-  /* the sheet roundel is kiswah with a gold mark: a single leading emoji becomes its mark */
+  /* the sheet roundel is the aubergine object with a lavender mark: a single leading emoji becomes its mark */
   var sh=b.querySelector('.sheet-h');if(sh&&!sh.querySelector('.mk')&&!sh.classList.contains('kaaba')){var t=sh.textContent.trim(),n=t==='↺'?'refresh':emk(t,'kaaba');sh.innerHTML=mk(n);}
   o.classList.add('on');}
 function closeSheet(){var o=document.getElementById('gSheet');if(o)o.classList.remove('on');}
 function vib(ms){if(navigator.vibrate)try{navigator.vibrate(ms);}catch(e){}}
 function toggleTheme(){ST.theme=ST.theme==='light'?'dark':'light';applyTheme();saveST();}
-function applyTheme(){document.documentElement.setAttribute('data-theme',ST.theme);document.getElementById('themeIcon').innerHTML=mk(ST.theme==='dark'?'sun':'moon');var t=document.getElementById('dmTgl');if(t){t.classList.toggle('on',ST.theme==='dark');t.setAttribute('aria-checked',ST.theme==='dark'?'true':'false');}var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',ST.theme==='dark'?'#090B0A':'#0C0F0E');}
+function applyTheme(){document.documentElement.setAttribute('data-theme',ST.theme);document.getElementById('themeIcon').innerHTML=mk(ST.theme==='dark'?'sun':'moon');var t=document.getElementById('dmTgl');if(t){t.classList.toggle('on',ST.theme==='dark');t.setAttribute('aria-checked',ST.theme==='dark'?'true':'false');}document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute('content',ST.theme==='dark'?'#0B0812':'#F4F2F8');});}
 function togSec(el){var sec=el.closest('.sec');sec.classList.toggle('shut');el.setAttribute('aria-expanded',sec.classList.contains('shut')?'false':'true');}
 function setRing(id,pct){var el=document.getElementById(id);if(el)el.style.strokeDashoffset=239*(1-Math.min(100,pct)/100);}
 function goTab(t,sub,anchor){ST.tab=t;saveST();
@@ -1019,14 +1019,14 @@ function startFreshHajjGo(){closeSheet();hajjChk={};save('us-hajj',hajjChk);ST.h
 function makeHajjKeepsake(i){var hist=[];try{hist=JSON.parse(localStorage.getItem('us-hajjlog')||'[]');}catch(e){}var u=hist[i];if(!u)return;var lg=u.log||{},ty=(HAJJ_TYPES[u.type]||{}).t||'';
   var c=document.createElement('canvas');c.width=1080;c.height=1350;var x=c.getContext('2d');
   kCloth(x,1080,1350);kBadge(x,540,250,'tent');
-  x.textAlign='center';kLabel(x,'MY HAJJ · '+(u.y||'')+(ty?' · '+ty:''),540,400,40);
+  x.textAlign='center';kLabel(x,'My Hajj · '+(u.y||'')+(ty?' · '+ty:''),540,400,40);
   x.font='600 64px '+KF;x.fillStyle=K.ihram;x.fillText(u.name||ST.name||'A guest of Allah',540,500);
   x.font='30px '+KB;x.fillStyle=K.ihram2;x.fillText(new Date(lg.done||Date.now()).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}),540,555);
   var y=660;x.textAlign='left';x.font='30px '+KB;
   [['Arafah',lg.h9wuquf],['Rami of the 10th',lg.h10rami],['Halq / taqsir',lg.h10halq||lg.h10halqw],['Tawaf al-ifadah',lg.ifadahStart,lg.ifadahEnd||lg.h10ifadah],['Sa’i of Hajj',lg.hsaiStart,lg.hsaiEnd||lg.h10sai],['Tawaf al-wada',lg.wadaStart,lg.wadaEnd||lg.hwada||lg.hwadaw]].forEach(function(r){
     x.fillStyle=K.gold3;x.fillText(r[0],130,y);x.fillStyle=K.ihram;x.textAlign='right';var a=r[1],b=r[2];
     x.fillText(a?fmtTime(a)+(b&&b>a?' – '+fmtTime(b)+'  ('+fmtDur(b-a)+')':''):(b?fmtTime(b):'—'),950,y);x.textAlign='left';y+=66;});
-  x.textAlign='center';x.font='italic 400 28px '+KB;x.fillStyle=K.gold3;x.fillText('“…he will return as if he were born anew.” — Bukhari 1521',540,1140);
+  x.textAlign='center';x.font='500 28px '+KB;x.fillStyle=K.gold3;x.fillText('“…he will return as if he were born anew.” — Bukhari 1521',540,1140);
   kFoot(x,'Miqah · umrah-strivers.vercel.app',540,1190);
   exportImage(c,'my-hajj-'+(u.y||'')+'.png','My Hajj keepsake');}
 
@@ -1615,7 +1615,7 @@ function renderHome(){
     h+='<div class="vh" style="margin-top:8px"><h2 style="font-size:var(--t-6)">'+mk('compass','mkt')+'How it works — your journey in 5 stages</h2><p>Tap a stage to jump in. The app follows you from your living room to the mataf and back.</p></div>';
     h+='<div class="stages">'+stages.map(function(st,i){return stageRow(st,i,false);}).join('')+'</div>';
     h+=numsHTML;
-    h+='<div class="vh" style="margin-top:6px"><h2 style="font-size:var(--t-5)">'+mk('spark','mkt')+'Quick tools</h2></div>'+toolsHTML.replace('</div>','<button class="qa wide" onclick="sosSheet()" aria-label="Hotel and emergency help"><span>'+mk('car')+'</span>Hotel / SOS <span style="font-size:1em;opacity:.55;font-weight:600">· driver card · I’m lost · 911 · 1966</span></button></div>');
+    h+='<div class="vh" style="margin-top:6px"><h2 style="font-size:var(--t-5)">'+mk('spark','mkt')+'Quick tools</h2></div>'+toolsHTML.replace('</div>','<button class="qa wide" onclick="sosSheet()" aria-label="Hotel and emergency help"><span>'+mk('car')+'</span>Hotel / SOS <span style="font-size:1em;color:var(--ink3);font-weight:600">· driver card · I’m lost · 911 · 1966</span></button></div>');
     h+=fcHTML+quoteHTML+'<div class="card card-pad"><h3>Common questions</h3>'+faqHTML+'</div>'+shareHTML;
   }else{
     /* ── dashboard (H-01): brand strip → status → continue / do next → prayer → tools → cards → quote → compact stages → about ── */
@@ -1795,7 +1795,7 @@ function makeKeepsake(no){
   var u=hist.filter(function(x){return x.n===no;})[0];if(!u)return;var lg=u.log;
   var c=document.createElement('canvas');c.width=1080;c.height=1350;var x=c.getContext('2d');
   kCloth(x,1080,1350);kBadge(x,540,250,'kaaba');
-  x.textAlign='center';kLabel(x,'MY UMRAH · #'+(u.n+(ST.umrahsPrev||0)),540,400,40);
+  x.textAlign='center';kLabel(x,'My Umrah · #'+(u.n+(ST.umrahsPrev||0)),540,400,40);
   x.font='600 64px '+KF;x.fillStyle=K.ihram;x.fillText(ST.name||'A guest of Allah',540,500);
   x.font='30px '+KB;x.fillStyle=K.ihram2;x.fillText(new Date(lg.done||Date.now()).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}),540,555);
   var y=680;x.textAlign='left';x.font='32px '+KB;
@@ -1803,39 +1803,45 @@ function makeKeepsake(no){
     x.fillStyle=K.gold3;x.fillText(r[0],180,y);x.fillStyle=K.ihram;x.textAlign='right';
     x.fillText(r[1]?fmtTime(r[1])+(r[2]?' – '+fmtTime(r[2])+'  ('+fmtDur(r[2]-r[1])+')':''):'—',900,y);x.textAlign='left';y+=70;});
   if(lg.ihram&&lg.halq){x.fillStyle=K.gold2;x.font='600 34px '+KB;x.textAlign='center';x.fillText('Ihram to halq: '+fmtDur(lg.halq-lg.ihram),540,y+40);}
-  x.textAlign='center';x.font='italic 400 30px '+KB;x.fillStyle=K.gold3;x.fillText('“Umrah to Umrah is an expiation for what is between them.”',540,1140);
+  x.textAlign='center';x.font='500 30px '+KB;x.fillStyle=K.gold3;x.fillText('“Umrah to Umrah is an expiation for what is between them.”',540,1140);
   kFoot(x,'Bukhari 1773 · umrah-strivers.vercel.app',540,1190);
   exportImage(c,'my-umrah-'+u.n+'.png','My Umrah keepsake');
 }
-/* ════════════════════════ KISWAH CANVAS (keepsakes, progress card, certificate) ════════════════════════ */
-/* One cloth for every exported image: kiswah black, a double gold frame, the hizam along the top, ihram type, gold labels.
-   The colours are the kiswah/gold/ihram tokens (identical in both themes by design), so the export never depends on the screen theme. */
-var K={kiswah:'#0C0F0E',kiswah2:'#161A18',ihram:'#F6F2E8',ihram2:'rgba(246,242,232,.72)',ihram3:'rgba(246,242,232,.55)',gold:'#C9A24E',gold2:'#D9B45E',gold3:'#F0DCA4',goldHair:'rgba(201,162,78,.4)',well:'rgba(246,242,232,.07)'};
-var KF='Fraunces,Georgia,"Times New Roman",serif',KB='Inter,-apple-system,"Segoe UI",sans-serif';
-/* canvases draw only once the faces they use are loaded (Fraunces 600 titles, Inter 400/600/700 + real italic) */
+/* ════════════════════════ AUBERGINE CANVAS (keepsakes, progress card, certificate) ════════════════════════ */
+/* One cloth for every exported image: the Home card's aubergine object — a near-black violet gradient, a violet glow, one lavender frame,
+   a lavender hairline where the band was, violet-tinted ink and lavender labels, all in Manrope.
+   The colours are the --hs-* tokens (identical in both themes by design), so the export never depends on the screen theme. */
+var K={kiswah:'#0F0819',kiswah2:'#1A1030',kiswah3:'#1F1037',ihram:'#F5F1FF',ihram2:'#DDD5F5',ihram3:'#B4A7D8',gold:'#A78BFA',gold2:'#C4B5FD',gold3:'#EDE9FE',goldHair:'rgba(196,181,253,.28)',well:'rgba(237,233,254,.07)'};
+var KF='Manrope,-apple-system,"Segoe UI",sans-serif',KB=KF;
+/* canvases draw only once the faces they use are loaded (Manrope 300–700) */
 function kFonts(fn){var F=document.fonts,done=false,go=function(){if(done)return;done=true;clearTimeout(tm);fn();},tm=setTimeout(go,2500);
-  if(!F||!F.load){go();return;}Promise.all(['600 64px Fraunces','400 30px Inter','600 30px Inter','700 30px Inter','italic 400 30px Inter'].map(function(q){return F.load(q).catch(function(){});})).then(go,go);}
-function kHizam(x,x0,x1,y){var s=22;x.save();x.strokeStyle=K.gold;x.lineWidth=2;x.beginPath();
-  for(var p=x0;p+s<=x1;p+=s){x.moveTo(p,y);x.lineTo(p+s/2,y-7);x.lineTo(p+s,y);x.lineTo(p+s/2,y+7);x.closePath();}
-  x.stroke();x.fillStyle=K.gold2;for(var q=x0;q+s<=x1;q+=s){x.beginPath();x.arc(q+s/2,y,2.2,0,6.2832);x.fill();}x.restore();}
-function kCloth(x,w,h){x.fillStyle=K.kiswah;x.fillRect(0,0,w,h);
-  var g=x.createRadialGradient(w/2,0,20,w/2,0,w*.9);g.addColorStop(0,'rgba(201,162,78,.14)');g.addColorStop(1,'rgba(201,162,78,0)');x.fillStyle=g;x.fillRect(0,0,w,h);
-  x.strokeStyle=K.gold;x.lineWidth=5;x.strokeRect(44,44,w-88,h-88);
-  x.strokeStyle=K.goldHair;x.lineWidth=1.5;x.strokeRect(58,58,w-116,h-116);
-  kHizam(x,76,w-76,90);}
-/* the Kaaba mark (or a stroke mark from MARKS) in a kiswah roundel with a gold inset ring */
-function kBadge(x,cx,cy,name,size){var s=size||170,r=s*.22;x.save();x.fillStyle=K.kiswah2;x.beginPath();x.roundRect(cx-s/2,cy-s/2,s,s,r);x.fill();
-  x.strokeStyle=K.gold;x.lineWidth=2;x.beginPath();x.roundRect(cx-s/2+5,cy-s/2+5,s-10,s-10,r-4);x.stroke();
-  if(name==='kaaba'){var u=s/40;x.translate(cx-20*u,cy-20*u);x.scale(u,u);x.fillStyle='#070908';x.strokeStyle=K.gold;x.lineWidth=.9;x.fillRect(9,11,22,19);x.strokeRect(9,11,22,19);
-    x.fillStyle=K.gold2;x.fillRect(9,15.5,22,2.4);x.fillRect(23.5,21,4.2,9);x.beginPath();x.moveTo(9,11);x.lineTo(12,8);x.lineTo(34,8);x.lineTo(34,27);x.lineTo(31,30);x.stroke();}
+  if(!F||!F.load){go();return;}Promise.all(['300 64px Manrope','400 30px Manrope','500 30px Manrope','600 30px Manrope','700 30px Manrope'].map(function(q){return F.load(q).catch(function(){});})).then(go,go);}
+/* the divider: a lavender hairline that fades at both ends, a small lavender dot at its centre */
+function kRule(x,x0,x1,y){x.save();var g=x.createLinearGradient(x0,0,x1,0);g.addColorStop(0,'rgba(167,139,250,0)');g.addColorStop(.5,K.gold);g.addColorStop(1,'rgba(167,139,250,0)');
+  x.strokeStyle=g;x.lineWidth=2;x.beginPath();x.moveTo(x0,y);x.lineTo(x1,y);x.stroke();x.fillStyle=K.gold2;x.beginPath();x.arc((x0+x1)/2,y,4,0,6.2832);x.fill();x.restore();}
+function kCloth(x,w,h){var g=x.createLinearGradient(w,0,0,h);g.addColorStop(0,K.kiswah3);g.addColorStop(.46,'#150B27');g.addColorStop(1,K.kiswah);x.fillStyle=g;x.fillRect(0,0,w,h);
+  var r=x.createRadialGradient(0,h*1.05,20,0,h*1.05,w*.9);r.addColorStop(0,'rgba(91,33,182,.30)');r.addColorStop(1,'rgba(91,33,182,0)');x.fillStyle=r;x.fillRect(0,0,w,h);
+  var t=x.createRadialGradient(w/2,0,20,w/2,0,w*.8);t.addColorStop(0,'rgba(139,92,246,.20)');t.addColorStop(1,'rgba(139,92,246,0)');x.fillStyle=t;x.fillRect(0,0,w,h);
+  x.strokeStyle=K.goldHair;x.lineWidth=2;x.beginPath();x.roundRect(44,44,w-88,h-88,48);x.stroke();
+  kRule(x,w*.22,w*.78,45);}
+/* the Kaaba mark (or a stroke mark from MARKS) in an aubergine roundel with a lavender edge and a violet halo */
+function kBadge(x,cx,cy,name,size){var s=size||170,r=s*.3;x.save();
+  var h=x.createRadialGradient(cx,cy,s*.3,cx,cy,s*.95);h.addColorStop(0,'rgba(139,92,246,.30)');h.addColorStop(1,'rgba(139,92,246,0)');x.fillStyle=h;x.fillRect(cx-s,cy-s,s*2,s*2);
+  var g=x.createLinearGradient(cx+s/2,cy-s/2,cx-s/2,cy+s/2);g.addColorStop(0,K.kiswah3);g.addColorStop(1,K.kiswah);x.fillStyle=g;x.beginPath();x.roundRect(cx-s/2,cy-s/2,s,s,r);x.fill();
+  x.strokeStyle=K.goldHair;x.lineWidth=2;x.stroke();
+  if(name==='kaaba'){var u=s/40;x.translate(cx-20*u,cy-20*u);x.scale(u,u);x.lineWidth=1.1;x.lineJoin='round';x.strokeStyle=K.gold2;
+    x.fillStyle='#251A3B';x.beginPath();x.moveTo(9,11);x.lineTo(12,8);x.lineTo(34,8);x.lineTo(34,27);x.lineTo(31,30);x.closePath();x.fill();x.stroke();
+    x.fillStyle=K.kiswah;x.fillRect(9,11,22,19);x.strokeRect(9,11,22,19);
+    x.fillStyle=K.gold2;x.fillRect(9.6,15.4,20.8,2.2);x.fillStyle=K.gold3;x.fillRect(23.4,21.4,4,8.6);}
   else if(MARKS[name]&&window.Path2D){var v=s*.55/24;x.translate(cx-12*v,cy-12*v);x.scale(v,v);x.strokeStyle=K.gold2;x.lineWidth=1.5;x.lineCap='round';x.lineJoin='round';
     var ds=MARKS[name].match(/ d="([^"]+)"/g)||[];ds.forEach(function(d){x.stroke(new Path2D(d.slice(4,-1)));});
     var cs=MARKS[name].match(/<circle[^>]*>/g)||[];cs.forEach(function(c){var m=/cx="([\d.]+)" cy="([\d.]+)" r="([\d.]+)"/.exec(c);if(m){x.beginPath();x.arc(+m[1],+m[2],+m[3],0,6.2832);x.stroke();}});}
   x.restore();}
-function kLabel(x,t,cx,y,px){x.save();x.font='600 '+px+'px '+KB;x.fillStyle=K.gold2;try{x.letterSpacing=Math.round(px*.06)+'px';}catch(e){}x.fillText(String(t).toUpperCase(),cx,y);x.restore();}
-/* the wordmark on canvases: Fraunces 600, as set (never the uppercase eyebrow) */
-function kBrand(x,cx,y,px){x.save();x.font='600 '+px+'px '+KF;x.fillStyle=K.gold2;x.textAlign='center';x.fillText('Miqah',cx,y);x.restore();}
-function kFoot(x,t,cx,y){x.save();x.font='24px '+KB;x.fillStyle=K.ihram3;x.textAlign='center';x.fillText(t,cx,y);x.restore();}
+/* the kicker: sentence case, Manrope 600, lavender (the Home card's "Hajj 1448") */
+function kLabel(x,t,cx,y,px){x.save();x.font='600 '+px+'px '+KB;x.fillStyle=K.gold2;x.fillText(String(t),cx,y);x.restore();}
+/* the wordmark on canvases: Manrope 700, tight */
+function kBrand(x,cx,y,px){x.save();x.font='700 '+px+'px '+KF;x.fillStyle=K.gold2;x.textAlign='center';try{x.letterSpacing=Math.round(-px*.02)+'px';}catch(e){}x.fillText('Miqah',cx,y);x.restore();}
+function kFoot(x,t,cx,y){x.save();x.font='500 24px '+KB;x.fillStyle=K.ihram3;x.textAlign='center';x.fillText(t,cx,y);x.restore();}
 /* ════════════════════════ IMAGE EXPORT (share sheet → in-app preview, M-07) ════════════════════════ */
 var imgExp=null;
 function inAppBrowser(){var ua=navigator.userAgent||'';return /FBAN|FBAV|Instagram|Line\/|Twitter|; wv\)|WebView/i.test(ua);}
@@ -2104,7 +2110,7 @@ function shareCard(){
   kBadge(x,540,172,'kaaba',130);x.textAlign='center';kBrand(x,540,292,40);
   x.font='600 56px '+KF;x.fillStyle=K.ihram;x.fillText((ST.name||'My')+(ST.name?'’s':'')+' journey · Day '+ST.day+' of '+ST.tripLen,540,365);
   var tiles=[[ST.umrahs,'Umrahs'],[nt,'Nafl tawafs'],[(logged?Math.round(sum/logged):0)+'%','Avg. daily deeds'],[pv,'Places visited'],[tb,'Dhikr counted'],[streakOf('fajr'),'Fajr streak'],[logged,'Days logged']];
-  tiles.forEach(function(t,i){var cx=230+(i%3)*310,cy=500+Math.floor(i/3)*190;x.fillStyle=K.well;x.beginPath();x.roundRect(cx-130,cy-80,260,160,28);x.fill();x.strokeStyle=K.goldHair;x.lineWidth=1.5;x.stroke();x.fillStyle=K.ihram;x.font='700 60px '+KB;try{x.letterSpacing='-1px';}catch(e){}x.fillText(String(t[0]),cx,cy+8);try{x.letterSpacing='0px';}catch(e){}x.fillStyle=K.gold2;x.font='600 24px '+KB;x.fillText(t[1],cx,cy+52);});
+  tiles.forEach(function(t,i){var cx=230+(i%3)*310,cy=500+Math.floor(i/3)*190;x.fillStyle=K.well;x.beginPath();x.roundRect(cx-130,cy-80,260,160,28);x.fill();x.strokeStyle=K.goldHair;x.lineWidth=1.5;x.stroke();x.fillStyle=K.ihram;x.font='300 64px '+KB;try{x.letterSpacing='-2px';}catch(e){}x.fillText(String(t[0]),cx,cy+8);try{x.letterSpacing='0px';}catch(e){}x.fillStyle=K.gold2;x.font='600 24px '+KB;x.fillText(t[1],cx,cy+52);});
   kFoot(x,'Make dua for me · umrah-strivers.vercel.app',540,1010);
   exportImage(c,'umrah-progress.png','My progress card');
 }
@@ -2398,7 +2404,7 @@ function obFinish(){
 function confetti(count){
   var c=document.getElementById('confetti');if(!c)return;
   var x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;c.style.display='block';
-  var cols=['#D9B45E','#EFD494','#2FBE83','#3AD695','#FFFFFF','#B8892F'];
+  var cols=['#C4B5FD','#EDE9FE','#A78BFA','#7C3AED','#FFFFFF','#4ADE80'];
   var ps=[];for(var i=0;i<(count||90);i++)ps.push({x:c.width/2+(Math.random()-.5)*120,y:c.height*.35,vx:(Math.random()-.5)*14,vy:-Math.random()*14-4,r:4+Math.random()*5,c:cols[i%cols.length],a:Math.random()*Math.PI,s:(Math.random()-.5)*.3});
   var t0=Date.now();
   (function f(){var dt=(Date.now()-t0)/1000;x.clearRect(0,0,c.width,c.height);
@@ -2429,15 +2435,15 @@ function makeCertGo(){
   var x=c.getContext('2d');
   kCloth(x,1080,1350);kBadge(x,540,235,'kaaba');
   x.textAlign='center';kBrand(x,540,372,48);
-  x.font='italic 400 30px '+KB;x.fillStyle=K.ihram2;x.fillText('Certificate of Knowledge',540,425);
+  x.font='500 30px '+KB;x.fillStyle=K.ihram2;x.fillText('Certificate of Knowledge',540,425);
   x.font='600 72px '+KF;x.fillStyle=K.ihram;x.fillText(name,540,580);
-  kHizam(x,340,740,625);
+  kRule(x,340,740,625);
   x.font='30px '+KB;x.fillStyle=K.ihram;
   x.fillText('has completed the full '+qzVisible().length+'-level',540,700);
   x.fillText('Umrah Knowledge Circuit —',540,750);
   x.fillText('foundations, ihram, tawaf & sa’i, history,',540,800);
   x.fillText('virtues, Madinah and fiqh essentials.',540,850);
-  x.font='italic 400 28px '+KB;x.fillStyle=K.gold3;
+  x.font='500 28px '+KB;x.fillStyle=K.gold3;
   x.fillText('“Whoever travels a path seeking knowledge,',540,960);
   x.fillText('Allah makes easy for him a path to Paradise.”',540,1005);
   kFoot(x,'— Muslim 2699',540,1050);

@@ -234,13 +234,15 @@ The service-worker cache is named after `APP_VERSION`. For every release **bump 
 
 ```
 npm install            # playwright-core only
-npm test               # end-to-end smoke suite (~145 checks) in headless Chromium
+npm test               # end-to-end smoke suite (~220 checks) in headless Chromium
 ```
 Set `CHROME=/path/to/chromium` if Playwright cannot find a browser. Content lives in `data.js` (places, quiz, knowledge, duas); logic in `app.js`.
 
 ## Tech
 
-Mobile-first vanilla HTML/CSS/JS, zero build step, zero dependencies (Google Fonts only, with system fallbacks). Design system: desert emerald & gold, Fraunces + Inter, SVG progress rings, floating pill navigation, tap-ring counters, light & dark themes.
+Mobile-first vanilla HTML/CSS/JS, zero build step, zero dependencies (Google Fonts only, with system fallbacks), light & dark themes.
+
+**Design (6.3, aubergine).** The Home status card sets the language for the whole app: lilac-grey paper with white cards and violet-tinted hairlines by day, an aubergine-black page with deep aubergine cards by night. Every moment (heroes, the tap-ring counters, the floating pill nav, focus mode, toasts and the primary buttons) is the card's aubergine object: a near-black violet gradient with a fine lavender edge, a soft violet halo and lavender progress. Manrope is the only Latin face, with a light 300 for the big numerals, and Scheherazade New carries the Arabic; violet is kept for links, progress and small marks, and green means done.
 
 ---
 

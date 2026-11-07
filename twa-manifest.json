@@ -5,13 +5,13 @@
   "launcherName": "Miqah",
   "display": "standalone",
   "orientation": "portrait",
-  "themeColor": "#0E3B2E",
-  "themeColorDark": "#0E3B2E",
-  "navigationColor": "#0E3B2E",
-  "navigationColorDark": "#0E3B2E",
-  "navigationDividerColor": "#0E3B2E",
-  "navigationDividerColorDark": "#0E3B2E",
-  "backgroundColor": "#0E3B2E",
+  "themeColor": "#150B27",
+  "themeColorDark": "#0B0812",
+  "navigationColor": "#150B27",
+  "navigationColorDark": "#0B0812",
+  "navigationDividerColor": "#150B27",
+  "navigationDividerColorDark": "#0B0812",
+  "backgroundColor": "#150B27",
   "enableNotifications": false,
   "startUrl": "/",
   "iconUrl": "https://umrah-strivers.vercel.app/icons/icon-512.png",
@@ -21,7 +21,7 @@
     "path": "./android.keystore",
     "alias": "umrah"
   },
-  "appVersionName": "6.2.1",
+  "appVersionName": "6.3.0",
   "appVersionCode": 1,
   "shortcuts": [
     {
@@ -52,5 +52,5 @@
   "isMetaQuest": false,
   "fullScopeUrl": "https://umrah-strivers.vercel.app/",
   "minSdkVersion": 23,
-  "appVersion": "6.2.1"
+  "appVersion": "6.3.0"
 }
