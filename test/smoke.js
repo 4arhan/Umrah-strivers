@@ -248,7 +248,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
   await page.evaluate(() => { setExcused(false); ST.dep = new Date(Date.now() + 5 * 86400000).toISOString().slice(0, 10); ST.day = 1; saveST(); updDaily(); updChip(); });
   await page.evaluate(() => { ST.kidNames = ['Ali']; saveST(); renderKidsDay(); });
   for (let i = 0; i < 5; i++) await page.click('#kidsDay .kd-t >> nth=' + i);
-  check('kids’ day: 5 tiles per child, 5/5 earns a star, stays out of the adult total', (await page.locator('#kidsDay .kd-t.on').count()) === 5 && (await page.textContent('#kidsDay .kd-name')).includes('⭐') && (await page.textContent('#dHeroS')).includes('of 25'));
+  check('kids’ day: 5 tiles per child, 5/5 earns a star, stays out of the adult total', (await page.locator('#kidsDay .kd-t.on').count()) === 5 && (await page.locator('#kidsDay .kd-name svg.mk-starf').count()) === 1 && (await page.textContent('#dHeroS')).includes('of 25'));
   await page.evaluate(() => { ST.kidNames = []; saveST(); renderKidsDay(); });
   await page.evaluate(() => { setMeet('Gate 79'); });
   check('meeting point echoes to Home’s prayer strip and the hotel card', (await page.textContent('#hNext')).includes('meet: Gate 79') && (await page.inputValue('#hMeet')) === 'Gate 79');
@@ -583,6 +583,35 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
       document.querySelectorAll('.btn,.chip-btn,.pill,.xchip,.nowtag,.pillmini,.req,.stage-n,.say,.tb-chip,.seg button,.segmini button,.lvl-n,.kstart').forEach(e => { if (!e.getClientRects().length) return; const cs = getComputedStyle(e); if (/rgba?\((109,\s*40,\s*217|124,\s*58,\s*237)(,\s*1)?\)/.test(cs.backgroundColor + ' ' + cs.backgroundImage)) bad.push(t + ':' + e.className); }); }
     ST.theme = keep; applyTheme(); goTab('home'); return bad; });
   check('no bright violet fill by day: every filled button, badge and selected chip is the aubergine CTA (#6D28D9 / #7C3AED survive only in small marks)', VIOLET.length === 0, VIOLET);
+  console.log('QA fixes (6.3.1)');
+  // focus mode: a tap on the lower edge of a top chip hits the chip (never the numeral's text box), and a short phone can still reach the bottom bar
+  await page.setViewportSize({ width: 375, height: 667 });
+  const FOC = await page.evaluate(async () => { ST.tawaf = 0; saveST(); goTab('umrah', 'count'); enterFocus('tawaf'); await new Promise(r => setTimeout(r, 120));
+    const f = document.getElementById('focus'), out = {};
+    for (const sel of ['.focus-prob', '#focusWudu']) { const c = f.querySelector(sel), r = c.getBoundingClientRect(); const hit = document.elementFromPoint(r.left + r.width / 2, r.bottom - 3); out[sel] = !!hit && c.contains(hit); }
+    const bot = f.querySelector('.focus-bot').getBoundingClientRect(); out.reach = bot.bottom <= innerHeight + 1 || getComputedStyle(f).overflowY === 'auto';
+    exitFocus(); return out; });
+  await page.setViewportSize({ width: 390, height: 844 });
+  check('focus mode (6.3.1): the Problem? and Wudu chips take their own taps at 375x667, and the bottom bar is reachable', FOC['.focus-prob'] && FOC['#focusWudu'] && FOC.reach, FOC);
+  // reduced motion: JS motion honours it too (no confetti, the % lands at once, no smooth scrolling)
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  const RMv = await page.evaluate(async () => { confetti(40); await new Promise(r => setTimeout(r, 200)); const cv = getComputedStyle(document.getElementById('confetti')).display;
+    const e = document.createElement('span'); e.id = 'rmPct'; e.textContent = '0%'; document.body.appendChild(e); animPct('rmPct', 80); const v = e.textContent; e.remove();
+    return { cv, v, sb: getComputedStyle(document.documentElement).scrollBehavior, rm: RM.matches }; });
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  check('reduced motion (6.3.1): no confetti, the count-up lands at once, scroll-behavior auto', RMv.rm && RMv.cv === 'none' && RMv.v === '80%' && RMv.sb === 'auto', RMv);
+  // no colour emoji anywhere in rendered copy (chrome and content), no sparkle mark, done rows keep full opacity, switches are the aubergine pill by day
+  const CLEAN = await page.evaluate(async () => { const keep = ST.theme; ST.theme = 'light'; applyTheme(); const emo = [], fade = [];
+    const EP = /\p{Extended_Pictographic}/u, OK = /^[✓✕✖✔©®™↔↩‼]$/;
+    for (const [t, sub] of [['home'], ['plan', 'prep'], ['plan', 'learn'], ['plan', 'quiz'], ['umrah', 'count'], ['umrah', 'steps'], ['daily', 'today'], ['daily', 'tools'], ['daily', 'stats'], ['places'], ['more', 'guide'], ['more', 'duas'], ['more', 'settings']]) {
+      goTab(t, sub); await new Promise(r => setTimeout(r, 80));
+      const tw = document.createTreeWalker(document.querySelector('.view.on'), NodeFilter.SHOW_TEXT); let n;
+      while ((n = tw.nextNode())) { if (n.parentElement.closest('textarea,input,script,style,option')) continue; for (const ch of n.nodeValue.match(/\p{Extended_Pictographic}/gu) || []) if (!OK.test(ch)) emo.push(t + ':' + ch + ' ' + n.nodeValue.trim().slice(0, 30)); } }
+    goTab('umrah', 'steps'); const row = document.querySelector('#riteContainer .stp'); if (row) { row.click(); await new Promise(r => setTimeout(r, 60)); const b = document.querySelector('#riteContainer .stp.done .stp-t>b'); if (!b || getComputedStyle(b).opacity !== '1') fade.push('stp'); row.click(); }
+    const sw = document.getElementById('swipeSw'), on = sw && sw.classList.contains('on'); if (sw && !on) sw.classList.add('on'); const swBg = sw ? getComputedStyle(sw).backgroundColor : ''; if (sw && !on) sw.classList.remove('on');
+    const spark = document.querySelectorAll('svg.mk-spark').length; ST.theme = keep; applyTheme(); goTab('home');
+    return { emo: [...new Set(emo)].slice(0, 8), fade, swBg, spark }; });
+  check('6.3.1: no colour emoji in any tab’s copy, no sparkle mark, a ticked step keeps full opacity, a switch that is on is the aubergine pill by day', CLEAN.emo.length === 0 && CLEAN.fade.length === 0 && CLEAN.spark === 0 && CLEAN.swBg === 'rgb(30, 16, 51)', CLEAN);
   check('no JS errors', errors.length === 0, errors);
   await browser.close();
   console.log(failed ? `\n${failed} check(s) FAILED` : '\nAll checks passed');

@@ -1457,6 +1457,9 @@ html[data-text='lg'] .mataf text{font-size:15.5px}html[data-text='lg'] .mataf .m
   #printSheet .pr-dua{margin:3pt 0 0 6pt;padding-left:6pt;border-left:2px solid #888;font-size:10pt}
   #printSheet .pr-dua .ar{display:block;direction:rtl;text-align:right;font-family:var(--fa);font-size:14pt;line-height:1.9}
   #printSheet .pr-pack{columns:2;list-style:none;padding:0}
+  #printSheet .pr-pack li::before{content:'';display:inline-block;width:8pt;height:8pt;border:1px solid #000;margin-right:5pt;vertical-align:-1pt}
+  body::before{display:none!important}
+  #printSheet *{color:#000!important;background:transparent!important}
 }
 
 /* ═══════════ 6.3 · the Home card's language on every screen ═══════════
@@ -1614,6 +1617,240 @@ em,i{font-style:normal;font-weight:var(--w-ui)}
 .hs-o .hs-t .hcta.hs-alt{justify-content:flex-start;gap:8px;min-height:48px;margin-top:10px;padding:6px 18px;background:transparent;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;color:var(--hs-ink-2);font-size:var(--t-3)}
 .hs-o .hs-t .hcta.hs-alt .mk{width:18px;height:18px;margin:0;vertical-align:0}
 @media (hover:hover){.hs-o .hs-t .hcta:hover{background:var(--hs-glass-hi)}}
+
+/* ═══════════ 6.3.1 · QA: the Home card's grammar on every hero; no fades, sparkles or emoji ═══════════
+   Every hero speaks the card: a lavender kicker with its mark, one light Manrope numeral, a unit line, hairline
+   label-over-value metrics, the four-rite bar and the glass pill with a lavender go-disc. Done rows keep their contrast
+   (colour and the strike, never opacity); every switch, segment and primary action is the aubergine pill by day. */
+
+/* ── hero grammar ── */
+.hero-t .k{display:flex;align-items:center;gap:6px}
+.hero-t .k .mk{width:16px;height:16px;margin:0;flex:none;vertical-align:0;stroke-width:1.75}
+.hero-t .v{font-weight:600}
+.hero .ring-wrap,.hero .ring-wrap svg{width:108px;height:108px}
+.hero .ring-wrap::before{width:176px;height:176px}
+.hero .hs-n{display:block;margin:10px 0 0 -.04em;font-family:var(--f-text);font-size:3.5rem;font-weight:300;line-height:.96;letter-spacing:-.045em;color:var(--hs-ink);white-space:nowrap;font-feature-settings:'tnum' 1,'kern' 1;font-variant-numeric:tabular-nums lining-nums}
+.hero .hs-u{display:block;margin-top:6px;font-size:var(--t-3);font-weight:500;line-height:1.4;color:var(--hs-ink-2)}
+.hero .hs-note{display:block;margin-top:10px;font-size:var(--t-3);font-weight:600;line-height:1.4;color:var(--hs-acc)}
+.hero .hs-m{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);margin-top:16px;padding-top:14px;border-top:1px solid var(--hs-hair)}
+.hero .hs-mi{display:flex;flex-direction:column;justify-content:space-between;min-width:0;padding:0 10px}
+.hero .hs-mi:first-child{padding-left:0}.hero .hs-mi:last-child{padding-right:0}
+.hero .hs-mi+.hs-mi{border-left:1px solid var(--hs-hair)}
+.hero .hs-ml{display:block;font-size:var(--t-2);font-weight:500;line-height:1.3;color:var(--hs-ink-3);overflow-wrap:break-word}
+.hero .hs-mv{display:block;margin-top:4px;font-size:1.25rem;font-weight:600;line-height:1.15;letter-spacing:-.02em;color:var(--hs-ink);white-space:nowrap;font-feature-settings:'tnum' 1,'kern' 1;font-variant-numeric:tabular-nums lining-nums}
+.hero .hs-mv i{font-style:normal;font-weight:500;letter-spacing:0;color:var(--hs-ink-3)}
+/* the four Umrah rites, segmented (the Home card's bar) */
+.hero .hs-sg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:6px;row-gap:7px;margin-top:14px}
+.hero .hs-sb{display:block;position:relative;height:6px;border-radius:99px;background:var(--hs-track)}
+.hero .hs-sb b{display:block;position:absolute;left:0;top:0;bottom:0;border-radius:inherit;background:linear-gradient(90deg,var(--hs-ring-b),var(--hs-acc))}
+.hero .hs-sb.on b{min-width:6px;box-shadow:0 0 8px var(--hs-ring-glow)}
+.hero .hs-sl{display:block;font-size:var(--t-2);font-weight:500;line-height:1.3;color:var(--hs-ink-3);white-space:nowrap}
+.hero .hs-sl.on{font-weight:600;color:var(--hs-ink)}
+.hero .rh-s{display:block}
+#riteHero{flex-wrap:wrap}#riteHero .rh-sg{flex:1 1 100%;min-width:0}#riteHero .rh-sg .hs-sg{margin-top:2px}
+.hero .rh-n{display:block;margin-top:10px;font-size:var(--t-2);font-weight:500;line-height:1.4;color:var(--hs-ink-3)}
+/* the glass pill: an eyebrow, the action at 600, a lavender go-disc */
+.hero.hero-o{flex-wrap:wrap}
+.hero>.hs-pill{flex:1 1 100%}
+.hero .hs-pill,.hero .pl-near{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:52px;margin:16px 0 0;padding:6px 6px 6px 20px;border-radius:var(--r-pill);background:var(--hs-glass);border:1px solid var(--hs-glass-edge);box-shadow:inset 0 1px 0 var(--hs-glass-hi);color:var(--hs-ink);font-family:var(--f-text);font-size:var(--t-4);font-weight:600;line-height:1.3;letter-spacing:0;text-align:left;cursor:pointer;overflow:visible}
+.hero div.pl-near{cursor:default;padding-right:20px}
+.hero .pl-near.dim{opacity:1}
+.hero .hs-cw{display:block;min-width:0;padding:6px 0}
+.hero .hs-ce{display:block;margin:0 0 1px;font-size:var(--t-1);font-weight:600;line-height:1.3;color:var(--hs-acc)}
+.hero .hs-ct{display:block;color:var(--hs-ink)}
+.hero .hs-go{display:grid;place-items:center;flex:none;width:40px;height:40px;border-radius:50%;background:var(--hs-go-bg);color:var(--hs-go-ink)}
+.hero .hs-go .mk{width:20px;height:20px;margin:0;vertical-align:0;color:var(--hs-go-ink);stroke-width:2}
+@media (hover:hover){.hero .hs-pill:hover,.hero button.pl-near:hover{background:var(--hs-glass-hi)}}
+/* Rites › Counters, once a count has started: the kicker stays, the card's padding, a 76px ring */
+.started .hero{padding:18px 20px 16px}
+.started .hero .k{display:flex}
+.started .hero .ring-wrap,.started .hero .ring-wrap svg{width:76px;height:76px}
+.started .hero .ring-wrap::before{width:124px;height:124px}
+/* Daily › Today: the day navigator is the kicker; one light numeral beside "of 25 completed" and the day's word (≤ 132px tall) */
+.dhero{padding:14px 18px 12px;gap:12px}
+.dhero .ring-wrap,.dhero .ring-wrap svg{width:72px;height:72px}
+.dhero .ring-wrap::before{width:120px;height:120px}
+.dhero .daynav{margin:-4px 0 4px -6px;gap:2px;flex-wrap:nowrap}
+.dhero .daynav button{position:relative;width:34px;height:34px;min-height:0}
+.dhero .daynav button::before{content:'';position:absolute;inset:-5px}
+.dhero .daynav .dd{position:relative;min-height:34px;padding:0 6px;font-size:var(--t-3);font-weight:600;color:var(--hs-acc)}
+.dhero .daynav .dd::before{content:'';position:absolute;inset:-5px 0}
+.dhero .daynav .dd small{font-size:inherit;font-weight:600;color:var(--hs-acc)}
+.dhero .daynav .dtoday{min-height:34px;padding:0 12px}
+.dhero .dh-l{display:flex;align-items:center;gap:12px;min-width:0}
+.dhero .hs-n{margin:0;font-size:var(--t-n1)}
+.dhero .dh-s{display:flex;flex-direction:column;min-width:0}
+.dhero .dh-s .s{font-size:var(--t-3);font-weight:500;line-height:1.35;color:var(--hs-ink-2)}
+.dhero .dh-s .v{margin:0;font-size:var(--t-4);font-weight:600;line-height:1.3;letter-spacing:0;color:var(--hs-ink)}
+.dhero .dhero-date{margin:6px 0 0;font-size:var(--t-2);font-weight:500;line-height:1.45;color:var(--hs-ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Prepare tiles & streaks: one card split by hairlines, label over value (the card's metrics), no corner icons */
+#catTiles .st,.stk .st{display:flex;flex-direction:column;align-items:flex-start;text-align:left;padding:13px 12px 12px}
+#catTiles.five .st{padding:13px 6px 12px 10px}
+#catTiles .st .i,.stk .st .i{display:none}
+#catTiles .st .l,.stk .st .l{order:-1;margin:0;font-size:var(--t-2);font-weight:500;line-height:1.3;color:var(--ink3);white-space:nowrap}
+#catTiles .st .n,.stk .st .n{margin-top:4px;font-size:1.25rem;font-weight:500;line-height:1.15;letter-spacing:-.02em;color:var(--ink)}
+#catTiles .st .mini{align-self:stretch;margin:8px 0 0}
+.stk .st .n small{font-size:var(--t-2);font-weight:500;color:var(--ink3)}
+.stk .st.on .l,#catTiles .st.on .l{color:var(--brand-ink)}
+
+/* ── Home ── */
+/* Quick tools: one card, cells split by hairlines (never nine boxed tiles) */
+.qa-grid{gap:0;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh);overflow:hidden}
+.qa{border:0;border-radius:0;box-shadow:none;background:none;padding:16px 6px 14px;color:var(--ink)}
+.qa:not(:nth-child(3n+1)){border-left:1px solid var(--line)}
+.qa:nth-child(n+4){border-top:1px solid var(--line)}
+.qa .mk{color:var(--ink2)}
+.qa.wide{grid-column:1/-1;border-left:0;border-top:1px solid var(--line);border-color:var(--line)}
+.qa.wide .mk{color:var(--danger)}
+.qa:active{transform:none;background:var(--bg-soft)}
+.qa:focus-visible{outline-offset:-3px}
+/* Continue: a quiet utility row under the card (the card's pill already names the next step) */
+.hcont{box-shadow:var(--sh);border-color:var(--line);padding:10px 12px 10px 16px}
+.hcont .hp-t small{display:none}
+.hcont .hp-t div{font-size:var(--t-3);font-weight:500;color:var(--ink2)}
+.hcont .hp-i,.hcont .hp-i[style]{background:none!important;width:30px}
+.hcont .hp-i .mk{color:var(--ink2)}
+/* the Hajj-day confirm row: a segmented pill track, not a box inside the card */
+.hshift{padding:0;border:0;background:none}
+.hshift>div{gap:4px;padding:4px;background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-pill)}
+.hshift .chip-btn{border:0;background:transparent;box-shadow:none;min-height:48px;border-radius:var(--r-pill);color:var(--ink2)}
+.hshift .chip-btn.on{background:var(--cta-bg);color:var(--act-ink);box-shadow:0 2px 8px -2px rgba(30,16,51,.35)}
+
+/* ── Plan ── */
+/* Learn › Umrah in 4 steps: a numbered hairline list */
+.rtiles{grid-template-columns:1fr;gap:0;margin-bottom:10px}
+.rtiles .rarr{display:none}
+.rtile{display:grid;grid-template-columns:36px minmax(0,1fr);column-gap:12px;align-items:center;text-align:left;background:none;border:0;border-radius:0;min-height:56px;padding:10px 0}
+.rtile~.rtile{border-top:1px solid var(--line)}
+.rtile .i{grid-row:1/3;width:36px;height:36px;min-height:0;border-radius:50%;background:var(--brand-soft);display:flex;align-items:center;justify-content:center}
+.rtile .i .mk{width:20px;height:20px}
+.rtile b,.rtile small{grid-column:2;margin:0}
+.rtile b{font-size:var(--t-4)}
+.rtile:active{transform:none;background:var(--bg-soft)}
+.rtile:focus-visible{outline-offset:-3px}
+/* accordion lists: one clean text column (no partial icon column) */
+.acc-h>svg.mk:first-child{display:none}
+:has(>.acc>.acc-h>svg.mk:first-child)>.acc>.acc-h{padding-left:0}
+:has(>.acc>.acc-h>svg.mk:first-child)>.acc>.acc-b{padding-left:0}
+/* Quiz: the primary action is the card's pill — eyebrow, one line, a go-disc */
+.qz-cta{display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;min-height:60px;padding:6px 6px 6px 22px}
+.qz-cta .hs-cw{display:block;min-width:0;padding:6px 0}
+.qz-cta .hs-ce{display:block;font-size:var(--t-1);font-weight:600;line-height:1.3;color:inherit;opacity:.8}
+.qz-cta .hs-ct{display:block;font-size:var(--t-4);font-weight:600;line-height:1.25}
+.qz-cta .hs-go{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--hs-go-bg);color:var(--hs-go-ink)}
+.qz-cta .hs-go .mk{width:20px;height:20px;margin:0;vertical-align:0;color:inherit;stroke-width:2}
+[data-theme="dark"] .qz-cta .hs-go{background:var(--act-ink);color:var(--act-bg)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .qz-cta .hs-go{background:var(--act-ink);color:var(--act-bg)}}
+.qz-exit{display:inline-flex;align-items:center;min-height:44px}
+/* flashcard front: the source tag in lavender on the aubergine (never the paper label ink) */
+.fc-front .fc-src:not(.wrong){color:var(--hs-acc)}
+
+/* ── done rows: colour and the strike, never opacity ── */
+.stp.done .stp-t>b,.stp.done .stp-t>p{opacity:1}
+.stp.done .stp-t>b{color:var(--ink2)}
+.stp.done .stp-t>p{color:var(--ink3)}
+.stp.done .req,.stp.done .req.rukn,.stp.done .req.wajib,.stp.done .req.sunnah{opacity:1;background:var(--bg-soft);color:var(--ink2)}
+.row.done{opacity:1}
+.row.done .row-t b{color:var(--ink2)}
+.row.done .row-t .x,.row.done .row-t .rf{color:var(--ink3)}
+.brg.done{opacity:1}
+.brg.done span:last-child{color:var(--ink2)}
+.row.excused{opacity:1}.row.excused .row-t b,.row.excused .row-t .x,.row.excused .row-t .rf{color:var(--ink3)}.row.excused .tick{opacity:.55}
+.pt.excused{opacity:1;border-style:dashed}.pt.excused .pn,.pt.excused .pv{color:var(--ink3)}
+/* the Hajj rulings line: one style wherever it appears */
+.note.hajjnote,.hajj-rule{background:none;border:0;padding:0;margin:2px 4px 12px;font-size:var(--t-2);font-weight:500;line-height:1.45;color:var(--ink2)}
+.note.hajjnote b,.hajj-rule b{color:var(--ink)}
+.note.hajjnote .mk,.hajj-rule .mk{color:var(--warn)}
+
+/* ── controls: one selected language (the aubergine pill by day, lavender by night) ── */
+.sw.on{background:var(--act-bg);border-color:var(--act-bg)}
+.sw.on::after{background:var(--act-ink)}
+.sw::after{box-shadow:0 0 0 1px rgba(23,18,31,.22),0 1px 4px rgba(0,0,0,.2)}
+.sw::before{inset:-9px -4px}
+.seg::after{display:none;content:none}
+.btn.rose{background:var(--cta-bg);color:var(--cta-ink);box-shadow:var(--cta-sh)}
+.place-a a{background:var(--card);border-color:var(--line);color:var(--ink)}
+.setrow .say{border-color:var(--line);color:var(--ink)}
+.xn,.vtick{font-size:var(--t-1);padding:2px 8px}
+.toast{border-radius:var(--r-lg)}
+.srch,.pnotes{border-radius:var(--r)}
+/* Qibla: the dial recipe (aubergine, lavender needle, halo) like the tawaf and tasbih dials */
+.qb-dial{isolation:isolate;background:var(--hero-bg);border:1px solid var(--k-edge);box-shadow:inset 0 1px 0 var(--hs-hi),var(--hs-sh);color:var(--ihram)}
+.qb-dial::before{content:'';position:absolute;inset:-24px;border-radius:50%;z-index:-1;pointer-events:none;background:radial-gradient(closest-side,transparent 72%,var(--hs-glow) 88%,transparent)}
+.qb-needle{background:linear-gradient(var(--hs-acc),transparent)}
+.qb-needle::before{background:var(--kaaba) center/24px 24px no-repeat,var(--hs-go-bg);box-shadow:0 0 0 2px var(--hs-bg-1)}
+.qb-n{color:var(--hs-due)}
+.qb-deg{color:var(--hs-ink-2)}
+/* Achievements: open cells, the icon in a disc (earned = the aubergine object) */
+.bdgs{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:379px){.bdgs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.bdg,.bdg.ok{background:transparent;border:0;box-shadow:none;padding:10px 2px}
+.bdg .i{width:44px;height:44px;min-height:0;margin:0 auto;border-radius:50%;background:var(--bg-soft);align-items:center}
+.bdg.ok .i{background:var(--hero-bg);box-shadow:inset 0 0 0 1px var(--hs-edge)}
+.bdg .i .mk{width:22px;height:22px}
+.bdg.ok .i .mk{color:var(--hs-acc)}
+.bdg.no .i{opacity:1;filter:none}.bdg.no .i .mk{opacity:.6}
+.bdg:focus-visible{outline-offset:-2px}
+/* More › After: quieter day circles under the hero */
+.pchip{border-color:transparent;background:var(--bg-soft);color:var(--ink2)}
+.ph-grid{grid-template-columns:repeat(10,minmax(0,1fr))}
+.ph-row+.ph-row{border-top:1px solid var(--line);padding-top:12px}
+
+/* ── sticky rows never cut a hero's halo or the page wash ── */
+.segw,.noww,.pills.pl-sticky{background:radial-gradient(70% 30% at 50% -4%,var(--glow-a),transparent 70%) fixed,radial-gradient(40% 20% at 100% 10%,var(--glow-b),transparent 70%) fixed,var(--bg)}
+.pills.pl-sticky.io:not(.stuck){background:transparent}
+.pl-sent{display:block;height:1px;margin-bottom:-1px}
+
+/* ── wraps and orphans ── */
+.tooljumps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.pills.sm.tooljumps .pill{min-width:0;padding:7px 4px;white-space:nowrap}
+@media (max-width:360px){html[data-text='lg'] .tooljumps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.wudu-t b{display:flex;gap:8px;align-items:flex-start;text-wrap:balance}
+.wudu-t b .mk{margin:.2em 0 0;flex:none}
+.fchips span.go{min-height:0;margin:0;position:relative}
+.fchips span.go::before{content:'';position:absolute;inset:-8px -2px}
+.foot{text-wrap:balance}
+.pills.sm{flex-wrap:wrap}
+
+/* ── overflow at 320 and with Large text ── */
+@media (max-width:374px){#updChip:not([hidden])~#jChip{display:none}#updChip .mk.mkt{display:none}}
+html[data-text='lg'] .brand h1{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:440px){html[data-text='lg'] .brand small{display:none}}
+@media (max-width:360px){html[data-text='lg'] .brand h1{font-size:var(--t-4)}}
+@media (max-width:374px){
+  html[data-text='lg'] .focus-top{flex-wrap:wrap;row-gap:8px}
+  html[data-text='lg'] .focus-top>span:first-child{flex:1 1 100%}
+  html[data-text='lg'] .focus-top>:last-child{margin-left:auto}
+}
+@media (max-width:400px){html[data-text='lg'] .hotelrow{flex-wrap:wrap}html[data-text='lg'] .hotelrow #hotelLbl{flex:1 1 100%;-webkit-line-clamp:3}}
+
+/* ── focus mode: the chips sit above the numeral's text box; a short phone scrolls instead of clipping the bottom bar ── */
+.focus-top,.focus-bot{position:relative;z-index:2}
+.focus{overflow-y:auto;overscroll-behavior:contain}
+.focus-n{font-size:clamp(4rem,16.5dvh,var(--t-n4));contain:paint}
+/* short phones (≤ 700px tall): a smaller numeral and dua line so the Undo bar fits without scrolling */
+@media (max-height:700px){.focus-n{font-size:clamp(4rem,14dvh,var(--t-n4))}.focus .focus-dua .ar{font-size:var(--t-ar);line-height:1.75}.focus-tip{margin-top:10px}.focus-hint{margin-top:14px}.focus-dua{padding-top:8px}}
+/* narrow phones: the top chips drop their leading marks so the title keeps its word */
+@media (max-width:374px){.focus-top .chip-btn .mkt,#focusTitle>.mk{display:none}}
+
+/* ── keyboard focus ── */
+.sec-hd:focus-visible{outline-offset:-3px}
+.sec-bd{transition:max-height .4s ease,visibility 0s linear 0s}
+.sec.shut .sec-bd{visibility:hidden;transition:max-height .4s ease,visibility 0s linear .4s}
+.acc-b{visibility:visible;transition:max-height .3s ease,padding .3s ease,visibility 0s linear 0s}
+.acc:not(.open) .acc-b{visibility:hidden;transition:max-height .3s ease,padding .3s ease,visibility 0s linear .3s}
+.go:focus-visible,.hprayer:focus-visible,.dua.tapable:focus-visible,.todayit:focus-visible,.kidsrow:focus-visible,.story-h:focus-visible,.pchip:focus-visible{outline:3px solid var(--brand-2);outline-offset:2px}
+.kidsrow:focus-visible,.story-h:focus-visible{outline-offset:-3px}
+input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--brand-2);outline-offset:2px}
+.srch:focus,.numin:focus,.pnotes:focus{box-shadow:none}
+
+/* ── show-to-a-stranger cards: a Latin camp / maktab name falls to Manrope, the Arabic to Scheherazade ── */
+.drv-arn,.lost-ar,.drv-ar{font-family:'Manrope',var(--fa)}
+.drv-phone .mk{color:var(--show-acc)}
+.sheet-h.rose .mk{color:var(--hs-due)}
+
+/* ── reduced motion: no smooth scrolling either ── */
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
@@ -1635,8 +1872,9 @@ em,i{font-style:normal;font-weight:var(--w-ui)}
   <div class="vh"><h2 data-mk="bag">Prepare with ihsan</h2><p id="quoteLine"></p></div>
   <div class="segw"><div class="seg" data-tab="plan"><button class="on" data-sub="prep" data-mk="bag" onclick="goSub('plan','prep')">Prepare</button><button data-sub="learn" data-mk="book" onclick="goSub('plan','learn')">Learn</button><button data-sub="quiz" data-mk="quiz" onclick="goSub('plan','quiz')">Quiz</button></div></div>
   <div class="sub on" id="sub-plan-prep">
-  <div class="hero"><div class="hero-t"><div class="k">Preparation</div><div class="v" id="planHeroT">Let's get ready</div><div class="s" id="planHeroS">Checklists, essential knowledge & a readiness quiz</div><button class="hcta" data-mk="share" onclick="sharePrep()" aria-label="Share my readiness with my group">Share my readiness</button></div>
-    <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="planRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="planPct">0%</span><small>Ready</small></div></div></div>
+  <div class="hero hero-o" id="planHero"><div class="hero-t"><div class="k" data-mk="bag">Preparation</div><span class="hs-n" id="planHeroN">0</span><div class="s hs-u" id="planHeroS">items ready</div><div class="hs-note" id="planHeroT">Let's get ready</div></div>
+    <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="planRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="planPct">0%</span><small>Ready</small></div></div>
+    <button class="hs-pill" onclick="sharePrep()" aria-label="Share my readiness with my group"><span class="hs-cw"><small class="hs-ce">With your group</small><span class="hs-ct">Share my readiness</span></span><span class="hs-go" data-mk="share"></span></button></div>
   <div class="jumps" id="prepJumps" aria-label="Jump to a section of Prepare"></div>
   <div class="niy" id="niyCard"><div class="niy-c" id="niyCol" role="button" tabindex="0" aria-expanded="false" onclick="niyToggle()"><div class="t"><b id="niyColT">✓ Intention set</b><span id="niyColF"></span></div><button class="chip-btn" tabindex="-1">Re-read / edit ▾</button></div><div class="niy-k">Begin here</div><h3>Before the checklist — the intention</h3><p class="niy-p">Umrah is answered by the heart before it is booked by the hands. Three foundations, then everything else.</p>
     <div class="niy-b"><b>1 · The Intention <i>(Niyyah)</i></b><p>Define your specific spiritual goals for this journey — what you are asking Allah for, what you want to leave behind. "Umrah to Umrah is an expiation for what is between them" (Bukhari 1773) — minor sins; major sins need sincere tawbah. Go purely for Allah, not for the photos.</p></div>
@@ -1715,8 +1953,9 @@ em,i{font-style:normal;font-weight:var(--w-ui)}
   <div class="vh"><h2 data-mk="kaaba">Labbayk Allahumma</h2><p id="umrahVhP">Every step from miqat to halq — with counters that keep count for you.</p></div>
   <div class="segw"><div class="seg" data-tab="umrah"><button class="on" data-sub="count" data-mk="refresh" onclick="goSub('umrah','count')">Counters</button><button data-sub="steps" data-mk="list" onclick="goSub('umrah','steps')">Steps & duas</button></div></div>
   <div class="sub on" id="sub-umrah-count">
-  <div class="hero" id="riteHero"><div class="hero-t"><div class="k">Umrah · live</div><div class="v" id="riteHeroT">Ready to begin</div><div class="s" id="riteHeroS">Ihram – · Tawaf – · Sa’i – · Halq –</div></div>
-    <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="riteRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="ritePct">0%</span><small>Umrah</small></div></div></div>
+  <div class="hero" id="riteHero"><div class="hero-t"><div class="k" data-mk="kaaba">Umrah · live</div><div class="v" id="riteHeroT">Ready to begin</div><div class="s" id="riteHeroS">Ghusl &amp; ihram at the miqat · wudu before tawaf</div></div>
+    <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="riteRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="ritePct">0%</span><small>Umrah</small></div></div>
+    <div class="rh-sg" id="riteSegs" hidden></div></div>
 
   <div class="cnt-hd" id="cntHd"></div>
   <div class="wudu" id="wuduCard" role="switch" tabindex="0" aria-checked="false" aria-label="I am in wudu" onclick="togWudu()"><div class="wudu-t"><b data-mk="drop">Wudu check — tawaf requires wudu</b><span class="wudu-x">"Tawaf around the House is like salah" (Tirmidhi 960). Make wudu before you start; if it breaks mid-tawaf, renew it and continue.</span><span class="wudu-st" id="wuduSt">Not yet — tap to confirm</span></div><span class="sw" id="wuduSw" aria-hidden="true"></span></div>
@@ -1796,8 +2035,8 @@ em,i{font-style:normal;font-weight:var(--w-ui)}
   <div class="sub on" id="sub-daily-today">
   <div class="hero dhero"><div class="hero-t">
     <div class="daynav" id="dayNav"><button id="dayPrev" onclick="changeDay(-1)" aria-label="Previous day">◀</button><div class="dd" id="dayDisp" role="button" tabindex="0" aria-label="Day 1 of 10 — open trip stats" onclick="goSub('daily','stats')">Day 1 <small>of 10</small></div><button id="dayNext" onclick="changeDay(1)" aria-label="Next day">▶</button><button class="dtoday" id="dayToday" hidden onclick="goToday()" aria-label="Jump to today">Today ▸</button></div>
-    <div class="dhero-date" id="dayDate"></div>
-    <div class="v" id="dHeroT">Bismillah</div><div class="s" id="dHeroS">0 of 0 completed</div></div>
+    <div class="dh-l"><span class="hs-n" id="dHeroN">0</span><span class="dh-s"><span class="s" id="dHeroS">of 0 completed</span><span class="v" id="dHeroT">Bismillah</span></span></div>
+    <div class="dhero-date" id="dayDate"></div></div>
     <div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" id="dRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="dPct">0%</span><small>Today</small></div></div></div>
   <div class="dtools" id="dayTools"></div>
   <div class="sec shut ptsec" id="ptSec"><div class="sec-hd ptstrip" role="button" tabindex="0" aria-expanded="false" aria-label="Prayer times — tap to expand" onclick="togSec(this)"><span class="pt-ico" aria-hidden="true" data-mk="dome"></span><div class="pt-next" id="ptNext">Loading times…</div><button class="pt-bell" id="ptBell" onclick="event.stopPropagation();togRem()" aria-pressed="false" aria-label="Prayer reminders" data-mk="bell"></button><span class="sec-chev" aria-hidden="true">▼</span></div>
@@ -1838,6 +2077,7 @@ em,i{font-style:normal;font-weight:var(--w-ui)}
     <button class="btn ghost" id="qbBtn" onclick="startQibla()" aria-pressed="false" data-mk="compass">Start compass</button></div>
   </div>
   </div><div class="sub" id="sub-daily-stats">
+  <div class="hero hero-o" id="stHero"><div class="hero-t"><div class="k" data-mk="chart">This trip</div><span class="hs-n" id="stHeroN">0</span><div class="s hs-u" id="stHeroOf">days with worship logged</div><div class="hs-m"><span class="hs-mi"><small class="hs-ml">Average</small><b class="hs-mv" id="stHeroAvg">0%</b></span><span class="hs-mi"><small class="hs-ml">Best day</small><b class="hs-mv" id="stHeroBest">—</b></span><span class="hs-mi"><small class="hs-ml">Umrahs</small><b class="hs-mv" id="stHeroU">0</b></span></div></div></div>
   <div class="note" id="stEmpty" hidden>Your stats fill in as you tick prayers and deeds in <a href="#" onclick="event.preventDefault();goSub('daily','today')">Today →</a> and count umrahs in the Umrah tab.</div>
   <div class="card card-pad"><h3 data-mk="grid">Trip consistency</h3><div class="heat" id="heatGrid"></div><div class="hleg" id="heatLeg"></div></div>
   <div class="card card-pad"><h3 data-mk="chart">Trip stats</h3>
@@ -1861,9 +2101,9 @@ em,i{font-style:normal;font-weight:var(--w-ui)}
 <!-- ═══════ PLACES ═══════ -->
 <div class="view" id="view-places">
   <div class="vh"><h2 data-mk="pin">Ziyarah with purpose</h2><p>Tap a place for tips, Maps and to mark it visited.</p></div>
-  <div class="hero"><div class="hero-t"><div class="k">Sacred places</div><div class="v">Makkah & Madinah</div><div class="s" id="plHeroS">🕋 Makkah 0 visited · 🕌 Madinah 0 visited</div></div>
+  <div class="hero hero-o" id="plHero"><div class="hero-t"><div class="k" data-mk="pin">Makkah &amp; Madinah</div><span class="hs-n" id="plHeroN">0</span><div class="s hs-u" id="plHeroOf">places visited</div><div class="hs-m" id="plHeroS"><span class="hs-mi"><small class="hs-ml">Makkah </small><b class="hs-mv">0 visited</b></span><span class="hs-mi"><small class="hs-ml">Madinah </small><b class="hs-mv">0 visited</b></span></div></div>
     <div class="hero-side" id="plNear"></div></div>
-  <div class="pills four pl-sticky"><button class="pill on" id="pillAll" onclick="filterCity('all')">All</button><button class="pill" id="pillMakkah" onclick="filterCity('makkah')" data-mk="kaaba">Makkah</button><button class="pill" id="pillMadinah" onclick="filterCity('madinah')" data-mk="dome">Madinah</button><button class="pill unv" id="pillUnvis" aria-pressed="false" onclick="togUnvis()">⬜ Unvisited</button></div>
+  <i class="pl-sent" aria-hidden="true"></i><div class="pills four pl-sticky"><button class="pill on" id="pillAll" onclick="filterCity('all')">All</button><button class="pill" id="pillMakkah" onclick="filterCity('makkah')" data-mk="kaaba">Makkah</button><button class="pill" id="pillMadinah" onclick="filterCity('madinah')" data-mk="dome">Madinah</button><button class="pill unv" id="pillUnvis" aria-pressed="false" onclick="togUnvis()">⬜ Unvisited</button></div>
   <input class="srch" id="plSearch" type="search" placeholder="🔍 Search places — Quba, Uhud, Hira, مسجد…" oninput="renderPlaces()">
   <div class="hotelrow"><span id="hotelLbl">🏨 Save your hotel to see walking times</span><button class="chip-btn" onclick="setHotel()" data-mk="hotel">Set hotel</button><button class="chip-btn" id="nearBtn" onclick="nearMe()" data-mk="antenna">Near me</button></div>
   <div class="note">Ziyarah is a virtuous extra, never a rite. The journey itself is for the two Harams: "Do not set out on a journey except to three mosques: al-Masjid al-Haram, the Mosque of the Messenger ﷺ, and al-Masjid al-Aqsa." — <a href="https://sunnah.com/bukhari:1189" target="_blank" rel="noopener">Bukhari 1189</a>. At Baqi’ and Mu’alla: give salam, make dua for the deceased, don’t ask of them.</div>
@@ -1875,6 +2115,7 @@ em,i{font-style:normal;font-weight:var(--w-ui)}
   <div class="vh"><h2 data-mk="star">More</h2><p>Keep the change alive after Umrah, the essential duas, and your settings &amp; data.</p></div>
   <div class="segw"><div class="seg" data-tab="more"><button class="on" data-sub="guide" data-mk="sprout" onclick="goSub('more','guide')">After</button><button data-sub="duas" data-mk="hands" onclick="goSub('more','duas')">Duas</button><button data-sub="settings" data-mk="gear" onclick="goSub('more','settings')">Settings</button></div></div>
   <div class="sub on" id="sub-more-guide">
+  <div class="hero hero-o" id="postHero" hidden></div>
   <div class="card card-pad" id="postCard"><h3 id="postH3" data-mk="sprout">After Umrah — keep it alive</h3>
     <p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:4px">"The most beloved deeds to Allah are the most consistent, even if small." — Bukhari 6464. Don’t let the Haram version of you fade — hold three habits for 30 days after you return.</p>
     <div class="setrow"><div><b>Post-Umrah mode</b><small>30-day habit keeper + reflections</small></div><button class="sw" id="postSw" role="switch" aria-checked="false" aria-label="Post-Umrah mode" onclick="togPost()"></button></div>
@@ -1983,7 +2224,7 @@ em,i{font-style:normal;font-weight:var(--w-ui)}
 <div class="focus" id="duaFocus" role="dialog" aria-modal="true" aria-label="Dua reader"><div class="focus-top"><span id="dfTitle">Dua</span><button class="chip-btn" onclick="closeDua()">✕ Close</button></div>
   <div class="df-body"><div class="df-ar" id="dfAr" lang="ar"></div><div class="df-tl" id="dfTl"></div><div class="df-tr" id="dfTr"></div><div class="df-src" id="dfSrc"></div><div class="df-hint">screen stays awake · swipe-free reading</div></div>
   <div class="focus-bot" style="gap:10px"><button class="chip-btn" id="dfPrev" onclick="duaNav(-1)" aria-label="Previous dua">◀</button><button class="chip-btn" id="dfSay" data-ar="" onclick="speakBtn(this)" aria-label="Play recitation" data-mk="speaker">Listen</button><button class="chip-btn" id="dfNext" onclick="duaNav(1)" aria-label="Next dua">▶</button></div></div>
-<div class="focus driver" id="qrShow" onclick="this.classList.remove('on')" role="dialog" aria-label="QR code to install the app"><div class="focus-top"><span>▦ Scan to install</span><button class="chip-btn">✕ Close</button></div><div class="focus-tap" style="justify-content:flex-start;padding:6px 24px"><div class="qr-box"><svg viewBox="0 0 29 29" shape-rendering="crispEdges"><path fill="#111" d="M0 0h7v1h-7zM8 0h2v1h-2zM12 0h4v1h-4zM17 0h3v1h-3zM22 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h2v1h-2zM11 1h1v1h-1zM13 1h1v1h-1zM16 1h1v1h-1zM18 1h1v1h-1zM22 1h1v1h-1zM28 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM9 2h3v1h-3zM16 2h1v1h-1zM22 2h1v1h-1zM24 2h3v1h-3zM28 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM8 3h3v1h-3zM12 3h1v1h-1zM14 3h2v1h-2zM17 3h1v1h-1zM20 3h1v1h-1zM22 3h1v1h-1zM24 3h3v1h-3zM28 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM9 4h2v1h-2zM12 4h1v1h-1zM14 4h1v1h-1zM16 4h4v1h-4zM22 4h1v1h-1zM24 4h3v1h-3zM28 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM9 5h1v1h-1zM11 5h3v1h-3zM15 5h5v1h-5zM22 5h1v1h-1zM28 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h7v1h-7zM8 7h3v1h-3zM12 7h1v1h-1zM15 7h3v1h-3zM19 7h2v1h-2zM0 8h1v1h-1zM2 8h2v1h-2zM5 8h3v1h-3zM9 8h1v1h-1zM11 8h3v1h-3zM15 8h6v1h-6zM22 8h1v1h-1zM25 8h1v1h-1zM27 8h2v1h-2zM0 9h1v1h-1zM4 9h1v1h-1zM8 9h8v1h-8zM18 9h7v1h-7zM28 9h1v1h-1zM1 10h3v1h-3zM5 10h2v1h-2zM8 10h1v1h-1zM13 10h1v1h-1zM16 10h3v1h-3zM22 10h1v1h-1zM26 10h2v1h-2zM1 11h2v1h-2zM5 11h1v1h-1zM7 11h1v1h-1zM10 11h1v1h-1zM15 11h1v1h-1zM18 11h3v1h-3zM22 11h1v1h-1zM28 11h1v1h-1zM0 12h4v1h-4zM5 12h4v1h-4zM10 12h1v1h-1zM12 12h1v1h-1zM14 12h1v1h-1zM17 12h1v1h-1zM21 12h1v1h-1zM25 12h2v1h-2zM2 13h2v1h-2zM7 13h1v1h-1zM9 13h3v1h-3zM14 13h2v1h-2zM17 13h3v1h-3zM22 13h1v1h-1zM26 13h3v1h-3zM0 14h2v1h-2zM3 14h1v1h-1zM5 14h6v1h-6zM13 14h1v1h-1zM16 14h2v1h-2zM19 14h1v1h-1zM21 14h1v1h-1zM24 14h1v1h-1zM26 14h3v1h-3zM1 15h2v1h-2zM4 15h1v1h-1zM7 15h2v1h-2zM11 15h1v1h-1zM14 15h2v1h-2zM18 15h3v1h-3zM24 15h1v1h-1zM27 15h1v1h-1zM0 16h1v1h-1zM3 16h1v1h-1zM5 16h2v1h-2zM8 16h3v1h-3zM12 16h1v1h-1zM14 16h1v1h-1zM16 16h1v1h-1zM18 16h1v1h-1zM21 16h1v1h-1zM24 16h2v1h-2zM27 16h1v1h-1zM2 17h1v1h-1zM4 17h1v1h-1zM7 17h1v1h-1zM10 17h2v1h-2zM14 17h2v1h-2zM20 17h2v1h-2zM23 17h1v1h-1zM25 17h3v1h-3zM0 18h1v1h-1zM2 18h2v1h-2zM5 18h3v1h-3zM11 18h5v1h-5zM17 18h2v1h-2zM20 18h2v1h-2zM23 18h2v1h-2zM26 18h1v1h-1zM4 19h1v1h-1zM8 19h2v1h-2zM11 19h4v1h-4zM17 19h2v1h-2zM20 19h3v1h-3zM24 19h1v1h-1zM26 19h1v1h-1zM1 20h1v1h-1zM5 20h2v1h-2zM8 20h4v1h-4zM13 20h2v1h-2zM17 20h2v1h-2zM20 20h7v1h-7zM8 21h1v1h-1zM11 21h2v1h-2zM16 21h1v1h-1zM18 21h1v1h-1zM20 21h1v1h-1zM24 21h5v1h-5zM0 22h7v1h-7zM8 22h1v1h-1zM10 22h1v1h-1zM14 22h1v1h-1zM16 22h5v1h-5zM22 22h1v1h-1zM24 22h2v1h-2zM27 22h1v1h-1zM0 23h1v1h-1zM6 23h1v1h-1zM8 23h1v1h-1zM13 23h2v1h-2zM16 23h1v1h-1zM18 23h1v1h-1zM20 23h1v1h-1zM24 23h2v1h-2zM0 24h1v1h-1zM2 24h3v1h-3zM6 24h1v1h-1zM9 24h2v1h-2zM12 24h1v1h-1zM15 24h1v1h-1zM17 24h1v1h-1zM20 24h5v1h-5zM26 24h2v1h-2zM0 25h1v1h-1zM2 25h3v1h-3zM6 25h1v1h-1zM8 25h2v1h-2zM12 25h2v1h-2zM15 25h2v1h-2zM21 25h1v1h-1zM23 25h3v1h-3zM28 25h1v1h-1zM0 26h1v1h-1zM2 26h3v1h-3zM6 26h1v1h-1zM8 26h1v1h-1zM10 26h1v1h-1zM13 26h1v1h-1zM16 26h1v1h-1zM18 26h2v1h-2zM21 26h1v1h-1zM23 26h1v1h-1zM26 26h1v1h-1zM28 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM9 27h1v1h-1zM12 27h1v1h-1zM14 27h1v1h-1zM16 27h1v1h-1zM18 27h3v1h-3zM23 27h3v1h-3zM27 27h1v1h-1zM0 28h7v1h-7zM8 28h1v1h-1zM10 28h1v1h-1zM12 28h1v1h-1zM14 28h2v1h-2zM19 28h2v1h-2zM25 28h1v1h-1zM27 28h1v1h-1z"/></svg></div><div class="qr-url">umrah-strivers.vercel.app</div><div class="qr-steps"><b>Scan</b> → <b>open</b> → <b>Add to Home Screen</b><br>Free · offline · no account</div><div class="focus-hint">tap anywhere to close</div></div></div>
+<div class="focus driver" id="qrShow" onclick="this.classList.remove('on')" role="dialog" aria-label="QR code to install the app"><div class="focus-top"><span data-mk="grid">Scan to install</span><button class="chip-btn">✕ Close</button></div><div class="focus-tap" style="justify-content:flex-start;padding:6px 24px"><div class="qr-box"><svg viewBox="0 0 29 29" shape-rendering="crispEdges"><path fill="#111" d="M0 0h7v1h-7zM8 0h2v1h-2zM12 0h4v1h-4zM17 0h3v1h-3zM22 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h2v1h-2zM11 1h1v1h-1zM13 1h1v1h-1zM16 1h1v1h-1zM18 1h1v1h-1zM22 1h1v1h-1zM28 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM9 2h3v1h-3zM16 2h1v1h-1zM22 2h1v1h-1zM24 2h3v1h-3zM28 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM8 3h3v1h-3zM12 3h1v1h-1zM14 3h2v1h-2zM17 3h1v1h-1zM20 3h1v1h-1zM22 3h1v1h-1zM24 3h3v1h-3zM28 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM9 4h2v1h-2zM12 4h1v1h-1zM14 4h1v1h-1zM16 4h4v1h-4zM22 4h1v1h-1zM24 4h3v1h-3zM28 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM9 5h1v1h-1zM11 5h3v1h-3zM15 5h5v1h-5zM22 5h1v1h-1zM28 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h7v1h-7zM8 7h3v1h-3zM12 7h1v1h-1zM15 7h3v1h-3zM19 7h2v1h-2zM0 8h1v1h-1zM2 8h2v1h-2zM5 8h3v1h-3zM9 8h1v1h-1zM11 8h3v1h-3zM15 8h6v1h-6zM22 8h1v1h-1zM25 8h1v1h-1zM27 8h2v1h-2zM0 9h1v1h-1zM4 9h1v1h-1zM8 9h8v1h-8zM18 9h7v1h-7zM28 9h1v1h-1zM1 10h3v1h-3zM5 10h2v1h-2zM8 10h1v1h-1zM13 10h1v1h-1zM16 10h3v1h-3zM22 10h1v1h-1zM26 10h2v1h-2zM1 11h2v1h-2zM5 11h1v1h-1zM7 11h1v1h-1zM10 11h1v1h-1zM15 11h1v1h-1zM18 11h3v1h-3zM22 11h1v1h-1zM28 11h1v1h-1zM0 12h4v1h-4zM5 12h4v1h-4zM10 12h1v1h-1zM12 12h1v1h-1zM14 12h1v1h-1zM17 12h1v1h-1zM21 12h1v1h-1zM25 12h2v1h-2zM2 13h2v1h-2zM7 13h1v1h-1zM9 13h3v1h-3zM14 13h2v1h-2zM17 13h3v1h-3zM22 13h1v1h-1zM26 13h3v1h-3zM0 14h2v1h-2zM3 14h1v1h-1zM5 14h6v1h-6zM13 14h1v1h-1zM16 14h2v1h-2zM19 14h1v1h-1zM21 14h1v1h-1zM24 14h1v1h-1zM26 14h3v1h-3zM1 15h2v1h-2zM4 15h1v1h-1zM7 15h2v1h-2zM11 15h1v1h-1zM14 15h2v1h-2zM18 15h3v1h-3zM24 15h1v1h-1zM27 15h1v1h-1zM0 16h1v1h-1zM3 16h1v1h-1zM5 16h2v1h-2zM8 16h3v1h-3zM12 16h1v1h-1zM14 16h1v1h-1zM16 16h1v1h-1zM18 16h1v1h-1zM21 16h1v1h-1zM24 16h2v1h-2zM27 16h1v1h-1zM2 17h1v1h-1zM4 17h1v1h-1zM7 17h1v1h-1zM10 17h2v1h-2zM14 17h2v1h-2zM20 17h2v1h-2zM23 17h1v1h-1zM25 17h3v1h-3zM0 18h1v1h-1zM2 18h2v1h-2zM5 18h3v1h-3zM11 18h5v1h-5zM17 18h2v1h-2zM20 18h2v1h-2zM23 18h2v1h-2zM26 18h1v1h-1zM4 19h1v1h-1zM8 19h2v1h-2zM11 19h4v1h-4zM17 19h2v1h-2zM20 19h3v1h-3zM24 19h1v1h-1zM26 19h1v1h-1zM1 20h1v1h-1zM5 20h2v1h-2zM8 20h4v1h-4zM13 20h2v1h-2zM17 20h2v1h-2zM20 20h7v1h-7zM8 21h1v1h-1zM11 21h2v1h-2zM16 21h1v1h-1zM18 21h1v1h-1zM20 21h1v1h-1zM24 21h5v1h-5zM0 22h7v1h-7zM8 22h1v1h-1zM10 22h1v1h-1zM14 22h1v1h-1zM16 22h5v1h-5zM22 22h1v1h-1zM24 22h2v1h-2zM27 22h1v1h-1zM0 23h1v1h-1zM6 23h1v1h-1zM8 23h1v1h-1zM13 23h2v1h-2zM16 23h1v1h-1zM18 23h1v1h-1zM20 23h1v1h-1zM24 23h2v1h-2zM0 24h1v1h-1zM2 24h3v1h-3zM6 24h1v1h-1zM9 24h2v1h-2zM12 24h1v1h-1zM15 24h1v1h-1zM17 24h1v1h-1zM20 24h5v1h-5zM26 24h2v1h-2zM0 25h1v1h-1zM2 25h3v1h-3zM6 25h1v1h-1zM8 25h2v1h-2zM12 25h2v1h-2zM15 25h2v1h-2zM21 25h1v1h-1zM23 25h3v1h-3zM28 25h1v1h-1zM0 26h1v1h-1zM2 26h3v1h-3zM6 26h1v1h-1zM8 26h1v1h-1zM10 26h1v1h-1zM13 26h1v1h-1zM16 26h1v1h-1zM18 26h2v1h-2zM21 26h1v1h-1zM23 26h1v1h-1zM26 26h1v1h-1zM28 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM9 27h1v1h-1zM12 27h1v1h-1zM14 27h1v1h-1zM16 27h1v1h-1zM18 27h3v1h-3zM23 27h3v1h-3zM27 27h1v1h-1zM0 28h7v1h-7zM8 28h1v1h-1zM10 28h1v1h-1zM12 28h1v1h-1zM14 28h2v1h-2zM19 28h2v1h-2zM25 28h1v1h-1zM27 28h1v1h-1z"/></svg></div><div class="qr-url">umrah-strivers.vercel.app</div><div class="qr-steps"><b>Scan</b>, <b>open</b>, then <b>Add to Home Screen</b><br>Free · offline · no account</div><div class="focus-hint">tap anywhere to close</div></div></div>
 <div class="toasts" id="toastC"></div>
 
 <script src="data.js"></script>
