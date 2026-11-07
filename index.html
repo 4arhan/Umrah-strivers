@@ -62,7 +62,7 @@
   --hs-ink:#F5F1FF;--hs-ink-2:#DDD5F5;--hs-ink-3:#B4A7D8;--hs-acc:#C4B5FD;--hs-due:#FDA4AF;
   --hs-ring-a:#EDE9FE;--hs-ring-b:#A78BFA;--hs-ring-glow:rgba(167,139,250,.55);--hs-track:rgba(196,181,253,.15);--hs-hair:rgba(237,233,254,.12);
   --hs-glass:rgba(237,233,254,.08);--hs-glass-solid:#261C3A;--hs-glass-edge:rgba(237,233,254,.14);--hs-glass-hi:rgba(255,255,255,.12);--hs-go-bg:#C4B5FD;--hs-go-ink:#1A0D30;
-  --hs-edge:rgba(196,181,253,.18);--hs-hi:rgba(237,233,254,.16);
+  --hs-edge:rgba(196,181,253,.18);--hs-hi:rgba(237,233,254,.16);--hs-focus:#5B21B6;
   --hs-sh:0 1px 2px rgba(15,8,25,.20),0 24px 44px -20px rgba(31,16,55,.62);
   --sat:env(safe-area-inset-top);--sab:env(safe-area-inset-bottom);
   --fd:'Fraunces',Georgia,'Times New Roman',serif;--fb:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
@@ -129,7 +129,7 @@
   --hs-ink:#F5F1FF;--hs-ink-2:#DDD5F5;--hs-ink-3:#B4A7D8;--hs-acc:#C4B5FD;--hs-due:#FDA4AF;
   --hs-ring-a:#EDE9FE;--hs-ring-b:#A78BFA;--hs-ring-glow:rgba(167,139,250,.55);--hs-track:rgba(196,181,253,.15);--hs-hair:rgba(237,233,254,.12);
   --hs-glass:rgba(237,233,254,.08);--hs-glass-solid:#261C3A;--hs-glass-edge:rgba(237,233,254,.14);--hs-glass-hi:rgba(255,255,255,.12);--hs-go-bg:#C4B5FD;--hs-go-ink:#1A0D30;
-  --hs-edge:rgba(196,181,253,.26);--hs-hi:rgba(237,233,254,.18);
+  --hs-edge:rgba(196,181,253,.26);--hs-hi:rgba(237,233,254,.18);--hs-focus:#C4B5FD;
   --hs-sh:0 0 0 1px rgba(139,92,246,.08),0 26px 60px -22px rgba(124,58,237,.50);
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
@@ -153,7 +153,7 @@
   --hs-ink:#F5F1FF;--hs-ink-2:#DDD5F5;--hs-ink-3:#B4A7D8;--hs-acc:#C4B5FD;--hs-due:#FDA4AF;
   --hs-ring-a:#EDE9FE;--hs-ring-b:#A78BFA;--hs-ring-glow:rgba(167,139,250,.55);--hs-track:rgba(196,181,253,.15);--hs-hair:rgba(237,233,254,.12);
   --hs-glass:rgba(237,233,254,.08);--hs-glass-solid:#261C3A;--hs-glass-edge:rgba(237,233,254,.14);--hs-glass-hi:rgba(255,255,255,.12);--hs-go-bg:#C4B5FD;--hs-go-ink:#1A0D30;
-  --hs-edge:rgba(196,181,253,.26);--hs-hi:rgba(237,233,254,.18);
+  --hs-edge:rgba(196,181,253,.26);--hs-hi:rgba(237,233,254,.18);--hs-focus:#C4B5FD;
   --hs-sh:0 0 0 1px rgba(139,92,246,.08),0 26px 60px -22px rgba(124,58,237,.50);
 }}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -1454,13 +1454,15 @@ html[data-text='lg'] .mataf text{font-size:15.5px}html[data-text='lg'] .mataf .m
 .hstatus.hs-o::before{left:12%;right:12%;top:0;height:1px;z-index:1;opacity:.7;background:linear-gradient(90deg,transparent,var(--hs-ring-b),transparent)}
 .hstatus.hs-o::after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.6;
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .045 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E")}
-.hstatus.hs-o:focus-visible{outline:3px solid var(--hs-acc);outline-offset:3px}
+.hstatus.hs-o:focus-visible{outline:3px solid var(--hs-focus);outline-offset:3px}
+.hs-o .hs-t .hcta.hs-alt:focus-visible{outline:2px solid var(--hs-acc);outline-offset:2px}
 /* reset what the old status rules (.hs-t span / small / b, Fraunces title) give every child; class rules below re-style */
 .hs-o .hs-t span,.hs-o .hs-t small,.hs-o .hs-t b,.hs-o .hs-t i{display:inline;margin:0;padding:0;font:inherit;color:inherit;letter-spacing:inherit;text-transform:none;font-variation-settings:normal;text-wrap:inherit}
 .hs-o .hs-t{display:block;flex:none;min-width:0;padding:0}
 .hs-o .hs-t .mk{color:var(--hs-acc)}
 .hs-o .hs-t .hs-g{display:block;font-size:var(--t-3);font-weight:600;line-height:1.35;color:var(--hs-ink)}
 .hs-o .hs-t .hs-d{display:block;margin-top:2px;font-size:var(--t-2);font-weight:500;line-height:1.4;color:var(--hs-ink-3)}
+.hs-o .hs-t .hs-hj{white-space:nowrap}
 .hs-o .hs-t .hs-l{display:block;position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 .hs-o .hs-t .hs-x{display:none}
 /* hero: kicker, one light numeral (or a title), the unit line — beside the ring */

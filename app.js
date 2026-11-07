@@ -1,6 +1,6 @@
 /* Miqah — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='6.2.0';
+var APP_VERSION='6.2.1';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* ════════════════════════ MARKS ════════════════════════ */
 /* Kiswah marks: one small inline-SVG set (24x24, 1.5px stroke, currentColor) drawn in the gold-line style of the Kaaba mark.
@@ -1553,21 +1553,21 @@ function renderHome(){
   var installHTML=deferPrompt?'<button class="chip-btn" onclick="installApp()" aria-label="Install the app on your phone">📲 Install</button>':(/iPhone|iPad/.test(navigator.userAgent)&&!window.navigator.standalone?'<small class="hb-ios">📲 Share → Add to Home Screen</small>':'');
   /* 6.2 status card (dark aubergine · Manrope): kicker → hero numeral beside the ring → hairline metrics → the rites bar → one note → a glass pill.
      Every value is one this function already computes (depDays, planTotals, quiz levels, Hajj dates, today's Hajj steps, the rite ticks, trip day, deeds, habit-days). */
-  var hp=hsPhase(phase),sK='',sS=[],sR='ready',sNote='',sBar='';
+  var hp=hsPhase(phase),sK='',sS=[],sR='Ready',sNote='',sBar='';
   function M(l,v,of){sS.push([l,String(v),of===undefined?'':'/'+of]);}
-  if(hsK==='hday'){sK='⛺ Hajj '+hy;sR='today';if(act)M(act==='tawaf'?'Tawaf':'Sa’i',ST[act],7);M('Steps today',hdone,hsteps.length);var ed9=expectedDay();if(ed9)M('Trip day',Math.min(ed9,ST.tripLen),ST.tripLen);}
+  if(hsK==='hday'){sK='⛺ Hajj '+hy;sR='Today';if(act)M(act==='tawaf'?'Tawaf':'Sa’i',ST[act],7);M('Steps today',hdone,hsteps.length);var ed9=expectedDay();if(ed9)M('Trip day',Math.min(ed9,ST.tripLen),ST.tripLen);}
   else if(hsK==='after'){sK=ST.post?'🌱 Back home':'🧭 After your journey';
     if(phase.indexOf('not yet recorded')>-1){sK='⛺ Your Hajj';sR='Part 2';var HT1=hajjTotals();if(HT1.tot)M('Part 2 steps',HT1.done,HT1.tot);sNote=lbl;}
-    else if(ST.post){sR='habits';POST_HABITS.forEach(function(h,i){var o=pd[i]||{},n=Object.keys(o).filter(function(k){return o[k];}).length,l=stripEmoji(h).replace(/^(Five|Daily) /,'');M(l.charAt(0).toUpperCase()+l.slice(1),n,30);});sNote='Alhamdulillah — keep the Haram version of you';}
-    else{sR='complete';sNote=lbl;}}
-  else if(hsK==='plan'){sK=HJ?'⛺ Hajj '+hy:d===null?'🧭 Planning your Umrah':'✈️ Your Umrah';sR='prepared';M('Prep',done,tot);M('Quiz levels',qzPassedCount(),qzVisible().length);if(HJ&&HD[9])M('Arafah',fmtDate(HD[9]));}
-  else if(hsK==='dep'){sK='🛫 Departure day';sR='prepared';var P2=planTotals();M('Prep',P2.done,P2.tot);sNote='Ihram at the miqat, then tawaf, sa’i and halq — every step and dua is in the guide';}
-  else{var stp=/^Step (\d) of 4 · (.*)$/.exec(lbl||'');sK=HJ?(hp.k?leadEmoji(phase)+' '+hp.k:'⛺ Hajj '+hy):'🕋 Umrah';sR=stp?'Umrah':'today';
+    else if(ST.post){sR='Habits';POST_HABITS.forEach(function(h,i){var o=pd[i]||{},n=Object.keys(o).filter(function(k){return o[k];}).length,l=stripEmoji(h).replace(/^(Five|Daily) /,'');M(l.charAt(0).toUpperCase()+l.slice(1),n,30);});sNote='Alhamdulillah — keep the Haram version of you';}
+    else{sR='Complete';sNote=lbl;}}
+  else if(hsK==='plan'){sK=HJ?'⛺ Hajj '+hy:d===null?'🧭 Planning your Umrah':'✈️ Your Umrah';sR='Prepared';M('Prep',done,tot);M('Quiz levels',qzPassedCount(),qzVisible().length);if(HJ&&HD[9])M('Arafah',fmtDate(HD[9]));}
+  else if(hsK==='dep'){sK='🛫 Departure day';sR='Prepared';var P2=planTotals();M('Prep',P2.done,P2.tot);sNote='Ihram at the miqat, then tawaf, sa’i and halq — every step and dua is in the guide';}
+  else{var stp=/^Step (\d) of 4 · (.*)$/.exec(lbl||'');sK=HJ?(hp.k?leadEmoji(phase)+' '+hp.k:'⛺ Hajj '+hy):'🕋 Umrah';sR=stp?'Rites':'Today';
     if(!hp.num)M('Trip day',Math.min(ed,ST.tripLen),ST.tripLen);
-    if(act)M(act==='tawaf'?'Tawaf':'Sa’i',ST[act],7);
+    if(act&&!stp)M(act==='tawaf'?'Tawaf':'Sa’i',ST[act],7);
     if(HJ&&hd==='pre'&&(tuT||qf)&&HD[8])M('Mina',fmtDate(HD[8]));
     M('Today’s deeds',dp+'%');
-    if(sS.length<3&&!(HJ&&hd==='post'))M('Umrahs',tu);
+    if(sS.length<3&&tu&&!(HJ&&hd==='post'))M('Umrahs',tu);
     if(stp){sNote=stp[2].replace(/ → /g,' to ');
       /* the four rites from the same chain that wrote "Step n of 4": done ones full, the current one filled by its own count */
       var cur=+stp[1]-1,RL=['Ihram','Tawaf','Sa’i','Halq'],sb='',sl='';
@@ -1576,14 +1576,19 @@ function renderHome(){
       sBar='<div class="hs-sg">'+sb+sl+'</div>';}
     else if(lbl.indexOf('% of today’s deeds')<0)sNote=lbl;}
   /* the planner's when-word becomes the pill's eyebrow (Overdue gets a rose dot as a non-colour cue); every other CTA says Today or Next step */
-  var sCe=/^(Overdue|This week|Next): (.+)$/.exec(cta[0]),sEb=sCe?sCe[1]:(/today/i.test(cta[0])||(hsK==='hday'&&!act))?'Today':'Next step',sLb=sCe?sCe[2]:cta[0];
-  var sMet=sS.length?'<div class="hs-m">'+sS.slice(0,3).map(function(m){return '<div class="hs-mi"><small class="hs-ml">'+esc(m[0])+'</small><span class="hs-mv">'+esc(m[1])+(m[2]?'<i>'+m[2]+'</i>':'')+'</span></div>';}).join('')+'</div>':'';
-  var statusHTML='<div class="hstatus hs-o" role="button" tabindex="0" aria-label="'+esc(cta[0])+'" onclick="'+ctaGo+'"><div class="hs-t"><small class="hs-g">As-salamu alaykum'+esc(name)+'</small><small class="hs-d">'+greg+' · '+hij+'</small><span class="hs-l">'+lbl+'</span>'
-    +'<div class="hs-hero"><div class="hs-main"><small class="hs-k">'+markify(sK)+'</small><b class="hs-b">'+hp.h+'</b></div>'
-    +'<div class="hs-r"><div class="ring-wrap"><svg viewBox="0 0 92 92" aria-hidden="true" focusable="false"><defs><linearGradient id="hsGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--hs-ring-a)"/><stop offset="1" style="stop-color:var(--hs-ring-b)"/></linearGradient></defs><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="hs-nub" cx="84" cy="46" r="3"/><circle class="ring-fg" id="hRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="hPct">'+pct+'%</span><small>'+esc(sR)+'</small></div></div></div></div>'
-    +sMet+sBar+(sNote?'<span class="hs-note">'+esc(sNote)+'</span>':'')
+  var sCe=/^(Overdue|This week|Next): (.+)$/.exec(cta[0]),sLb=sCe?sCe[2]:cta[0],sEb=sCe?sCe[1]:(hsK==='hday'&&!act&&!/today/i.test(sLb))?'Today':'Next step';
+  /* a long "head — tail" step keeps the head in the pill and the tail as the note (the aria-label still reads the whole step) */
+  var sDash=sLb.indexOf(' — ');if(sDash>0&&!sNote){sNote=sLb.slice(sDash+3);sLb=sLb.slice(0,sDash);}
+  /* the Hijri month spelled out: a sans "Jumada I" reads as "Jumada l" */
+  var hijC=String(hij).replace(/\b(Rabi\S?|Jumada) (II|I)\b/,function(a,m,n){return /^J/.test(m)?(n==='I'?'Jumada al-Ula':'Jumada al-Akhirah'):(n==='I'?'Rabi al-Awwal':'Rabi al-Thani');});
+  var sDesc='hsHero'+(sS.length?' hsMet':'')+(sNote?' hsNote':'');
+  var sMet=sS.length?'<div class="hs-m" id="hsMet">'+sS.slice(0,3).map(function(m){return '<div class="hs-mi"><small class="hs-ml">'+esc(m[0])+'</small><span class="hs-mv">'+esc(m[1])+(m[2]?'<i>'+m[2]+'</i>':'')+'</span></div>';}).join('')+'</div>':'';
+  var statusHTML='<div class="hstatus hs-o" role="button" tabindex="0" aria-label="'+esc(cta[0])+'" aria-describedby="'+sDesc+'" onclick="'+ctaGo+'"><div class="hs-t"><small class="hs-g">As-salamu alaykum'+esc(name)+'</small><small class="hs-d">'+greg+' · <span class="hs-hj">'+hijC+'</span></small><span class="hs-l">'+lbl+'</span>'
+    +'<div class="hs-hero" id="hsHero"><div class="hs-main"><small class="hs-k">'+markify(sK)+'</small><b class="hs-b">'+hp.h+'</b></div>'
+    +'<div class="hs-r"><div class="ring-wrap"><svg viewBox="0 0 92 92" aria-hidden="true" focusable="false"><defs><linearGradient id="hsGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--hs-ring-a)"/><stop offset="1" style="stop-color:var(--hs-ring-b)"/></linearGradient></defs><circle class="ring-bg" cx="46" cy="46" r="38"/>'+(pct>0?'<circle class="hs-nub" cx="84" cy="46" r="3"/>':'')+'<circle class="ring-fg" id="hRing" cx="46" cy="46" r="38"/></svg><div class="ring-num"><span id="hPct">'+pct+'%</span><small>'+esc(sR)+'</small></div></div></div></div>'
+    +sMet+sBar+(sNote?'<span class="hs-note" id="hsNote">'+esc(sNote)+'</span>':'')
     +'<span class="hcta"><span class="hs-cw"><small class="hs-ce'+(sEb==='Overdue'?' hs-due':'')+'">'+(sEb==='Overdue'?'<i class="hs-dot" aria-hidden="true"></i>':'')+sEb+'<span class="hs-x">: </span></small><span class="hs-ct">'+esc(sLb)+'</span></span><i class="hs-go">'+mk('arrow')+'</i></span>'
-    +(ST.post&&stageNow===4?'<span class="hcta hs-alt" onclick="event.stopPropagation();goTab(\'more\',\'guide\',\'nextCard\')">'+mk('compass','mkt')+'<span class="hs-ct">Plan your next journey</span></span>':'')+'</div></div>';
+    +(ST.post&&stageNow===4?'<span class="hcta hs-alt" role="button" tabindex="0" aria-label="Plan your next journey" onclick="event.stopPropagation();goTab(\'more\',\'guide\',\'nextCard\')">'+mk('compass','mkt')+'<span class="hs-ct">Plan your next journey</span></span>':'')+'</div></div>';
   var prayerHTML='<div class="card card-pad hprayer" role="button" tabindex="0" aria-label="Prayer times" onclick="goTab(\'daily\',\'today\')"><div class="hp-i">'+mk('dome')+'</div><div class="hp-t"><small>'+(inHaram?'Next prayer':'Next prayer in '+esc(ST.city||'Makkah'))+'</small><div id="hNext">Loading…</div></div><span class="hp-go">›</span></div>';
   var fcHTML=fc0?'<div class="card card-pad hfc" role="button" tabindex="0" aria-label="Study today’s knowledge card" onclick="startFC();goTab(\'plan\',\'learn\',\'fcCard\')"><small>'+mk('cards','mkt')+'Today’s knowledge card · '+due.length+(fcStarted()?' due':' ready')+'</small><b>'+markify(fc0.f)+'</b><span>Tap to study →</span></div>':'';
   var postHTML='';
