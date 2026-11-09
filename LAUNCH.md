@@ -65,7 +65,7 @@ One payment of **$25**. It never renews.
 
 6. **Content rating.** Complete the IARC questionnaire. It is free and instant. Expect a rating suitable for everyone.
 
-7. **Closed testing, the long pole.** New personal developer accounts must run a closed test with **at least 12 testers opted in for 14 continuous days**, and Google now checks that they actually opened the app. Recruit twelve people from family or the masjid, send them the opt-in link, and ask them to keep it installed. Start this clock as early as you can.
+7. **Closed testing, the long pole.** New personal developer accounts must run a closed test with **at least 12 testers opted in for 14 continuous days**, and Google may require more testing if tester engagement was insufficient. Recruit twelve people from family or the masjid, send them the opt-in link, and ask them to keep it installed. Start this clock as early as you can.
 
 8. **Apply for production access**, then submit. Review usually takes a few days for a new account.
 

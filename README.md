@@ -16,7 +16,7 @@ An offline-first web app (`index.html` + `data.js` + `app.js`, zero build step).
 - **Preparation checklists** — documents & bookings (Nusuk visa, Rawdah permit), packing (ihram, unscented toiletries…), health (Meningitis ACWY certificate, walking training), and knowledge & spiritual prep
 - **Knowledge Hub** — six study sections: **History & significance** (the Kaaba, Hajar & Zamzam, the Black Stone, Hira, the Year of the Elephant, the Kaaba's rebuilds, the talbiyah's meaning, the qibla change, the Hijrah & conquest), **Virtues of Umrah & the Haram** (sin expiation, poverty removal, guests of Allah, the Prophet's ﷺ own four Umrahs, 100,000× prayers, Zamzam), a dedicated **Madinah section** (1,000× prayers, the Rawdah, greeting the Prophet ﷺ, the sanctuary, Quba, Uhud, Ajwa), a **fiqh Q&A** (badal Umrah, wudu breaking mid-tawaf, menstruation, wheelchair tawaf, traveller's prayer…), and the practical **Know Before You Go** topics (miqats, ihram rules, how to wear the ihram, Nusuk, transport, common mistakes) and a **For sisters** section
 - **Knowledge circuit quiz** — one track per journey (the app counts the levels and questions from `QUIZ_ORDER` and the journey gating: today 7 Umrah levels, or 10 Hajj levels in the order of the five days with the Tawaf, History, Virtues and Madinah levels shared), true/false & multiple-choice questions with referenced explanations; score 80% to unlock the next level and complete the circuit before you fly
-- **Every hadith citation verified** against its collection (mostly Bukhari, Muslim, Tirmidhi, Ibn Majah, Nasai and Abu Dawud, plus a few from other collections) — paraphrases kept faithful, weak narrations avoided or marked
+- **Hadith citations checked** against their collections (mostly Bukhari, Muslim, Tirmidhi, Ibn Majah, Nasai and Abu Dawud, plus a few from other collections) — paraphrases kept faithful, weak narrations avoided or marked
 - **Daily knowledge flashcards** — spaced repetition (1/3/7-day boxes) over the whole knowledge hub, paced for the run-up to departure
 - **Donation & scam awareness** — 10 guides to the common rip-offs: fake packages & visas, badal-Umrah traps, Nusuk phishing, "VIP access" touts, street begging gangs, QR-code "sadaqah", prize scams — with the official alternatives (umrah.nusuk.sa, Ehsan) and how to report (911 / care line 1966)
 - **Kids corner** — an 8-question big-button mini quiz with stars and read-aloud (on a Hajj journey at least five of the eight are about the Hajj), plus story-time tales for ages 6–10 (two more for Hajj), so children prepare too
@@ -38,7 +38,7 @@ An offline-first web app (`index.html` + `data.js` + `app.js`, zero build step).
 - Every site has its historical significance (with verified Quran/hadith references where applicable), an etiquette/practical tip, its **Arabic name** and an offline **🚕 Show driver** card, a **one-tap Google Maps** button, and a one-tap "visited" tracker that remembers the trip day; search box across all sites (English or Arabic)
 - **Access tags** on the collapsed card — men-only cemeteries, after-Fajr/Asr hours, Nusuk permits, climbs — so nobody is turned away at a gate; a ⬜ Unvisited pill, folded Hajj/museum/day-trip groups and a hotel pin per city (GPS or a landmark, set before you fly)
 - **Route planner** — nearest-first from your hotel or live position, per-stop walking time, Hajj sites as one taxi line, climbs left out unless you ask, your own ＋ Route shortlist, Visited ticks that keep the plan, Share route
-- **Madinah Hop-On Hop-Off card** — all 12 City Sightseeing stops (Red history loop, Green Haram loop) with route-coloured chips, a booking link, and stop badges on the matching places
+- **Madinah Hop-On Hop-Off card** — the City Sightseeing stops as city-sightseeing.com lists them (Red history loop, Green Haram loop) with route-coloured chips, a booking link, and stop badges on the matching places
 - New Makkah sites include Hijr Isma'il & Maqam Ibrahim, Zamzam, the Mas'a, the Prophet's ﷺ birthplace, Jabal Abu Qubays, Masjid ar-Rayah, Ji'ranah, Hudaybiyyah, Namirah, al-Mash'ar, al-Khayf, al-Bay'ah, the Jamarat, the Hira Cultural District, the Kiswah factory, Makkah Museum, Ta'if and historic Jeddah; new Madinah sites include Bab as-Salam, Al Manakha, the Quran & Seerah museums, Masjid al-Jumu'ah, al-Ijabah, al-Miqat (Abyar Ali), Wadi al-Aqiq, Bir Uthman, Salman's garden, the Hijaz Railway, Quba Avenue and the practical stops
 
 ### 🕌 Live tools
@@ -242,7 +242,7 @@ The service-worker cache is named after `APP_VERSION`. For every release **bump 
 
 ```
 npm install            # playwright-core only
-npm test               # end-to-end smoke suite (~220 checks) in headless Chromium
+npm test               # end-to-end smoke suite (~245 checks) in headless Chromium
 ```
 Set `CHROME=/path/to/chromium` if Playwright cannot find a browser. Content lives in `data.js` (places, quiz, knowledge, duas); logic in `app.js`.
 
