@@ -21,7 +21,7 @@
     "path": "./android.keystore",
     "alias": "umrah"
   },
-  "appVersionName": "6.4.2",
+  "appVersionName": "6.4.3",
   "appVersionCode": 1,
   "shortcuts": [
     {
@@ -52,5 +52,5 @@
   "isMetaQuest": false,
   "fullScopeUrl": "https://umrah-strivers.vercel.app/",
   "minSdkVersion": 23,
-  "appVersion": "6.4.2"
+  "appVersion": "6.4.3"
 }

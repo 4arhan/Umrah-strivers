@@ -1,6 +1,6 @@
 /* Miqah — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='6.4.2';
+var APP_VERSION='6.4.3';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* prefers-reduced-motion: JS motion (confetti, the % count-up, smooth scrolling) honours it like the CSS does */
 var RM=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
@@ -601,7 +601,7 @@ function nextQz(){
   if(passed&&!all)nx=(nxv>-1&&!qzPassed(nxv))?nxv:qzNext();
   if(passed&&all)msg=nxv<0?'Final level passed — the whole circuit is yours!':'Level passed — and that completes the whole circuit!';
   else if(passed)msg='Level passed!'+(nx===nxv&&nx>-1?' '+qzLvName(nx,1)+' is now unlocked.':'');
-  else msg='You got '+qzScore+' — you need '+need+' of '+n+' to pass. Study the section below, then retake.';
+  else msg='you need '+need+' to pass. Study the section below, then retake.';
   if(passed){toast('🎉 '+qzLvName(qzLevel)+' passed!',true);vib([40,60,120]);confetti(all?160:70);}
   if(all&&!planChk['quiz80']){planChk['quiz80']=true;save('us-plan',planChk);updPlan();toast('🏆 Knowledge circuit complete!',true);}
   ST.quizBest=Math.max(ST.quizBest||0,pct);saveST();
@@ -715,7 +715,8 @@ function updRites(){
     var c=riteCounts(ph.steps),sp=document.getElementById('sp-'+ph.id);
     if(sp){var mine=L.filter(function(x){return x.ph===ph;}),lo=mine.length?mine[0].n:0,hi=mine.length?mine[mine.length-1].n:0;
       /* U-10: global numbering — pending 'steps 6–12', in progress '3/7', finished '✓ done' */
-      sp.textContent=c.done>=c.tot&&c.tot?'✓ done':c.done?c.done+'/'+c.tot:(lo===hi?'step '+lo:'steps '+lo+'–'+hi);sp.classList.toggle('ok',c.tot>0&&c.done>=c.tot);}});
+      /* Qiran / Ifrad: Phase 4 has no step here (no cut until the 10th) — the chip points to Part 2, never "step 0" */
+      sp.textContent=c.done>=c.tot&&c.tot?'✓ done':c.done?c.done+'/'+c.tot:!mine.length?(journey()==='hajj'?'in Part 2':''):(lo===hi?'step '+lo:'steps '+lo+'–'+hi);sp.classList.toggle('ok',c.tot>0&&c.done>=c.tot);}});
   var rd=document.getElementById('riteDone');if(rd)rd.classList.toggle('ready',!!(riteChk.cut||riteChk.cutw));
   updHajjRites();renderRami();
   renderRiteNow();if(walkOpen)renderWalk();
@@ -2677,8 +2678,8 @@ function fcAll(f){return FC_DECK.filter(function(c){return f==='due'||f==='mist'
 function fcMastery(f){var o={n:0,l:0,m:0,t:0};fcAll(f).forEach(function(c){var st=fcST[c.k],b=st?st.box||0:0;o.t++;if(b>=3)o.m++;else if(b>=1)o.l++;else o.n++;});return o;}
 function fcBack(c){
   var h;
-  if(c.type!=='quiz')h=c.b;
-  else{var q=c.q,ans=qzAns(q);h='<div class="fc-q">'+q.q+'</div><div class="fc-opts">'+qzOpts(q).map(function(o,i){return '<div class="'+(i===ans?'ok':'')+'">'+(i===ans?'✓ ':'')+o+'</div>';}).join('')+'</div>'+q.e;}
+  if(c.type!=='quiz')h='<div class="fc-e">'+c.b+'</div>';
+  else{var q=c.q,ans=qzAns(q);h='<div class="fc-q">'+q.q+'</div><div class="fc-opts">'+qzOpts(q).map(function(o,i){return '<div class="'+(i===ans?'ok':'')+'">'+(i===ans?'✓ ':'')+o+'</div>';}).join('')+'</div><div class="fc-e">'+q.e+'</div>';}
   /* F7: the source chip, and a way back into the app — the day in the rites guide, or the topic in Learn */
   var go='',st=c.type==='quiz'?(QUIZ_LEVELS[c.lv].study||{}):null;
   if(st&&/^sec-hd/.test(st.id||''))go='<button class="fc-go" onclick="event.stopPropagation();openHajjDay(\''+st.id.slice(4)+'\')">'+mk('tent','mkt')+'Open the day</button>';
@@ -2703,7 +2704,7 @@ function renderFC(){
   var due=fcDue(),started=fcStarted(),lbl=document.getElementById('fcDueLbl');
   if(lbl)lbl.textContent=due.length?(started?due.length+' due today.':due.length+' cards ready.'):'';
   fcHeadUpd();
-  if(fcSes&&fcSes.done){area.innerHTML=fcSummaryHTML();return;}
+  if(fcSes&&fcSes.done){area.innerHTML=fcSummaryHTML();sepFix();return;}
   if(!fcQueue.length){
     var list=fcFiltCards(fcFilt),P=fcPhase(),wc=qzWrongCount(),n=Math.min(started?12:5,list.length),h=fcFiltHTML()+fcMastHTML(fcFilt);
     if(!list.length)h+='<div class="note" style="margin:0">'+(fcFilt==='due'?'✅ Cards caught up — back tomorrow.':fcFilt==='mist'?'No quiz mistakes to drill — mashallah.':'Nothing due in this topic today — pick another, or come back tomorrow.')+'</div>';
@@ -2744,7 +2745,7 @@ function fcGrade(ok){
 }
 /* F8: the end-of-session card — what you did, what moved to Mastered, and the next batch */
 function fcSummaryHTML(){var S=fcSes,m1=fcMastery('due').m,dm=m1-S.m0,rem=fcFiltCards(S.f).length,n=Math.min(12,rem);
-  return '<div class="fc-sum" role="status"><b class="fc-sum-h">Session done</b><p class="fc-sum-n"><span>'+S.n+' reviewed</span><span>'+S.good+' got it</span><span>'+S.again+' again</span></p>'
+  return '<div class="fc-sum" role="status"><b class="fc-sum-h">Session done</b><p class="fc-sum-n"><span class="ty-nw">'+S.n+' reviewed</span> <span class="ty-nw"><span class="ty-dot">· </span>'+S.good+' got it</span> <span class="ty-nw"><span class="ty-dot">· </span>'+S.again+' again</span></p>'
     +'<p class="fc-sum-m">Mastered: '+m1+(dm>0?' <span class="up">(+'+dm+' today)</span>':'')+' of '+fcMastery('due').t+'</p>'
     +(rem?'<button class="btn gold" onclick="fcNext()">🃏 Next '+n+'</button>':'<p class="fc-sum-m">All caught up until tomorrow.</p>')+'<button class="btn ghost" onclick="fcSes=null;renderFC()">Done</button></div>';}
 function fcNext(){fcSes=null;startFC();}
@@ -3268,7 +3269,9 @@ function chromeText(tn){
     if(v.slice(last,last+1)===' '&&!out.length)last++;}
   out+=escT(v.slice(last));
   row.setAttribute('data-ty','1');
-  var tp=document.createElement('template');tp.innerHTML=out.replace(/^\s+/,'');tn.parentNode.replaceChild(tp.content,tn);
+  /* the leading space goes, except after an element that carries text ("<span>8</span> big-button questions" keeps its word gap) */
+  var pv=tn.previousSibling,keep=pv&&pv.nodeType===1&&!/^(svg|BR)$/.test(pv.tagName)&&/\S$/.test(pv.textContent||'');
+  var tp=document.createElement('template');tp.innerHTML=out.replace(/^\s+/,keep?' ':'');tn.parentNode.replaceChild(tp.content,tn);
 }
 /* content copy (notes, answers, stories, quiz text): no colour emoji. An emoji that opens its block becomes its stroke mark;
    any other is dropped with the space before it. Returns the text node that replaces tn (or tn). */
