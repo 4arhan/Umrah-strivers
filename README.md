@@ -35,7 +35,7 @@ An offline-first web app (`index.html` + `data.js` + `app.js`, zero build step).
 
 ### 📍 Places — ziyarah with purpose
 - **51 sites** across Makkah (29) and Madinah (22), grouped — Makkah: The Haram · Ziyarah · The Hajj sites · Museums & culture · Day trips; Madinah: The Prophet's Mosque & around · Historic mosques · Battlefields, wells & history · Hop-on hop-off & practical
-- Every site has its historical significance (with verified Quran/hadith references where applicable), an etiquette/practical tip, its **Arabic name** and an offline **🚕 Show driver** card, a **one-tap Google Maps** button, and a one-tap "visited" tracker that remembers the trip day; search box across all sites (English or Arabic)
+- Every site has its historical significance (with Quran/hadith references checked against the sources where applicable), an etiquette/practical tip, its **Arabic name** and an offline **🚕 Show driver** card, a **one-tap Google Maps** button, and a one-tap "visited" tracker that remembers the trip day; search box across all sites (English or Arabic)
 - **Access tags** on the collapsed card — men-only cemeteries, after-Fajr/Asr hours, Nusuk permits, climbs — so nobody is turned away at a gate; a ⬜ Unvisited pill, folded Hajj/museum/day-trip groups and a hotel pin per city (GPS or a landmark, set before you fly)
 - **Route planner** — nearest-first from your hotel or live position, per-stop walking time, Hajj sites as one taxi line, climbs left out unless you ask, your own ＋ Route shortlist, Visited ticks that keep the plan, Share route
 - **Madinah Hop-On Hop-Off card** — the City Sightseeing stops as city-sightseeing.com lists them (Red history loop, Green Haram loop) with route-coloured chips, a booking link, and stop badges on the matching places
@@ -97,7 +97,7 @@ It's one file — just open `index.html` in a browser. Installable to the home s
 - **Focus mode** for the Tawaf/Sa'i counters — full-screen giant tap zone, screen kept awake (Wake Lock), round-by-round coaching
 - **Umrah timeline & keepsake** — ihram, tawaf, sa'i and halq are time-stamped automatically; every recorded Umrah gets a downloadable keepsake card with durations
 - **Mataf schematic** — where the Black Stone corner, Hijr, Maqam, Multazam, Yamani corner, Zamzam and the Safa exit are
-- **"Why?" explainers** on every rite step — the evidence behind each action (verified references)
+- **"Why?" explainers** on every rite step — the evidence behind each action (references checked against the sources)
 - **Itinerary generator** — a worship-first day plan from your dates, Makkah- or Madinah-first, with adjustable day split
 - **Encrypted document vault** — passport/visa/bookings stored in IndexedDB, AES-256-GCM with a PIN-derived key (PBKDF2); nothing leaves the device
 - **Packing by bag** — filter the packing list by ihram bag / carry-on / suitcase; **prep streak** on the Plan hero
@@ -116,7 +116,7 @@ It's one file — just open `index.html` in a browser. Installable to the home s
 ## v5.1 — Journey engine (Hajj)
 - **One question first**: onboarding opens with "What has Allah invited you to?" — 🕋 Umrah (the existing flow, unchanged) or ⛺ Hajj ("Hajj 1448 — when do you fly?" with the Gregorian dates of 8–13 Dhul Hijjah, Brother/Sister, name; "I'm already in Saudi Arabia" asks the trip day and whether the Umrah of Tamattu' is done; Skip). Closing with ✕ keeps Umrah and offers a one-line "Going for Hajj?" chip on Home
 - **Hajj is a superset of Umrah**: the Rites tab shows *Part 1 · Your Umrah* (the same steps, counters and stamps) and a rulings note; Part 2 (the five days) renders through `renderHajjRites()` when present
-- **Two calendars**: Umrah stays anchored to the departure date; the days of Hajj follow the Hijri calendar (`hajjDates(year)` via Intl `islamic-umalqura`, the `HAJJ_D8` table as fallback, `ST.hajjShift` ±1 for moon sighting). Home shows "Today is 9 Dhul Hijjah, correct? ◀ ✓ ▶" on each day of Hajj — the app never says "you missed it" from the calendar alone
+- **Two calendars**: Umrah stays anchored to the departure date; the days of Hajj follow the Hijri calendar (`hajjDates(year)` from the `HAJJ_D8` table, checked against Umm al-Qura, with Intl `islamic-umalqura` for years outside it, `ST.hajjShift` ±1 for moon sighting). Home shows "Today is 9 Dhul Hijjah, correct? ◀ ✓ ▶" on each day of Hajj — the app never says "you missed it" from the calendar alone
 - **Gating**: rows carrying `j:'hajj'|'umrah'` and `ht:[…]` pass through `forMe()`, so checklists, rites, duas, quiz levels and knowledge topics follow the journey and the Hajj type (Tamattu' / Qiran / Ifrad in Settings)
 - **Links**: `?dep=YYYY-MM-DD&j=hajj` is the zero-question path; the `#g=` group link carries the journey, Hajj type and Mina camp card (camp / maktab / group leader — on the driver, I'm-lost and Help cards)
 - **After a trip**: "Plan your next journey" (Umrah / Hajj) and a "My journeys" archive under More › After; trip length up to 45 days
@@ -196,7 +196,7 @@ The service-worker cache is named after `APP_VERSION`. For every release **bump 
 - **Fail → study → re-drill**: the fail screen lists the questions you missed and offers *Study this level* (jumps to the Learn card that teaches it; Level 3 also opens the rites guide), *Review the N I missed* and Retake; the pass screen starts the next level in one tap (certificate on the final one)
 - **Retakes shuffle** the answer options every time (True/False excepted) and the question order on a passed level
 - **Gating for veterans**: a locked row explains the gate and offers *Unlock all levels*; post-Umrah mode and any Umrah on record open every level automatically; the certificate still requires every level at 80%
-- **Kids corner** moved above the circuit as a one-row card (shuffled 8-question quiz with *🔊 Read it to me*, spoken feedback and a Done button) plus **Story time** — five read-aloud stories for ages 6–10 (Ibrahim & Isma'il build the Kaaba · Hajar and Zamzam · the Year of the Elephant · young Muhammad ﷺ and the Black Stone · why everyone wears white), each with a verified source and a "tell it when…" hint, reachable from *Story for the kids* chips on the ihram, Black Stone and Safa steps and a *Kids quiz* chip on Home
+- **Kids corner** moved above the circuit as a one-row card (shuffled 8-question quiz with *🔊 Read it to me*, spoken feedback and a Done button) plus **Story time** — five read-aloud stories for ages 6–10 (Ibrahim & Isma'il build the Kaaba · Hajar and Zamzam · the Year of the Elephant · young Muhammad ﷺ and the Black Stone · why everyone wears white), each with its source cited and a "tell it when…" hint, reachable from *Story for the kids* chips on the ihram, Black Stone and Safa steps and a *Kids quiz* chip on Home
 
 ## v4.9 — Counters
 - **Live hero**: the Counters screen now answers "where am I in the Umrah right now" — Ready to begin → Next: Tawaf → Tawaf · round N of 7 → Next: Sa'i → Sa'i · lap N → Next: Halq → Taqabbal Allah — with a stamped stage strip (Ihram ✓ 14:02 · Tawaf ✓ 38 min …) and a ring that fills 25% per rite

@@ -1,6 +1,6 @@
 /* Miqah — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='6.4.1';
+var APP_VERSION='6.4.2';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* prefers-reduced-motion: JS motion (confetti, the % count-up, smooth scrolling) honours it like the CSS does */
 var RM=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
@@ -154,7 +154,7 @@ function textSwHTML(id){return '<button class="sw" id="'+id+'" role="switch" ari
 
 /* ════════════════════════ HAJJ CALENDAR (J-03) ════════════════════════ */
 /* Umrah stays anchored to ST.dep (depDays/onTrip/expectedDay untouched). The days of Hajj anchor to the Hijri calendar: Intl 'islamic-umalqura' only goes Gregorian → Hijri,
-   so hajjD8() walks the days around a guess until it finds 8/12/<year>, caches the hit in ST, and falls back to the HAJJ_D8 table. ST.hajjShift (−1|0|+1) absorbs a moon-sighting difference. */
+   so hajjD8() takes the HAJJ_D8 table (checked against Umm al-Qura) when it holds the year — Intl puts 8 Dhul Hijjah 1454 a day late in current Chrome and Node — and otherwise walks the days around a guess until Intl gives 8/12/<year>, falling back to the guess; the result is cached in ST. ST.hajjShift (−1|0|+1) absorbs a moon-sighting difference. */
 function hijriYMD(d){try{var p=new Intl.DateTimeFormat('en-u-ca-islamic-umalqura',{day:'numeric',month:'numeric',year:'numeric',timeZone:'Asia/Riyadh'}).formatToParts(d),o={};p.forEach(function(x){o[x.type]=x.value;});var y=parseInt(o.year),m=parseInt(o.month),dd=parseInt(o.day);return (y&&m&&dd)?{y:y,m:m,d:dd}:null;}catch(e){return null;}}
 function isoOf(dt){return dt.getFullYear()+'-'+('0'+(dt.getMonth()+1)).slice(-2)+'-'+('0'+dt.getDate()).slice(-2);}
 function addDays(iso,n){var d=new Date(iso+'T00:00:00');d.setDate(d.getDate()+n);return isoOf(d);}
@@ -165,7 +165,7 @@ function hajjD8(y){
   if(ST.hajjYear===y&&ST.hajjD8)return ST.hajjD8;
   var T=(typeof HAJJ_D8!=='undefined')?HAJJ_D8:{},guess=T[y]||'';
   if(!guess){var ks=Object.keys(T).map(Number),k=ks[0];ks.forEach(function(x){if(Math.abs(x-y)<Math.abs(k-y))k=x;});guess=k?addDays(T[k],Math.round((y-k)*354.367)):isoOf(new Date());}
-  var found='';
+  var found=T[y]||'';
   for(var i=-40;i<=40&&!found;i++){var iso=addDays(guess,i),h=hijriYMD(new Date(iso+'T09:00:00Z'));if(h&&h.y===y&&h.m===12&&h.d===8)found=iso;}
   if(!found)found=T[y]||guess;
   ST.hajjYear=y;ST.hajjD8=found;saveST();
@@ -2191,8 +2191,8 @@ function renderWater(){
   var c=waterD[dayKey()]||0;l.textContent=c+' cup'+(c===1?'':'s')+' today · aim for 8, 10–12 in summer heat';if(b)b.style.width=Math.min(100,c/8*100)+'%';
 }
 function cupsTotal(){var n=0;Object.keys(waterD).forEach(function(k){n+=waterD[k]||0;});return n;}
-/* D-13/D-17: one shared estimate — 6 km per recorded Umrah, the live counters, and every logged nafl tawaf */
-function kmEst(){var km=ST.umrahs*6+ST.tawaf*0.4+ST.sai*0.45;for(var i=1;i<=ST.tripLen;i++){var d=dailyChk['d'+i];if(d)km+=(d.ntawafN||(d.ntawaf?1:0))*2.8;}return Math.round(km*10)/10;}
+/* D-13/D-17: one shared estimate — 5.6 km per recorded Umrah (7 × 0.4 km tawaf + 7 × 394 m sa’i), the live counters, and every logged nafl tawaf */
+function kmEst(){var km=ST.umrahs*5.6+ST.tawaf*0.4+ST.sai*0.394;for(var i=1;i<=ST.tripLen;i++){var d=dailyChk['d'+i];if(d)km+=(d.ntawafN||(d.ntawaf?1:0))*2.8;}return Math.round(km*10)/10;}
 
 /* ════════════════════════ ITINERARY ════════════════════════ */
 function itinST(){var it=ST.itin=ST.itin||{};if(it.mad===undefined)it.mad=3;if(!it.first)it.first='makkah';if(!it.custom)it.custom={};return it;}
@@ -2795,7 +2795,7 @@ function answerKQ(i){
   if(ok){kqScore++;vib([30,30,30]);}else vib(80);
   document.getElementById('kqo-'+q.a).classList.add('right');
   if(!ok)document.getElementById('kqo-'+i).classList.add('wrong');
-  document.getElementById('kqFb').innerHTML='<div class="qz-x">'+(ok?mk('starf','mkt')+'Yes! ':mk('heart','mkt')+'Almost! ')+q.e+'</div><button class="btn" onclick="nextKQ()">'+(kqI<kqList.length-1?'Next →':'See my stars!')+'</button>';
+  document.getElementById('kqFb').innerHTML='<div class="qz-x">'+(ok?mk('starf','mkt')+'Yes! ':mk('heart','mkt')+'Almost! ')+q.e+(q.src?' '+qzSrc(q):'')+'</div><button class="btn" onclick="nextKQ()">'+(kqI<kqList.length-1?'Next →':'See my stars!')+'</button>';
   if(kqVoice)speakEn((ok?'Yes! ':'Almost! ')+q.e);
 }
 function nextKQ(){

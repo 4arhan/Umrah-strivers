@@ -16,11 +16,12 @@ Everything in this repository is ready. What remains needs your accounts and you
 
 Every push to the production branch auto-deploys to Vercel.
 
-**If you attach a custom domain**, update these four places:
-- `APP_URL` in `app.js`
-- `og:url` and `og:image` in `index.html`, `install.html`, `privacy.html`
-- `host`, `iconUrl`, `maskableIconUrl`, `webManifestUrl`, `fullScopeUrl` in `twa-manifest.json`
-- The share text and QR code in `app.js` (`showQR`, `shareApp`)
+**If you attach a custom domain**, update every place the address is written (search the repository for `vercel.app`: the label under the QR code breaks the address with `<wbr>`, so a search for the full address misses it):
+- `APP_URL` in `app.js`, plus the address drawn on the keepsake, progress-card and certificate images, printed in the print sheet’s subtitle, and shown in the secure-storage and Check-for-updates messages in `app.js`
+- `og:url` and `og:image` in `index.html` and `install.html`, and the install address in the desktop steps of `install.html`
+- `host`, `iconUrl`, `maskableIconUrl`, `webManifestUrl`, `fullScopeUrl` and each shortcut’s `chosenIconUrl` in `twa-manifest.json`
+- The QR code in `index.html` (a fixed SVG in the `qrShow` overlay — generate a new one for the new address), the address printed under it, and the QR check in `test/smoke.js`
+- The links in `README.md` and in this file
 
 ---
 
@@ -56,7 +57,7 @@ One payment of **$25**. It never renews.
    |---|---|
    | App icon, 512×512 | `icons/store-icon-512.png` |
    | Feature graphic, 1024×500 | `icons/feature-graphic.png` |
-   | Phone screenshots, 1080×1920 | ask me for the framed set, or use `icons/shot-*.png` |
+   | Phone screenshots, 1080×1920 | the six framed screenshots `store/store-home.png`, `store-steps.png`, `store-counter.png`, `store-daily.png`, `store-places.png` and `store-learn.png`. Do not upload `icons/shot-*.png`: at 390×844 the long side is more than twice the short side, which Play rejects |
    | Store title | `Miqah: Hajj & Umrah` |
    | Short and full description | The **Miqah Brief**, copy blocks section |
    | Privacy policy URL | `https://umrah-strivers.vercel.app/privacy` |
