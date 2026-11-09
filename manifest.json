@@ -24,7 +24,7 @@
     { "src": "icons/shot-home.png", "sizes": "390x844", "type": "image/png", "form_factor": "narrow", "label": "Your next step on the journey" },
     { "src": "icons/shot-counter.png", "sizes": "390x844", "type": "image/png", "form_factor": "narrow", "label": "Never lose count during tawaf" },
     { "src": "icons/shot-steps.png", "sizes": "390x844", "type": "image/png", "form_factor": "narrow", "label": "Every rite, step by step, with duas" },
-    { "src": "icons/shot-places.png", "sizes": "390x844", "type": "image/png", "form_factor": "narrow", "label": "51 sacred sites with maps" }
+    { "src": "icons/shot-places.png", "sizes": "390x844", "type": "image/png", "form_factor": "narrow", "label": "51 places to visit, with maps" }
   ],
   "shortcuts": [
     { "name": "Tawaf counter", "short_name": "Tawaf", "url": "./?go=count", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
