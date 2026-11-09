@@ -498,6 +498,17 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 .tb-chips::-webkit-scrollbar{display:none}
 .tb-chip{white-space:nowrap;padding:8px 14px;min-height:44px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink2);font-size:var(--t-1);font-weight:var(--w-ui);cursor:pointer;font-family:var(--f-text);transition:all .2s;flex-shrink:0}
 .tb-chip.on{background:var(--cta-bg);border-color:var(--act-bg);color:var(--act-ink)}
+/* 6.6 (G2 #16): the Hajj dhikr chip leads with a "Today" tag; its Arabic and transliteration sit under the chips; the big counter's title is a glass pill that steps through the phrases */
+.tb-chip.hj{display:inline-flex;align-items:center;gap:6px}.tb-chip.hj:not(.on){color:var(--ink);border-color:var(--brand-3)}
+.tb-today{font-size:.78em;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 7px;border-radius:var(--r-pill);background:var(--bg-soft);color:var(--brand-2)}
+.tb-chip.on .tb-today{background:rgba(255,255,255,.16);color:inherit}
+.tb-hj{display:flex;flex-direction:column;align-items:center;gap:4px;margin:0 0 6px;padding:0 6px}
+.tb-hj .ar{font-size:calc(var(--t-ar) * .8);line-height:1.9;color:var(--ink)}.tb-hj .tl{font-size:var(--t-2);color:var(--ink2);font-style:italic;line-height:var(--lh-meta)}
+.tb-hj .lnk{min-height:44px}
+.ft-cycle{display:inline-flex;align-items:center;gap:8px;min-height:44px;max-width:100%;padding:6px 8px 6px 14px;border-radius:var(--r-pill);border:1px solid var(--hs-glass-edge);background:var(--hs-glass);box-shadow:inset 0 1px 0 var(--hs-glass-hi);color:var(--ihram);font-family:var(--f-text);font-size:inherit;font-weight:var(--w-ui);cursor:pointer;text-align:left}
+.ft-cycle span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ft-cycle .ft-nx{display:grid;place-items:center;flex:none;width:30px;height:30px;border-radius:50%;background:var(--hs-go-bg);color:var(--hs-go-ink)}
+.ft-cycle .ft-nx .mk{width:16px;height:16px;margin:0;color:inherit}
 .tb-btn{position:relative;isolation:isolate;width:176px;height:176px;border-radius:50%;margin:14px auto 8px;background:var(--hero-bg);color:var(--ihram);border:1px solid var(--k-edge);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;box-shadow:inset 0 1px 0 var(--hs-hi),inset 0 0 0 10px rgba(196,181,253,.05),var(--hs-sh);user-select:none;transition:transform .1s}
 .tb-btn::before{content:'';position:absolute;inset:-16px;z-index:-1;border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,transparent 70%,var(--hs-glow) 84%,transparent)}
 .tb-btn:active{transform:scale(.94)}
@@ -598,7 +609,9 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 .hday{border:1px solid var(--gold-line);box-shadow:var(--sh);position:relative}.hday-h{display:flex;align-items:center;gap:12px;margin-bottom:10px}.hday-h small{font-size:var(--t-1);font-weight:var(--w-ui);color:var(--gold-ink);display:block}.hday-h b{display:block;font-family:var(--f-display);font-weight:var(--w-display);font-size:var(--t-5);line-height:var(--lh-card)}
 /* (review) the "Today is 9 Dhul Hijjah, correct?" row: three full-width text buttons at ≥ 44 px — the most-used control of the week, in sun, by elderly hands */
 .hshift{display:flex;flex-direction:column;align-items:stretch;gap:10px;font-size:1em;color:var(--ink);margin:6px 0 8px;padding:12px;border-radius:var(--r);border:1px solid var(--line);background:var(--bg-soft)}.hshift>span{font-family:var(--f-text);font-weight:var(--w-ui);font-size:var(--t-5);line-height:var(--lh-card)}.hshift>div{display:flex;gap:6px;width:100%}.hshift .chip-btn{flex:1;min-height:50px;padding:10px 6px;font-size:1em;font-weight:var(--w-ui);line-height:var(--lh-card);border-width:1.5px;white-space:normal}.hshift .chip-btn.on{background:var(--cta-bg);color:var(--cta-ink);border-color:transparent;font-weight:var(--w-ui)}.hshift .chip-btn[disabled]{opacity:.35}.hshift .lnk{align-self:flex-start;padding:8px 0;min-height:44px}
-.note.hajjnote{margin:0 0 10px}#campCard .srch{margin-bottom:8px}
+.note.hajjnote{margin:0 0 10px}#campBlk .srch{margin-bottom:8px}.campblk{margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}.campblk .subt{margin-top:0}
+/* 6.6 (G2 #24): the Hajj type as a Documents row — the segmini sits inside the row */
+.plan-ht{margin-top:8px;display:flex;max-width:100%;width:max-content}.plan-ht button{flex:1 1 auto;min-width:0;padding:6px 10px;white-space:nowrap}
 /* J-08: Part 2 rows — rukn / wajib / sunnah pills, "Missed it?" expander, delegation toggle, the locked Phase 4, the rami counter */
 .req{display:inline-block;font-size:var(--t-1);font-weight:var(--w-ui);padding:3px 10px;border-radius:var(--r-pill);margin-left:6px;vertical-align:middle;line-height:var(--lh-meta);text-decoration:none}
 .req.rukn{background:var(--danger);color:var(--on-danger)}.req.wajib{background:var(--cta-bg);color:var(--cta-ink)}.req.sunnah{background:var(--brand-soft);color:var(--brand-ink)}
@@ -614,6 +627,36 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 .rite-lock{margin:8px 2px 4px;padding:16px;border-radius:var(--r-lg);border:1px solid var(--gold-line);background:var(--gold-soft);text-align:center}
 .rite-lock b{display:block;font-family:var(--f-text);font-size:var(--t-5)}.rite-lock p{font-size:var(--t-2);color:var(--ink2);line-height:var(--lh-meta);margin-top:4px}.rite-lock .lnk.fresh{display:block;margin:10px auto 0;font-size:var(--t-2);color:var(--ink3);text-decoration:underline dotted;font-weight:var(--w-ui)}
 .hlog{margin:10px 0 4px;text-align:left}
+/* 6.6 (G2 #18): the Hajj log grouped by day — hairline day labels, a caught-up step shows its date only */
+.lg-day{font-size:var(--t-1);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--brand-2);padding:14px 0 2px;border-bottom:1px solid var(--line)}
+.hlog .lg-day:first-child{padding-top:2px}
+.lg.est .lg-v{font-weight:var(--w-text)}
+/* 6.6 (G2 #12): "6 from the 8th unticked · Catch up" — a glass pill under the Now strip and under a past day's header */
+/* 6.6 (G2 #53): today's rulings — one compact card of chips; each chip opens the ruling, verbatim */
+.rul{padding:12px 14px 6px}
+.rul-h{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 8px;margin-bottom:8px}.rul-h .mk{width:1.1em;height:1.1em;color:var(--brand-2);align-self:center;margin:0}
+.rul-h b{font-size:var(--t-4);font-weight:700}.rul-h small{font-size:var(--t-2);color:var(--ink2)}
+.rul-l{display:flex;flex-wrap:wrap;gap:6px 8px}
+.rul-c{min-height:44px;padding:6px 12px;margin:0 0 4px;border-radius:var(--r-pill);border:1px solid var(--line);background:var(--bg-soft);color:var(--ink);font-family:var(--f-text);font-size:var(--t-2);font-weight:var(--w-ui);cursor:pointer;text-align:left}
+.rul-l{gap:4px 6px}
+.rul-b p,.sheet .sheet-txt p,.sheet .tbhj-b p,.sheet .rp-list .acc-b p,.sheet .rf-rule .acc-b p{margin:0 0 10px;line-height:var(--lh-body);text-align:left;color:var(--ink)}
+.catch-now{margin:-4px 0 12px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.catch-more{font-size:var(--t-2);color:var(--ink2)}
+.sec-catch{padding:0 12px 10px}
+.catch-pill{display:inline-flex;align-items:center;gap:8px;min-height:44px;max-width:100%;padding:6px 6px 6px 14px;border-radius:var(--r-pill);border:1px solid var(--line);background:var(--card);color:var(--ink);font-family:var(--f-text);font-size:var(--t-3);font-weight:var(--w-ui);cursor:pointer;text-align:left}
+.catch-pill .mk{width:1.1em;height:1.1em;color:var(--brand-2);flex-shrink:0;margin:0}
+.catch-pill span{min-width:0}
+.catch-pill i{font-style:normal;flex-shrink:0;background:var(--cta-bg);color:var(--cta-ink);border-radius:var(--r-pill);padding:8px 14px;font-weight:700;white-space:nowrap}
+.catch-list{margin:6px 0 12px}
+.catch-row{border-top:1px solid var(--line);padding:0}
+.catch-row:last-child{border-bottom:1px solid var(--line)}
+.catch-rl{display:flex;align-items:flex-start;gap:12px;min-height:44px;padding:10px 0;box-sizing:border-box;cursor:pointer}
+.catch-row.rami .catch-rl{cursor:default;flex-direction:column;gap:2px}
+.catch-rl b{font-weight:var(--w-ui);font-size:var(--t-4);line-height:var(--lh-body)}
+.catch-rl small{font-size:var(--t-2);color:var(--ink2)}
+.catch-cb{width:24px;height:24px;margin:2px 0 0;flex-shrink:0;accent-color:var(--brand-2)}
+.catch-row .why{margin:-8px 0 2px 28px}.catch-row .whyb{margin:0 0 10px 36px}
+.catch-row.rami .xchip{margin:0 0 10px}
 .tmode.many{flex-wrap:wrap;justify-content:center;border-radius:24px}.tmode.many button{padding:6px 10px}
 .rami-days{margin:0 auto 10px;width:max-content;max-width:100%}
 .rami-j{display:flex;align-items:center;gap:10px;text-align:left;padding:10px 0;border-top:1px solid var(--line)}
@@ -622,6 +665,35 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 .rring{width:72px;height:72px;border-radius:50%;border:none;background:var(--hero-bg);color:var(--ihram);font-family:var(--f-display);font-size:var(--t-6);font-weight:var(--w-display-lt);cursor:pointer;flex-shrink:0;box-shadow:inset 0 0 0 1px var(--hs-edge),inset 0 1px 0 var(--hs-hi),0 10px 22px -12px rgba(76,29,149,.6);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;transition:transform .12s}
 .rring small{font-size:var(--t-2);color:var(--hs-acc);font-family:var(--f-text);font-weight:var(--w-ui);margin-top:2px}.rring:active{transform:scale(.94)}.rring.ok{background:var(--done);color:var(--on-done);box-shadow:none}.rring.ok small{color:var(--on-done)}
 .rami-j .chip-btn{padding:9px 12px;flex-shrink:0}.rami-j.dis{opacity:.45;pointer-events:none}
+/* 6.6 (G2 #13): stoning for others — a block of 7 per person, one row of dots each, and the "Also stoning for" pill row */
+.rami-blk{display:block;font-size:var(--t-2);color:var(--brand-2);font-weight:var(--w-ui);line-height:var(--lh-meta);margin-top:4px}
+.pebs.named{align-items:center}.pebs.named+.pebs.named{margin-top:4px}
+.peb-l{font-size:var(--t-1);color:var(--ink2);width:4.2em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-right:2px;flex-shrink:0}
+.rring .rr-who{display:block;max-width:60px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+.rami-for{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:12px 0 6px;border-top:1px solid var(--line)}
+.rf-l{font-size:var(--t-2);color:var(--ink2);font-weight:var(--w-ui)}
+.rf-chip{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:6px 14px;border-radius:var(--r-pill);border:1px solid var(--line);background:var(--card);color:var(--ink);font-family:var(--f-text);font-weight:var(--w-ui);font-size:var(--t-3);cursor:pointer;max-width:100%}
+.rf-chip span{color:var(--ink3)}.rf-chip.add{color:var(--brand-2);border-style:dashed}
+.rf-kids{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}.rf-same{margin:8px 0}
+.rf-add{display:flex;gap:8px;margin:10px 0}.rf-add .srch{margin:0;flex:1;min-width:0}
+.rf-rule{margin:6px 0 4px}
+/* 6.6 (G2 #15): the pebble problems lead the rami Problem? sheet; each carries its counter action */
+.rp-act{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 12px;margin:2px 0 10px;border-radius:var(--r-sm);background:var(--bg-soft)}
+.rp-act small{flex:1 1 100%;font-size:var(--t-2);color:var(--ink2)}
+.rp-act .chip-btn{margin:0}
+.rp-set{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.rp-set output{min-width:2ch;text-align:center;font-size:var(--t-6);font-weight:300;font-variant-numeric:tabular-nums lining-nums;color:var(--ink)}
+/* 6.6 (G2 #14): the pause for dua between the jamarat on the big counter */
+.focus.rpause .focus-done{max-width:440px;width:100%;padding:0 16px;box-sizing:border-box}
+.focus.rpause .focus-n{opacity:.45}
+.rami-pause{display:flex;flex-direction:column;align-items:center;gap:10px}
+.rp-mk .mk{width:40px;height:40px;margin:0;color:var(--hs-acc)}
+.rp-h{font-size:var(--t-5);font-weight:700;color:var(--ihram);line-height:var(--lh-title);text-wrap:balance}
+.rp-t{font-size:var(--t-3);color:var(--ihram-2);font-variant-numeric:tabular-nums lining-nums}
+.rami-pause .rp-my{margin:0}
+.rami-pause .rp-go{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:6px 6px 6px 22px;text-align:left;margin-top:6px}
+.rami-pause .rp-go .hs-go{display:grid;place-items:center;flex:none;width:52px;height:52px;border-radius:50%;background:var(--hs-go-ink);color:var(--hs-go-bg)}
+.rami-pause .rp-go .hs-go .mk{width:22px;height:22px;margin:0;color:inherit;stroke-width:2}
 #ramiCard .brg{text-align:left;margin-top:6px}#ramiCard .cnt-dua{margin-top:10px;text-align:left}
 .pt.sk{background:linear-gradient(90deg,var(--bg-soft) 25%,var(--card) 50%,var(--bg-soft) 75%);background-size:200% 100%;animation:shimmer 1.2s infinite;min-height:52px;border-color:transparent}
 @keyframes shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
@@ -867,6 +939,8 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 a.lost-kv .num{color:var(--show-acc);font-weight:var(--w-num);font-size:var(--t-6);white-space:nowrap}
 .lost-kv b{color:var(--show-acc);font-size:var(--t-5)}.lost-kv a{color:var(--show-acc);text-decoration:none;font-weight:var(--w-ui);font-size:var(--t-6)}
 .lost-kv span:first-child{min-width:0}
+/* 6.6 (G2 #9): on a tent day the camp / maktab line is the hero; the "please call" line follows it, smaller */
+.lost-ar.lost-camp{font-weight:700;margin:12px 0 6px}.lost-camp+.lost-ar{font-size:var(--t-6);margin:0 0 12px}
 .lost-body{overflow-y:auto;width:100%;padding:0 22px 20px;-webkit-overflow-scrolling:touch;flex:1}
 .it{position:relative}
 .it.today{background:var(--brand-soft);border-radius:var(--r-sm);padding:9px 8px;margin:0 -8px;border-bottom-color:transparent}
@@ -1028,6 +1102,9 @@ a.lost-kv .num{color:var(--show-acc);font-weight:var(--w-num);font-size:var(--t-
 .focus-top .chip-btn{padding:9px 9px;flex-shrink:0}.focus-top>div{gap:6px!important}
 @media (max-width:400px){html[data-text='lg'] .focus-top .chip-btn .mkt{display:none}}
 /* narrow phones: a row with a segmented control lets the control drop under its label instead of squeezing the label to one word per line */
+/* 6.6: a row with a long note and its buttons stacks at narrow widths and with Large text, like the segmini rows */
+@media (max-width:400px){.setrow.lng{flex-wrap:wrap;row-gap:8px}.setrow.lng>div:first-child{flex:1 1 100%}.setrow.lng>.chip-btn,.setrow.lng>.set-acts{margin-left:auto}}
+html[data-text='lg'] .setrow.lng{flex-wrap:wrap;row-gap:8px}html[data-text='lg'] .setrow.lng>div:first-child{flex:1 1 100%}html[data-text='lg'] .setrow.lng>.chip-btn,html[data-text='lg'] .setrow.lng>.set-acts{margin-left:auto}
 @media (max-width:400px){.setrow:has(>.segmini){flex-wrap:wrap;row-gap:8px}.setrow:has(>.segmini)>div:first-child{flex:1 1 150px}.setrow:has(>.segmini)>.segmini{margin-left:auto}}
 .dua .dua-top{gap:8px;align-items:center;flex-wrap:wrap}
 .dua .dua-top small{flex:1 1 120px;min-width:0;line-height:var(--lh-meta)}
@@ -1133,6 +1210,9 @@ a.lost-kv .num{color:var(--show-acc);font-weight:var(--w-num);font-size:var(--t-
 .heat .hc{cursor:pointer;min-height:44px;min-width:0;transition:transform .15s}
 .heat .hc:active{transform:scale(.92)}
 .hc.exc{outline:1.5px dashed var(--rose);outline-offset:-1px}
+/* 6.6 (G2 #19): a day of Hajj in the heatmap carries a small tent mark */
+.heat .hc{position:relative}.hc-hj{position:absolute;top:3px;right:3px;line-height:0;pointer-events:none}.hc-hj .mk{width:10px;height:10px;margin:0;color:currentColor;opacity:.8}
+.kv span .kv-n{display:block;font-size:var(--t-2);color:var(--ink2);font-weight:var(--w-text)}.kv-n:empty{display:none}
 .hleg{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:10px;font-size:var(--t-2);color:var(--ink3)}
 .hleg .hc{width:14px;height:14px;min-height:0;aspect-ratio:auto;font-size:0;cursor:default;border-radius:4px;display:inline-block}
 .kd{padding:12px 14px}
@@ -1332,6 +1412,9 @@ p,.s,.sub{text-wrap:pretty}
 .hero .daynav .dd small,.daynav .dd small{font-size:inherit;font-weight:var(--w-ui);color:var(--ihram-2)}
 .daynav .dd small{color:var(--ink2)}
 .hero .daynav .dtoday{font-weight:var(--w-ui);font-size:var(--t-2)}
+/* 6.6: a long day label ("11 Dhul Hijjah · day 17 of 21") wraps inside the hero at narrow widths and Large text instead of pushing ▶ off-screen */
+@media (max-width:374px){.hero .daynav .dd{white-space:normal;flex-wrap:wrap;flex:0 1 auto;min-width:0;row-gap:0;line-height:1.25}}
+html[data-text='lg'] .hero .daynav .dd{white-space:normal;flex-wrap:wrap;flex:0 1 auto;min-width:0;row-gap:0;line-height:1.25}
 
 /* tabular figures wherever numbers align */
 .pt .pv,#ptNext,.pt-next b,#hPct,#ritePct,#dPct,#planPct,.sec-ct,.kv b,.hc,#jChip,.nums b,.st .n,#bdgCnt,#bdgTot,.lg-v,.lvl-n,.qz-top,.fc-prog,.hs-r em,.tli-when,.lost-kv .num,.num,.kd-name small,.wk-cnt span,.tb-chip,.qb-n,.qb-deg,.cd-t b,.rami-t small,.lnm,.tr-mid .of,#tbOf,.focus-of,.cd2-r input,.it-d b,#hNext,.tip-a,.tb-tg,#tbToday,.bdg .p,#qzBest,#riteHeroS,.pt .pv,.daynav .dd{font-feature-settings:var(--ff-num);font-variant-numeric:tabular-nums lining-nums}
@@ -2140,6 +2223,10 @@ html[data-text='lg'] #riteHeroT .rh-dot{display:none}html[data-text='lg'] #riteH
     <div class="hstat"><span id="hotelLbl2">📍 Hotel not pinned</span><button class="chip-btn" onclick="setHotel()">📍 Set hotel location</button></div>
     <div class="hcard"><button class="main" onclick="showDriver()">🚕 Show to driver</button><button class="sos" onclick="showLost()">🆘 I’m lost — show this</button></div>
     <p style="font-size:var(--t-2);color:var(--ink3);margin-top:8px" data-mk="bulb">Write the leader’s number on a wristband or a paper in each child’s pocket every morning.</p>
+    <div class="campblk" id="campBlk" hidden><div class="subt" data-mk="tent">Mina camp &amp; group leader</div><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:10px">Every tent looks the same at 2 am. Save these before the 8th — from the 8th to the 13th they lead the driver card, the “I’m lost” card, Help and the Counters header.</p>
+    <input class="srch" id="cN" placeholder="Camp / tent number (e.g. Camp 43, tent 12)" onchange="saveCamp()" aria-label="Camp or tent number"><input class="srch" id="cM" placeholder="Maktab number (if your company gives one)" onchange="saveCamp()" aria-label="Maktab number, if your company gives one">
+    <input class="srch" id="cL" placeholder="Group leader name" onchange="saveCamp()" aria-label="Group leader name"><input class="srch" id="cP" placeholder="Group leader phone" inputmode="tel" onchange="saveCamp()" aria-label="Group leader phone">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px"><button class="chip-btn" onclick="showCampDriver()">🚕 To my camp</button><button class="chip-btn sos" style="color:var(--danger)" onclick="showLost()">🆘 I’m lost</button></div></div>
     <div class="subt" style="margin-top:14px">☎️ Emergency & help in Saudi Arabia</div>
     <div class="kv"><span>Police · ambulance · fire</span><b><a href="tel:911" style="color:inherit;text-decoration:none">911</a></b></div>
     <div class="kv"><span>Health (Ministry of Health line)</span><b><a href="tel:937" style="color:inherit;text-decoration:none">937</a></b></div>
@@ -2239,6 +2326,8 @@ html[data-text='lg'] #riteHeroT .rh-dot{display:none}html[data-text='lg'] #riteH
 
   </div><div class="sub" id="sub-umrah-steps">
   <div class="noww"><div class="now-strip" id="riteNow" aria-live="polite"></div></div>
+  <div class="catch-now" id="riteCatch" hidden></div>
+  <div id="riteRules" hidden></div>
   <div class="rite-tools"><button class="chip-btn" onclick="startWalk()">▶ Walk me through it</button><button class="chip-btn" onclick="printSheet()" data-mk="print">Print / save PDF</button></div>
   <div class="sec shut" id="matafSec"><div class="sec-hd" role="button" tabindex="0" aria-expanded="false" onclick="togSec(this)"><div class="sec-ico" data-mk="map"></div><h2>The mataf — where everything is<small>Tap to open the schematic</small></h2><span class="sec-chev">▼</span></div><div class="sec-bd">
     <svg class="mataf" viewBox="0 0 340 320" role="img" aria-label="Schematic of the Kaaba and mataf">
@@ -2316,7 +2405,7 @@ html[data-text='lg'] #riteHeroT .rh-dot{display:none}html[data-text='lg'] #riteH
     <div class="meter" style="margin:4px 0 4px"><i id="waterBar" style="width:0%"></i></div>
     <p style="font-size:var(--t-2);color:var(--ink3);margin-top:6px">Drink your fill and make dua — "Zamzam water is for whatever it is drunk for" (Ibn Majah 3062). Your trip total is in Stats.</p></div>
   <div class="card card-pad" id="tbCard" style="text-align:center"><h3 data-mk="beads">Tasbih counter</h3>
-    <div class="tb-chips" id="tbChips"></div>
+    <div class="tb-chips" id="tbChips"></div><div class="tb-hj" id="tbHj" hidden></div>
     <div class="tb-targets" id="tbTargets" role="radiogroup" aria-label="Count target"></div>
     <div class="tb-btn" role="button" tabindex="0" aria-label="Count one dhikr" onclick="tbTap()"><div class="n" id="tbN">0</div><div class="t" id="tbOf">of <span id="tbTarget">33</span> · tap</div></div>
     <div class="tb-meta"><span>Today: <b id="tbToday">0</b></span><span id="tbPhraseN" class="tb-ph"></span><button class="chip-btn" onclick="tbUndo()" aria-label="Remove one mis-tap">−1</button><button class="chip-btn" onclick="enterFocus('tasbih')">⛶ Focus</button><button class="chip-btn" onclick="tbReset()">Reset cycle</button></div></div>
@@ -2328,7 +2417,7 @@ html[data-text='lg'] #riteHeroT .rh-dot{display:none}html[data-text='lg'] #riteH
     <button class="btn ghost" id="qbBtn" onclick="startQibla()" aria-pressed="false" data-mk="compass">Start compass</button></div>
   </div>
   </div><div class="sub" id="sub-daily-stats">
-  <div class="hero hero-o" id="stHero"><div class="hero-t"><div class="k" data-mk="chart">This trip</div><span class="hs-n" id="stHeroN">0</span><div class="s hs-u" id="stHeroOf">days with worship logged</div><div class="hs-m"><span class="hs-mi"><small class="hs-ml">Average</small><b class="hs-mv" id="stHeroAvg">0%</b></span><span class="hs-mi"><small class="hs-ml">Best day</small><b class="hs-mv" id="stHeroBest">—</b></span><span class="hs-mi"><small class="hs-ml">Umrahs</small><b class="hs-mv" id="stHeroU">0</b></span></div></div></div>
+  <div class="hero hero-o" id="stHero"><div class="hero-t"><div class="k" data-mk="chart">This trip</div><span class="hs-n" id="stHeroN">0</span><div class="s hs-u" id="stHeroOf">days with worship logged</div><div class="hs-m"><span class="hs-mi"><small class="hs-ml">Average</small><b class="hs-mv" id="stHeroAvg">0%</b></span><span class="hs-mi"><small class="hs-ml">Best day</small><b class="hs-mv" id="stHeroBest">—</b></span><span class="hs-mi"><small class="hs-ml" id="stHeroUL">Umrahs</small><b class="hs-mv" id="stHeroU">0</b></span></div></div></div>
   <div class="note" id="stEmpty" hidden>Your stats fill in as you tick prayers and deeds in <a href="#" onclick="event.preventDefault();goSub('daily','today')">Today →</a> and count umrahs in the Umrah tab.</div>
   <div class="card card-pad"><h3 data-mk="grid">Trip consistency</h3><div class="heat" id="heatGrid"></div><div class="hleg" id="heatLeg"></div></div>
   <div class="card card-pad"><h3 data-mk="chart">Trip stats</h3>
@@ -2338,6 +2427,9 @@ html[data-text='lg'] #riteHeroT .rh-dot{display:none}html[data-text='lg'] #riteH
     <div class="kv"><span>Days at 80% or more</span><b id="stPerf">0</b></div>
     <div class="kv"><span>Fajr streak (current)</span><b id="stFajr">0</b></div>
     <div class="kv"><span>Umrahs completed</span><b id="stUmrahs">0</b></div>
+    <div class="kv" id="stHajjRow" hidden><span>Hajj steps ticked</span><b id="stHajj">0</b></div>
+    <div class="kv" id="stPebRow" hidden><span>Pebbles thrown<small class="kv-n" id="stPebN"></small></span><b id="stPeb">0</b></div>
+    <div class="kv" id="stHdRow" hidden><span>Days of Hajj complete</span><b id="stHd">0</b></div>
     <div class="kv"><span>Nafl tawafs logged</span><b id="stNafl">0</b></div>
     <div class="kv"><span>Dhikr counted</span><b id="stDhikr">0</b></div>
     <div class="kv"><span>Duas asked</span><b id="stDuas">0 of 0</b></div>
@@ -2383,11 +2475,12 @@ html[data-text='lg'] #riteHeroT .rh-dot{display:none}html[data-text='lg'] #riteH
     <div class="setrow"><div><b data-mk="compass">My journey</b><small id="journeyLbl">🕋 Umrah</small></div><button class="chip-btn" onclick="showOnboard()">Change</button></div>
     <div id="hajjSet" hidden>
     <div class="setrow"><div><b data-mk="tent">Hajj type</b><small>Your group leader knows which one your package follows — Tamattu’ is the usual. Tap a type to read what changes.</small></div><div class="segmini" id="hajjTypeSeg"><button data-ht="tamattu" onclick="setHajjType('tamattu')">Tamattu’</button><button data-ht="qiran" onclick="setHajjType('qiran')">Qiran</button><button data-ht="ifrad" onclick="setHajjType('ifrad')">Ifrad</button></div></div>
+    <div class="setrow lng" id="hajjIcsRow"><div><b data-mk="calendar">Add the days of Hajj to my calendar</b><small>Alarms that ring with the screen off: the 8th, Arafah’s Dhuhr and the half hour before sunset, Fajr at Muzdalifah, the stoning after midday and leaving Mina — times computed (±2 min), follow your group. Nothing is uploaded.</small></div><button class="chip-btn" style="white-space:nowrap" onclick="exportHajjICS()" data-mk="calendar">Add Hajj days</button></div>
     <div class="setrow"><div><b data-mk="calendar">Hajj dates look one day off?</b><small id="hajjShiftLbl">Moon sighting can move the days by one</small></div><div class="segmini" id="hajjShiftSeg"><button data-s="-1" onclick="setHajjShift(-1)" aria-label="One day earlier">−1</button><button data-s="0" onclick="setHajjShift(0)">0</button><button data-s="1" onclick="setHajjShift(1)" aria-label="One day later">+1</button></div></div>
     </div>
     <div class="setrow"><div><b>Trip length</b><small>How many days is your trip? (3–45)</small></div><input type="number" class="numin" id="tripLen" min="3" max="45" onchange="setTripLen(this.value)" aria-label="Trip length in days"></div>
     <div class="setrow"><div><b data-mk="bell">Prayer reminders</b><small>Notifies ~20 min before each prayer while the app is open — for alarms with the screen off, add the week to your calendar below</small></div><button class="sw" id="remSw" role="switch" aria-checked="false" aria-label="Prayer reminders" onclick="togRem()"></button></div>
-    <div class="setrow"><div><b data-mk="calendar">Add this week’s prayer times to my calendar</b><small id="icsSub">7 days × 5 prayers for your prayer city, each with a 20-min alert (60 for Jumu’ah) — works offline, nothing is uploaded</small></div><button class="chip-btn" style="white-space:nowrap" onclick="exportICS()" data-mk="calendar">Add week</button></div>
+    <div class="setrow lng"><div><b data-mk="calendar">Add this week’s prayer times to my calendar</b><small id="icsSub">7 days × 5 prayers for your prayer city, each with a 20-min alert (60 for Jumu’ah) — works offline, nothing is uploaded</small></div><div class="set-acts"><button class="chip-btn" style="white-space:nowrap" onclick="exportICS()" data-mk="calendar">Add week</button><button class="chip-btn" style="white-space:nowrap" id="icsTripBtn" onclick="exportICS(true)" data-mk="plane" aria-label="Add the whole trip’s prayer times to my calendar">Whole trip</button></div></div>
     <div class="setrow"><div><b>I am a…</b><small>Shows only the ihram, packing and halq/taqsir steps that apply to you</small></div><div class="segmini" id="profSeg"><button data-p="m" onclick="setProfile('m')">Brother</button><button data-p="w" onclick="setProfile('w')">Sister</button><button class="on" data-p="" onclick="setProfile('')">Both</button></div></div>
     <div class="setrow"><div><b>Travelling with children</b><small>Adds a children’s checklist to Plan › Prepare</small></div><button class="sw" id="kidsSw2" role="switch" aria-checked="false" aria-label="Travelling with children" onclick="togKids()"></button></div>
     <div class="setrow"><div><b>Dua audio</b><small>Arabic voice missing? Install it in your phone’s text-to-speech settings, then test here.</small></div><button class="say" onclick="testVoice(this)" aria-label="Test the Arabic voice" data-mk="speaker"><span>Test</span></button></div>
@@ -2399,10 +2492,8 @@ html[data-text='lg'] #riteHeroT .rh-dot{display:none}html[data-text='lg'] #riteH
     <div class="where">Where things are: Departure date → <a href="#" onclick="event.preventDefault();goTab('plan','prep','cdCard')">Plan › Prepare</a> · Prayer city &amp; reminders → <a href="#" onclick="event.preventDefault();goTab('daily','today')">Daily › Today</a> · Hotel → <a href="#" onclick="event.preventDefault();goTab('plan','prep','hotelCard')">Plan › Prepare</a> / <a href="#" onclick="event.preventDefault();goTab('places')">Places</a></div>
   </div>
 
-  <div class="card card-pad" id="campCard" hidden><h3 data-mk="tent">Mina camp &amp; group leader</h3><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:10px">Every tent looks the same at 2 am. Save these before the 8th — they go on the driver card, the “I’m lost” card and the Help overlay.</p>
-    <input class="srch" id="cN" placeholder="Camp / tent number (e.g. Camp 43, tent 12)" onchange="saveCamp()" aria-label="Camp or tent number"><input class="srch" id="cM" placeholder="Maktab number" onchange="saveCamp()" aria-label="Maktab number">
-    <input class="srch" id="cL" placeholder="Group leader name" onchange="saveCamp()" aria-label="Group leader name"><input class="srch" id="cP" placeholder="Group leader phone" inputmode="tel" onchange="saveCamp()" aria-label="Group leader phone">
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px"><button class="chip-btn" onclick="showCampDriver()">🚕 To my camp</button><button class="chip-btn sos" style="color:var(--danger)" onclick="showLost()">🆘 I’m lost</button></div>
+  <div class="card card-pad" id="campCard" hidden><h3 data-mk="tent">Mina camp &amp; group leader</h3><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:10px" id="campSum">Not saved yet — every tent looks the same at 2 am.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px"><button class="chip-btn" onclick="goCampEdit()" data-mk="pen">Edit in Plan › Prepare</button><button class="chip-btn" onclick="showCampDriver()">🚕 To my camp</button><button class="chip-btn sos" style="color:var(--danger)" onclick="showLost()">🆘 I’m lost</button></div>
   </div>
 
   <div class="card card-pad"><h3 data-mk="disk">Your data</h3>
@@ -2432,7 +2523,7 @@ html[data-text='lg'] #riteHeroT .rh-dot{display:none}html[data-text='lg'] #riteH
   </div>
 </div>
 
-<div class="foot"><div class="d">May Allah invite you to His House and accept your Umrah. <i class="kmark" aria-hidden="true"></i></div>For corrections, suggestions &amp; feedback<br>reach out to <a href="mailto:m.farhan.bava@gmail.com">Farhan</a><br><span class="foot-love" data-mk="heart">Built with love for the Ummah</span></div>
+<div class="foot"><div class="d">May Allah invite you to His House and accept your <span id="footJ">Umrah</span>. <i class="kmark" aria-hidden="true"></i></div>For corrections, suggestions &amp; feedback<br>reach out to <a href="mailto:m.farhan.bava@gmail.com">Farhan</a><br><span class="foot-love" data-mk="heart">Built with love for the Ummah</span></div>
 </div>
 
 <nav class="nav">

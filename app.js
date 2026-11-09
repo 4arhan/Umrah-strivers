@@ -1,6 +1,6 @@
 /* Miqah — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='6.5.0';
+var APP_VERSION='6.6.0';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* prefers-reduced-motion: JS motion (confetti, the % count-up, smooth scrolling) honours it like the CSS does */
 var RM=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
@@ -193,7 +193,7 @@ function setHajjShift(v){v=Math.max(-1,Math.min(1,parseInt(v)||0));ST.hajjShift=
 function hajjShiftBy(d){setHajjShift((parseInt(ST.hajjShift)||0)+d);}
 function hajjConfirm(){ST.hajjConf=curHajjYear();saveST();homeRefresh();vib(8);toast('✓ Dhul Hijjah day confirmed');}
 function hajjConfReset(){delete ST.hajjConf;saveST();homeRefresh();}
-function setHajjType(t){if(!HAJJ_TYPES[t])return;ST.hajjType=t;ST.hajjTypeConfirmed=true;saveST();applyJourney();journeyRefresh();vib(8);toast('⛺ '+HAJJ_TYPES[t].t+' — '+HAJJ_TYPES[t].s);}
+function setHajjType(t){if(!HAJJ_TYPES[t])return;ST.hajjType=t;ST.hajjTypeConfirmed=true;saveST();if(!planChk.hajjtype){planChk.hajjtype=true;save('us-plan',planChk);}applyJourney();journeyRefresh();vib(8);toast('⛺ '+HAJJ_TYPES[t].t+' — '+HAJJ_TYPES[t].s);}
 /* everything that filters through forMe() is rebuilt when the journey or the Hajj type changes */
 function journeyRefresh(){renderPlan();buildDeck();updPlan();renderRites();updRites();renderDuas();renderFC();renderPlaces();updPlaces();renderJourneys();renderStories();kidsBestLbl();updChip();homeRefresh();qzJourneyNote();}
 /* J-05: labels that follow the journey — header tagline, nav label (data-v="umrah" and the ids never change), Rites intro, Settings rows, After card */
@@ -204,11 +204,13 @@ function applyJourney(){var HJ=journey()==='hajj',y=HJ?curHajjYear():0;
   var vp=document.getElementById('umrahVhP');if(vp)vp.textContent=HJ?'Part 1 — your Umrah. Part 2 — the five days of Hajj. Counters keep count for you.':'Every step from miqat to halq — with counters that keep count for you.';
   var jl=document.getElementById('journeyLbl');if(jl)jl.innerHTML=markify(HJ?'⛺ Hajj '+y+' · '+HAJJ_TYPES[hajjType()].t:'🕋 Umrah');
   var hs=document.getElementById('hajjSet');if(hs)hs.hidden=!HJ;var cc=document.getElementById('campCard');if(cc)cc.hidden=!HJ;
-  document.querySelectorAll('#hajjTypeSeg button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-ht')===hajjType());});
+  document.querySelectorAll('#hajjTypeSeg button,#planHtSeg button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-ht')===hajjType()&&(b.parentNode.id!=='planHtSeg'||!!ST.hajjTypeConfirmed));});
   var sh=String(parseInt(ST.hajjShift)||0);document.querySelectorAll('#hajjShiftSeg button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-s')===sh);});
   var sl=document.getElementById('hajjShiftLbl');if(sl&&HJ){var D=hajjDates(y);sl.textContent='Moon sighting can move the days by one · Arafah on '+fmtDate(D[9],true)+(ST.hajjShift?' (shifted '+(ST.hajjShift>0?'+1':'−1')+')':'');}
   var ph=document.getElementById('postH3');if(ph)ph.innerHTML=markify('🌱 After '+(HJ?'Hajj':'Umrah')+' — keep it alive');
   var hn=document.getElementById('hajjNote');if(hn)hn.hidden=!HJ;
+  /* G2 #17: the footer prayer and the dua list hint follow the journey */
+  var fj=document.getElementById('footJ');if(fj)fj.textContent=HJ?'Hajj':'Umrah';var dh=document.getElementById('duaHint');if(dh)dh.textContent=duaHintT();
   loadCamp();renderJourneys();updChip();}
 /* optional PLAN sections (P-32): sec.opt names an ST flag */
 function activePlan(){return PLAN.filter(function(sc){return !sc.opt||ST[sc.opt];});}
@@ -276,7 +278,9 @@ function renderPlan(){
     sec.items.forEach(function(it){
       if(!forMe(it))return;
       var exp=it.id==='quiz80'?'Pass all '+numWord(qzVisible().length)+' levels in the Quiz tab (80%+ each). This ticks itself when the circuit is complete.':it.exp;
-      inner+='<div class="row" id="pw-'+it.id+'"'+(it.bag?' data-bag="'+it.bag+'"':'')+' role="checkbox" tabindex="0" aria-checked="false" onclick="togPlan(\''+it.id+'\')"><span class="tick"></span><div class="row-t"><b>'+it.label+'</b>'+(exp?'<div class="x">'+exp+'</div>':'')+refChip(it)+'</div></div>';
+      /* G2 #24: "Know which Hajj you’ll intend" carries the Tamattu’ / Qiran / Ifrad picker inline (setHajjType confirms the type and ticks the row) */
+      var ht=it.id==='hajjtype'?'<div class="segmini plan-ht" id="planHtSeg" role="group" aria-label="Hajj type" onclick="event.stopPropagation()">'+['tamattu','qiran','ifrad'].map(function(t){return '<button data-ht="'+t+'"'+(ST.hajjTypeConfirmed&&hajjType()===t?' class="on"':'')+' onclick="setHajjType(\''+t+'\')">'+HAJJ_TYPES[t].t+'</button>';}).join('')+'</div>':'';
+      inner+='<div class="row" id="pw-'+it.id+'"'+(it.bag?' data-bag="'+it.bag+'"':'')+' role="checkbox" tabindex="0" aria-checked="false" onclick="togPlan(\''+it.id+'\')"><span class="tick"></span><div class="row-t"><b>'+it.label+'</b>'+(exp?'<div class="x">'+exp+'</div>':'')+ht+refChip(it)+'</div></div>';
     });
     if(sec.id==='pack')inner='<div class="pills sm bagpills" style="margin:6px 0 10px;flex-wrap:wrap"><button class="pill on" onclick="event.stopPropagation();bagFilter(this,\'all\')">All</button><button class="pill" onclick="event.stopPropagation();bagFilter(this,\'ihram\')">'+markify('🤍 Ihram bag')+'</button><button class="pill" onclick="event.stopPropagation();bagFilter(this,\'carry\')">'+markify('✈️ Carry-on')+'</button><button class="pill" onclick="event.stopPropagation();bagFilter(this,\'case\')">'+markify('🧳 Suitcase')+'</button></div>'+inner;
     h+=mkSec(sec,i>0,inner);
@@ -381,8 +385,10 @@ function pickDep(){var inp=document.getElementById('depDate');if(!inp)return;var
 /* jump bar under the Prepare hero (P-06); on trip the trip-time cards come first */
 function renderPrepJumps(){var a=document.getElementById('prepJumps');if(!a)return;
   var J=[['niyCard','🤍 Intention'],['cdCard','📅 Countdown'],['tlCard','⏳ Timeline'],['planContainer','✅ Checklists'],['hotelCard','🏨 Hotel & SOS'],['itinCard','🗓️ Itinerary'],['vaultCard','🔐 Vault']];
+  /* G2 #24: in Hajj mode the Mina camp has its own jump, beside the hotel */
+  if(journey()==='hajj')J.splice(5,0,['campBlk','⛺ Camp']);
   if(!ST.dep)J=J.filter(function(j){return j[0]!=='tlCard';});
-  if(onTrip()){var first=['hotelCard','vaultCard','itinCard'];J=first.map(function(id){return J.filter(function(j){return j[0]===id;})[0];}).concat(J.filter(function(j){return first.indexOf(j[0])<0;}));}
+  if(onTrip()){var first=journey()==='hajj'?['hotelCard','campBlk','vaultCard','itinCard']:['hotelCard','vaultCard','itinCard'];J=first.map(function(id){return J.filter(function(j){return j[0]===id;})[0];}).concat(J.filter(function(j){return first.indexOf(j[0])<0;}));}
   a.innerHTML=J.map(function(j){return '<button onclick="jumpTo(\''+j[0]+'\')">'+markify(j[1])+'</button>';}).join('');}
 function updCountdown(){
   var n=document.getElementById('cdNum'),t=document.getElementById('cdT'),s=document.getElementById('cdS'),inp=document.getElementById('depDate');
@@ -676,7 +682,9 @@ function renderRites(){
   renderCnt('tawaf');renderCnt('sai');renderRami();renderRiteTiles();
 }
 /* U-22: the same answers inside the big counter — the sheet sits above the tap zone, so the count is untouched */
-function troubleSheet(){var hj=journey()==='hajj'&&(focusKey==='rami'||tmHajj());openSheet('<div class="sheet-h danger">'+mk('alert')+'</div><h3>Something wrong?</h3><p>Tap a question — your count is not touched.</p>'+accs(hj?TROUBLE_HAJJ:troubleList())+'<button class="btn ghost" onclick="closeSheet()">Back to the counter</button>');}
+function troubleSheet(src){var HJ=journey()==='hajj',rm=HJ&&(src==='rami'||ramiFocusOn()),hj=HJ&&(rm||focusKey==='rami'||tmHajj());
+  /* G2 #15: at the jamarat the pebble problems come first, each with its counter action; the days-of-Hajj problems follow */
+  openSheet('<div class="sheet-h danger">'+mk('alert')+'</div><h3>Something wrong?</h3><p>Tap a question — your count is not touched'+(rm?' unless you tap its button':'')+'.</p>'+(rm?'<div class="rp-list" id="ramiProb">'+ramiProbHTML()+'</div><div class="subt" style="margin-top:14px">Other problems in the days of Hajj</div>':'')+accs(hj?TROUBLE_HAJJ:troubleList())+'<button class="btn ghost" onclick="closeSheet()">Back to the counter</button>');}
 /* U-17: deep link into a Know-before-you-go topic (0 = miqats, 2 = how to wear the ihram) */
 function openKnow(i){var a=document.querySelectorAll('#knowContainer .acc')[i];if(a){a.classList.add('open');var hd=a.querySelector('.acc-h');if(hd)hd.setAttribute('aria-expanded','true');}goTab('plan','learn',a?null:'knowCard');if(a)requestAnimationFrame(function(){setTimeout(function(){try{a.scrollIntoView({behavior:smooth(),block:'center'});}catch(e){}},60);});}
 /* open the Know-before-you-go topic whose title contains `word` (indices shift with journey gating, titles do not) */
@@ -722,7 +730,7 @@ function updRites(){
       /* Qiran / Ifrad: Phase 4 has no step here (no cut until the 10th) — the chip points to Part 2, never "step 0" */
       sp.textContent=c.done>=c.tot&&c.tot?'✓ done':c.done?c.done+'/'+c.tot:!mine.length?(journey()==='hajj'?'in Part 2':''):(lo===hi?'step '+lo:'steps '+lo+'–'+hi);sp.classList.toggle('ok',c.tot>0&&c.done>=c.tot);}});
   var rd=document.getElementById('riteDone');if(rd)rd.classList.toggle('ready',!!(riteChk.cut||riteChk.cutw));
-  updHajjRites();renderRami();
+  updHajjRites();if(journey()!=='hajj')renderCatch();renderRami();
   renderRiteNow();if(walkOpen)renderWalk();
   renderCnt('tawaf');renderCnt('sai');renderLog();renderUmrahs();updWudu();renderCntHd();renderRiteHero();renderHajjCnt();updCntLayout();
   updChip();homeRefresh();
@@ -881,6 +889,7 @@ function updCntLayout(){var sub=document.getElementById('sub-umrah-count');if(!s
   var at=document.getElementById('cntHd');(['hajjDayCard'].concat(hm==='rami'?['ramiCard','wuduCard','sisLine','tawafCard','saiCard']:['wuduCard','sisLine','tawafCard','saiCard','ramiCard'])).forEach(function(id){var e=document.getElementById(id);if(!e||!at)return;if(at.nextElementSibling!==e)sub.insertBefore(e,at.nextElementSibling);at=e;});
   var dc=document.getElementById('hajjDayCard');if(dc)dc.hidden=hm!=='day'||!dc.innerHTML;
   var hideW=hm==='day'&&!busy&&!cntForce.tawaf;['wuduCard','sisLine'].forEach(function(id){var e=document.getElementById(id);if(e)e.hidden=hideW;});
+  var sl=document.getElementById('sisLine'),slt=periodLineT();if(sl&&sl.getAttribute('data-t')!==slt){sl.setAttribute('data-t',slt);sl.innerHTML=markify(slt);}
   ['tawaf','sai'].forEach(function(k){var c=document.getElementById(k+'Card');if(c)c.classList.toggle('compact',(k!==act||(!!hm&&!busy))&&!cntForce[k]);});}
 function renderCntSum(k){var e=document.getElementById(k+'Sum');if(!e)return;var v=ST[k],lbl;
   var okH=' · '+mk('check','mkt')+'7/7';
@@ -904,7 +913,18 @@ function focusWudu(){
     openSheet('<div class="sheet-h">'+mk('drop')+'</div><h3>Wudu broke mid-tawaf?</h3><p class="lead">Renew your wudu and return. Hanafis and Shafi’is build on the completed rounds — resume where you stopped in the current round, or repeat that round to be safe; Malikis and Hanbalis restart the tawaf from round 1 (reset the counter), which is valid on every view. <b>Building on? Resume round '+(ST.tawaf+1)+'.</b></p><p>Crowding makes this common — no panic, it does not ruin your Umrah. Nothing has been reset.</p><button class="btn tall" onclick="closeSheet()">Got it</button>');return;}
   togWudu();}
 /* U-20: a sister whose period starts after ihram — the ruling in seconds, no shaming CTAs */
-function periodSheet(){openSheet('<div class="sheet-h rose">🌸</div><h3>Period started? Your ihram is still valid</h3>'
+/* 6.6 (G2 #10): during Part 2 the answer is the Hajj one — TROUBLE_HAJJ hmenses word for word, then what it means for this pilgrim's ticks */
+function periodHajj(){return journey()==='hajj'&&hajjPart2Active();}
+function periodLineT(){return periodHajj()?'🌸 Period started? Your Hajj is still valid\u00a0— what\u00a0to\u00a0do':'🌸 Period started? Your ihram is still valid\u00a0— what\u00a0to\u00a0do';}
+function periodWada(){togHajj('hwadaEx',true);closeSheet();toast('🌸 Tawaf al-wada marked waived for you — if you are pure before you leave, untick it in Steps');}
+function periodSheet(){
+  if(periodHajj()){var hm=TROUBLE_HAJJ.filter(function(x){return x.id==='hmenses';})[0]||{b:''},wadaOpen=!(hajjChk.hwada||hajjChk.hwadaw||hajjChk.hwadaEx),saiOpen=hajjSaiNeeded()&&!hajjChk.h10sai;
+    openSheet('<div class="sheet-h rose">'+mk('flower')+'</div><h3>Period started? Your Hajj is intact</h3><div class="sheet-txt" id="periodHajj">'+hm.b+'</div>'
+      +(!hajjChk.h10ifadah?'<div class="note" id="periodLeft">'+mk('clock','mkt')+'Still to do when pure: <b>tawaf al-ifadah</b>'+(saiOpen?' (and the sa’i after it)':'')+'</div>':'')
+      +(dayExcused()?'':'<button class="btn rose" onclick="setExcused(true)">'+markify('🌸 Mark today excused')+'</button>')
+      +(wadaOpen?'<button class="btn ghost" id="periodWadaBtn" onclick="periodWada()">Still on my period when I leave: tawaf al-wada is waived — tick it</button>':'')
+      +'<button class="btn ghost" onclick="closeSheet();goTab(\'plan\',\'learn\',\'sisCard\')">'+markify('🌸 Read the full sisters’ guide')+'</button><button class="btn" onclick="closeSheet()">Got it</button>');return;}
+  openSheet('<div class="sheet-h rose">🌸</div><h3>Period started? Your ihram is still valid</h3>'
   +'<p class="lead">When Aishah (RA) got her period at Sarif, the Prophet ﷺ told her: <b>"Do what all the pilgrims do, except that you do not perform tawaf around the Ka’bah until you are clean"</b> (Bukhari 305).</p>'
   +'<ul><li>Your ihram stays valid — stay in it.</li><li>Keep up the talbiyah, dhikr and dua; the Haram courtyards are open to you.</li><li>Do not enter tawaf. Delay tawaf — and the sa’i after it — until you are pure, then ghusl, tawaf and sa’i. Nothing is lost.</li><li>If you leave Makkah while still on your period, no farewell tawaf is owed (Bukhari 1755) — and for Umrah many scholars require none at all.</li></ul>'
   +'<p class="lead"><b>Departing within days?</b> Ask a scholar or your group’s alim about the concessions — do not decide alone.</p>'
@@ -1076,7 +1096,7 @@ function arafahNow(){var S=siteTimes('Arafah'),m=nowMin(),left=S.sun-m;return {s
 /* a live countdown: refreshed every 30 s (text only — nothing moves); when one runs out the day cards re-render into their next phase */
 function hjLiveHTML(untilMin,cls){var l=untilMin-nowMin();return '<span class="hj-live'+(cls?' '+cls:'')+'" data-until="'+untilMin+'">'+(l>0?fmtDiff(l):'0m')+'</span>';}
 function hjLive(){var out=false;document.querySelectorAll('[data-until]').forEach(function(e){var l=+e.getAttribute('data-until')-nowMin();if(l<=0)out=true;var v=l>0?fmtDiff(l):'0m';if(e.textContent!==v)e.textContent=v;});if(out)hjRefresh();}
-function hjRefresh(){try{homeRefresh();renderRiteHero();renderHajjCnt();renderRami();renderDuaToday();if(document.getElementById('view-daily').classList.contains('on'))updDaily();}catch(e){}}
+function hjRefresh(){try{homeRefresh();renderRiteHero();renderCatch();renderHajjCnt();renderRami();renderDuaToday();if(document.getElementById('view-daily').classList.contains('on'))updDaily();}catch(e){}}
 setInterval(function(){if(journey()==='hajj'&&document.visibilityState!=='hidden')hjLive();},30000);
 function togOn(id){var e=document.getElementById(id);if(e)e.classList.toggle('on');}
 function togStay13(){ST.stay13=!ST.stay13;saveST();vib(8);updRites();toast(ST.stay13?'🌅 The 13th is in your plan — stone after midday, then leave':'Leaving on the 12th — be outside Mina before sunset');}
@@ -1097,7 +1117,7 @@ function stepRowHTML(st,n,tog,hajj){var v=hajj?riteStepView(st):st,id=st.id,ctr=
 function renderHajjRites(){var hc=document.getElementById('hajjContainer');if(!hc)return;if(journey()!=='hajj'){hc.innerHTML='';return;}
   var hd=hajjDay(),y=curHajjYear(),D=hajjDates(y),ty=hajjType(),n=0,h='';
   h+='<div class="subt" id="hajjPart2">Part 2 · The days of Hajj '+y+'</div><p class="hajj-rule" id="hajjRule">'+mk('alert','mkt')+'<b>Hajj rulings:</b> confirm with your group leader or a scholar.</p>';
-  h+='<div class="note" style="margin:0 2px 12px">'+HAJJ_TYPES[ty].t+' — '+HAJJ_TYPES[ty].s+'. <button class="lnk" style="font-size:1em" onclick="goTab(\'more\',\'settings\',\'hajjSet\')">Change type</button>'+(D[8]?'<br>8 Dhul Hijjah ≈ '+fmtDate(D[8],true)+' · each day opens on its date; nothing closes because a day has passed.':'')+'</div>';
+  h+='<div class="note" style="margin:0 2px 12px">'+HAJJ_TYPES[ty].t+' — '+HAJJ_TYPES[ty].s+'. <button class="lnk" style="font-size:1em" onclick="goTab(\'more\',\'settings\',\'hajjSet\')">Change type</button> · <button class="lnk" style="font-size:1em" id="hajjIcsLnk" onclick="exportHajjICS()">Add the days to my calendar</button>'+(D[8]?'<br>8 Dhul Hijjah ≈ '+fmtDate(D[8],true)+' · each day opens on its date; nothing closes because a day has passed.':'')+'</div>';
   HAJJ_RITES.forEach(function(s){var inner='',open;
     if(typeof hd==='number')open=s.hd===hd;else open=s.hd===null&&(hd==='post'||!!(hajjChk.h12leave||hajjChk.h13rami));
     if(s.opt==='stay13')inner+='<div class="brg'+(ST.stay13?' done':'')+'" id="stay13Row" role="checkbox" tabindex="0" aria-checked="'+(ST.stay13?'true':'false')+'" onclick="togStay13()"><span class="tick"></span><span>I am staying for the 13th (nafr ath-thani — what the Prophet ﷺ did)</span></div>';
@@ -1105,7 +1125,7 @@ function renderHajjRites(){var hc=document.getElementById('hajjContainer');if(!h
     s.steps.forEach(function(st){if(!forMe(st))return;n++;inner+=stepRowHTML(st,n,'togHajj',true);});
     if(s.id==='hdw')inner+='<div class="brg" id="rw-hwadaEx" role="checkbox" tabindex="0" aria-checked="false" onclick="togHajj(\'hwadaEx\')"><span class="tick"></span><span>'+mk('flower','mkt')+'Waived for me — on my period (sisters) or I live in Makkah</span></div>';
     var sec={id:s.id,ico:s.ico,title:s.title+(D[s.hd]?'<small>'+fmtDate(D[s.hd],true)+(s.night?' · night':'')+(s.sub?' · '+s.sub:'')+'</small>':(s.sub?'<small>'+s.sub+'</small>':'')),hn:s.hn};
-    h+=mkSec(sec,!open,inner);});
+    h+=mkSec(sec,!open,inner).replace('<div class="sec-bd">','<div class="sec-catch" id="catch-'+s.id+'" hidden></div><div class="sec-bd">');});
   h+='<div class="rite-done" id="hajjDone"><b>'+markify('⛺ Your Hajj ')+y+'</b><p id="hajjReadyNote"></p><p id="hajjWajibNote" style="font-size:var(--t-3);color:var(--ink2);line-height:var(--lh-body)"></p><div class="hlog" id="hlogArea"></div><button class="btn gold" id="hajjRecordBtn" onclick="finishHajj()" disabled>'+markify('🎉 Record completed Hajj')+'</button><div id="hajjDoneNote"></div><button class="lnk fresh" onclick="startFreshHajj()">↺ Start fresh (nothing recorded)</button></div>';
   h+=mkSec({id:'htrouble',ico:'🆘',title:'If something goes wrong in the days of Hajj',sub:'Missed stoning · period before ifadah · too weak · lost in Mina · wrong order'},true,accs(TROUBLE_HAJJ));
   hc.innerHTML=h;updHajjRites();}
@@ -1126,11 +1146,75 @@ function updHajjRites(){if(journey()!=='hajj'||!document.getElementById('hajjPar
   if(wn){var un=recorded?[]:hajjUnticked();wn.hidden=!un.length;wn.textContent=un.length?'Still unticked (not required to record, but read "Missed it?" on each first): '+un.join(' · ')+'.':'';}
   if(dn&&recorded&&!dn.innerHTML)dn.innerHTML='<div class="rd-note">'+mk('medal','mkt')+'Hajj '+last.y+' recorded — may Allah accept it!<div class="rd-acts"><button class="chip-btn" onclick="makeHajjKeepsake('+(H.length-1)+')">🎴 Keepsake</button><button class="chip-btn" onclick="goTab(\'more\',\'guide\',\'journeysArea\')">📜 My journeys</button></div></div>';
   renderHlog();}
-function renderHlog(){var a=document.getElementById('hlogArea');if(!a)return;var lg=ST.hlog||{},rows=[['🏔️','Arafah',lg.h9wuquf],['🪨','Rami of the 10th',lg.h10rami],['✂️','Halq / taqsir',lg.h10halq||lg.h10halqw],['🕋','Tawaf al-ifadah',lg.ifadahEnd||lg.h10ifadah,lg.ifadahStart],['⛰️','Sa’i of Hajj',lg.hsaiEnd||lg.h10sai,lg.hsaiStart],['👋','Tawaf al-wada',lg.wadaEnd||lg.hwada||lg.hwadaw,lg.wadaStart]],h='';
-  rows.forEach(function(r){var on=!!r[2];h+='<div class="lg'+(on?' on':'')+'"><span class="lg-i">'+mkOr(r[0],'')+'</span><span class="lg-t">'+r[1]+(on&&r[3]&&r[2]>r[3]?' <em>'+fmtDur(r[2]-r[3])+'</em>':'')+'</span><span class="lg-v">'+(on?fmtTime(r[2]):'—')+'</span></div>';});a.innerHTML=h;}
+/* ── 6.6 (G2 #53) · today's rulings on each day of Hajj (8–13), in Steps and on Home ──
+   HAJJ_RULINGS is the verified heat-rulings pack verbatim, filtered by its "use" days ("9n" = the Muzdalifah night: shown on the 9th and, first, until sunrise on the 10th).
+   The school differences are shown exactly as written; no madhhab picker and no post-prayer reminders. Short chip labels are interface words only. */
+var RUL_SHORT={'rule-d9-no-fast':'No fasting at Arafah','rule-d9-way-talbiyah':'Talbiyah on the way','rule-d9-arafah-prayers':'Dhuhr + Asr together','rule-d9n-muzdalifah-prayers':'Prayers at Muzdalifah','rule-mina-prayers':'Prayer in Mina','rule-d10-no-eid-prayer':'No Eid prayer','rule-d10-hady-udhiyah':'Hady and udhiyah','rule-d10-13-no-fasting':'No fasting these days','rule-takbir-words':'Takbir: the words','rule-takbir-times':'Takbir: when'};
+function rulesToday(){if(journey()!=='hajj'||typeof HAJJ_RULINGS==='undefined')return null;var hd=hajjDay();if(typeof hd!=='number')return null;
+  var night=(hd===9&&arafahNow().left<=0)||(hd===10&&nowMin()<siteTimes('Mina').rise);
+  var L=HAJJ_RULINGS.filter(function(r){if(r.id==='rule-mina-prayers'&&hd===13&&!ST.stay13)return false;return r.d.indexOf(hd)>-1||(r.d.indexOf('9n')>-1&&(hd===9||night));});
+  if(night)L=L.filter(function(r){return r.d.indexOf('9n')>-1;}).concat(L.filter(function(r){return r.d.indexOf('9n')<0;}));
+  return L.length?{hd:hd,L:L,night:night}:null;}
+function rulesRowHTML(where){var R=rulesToday();if(!R)return '';var D=hajjDates(curHajjYear());
+  return '<div class="card rul" id="rul-'+where+'"><div class="rul-h">'+mk('book','mkt')+'<b>Today’s rulings</b><small>'+R.hd+' Dhul Hijjah · '+(R.night&&R.hd===9?'Muzdalifah night':DH_NAME[R.hd])+'</small></div><div class="rul-l">'
+    +R.L.map(function(r){return '<button class="rul-c" onclick="rulingSheet(\''+r.id+'\')">'+esc(RUL_SHORT[r.id]||r.t)+'</button>';}).join('')+'</div></div>';}
+function renderRulesRow(){var a=document.getElementById('riteRules');if(!a)return;var h=rulesRowHTML('steps');a.hidden=!h;if(a.innerHTML!==h)a.innerHTML=h;}
+function rulingSheet(id){var R=rulesToday(),r=HAJJ_RULINGS.filter(function(x){return x.id===id;})[0];if(!r)return;var others=R?R.L.filter(function(x){return x.id!==id;}):[];
+  openSheet('<div class="sheet-h">'+mk('book')+'</div><h3>'+esc(r.t)+'</h3>'+(r.ar?'<p class="ar" lang="ar" style="font-size:var(--t-ar);text-align:center;line-height:1.9">'+r.ar+'</p><p class="tl" style="text-align:center">'+r.tl+'</p>':'')+'<div class="rul-b" id="rulB">'+r.b+'</div>'
+    +'<p class="hajj-rule">'+mk('alert','mkt')+'<b>Hajj rulings:</b> confirm with your group leader or a scholar.</p>'
+    +(others.length?'<div class="subt" style="margin-top:12px">More rulings today</div><div class="rul-l">'+others.map(function(x){return '<button class="rul-c" onclick="rulingSheet(\''+x.id+'\')">'+esc(RUL_SHORT[x.id]||x.t)+'</button>';}).join('')+'</div>':'')
+    +'<button class="btn ghost" onclick="closeSheet()">Close</button>');}
+/* ── 6.6 (G2 #12) · catch up a past day of Hajj ──
+   A section whose date has passed (the Muzdalifah night: from sunrise on the 10th) with forMe steps still unticked gets a pill in the Now area and under its header.
+   The sheet pre-ticks the sunnah steps (not the conditional ones), leaves rukn / wajib unticked with their pill and "Missed it?", and sends a rami step to its counter so pebble counts stay honest.
+   Stamps take the section's date (local noon; 23:00 for the night) and hlog[id+'Est']=true, so the log shows the date and never a made-up clock time. */
+var CATCH_NOPRE=['h9nweak','h10udhiyah'];
+function hajjRecordedNow(){var H=[];try{H=JSON.parse(localStorage.getItem('us-hajjlog')||'[]');}catch(e){}if(!Array.isArray(H)||!H.length)return false;var last=H[H.length-1];return !!(last&&last.y===curHajjYear()&&!Object.keys(hajjChk).some(function(k){return hajjChk[k];}));}
+function secPast(s){if(journey()!=='hajj'||s.hd===null||!hajjSecOn(s))return false;var D=hajjDates(curHajjYear()),t=isoOf(riyadhNow());if(!D[8])return false;
+  if(s.night)return t>D[10]||(t===D[10]&&nowMin()>=siteTimes('Mina').rise);return t>D[s.hd];}
+function catchSteps(s){var L=hajjList();return s.steps.filter(function(st){if(!forMe(st)||st.info||hajjChk[st.id])return false;if(st.id==='h12leave'&&ST.stay13)return false;
+  return !(st.pair&&L.some(function(y){return y.st.pair===st.pair&&y.st.id!==st.id&&hajjChk[y.st.id];}));});}
+function catchSecs(){if(journey()!=='hajj'||hajjRecordedNow())return [];return hajjSecs().filter(function(s){return secPast(s)&&catchSteps(s).length>0;});}
+function catchWhen(s){return s.night?'the Muzdalifah night':'the '+s.hd+'th';}
+function catchPillHTML(s,id){var n=catchSteps(s).length;return '<button class="catch-pill" id="'+id+'" onclick="catchSheet(\''+s.id+'\')" aria-label="'+n+' step'+(n===1?'':'s')+' from '+catchWhen(s)+' unticked — catch up">'+mk('clock','mkt')+'<span><b>'+n+'</b> from '+catchWhen(s)+' unticked</span><i>Catch up</i></button>';}
+function renderCatch(){renderRulesRow();var C=catchSecs(),a=document.getElementById('riteCatch');
+  if(a){var on=C.length>0&&hajjPart2Active();a.hidden=!on;a.innerHTML=on?catchPillHTML(C[0],'catchNow')+(C.length>1?'<span class="catch-more">+'+(C.length-1)+' more day'+(C.length>2?'s':'')+' below</span>':''):'';}
+  HAJJ_RITES.forEach(function(s){var e=document.getElementById('catch-'+s.id);if(!e)return;var on=C.indexOf(s)>-1;e.hidden=!on;e.innerHTML=on?catchPillHTML(s,'catchp-'+s.id):'';});}
+function catchStamp(s){var D=hajjDates(curHajjYear()),iso=D[s.hd];return iso?new Date(iso+(s.night?'T23:00:00':'T12:00:00')).getTime():Date.now();}
+function catchSheet(sid){var s=HAJJ_RITES.filter(function(x){return x.id===sid;})[0];if(!s)return;var L=catchSteps(s),D=hajjDates(curHajjYear()),h='';
+  if(!L.length){closeSheet();return;}
+  L.forEach(function(st){var v=riteStepView(st),rami=st.counter==='rami',pre=v.req==='sunnah'&&CATCH_NOPRE.indexOf(st.id)<0;
+    if(rami){h+='<div class="catch-row rami"><span class="catch-rl"><b>'+fcText(v.b)+(v.req?' <span class="req '+v.req+'">'+v.req+'</span>':'')+'</b><small>Pebbles are counted in the rami counter, so the count stays honest.</small></span><button class="xchip" onclick="closeSheet();openRami('+s.hd+')">'+markify('🪨 Count it in the rami counter →')+'</button></div>';return;}
+    h+='<div class="catch-row"><label class="catch-rl"><input type="checkbox" class="catch-cb" data-id="'+st.id+'"'+(pre?' checked':'')+'><span><b>'+fcText(v.b)+(v.req?' <span class="req '+v.req+'">'+v.req+'</span>':'')+'</b></span></label>'
+      +(v.miss&&v.req!=='sunnah'?'<button class="why" aria-expanded="false" onclick="var m=this.nextElementSibling;m.classList.toggle(\'on\');this.setAttribute(\'aria-expanded\',m.classList.contains(\'on\'))">Missed it?</button><div class="whyb miss"><b>Missed it?</b> '+esc(v.miss)+'</div>':'')+'</div>';});
+  openSheet('<div class="sheet-h">'+mk('clock')+'</div><h3>Catch up · '+esc(secShort(s))+'</h3><p>'+(D[s.hd]?fmtDate(D[s.hd],true)+(s.night?' · night':'')+' — ':'')+'tick what you did. The log keeps the date only, never a made-up time. Sunnah steps start ticked; the pillars and duties start unticked — read “Missed it?” on any you did not do.</p><div class="catch-list" id="catchList">'+h+'</div>'
+    +'<button class="btn" id="catchGo" onclick="catchGo(\''+sid+'\')">Tick the ones I did</button><button class="btn ghost" onclick="closeSheet()">Not now</button>');}
+function catchGo(sid){var s=HAJJ_RITES.filter(function(x){return x.id===sid;})[0];if(!s)return;var ts=catchStamp(s),n=0;if(!ST.hlog||typeof ST.hlog!=='object')ST.hlog={};
+  document.querySelectorAll('#catchList .catch-cb').forEach(function(cb){var id=cb.getAttribute('data-id');if(!cb.checked||hajjChk[id])return;hajjChk[id]=true;ST.hlog[id]=ts;ST.hlog[id+'Est']=true;n++;});
+  save('us-hajj',hajjChk);saveST();closeSheet();updRites();focusRites(false);vib(15);toast(n?'✓ '+n+' step'+(n===1?'':'s')+' from '+catchWhen(s)+' ticked — logged with the date only':'Nothing ticked');}
+/* ── 6.6 (G2 #18) · the Hajj log as a day-by-day timeline (shared by Part 2 and the keepsake) ──
+   rows: [label, start, end, est]; a step caught up later shows its date only */
+function hlogDays(lg,ty,st13,rami){lg=lg||{};rami=rami||{};var est=function(id){return !!lg[id+'Est'];},R=function(t,id,a,b){var e=b||lg[id];return {t:t,a:a&&e&&e>a&&!est(id)?a:0,b:e||0,est:est(id)};};
+  var forTxt=function(d){var p=(rami[d]||{}).p||{},nm=Object.keys(p);return nm.length?' · and for '+nm.join(', '):'';},del=function(d){return (rami[d]||{}).del?' (delegated)':'';};
+  var G=[{d:8,rows:[ty==='tamattu'?R('Ihram for Hajj','h8niyyah'):R('To Mina','h8mina')]},
+    {d:9,rows:[R('Arafah','h9wuquf'),R('Muzdalifah','h9nstay')]},
+    {d:10,rows:[R('Jamrat al-Aqabah'+del(10)+forTxt(10),'h10rami',lg.rami10Start,lg.rami10||lg.h10rami),R('Halq / taqsir',lg.h10halq?'h10halq':'h10halqw'),R('Tawaf al-ifadah','h10ifadah',lg.ifadahStart,lg.ifadahEnd||lg.h10ifadah)]},
+    {d:11,rows:[R('Stoning'+del(11)+forTxt(11),'h11rami',lg.rami11Start,lg.rami11||lg.h11rami)]},
+    {d:12,rows:[R('Stoning'+del(12)+forTxt(12),'h12rami',lg.rami12Start,lg.rami12||lg.h12rami)].concat(st13?[]:[R('Left Mina','h12leave')])}];
+  if(ty==='tamattu'||lg.h10sai||lg.hsaiEnd)G[2].rows.push(R('Sa’i of Hajj','h10sai',lg.hsaiStart,lg.hsaiEnd||lg.h10sai));
+  if(st13)G.push({d:13,rows:[R('Stoning'+del(13)+forTxt(13),'h13rami',lg.rami13Start,lg.rami13||lg.h13rami)]});
+  G.push({d:0,rows:[lg.hwadaEx&&!(lg.wadaEnd||lg.hwada||lg.hwadaw)?{t:'Tawaf al-wada',a:0,b:lg.hwadaEx,est:false,waived:true}:R('Tawaf al-wada',lg.hwada?'hwada':'hwadaw',lg.wadaStart,lg.wadaEnd||lg.hwada||lg.hwadaw)]});
+  return G;}
+/* a start–end range keeps one AM/PM when both share it: "07:05–07:48 AM" */
+function hlogRange(a,b){var fa=fmtTime(a),fb=fmtTime(b),re=/\s?([AaPp]\.?\s?[Mm]\.?)$/,ma=fa.match(re),mb=fb.match(re);if(ma&&mb&&ma[1].toLowerCase()===mb[1].toLowerCase())fa=fa.replace(re,'');return fa+'–'+fb;}
+function hlogVal(r,dOnly){if(!r.b)return '—';if(r.est||dOnly)return new Date(r.b).toLocaleDateString('en-GB',{day:'numeric',month:'short'});return r.a?hlogRange(r.a,r.b):fmtTime(r.b);}
+function renderHlog(){var a=document.getElementById('hlogArea');if(!a)return;var D=hajjDates(curHajjYear()),h='';
+  hlogDays(ST.hlog,hajjType(),!!ST.stay13,ST.rami).forEach(function(g){h+='<div class="lg-day">'+(g.d?g.d+' Dhul Hijjah'+(D[g.d]?' · '+fmtDate(D[g.d]):''):'Before you leave Makkah')+'</div>';
+    g.rows.forEach(function(r){var on=!!r.b;h+='<div class="lg'+(on?' on':'')+(r.est?' est':'')+'"><span class="lg-t">'+r.t+(on&&r.a?' <em>'+fmtDur(r.b-r.a)+'</em>':'')+(r.est?' <em>caught up</em>':'')+'</span><span class="lg-v">'+(r.waived?'waived':hlogVal(r))+'</span></div>';});});
+  a.innerHTML=h;renderCatch();}
 /* ticks go to hajjChk ('us-hajj') and stamp ST.hlog — never riteChk / ST.log */
 function togHajj(id,quiet){hajjChk[id]=!hajjChk[id];save('us-hajj',hajjChk);vib(15);if(!ST.hlog||typeof ST.hlog!=='object')ST.hlog={};
-  if(hajjChk[id]){if(!ST.hlog[id])ST.hlog[id]=Date.now();}else delete ST.hlog[id];saveST();
+  if(hajjChk[id]){if(!ST.hlog[id])ST.hlog[id]=Date.now();}else{delete ST.hlog[id];delete ST.hlog[id+'Est'];}saveST();
   updRites();focusRites(false);
   if(!quiet){var st=hajjStep(id);if(hajjChk[id])toast('✓ '+fcText(st?riteStepView(st).b:'Step')+' — tap again to undo');}}
 /* (review) the counter never opens in a mode other than the one requested: if the mode is not due yet, ask inline instead of falling through to the current mode */
@@ -1162,13 +1246,17 @@ function renderRami(){var c=document.getElementById('ramiCard');if(!c)return;var
   var h='<h3>'+mk('stone','mkt')+'Rami — '+d+' Dhul Hijjah'+(DH_NAME[d]?' · '+DH_NAME[d]:'')+'</h3><div class="segmini rami-days" role="group" aria-label="Day of stoning">'+[10,11,12,13].map(function(x){return '<button'+(x===d?' class="on"':'')+' onclick="ramiSetDay('+x+')">'+x+(ramiDone(x)?' ✓':'')+'</button>';}).join('')+'</div>';
   h+=ramiWinHTML(d)+ramiMakeupHTML(d);
   h+='<div class="cnt-sub">'+(d===10?'Jamrat al-Aqabah only — the big one nearest Makkah. From sunrise; the weak who left Muzdalifah early: Shafi’is / Hanbalis from after midnight, Hanafis / Malikis from Fajr — if unsure, wait for Fajr. Stop the talbiyah at the first pebble.':'After midday: small → middle → Aqabah, in this order. One pebble at a time, "Allahu akbar" with each, into the basin. Dua after the first two, not after Aqabah.')+'<br><b>Tap the number after each pebble.</b></div>';
-  js.forEach(function(j,k){var n=Math.min(7,r[j]||0),ok=n>=7,prev=k>0&&(r[js[k-1]]||0)<7;
-    h+='<div class="rami-j'+(r.del?' dis':'')+'" id="rj-'+j+'"><div class="rami-t"><b>'+(k+1)+'. '+JAM[j][0]+(ok?' ✓':'')+'</b><small>'+JAM[j][1]+(prev&&!ok?' · after the previous one':'')+'</small><div class="pebs" aria-hidden="true">'+[1,2,3,4,5,6,7].map(function(x){return '<i'+(x<=n?' class="on"':'')+'></i>';}).join('')+'</div></div>'
-      +'<button class="rring'+(ok?' ok':'')+'" aria-label="'+JAM[j][0]+': '+n+' of 7 pebbles — tap to count one" onclick="ramiTap(\''+j+'\',1)">'+n+'<small>of 7</small></button><button class="chip-btn" aria-label="Undo one pebble at '+JAM[j][0]+'" onclick="ramiTap(\''+j+'\',-1)"'+(n?'':' disabled')+'>−1</button></div>';});
+  /* G2 #13: with people to stone for, each jamrah counts in blocks of 7 — "7 for you ✓ · 3 of 7 for Mum" — one row of pebble dots per person */
+  var FN=r.del?[]:ramiForN(d),pebRow=function(n,lbl){return '<div class="pebs'+(lbl?' named':'')+'" aria-hidden="true">'+(lbl?'<span class="peb-l">'+esc(lbl)+'</span>':'')+[1,2,3,4,5,6,7].map(function(x){return '<i'+(x<=n?' class="on"':'')+'></i>';}).join('')+'</div>';};
+  js.forEach(function(j,k){var own=Math.min(7,r[j]||0),ok=ramiJDone(d,j),prev=k>0&&!ramiJDone(d,js[k-1]),b=ramiBlock(d,j,1),n=b.full?7:b.n,anyC=own>0||FN.some(function(nm){return ramiPC(r,nm,j)>0;});
+    var blk=FN.length?'<span class="rami-blk">'+[own>=7?'7 for you ✓':own+' of 7 for you'].concat(FN.map(function(nm){var c=ramiPC(r,nm,j);return c>=7?'7 for '+esc(nm)+' ✓':c+' of 7 for '+esc(nm);})).join(' · ')+'</span>':'';
+    h+='<div class="rami-j'+(r.del?' dis':'')+(FN.length?' multi':'')+'" id="rj-'+j+'"><div class="rami-t"><b>'+(k+1)+'. '+JAM[j][0]+(ok?' ✓':'')+'</b><small>'+JAM[j][1]+(prev&&!ok?' · after the previous one':'')+'</small>'+blk+pebRow(own,FN.length?'you':'')+FN.map(function(nm){return pebRow(ramiPC(r,nm,j),nm);}).join('')+'</div>'
+      +'<button class="rring'+(ok?' ok':'')+'" aria-label="'+JAM[j][0]+': '+n+' of 7 pebbles'+(b.who&&!b.full?' for '+esc(b.who):'')+' — tap to count one" onclick="ramiTap(\''+j+'\',1)">'+n+'<small>of 7</small>'+(b.who&&!b.full?'<small class="rr-who">'+esc(b.who)+'</small>':'')+'</button><button class="chip-btn" aria-label="Undo one pebble at '+JAM[j][0]+'" onclick="ramiTap(\''+j+'\',-1)"'+(anyC?'':' disabled')+'>−1</button></div>';});
+  if(!r.del)h+=ramiForRowHTML(d);
   h+='<div class="brg'+(r.del?' done':'')+'" role="switch" tabindex="0" aria-checked="'+(r.del?'true':'false')+'" onclick="ramiDel('+d+')"><span class="tick"></span><span>'+mk('group','mkt')+'Delegated — someone who has stoned for themselves threw my pebbles today</span></div>';
   if(dua)h+='<div class="cnt-dua"><div class="dua tapable" role="button" tabindex="0" aria-label="Open the takbir full screen" onclick="openDua('+i+')"><div class="dua-top"><small>'+dua.t+'</small><button class="say" data-ar="'+dua.ar+'" onclick="speakBtn(this)" aria-label="Play recitation">'+mk('speaker')+'</button></div><span class="ar" lang="ar">'+dua.ar+'</span><span class="tl">'+dua.tl+'</span><span class="enl">⛶ tap to enlarge</span></div></div>';
-  h+='<div class="cnt-acts"><button class="btn big" onclick="enterFocus(\'rami\')">⛶ Big counter</button><button class="chip-btn" onclick="troubleSheet()">'+markify('⚠️ Problem?')+'</button></div>';
-  h+='<div class="cnt-done" id="ramiDone" style="display:'+(ramiDone(d)?'block':'none')+'">'+(r.del?mk('group','mkt')+'Delegated for today — the step is ticked in Part 2.':mk('check','mkt')+'Rami complete for the '+d+'th'+(d===10?(hajjType()==='ifrad'?' — next: halq, then tawaf al-ifadah.':' — next: hady, halq, then tawaf al-ifadah.'):d===12?(ST.stay13?' — staying for the 13th: back to the tent, takbir after every prayer.':' — leaving? Be out of Mina before sunset.'):' — back to the tent, takbir after every prayer.'))+' <button class="xchip" onclick="goTab(\'umrah\',\'steps\',\'rw-h'+d+'rami\')">Open day '+d+' →</button></div>';
+  h+='<div class="cnt-acts"><button class="btn big" onclick="enterFocus(\'rami\')">⛶ Big counter</button><button class="chip-btn" onclick="troubleSheet(\'rami\')">'+markify('⚠️ Problem?')+'</button></div>';
+  h+='<div class="cnt-done" id="ramiDone" style="display:'+(ramiAllDone(d)?'block':'none')+'">'+(r.del?mk('group','mkt')+'Delegated for today — the step is ticked in Part 2.':mk('check','mkt')+'Rami complete for the '+d+'th'+(d===10?(hajjType()==='ifrad'?' — next: halq, then tawaf al-ifadah.':' — next: hady, halq, then tawaf al-ifadah.'):d===12?(ST.stay13?' — staying for the 13th: back to the tent, takbir after every prayer.':' — leaving? Be out of Mina before sunset.'):' — back to the tent, takbir after every prayer.'))+' <button class="xchip" onclick="goTab(\'umrah\',\'steps\',\'rw-h'+d+'rami\')">Open day '+d+' →</button></div>';
   h+='<button class="lnk reset" onclick="ramiReset('+d+')">Reset the '+d+'th to 0</button>';
   c.innerHTML=h;}
 function ramiStep(d){return hajjStep('h'+d+'rami');}
@@ -1226,20 +1314,80 @@ function ramiMakeupHTML(d){if(d<11||d>hajjDayN())return '';var p=d-1;if(ramiDone
 function hajjTroubleSheet(id){var g=TROUBLE_HAJJ.filter(function(x){return x.id===id;})[0];if(!g)return;openSheet('<div class="sheet-h">'+mk(emk(leadEmoji(g.t),'alert'))+'</div><h3>'+esc(stripEmoji(g.t))+'</h3>'+g.b+'<button class="btn ghost" onclick="closeSheet()">Back</button>');}
 /* the first tap before midday on the 11th–13th asks once — it warns, it never blocks */
 function ramiEarlySheet(j,d){var S=siteTimes('Mina');openSheet('<div class="sheet-h">'+mk('clock')+'</div><h3>It is '+minHM(nowMin())+' — before midday</h3><p>The stoning of the '+d+'th is after midday (Dhuhr ≈ '+minHM(S.dhuhr)+' in Mina, computed ±2 min). Count anyway?</p><p style="font-size:var(--t-2)">Stoned before midday already? Read “Missed it?” on today’s rami step.</p><button class="btn tall" onclick="closeSheet()">Wait for midday</button><button class="btn ghost tall" onclick="closeSheet();ramiEarlyOK['+d+']=true;ramiTap(\''+j+'\',1)">Count it anyway</button><button class="lnk" style="display:block;margin:6px auto 0" onclick="closeSheet();exitFocus();goTab(\'umrah\',\'steps\',\'rw-h'+d+'rami\')">Open today’s rami step</button>');}
-function ramiOrderSheet(j,p,d){openSheet('<div class="sheet-h danger">🪨</div><h3>'+JAM[p][0]+' first</h3><p>On the '+d+'th the jamarat are stoned in order: small → middle → Aqabah. '+JAM[p][0]+' is at '+(ramiD(d)[p]||0)+' of 7. Count at '+JAM[j][0]+' anyway?</p><p style="font-size:var(--t-2)">If you really stoned out of order, read "Missed it?" on today’s rami step — most scholars count the order as a condition.</p><button class="btn ghost tall" onclick="closeSheet();ramiOrderOK=true;ramiTap(\''+j+'\',1);ramiOrderOK=false">Yes, count it anyway</button><button class="btn tall" onclick="closeSheet()">No — '+JAM[p][0]+' first</button>');}
-function ramiTap(j,dlt){var d=ramiDay||ramiDefaultDay(),r=ramiD(d),n=Math.min(7,r[j]||0),v=Math.max(0,Math.min(7,n+dlt));if(v===n)return;
+function ramiOrderSheet(j,p,d){openSheet('<div class="sheet-h danger">🪨</div><h3>'+JAM[p][0]+' first</h3><p>On the '+d+'th the jamarat are stoned in order: small → middle → Aqabah. '+JAM[p][0]+' is at '+(ramiD(d)[p]||0)+' of 7'+(ramiForN(d).length&&(ramiD(d)[p]||0)>=7?' for you — the blocks for '+esc(ramiForN(d).join(', '))+' are not finished':'')+'. Count at '+JAM[j][0]+' anyway?</p><p style="font-size:var(--t-2)">If you really stoned out of order, read "Missed it?" on today’s rami step — most scholars count the order as a condition.</p><button class="btn ghost tall" onclick="closeSheet();ramiOrderOK=true;ramiTap(\''+j+'\',1);ramiOrderOK=false">Yes, count it anyway</button><button class="btn tall" onclick="closeSheet()">No — '+JAM[p][0]+' first</button>');}
+/* ── 6.6 (G2 #13) · stoning on behalf of others ──
+   ST.ramiFor[d] = ['Mum', …] (from the children list or typed); ST.rami[d][j] stays the pilgrim's OWN count, ST.rami[d].p[name][j] counts each further block of 7.
+   At each jamrah: seven for yourself first, then seven for each person, then move on (verified pack rami-delegate). The step h{d}rami ticks on the pilgrim's own pebbles, exactly as before;
+   the next jamrah opens once every block of this one is done. −1 and Undo take from the last block. */
+function ramiForN(d){var L=(ST.ramiFor||{})[d];return Array.isArray(L)?L:[];}
+function ramiPC(r,nm,j){return Math.min(7,((r.p||{})[nm]||{})[j]||0);}
+function ramiJDone(d,j){var r=(ST.rami||{})[d]||{};return (r[j]||0)>=7&&ramiForN(d).every(function(nm){return ramiPC(r,nm,j)>=7;});}
+function ramiAllDone(d){var r=(ST.rami||{})[d]||{};return !!r.del||ramiJams(d).every(function(j){return ramiJDone(d,j);});}
+function ramiBlock(d,j,dlt){var r=(ST.rami||{})[d]||{},N=ramiForN(d),own=Math.min(7,r[j]||0),i;
+  if(dlt>0){if(own<7)return {who:'',n:own};for(i=0;i<N.length;i++)if(ramiPC(r,N[i],j)<7)return {who:N[i],n:ramiPC(r,N[i],j)};return {who:N.length?N[N.length-1]:'',n:7,full:true};}
+  for(i=N.length-1;i>=0;i--)if(ramiPC(r,N[i],j)>0)return {who:N[i],n:ramiPC(r,N[i],j)};return {who:'',n:own};}
+function ramiFocusOn(){var f=document.getElementById('focus');return !!(f&&f.classList.contains('on')&&focusKey==='rami');}
+/* the block being thrown now: the jamrah on the big counter (or the first one not done), its first unfinished block (or its last one when all are full) */
+function ramiCur(d){var js=ramiJams(d),j=ramiFocusOn()?js[Math.min(ramiJ,js.length-1)]:(js.filter(function(x){return !ramiJDone(d,x);})[0]||js[js.length-1]),b=ramiBlock(d,j,1);if(b.full)b=ramiBlock(d,j,-1);return {d:d,j:j,who:b.who,n:b.n};}
+function ramiTap(j,dlt){var d=ramiDay||ramiDefaultDay(),r=ramiD(d),b=ramiBlock(d,j,dlt),n=b.n,v=Math.max(0,Math.min(7,n+dlt));if(v===n||(dlt>0&&b.full))return;
   if(dlt>0&&!r.del&&d>=11&&d===hajjDay()&&!ramiEarlyOK[d]&&!ramiAny(d)&&nowMin()<siteTimes('Mina').dhuhr){ramiEarlySheet(j,d);vib([40,40,40]);return;}
-  if(dlt>0&&!r.del&&!ramiOrderOK){var js0=ramiJams(d),prev=js0.slice(0,js0.indexOf(j)).filter(function(x){return (r[x]||0)<7;});if(prev.length){ramiOrderSheet(j,prev[0],d);vib([40,40,40]);return;}}
+  if(dlt>0&&!r.del&&!ramiOrderOK){var js0=ramiJams(d),prev=js0.slice(0,js0.indexOf(j)).filter(function(x){return !ramiJDone(d,x);});if(prev.length){ramiOrderSheet(j,prev[0],d);vib([40,40,40]);return;}}
   var now=Date.now();if(dlt>0){if(now-ramiLast<800){vib([40,40,40]);toast('Already counted — tap −1 if wrong');return;}ramiLast=now;}
-  r[j]=v;var js=ramiJams(d),all=js.every(function(x){return (r[x]||0)>=7;}),stId='h'+d+'rami';
+  if(dlt<0&&ramiPause&&ramiPause.d===d&&ramiPause.j===j)ramiPauseEnd();
+  ramiSetBlock(d,j,b.who,v,dlt);}
+/* one block's count changes (a tap, −1, or "Set to …" from the Problem? sheet): the own-pebble tick and timeline stamps, then the toast and the hand-off */
+function ramiSetBlock(d,j,who,v,dlt){var r=ramiD(d),now=Date.now(),js=ramiJams(d),stId='h'+d+'rami',fo=ramiFocusOn(),k=js.indexOf(j);
+  if(who){r.p=r.p||{};r.p[who]=r.p[who]||{};r.p[who][j]=v;}else r[j]=v;
+  var all=js.every(function(x){return (r[x]||0)>=7;});
   if(!ST.hlog||typeof ST.hlog!=='object')ST.hlog={};
-  if(v===1&&dlt>0&&!ST.hlog['rami'+d+'Start'])ST.hlog['rami'+d+'Start']=now;
-  if(all){ST.hlog['rami'+d]=ST.hlog['rami'+d]||now;if(!hajjChk[stId]){hajjChk[stId]=true;ST.hlog[stId]=ST.hlog[stId]||now;save('us-hajj',hajjChk);}}
-  else if(hajjChk[stId]&&!r.del){delete hajjChk[stId];delete ST.hlog[stId];delete ST.hlog['rami'+d];save('us-hajj',hajjChk);}
+  if(v>=1&&dlt>0&&!ST.hlog['rami'+d+'Start'])ST.hlog['rami'+d+'Start']=now;
+  if(all){ST.hlog['rami'+d]=ST.hlog['rami'+d]||now;if(!hajjChk[stId]){hajjChk[stId]=true;ST.hlog[stId]=ST.hlog[stId]||now;delete ST.hlog[stId+'Est'];save('us-hajj',hajjChk);}}
+  else if(hajjChk[stId]&&!r.del){delete hajjChk[stId];delete ST.hlog[stId];delete ST.hlog[stId+'Est'];delete ST.hlog['rami'+d];save('us-hajj',hajjChk);}
   saveST();vib(v===7?[50,60,140]:35);
-  var k=js.indexOf(j);if(v===7){if(all){confetti(50);toast('🪨 Rami of the '+d+'th complete — '+(d===10?'stop here, no dua after Aqabah; next the hady and halq':'back to Mina, takbir after every prayer'),true);}else{var nxj=js.slice(k+1).concat(js.slice(0,k)).filter(function(x){return (r[x]||0)<7;})[0];toast('✓ '+JAM[j][0]+' done — now '+JAM[nxj][0]+(k<2?' (make dua facing the qiblah first)':''),true);if(focusKey==='rami')ramiJ=js.indexOf(nxj);}}
-  else cntToast(dlt>0?'Allahu akbar · '+v+' of 7 · '+JAM[j][0]:'↶ Back to '+v+' of 7');
-  updRites();if(document.getElementById('focus').classList.contains('on')&&focusKey==='rami')renderFocusRami();}
+  var forW=who?' for '+who:'';
+  if(v===7&&dlt>0){
+    if(ramiAllDone(d)){if(fo)ramiPauseEnd();confetti(50);toast('🪨 Rami of the '+d+'th complete'+(ramiForN(d).length?' — and for '+ramiForN(d).join(', '):'')+' — '+(d===10?'stop here, no dua after Aqabah; next the hady and halq':'back to Mina, takbir after every prayer'),true);}
+    else if(!ramiJDone(d,j)){var nb=ramiBlock(d,j,1);toast('✓ 7'+(who?forW:' for you')+' — now 7 for '+nb.who+' at '+JAM[j][0],true);}
+    else{var nxj=js.slice(k+1).concat(js.slice(0,k)).filter(function(x){return !ramiJDone(d,x);})[0];
+      /* G2 #14: after as-Sughra and al-Wusta (11th–13th) the big counter pauses for the long dua; taps do not count until "Walk on" */
+      if(fo&&d>=11&&k<2){ramiPauseStart(d,j);}
+      toast('✓ '+JAM[j][0]+' done — now '+JAM[nxj][0]+(k<2?' (make dua facing the qiblah first)':''),true);if(fo&&!ramiPause)ramiJ=js.indexOf(nxj);}}
+  else if(dlt)cntToast(dlt>0?'Allahu akbar · '+v+' of 7'+forW+' · '+JAM[j][0]:'↶ Back to '+v+' of 7'+forW);
+  else toast('Count set to '+v+' of 7'+forW+' at '+JAM[j][0]+(v<7?' — throw the rest one at a time':''));
+  updRites();if(fo)renderFocusRami();}
+/* G2 #13: who else the pilgrim is stoning for today */
+function ramiForSet(d,L){ST.ramiFor=ST.ramiFor&&typeof ST.ramiFor==='object'?ST.ramiFor:{};if(L.length)ST.ramiFor[d]=L;else delete ST.ramiFor[d];saveST();}
+function ramiForAdd(d,nm){nm=String(nm||'').trim().slice(0,24);if(!nm)return;var L=ramiForN(d).slice();if(L.some(function(x){return x.toLowerCase()===nm.toLowerCase();})){toast(nm+' is already in today’s list');return;}
+  if(L.length>=4){toast('Up to four people a day');return;}L.push(nm);ramiForSet(d,L);closeSheet();updRites();if(ramiFocusOn())renderFocusRami();vib(10);toast('🪨 '+nm+' added for the '+d+'th — seven for you first, then seven for '+nm+' at each jamrah');}
+function ramiForDel(d,nm){var r=ramiD(d),keep=r.p&&r.p[nm]?JSON.parse(JSON.stringify(r.p[nm])):null,L=ramiForN(d),i=L.indexOf(nm);if(i<0)return;
+  ramiForSet(d,L.filter(function(x){return x!==nm;}));if(r.p){delete r.p[nm];if(!Object.keys(r.p).length)delete r.p;}saveST();updRites();vib(8);
+  toast('Removed '+nm+' from the '+d+'th',false,'Undo',function(){var L2=ramiForN(d).slice();L2.splice(Math.min(i,L2.length),0,nm);ramiForSet(d,L2);if(keep){var r2=ramiD(d);r2.p=r2.p||{};r2.p[nm]=keep;}saveST();updRites();});}
+function ramiForSheet(d){var L=ramiForN(d),K=kidNames().map(function(k){return typeof k==='string'?k:(k&&k.n)||'';}).filter(function(k){return k&&L.indexOf(k)<0;}),prev=d>10?ramiForN(d-1).filter(function(x){return L.indexOf(x)<0;}):[];
+  var ri=RAMI_PROB.filter(function(x){return x.id==='rami-delegate';})[0];
+  openSheet('<div class="sheet-h">'+mk('group')+'</div><h3>Also stoning for…</h3><p>At each jamrah you throw seven for yourself first, then seven for each person, then move on. The counter keeps a block of seven for each.</p>'
+    +(prev.length?'<button class="chip-btn rf-same" onclick="ramiForSet('+d+',ramiForN('+d+').concat('+esc(JSON.stringify(prev))+'));closeSheet();updRites()">Same as the '+(d-1)+'th: '+esc(prev.join(', '))+'</button>':'')
+    +(K.length?'<div class="rf-kids">'+K.map(function(k){return '<button class="chip-btn" onclick="ramiForAdd('+d+',this.textContent)">'+esc(k)+'</button>';}).join('')+'</div>':'')
+    +'<div class="rf-add"><input class="srch" id="rfName" maxlength="24" placeholder="Name (e.g. Mum)" aria-label="Name of the person you are stoning for" onkeydown="if(event.key===\'Enter\')ramiForAdd('+d+',this.value)"><button class="chip-btn" onclick="ramiForAdd('+d+',document.getElementById(\'rfName\').value)">＋ Add</button></div>'
+    +(ri?'<div class="acc rf-rule"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)">'+esc(ri.t)+' <span class="acc-c">▶</span></div><div class="acc-b">'+ri.b+'</div></div>':'')
+    +'<button class="btn ghost" onclick="closeSheet()">Close</button>');}
+function ramiForRowHTML(d){var L=ramiForN(d);return '<div class="rami-for" id="ramiFor"><span class="rf-l">Also stoning for:</span>'+L.map(function(nm){return '<button class="rf-chip" onclick="ramiForDel('+d+',\''+esc(nm).replace(/'/g,'\\\'')+'\')" aria-label="Remove '+esc(nm)+' from today’s stoning">'+esc(nm)+' <span aria-hidden="true">✕</span></button>';}).join('')+(L.length<4?'<button class="rf-chip add" onclick="ramiForSheet('+d+')" aria-label="Add someone you are stoning for">＋ Add</button>':'')+'</div>';}
+/* ── 6.6 (G2 #14) · the pause for dua between the jamarat (big counter, 11th–13th, after as-Sughra and al-Wusta) ── */
+var ramiPause=null,ramiPauseTm=0;
+function ramiPauseStart(d,j){ramiPause={d:d,j:j,at:Date.now()};clearInterval(ramiPauseTm);ramiPauseTm=setInterval(ramiPauseTick,1000);}
+function ramiPauseEnd(){ramiPause=null;clearInterval(ramiPauseTm);ramiPauseTm=0;}
+function ramiPauseTick(){var e=document.getElementById('ramiPauseT');if(!ramiPause||!e){if(!ramiPause){clearInterval(ramiPauseTm);ramiPauseTm=0;}return;}var s=Math.floor((Date.now()-ramiPause.at)/1000),v=Math.floor(s/60)+':'+('0'+(s%60)).slice(-2);if(e.textContent!==v)e.textContent=v;}
+function ramiWalkOn(){if(!ramiPause)return;var d=ramiPause.d,js=ramiJams(d),k=js.indexOf(ramiPause.j);ramiPauseEnd();var nx=js.slice(k+1).filter(function(x){return !ramiJDone(d,x);})[0];if(nx)ramiJ=js.indexOf(nx);vib(12);renderFocusRami();}
+/* ── 6.6 (G2 #15) · the rami Problem? sheet leads with the pebble problems (verified pack, verbatim); each offers its counter action, and the count changes only on that tap ── */
+var ramiSetV=0;
+function ramiProbHTML(){var d=ramiDay||ramiDefaultDay(),c=ramiCur(d),wh=JAM[c.j][0]+' · '+c.n+' of 7'+(c.who?' for '+esc(c.who):''),h='';ramiSetV=c.n;
+  RAMI_PROB.forEach(function(x){var act='';
+    if(x.a==='keep')act='<button class="chip-btn rp-keep" onclick="closeSheet();toast(\'Count stays at '+c.n+' of 7 — throw another pebble\')">Keep count at '+c.n+'</button>';
+    else if(x.a==='minus')act='<button class="chip-btn rp-minus" onclick="closeSheet();ramiTap(\''+c.j+'\',-1)"'+(c.n?'':' disabled')+'>−1 — count them as one</button>';
+    else if(x.a==='set')act='<div class="rp-set" role="group" aria-label="Set the count to the number you are sure of"><button class="chip-btn" onclick="ramiSetStep(-1)" aria-label="One fewer">−</button><output id="rpSetV" aria-live="polite">'+c.n+'</output><button class="chip-btn" onclick="ramiSetStep(1)" aria-label="One more">+</button><button class="chip-btn rp-setgo" id="rpSetGo" onclick="ramiSetGo(\''+c.j+'\','+esc(JSON.stringify(c.who))+')">Set to '+c.n+'</button></div>';
+    h+='<div class="acc rp-acc" data-id="'+x.id+'"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)">'+esc(x.t)+' <span class="acc-c">▶</span></div><div class="acc-b">'+(act?'<div class="rp-act"><small>Now: '+wh+'</small>'+act+'</div>':'')+x.b+'</div></div>';});
+  return h;}
+function ramiSetStep(dl){ramiSetV=Math.max(0,Math.min(7,ramiSetV+dl));var o=document.getElementById('rpSetV'),g=document.getElementById('rpSetGo');if(o)o.textContent=ramiSetV;if(g)g.textContent='Set to '+ramiSetV;vib(6);}
+function ramiSetGo(j,who){var d=ramiDay||ramiDefaultDay();closeSheet();ramiSetBlock(d,j,who||'',ramiSetV,0);}
 function ramiDel(d){var r=ramiD(d),stId='h'+d+'rami';r.del=!r.del;if(!ST.hlog||typeof ST.hlog!=='object')ST.hlog={};
   if(r.del){if(!hajjChk[stId]){hajjChk[stId]=true;ST.hlog[stId]=ST.hlog[stId]||Date.now();}}else if(!ramiJams(d).every(function(x){return (r[x]||0)>=7;})&&hajjChk[stId]){delete hajjChk[stId];delete ST.hlog[stId];}
   save('us-hajj',hajjChk);saveST();vib(10);ramiDay=d;updRites();toast(r.del?'🤝 Delegated — the rami of the '+d+'th is ticked for you':'Delegation removed for the '+d+'th');}
@@ -1247,38 +1395,46 @@ function ramiReset(d){openSheet('<div class="sheet-h danger">↺</div><h3>Reset 
 function ramiResetGo(d){closeSheet();var stId='h'+d+'rami';delete ST.rami[d];if(hajjChk[stId]){delete hajjChk[stId];save('us-hajj',hajjChk);}if(ST.hlog){delete ST.hlog[stId];delete ST.hlog['rami'+d];delete ST.hlog['rami'+d+'Start'];}saveST();ramiJ=0;ramiLast=0;updRites();toast('Rami of the '+d+'th reset to 0');}
 function openRami(d){ramiForce=true;if(d>=10&&d<=13)ramiDay=d;else if(!ramiDay)ramiDay=ramiDefaultDay();ramiJ=0;renderRami();goTab('umrah','count','ramiCard');}
 function renderFocusRami(){var d=ramiDay||ramiDefaultDay(),r=ramiD(d),js=ramiJams(d);if(ramiJ>=js.length)ramiJ=js.length-1;
-  while(ramiJ<js.length-1&&(r[js[ramiJ]]||0)>=7)ramiJ++;var j=js[ramiJ],n=Math.min(7,r[j]||0),done=ramiDone(d);
-  document.getElementById('focusTitle').innerHTML=mk('stone','mkt')+esc(JAM[j][0])+'<span class="ft-d"> · '+d+'&nbsp;DH</span>';document.getElementById('focusOf').innerHTML='of 7 pebbles · '+(ramiJ+1)+' of '+js.length+'<span class="fo-d"> · '+d+'&nbsp;DH</span>';
-  var fn=document.getElementById('focusN'),fl=document.getElementById('focusLive'),t=document.getElementById('focusTip'),p=document.getElementById('focusDone'),h=document.getElementById('focusHint');
-  if(fn)fn.textContent=n;if(fl)fl.textContent=JAM[j][0]+' '+n+' of 7';
-  if(t){t.hidden=done;t.innerHTML='<b class="tip-a">'+(n<7?'Pebble '+(n+1)+' of 7 · "Allahu akbar"':'7 of 7 — done')+'</b><span class="tip-r">'+(d===10?'One at a time, into the basin. Stop the talbiyah at the first pebble. No dua after Aqabah.':ramiJ<2?'One at a time, into the basin. Then step aside, face the qiblah and make dua.':'One at a time, into the basin. No dua after Aqabah — back to the tent.')+'</span>';}
-  if(h)h.hidden=done;if(p){p.hidden=!done;p.innerHTML=done?'<p>'+(r.del?'Delegated for today.':'Rami of the '+d+'th complete — '+(d===10?'next: hady, halq, then tawaf al-ifadah.':'back to Mina.'))+'</p><button class="btn" onclick="event.stopPropagation();exitFocus();goTab(\'umrah\',\'steps\',\'rw-h'+d+'rami\')">Exit → Part 2, day '+d+'</button><button class="chip-btn" onclick="event.stopPropagation();exitFocus()">✕ Exit</button>':'';}
+  var pz=ramiPause&&ramiPause.d===d?ramiPause:null;if(pz&&!ramiJDone(d,pz.j)){ramiPauseEnd();pz=null;}if(pz)ramiJ=js.indexOf(pz.j);
+  if(!pz)while(ramiJ<js.length-1&&ramiJDone(d,js[ramiJ]))ramiJ++;var j=js[ramiJ],b=ramiBlock(d,j,1),n=b.full?7:b.n,who=b.full?'':b.who,done=ramiAllDone(d),FN=r.del?[]:ramiForN(d);
+  document.getElementById('focusTitle').innerHTML=mk('stone','mkt')+esc(JAM[j][0])+'<span class="ft-d"> · '+d+'&nbsp;DH</span>';document.getElementById('focusOf').innerHTML='of 7 pebbles'+(who?' · for '+esc(who):FN.length?' · for you':'')+' · '+(ramiJ+1)+' of '+js.length+'<span class="fo-d"> · '+d+'&nbsp;DH</span>';
+  var fn=document.getElementById('focusN'),fl=document.getElementById('focusLive'),t=document.getElementById('focusTip'),p=document.getElementById('focusDone'),h=document.getElementById('focusHint'),f=document.getElementById('focus');
+  if(fn)fn.textContent=n;if(fl)fl.textContent=JAM[j][0]+' '+n+' of 7'+(who?' for '+who:'');if(f)f.classList.toggle('rpause',!!pz);
+  if(t){t.hidden=done||!!pz;t.innerHTML='<b class="tip-a">'+(n<7?'Pebble '+(n+1)+' of 7'+(who?' · for '+esc(who):'')+' · "Allahu akbar"':'7 of 7 — done')+'</b><span class="tip-r">'+(who?'Seven for yourself first, then seven for each person, then move on. ':'')+(d===10?'One at a time, into the basin. Stop the talbiyah at the first pebble. No dua after Aqabah.':ramiJ<2?'One at a time, into the basin. Then step aside, face the qiblah and make dua.':'One at a time, into the basin. No dua after Aqabah — back to the tent.')+'</span>';}
+  if(h)h.hidden=done||!!pz;
+  if(p){var nx=pz?js.slice(js.indexOf(pz.j)+1).filter(function(x){return !ramiJDone(d,x);})[0]:null;
+    p.hidden=!(done||pz);
+    if(pz&&!done){var s0=Math.floor((Date.now()-pz.at)/1000);
+      p.innerHTML='<div class="rami-pause" id="ramiPause"><span class="rp-mk" aria-hidden="true">'+mk('hands')+'</span><b class="rp-h">Step out of the path · face the qiblah · raise your hands — make a long dua</b><span class="rp-t">Dua · <span id="ramiPauseT">'+Math.floor(s0/60)+':'+('0'+(s0%60)).slice(-2)+'</span></span><button class="chip-btn rp-my" onclick="event.stopPropagation();myDuasSheet()">'+mk('hands','mkt')+'My duas</button>'
+        +'<button class="btn rp-go" id="ramiWalkOn" onclick="event.stopPropagation();ramiWalkOn()"><span>Walk on to '+(nx?JAM[nx][0]:'the next jamrah')+'</span><span class="hs-go" aria-hidden="true">'+mk('arrow')+'</span></button></div>';}
+    else p.innerHTML=done?'<p>'+(r.del?'Delegated for today.':'Rami of the '+d+'th complete'+(FN.length?' — and for '+esc(FN.join(', ')):'')+' — '+(d===10?'next: hady, halq, then tawaf al-ifadah.':'no dua after Aqabah: back to the tent.'))+'</p><button class="btn" onclick="event.stopPropagation();exitFocus();goTab(\'umrah\',\'steps\',\'rw-h'+d+'rami\')">Exit → Part 2, day '+d+'</button><button class="chip-btn" onclick="event.stopPropagation();exitFocus()">✕ Exit</button>':'';}
   if(done&&wakeLock){wakeLock.release().catch(function(){});wakeLock=null;}}
 /* ── finishing the Hajj: its own log ('us-hajjlog'), counter, badge and keepsake — Part 1's Umrah record is untouched ── */
 function finishHajj(){var miss=hajjMissing();if(miss.length){toast('Not yet — still to tick: '+miss.join(', '));vib([40,40,40]);return;}
   var lg={};Object.keys(ST.hlog||{}).forEach(function(k){lg[k]=ST.hlog[k];});lg.done=Date.now();
   var hist=[];try{hist=JSON.parse(localStorage.getItem('us-hajjlog')||'[]');}catch(e){}if(!Array.isArray(hist))hist=[];
-  hist.push({y:curHajjYear(),type:hajjType(),umrahN:ST.umrahs||0,name:ST.name||'',log:lg});localStorage.setItem('us-hajjlog',JSON.stringify(hist));var idx=hist.length-1;
-  ST.hajjs=(ST.hajjs||0)+1;ST.hlog={};ST.rami={};ST.hajjTypeConfirmed=false;ST.tawaf=0;ST.sai=0;ST.tmode='nafl';ST.post=true;delete ST.stay13;saveST();
+  hist.push({y:curHajjYear(),type:hajjType(),umrahN:ST.umrahs||0,name:ST.name||'',log:lg,st13:!!ST.stay13,rami:JSON.parse(JSON.stringify(ST.rami||{}))});localStorage.setItem('us-hajjlog',JSON.stringify(hist));var idx=hist.length-1;
+  ST.hajjs=(ST.hajjs||0)+1;ST.hlog={};ST.rami={};ST.ramiFor={};ST.hajjTypeConfirmed=false;ST.tawaf=0;ST.sai=0;ST.tmode='nafl';ST.post=true;delete ST.stay13;saveST();
   hajjChk={};save('us-hajj',hajjChk);saiGo=false;cntForce={};lastTap={};ramiDay=0;ramiJ=0;ramiForce=false;
   renderPost();updRites();renderJourneys();chkBadges();applyJourney();updChip();homeRefresh();confetti(160);
   var note=document.getElementById('hajjDoneNote');if(note)note.innerHTML='<div class="rd-note">'+mk('medal','mkt')+'Hajj '+hist[idx].y+' recorded — may Allah accept it!<div class="rd-acts"><button class="chip-btn" onclick="makeHajjKeepsake('+idx+')">🎴 Keepsake</button><button class="chip-btn" onclick="goTab(\'more\',\'guide\',\'journeysArea\')">📜 My journeys</button></div></div>';
   toast('⛺ Hajj '+hist[idx].y+' recorded — may Allah accept it. "The accepted Hajj has no reward but Paradise" (Bukhari 1773)',true);
   if(document.getElementById('view-umrah').classList.contains('on'))setTimeout(function(){jumpTo('hajjDone',true);},400);}
 function startFreshHajj(){openSheet('<div class="sheet-h danger">↺</div><h3>Start Part 2 fresh?</h3><p>Clears every Hajj tick, the pebble counts and this Hajj’s timeline <b>without recording a Hajj</b>. Your Umrah record, recorded Hajjs and keepsakes are kept.</p><button class="btn danger tall" onclick="startFreshHajjGo()">↺ Clear — nothing recorded</button><button class="btn ghost tall" onclick="closeSheet()">Cancel</button>');}
-function startFreshHajjGo(){closeSheet();hajjChk={};save('us-hajj',hajjChk);ST.hlog={};ST.rami={};ST.hajjTypeConfirmed=false;delete ST.stay13;if(tmHajj())ST.tmode='umrah';saveST();ramiDay=0;ramiJ=0;var n=document.getElementById('hajjDoneNote');if(n)n.innerHTML='';updRites();focusRites(false);toast('Cleared — nothing was recorded');vib(10);}
+function startFreshHajjGo(){closeSheet();hajjChk={};save('us-hajj',hajjChk);ST.hlog={};ST.rami={};ST.ramiFor={};ST.hajjTypeConfirmed=false;delete ST.stay13;if(tmHajj())ST.tmode='umrah';saveST();ramiDay=0;ramiJ=0;var n=document.getElementById('hajjDoneNote');if(n)n.innerHTML='';updRites();focusRites(false);toast('Cleared — nothing was recorded');vib(10);}
 function makeHajjKeepsake(i){var hist=[];try{hist=JSON.parse(localStorage.getItem('us-hajjlog')||'[]');}catch(e){}var u=hist[i];if(!u)return;var lg=u.log||{},ty=(HAJJ_TYPES[u.type]||{}).t||'';
   var c=document.createElement('canvas');c.width=1080;c.height=1350;var x=c.getContext('2d');
   kCloth(x,1080,1350);kBadge(x,540,250,'tent');
   x.textAlign='center';kLabel(x,'My Hajj · '+(u.y||'')+(ty?' · '+ty:''),540,400,40);
   x.font='600 64px '+KF;x.fillStyle=K.ihram;x.fillText(u.name||ST.name||'A guest of Allah',540,500);
   x.font='30px '+KB;x.fillStyle=K.ihram2;x.fillText(new Date(lg.done||Date.now()).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}),540,555);
-  var y=660;x.textAlign='left';x.font='30px '+KB;
-  [['Arafah',lg.h9wuquf],['Rami of the 10th',lg.h10rami],['Halq / taqsir',lg.h10halq||lg.h10halqw],['Tawaf al-ifadah',lg.ifadahStart,lg.ifadahEnd||lg.h10ifadah],['Sa’i of Hajj',lg.hsaiStart,lg.hsaiEnd||lg.h10sai],['Tawaf al-wada',lg.wadaStart,lg.wadaEnd||lg.hwada||lg.hwadaw]].forEach(function(r){
-    x.fillStyle=K.gold3;x.fillText(r[0],130,y);x.fillStyle=K.ihram;x.textAlign='right';var a=r[1],b=r[2];
-    x.fillText(a?fmtTime(a)+(b&&b>a?' – '+fmtTime(b)+'  ('+fmtDur(b-a)+')':''):(b?fmtTime(b):'—'),950,y);x.textAlign='left';y+=66;});
-  x.textAlign='center';x.font='500 28px '+KB;x.fillStyle=K.gold3;x.fillText('“…he will return as if he were born anew.” — Bukhari 1521',540,1140);
-  kFoot(x,'Miqah · umrah-strivers.vercel.app',540,1190);
+  /* G2 #18: day by day in two columns (8–10 | 11–13 + wada); a caught-up step shows its date only; the "for Mum" detail stays in the app */
+  var st13=u.st13||!!(lg.h13rami||lg.rami13),G=hlogDays(lg,u.type,st13,{}),cols=[G.filter(function(g){return g.d&&g.d<=10;}),G.filter(function(g){return !g.d||g.d>10;})];
+  cols.forEach(function(col,ci){var x0=ci?565:105,x1=ci?975:515,y=640;col.forEach(function(g){x.textAlign='left';x.font='700 24px '+KB;x.fillStyle=K.gold3;x.fillText(g.d?g.d+' DHUL HIJJAH':'BEFORE LEAVING',x0,y);y+=44;
+    g.rows.forEach(function(r){var t=r.t.replace(/ \(delegated\)| · and for .*/g,''),v=r.waived?'waived':hlogVal(r),fs=28,w=function(){x.font=fs+'px '+KB;var a=x.measureText(t).width;x.font='600 '+fs+'px '+KB;return a+x.measureText(v).width+18;};
+      while(fs>18&&w()>x1-x0)fs--;x.textAlign='left';x.font=fs+'px '+KB;x.fillStyle=K.ihram2;x.fillText(t,x0,y);x.textAlign='right';x.font='600 '+fs+'px '+KB;x.fillStyle=K.ihram;x.fillText(v,x1,y);y+=48;});y+=14;});});
+  x.textAlign='center';x.font='500 28px '+KB;x.fillStyle=K.gold3;x.fillText('“…he will return as if he were born anew.” — Bukhari 1521',540,1185);
+  kFoot(x,'Miqah · umrah-strivers.vercel.app',540,1235);
   exportImage(c,'my-hajj-'+(u.y||'')+'.png','My Hajj keepsake');}
 
 /* ════════════════════════ DAILY ════════════════════════ */
@@ -1396,20 +1552,33 @@ function renderHeat(){
   for(var i=1;i<=ST.tripLen;i++){
     var p=dayPct(i),ex=dayExcused(i),cls='',dt=dayDateStr(i);
     if(p!==null&&p>0){cls=p>=90?'h4':p>=70?'h3':p>=40?'h2':'h1';}
-    h+='<div class="hc '+cls+(i===ST.day?' now':'')+(ex?' exc':'')+'" role="button" tabindex="0" onclick="heatGo('+i+')" title="Day '+i+(dt?' · '+dt:'')+(p!==null?': '+p+'%':'')+(ex?' (excused)':'')+'" aria-label="Day '+i+(dt?', '+dt:'')+(p!==null?', '+p+'%':', not logged')+(ex?', excused':'')+' — open to log it">'+i+'</div>';
+    /* G2 #19: a day of Hajj carries a small tent mark and its name ("9 Dhul Hijjah · Arafah") */
+    var hd=heatHajjDay(i),hn=hd?hd+' Dhul Hijjah · '+DH_NAME[hd]:'';
+    h+='<div class="hc '+cls+(i===ST.day?' now':'')+(ex?' exc':'')+(hd?' hj':'')+'" role="button" tabindex="0" onclick="heatGo('+i+')" title="Day '+i+(dt?' · '+dt:'')+(hn?' · '+hn:'')+(p!==null?': '+p+'%':'')+(ex?' (excused)':'')+'" aria-label="Day '+i+(dt?', '+dt:'')+(hn?', '+hn:'')+(p!==null?', '+p+'%':', not logged')+(ex?', excused':'')+' — open to log it">'+i+(hd?'<span class="hc-hj" aria-hidden="true">'+mk('tent')+'</span>':'')+'</div>';
   }
   g.style.gridTemplateColumns='repeat('+Math.min(ST.tripLen,7)+',minmax(0,1fr))';
   g.innerHTML=h;
   var lg=document.getElementById('heatLeg');if(lg)lg.innerHTML='<i class="hc h1"></i>&lt;40% <i class="hc h2"></i>40% <i class="hc h3"></i>70% <i class="hc h4"></i>90%+ <span class="hleg-h">Tap a day to log it</span>';
 }
-function heatGo(i){setDay(i,true);goSub('daily','today',true);setTimeout(function(){jumpTo('dayNav',true);},60);vib(8);}
+function heatHajjDay(i){var hd=tripHajjDay(i);return hd&&(hd<13||ST.stay13)?hd:0;}
+function heatGo(i,force){var hd=heatHajjDay(i);
+  if(hd&&!force){var sec=HAJJ_RITES.filter(function(x){return x.hd===hd&&!x.night;})[0];openSheet('<div class="sheet-h">'+mk('tent')+'</div><h3>Day '+i+' · '+hd+' Dhul Hijjah · '+DH_NAME[hd]+'</h3><p>Log the day’s worship in Daily, or open the day’s rites in Part 2.</p><button class="btn" id="heatHajjGo" onclick="closeSheet();openHajjDay(\''+(sec?sec.id:'hd'+hd)+'\')">Open day '+hd+' in Part 2</button><button class="btn ghost" onclick="closeSheet();heatGo('+i+',true)">Daily log for day '+i+'</button>');vib(8);return;}
+  setDay(i,true);goSub('daily','today',true);setTimeout(function(){jumpTo('dayNav',true);},60);vib(8);}
+/* G2 #19: the Hajj itself in the stats — steps ticked, own pebbles thrown (delegated days marked, pebbles for others apart), whole days of Hajj done */
+function hajjPebbles(){var R=ST.rami||{},days=[10,11,12].concat(ST.stay13||R[13]?[13]:[]),o={thrown:0,need:0,del:[],oth:0};
+  days.forEach(function(d){var r=R[d]||{},js=ramiJams(d);if(r.del){o.del.push(d);return;}o.need+=7*js.length;js.forEach(function(j){o.thrown+=Math.min(7,r[j]||0);});Object.keys(r.p||{}).forEach(function(nm){js.forEach(function(j){o.oth+=ramiPC(r,nm,j);});});});return o;}
+function hajjDaysDone(){var days=[8,9,10,11,12].concat(ST.stay13?[13]:[]),S=hajjSecs(),n=0;days.forEach(function(d){var L=S.filter(function(s){return s.hd===d;});if(L.length&&L.every(function(s){return s.steps.some(forMe)&&catchSteps(s).length===0;}))n++;});return {done:n,tot:days.length};}
 function statsEmpty(){var logged=0;for(var i=1;i<=ST.tripLen;i++){var p=dayPct(i);if(p!==null&&p>0)logged++;}var pv=Object.keys(placeVis).filter(function(k){return placeVis[k];}).length;return logged===0&&!totalUmrahs()&&pv===0&&tbTotal()===0;}
 function updStats(){
   var logged=0,sum=0,best=0,bestD=0,perf=0,nt=0;
   for(var i=1;i<=ST.tripLen;i++){var p=dayPct(i);if(p!==null&&p>0){logged++;sum+=p;if(p>best){best=p;bestD=i;}if(p>=80)perf++;}var dd=dailyChk['d'+i];if(dd)nt+=(dd.ntawafN||(dd.ntawaf?1:0));}
   function set(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
   set('stDays',logged);set('stAvg',(logged?Math.round(sum/logged):0)+'%');set('stBest',bestD?'Day '+bestD+' ('+best+'%)':'—');set('stPerf',perf);
-  set('stHeroN',logged);set('stHeroOf','of '+ST.tripLen+' days with worship logged');set('stHeroAvg',(logged?Math.round(sum/logged):0)+'%');set('stHeroBest',bestD?'Day '+bestD:'—');set('stHeroU',totalUmrahs());
+  set('stHeroN',logged);set('stHeroOf','of '+ST.tripLen+' days with worship logged');set('stHeroAvg',(logged?Math.round(sum/logged):0)+'%');set('stHeroBest',bestD?'Day '+bestD:'—');
+  var HJ=journey()==='hajj',rec=HJ&&hajjRecordedNow(),HT=HJ?hajjTotals():null;set('stHeroUL',HJ?'Hajj steps':'Umrahs');set('stHeroU',!HJ?totalUmrahs():rec?'done ✓':HT.done+'/'+HT.tot);
+  ['stHajjRow','stPebRow','stHdRow'].forEach(function(id){var e=document.getElementById(id);if(e)e.hidden=!HJ;});
+  if(HJ){var PB=hajjPebbles(),DD=hajjDaysDone();set('stHajj',rec?'recorded ✓':HT.done+' of '+HT.tot);set('stPeb',PB.thrown+' of '+PB.need);
+    set('stPebN',[PB.del.length?'the '+PB.del.map(function(d){return d+'th';}).join(', ')+' delegated':'',PB.oth?'+'+PB.oth+' thrown for others':''].filter(Boolean).join(' · '));set('stHd',rec?'recorded ✓':DD.done+' of '+DD.tot);}
   var fs=streakOf('fajr');set('stFajr',fs+(fs===1?' day':' days'));
   set('stUmrahs',totalUmrahs());set('stNafl',nt);set('stDhikr',tbTotal());
   /* D-17: the numbers shown elsewhere, on one scoreboard */
@@ -1720,14 +1889,20 @@ function homeRefl(){goPost();setTimeout(function(){jumpTo('postNotes',true);},45
 /* a show-to-a-stranger phone row: the whole 48px row is the link */
 function telRow(lbl,tel,num){return '<a class="lost-kv" href="tel:'+tel+'"><span>'+lbl+'</span><b class="num">'+num+'</b></a>';}
 var HELP_TEL=[['🚓','Police · ambulance · fire','911'],['🏥','Health (Ministry of Health)','937'],['🕋','Hajj &amp; Umrah care line','1966'],['ℹ️','Tourism helpline','930']];
-function showHelp(){var hi=ST.hotelInfo||{},ph=leadPhone(),h='';
+function showHelp(){var hi=ST.hotelInfo||{},ph=leadPhone(),h='',cp=ST.camp||{},cd=campDay(),campRow='';
+  /* G2 #9: campN() — "camp 43", never "camp Camp 43"; on a tent day the group leader's row leads */
+  if(journey()==='hajj'&&cp.p)campRow=telRow(mkOr('⛺')+' '+esc(cp.l||'Group leader')+(cp.n?' · camp '+esc(campN(cp)):'')+(cp.m?' · maktab '+esc(campM(cp)):''),telOf(cp.p),esc(cp.p));
   h+='<div class="lost-en" style="margin:10px 0 6px">Emergency &amp; help numbers in Saudi Arabia — 911 is free from any phone</div>';
+  if(cd)h+=campRow;
   HELP_TEL.forEach(function(t){h+=telRow(mkOr(t[0])+' '+t[1],t[2],t[2]);});
   if(ph)h+=telRow(mkOr('👥')+' '+esc(leadName()||'Companion'),telOf(ph),esc(ph));
-  var cp=ST.camp||{};if(journey()==='hajj'&&cp.p)h+=telRow(mkOr('⛺')+' '+esc(cp.l||'Group leader')+(cp.n?' · camp '+esc(cp.n):''),telOf(cp.p),esc(cp.p));
+  if(!cd)h+=campRow;
   if(hi.p)h+=telRow(mkOr('🏨')+' '+esc(hi.n||'Hotel'),telOf(hi.p),esc(hi.p));
-  h+='<div class="lost-kv"><span>'+mkOr('🤝')+' Family meeting point</span>'+(hi.m?'<b style="text-align:right">'+esc(hi.m)+'</b>':'<button class="lnk" style="font-size:1em" onclick="closeHelp();goTab(\'plan\',\'prep\',\'hotelCard\')">Set one →</button>')+'</div>';
-  h+='<p style="font-size:var(--t-3);color:var(--show-ink2);text-align:center;margin:14px 0 6px">If separated: go to the meeting point after the next prayer, stay put, and call.</p>';
+  /* the Haram meeting point does not apply in Mina or Arafah: the app's own guidance (TROUBLE_HAJJ hlost; on the 9th the verified wayfinding camp-finding-way line) takes its place */
+  if(cd){h+=(cp.n||cp.m)?'<div class="lost-kv"><span>'+mkOr('⛺')+' My camp</span><b style="text-align:right">'+esc(campChipT(cp))+'</b></div>':'<div class="lost-kv"><span>'+mkOr('⛺')+' My camp</span><button class="lnk" style="font-size:1em" onclick="closeHelp();goCampEdit()">Add it →</button></div>';
+    h+='<p class="help-camp" id="helpCamp" style="font-size:var(--t-3);color:var(--show-ink2);text-align:center;margin:14px 0 6px">'+(campAtArafah()?'If you are lost, show your Nusuk card to security staff, a scout or a Nusuk Care point — the Ministry calls the card the main way to identify you and get you help.':'Lost in Mina? Show your maktab / camp number (on your wristband or card) to any scout (kashaf), security officer or the guides for lost pilgrims — they will walk you there. Never leave Mina to look for your group in Makkah.')+'</p>';}
+  else{h+='<div class="lost-kv"><span>'+mkOr('🤝')+' Family meeting point</span>'+(hi.m?'<b style="text-align:right">'+esc(hi.m)+'</b>':'<button class="lnk" style="font-size:1em" onclick="closeHelp();goTab(\'plan\',\'prep\',\'hotelCard\')">Set one →</button>')+'</div>';
+  h+='<p style="font-size:var(--t-3);color:var(--show-ink2);text-align:center;margin:14px 0 6px">If separated: go to the meeting point after the next prayer, stay put, and call.</p>';}
   h+='<div class="drv-acts" style="margin-top:12px"><button class="btn danger" onclick="closeHelp();showLost()">'+markify('🆘 I’m lost')+'</button><button class="btn ghost" onclick="closeHelp();homeDriver()">'+markify('🚕 To my hotel')+'</button>'+(journey()==='hajj'?'<button class="btn ghost" onclick="closeHelp();showCampDriver()">'+markify('⛺ To my camp')+'</button>':'')+'</div>';
   h+='<div class="focus-hint" style="margin-top:22px;text-align:center" onclick="closeHelp()">tap here to close</div>';
   var b=document.getElementById('helpBody');if(!b)return;b.innerHTML=h;document.getElementById('help').classList.add('on');vib(10);}
@@ -1909,6 +2084,7 @@ function renderHome(){
     else if(fc0){cont=fcHTML;fcUsed=true;}
     if(hsK==='hday')fcUsed=true;
     if(stageNow!==0)h+=cont;
+    if(hsK==='hday')h+=rulesRowHTML('home');
     /* H-05: what to do next (planners) — above the flashcard card */
     if(stageNow===0){var rows=nextRows.slice(0,3),nq0=qzPassedCount()<NL?qzNext():-1,nx='';
       rows.forEach(function(r){nx+='<div class="tli" role="checkbox" tabindex="0" aria-checked="false" onclick="tlTick(this,\''+r.o.it.id+'\')"><span class="tick"></span><div class="tli-t">'+r.o.it.label+'<small>'+r.o.sec.title+(r.o.it.wk!==undefined?' · <span class="ty-nw">ideally '+(r.o.it.wk>=1?r.o.it.wk+' week'+(r.o.it.wk>1?'s':''):'days')+' before</span>':'')+'</small></div><span class="tli-when '+r.cls+'">'+r.when+'</span></div>';});
@@ -2016,15 +2192,15 @@ function enterFocus(k){
   renderFocusDua();updWudu();renderCnt(k);
   if(ST[k]<7)reqWake();
 }
-function exitFocus(){document.getElementById('focus').classList.remove('on');document.body.style.overflow='';if(wakeLock){wakeLock.release().catch(function(){});wakeLock=null;}
+function exitFocus(){if(typeof ramiPauseEnd==='function')ramiPauseEnd();var fz=document.getElementById('focus');if(fz)fz.classList.remove('rpause');document.getElementById('focus').classList.remove('on');document.body.style.overflow='';if(wakeLock){wakeLock.release().catch(function(){});wakeLock=null;}
   if(walkReturn){walkReturn=false;openWalkAt(walkI);}}
-function focusTap(){if(focusKey==='arafah')arafahTap(1);else if(focusKey==='tasbih')tbTap();else if(focusKey==='rami')ramiTap(ramiJams(ramiDay||ramiDefaultDay())[ramiJ],1);else cntr(focusKey,1);}
+function focusTap(){if(focusKey==='rami'&&ramiPause)return;if(focusKey==='arafah')arafahTap(1);else if(focusKey==='tasbih')tbTap();else if(focusKey==='rami')ramiTap(ramiJams(ramiDay||ramiDefaultDay())[ramiJ],1);else cntr(focusKey,1);}
 function focusUndo(){if(focusKey==='arafah')arafahTap(-1);else if(focusKey==='tasbih')tbUndo();else if(focusKey==='rami')ramiTap(ramiJams(ramiDay||ramiDefaultDay())[ramiJ],-1);else cntr(focusKey,-1);}
 function renderFocusTB(){var t=document.getElementById('focusTitle'),o=document.getElementById('focusOf'),n=document.getElementById('focusN'),tip=document.getElementById('focusTip'),d=document.getElementById('focusDone');if(!t)return;
   if(focusKey==='arafah'){var ai=duaIdx('dua of Arafah'),an=arafahN();t.innerHTML=mk('hands','mkt')+'The dua of Arafah';n.textContent=an;o.textContent='no target · today '+an;var fa=document.getElementById('focusLive');if(fa)fa.textContent=an+' today';tip.hidden=false;tip.innerHTML=ai>-1?'<span lang="ar">'+DUAS[ai].ar+'</span>':'';if(d)d.hidden=true;return;}
-  t.innerHTML=mk('beads','mkt')+esc(TB_PHRASES[tbPhrase]);n.textContent=tbCount;o.textContent=(tbTargetN?'of '+tbTargetN:'no target')+' · today '+(tasbih[dayKey()]||0);
+  t.innerHTML='<button class="ft-cycle" id="ftCycle" onclick="event.stopPropagation();tbCycle()" aria-label="Phrase: '+esc(tbName(tbPhrase))+' — tap for the next phrase">'+mk('beads','mkt')+'<span>'+esc(tbName(tbPhrase))+'</span><span class="ft-nx" aria-hidden="true">'+mk('refresh','mkt')+'</span></button>';n.textContent=tbCount;o.textContent=(tbTargetN?'of '+tbTargetN:'no target')+' · today '+(tasbih[dayKey()]||0);
   var fl=document.getElementById('focusLive');if(fl)fl.textContent=tbCount+(tbTargetN?' of '+tbTargetN:'');
-  tip.hidden=false;tip.innerHTML='<span lang="ar">'+TB_AR[tbPhrase]+'</span>';if(d)d.hidden=true;}
+  tip.hidden=false;tip.innerHTML='<span lang="ar">'+tbArOf(tbPhrase)+'</span>';if(d)d.hidden=true;}
 /* U-03: at 7/7 the big number stays, the tip becomes the hand-off */
 function renderFocusDone(){var p=document.getElementById('focusDone'),t=document.getElementById('focusTip'),h=document.getElementById('focusHint');if(!p||focusKey==='tasbih'||focusKey==='rami')return;
   var v=ST[focusKey],done=v>=7,open=document.getElementById('focus').classList.contains('on');
@@ -2260,9 +2436,36 @@ function showDriver(){var hi=ST.hotelInfo||{};
   if(!hi.n){toast('Enter your hotel name first','','Add it',function(){goTab('plan','prep','hotelCard');setTimeout(function(){var e=document.getElementById('hName');if(e)e.focus();},700);});return;}
   showDriverCard({top:'🚕 Please take me to my hotel',lead:'من فضلك خذني إلى هذا الفندق',en:hi.n,sub:hi.a||'',tel:hi.p||'',maps:mapsUrl()});}
 function closeDriver(){document.getElementById('driver').classList.remove('on');if(wakeLock&&!document.getElementById('focus').classList.contains('on')){wakeLock.release().catch(function(){});wakeLock=null;}}
+/* 6.6 (G2 #9/#17): the tent days — 8–12 Dhul Hijjah, and the 13th when staying. The camp and the group leader lead the stranger cards, the Counters header and Today's trip card.
+   On the 9th, until the computed Arafah sunset, the place is Arafah: the Arabic line is two existing labels (عرفات from PLACES, مكتب from the camp driver card) — no new sentence. */
+function campDay(){if(journey()!=='hajj')return 0;var hd=hajjDay();return typeof hd==='number'&&(hd<13||ST.stay13)?hd:0;}
+function campAtArafah(){return campDay()===9&&arafahNow().left>0;}
+function campHas(c){c=c||ST.camp||{};return !!(c.n||c.m||c.l||c.p);}
+/* "Camp 42 · maktab 113": a value typed with its own label ("tent 12") keeps it, never "Camp tent 12" */
+function campChipT(c){c=c||ST.camp||{};var n=String(c.n||'').trim();return [n?(/^(camp|tent)\b/i.test(n)?n.charAt(0).toUpperCase()+n.slice(1):'Camp '+n):'',c.m?'maktab '+campM(c):''].filter(Boolean).join(' · ');}
+function campArH(c,af){c=c||ST.camp||{};if(af)return c.m?'عرفات · مكتب <bdi>'+esc(campM(c))+'</bdi>':'';return (c.n||c.m)?'مخيمي في منى'+(c.n?' · مخيم <bdi>'+esc(campN(c))+'</bdi>':'')+(c.m?' · مكتب <bdi>'+esc(campM(c))+'</bdi>':''):'';}
+/* where the camp fields live (Plan › Prepare, in the hotel card) */
+function goCampEdit(){goTab('plan','prep','campBlk');setTimeout(function(){var e=document.getElementById('cN');if(e)e.focus();},700);}
 /* P-08: offline reunification card — leader's number, hotel, meeting point, 911 / 1966 in big type */
-function showLost(){var hi=ST.hotelInfo||{},ph=leadPhone(),nm=leadName();
-  var h='<div class="lost-ar">'+(ST.profile==='w'?'أنا ضائعة':'أنا ضائع')+'، من فضلك اتصل بهذا الرقم</div>';
+function showLost(){var hi=ST.hotelInfo||{},ph=leadPhone(),nm=leadName(),cp=ST.camp||{},cd=campDay();
+  var lostAr='<div class="lost-ar">'+(ST.profile==='w'?'أنا ضائعة':'أنا ضائع')+'، من فضلك اتصل بهذا الرقم</div>',h=lostAr;
+  /* G2 #9: on a tent day the camp line (hero type) and the group leader's number come first; the hotel rows follow, the Haram meeting point does not apply */
+  if(cd&&(cp.n||cp.m||cp.p)){var af=campAtArafah(),ar=campArH(cp,af),bigLead=!!cp.p;
+    h=(ar?'<div class="lost-ar lost-camp" id="lostCamp">'+ar+'</div>':'')+lostAr;
+    if(bigLead)h+='<div class="lost-en">I am with '+esc(cp.l||'my group')+'. Please call:</div><a class="lost-tel" href="tel:'+telOf(cp.p)+'">'+esc(cp.p)+'</a>';
+    else if(ph)h+='<div class="lost-en">I am with '+esc(nm||hi.l)+'. Please call:</div><a class="lost-tel" href="tel:'+telOf(ph)+'">'+esc(ph)+'</a>';
+    else if(hi.l)h+='<div class="lost-en">I am with '+esc(hi.l)+'.</div>';
+    if(af&&cp.m)h+='<div class="lost-kv"><span>'+mkOr('⛺')+' Arafah · maktab</span><b>'+esc(campM(cp))+'</b></div>';
+    if(cp.n)h+='<div class="lost-kv"><span>'+mkOr('⛺')+' Mina camp / tent</span><b>'+esc(cp.n)+'</b></div>';if(cp.m&&!af)h+='<div class="lost-kv"><span>'+mkOr('🏢','hotel')+' Maktab</span><b>'+esc(cp.m)+'</b></div>';
+    if(!bigLead&&cp.l)h+='<div class="lost-kv"><span>'+mkOr('👥')+' Group leader</span><b>'+esc(cp.l)+'</b></div>';
+    if(bigLead&&ph)h+=telRow(mkOr('👥')+' '+esc(nm||'Companion'),telOf(ph),esc(ph));
+    if(hi.n)h+='<div class="lost-kv"><span>'+mkOr('🏨')+' Hotel</span><b>'+esc(hi.n)+'</b></div>';
+    if(hi.a)h+='<div class="lost-kv"><span>'+mkOr('📍')+' Address</span><b style="text-align:right">'+esc(hi.a)+'</b></div>';
+    if(hi.p)h+='<div class="lost-kv"><span>'+mkOr('☎','phone')+' Hotel phone</span><a href="tel:'+telOf(hi.p)+'">'+esc(hi.p)+'</a></div>';
+    h+=telRow(mkOr('🚓','alert')+' Police · ambulance','911','911')+telRow(mkOr('🕋')+' Hajj &amp; Umrah care line','1966','1966');
+    if(!cp.p)h+='<button class="btn ghost" style="margin-top:16px" onclick="closeLost();goCampEdit()">'+markify('✍️ Add your group leader’s phone')+'</button>';
+    h+='<div class="focus-hint" style="margin-top:26px;text-align:center" onclick="closeLost()">tap here to close</div>';
+    document.getElementById('lostBody').innerHTML=h;document.getElementById('lost').classList.add('on');vib([20,30,20]);return;}
   if(hi.l){h+='<div class="lost-en">I am with '+esc(nm||hi.l)+'. Please call:</div>'+(ph?'<a class="lost-tel" href="tel:'+telOf(ph)+'">'+esc(ph)+'</a>':'<div class="lost-tel" style="font-size:var(--t-6)">'+esc(hi.l)+'</div>');}
   else h+='<div class="lost-en">I am lost. Please help me reach my hotel, or call the emergency line.</div><div style="height:12px"></div>';
   if(hi.n)h+='<div class="lost-kv"><span>'+mkOr('🏨')+' Hotel</span><b>'+esc(hi.n)+'</b></div>';
@@ -2275,7 +2478,8 @@ function showLost(){var hi=ST.hotelInfo||{},ph=leadPhone(),nm=leadName();
     if(cp.n)h+='<div class="lost-kv"><span>'+mkOr('⛺')+' Mina camp / tent</span><b>'+esc(cp.n)+'</b></div>';if(cp.m)h+='<div class="lost-kv"><span>'+mkOr('🏢','hotel')+' Maktab</span><b>'+esc(cp.m)+'</b></div>';
     if(cp.l||cp.p)h+=cp.p?telRow(mkOr('👥')+' '+esc(cp.l||'Group leader'),telOf(cp.p),esc(cp.p)):'<div class="lost-kv"><span>'+mkOr('👥')+' '+esc(cp.l)+'</span><b></b></div>';}
   h+=telRow(mkOr('🚓','alert')+' Police · ambulance','911','911')+telRow(mkOr('🕋')+' Hajj &amp; Umrah care line','1966','1966');
-  if(!hi.l||!hi.n)h+='<button class="btn ghost" style="margin-top:16px" onclick="closeLost();goTab(\'plan\',\'prep\',\'hotelCard\')">'+markify('✍️ Add ')+(!hi.l&&!hi.n?'your hotel & a companion’s number':!hi.l?'a companion’s number':'your hotel')+'</button>';
+  if(cd)h+='<button class="btn ghost" style="margin-top:16px" onclick="closeLost();goCampEdit()">'+markify('✍️ Add your Mina camp & group leader')+'</button>';
+  else if(!hi.l||!hi.n)h+='<button class="btn ghost" style="margin-top:16px" onclick="closeLost();goTab(\'plan\',\'prep\',\'hotelCard\')">'+markify('✍️ Add ')+(!hi.l&&!hi.n?'your hotel & a companion’s number':!hi.l?'a companion’s number':'your hotel')+'</button>';
   h+='<div class="focus-hint" style="margin-top:26px;text-align:center" onclick="closeLost()">tap here to close</div>';
   document.getElementById('lostBody').innerHTML=h;document.getElementById('lost').classList.add('on');vib([20,30,20]);}
 function closeLost(){document.getElementById('lost').classList.remove('on');}
@@ -2287,26 +2491,35 @@ function sosSheet(){var hi=ST.hotelInfo||{};
 function campStrip(v,re){v=String(v||'').trim();var x=v.replace(re,'').trim();return x||v;}
 function campN(c){return campStrip(c.n,/^(?:camp|tent)(?:\s*\/\s*tent)?\b[\s:#.\-]*/i);}
 function campM(c){return campStrip(c.m,/^maktab\b[\s:#.\-]*/i);}
-function saveCamp(){ST.camp={n:hv('cN'),m:hv('cM'),l:hv('cL'),p:hv('cP')};saveST();}
-function loadCamp(){var c=ST.camp||{},e=document.getElementById('cN');if(!e)return;e.value=c.n||'';document.getElementById('cM').value=c.m||'';document.getElementById('cL').value=c.l||'';document.getElementById('cP').value=c.p||'';}
+function saveCamp(){ST.camp={n:hv('cN'),m:hv('cM'),l:hv('cL'),p:hv('cP')};saveST();campSumUpd();renderCntHd();renderTodayTop();}
+/* G2 #24: the fields live in Plan › Prepare (hotel card, Hajj mode); Settings keeps a summary and a link */
+function campSumUpd(){var e=document.getElementById('campSum');if(!e)return;var c=ST.camp||{},t=[campChipT(c),c.l?esc(c.l)+(c.p?' · '+esc(c.p):''):''].filter(Boolean).join(' · ');e.innerHTML=t||'Not saved yet — every tent looks the same at 2 am.';}
+function loadCamp(){var c=ST.camp||{},e=document.getElementById('cN'),b=document.getElementById('campBlk');if(b)b.hidden=journey()!=='hajj';campSumUpd();if(!e)return;e.value=c.n||'';document.getElementById('cM').value=c.m||'';document.getElementById('cL').value=c.l||'';document.getElementById('cP').value=c.p||'';}
 function showCampDriver(){var c=ST.camp||{};
-  if(!c.n&&!c.m){toast('Add your camp or maktab number first','','Add it',function(){goTab('more','settings','campCard');setTimeout(function(){var e=document.getElementById('cN');if(e)e.focus();},700);});return;}
+  if(!c.n&&!c.m){toast('Add your camp or maktab number first','','Add it',goCampEdit);return;}
   var cn=campN(c),cm=campM(c);
+  /* G2 #9: on the 9th, until the Arafah sunset, the way back is to the maktab's camp in Arafah — "Please take me to" + the place labels, as for any place */
+  if(campAtArafah()&&c.m){showDriverCard({top:'🚕 Please take me to my maktab’s camp in Arafah',lead:'من فضلك خذني إلى',arH:campArH(c,true),en:'Arafah · maktab '+cm,sub:c.l?'Group leader: '+c.l:'',tel:c.p||'',telL:'☎ Call leader',maps:'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent('Arafat Makkah maktab '+c.m)});return;}
   showDriverCard({top:'🚕 Please take me to my camp in Mina',lead:'من فضلك خذني إلى مخيمي في منى',arH:(c.n?'مخيم <bdi>'+esc(cn)+'</bdi>':'')+(c.n&&c.m?' · ':'')+(c.m?'مكتب <bdi>'+esc(cm)+'</bdi>':''),en:'Mina'+(c.n?' · camp / tent '+cn:'')+(c.m?' · maktab '+cm:''),sub:c.l?'Group leader: '+c.l:'',tel:c.p||'',telL:'☎ Call leader',maps:'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent('Mina Makkah'+(c.m?' maktab '+c.m:''))});}
 function campSheet(){var c=ST.camp||{},has=!!(c.n||c.m||c.l||c.p);
   openSheet('<div class="sheet-h">'+mk('tent')+'</div><h3>Mina camp</h3><p>'+(has?[c.n?'Camp / tent '+esc(campN(c)):'',c.m?'Maktab '+esc(campM(c)):'',c.l?esc(c.l):''].filter(Boolean).join(' · '):'Save your camp and maktab number and the group leader’s phone — the way back when every tent looks the same.')+'</p>'
-    +(c.p?'<a class="btn" href="tel:'+telOf(c.p)+'" style="text-align:center;text-decoration:none">'+mk('phone','mkt')+'Call '+esc(c.l||'group leader')+'</a>':'')+'<button class="btn" onclick="closeSheet();showCampDriver()">'+markify('🚕 Take me to my camp')+'</button><button class="btn danger" onclick="closeSheet();showLost()">'+markify('🆘 I’m lost — show this')+'</button><button class="btn ghost" onclick="closeSheet();goTab(\'more\',\'settings\',\'campCard\')">'+markify('✍️ '+(has?'Edit':'Add')+' camp details')+'</button>');}
+    +(c.p?'<a class="btn" href="tel:'+telOf(c.p)+'" style="text-align:center;text-decoration:none">'+mk('phone','mkt')+'Call '+esc(c.l||'group leader')+'</a>':'')+'<button class="btn" onclick="closeSheet();showCampDriver()">'+markify('🚕 Take me to my camp')+'</button><button class="btn danger" onclick="closeSheet();showLost()">'+markify('🆘 I’m lost — show this')+'</button><button class="btn ghost" onclick="closeSheet();goCampEdit()">'+markify('✍️ '+(has?'Edit':'Add')+' camp details')+'</button>');}
 /* Rami counter arrives with Part 2; until then the quick tool lands on the rites */
 function goRami(){if(typeof openRami==='function')openRami();else goTab('umrah','steps','hajjContainer');}
 /* Umrah › Counters header: lost / hotel / meeting point */
 function renderCntHd(){var a=document.getElementById('cntHd');if(!a)return;var hi=ST.hotelInfo||{};
+  /* G2 #17: on a tent day the camp takes the hotel's place (and the Haram meeting point steps aside) */
+  if(campDay()){var ct=campChipT();a.innerHTML='<button class="chip-btn sos" onclick="showLost()">'+markify('🆘 I’m lost')+'</button><button class="chip-btn" id="cntCamp" onclick="campSheet()" aria-label="'+(ct?'My Mina camp: '+esc(ct):'Add your Mina camp')+'">'+mk('tent','mkt')+esc(ct||'Add camp')+'</button>';return;}
   a.innerHTML='<button class="chip-btn sos" onclick="showLost()">'+markify('🆘 I’m lost')+'</button><button class="chip-btn" onclick="showDriver()">'+markify('🚕 Hotel')+'</button>'+(hi.m?'<button class="meetchip" style="margin:0" onclick="showLost()" aria-label="Family meeting point: '+esc(hi.m)+'"><span>📍 Meet: '+esc(hi.m)+'</span></button>':'');}
 /* Daily › Today: today's itinerary line (P-11) and the trip card while on trip (P-07) */
 function renderTodayTop(){var a=document.getElementById('todayTop');if(!a)return;var h='';
   var days=itinDays(),it=days[ST.day-1],hsec=hajjTodaySec(ST.day);
   if(hsec)h+='<div class="card todayit hjt" id="hajjTodayRow" role="button" tabindex="0" aria-label="'+esc(hsec.title.split(' — ')[0])+' — '+esc(hsec.sub)+' — open today’s steps" onclick="openHajjDay(\''+hsec.id+'\')"><span class="ti-i">'+hsec.ico+'</span><div class="ti-t"><b>'+esc(hsec.title.split(' — ')[0])+'</b>'+esc(hsec.sub)+'</div><span class="xchip">Open today’s steps →</span></div>';
   else if(it)h+='<div class="card todayit" role="button" tabindex="0" aria-label="Today’s itinerary: '+esc(it.e[1])+' — edit" title="'+esc(it.e[1])+'" onclick="goTab(\'plan\',\'prep\',\'itinCard\')"><span class="ti-i">🗓️</span><div class="ti-t"><b>'+(it.city==='Makkah'?'🕋':'🕌')+' '+it.city+'</b>'+it.e[0]+' '+esc(it.e[1])+'</div><span class="xchip">Edit →</span></div>';
-  if(onTrip()){var hi=ST.hotelInfo||{};
+  if(onTrip()&&campDay()){var cp=ST.camp||{},ct=campChipT(cp);
+    /* G2 #17: from the 8th to the 12th (13th) the pilgrim lives in a Mina tent — the trip card is the camp's */
+    h+='<div class="card tripc tripcamp" id="tripCamp"><div class="tc-h"><span>'+mk('tent')+'</span><b'+(cp.l?' title="Group leader: '+esc(cp.l)+'"':'')+'>'+(ct?esc(ct):'Your Mina camp')+'</b>'+(ct?'<button class="chip-btn" onclick="showCampDriver()" aria-label="Show to driver: take me to my camp">'+markify('🚕 Driver')+'</button>':'<button class="chip-btn" onclick="goCampEdit()" aria-label="Add your Mina camp">'+markify('✍️ Add camp')+'</button>')+'<button class="chip-btn sos" onclick="showLost()" aria-label="I’m lost — show this">'+markify('🆘 Lost')+'</button><button class="chip-btn" onclick="sosSheet()" aria-label="Emergency numbers 911 and 1966, camp and hotel actions">'+markify('☎ SOS')+'</button></div></div>';}
+  else if(onTrip()){var hi=ST.hotelInfo||{};
     h+='<div class="card tripc"><div class="tc-h"><span>'+mkOr('🏨')+'</span><b'+(hi.m?' title="Meeting point: '+esc(hi.m)+'"':'')+'>'+(hi.n?esc(hi.n):'Your hotel')+'</b><button class="chip-btn" onclick="showDriver()" aria-label="Show to driver">'+markify('🚕 Driver')+'</button><button class="chip-btn sos" onclick="showLost()" aria-label="I’m lost — show this">'+markify('🆘 Lost')+'</button><button class="chip-btn" onclick="sosSheet()" aria-label="Emergency numbers 911 and 1966, hotel actions">'+markify('☎ SOS')+'</button></div>'
       +(hi.n?'':'<input class="srch" id="tcName" placeholder="Hotel name — so the driver card works" onchange="quickHotel(this.value)" aria-label="Hotel name">')+'</div>';}
   a.innerHTML=h;}
@@ -2336,8 +2549,10 @@ function saveDuas(){localStorage.setItem('us-dualist',JSON.stringify(duas));}
 /* D-11: once flying, the in-Haram tools (tasbih, qibla) come first in the Tools column */
 function updToolsOrder(){var col=document.getElementById('toolsCol');if(!col)return;var d=depDays(),trip=d!==null&&d<=0,o=trip?{tbCard:1,qiblaCard:2,waterCard:3,duaCard:4}:{duaCard:1,waterCard:2,tbCard:3,qiblaCard:4};Object.keys(o).forEach(function(id){var e=document.getElementById(id);if(e)e.style.order=o[id];});}
 /* D-11: the dua card is a collapsible section — shut by default once flying when the list already has entries */
+/* G2 #17: the dua list hint speaks to the journey */
+function duaHintT(){return journey()==='hajj'?'Write them before you fly; tick them as you ask — at Arafah above all.':'Write them before you fly; tick them as you ask in the Haram.';}
 function renderDuaSec(){var c=document.getElementById('duaCard');if(!c)return;var d=depDays(),shut=d!==null&&d<=0&&duas.length>0;
-  var inner='<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin:2px 0 8px"><p style="font-size:var(--t-3);color:var(--ink2);margin:0;flex:1">Write them before you fly; tick them as you ask in the Haram.</p><button class="xchip" style="margin:0;flex-shrink:0" onclick="goTab(\'more\',\'duas\')">📖 Essential duas →</button></div>'
+  var inner='<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin:2px 0 8px"><p style="font-size:var(--t-3);color:var(--ink2);margin:0;flex:1" id="duaHint">'+duaHintT()+'</p><button class="xchip" style="margin:0;flex-shrink:0" onclick="goTab(\'more\',\'duas\')">📖 Essential duas →</button></div>'
     +'<div style="display:flex;gap:8px;margin-bottom:8px"><input class="srch" id="duaIn" placeholder="Add a dua…" style="margin:0" onkeydown="if(event.key===\'Enter\')addDua()" aria-label="Add a dua"><button class="chip-btn" onclick="addDua()" aria-label="Add">＋</button></div><div id="duaList"></div>';
   c.innerHTML=mkSec({id:'dualist',ico:'🤲',title:'My dua list'},shut,inner);renderDuaList();}
 function addDua(){var i=document.getElementById('duaIn'),v=(i.value||'').trim();if(!v)return;duas.push({t:v,done:false});saveDuas();i.value='';renderDuaList();updStats();vib(15);}
@@ -3220,7 +3435,7 @@ setInterval(remTick,60000);
 var PT_NAMES=['Fajr','Dhuhr','Asr','Maghrib','Isha'];
 var PT_LL={Makkah:[21.4225,39.8262],Madinah:[24.4672,39.6112]};
 /* 6.5 (G1): Arafah and Mina for the sunset / midday hints of the days of Hajj — taken from the 'arafat' and 'mina' places (computed only, ±2 min; never a city of the prayer-time picker) */
-(function(){[['Arafah','arafat'],['Mina','mina']].forEach(function(x){var pl=(typeof PLACES!=='undefined'?PLACES:[]).filter(function(q){return q.id===x[1];})[0];if(pl&&pl.ll)PT_LL[x[0]]=pl.ll;});})();
+(function(){[['Arafah','arafat'],['Mina','mina'],['Muzdalifah','muzdalifah']].forEach(function(x){var pl=(typeof PLACES!=='undefined'?PLACES:[]).filter(function(q){return q.id===x[1];})[0];if(pl&&pl.ll)PT_LL[x[0]]=pl.ll;});})();
 var ptData=null,ptTimer=null,ptSrc='calc',ptFetched={},ptBusy={};
 function setCity(c){ST.city=c;saveST();document.getElementById('cityMakkah').classList.toggle('on',c==='Makkah');document.getElementById('cityMadinah').classList.toggle('on',c==='Madinah');loadPT();}
 function riyadhNow(){try{return new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Riyadh'}));}catch(e){return new Date();}}
@@ -3338,18 +3553,42 @@ function sharePT(){if(!ptData)return;var city=ST.city||'Makkah',ex=expectedDay()
   shareText('Prayer times · '+city,lines.join('\n'),APP_URL);}
 /* D-23: a week of prayer alerts as .ics (TZID=Asia/Riyadh) — share sheet on phones, download elsewhere */
 function icsDT(y,m,d,hm){return y+('0'+(m+1)).slice(-2)+('0'+d).slice(-2)+'T'+cl(hm).replace(':','')+'00';}
-function buildICS(city,days){var now=riyadhNow(),ev=[],calc=0,stamp=new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d+/,'');
+var ICS_HEAD=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Miqah//EN','CALSCALE:GREGORIAN','BEGIN:VTIMEZONE','TZID:Asia/Riyadh','BEGIN:STANDARD','DTSTART:19700101T000000','TZOFFSETFROM:+0300','TZOFFSETTO:+0300','TZNAME:AST','END:STANDARD','END:VTIMEZONE'].join('\r\n');
+function icsWrap(ev){return ICS_HEAD+'\r\n'+ev.join('\r\n')+'\r\nEND:VCALENDAR\r\n';}
+function icsEsc(t){return String(t).replace(/\\/g,'\\\\').replace(/;/g,'\;').replace(/,/g,'\\,').replace(/\n/g,'\\n');}
+/* start: the first day (a Date at local midnight); default today in Makkah */
+function buildICS(city,days,start){var now=start||riyadhNow(),ev=[],calc=0,stamp=new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d+/,'');
   for(var i=0;i<days;i++){var dt=new Date(now.getFullYear(),now.getMonth(),now.getDate()+i),y=dt.getFullYear(),m=dt.getMonth(),d=dt.getDate(),P=ptFor(city,y,m,d);if(P.calc)calc++;
     PT_NAMES.forEach(function(nm){var t=cl(P.t[nm]),jum=dt.getDay()===5&&nm==='Dhuhr',lbl=jum?'Jumu’ah':nm;
       ev.push(['BEGIN:VEVENT','UID:us-'+city.toLowerCase()+'-'+icsDT(y,m,d,t)+'-'+nm.toLowerCase()+'@umrah-strivers','DTSTAMP:'+stamp,'DTSTART;TZID=Asia/Riyadh:'+icsDT(y,m,d,t),'DTEND;TZID=Asia/Riyadh:'+icsDT(y,m,d,minHM(ptMin(t)+30)),'SUMMARY:'+lbl+' — '+city,'DESCRIPTION:'+(P.calc?'Computed times (±2 min) · follow the adhan':'Umm al-Qura times')+' · Miqah','BEGIN:VALARM','TRIGGER:-PT'+(jum?'60':'20')+'M','ACTION:DISPLAY','DESCRIPTION:'+lbl+' in '+(jum?'60':'20')+' min — '+city,'END:VALARM','END:VEVENT'].join('\r\n'));});}
-  return {calc:calc,n:ev.length,ics:['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Miqah//EN','CALSCALE:GREGORIAN','BEGIN:VTIMEZONE','TZID:Asia/Riyadh','BEGIN:STANDARD','DTSTART:19700101T000000','TZOFFSETFROM:+0300','TZOFFSETTO:+0300','TZNAME:AST','END:STANDARD','END:VTIMEZONE'].join('\r\n')+'\r\n'+ev.join('\r\n')+'\r\nEND:VCALENDAR\r\n'};}
-function exportICS(){var city=ST.city||'Makkah',B=buildICS(city,7),name='prayer-times-'+city.toLowerCase()+'-week.ics',blob=new Blob([B.ics],{type:'text/calendar'});
-  var s=document.getElementById('icsSub');if(s)s.textContent='7 days · '+city+' · '+(B.calc?B.calc+' day'+(B.calc===1?'':'s')+' computed (±2 min), the rest Umm al-Qura':'Umm al-Qura times')+' · 20-min alert (60 for Jumu’ah)';
-  var file=null;try{file=new File([blob],name,{type:'text/calendar'});}catch(e){}
-  var dl=function(){var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){a.remove();},500);toast('📅 '+B.n+' prayer alerts saved — open the .ics file to add them to your calendar',true);};
-  if(file&&navigator.share&&navigator.canShare&&navigator.canShare({files:[file]}))navigator.share({files:[file],title:'Prayer times · '+city}).then(function(){toast('📅 Sent — open it in Calendar to add the alerts',true);}).catch(function(err){if(err&&err.name==='AbortError')return;dl();});
-  else dl();
-}
+  return {calc:calc,n:ev.length,ics:icsWrap(ev)};}
+/* one share-or-download path for every .ics the app makes (offline, nothing uploaded) */
+function shareICS(ics,name,title,done){var blob=new Blob([ics],{type:'text/calendar'}),file=null;try{file=new File([blob],name,{type:'text/calendar'});}catch(e){}
+  var dl=function(){var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){a.remove();},500);toast(done,true);};
+  if(file&&navigator.share&&navigator.canShare&&navigator.canShare({files:[file]}))navigator.share({files:[file],title:title}).then(function(){toast('📅 Sent — open it in Calendar to add the alerts',true);}).catch(function(err){if(err&&err.name==='AbortError')return;dl();});
+  else dl();}
+/* the trip's days still ahead: from today (or the departure, if later) to the last day of the trip */
+function icsTripSpan(){if(!ST.dep)return null;var st=new Date(ST.dep+'T00:00:00'),t=riyadhNow();t=new Date(t.getFullYear(),t.getMonth(),t.getDate());var end=new Date(st.getFullYear(),st.getMonth(),st.getDate()+ST.tripLen-1);if(end<t)return null;var from=st>t?st:t;return {from:from,days:Math.round((end-from)/86400000)+1};}
+function exportICS(whole){var city=ST.city||'Makkah',sp=whole?icsTripSpan():null;if(whole&&!sp){toast('Set your departure date first — or the trip is already over');return;}
+  var n=sp?sp.days:7,B=buildICS(city,n,sp?sp.from:null),name='prayer-times-'+city.toLowerCase()+(sp?'-trip':'-week')+'.ics';
+  var s=document.getElementById('icsSub');if(s)s.textContent=n+' days · '+city+' · '+(B.calc?B.calc+' day'+(B.calc===1?'':'s')+' computed (±2 min), the rest Umm al-Qura':'Umm al-Qura times')+' · 20-min alert (60 for Jumu’ah)';
+  shareICS(B.ics,name,'Prayer times · '+city,'📅 '+B.n+' prayer alerts saved — open the .ics file to add them to your calendar');}
+/* ── 6.6 (G2 #20) · the days of Hajj in the phone's calendar: alarms that ring with the screen off, no push and no server ──
+   One event per moment that matters, titled with the HAJJ_RITES wording; times computed for the site (Arafah, Muzdalifah, Mina) with the moon-sighting shift, ±2 min,
+   and every event says "follow your group". */
+function buildHajjICS(){var y=curHajjYear(),D=hajjDates(y),ev=[],stamp=new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d+/,''),ty=hajjType();if(!D[8])return null;
+  var at=function(iso,site){var p=iso.split('-').map(Number),P=computePT(site,p[0],p[1]-1,p[2]);return {y:p[0],m:p[1]-1,d:p[2],P:P};};
+  var add=function(id,iso,site,min,sum,desc,mins){var x=at(iso,site),t=minHM(min(x.P));ev.push(['BEGIN:VEVENT','UID:us-hajj'+y+'-'+id+'@umrah-strivers','DTSTAMP:'+stamp,'DTSTART;TZID=Asia/Riyadh:'+icsDT(x.y,x.m,x.d,t),'DTEND;TZID=Asia/Riyadh:'+icsDT(x.y,x.m,x.d,minHM(min(x.P)+(mins||30))),'SUMMARY:'+icsEsc(sum),'DESCRIPTION:'+icsEsc(desc+'\n'+(site?'Time computed for '+site+', ±2 min':'A morning reminder')+' — follow your group, not the phone. · Miqah'),'BEGIN:VALARM','TRIGGER:PT0M','ACTION:DISPLAY','DESCRIPTION:'+icsEsc(sum),'END:VALARM','END:VEVENT'].join('\r\n'));};
+  var b=function(id){var st=hajjStep(id);return st?fcText(riteStepView(st).b):'';},sec=function(id){var x=HAJJ_RITES.filter(function(q){return q.id===id;})[0];return x?x.title:'';},PM=function(k){return function(P){return ptMin(P.t[k]);};};
+  add('d8',D[8],'',function(){return 7*60;},sec('hd8'),(ty==='tamattu'?b('h8niyyah')+' · ':'')+b('h8talb')+' · '+b('h8mina'),30);
+  add('d9dhuhr',D[9],'Arafah',PM('Dhuhr'),'Arafah — '+b('h9salah'),b('h9wuquf')+'.');
+  add('d9sunset',D[9],'Arafah',function(P){return ptMin(P.t.Maghrib)-30;},'Sunset in 30 min — stay inside Arafah',b('h9sunset')+'.',30);
+  add('d10fajr',D[10],'Muzdalifah',PM('Fajr'),sec('hd10'),b('h9nstay')+' · then '+b('h10rami')+'.');
+  [11,12,13].forEach(function(n){if(n===13&&!ST.stay13)return;add('d'+n+'rami',D[n],'Mina',PM('Dhuhr'),'Rami opens after midday — '+n+' Dhul Hijjah',b('h'+n+'rami')+'.');});
+  if(!ST.stay13)add('d12leave',D[12],'Mina',function(P){return ptMin(P.t.Maghrib)-90;},'Leaving today? Be out of Mina before sunset',b('h12leave')+'.',30);
+  return {n:ev.length,ics:icsWrap(ev),y:y};}
+function exportHajjICS(){if(journey()!=='hajj'){toast('Switch to the Hajj journey first');return;}var B=buildHajjICS();if(!B){toast('Set your Hajj year first');return;}
+  shareICS(B.ics,'hajj-'+B.y+'-days.ics','Hajj '+B.y+' · the days','📅 '+B.n+' Hajj alerts saved — open the .ics file to add them to your calendar');}
 
 /* ════════════════════════ TASBIH ════════════════════════ */
 var TB_PHRASES=['SubhanAllah','Alhamdulillah','Allahu Akbar','La ilaha illallah','Astaghfirullah','Salawat ﷺ'];
@@ -3360,48 +3599,68 @@ var TB_LONG={4:'istighfar',5:'salawat'};
 var TB_TARGETS=[33,34,100,1000,0];
 var tbPhrase=0,tbCount=0,tbTargetN=33;
 var tasbihP={};try{tasbihP=JSON.parse(localStorage.getItem('us-tasbih-p')||'{}');}catch(e){}
-function tbDefault(i){return TB_LONG[i]?100:33;}
+/* ── 6.6 (G2 #16) · the Hajj dhikr chip (phrase 6) follows the day: the talbiyah on the 8th, the dua of Arafah on the 9th until sunset, the talbiyah again until the first
+   pebble at Aqabah on the 10th (switched when that pebble is logged, never at midnight), then the takbir to the 13th. Arabic + transliteration are read from DUAS
+   (byte-identical to the verified pack); its count is kept per dhikr in us-tasbih-p (talb / arafah / takbir — the same "arafah" count as the Counters card) and adds to the day total. */
+var TB_HJ=6,TB_HJ_LBL={talb:'Talbiyah',arafah:'Dua of Arafah',takbir:'Takbir'};
+function tbHajjKey(){if(journey()!=='hajj')return '';var hd=hajjDay();
+  /* a Qarin / Mufrid on the trip before the 8th is already in the ihram of Hajj: the talbiyah */
+  if(hd==='pre'&&hajjType()!=='tamattu'&&ST.hajjTypeConfirmed&&onTrip())return 'talb';if(typeof hd!=='number')return '';
+  if(hd===8)return 'talb';if(hd===9)return arafahNow().left>0?'arafah':'talb';
+  if(hd===10){var r=(ST.rami||{})[10]||{};return ((r.aqabah||0)>0||r.del||hajjChk.h10rami)?'takbir':'talb';}return 'takbir';}
+function tbHajjDua(key){var x=TB_HAJJ[key];if(!x)return null;for(var i=0;i<DUAS.length;i++)if(DUAS[i].ar===x.ar)return DUAS[i];return null;}
+function tbOrder(){var L=[0,1,2,3,4,5];return tbHajjKey()?[TB_HJ].concat(L):L;}
+function tbName(i){return i===TB_HJ?(TB_HJ_LBL[tbHajjKey()]||'Hajj dhikr'):TB_PHRASES[i];}
+function tbArOf(i){if(i===TB_HJ){var d=tbHajjDua(tbHajjKey());return d?d.ar:'';}return TB_AR[i];}
+function tbPKey(i){return i===TB_HJ?(tbHajjKey()||'talb'):i;}
+function tbDefault(i){return i===TB_HJ?0:TB_LONG[i]?100:33;}
 function tbTarget(){return tbTargetN;}
-/* the live cycle survives a reload — stored beside the day totals under a non-day key (us-tasbih._cur) */
-function tbPersist(){tasbih._cur={p:tbPhrase,c:tbCount,t:tbTargetN};save('us-tasbih',tasbih);}
-function tbRestore(){var c=tasbih._cur;if(c&&typeof c==='object'){tbPhrase=TB_PHRASES[c.p]?c.p:0;tbCount=Math.max(0,parseInt(c.c,10)||0);tbTargetN=TB_TARGETS.indexOf(c.t)>-1?c.t:tbDefault(tbPhrase);}else tbTargetN=tbDefault(tbPhrase);}
+/* the live cycle survives a reload — stored beside the day totals under a non-day key (us-tasbih._cur); the Hajj chip also keeps which dhikr it was counting */
+function tbPersist(){tasbih._cur={p:tbPhrase,c:tbCount,t:tbTargetN};if(tbPhrase===TB_HJ)tasbih._cur.hk=tbHajjKey();save('us-tasbih',tasbih);}
+function tbRestore(){var c=tasbih._cur;if(c&&typeof c==='object'){tbPhrase=TB_PHRASES[c.p]||(c.p===TB_HJ&&tbHajjKey())?c.p:0;tbCount=Math.max(0,parseInt(c.c,10)||0);tbTargetN=TB_TARGETS.indexOf(c.t)>-1?c.t:tbDefault(tbPhrase);}else tbTargetN=tbDefault(tbPhrase);}
+/* the day moved on (the Hajj chip is gone, or its dhikr changed): fall back / start the new dhikr's cycle at 0 */
+function tbSync(){if(tbPhrase!==TB_HJ)return;var k=tbHajjKey();if(!k){tbPhrase=0;tbCount=0;tbTargetN=tbDefault(0);tbPersist();return;}var c=tasbih._cur||{};if(c.hk&&c.hk!==k){tbCount=0;tbPersist();}}
 /* total dhikr counted on the trip — only the day keys, never the _cur record */
 function tbTotal(){var n=0;Object.keys(tasbih).forEach(function(k){if(k[0]==='d'&&typeof tasbih[k]==='number')n+=tasbih[k];});return n;}
 function renderTB(){
-  var c=document.getElementById('tbChips');if(!c)return;
-  var h='';TB_PHRASES.forEach(function(ph,i){h+='<button class="tb-chip'+(i===tbPhrase?' on':'')+'" aria-pressed="'+(i===tbPhrase?'true':'false')+'" onclick="tbSet('+i+')">'+ph+'</button>';});
+  var c=document.getElementById('tbChips');if(!c)return;tbSync();var hk=tbHajjKey();
+  var h='';tbOrder().forEach(function(i){h+='<button class="tb-chip'+(i===tbPhrase?' on':'')+(i===TB_HJ?' hj':'')+'" aria-pressed="'+(i===tbPhrase?'true':'false')+'" onclick="tbSet('+i+')"'+(i===TB_HJ?' id="tbHajj" aria-label="'+esc(tbName(i))+' — today’s dhikr"':'')+'>'+esc(tbName(i))+(i===TB_HJ?' <span class="tb-today">Today</span>':'')+'</button>';});
   c.innerHTML=h;
+  var hj=document.getElementById('tbHj');if(hj){var D=tbPhrase===TB_HJ&&hk?tbHajjDua(hk):null;hj.hidden=!D;hj.innerHTML=D?'<span class="ar" lang="ar">'+D.ar+'</span><span class="tl">'+D.tl+'</span><button class="lnk" onclick="tbHajjInfo()">About this dhikr · when to say it</button>':'';}
   var tg=document.getElementById('tbTargets');if(tg)tg.innerHTML=TB_TARGETS.map(function(t){return '<button class="tb-tg'+(t===tbTargetN?' on':'')+'" role="radio" aria-checked="'+(t===tbTargetN?'true':'false')+'" aria-label="Target '+(t||'unlimited')+'" onclick="tbSetTarget('+t+')">'+(t||'∞')+'</button>';}).join('');
   document.getElementById('tbN').textContent=tbCount;
   var of=document.getElementById('tbOf');if(of)of.innerHTML=!tbTargetN?'<span id="tbTarget">∞</span> · tap':tbCount>tbTargetN?'<span id="tbTarget">'+tbTargetN+'</span> done · keep going':'of <span id="tbTarget">'+tbTargetN+'</span> · tap';
   document.getElementById('tbToday').textContent=tasbih[dayKey()]||0;
-  var pe=document.getElementById('tbPhraseN'),pp=(tasbihP[dayKey()]||{})[tbPhrase]||0;if(pe)pe.textContent='· '+TB_PHRASES[tbPhrase]+' '+pp+(TB_LONG[tbPhrase]?'/100':'');
+  var pe=document.getElementById('tbPhraseN'),pp=(tasbihP[dayKey()]||{})[tbPKey(tbPhrase)]||0;if(pe)pe.textContent='· '+tbName(tbPhrase)+' '+pp+(TB_LONG[tbPhrase]?'/100':'');
   var f=document.getElementById('focus');if(focusKey==='tasbih'&&f&&f.classList.contains('on'))renderFocusTB();
 }
-/* picking a phrase keeps a deliberate 1000/∞ target; 33/34/100 follow the phrase */
-function tbSet(i){tbPhrase=i;tbCount=0;if(tbTargetN!==1000&&tbTargetN!==0)tbTargetN=tbDefault(i);tbPersist();renderTB();vib(6);}
+function tbHajjInfo(){var k=tbHajjKey(),x=TB_HAJJ[k],D=tbHajjDua(k);if(!x)return;openSheet('<div class="sheet-h">'+mk('beads')+'</div><h3>'+esc(x.t)+'</h3>'+(D?'<p class="ar" lang="ar" style="font-size:var(--t-ar-l);text-align:center">'+D.ar+'</p><p class="tl" style="text-align:center">'+D.tl+'</p>':'')+'<div class="tbhj-b">'+x.b+'</div><button class="btn ghost" onclick="closeSheet()">Back to the counter</button>');}
+/* picking a phrase keeps a deliberate 1000/∞ target; 33/34/100 follow the phrase (the Hajj chip has no target) */
+function tbSet(i){tbPhrase=i;tbCount=0;if(i===TB_HJ)tbTargetN=0;else if(tbTargetN!==1000&&tbTargetN!==0)tbTargetN=tbDefault(i);tbPersist();renderTB();vib(6);}
+/* G2 #16: on the big counter the title is a glass pill that steps through the phrases; the tap zone below stays the counter */
+function tbCycle(){var L=tbOrder(),i=L.indexOf(tbPhrase);tbSet(L[(i+1)%L.length]);}
 function tbSetTarget(t){tbTargetN=t;tbPersist();renderTB();vib(6);}
-function tbTap(){
-  var k=dayKey(),ph=tbPhrase,long=TB_LONG[ph],T=tbTargetN;
+function tbTap(){tbSync();
+  var k=dayKey(),ph=tbPhrase,pk=tbPKey(ph),long=TB_LONG[ph],T=tbTargetN;
   tbCount++;tasbih[k]=(tasbih[k]||0)+1;
-  var P=tasbihP[k]||{};P[ph]=(P[ph]||0)+1;tasbihP[k]=P;save('us-tasbih-p',tasbihP);
+  var P=tasbihP[k]||{};P[pk]=(P[pk]||0)+1;tasbihP[k]=P;save('us-tasbih-p',tasbihP);
   if(T&&tbCount===T){
     vib([40,60,100]);
     /* the post-salah chain only: SubhanAllah 33 → Alhamdulillah 33 → Allahu Akbar 34 → stop; anything else keeps counting */
     if((T===33||T===34)&&ph<3){
       if(ph===2){tbCount=0;toast('✨ Post-salah tasbih complete — 33 · 33 · 34, alhamdulillah',true);}
       else{tbCount=0;tbPhrase=ph+1;tbTargetN=tbPhrase===2?34:33;toast('✨ '+TB_PHRASES[ph]+' ×'+T+' — now '+TB_PHRASES[tbPhrase]+(tbPhrase===2?' ×34':''));}
-    }else toast('✨ '+TB_PHRASES[ph]+' ×'+T+' complete — keep going');
+    }else toast('✨ '+tbName(ph)+' ×'+T+' complete — keep going');
   }else vib(12);
   tbPersist();
   var d=dailyChk[k]||{},changed=false;
-  if(long&&P[ph]>=100&&!d[long]){d[long]=true;changed=true;toast('📿 '+TB_PHRASES[ph]+' ×100 today — checklist ticked!');}
+  if(long&&P[pk]>=100&&!d[long]){d[long]=true;changed=true;toast('📿 '+TB_PHRASES[ph]+' ×100 today — checklist ticked!');}
   if((tasbih[k]||0)>=100&&!d.dhikr100){d.dhikr100=true;changed=true;toast('📿 100 dhikr today — checklist updated!');}
   if(changed){dailyChk[k]=d;save('us-daily',dailyChk);updDaily();updStats();chkBadges();}
   renderTB();
 }
 /* D-15: one back for a mis-tap — the day and phrase totals follow */
-function tbUndo(){if(tbCount<=0){vib(6);return;}var k=dayKey(),ph=tbPhrase;tbCount--;tasbih[k]=Math.max(0,(tasbih[k]||0)-1);var P=tasbihP[k]||{};if(P[ph])P[ph]=Math.max(0,P[ph]-1);tasbihP[k]=P;save('us-tasbih-p',tasbihP);tbPersist();renderTB();vib(6);}
+function tbUndo(){if(tbCount<=0){vib(6);return;}var k=dayKey(),pk=tbPKey(tbPhrase);tbCount--;tasbih[k]=Math.max(0,(tasbih[k]||0)-1);var P=tasbihP[k]||{};if(P[pk])P[pk]=Math.max(0,P[pk]-1);tasbihP[k]=P;save('us-tasbih-p',tasbihP);tbPersist();renderTB();vib(6);}
 function tbReset(){tbCount=0;tbPersist();renderTB();}
 /* ════════════════════════ QIBLA ════════════════════════ */
 var KAABA={lat:21.4225,lng:39.8262};
