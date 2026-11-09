@@ -137,7 +137,7 @@ footer p+p{margin-top:8px}
     <p class="lead">Everything for the journey, in one app that keeps working when the signal does not.</p>
     <div class="feats">
       <div><h3>Prepare without guessing</h3><p>Checklists dated by how far ahead each thing should be done, a departure countdown, a day-by-day itinerary and an encrypted vault for your documents.</p></div>
-      <div><h3>Learn it before you fly</h3><p>The history, the virtues, the fiqh questions, guidance for sisters and a scam-awareness guide. Prove it in a seven-level quiz (eight levels for Hajj).</p></div>
+      <div><h3>Learn it before you fly</h3><p>The history, the virtues, the fiqh questions, guidance for sisters and a scam-awareness guide. Prove it in a quiz built for your journey: <span data-qz="umrah">7</span> levels for Umrah, or <span data-qz="hajj">10</span> for Hajj in the order of the five days.</p></div>
       <div><h3>Walk every rite with confidence</h3><p>Ihram, tawaf, sa'i and halq step by step, each dua in Arabic with transliteration and audio, and the evidence behind every action.</p></div>
       <div><h3>Never lose count</h3><p>Giant tap counters for tawaf and sa'i with a full-screen mode that keeps the screen awake and remembers your round if the phone locks.</p></div>
       <div><h3>51 places to visit</h3><p>Why each one matters, its etiquette and access rules, its Arabic name, a driver card that works with no signal, and a route planner for your ziyarah day.</p></div>
@@ -257,6 +257,17 @@ footer p+p{margin-top:8px}
     navigator.serviceWorker.register('sw.js').catch(function () {});
   }
 })();
+</script>
+<!-- the quiz level counts come from the app's own data (QUIZ_ORDER), so this page never drifts from the app -->
+<script src="data.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  if (typeof QUIZ_ORDER === 'undefined') return;
+  document.querySelectorAll('[data-qz]').forEach(function (e) {
+    var t = QUIZ_ORDER[e.getAttribute('data-qz')];
+    if (t && t.length) e.textContent = t.length;
+  });
+});
 </script>
 </body>
 </html>

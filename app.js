@@ -1,6 +1,6 @@
 /* Miqah — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='6.3.3';
+var APP_VERSION='6.4.0';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* prefers-reduced-motion: JS motion (confetti, the % count-up, smooth scrolling) honours it like the CSS does */
 var RM=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
@@ -195,7 +195,7 @@ function hajjConfirm(){ST.hajjConf=curHajjYear();saveST();homeRefresh();vib(8);t
 function hajjConfReset(){delete ST.hajjConf;saveST();homeRefresh();}
 function setHajjType(t){if(!HAJJ_TYPES[t])return;ST.hajjType=t;ST.hajjTypeConfirmed=true;saveST();applyJourney();journeyRefresh();vib(8);toast('⛺ '+HAJJ_TYPES[t].t+' — '+HAJJ_TYPES[t].s);}
 /* everything that filters through forMe() is rebuilt when the journey or the Hajj type changes */
-function journeyRefresh(){renderPlan();updPlan();renderRites();updRites();renderDuas();buildDeck();renderFC();renderPlaces();updPlaces();renderJourneys();updChip();homeRefresh();}
+function journeyRefresh(){renderPlan();buildDeck();updPlan();renderRites();updRites();renderDuas();renderFC();renderPlaces();updPlaces();renderJourneys();renderStories();kidsBestLbl();updChip();homeRefresh();qzJourneyNote();}
 /* J-05: labels that follow the journey — header tagline, nav label (data-v="umrah" and the ids never change), Rites intro, Settings rows, After card */
 function applyJourney(){var HJ=journey()==='hajj',y=HJ?curHajjYear():0;
   var tg=document.querySelector('.brand h1 small');if(tg)tg.textContent=HJ?'Hajj '+y+' companion':'Hajj & Umrah companion';
@@ -283,14 +283,16 @@ function renderPlan(){
   });
   document.getElementById('planContainer').innerHTML=h;
   /* J-02: knowledge topics carry j:'hajj' — gated like every other row */
-  LN_CARDS.forEach(function(c){var arr=c[2].filter(forMe),el=document.getElementById(c[1]);if(el)el.innerHTML=accs(arr);lnMeta(c[0],arr);});
-  renderRiteTiles();filterLearn();
+  /* 6.4: on a Hajj journey the Hajj topics lead the essentials; every topic carries its card key (data-k) so a flashcard can open it */
+  LN_CARDS.forEach(function(c){var arr=c[2].filter(forMe),el=document.getElementById(c[1]);if(c[0]==='knowCard'&&journey()==='hajj')arr=arr.filter(function(x){return x.j==='hajj';}).concat(arr.filter(function(x){return x.j!=='hajj';}));
+    if(el){el.innerHTML=accs(arr);var A=el.querySelectorAll(':scope>.acc');arr.forEach(function(it,i){if(A[i])A[i].setAttribute('data-k',c[3]+c[2].indexOf(it));});}lnMeta(c[0],arr);});
+  renderRiteTiles();renderLnRefs();filterLearn();
 }
 /* accordions (P-19): the header alone toggles, so links and text inside an open topic are usable */
 function accs(arr){return arr.map(function(g){return '<div class="acc"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)">'+g.t+' <span class="acc-c">▶</span></div><div class="acc-b">'+g.b+'</div></div>';}).join('');}
 function accToggle(h){var a=h.parentNode,o=a.classList.toggle('open');h.setAttribute('aria-expanded',o?'true':'false');}
 /* Learn hub: reading sections in reading order (P-13/P-21), topic counts (P-20), search (P-20), rites index (P-14) */
-var LN_CARDS=[['knowCard','knowContainer',KNOW],['qaCard','qaContainer',FIQHQA.concat(TROUBLE)],['histCard','histContainer',HISTORY],['virtCard','virtContainer',VIRTUES],['madCard','madContainer',MADINAH],['sisCard','sisContainer',SISTERS],['scamCard','scamContainer',SCAMS]];
+var LN_CARDS=[['knowCard','knowContainer',KNOW,'know'],['qaCard','qaContainer',FIQHQA.concat(TROUBLE),'qa'],['histCard','histContainer',HISTORY,'hist'],['virtCard','virtContainer',VIRTUES,'virt'],['madCard','madContainer',MADINAH,'mad'],['sisCard','sisContainer',SISTERS,'sis'],['scamCard','scamContainer',SCAMS,'scam']];
 var LN_OTHER=['ritesCard','fcCard','lnQuizCard'],lnAuto=null;
 function fcText(html){return String(html||'').replace(/<[^>]+>/g,' ').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim();}
 function lnMeta(cardId,arr){var h3=document.querySelector('#'+cardId+' h3');if(!h3)return;var w=0;arr.forEach(function(g){w+=fcText(g.t+' '+g.b).split(' ').length;});var m=h3.querySelector('.lnm');if(!m){m=document.createElement('small');m.className='lnm';h3.appendChild(m);}m.textContent=arr.length+' topics · ≈'+Math.max(1,Math.round(w/200))+' min read';}
@@ -304,21 +306,52 @@ function filterLearn(){
   if(none)none.hidden=!q||total>0;
   if(q&&shown.length===1&&lnAuto!==shown[0]){lnAuto=shown[0];lnAuto.classList.add('open');var hd=lnAuto.querySelector('.acc-h');if(hd)hd.setAttribute('aria-expanded','true');try{lnAuto.scrollIntoView({behavior:smooth(),block:'center'});}catch(e){}}
 }
-function renderRiteTiles(){var a=document.getElementById('riteTiles');if(!a)return;
-  a.innerHTML=RITES.map(function(ph,i){var t=ph.title.replace(/^Phase \d+ · /,''),n=riteCounts(ph.steps).tot;
+function umrahTilesHTML(){return RITES.map(function(ph,i){var t=ph.title.replace(/^Phase \d+ · /,''),n=riteCounts(ph.steps).tot;
     return '<div class="rtile" role="button" tabindex="0" aria-label="Step '+(i+1)+', '+t.replace(/"/g,'')+' — open in the rites guide" onclick="openRitePhase(\''+ph.id+'\')"><span class="i">'+mkOr(ph.ico,'kaaba')+'</span><b>'+t+'</b><small>Step '+(i+1)+' · '+n+' to-dos</small></div>'+(i===0||i===2?'<span class="rarr" aria-hidden="true">→</span>':'')+(i===1?'<span class="rarr dn" aria-hidden="true">↓</span>':'');}).join('');}
+/* Learn › the rites index follows the journey: Umrah in 4 steps, or Hajj in 5 days (HAJJ_PATH) with a "Before" row for the Hajj type.
+   A day's tile carries its expected date (hajjDates: Umm al-Qura + ST.hajjShift) and its step count; today's tile is the aubergine object. */
+function hpWd(iso){var d=new Date(iso+'T00:00:00');return isNaN(d)?'':d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});}
+function hpTileHds(t){var hds=[],n=0;[t.sec].concat(t.also||[]).forEach(function(id){var S=null;HAJJ_RITES.forEach(function(x){if(x.id===id)S=x;});if(!S||(S.opt&&!ST[S.opt]))return;n+=S.steps.filter(forMe).length;if(S.hd&&hds.indexOf(S.hd)<0)hds.push(S.hd);});return {hds:hds,n:n};}
+function hpTileNow(t,hd){return typeof hd==='number'&&!/n$/.test(t.sec)&&hpTileHds(t).hds.indexOf(hd)>-1;}
+function renderRiteTiles(){var a=document.getElementById('riteTiles');if(!a)return;var HJ=journey()==='hajj',T=document.getElementById('ritesT'),sub=document.getElementById('ritesSub'),bt=document.getElementById('riteBtns');
+  a.classList.toggle('hj',HJ);
+  if(!HJ){if(T)T.textContent='Umrah in 4 steps';if(sub)sub.textContent='The whole rite in order — learn this first, then the cards below.';a.innerHTML=umrahTilesHTML();
+    if(bt)bt.innerHTML='<button class="btn ghost" onclick="goTab(\'umrah\',\'steps\')">'+mk('list','mkt')+'Full walkthrough &amp; duas</button>';return;}
+  var P=HAJJ_PATH,ty=hajjType(),hd=hajjDay(),D=hajjDates(curHajjYear()),pre=P.pre[ty]||P.pre.tamattu,rd=ST.hpRead||{};
+  if(T)T.textContent=P.t;if(sub)sub.textContent=P.sub+(D[8]?' Dates are expected (Umm al-Qura); the moon sighting can move them by a day.':'');
+  var h='<div class="rpre" role="button" tabindex="0" aria-label="'+esc(pre.t)+' — open in the rites guide" onclick="openRitePhase(\''+pre.ph+'\')"><span class="i">'+mk(ty==='tamattu'?'kaaba':'refresh')+'</span><span class="rpre-t">'+pre.t+'</span><span class="rpre-go" aria-hidden="true">'+mk('chevr')+'</span></div>';
+  P.tiles.forEach(function(t){var x=hpTileHds(t),d1=x.hds.length?D[x.hds[0]]:'',d2=x.hds.length>1?D[x.hds[x.hds.length-1]]:'',dt=d1?hpWd(d1)+(d2&&d2!==d1?' – '+hpWd(d2):''):'',now=hpTileNow(t,hd),line=(t.v&&t.v[ty])||t.s,meta=(dt?dt+' · ':'')+x.n+' step'+(x.n===1?'':'s');
+    h+='<div class="rtile hd'+(now?' now':'')+(rd[t.sec]?' seen':'')+'" role="button" tabindex="0"'+(now?' aria-current="date"':'')+' aria-label="'+esc(t.n+', '+t.t+' — '+line+' · '+meta+(now?', today':'')+' — open the day in the rites guide')+'" onclick="openHajjDay(\''+t.sec+'\')"><span class="i">'+mk(t.mk)+'</span><small class="rt-n">'+(now?'Today · ':'')+t.n+'</small><b>'+t.t+'</b><small class="rt-s">'+line+'</small><small class="rt-m">'+meta+'</small></div>';});
+  a.innerHTML=h;
+  if(bt)bt.innerHTML='<button class="btn ghost" onclick="goTab(\'umrah\',\'steps\',\'hajjContainer\')">'+mk('list','mkt')+'Full walkthrough &amp; duas</button><button class="btn ghost" onclick="hpQuiz()">'+mk('quiz','mkt')+(typeof hd==='number'?'Quiz the day you are on':'Quiz the days of Hajj')+'</button>';}
 function openRitePhase(id){var sc=document.getElementById('sec-'+id);if(sc){sc.classList.remove('shut');var hd=sc.querySelector('.sec-hd');if(hd)hd.setAttribute('aria-expanded','true');}goTab('umrah','steps','sec-'+id);}
-/* P-15: hand-off from reading to the quiz — next unlocked level, or the mistakes drill once all are passed */
-function lnNextLevel(){for(var i=0;i<QUIZ_LEVELS.length;i++){if(qzVis(i)&&!qzPassed(i))return i;}return -1;}
+/* a Hajj day in the rites guide (Part 2 section #sec-hd8 … #sec-hdw); opening a tile is remembered per tile for the readiness score */
+function openHajjDay(sec){var tile=null;(HAJJ_PATH.tiles||[]).forEach(function(t){if(t.sec===sec||(t.also||[]).indexOf(sec)>-1)tile=t;});
+  if(tile){ST.hpRead=ST.hpRead||{};if(!ST.hpRead[tile.sec]){ST.hpRead[tile.sec]=1;saveST();}}
+  if(journey()!=='hajj'){goTab('umrah','steps');return;}
+  if(!document.getElementById('sec-'+sec))renderRites();setSecOpen(sec,true);goTab('umrah','steps','sec-'+sec);}
+/* "Quiz the day you are on": the level that covers today's rites; before the days, the first of them not yet passed */
+function hpQuiz(){var hd=hajjDay(),k='';
+  if(typeof hd==='number')HAJJ_PATH.tiles.forEach(function(t){if(!k&&hpTileNow(t,hd))k=t.quiz;});
+  if(!k){var ks=['h-arafah','h-nahr','h-tashreeq'];ks.forEach(function(x){var i=qzKeyIdx(x);if(!k&&i>-1&&!qzPassed(i))k=x;});k=k||(hd==='post'?'h-tashreeq':'h-arafah');}
+  var i=qzKeyIdx(k);goTab('plan','quiz');if(i>-1)startLevel(i);}
+/* P-15: hand-off from reading to the quiz — next level of this track, or the mistakes drill once all are passed */
+function lnNextLevel(){var s=qzSeq();for(var k=0;k<s.length;k++){if(!qzPassed(s[k]))return s[k];}return -1;}
 function renderLearnQuiz(){
   var a=document.getElementById('lnQuizArea'),sb=document.getElementById('lnQuizSub');if(!a)return;
-  var next=lnNextLevel(),wc=qzWrongCount(),h;
-  if(next<0){sb.textContent='All '+qzVisible().length+' levels passed — mashallah.';h='<div class="lnq"><div class="lvl-n">'+mk('medal')+'</div><div class="t"><b>Circuit complete</b>'+(wc?wc+' question'+(wc===1?'':'s')+' still to master.':'Nothing left to review — go with presence of heart.')+'</div></div><button class="btn'+(wc?' gold':' ghost')+'" onclick="lnQuizGo()">'+(wc?'🔁 Review my mistakes ('+wc+')':'🧠 Open the quiz')+'</button>';}
-  else{var L=QUIZ_LEVELS[next],best=qzST.best[next];sb.textContent='Next up: '+L.name+(best!==undefined?' · best so far '+best+'%':'');
-    h='<div class="lnq"><div class="lvl-n">'+mkOr(L.icon,'quiz')+'</div><div class="t"><b>'+L.name.split(' · ')[1]+'</b>'+L.desc+' · '+L.qs.length+' questions · 80% unlocks the next level</div></div><button class="btn gold" onclick="lnQuizGo()">🧠 Start '+L.name.split(' · ')[0]+' →</button>';}
+  var next=lnNextLevel(),wc=qzWrongCount(),N=qzSeq().length,h,W=numWord(N);W=W.charAt(0).toUpperCase()+W.slice(1);
+  if(next<0){sb.textContent='All '+N+' levels passed — mashallah.';h='<div class="lnq"><div class="lvl-n">'+mk('medal')+'</div><div class="t"><b>Circuit complete</b>'+(wc?wc+' question'+(wc===1?'':'s')+' still to master.':'Nothing left to review — go with presence of heart.')+'</div></div><button class="btn'+(wc?' gold':' ghost')+'" onclick="lnQuizGo()">'+(wc?'🔁 Review my mistakes ('+wc+')':'🧠 Open the quiz')+'</button>';}
+  else{var best=qzST.best[next];sb.textContent=W+' levels · 80% unlocks the next. Next up: '+qzLvName(next)+' · '+qzLvName(next,1)+(best!==undefined?' · best so far '+best+'%':'');
+    h='<div class="lnq">'+qzDisc(next,true)+'<div class="t"><b>'+qzLvName(next,1)+'</b>'+qzLvDesc(next)+' · '+qzN(next)+' questions · 80% unlocks the next level</div></div><button class="btn gold" onclick="lnQuizGo()">🧠 Start '+qzLvName(next)+' →</button>';}
   a.innerHTML=h;
 }
 function lnQuizGo(){var next=lnNextLevel();goTab('plan','quiz');if(next<0){if(qzWrongCount())startMistakes();}else startLevel(next);}
+/* Q9: the Learn cards name the level that covers them in THIS track, and follow the journey's titles */
+var LN_REF={qaCard:{umrah:'u-fiqh',hajj:'h-fiqh'},histCard:'u-hist',virtCard:'u-virt',madCard:'u-mad'};
+function renderLnRefs(){var HJ=journey()==='hajj';
+  Object.keys(LN_REF).forEach(function(id){var r=LN_REF[id],k=typeof r==='string'?r:r[journey()],i=qzKeyIdx(k),el=document.querySelector('#'+id+' .lvlref');if(!el)return;el.textContent=(i>-1&&qzVis(i))?'Covered in '+qzLvName(i)+(HJ?' · '+qzShort(i):''):'';});
+  var vt=document.getElementById('virtT'),vi=qzKeyIdx('u-virt');if(vt&&vi>-1)vt.textContent=qzLvName(vi,1);
+  var ks=document.getElementById('knowSub');if(ks)ks.textContent=HJ?'The three kinds of Hajj, the five days and the hady — then miqats & ihram. Tap a topic to expand.':'Miqats, ihram & the common mistakes — the knowledge that turns a trip into worship. Tap a topic to expand.';}
 function togPlan(id){planChk[id]=!planChk[id];save('us-plan',planChk);vib(15);if(planChk[id])markPrepDay();updPlan();chkBadges();}
 function updPlan(){
   var P=planTotals(),tot=P.tot,done=P.done;
@@ -368,55 +401,118 @@ function updCountdown(){
 var qzST={best:{}};
 try{qzST=Object.assign(qzST,JSON.parse(localStorage.getItem('us-quiz')||'{}'));}catch(e){}
 /* qzActive (P-23) keeps updPlan from wiping a running level; qzPerm (P-27) is the display order of the current options;
-   qzOrder shuffles question order on a retake of a passed level; qzMissed (P-26) collects this run's wrong stems */
-var qzLevel=0,qzI=0,qzScore=0,qzLock=false,qzHist=[],qzMode='level',qzQueue=[],qzActive=false,qzPerm=[],qzOrder=null,qzMissed=[];
+   qzOrder shuffles question order on a retake of a passed level; qzRun (6.4) logs every answer of this run for the review list */
+var qzLevel=0,qzI=0,qzScore=0,qzLock=false,qzHist=[],qzMode='level',qzQueue=[],qzActive=false,qzPerm=[],qzOrder=null,qzRun=[];
 if(!qzST.wrong)qzST.wrong={};
-function qzSave(){localStorage.setItem('us-quiz',JSON.stringify(qzST));}
-/* J-02: a level may carry j:'hajj' — it is skipped (not counted, not rendered, never gating) outside that journey; indices into QUIZ_LEVELS stay global */
+function qzSave(){try{localStorage.setItem('us-quiz',JSON.stringify(qzST));}catch(e){}}
+/* 6.4 journey tracks: QUIZ_LEVELS is append-only (stored keys stay l<index>q<index>, qzST.best is by index); QUIZ_ORDER[journey()] is the
+   display order, so a level's number is its place in the active track. A level and each of its questions pass through forMe() (j / ht);
+   j:'off' retires a level everywhere. */
+function qzKeyIdx(k){for(var i=0;i<QUIZ_LEVELS.length;i++)if(QUIZ_LEVELS[i].key===k)return i;return -1;}
 function qzVis(i){var L=QUIZ_LEVELS[i];return !!L&&forMe(L);}
-function qzVisible(){return QUIZ_LEVELS.filter(forMe);}
-function qzPrevVis(i){for(var k=i-1;k>=0;k--)if(qzVis(k))return k;return -1;}
-function qzWrongCount(){return Object.keys(qzST.wrong).filter(function(k){var m=k.match(/^l(\d+)q/);return m&&qzVis(+m[1]);}).length;}
-function qzWrongIn(lv){return Object.keys(qzST.wrong).filter(function(k){var m=k.match(/^l(\d+)q/);return m&&+m[1]===lv;}).length;}
+function qzSeq(){var o=(typeof QUIZ_ORDER!=='undefined'&&QUIZ_ORDER[journey()])||[],s=[];
+  o.forEach(function(k){var i=qzKeyIdx(k);if(i>-1&&qzVis(i)&&s.indexOf(i)<0)s.push(i);});
+  QUIZ_LEVELS.forEach(function(_,i){if(qzVis(i)&&s.indexOf(i)<0)s.push(i);});return s;}
+function qzVisible(){return qzSeq().map(function(i){return QUIZ_LEVELS[i];});}
+/* the questions of level i this pilgrim sees, as indices into L.qs (the stored keys never move) */
+function qzQs(i){var L=QUIZ_LEVELS[i],r=[];if(L)L.qs.forEach(function(q,k){if(forMe(q))r.push(k);});return r;}
+function qzN(i){return qzQs(i).length;}
+function qzPos(i){return qzSeq().indexOf(i);}
+function qzPrevVis(i){var s=qzSeq(),p=s.indexOf(i);return p>0?s[p-1]:-1;}
+function qzNextVis(i){var s=qzSeq(),p=s.indexOf(i);return p>-1&&p<s.length-1?s[p+1]:-1;}
+/* a stored key that this pilgrim can see → {lv,qi}; a gated or retired question counts nowhere */
+function qzRef(k){var m=/^l(\d+)q(\d+)$/.exec(k);if(!m)return null;var L=QUIZ_LEVELS[+m[1]],q=L&&L.qs[+m[2]];return q&&forMe(L)&&forMe(q)?{lv:+m[1],qi:+m[2]}:null;}
+function qzWrongCount(){return Object.keys(qzST.wrong).filter(qzRef).length;}
+function qzWrongIn(lv){return Object.keys(qzST.wrong).filter(function(k){var r=qzRef(k);return r&&r.lv===lv;}).length;}
 function qzShuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
-function curRef(){return qzMode==='level'?{lv:qzLevel,qi:qzOrder?qzOrder[qzI]:qzI}:qzQueue[qzI];}
+function curRef(){return qzMode==='level'?{lv:qzLevel,qi:qzQs(qzLevel)[qzOrder?qzOrder[qzI]:qzI]}:qzQueue[qzI];}
 function curQ(){var r=curRef();return QUIZ_LEVELS[r.lv].qs[r.qi];}
 function curKey(){var r=curRef();return 'l'+r.lv+'q'+r.qi;}
-function qzTotal(){return qzMode==='level'?QUIZ_LEVELS[qzLevel].qs.length:qzQueue.length;}
+function qzTotal(){return qzMode==='level'?qzN(qzLevel):qzQueue.length;}
 function qzPassed(i){return (qzST.best[i]||0)>=80;}
 /* P-29: the smallest score that rounds to the 80% pass mark — same formula as nextQz */
 function qzNeed(n){for(var k=0;k<=n;k++){if(Math.round(k/n*100)>=80)return k;}return n;}
-/* P-30: returning pilgrims (post mode or an Umrah on record) and "Unlock all levels" (qzST.free) open every level */
-function qzFreeAll(){return !!(qzST.free||ST.post||totalUmrahs()>=1);}
+/* P-30: returning pilgrims (post mode, or THIS journey done before) and "Unlock all levels" (qzST.free) open every level — an Umrah on record no longer opens the Hajj track */
+function qzFreeAll(){return !!(qzST.free||ST.post||(journey()==='hajj'?(ST.hajjs||0)+(ST.hajjsPrev||0)>=1:totalUmrahs()>=1));}
 function qzUnlocked(i){var p=qzPrevVis(i);return p<0||qzPassed(p)||qzFreeAll();}
-function qzPassedCount(){var n=0;QUIZ_LEVELS.forEach(function(_,i){if(qzVis(i)&&qzPassed(i))n++;});return n;}
-function qzAllPassed(){return qzPassedCount()===qzVisible().length;}
-function qzNext(){for(var i=0;i<QUIZ_LEVELS.length;i++){if(qzVis(i)&&qzUnlocked(i)&&!qzPassed(i))return i;}return -1;}
-function qzMeterUpd(){var pc=qzPassedCount(),nv=qzVisible().length||1,b=document.getElementById('qzBest');if(b)b.textContent=pc+'/'+nv;var m=document.getElementById('qzMeter');if(m)m.style.width=Math.round(pc/nv*100)+'%';}
-function qzLvName(i,part){return QUIZ_LEVELS[i].name.split(' · ')[part===undefined?0:part];}
+function qzPassedCount(){return qzSeq().filter(qzPassed).length;}
+function qzAllPassed(){var s=qzSeq();return s.length>0&&s.every(qzPassed);}
+function qzNext(){var s=qzSeq();for(var k=0;k<s.length;k++){if(qzUnlocked(s[k])&&!qzPassed(s[k]))return s[k];}return -1;}
+/* a level reads "Level n" (its place in this track) + its journey title; jx[journey] overrides name / desc */
+function qzJx(i,f){var L=QUIZ_LEVELS[i]||{},J=L.jx||{},t=journey()==='hajj'?J[hajjType()]:null,x=J[journey()];return (t&&t[f])||(x&&x[f])||L[f]||'';}
+function qzLvName(i,part){return part?qzJx(i,'name'):'Level '+(qzPos(i)+1);}
+function qzLvDesc(i){return qzJx(i,'desc');}
+function qzLvMk(i){var L=QUIZ_LEVELS[i]||{};return L.mk||emk(L.icon,'quiz');}
+function qzShort(i){var L=QUIZ_LEVELS[i]||{};return L.short||qzLvName(i,1);}
+/* Q6: a question kept for some Hajj types says so ("Tamattu’ only", "Qiran & Ifrad") */
+function qzHtTag(q){if(!q||!q.ht||!q.ht.length)return '';var n=q.ht.map(function(t){return (HAJJ_TYPES[t]||{}).t||t;});return n.length===1?n[0]+' only':n.join(' & ');}
+function qzSrc(q){return q&&q.src?'<span class="src-chip">'+esc(q.src)+'</span>':'';}
+/* 6.4 one-time move: the retired "days of Hajj" level (index 7, j:'off') — its 13 questions live on, corrected, in the Hajj track,
+   and a 1447 pilgrim's misses and card boxes follow them there. Nothing else is rewritten (append-only data keeps every other key valid). */
+var QZ_MOVED={0:'h-arafah#2',1:'h-arafah#3',2:'h-arafah#4',3:'h-nahr#5',4:'h-tashreeq#2',5:'h-nahr#2',6:'h-found#8',7:'h-ihram#6',8:'h-tashreeq#4',9:'h-tashreeq#9',10:'h-tashreeq#3',11:'h-tashreeq#6',12:'h-fiqh#0'};
+function qzMovedKey(qi){var t=QZ_MOVED[qi];if(!t)return '';var p=t.split('#'),i=qzKeyIdx(p[0]);return i>-1?'l'+i+'q'+p[1]:'';}
+(function qzMigrate(){if(qzST.m64)return;var cards={},cm=false;try{cards=JSON.parse(localStorage.getItem('us-cards')||'{}')||{};}catch(e){cards={};}
+  Object.keys(QZ_MOVED).forEach(function(qi){var ok='l7q'+qi,nk=qzMovedKey(+qi);if(!nk)return;
+    if(qzST.wrong[ok]){if(!qzST.wrong[nk])qzST.wrong[nk]=qzST.wrong[ok];delete qzST.wrong[ok];}
+    if(cards[ok]){if(!cards[nk])cards[nk]=cards[ok];delete cards[ok];cm=true;}});
+  if(qzST.cur&&qzST.cur.mode!=='mist'&&qzST.cur.lv===7)delete qzST.cur;
+  qzST.m64=1;qzSave();if(cm)try{localStorage.setItem('us-cards',JSON.stringify(cards));}catch(e){}})();
+/* Q8: switching to Hajj says what carries over (the shared levels keep their best scores) and how many Hajj levels are new */
+function qzJourneyNote(){var j=journey(),was=ST.qzJ;if(was===j)return;ST.qzJ=j;saveST();if(!was||j!=='hajj')return;
+  var U=(QUIZ_ORDER.umrah||[]),H=(QUIZ_ORDER.hajj||[]),shared=[],fresh=0,any=Object.keys(qzST.best||{}).length>0;
+  H.forEach(function(k){var i=qzKeyIdx(k);if(U.indexOf(k)<0){fresh++;return;}if(i>-1&&qzST.best[i]!==undefined)shared.push(qzShort(i));});
+  if(!any)return;
+  var names=shared.length>1?shared.slice(0,-1).join(', ')+' and '+shared[shared.length-1]:shared[0];
+  toast(shared.length?'Your '+names+' progress carries over — '+fresh+' Hajj levels are new.':fresh+' Hajj levels are new — your Umrah quiz progress stays saved.');}
 /* P-26: each level names the Learn card that teaches it */
-function qzStudyGo(i){var st=QUIZ_LEVELS[i].study||{};goTab(st.tab||'plan',st.sub||'learn',st.id||'knowCard');}
+function qzStudyGo(i){var st=QUIZ_LEVELS[i].study||{};if(/^sec-/.test(st.id||'')){openHajjDay(st.id.slice(4));return;}goTab(st.tab||'plan',st.sub||'learn',st.id||'knowCard');}
 function qzFree(on){qzST.free=!!on;qzSave();renderLevels();toast(on?'🔓 All levels unlocked — the certificate still needs every level at 80%':'🔒 Guided order restored');vib(8);}
+/* Q3: a level's disc — the aubergine object with a lavender ring at its best score; passed = full ring; locked = no ring, a faint lock */
+function qzDisc(i,un,cls){var b=qzST.best[i],p=qzPassed(i)?100:(b||0),C=113.1;
+  return '<span class="lvl-n'+(un?'':' lk')+(cls?' '+cls:'')+'" aria-hidden="true">'+(un?'<svg class="lvl-r" viewBox="0 0 40 40" focusable="false"><circle class="lr-b" cx="20" cy="20" r="18"/>'+(p>0?'<circle class="lr-f" cx="20" cy="20" r="18" style="stroke-dashoffset:'+(C*(1-p/100)).toFixed(1)+'"/>':'')+'</svg>':'')+mk(un?qzLvMk(i):'lock')+'</span>';}
+/* Q4: the track header — one segment per level of the active track (full = passed, half = attempted) */
+function qzTrackHTML(){var s=qzSeq(),pc=0,at=0,segs='';
+  s.forEach(function(i){var ps=qzPassed(i),tr=qzST.best[i]!==undefined;if(ps)pc++;else if(tr)at++;segs+='<i class="'+(ps?'on':tr?'half':'')+'"></i>';});
+  var HJ=journey()==='hajj';
+  return '<div class="qz-trk-h"><b>'+(HJ?'Hajj':'Umrah')+' · '+s.length+' levels'+(HJ?' · '+HAJJ_TYPES[hajjType()].t:'')+'</b><span>Passed <b id="qzBest">'+pc+'/'+s.length+'</b></span></div>'
+    +'<div class="qz-segs" role="img" aria-label="'+pc+' of '+s.length+' levels passed'+(at?', '+at+' attempted':'')+'">'+segs+'</div>';}
+function qzMeterUpd(){var t=document.getElementById('qzTrack');if(t)t.innerHTML=qzTrackHTML();renderReady();}
+/* Q7: Hajj readiness — knowledge only. 60% quiz (best % over the Hajj levels + the Tawaf level, weighted by their questions),
+   25% cards (those levels' cards in box 2 or higher), 15% the five days read (Learn › Hajj in 5 days tiles opened). Never a measure of the heart. */
+var HR_LEVELS=['h-found','h-ihram','u-rites','h-arafah','h-nahr','h-tashreeq','h-fiqh'],HP_SECS=['hd8','hd9','hd9n','hd10','hd11','hdw'];
+function hajjReadiness(){if(journey()!=='hajj')return null;var qs=0,qn=0,cs=0,cn=0,weak=-1,ww=0,wb=101,rd=0,hr=ST.hpRead||{};
+  HR_LEVELS.forEach(function(k){var i=qzKeyIdx(k);if(i<0||!qzVis(i))return;var Q=qzQs(i),b=qzST.best[i]||0,w=qzWrongIn(i);qs+=b*Q.length;qn+=Q.length;
+    Q.forEach(function(qi){cn++;var st=fcST['l'+i+'q'+qi];if(st&&st.box>=2)cs++;});
+    if(w>ww||(ww===0&&w===0&&b<wb)){if(w>0||b<100){weak=i;ww=w;wb=b;}}});
+  HP_SECS.forEach(function(s){if(hr[s])rd++;});
+  var q=qn?qs/qn:0,c=cn?cs/cn:0;
+  return {pct:Math.round(.6*q+25*c+15*rd/HP_SECS.length),quiz:Math.round(q),cards:Math.round(c*100),read:rd,readOf:HP_SECS.length,weak:weak};}
+function hajjPractise(i){goTab('plan','quiz');if(qzWrongIn(i))startMistakes(i);else startLevel(i);}
+function renderReady(){var a=document.getElementById('qzReady');if(!a)return;var R=hajjReadiness();if(!R){a.hidden=true;a.innerHTML='';return;}a.hidden=false;
+  a.innerHTML='<div class="hero-t"><div class="k">'+mk('tent','mkt')+'Hajj '+curHajjYear()+' · knowledge</div><div class="v">Your Hajj readiness</div><div class="s">What you know of the rites and their fiqh</div></div>'
+    +'<div class="ring-wrap"><svg width="92" height="92" viewBox="0 0 92 92" aria-hidden="true" focusable="false"><circle class="ring-bg" cx="46" cy="46" r="38"/><circle class="ring-fg" cx="46" cy="46" r="38" style="stroke-dashoffset:'+(239*(1-Math.min(100,R.pct)/100)).toFixed(1)+'"/></svg><div class="ring-num"><span id="qzReadyN">'+R.pct+'%</span><small>Ready</small></div></div>'
+    +'<div class="hs-m"><span class="hs-mi"><small class="hs-ml">Quiz</small><b class="hs-mv">'+R.quiz+'%</b></span><span class="hs-mi"><small class="hs-ml">Cards</small><b class="hs-mv">'+R.cards+'%</b></span><span class="hs-mi"><small class="hs-ml">Days read</small><b class="hs-mv">'+R.read+'<i>/'+R.readOf+'</i></b></span></div>'
+    +(R.weak>-1?'<button class="hs-pill" onclick="hajjPractise('+R.weak+')" aria-label="Practise your weakest level: '+esc(qzLvName(R.weak,1))+'"><span class="hs-cw"><small class="hs-ce">Weakest · '+qzLvName(R.weak)+'</small><span class="hs-ct">'+qzLvName(R.weak,1)+'</span></span><span class="hs-go">'+mk('arrow')+'</span></button>':'')
+    +'<p class="qr-note">Knowledge only — your quiz, cards and the five days read. It cannot measure intention or acceptance; that is with Allah.</p>';}
 function renderLevels(){
   qzActive=false;
-  var h='',wc=qzWrongCount(),nx=qzNext(),cur=qzST.cur,qc=0,qt=0;
-  QUIZ_LEVELS.forEach(function(lv,i){if(!qzVis(i))return;qt+=lv.qs.length;qc+=Math.round((qzST.best[i]||0)/100*lv.qs.length);});
-  /* P-23: a half-finished level survives tab changes and reloads */
-  if(cur&&cur.hist&&cur.hist.length){var L=cur.mode==='mist'?null:QUIZ_LEVELS[cur.lv],tot=cur.mode==='mist'?(cur.queue||[]).length:(L?L.qs.length:0);
-    if(tot&&cur.i<=tot)h+='<div class="qz-resume"><div class="t"><b>Resume '+(L?L.name:'Mistake review')+'</b><small>Q'+(Math.min(cur.i,tot-1)+1)+'/'+tot+' · '+cur.score+' ✓ so far</small></div><button class="btn gold" onclick="qzResume()">Resume</button><button class="chip-btn" onclick="qzDiscard()" aria-label="Discard the unfinished level">✕ Discard</button></div>';
+  var h='',wc=qzWrongCount(),nx=qzNext(),cur=qzST.cur,qc=0,qt=0,S=qzSeq();
+  S.forEach(function(i){var n=qzN(i);qt+=n;qc+=Math.round((qzST.best[i]||0)/100*n);});
+  /* P-23: a half-finished level survives tab changes and reloads (a level hidden by the journey is dropped) */
+  if(cur&&cur.hist&&cur.hist.length){var lvOK=cur.mode==='mist'||qzVis(cur.lv),tot=cur.mode==='mist'?(cur.queue||[]).length:(lvOK?qzN(cur.lv):0);
+    if(lvOK&&tot&&cur.i<=tot)h+='<div class="qz-resume"><div class="t"><b>Resume '+(cur.mode==='mist'?'Mistake review':qzLvName(cur.lv)+' · '+qzLvName(cur.lv,1))+'</b><small>Q'+(Math.min(cur.i,tot-1)+1)+'/'+tot+' · '+cur.score+' ✓ so far</small></div><button class="btn gold" onclick="qzResume()">Resume</button><button class="chip-btn" onclick="qzDiscard()" aria-label="Discard the unfinished level">✕ Discard</button></div>';
     else{delete qzST.cur;qzSave();}}
   /* P-25: one primary answer to "what next?" */
   function qzPill(ey,ln,ic){return '<span class="hs-cw"><small class="hs-ce">'+ey+'</small><span class="hs-ct">'+ln+'</span></span><span class="hs-go">'+mk(ic)+'</span>';}
-  if(nx>-1)h+='<button class="btn gold qz-cta" onclick="startLevel('+nx+')">'+qzPill((qzST.best[nx]!==undefined?'Retake':'Continue')+' · '+qzLvName(nx)+'<span class="qzc-n"> · '+QUIZ_LEVELS[nx].qs.length+' questions</span>',qzLvName(nx,1),qzST.best[nx]!==undefined?'refresh':'arrow')+'</button>';
+  if(nx>-1)h+='<button class="btn gold qz-cta" onclick="startLevel('+nx+')">'+qzPill((qzST.best[nx]!==undefined?'Retake':'Continue')+' · '+qzLvName(nx)+'<span class="qzc-n"> · '+qzN(nx)+' questions</span>',qzLvName(nx,1),qzST.best[nx]!==undefined?'refresh':'arrow')+'</button>';
   else if(wc>0)h+='<button class="btn gold qz-cta" onclick="startMistakes()">'+qzPill('Practice','Review '+wc+' mistake'+(wc===1?'':'s'),'refresh')+'</button>';
   else h+='<button class="btn gold qz-cta" onclick="makeCert()">'+qzPill('All levels passed','Download my certificate','medal')+'</button>';
   h+='<div class="qz-sub"><span>'+qc+' of '+qt+' questions correct in your best runs</span>'+(nx>-1&&wc>0?'<button class="chip-btn gsoft" onclick="startMistakes()">🔁 Review '+wc+' mistake'+(wc===1?'':'s')+'</button>':'')+'</div>';
-  QUIZ_LEVELS.forEach(function(lv,i){
-    if(!qzVis(i))return;
-    var un=qzUnlocked(i),ps=qzPassed(i),best=qzST.best[i],w=qzWrongIn(i),need=qzNeed(lv.qs.length);
-    h+='<div class="lvl'+(un?'':' locked')+(ps?' passed':'')+(i===nx?' next':'')+'" role="button" tabindex="0"'+(un?'':' aria-disabled="true"')+' aria-label="'+lv.name.replace(/"/g,'')+(ps?', passed '+best+'%':(un?(i===nx?', up next':''):', locked'))+'" onclick="startLevel('+i+')">'
-      +'<div class="lvl-n">'+(un?mkOr(lv.icon,'quiz'):mk('lock'))+'</div>'
-      +'<div class="lvl-t"><b>'+lv.name+'</b><small>'+lv.desc+' · <span class="ty-nw">'+lv.qs.length+' questions</span> · <span class="ty-nw">pass = '+need+' correct</span>'+(ps&&w?' · <span class="ty-nw">'+w+' to review</span>':'')+'</small>'+(un&&!ps?'<button class="lvl-study" onclick="event.stopPropagation();qzStudyGo('+i+')" aria-label="Study for '+qzLvName(i)+'">📚 study</button>':'')+'</div>'
+  S.forEach(function(i){
+    var un=qzUnlocked(i),ps=qzPassed(i),best=qzST.best[i],w=qzWrongIn(i),n=qzN(i),need=qzNeed(n),nm=qzLvName(i)+' · '+qzLvName(i,1);
+    h+='<div class="lvl'+(un?'':' locked')+(ps?' passed':'')+(i===nx?' next':'')+'" role="button" tabindex="0"'+(un?'':' aria-disabled="true"')+' aria-label="'+esc(nm)+(ps?', passed '+best+'%':(best!==undefined?', best '+best+'%':''))+(un?(i===nx?', up next':''):', locked')+'" onclick="startLevel('+i+')">'
+      +qzDisc(i,un)
+      +'<div class="lvl-t"><b>'+nm+'</b><small>'+qzLvDesc(i)+' · <span class="ty-nw">'+n+' questions</span> · <span class="ty-nw">pass = '+need+' correct</span>'+(ps&&w?' · <span class="ty-nw">'+w+' to review</span>':'')+'</small>'+(un&&!ps?'<button class="lvl-study" onclick="event.stopPropagation();qzStudyGo('+i+')" aria-label="Study for '+qzLvName(i)+'">📚 study</button>':'')+'</div>'
       +'<div class="lvl-s">'+(ps?'✓ '+best+'%':(best!==undefined?best+'%':(un?'Start →':'Locked')))+'</div></div>';
   });
   if(qzST.free)h+='<p class="qz-free">🔓 All levels unlocked · <button class="lnk" onclick="qzFree(false)">Restore guided order</button></p>';
@@ -426,26 +522,29 @@ function renderLevels(){
   qzMeterUpd();renderLearnQuiz();
 }
 function startLevel(i){
+  if(!qzVis(i))return;
   if(!qzUnlocked(i)){qzLockCard(i);return;}
-  qzMode='level';qzLevel=i;qzI=0;qzScore=0;qzHist=[];qzMissed=[];qzActive=true;
-  qzOrder=null;if(qzPassed(i)){qzOrder=qzShuffle(QUIZ_LEVELS[i].qs.map(function(_,k){return k;}));}
+  qzMode='level';qzLevel=i;qzI=0;qzScore=0;qzHist=[];qzRun=[];qzActive=true;
+  qzOrder=null;if(qzPassed(i)){qzOrder=qzShuffle(qzQs(i).map(function(_,k){return k;}));}
   delete qzST.cur;qzSave();renderQz();jumpTo('qzArea',true);
 }
 /* P-30: a locked row explains the gate and offers to open every level */
-function qzLockCard(i){var pi=qzPrevVis(i),p=QUIZ_LEVELS[pi],need=qzNeed(p.qs.length);vib([50,40,50]);
-  document.getElementById('qzArea').innerHTML='<div class="qz-lock"><div class="big">'+mk('lock')+'</div><h4>'+qzLvName(i)+' is locked</h4><p>Pass '+p.name+' first — '+need+' of '+p.qs.length+' correct (80%). Been before, or want the harder levels now? Open them all; the certificate still needs every level passed.</p><button class="btn gold" onclick="startLevel('+pi+')">▶ Take '+qzLvName(pi)+'</button><button class="btn ghost" onclick="qzFree(true)">🔓 Unlock all levels</button><button class="btn ghost" onclick="renderLevels()">← All levels</button></div>';
+function qzLockCard(i){var pi=qzPrevVis(i),n=qzN(pi),need=qzNeed(n);vib([50,40,50]);
+  document.getElementById('qzArea').innerHTML='<div class="qz-lock"><div class="big">'+mk('lock')+'</div><h4>'+qzLvName(i)+' is locked</h4><p>Pass '+qzLvName(pi)+' · '+qzLvName(pi,1)+' first — '+need+' of '+n+' correct (80%). Been before, or want the harder levels now? Open them all; the certificate still needs every level passed.</p><button class="btn gold" onclick="startLevel('+pi+')">▶ Take '+qzLvName(pi)+'</button><button class="btn ghost" onclick="qzFree(true)">🔓 Unlock all levels</button><button class="btn ghost" onclick="renderLevels()">← All levels</button></div>';
   jumpTo('qzArea',true);}
 function startMistakes(level){
-  qzQueue=Object.keys(qzST.wrong).map(function(k){var m=k.match(/^l(\d+)q(\d+)$/);return m?{lv:+m[1],qi:+m[2]}:null;}).filter(function(x){return x&&qzVis(x.lv)&&QUIZ_LEVELS[x.lv].qs[x.qi]&&(level===undefined||x.lv===level);});
+  var S=qzSeq();
+  qzQueue=Object.keys(qzST.wrong).map(qzRef).filter(function(x){return x&&(level===undefined||x.lv===level);})
+    .sort(function(a,b){return S.indexOf(a.lv)-S.indexOf(b.lv)||a.qi-b.qi;});
   if(!qzQueue.length){toast('No mistakes to review — mashallah!');return;}
-  qzMode='mist';qzI=0;qzScore=0;qzHist=[];qzMissed=[];qzOrder=null;qzActive=true;delete qzST.cur;qzSave();renderQz();jumpTo('qzArea',true);
+  qzMode='mist';qzI=0;qzScore=0;qzHist=[];qzRun=[];qzOrder=null;qzActive=true;qzLevel=level===undefined?-1:level;delete qzST.cur;qzSave();renderQz();jumpTo('qzArea',true);
 }
 /* P-23: resume state = the next unanswered question */
-function qzCurSave(){qzST.cur={mode:qzMode,lv:qzLevel,i:qzHist.length,score:qzScore,hist:qzHist.slice(),queue:qzMode==='mist'?qzQueue:null,order:qzOrder,missed:qzMissed.slice()};}
+function qzCurSave(){qzST.cur={mode:qzMode,lv:qzLevel,i:qzHist.length,score:qzScore,hist:qzHist.slice(),queue:qzMode==='mist'?qzQueue:null,order:qzOrder,run:qzRun.slice()};}
 function qzResume(){var c=qzST.cur;if(!c||!c.hist||!c.hist.length){renderLevels();return;}
-  qzMode=c.mode==='mist'?'mist':'level';qzLevel=c.lv||0;qzQueue=(c.queue||[]).filter(function(x){return x&&QUIZ_LEVELS[x.lv]&&QUIZ_LEVELS[x.lv].qs[x.qi];});
-  if((qzMode==='level'&&!QUIZ_LEVELS[qzLevel])||(qzMode==='mist'&&!qzQueue.length)){qzDiscard();return;}
-  var tot=qzTotal();qzHist=c.hist.slice(0,tot);qzScore=Math.min(c.score||0,qzHist.length);qzMissed=c.missed||[];qzOrder=(c.order&&c.order.length===tot)?c.order:null;qzActive=true;
+  qzMode=c.mode==='mist'?'mist':'level';qzLevel=c.lv===undefined?0:c.lv;qzQueue=(c.queue||[]).filter(function(x){return x&&qzRef('l'+x.lv+'q'+x.qi);});
+  if((qzMode==='level'&&!qzVis(qzLevel))||(qzMode==='mist'&&!qzQueue.length)){qzDiscard();return;}
+  var tot=qzTotal();qzHist=c.hist.slice(0,tot);qzScore=Math.min(c.score||0,qzHist.length);qzRun=(c.run||[]).slice(0,qzHist.length);qzOrder=(c.order&&c.order.length===tot)?c.order:null;qzActive=true;
   if(c.i>=tot){qzI=tot-1;nextQz();return;}
   qzI=Math.max(0,c.i);renderQz();jumpTo('qzArea',true);}
 function qzDiscard(){delete qzST.cur;qzSave();renderLevels();}
@@ -455,57 +554,81 @@ function qzAns(q){return q.o?q.a:(q.a===0?0:1);}
 function qzDots(n){var h='';for(var i=0;i<n;i++){h+='<i class="'+(i<qzHist.length?(qzHist[i]?'f':'w'):'')+'"></i>';}return '<div class="qz-dots" role="img" aria-label="Question '+(qzI+1)+' of '+n+'">'+h+'</div>';}
 function renderQz(){
   qzLock=false;
-  var q=curQ(),tot=qzTotal(),opts=qzOpts(q);
+  var q=curQ(),tot=qzTotal(),opts=qzOpts(q),r=curRef();
   qzPerm=opts.map(function(_,i){return i;});if(q.o)qzShuffle(qzPerm);
-  var head=markify(qzMode==='mist'?'🔁 Mistake review':QUIZ_LEVELS[qzLevel].icon+' '+qzLvName(qzLevel)),need='';
+  var head=qzMode==='mist'?mk('refresh','mkt')+'Mistake review':mk(qzLvMk(qzLevel),'mkt')+qzLvName(qzLevel),need='',tag=qzHtTag(q);
   if(qzMode==='level'){var left=qzNeed(tot)-qzScore,rem=tot-qzI;
     need=left<=0?'<span class="qz-need ok">pass secured ✓</span>':left<=rem?'<span class="qz-need gold">'+left+' more to pass</span>':'<span class="qz-need">keep going — mistakes go to your review list</span>';}
-  var h='<div class="qz-top"><span>'+head+' · Q'+(qzI+1)+'/'+tot+(qzMode==='level'?' · '+qzScore+' ✓':'')+'</span><span class="qz-exit" role="button" tabindex="0" onclick="qzExit()">✕ Exit</span></div>'+(need?'<div class="qz-needrow">'+need+'</div>':'')+qzDots(tot)+'<div class="qz-q">'+q.q+'</div>';
+  else need='<span class="qz-need">'+qzLvName(r.lv)+' · '+qzLvName(r.lv,1)+'</span>';
+  var h='<div class="qz-top"><span>'+head+' · Q'+(qzI+1)+'/'+tot+(qzMode==='level'?' · '+qzScore+' ✓':'')+'</span><span class="qz-exit" role="button" tabindex="0" onclick="qzExit()">✕ Exit</span></div>'
+    +'<div class="qz-needrow">'+(tag?'<span class="qz-ht">'+tag+'</span>':'')+need+'</div>'+qzDots(tot)+'<div class="qz-q">'+q.q+'</div>';
   qzPerm.forEach(function(j,i){h+='<button class="qz-o" id="qzo-'+i+'" onclick="answerQz('+i+')">'+(q.o?String.fromCharCode(65+i)+'. ':'')+opts[j]+'</button>';});
-  h+='<div id="qzFb" aria-live="polite"></div>';
+  h+='<div id="qzFb" aria-live="polite"></div><p class="qz-keys">Keys: '+(q.o?'1–'+opts.length+' or A–'+String.fromCharCode(64+opts.length):'T or F')+' to answer · Enter for next · Esc to exit</p>';
   document.getElementById('qzArea').innerHTML=h;
 }
 function answerQz(i){
   if(qzLock)return;qzLock=true;
-  var q=curQ(),ans=qzAns(q),ok=qzPerm[i]===ans;
-  qzHist.push(ok);
-  if(ok){qzScore++;vib(30);delete qzST.wrong[curKey()];}else{vib([60,40,60]);qzST.wrong[curKey()]=1;qzMissed.push(q.q);}
+  var q=curQ(),ans=qzAns(q),ok=qzPerm[i]===ans,r=curRef();
+  qzHist.push(ok);qzRun.push({lv:r.lv,qi:r.qi,ok:ok,ch:qzPerm[i]});
+  if(ok){qzScore++;vib(30);delete qzST.wrong[curKey()];}else{vib([60,40,60]);qzST.wrong[curKey()]=1;}
   qzCurSave();qzSave();
   var re=document.getElementById('qzo-'+qzPerm.indexOf(ans));if(re)re.classList.add('right');
   if(!ok)document.getElementById('qzo-'+i).classList.add('wrong');
-  document.getElementById('qzFb').innerHTML='<div class="qz-x">'+(ok?mk('check','mkt')+'Correct! ':mk('close','mkt')+'<span class="srx">Not quite. </span>')+q.e+'</div><button class="btn" onclick="nextQz()">'+(qzI<qzTotal()-1?'Next question →':'See my score')+'</button>';
+  document.querySelectorAll('#qzArea .qz-o').forEach(function(b){b.setAttribute('aria-disabled','true');});
+  document.getElementById('qzFb').innerHTML='<div class="qz-x">'+(ok?mk('check','mkt')+'Correct! ':mk('close','mkt')+'<span class="srx">Not quite. </span>')+q.e+(q.src?' '+qzSrc(q):'')+'</div><button class="btn" id="qzNextBtn" onclick="nextQz()">'+(qzI<qzTotal()-1?'Next question →':'See my score')+'</button>';
+  if(document.documentElement.classList.contains('kbd')){var nb=document.getElementById('qzNextBtn');if(nb)try{nb.focus({preventScroll:true});}catch(e){}}
 }
+/* Q2: the review list after every run — ✓ / ✗, your answer struck through, the right one, the explanation folded, the source chip */
+function qzReviewHTML(){if(!qzRun.length)return '';var nOk=qzRun.filter(function(x){return x.ok;}).length;
+  return '<div class="qz-rev"><div class="qz-rev-h"><b>Review this run</b><small>'+nOk+' right · '+(qzRun.length-nOk)+' missed</small></div><ol>'+qzRun.map(function(x){var L=QUIZ_LEVELS[x.lv],q=L&&L.qs[x.qi];if(!q)return '';var O=qzOpts(q),A=qzAns(q);
+    return '<li class="'+(x.ok?'ok':'no')+'"><span class="qz-rm">'+mk(x.ok?'check':'close')+'<span class="srx">'+(x.ok?'Right: ':'Missed: ')+'</span></span><div class="qz-rb"><p class="qz-rq">'+q.q+'</p>'
+      +'<p class="qz-ra">'+(x.ok?'':'<s>'+O[x.ch]+'</s><span class="srx"> (your answer)</span> ')+'<b>'+O[A]+'</b></p>'
+      +'<details><summary>Why</summary><p>'+q.e+'</p>'+qzSrc(q)+'</details></div></li>';}).join('')+'</ol></div>';}
 function nextQz(){
   if(qzI<qzTotal()-1){qzI++;renderQz();return;}
   qzActive=false;delete qzST.cur;
   if(qzMode==='mist'){
-    var cleared=qzScore,tot0=qzQueue.length;qzSave();
-    document.getElementById('qzArea').innerHTML='<div class="qz-final"><div class="big">'+cleared+'/'+tot0+'</div><p>mistakes cleared'+(qzWrongCount()?' — '+qzWrongCount()+' still to master.':' — clean slate, mashallah!')+'</p><button class="btn ghost" onclick="renderLevels()">← All levels</button>'+(qzWrongCount()?'<button class="btn gold" onclick="startMistakes()">↺ Review remaining</button>':'')+'</div>';
-    return;
+    var cleared=qzScore,tot0=qzQueue.length,lvM=qzLevel,left=lvM>-1?qzWrongIn(lvM):qzWrongCount();qzSave();
+    document.getElementById('qzArea').innerHTML='<div class="qz-final"><div class="big">'+cleared+'/'+tot0+'</div><p>mistakes cleared'+(left?' — '+left+' still to master.':' — clean slate, mashallah!')+'</p>'+(left?'<button class="btn gold" onclick="startMistakes('+(lvM>-1?lvM:'')+')">↺ Retry the '+left+' I missed</button>':'')+'<button class="btn ghost" onclick="renderLevels()">← All levels</button>'+qzReviewHTML()+'</div>';
+    qzMeterUpd();renderLearnQuiz();return;
   }
-  var lv=QUIZ_LEVELS[qzLevel],n=lv.qs.length,need=qzNeed(n);
+  var lv=QUIZ_LEVELS[qzLevel],n=qzN(qzLevel),need=qzNeed(n);
   var pct=Math.round(qzScore/n*100);
   var prevBest=qzST.best[qzLevel]||0;
   if(pct>prevBest){qzST.best[qzLevel]=pct;}
   qzSave();
-  var passed=pct>=80,all=qzAllPassed(),msg,btns,nx=-1,nxv=-1;
-  for(var nv=qzLevel+1;nv<QUIZ_LEVELS.length;nv++){if(qzVis(nv)){nxv=nv;break;}}
+  var passed=pct>=80,all=qzAllPassed(),msg,btns,nx=-1,nxv=qzNextVis(qzLevel);
   if(passed&&!all)nx=(nxv>-1&&!qzPassed(nxv))?nxv:qzNext();
   if(passed&&all)msg=nxv<0?'Final level passed — the whole circuit is yours!':'Level passed — and that completes the whole circuit!';
-  else if(passed)msg='Level passed!'+(nx===qzLevel+1?' '+qzLvName(nx,1)+' is now unlocked.':'');
+  else if(passed)msg='Level passed!'+(nx===nxv&&nx>-1?' '+qzLvName(nx,1)+' is now unlocked.':'');
   else msg='You got '+qzScore+' — you need '+need+' of '+n+' to pass. Study the section below, then retake.';
   if(passed){toast('🎉 '+qzLvName(qzLevel)+' passed!',true);vib([40,60,120]);confetti(all?160:70);}
   if(all&&!planChk['quiz80']){planChk['quiz80']=true;save('us-plan',planChk);updPlan();toast('🏆 Knowledge circuit complete!',true);}
   ST.quizBest=Math.max(ST.quizBest||0,pct);saveST();
   chkBadges();qzMeterUpd();
-  var wl=qzWrongIn(qzLevel),wc=qzWrongCount();
-  /* P-24 / P-26: the primary button is always the next step */
-  if(passed&&all)btns='<button class="btn gold" onclick="makeCert()">🎖️ Get my certificate</button>'+(wc?'<button class="btn ghost" onclick="startMistakes()">🔁 Review my mistakes ('+wc+')</button>':'')+'<button class="btn ghost" onclick="renderLevels()">← All levels</button>';
-  else if(passed)btns='<button class="btn gold" onclick="startLevel('+nx+')">▶ Start '+qzLvName(nx,1)+'</button>'+(pct<100?'<button class="btn ghost" onclick="startLevel('+qzLevel+')">↺ Retake level</button>':'')+'<button class="btn ghost" onclick="renderLevels()">← All levels</button>';
-  else btns='<button class="btn gold" onclick="startLevel('+qzLevel+')">↺ Retake level</button><button class="btn ghost" onclick="qzStudyGo('+qzLevel+')">📚 Study this level</button>'+(lv.rites?'<button class="btn ghost" onclick="goTab(\'umrah\',\'steps\')">📋 Open the rites guide</button>':'')+(wl?'<button class="btn ghost" onclick="startMistakes('+qzLevel+')">🔁 Review the '+wl+' I missed</button>':'')+'<button class="btn ghost" onclick="renderLevels()">← All levels</button>';
-  var missed=(!passed&&qzMissed.length)?'<div class="qz-missed"><b>Missed this run</b><ul>'+qzMissed.map(function(t){return '<li>'+t+'</li>';}).join('')+'</ul></div>':'';
-  document.getElementById('qzArea').innerHTML='<div class="qz-final"><div class="big">'+pct+'%</div><p>'+qzScore+' of '+n+' correct — '+msg+'</p>'+missed+btns+'</div>';
+  var wl=qzWrongIn(qzLevel),wc=qzWrongCount(),retry='<button class="btn '+(passed?'gold':'ghost')+'" onclick="startMistakes('+qzLevel+')">↺ Retry the '+wl+' I missed</button>';
+  /* P-24 / P-26: the primary button is always the next step — on a pass with misses, that is the misses (Q2) */
+  if(passed&&all)btns='<button class="btn gold" onclick="makeCert()">🎖️ Get my certificate</button>'+(wl?retry.replace('btn gold','btn ghost'):'')+(wc>wl?'<button class="btn ghost" onclick="startMistakes()">🔁 Review all my mistakes ('+wc+')</button>':'')+'<button class="btn ghost" onclick="renderLevels()">← All levels</button>';
+  else if(passed)btns=(wl?retry:'')+'<button class="btn '+(wl?'ghost':'gold')+'" onclick="startLevel('+nx+')">▶ Start '+qzLvName(nx,1)+'</button>'+(pct<100&&!wl?'<button class="btn ghost" onclick="startLevel('+qzLevel+')">↺ Retake level</button>':'')+'<button class="btn ghost" onclick="renderLevels()">← All levels</button>';
+  else btns='<button class="btn gold" onclick="startLevel('+qzLevel+')">↺ Retake level</button>'+(wl?retry:'')+'<button class="btn ghost" onclick="qzStudyGo('+qzLevel+')">📚 Study this level</button>'+(lv.rites?'<button class="btn ghost" onclick="goTab(\'umrah\',\'steps\','+(journey()==='hajj'?'\'hajjContainer\'':'null')+')">📋 Open the rites guide</button>':'')+'<button class="btn ghost" onclick="renderLevels()">← All levels</button>';
+  document.getElementById('qzArea').innerHTML='<div class="qz-final"><div class="big">'+pct+'%</div><p>'+qzScore+' of '+n+' correct — '+msg+'</p>'+btns+qzReviewHTML()+'</div>';
+  renderLearnQuiz();
 }
+/* Q5: in a level — 1–4 or A–D answers, T / F for true or false, Enter or Space goes on, Esc exits (the resume row keeps your place).
+   F5: on a flashcard — Space / Enter flips; then ← or 1 = Again, → or 2 = Got it; Esc ends the session. The key hint shows to keyboard users only. */
+function qzKeys(e){var a=document.getElementById('qzArea');if(!a||!a.offsetParent||!a.querySelector('.qz-top'))return false;var k=e.key,onCtl=e.target&&e.target.closest&&e.target.closest('button,a,summary,[role="button"],[role="checkbox"]');
+  if(k==='Escape'){qzExit();return true;}
+  if(!qzLock){var q=curQ(),n=qzOpts(q).length,i=-1;
+    if(/^[1-9]$/.test(k))i=+k-1;else if(q.o&&/^[a-z]$/i.test(k))i=k.toUpperCase().charCodeAt(0)-65;else if(!q.o&&/^[tf]$/i.test(k))i=qzPerm.indexOf(/t/i.test(k)?0:1);
+    if(i>-1&&i<n){answerQz(i);return true;}return false;}
+  if((k==='Enter'||k===' ')&&!onCtl){nextQz();return true;}
+  return false;}
+document.addEventListener('keydown',function(e){if(e.altKey||e.ctrlKey||e.metaKey)return;var t=e.target,tg=(t&&t.tagName)||'';
+  if(/^(INPUT|TEXTAREA|SELECT)$/.test(tg)||(t&&t.isContentEditable))return;
+  if(e.key==='Tab'||/^Arrow/.test(e.key))document.documentElement.classList.add('kbd');
+  if(document.querySelector('.sheet-o.on,.focus.on'))return;
+  if((qzActive&&qzKeys(e))||(fcQueue.length&&fcKeys(e))){document.documentElement.classList.add('kbd');e.preventDefault();}});
+document.addEventListener('pointerdown',function(){document.documentElement.classList.remove('kbd');},true);
 
 /* ════════════════════════ RITES ════════════════════════ */
 /* U-17: a step may carry one dua or an array of duas (an optional one is marked opt:'label') */
@@ -1550,7 +1673,7 @@ function renderHome(){
   var ctaGo=cta[1]==='js'?cta[2]:'goTab('+(cta[1]?'\''+cta[1]+'\'':'null')+','+(cta[2]?'\''+cta[2]+'\'':'null')+','+(cta[3]?'\''+cta[3]+'\'':'null')+')';
   var due=fcDue();var fc0=due.length?FC_MAP[due[0]]:null;
   var nh=0;[HISTORY,VIRTUES,MADINAH,FIQHQA,KNOW,SISTERS,SCAMS].forEach(function(x){nh+=x.filter(forMe).length;});
-  var nq=0;QUIZ_LEVELS.forEach(function(l){if(forMe(l))nq+=l.qs.length;});
+  var nq=0;qzSeq().forEach(function(i){nq+=qzN(i);});
   var NL=qzVisible().length,NP=PLACES.length,ND=DUAS.filter(forMe).length;
   var stages=[
     {i:mk('bag'),t:'Before you fly',s:'Prepare with ihsan',d:'Begin with your intention — then checklists for documents, packing and health, a departure countdown and a generated day-by-day itinerary. Then learn: the history of the Kaaba and Madinah, the virtues, the fiqh Q&A, a scam-awareness guide — and prove it in a '+NL+'-level quiz.',f:['Checklists','Itinerary','Knowledge hub',NL+'-level quiz','Flashcards','Document vault',['Kids quiz','goTab(\'plan\',\'quiz\',\'kidsCard\')']],go:['plan','prep'],c:'Start preparing'},
@@ -1581,7 +1704,7 @@ function renderHome(){
     if(phase.indexOf('not yet recorded')>-1){sK='⛺ Your Hajj';sR='Part 2';var HT1=hajjTotals();if(HT1.tot)M('Part 2 steps',HT1.done,HT1.tot);sNote=lbl;}
     else if(ST.post){sR='Habits';POST_HABITS.forEach(function(h,i){var o=pd[i]||{},n=Object.keys(o).filter(function(k){return o[k];}).length,l=stripEmoji(h).replace(/^(Five|Daily) /,'');M(l.charAt(0).toUpperCase()+l.slice(1),n,30);});sNote='Alhamdulillah — keep the Haram version of you';}
     else{sR='Complete';sNote=lbl;}}
-  else if(hsK==='plan'){sK=HJ?'⛺ Hajj '+hy:d===null?'🧭 Planning your Umrah':'✈️ Your Umrah';sR='Prepared';M('Prep',done,tot);M('Quiz levels',qzPassedCount(),qzVisible().length);if(HJ&&HD[9])M('Arafah',fmtDate(HD[9]));}
+  else if(hsK==='plan'){sK=HJ?'⛺ Hajj '+hy:d===null?'🧭 Planning your Umrah':'✈️ Your Umrah';sR='Prepared';M('Prep',done,tot);var HR0=HJ?hajjReadiness():null;if(HR0)M('Knowledge',HR0.pct+'%');else M('Quiz levels',qzPassedCount(),qzVisible().length);if(HJ&&HD[9])M('Arafah',fmtDate(HD[9]));}
   else if(hsK==='dep'){sK='🛫 Departure day';sR='Prepared';var P2=planTotals();M('Prep',P2.done,P2.tot);sNote=(journey()==='hajj'&&hajjType()!=='tamattu')?'Ihram at the miqat, then the arrival tawaf (and sa’i if you do it now) — you stay in ihram until the 10th':'Ihram at the miqat, then tawaf, sa’i and halq — every step and dua is in the guide';}
   else{var stp=/^Step (\d) of 4 · (.*)$/.exec(lbl||'');sK=HJ?(hp.k?leadEmoji(phase)+' '+hp.k:'⛺ Hajj '+hy):'🕋 Umrah';sR=stp?'Rites':'Today';
     if(!hp.num)M('Trip day',Math.min(ed,ST.tripLen),ST.tripLen);
@@ -1652,7 +1775,7 @@ function renderHome(){
     /* H-05: what to do next (planners) — above the flashcard card */
     if(stageNow===0){var rows=nextRows.slice(0,3),nq0=qzPassedCount()<NL?qzNext():-1,nx='';
       rows.forEach(function(r){nx+='<div class="tli" role="checkbox" tabindex="0" aria-checked="false" onclick="tlTick(this,\''+r.o.it.id+'\')"><span class="tick"></span><div class="tli-t">'+r.o.it.label+'<small>'+r.o.sec.title+(r.o.it.wk!==undefined?' · <span class="ty-nw">ideally '+(r.o.it.wk>=1?r.o.it.wk+' week'+(r.o.it.wk>1?'s':''):'days')+' before</span>':'')+'</small></div><span class="tli-when '+r.cls+'">'+r.when+'</span></div>';});
-      if(nq0>-1&&rows.length<4)nx+='<div class="tli" role="button" tabindex="0" onclick="goTab(\'plan\',\'learn\',\'lnQuizCard\')"><span class="tli-i">'+mkOr('🧠')+'</span><div class="tli-t">Quiz level '+(nq0+1)+' not passed<small>'+qzLvName(nq0,1)+' · 80% to pass</small></div><span class="tli-when soon">Study →</span></div>';
+      if(nq0>-1&&rows.length<4)nx+='<div class="tli" role="button" tabindex="0" onclick="goTab(\'plan\',\'learn\',\'lnQuizCard\')"><span class="tli-i">'+mkOr('🧠')+'</span><div class="tli-t">Quiz level '+(qzPos(nq0)+1)+' not passed<small>'+qzLvName(nq0,1)+' · 80% to pass</small></div><span class="tli-when soon">Study →</span></div>';
       if(nx)h+='<div class="card card-pad hnext"><h3>'+mk('tack','mkt')+'Do next</h3>'+nx+'<button class="lnk hn-all" onclick="goTab(\'plan\',\'prep\',\''+(ST.dep?'tlCard':'cdCard')+'\')">'+(ST.dep?'See full timeline →':'Set a departure date for a dated timeline →')+'</button></div>';
       h+=readHTML+cont;}
     h+=prayerHTML;
@@ -2472,10 +2595,9 @@ function makeCertGo(){
   x.font='600 72px '+KF;x.fillStyle=K.ihram;x.fillText(name,540,580);
   kRule(x,340,740,625);
   x.font='30px '+KB;x.fillStyle=K.ihram;
+  var HJc=journey()==='hajj',CL=HJc?['Hajj Knowledge Circuit — foundations,','ihram & the talbiyah, tawaf & sa’i, Arafah,','Muzdalifah & the 10th, the days of tashreeq,','Hajj fiqh, history, virtues and Madinah.']:['Umrah Knowledge Circuit —','foundations, ihram, tawaf & sa’i, history,','virtues, Madinah and fiqh essentials.'];
   x.fillText('has completed the full '+qzVisible().length+'-level',540,700);
-  x.fillText((journey()==='hajj'?'Hajj & Umrah':'Umrah')+' Knowledge Circuit —',540,750);
-  x.fillText('foundations, ihram, tawaf & sa’i, history,',540,800);
-  x.fillText(journey()==='hajj'?'virtues, Madinah, fiqh and the days of Hajj.':'virtues, Madinah and fiqh essentials.',540,850);
+  CL.forEach(function(l,i){x.fillText(l,540,750+i*50);});
   x.font='500 28px '+KB;x.fillStyle=K.gold3;
   x.fillText('“Whoever travels a path seeking knowledge,',540,960);
   x.fillText('Allah makes easy for him a path to Paradise.”',540,1005);
@@ -2483,83 +2605,180 @@ function makeCertGo(){
   x.font='26px '+KB;x.fillStyle=K.ihram2;
   x.fillText(new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}),540,1170);
   x.fillText('umrah-strivers.vercel.app',540,1215);
-  exportImage(c,'umrah-knowledge-certificate.png','Certificate of Knowledge');
+  exportImage(c,(HJc?'hajj':'umrah')+'-knowledge-certificate.png','Certificate of Knowledge');
 }
 
 /* ════════════════════════ FLASHCARDS ════════════════════════ */
 /* P-16: string keys — 'l#q#' quiz cards (front = question, back = options + explanation), 'know3' / 'qa1' / 'hist0' / 'virt0' / 'mad0' / 'sis0' / 'scam2' read cards.
-   Deck order mirrors the Learn reading path; fcDue() puts your quiz mistakes first and, inside 28 days of departure, the ihram/tawaf levels + Know-before-you-go next. */
-var FC_DECK=[],FC_MAP={},fcQueue=[],fcIdx=0,fcST={};
+   6.4: the deck follows the journey and the Hajj type (FC_ORDER, forMe on every level and question), and fcDue() lets the phase decide the focus:
+   quiz mistakes first, then the phase boost (FC_PHASE), then everything else in deck order. */
+var FC_DECK=[],FC_MAP={},fcQueue=[],fcIdx=0,fcST={},fcFilt='due',fcRq={},fcSes=null,fcDrag=null;
+try{fcST=JSON.parse(localStorage.getItem('us-cards')||'{}')||{};}catch(e){fcST={};}
 function fcToday(){return Math.floor(Date.now()/86400000);}
-function fcSave(){localStorage.setItem('us-cards',JSON.stringify(fcST));}
+function fcSave(){try{localStorage.setItem('us-cards',JSON.stringify(fcST));}catch(e){}}
 function fcStarted(){return Object.keys(fcST).length>0;}
+/* read-card sources: array, label, Learn container */
+var FC_READ={know:[KNOW,'Know before you go','knowContainer'],qa:[FIQHQA,'Fiqh Q&A','qaContainer'],hist:[HISTORY,'History','histContainer'],virt:[VIRTUES,'Virtues','virtContainer'],mad:[MADINAH,'Madinah','madContainer'],sis:[SISTERS,'For sisters','sisContainer'],scam:[SCAMS,'Scams','scamContainer']};
+/* deck order per journey: ['q',level key] or ['r',read set,from,to] — the Hajj deck drills Hajj first, then the shared reading */
+var FC_ORDER={umrah:[['q','u-found'],['r','know'],['q','u-ihram'],['q','u-rites'],['r','qa'],['q','u-fiqh'],['r','hist'],['q','u-hist'],['r','virt'],['q','u-virt'],['r','mad'],['q','u-mad'],['r','sis'],['r','scam']],
+  hajj:[['q','h-found'],['r','know',8,11],['q','h-ihram'],['r','know',0,2],['q','u-rites'],['q','h-arafah'],['q','h-nahr'],['r','qa',11,14],['q','h-tashreeq'],['q','h-fiqh'],['r','qa',2,10],['r','know',4,7],['r','hist'],['q','u-hist'],['r','virt'],['q','u-virt'],['r','mad'],['q','u-mad'],['r','sis'],['r','scam']]};
+/* F2 topic filters: a card's groups (level keys and read keys); "The five days" is Hajj-only */
+var FC_FILT=[['due','Due'],['mist','My mistakes'],['days','The five days','hajj'],['ihram','Ihram'],['tawaf','Tawaf & sa’i'],['fiqh','Fiqh'],['sis','Sisters'],['heart','History & virtues']];
+function fcIn(k,a,b){var m=/^([a-z]+)(\d+)$/.exec(k);return !!m&&+m[2]>=a&&+m[2]<=b?m[1]:'';}
+function fcGroups(c){var g=[],lk=c.lk||'',k=c.k,HJ=journey()==='hajj';
+  if(/^h-(arafah|nahr|tashreeq)$/.test(lk)||k==='know9'||fcIn(k,11,14)==='qa')g.push('days');
+  if(lk==='u-ihram'||lk==='h-ihram'||fcIn(k,0,2)==='know')g.push('ihram');
+  if(lk==='u-rites'||fcIn(k,2,7)==='qa')g.push('tawaf');
+  if(HJ?(lk==='h-found'||lk==='h-fiqh'||fcIn(k,11,14)==='qa'):(lk==='u-fiqh'||fcIn(k,0,10)==='qa'))g.push('fiqh');
+  if(/^sis\d/.test(k)||k==='qa4'||k==='qa13')g.push('sis');
+  if(/^(hist|virt|mad)\d/.test(k)||/^u-(hist|virt|mad)$/.test(lk))g.push('heart');
+  return g;}
 function buildDeck(){
-  FC_DECK=[];FC_MAP={};
-  function add(c){FC_DECK.push(c);FC_MAP[c.k]=c;}
-  /* keys keep the global index so a graded card survives journey gating (j:'hajj' rows simply drop out of the deck) */
-  function read(arr,pre,src){arr.forEach(function(it,i){if(!forMe(it))return;add({k:pre+i,f:it.t,b:it.b,src:'Read · '+src,type:'read'});});}
-  function quiz(lv){var L=QUIZ_LEVELS[lv];if(!L||!forMe(L))return;L.qs.forEach(function(q,i){add({k:'l'+lv+'q'+i,f:q.q,q:q,lv:lv,src:'Quiz · '+L.name.split(' · ')[0],type:'quiz'});});}
-  quiz(0);read(KNOW,'know','Know before you go');quiz(1);quiz(2);read(FIQHQA,'qa','Fiqh Q&A');quiz(6);read(HISTORY,'hist','History');quiz(3);read(VIRTUES,'virt','Virtues');quiz(4);read(MADINAH,'mad','Madinah');quiz(5);read(SISTERS,'sis','For sisters');read(SCAMS,'scam','Scams');
-  for(var xl=7;xl<QUIZ_LEVELS.length;xl++)quiz(xl);
-  try{fcST=JSON.parse(localStorage.getItem('us-cards')||'{}');}catch(e){fcST={};}
+  FC_DECK=[];FC_MAP={};var HJ=journey()==='hajj',T1=HJ&&hajjType()==='tamattu';
+  function add(c){if(FC_MAP[c.k])return;c.g=fcGroups(c);FC_DECK.push(c);FC_MAP[c.k]=c;}
+  /* keys keep the global index so a graded card survives journey gating (gated rows simply drop out of the deck) */
+  function read(pre,a,b){var R=FC_READ[pre];R[0].forEach(function(it,i){if(a!==undefined&&(i<a||i>b))return;if(!forMe(it))return;add({k:pre+i,f:it.t,b:it.b,src:'Read · '+R[1],type:'read',rk:pre});});}
+  /* F9 / Tamattu’: a question kept for some types names them; the Tamattu’ Umrah questions are framed as Part 1 */
+  function quiz(key){var lv=qzKeyIdx(key),L=QUIZ_LEVELS[lv];if(!L||!forMe(L))return;var t=qzLvName(lv,1);
+    L.qs.forEach(function(q,i){if(!forMe(q))return;var p1=T1&&!!q.p1;add({k:'l'+lv+'q'+i,f:q.q,q:q,lv:lv,lk:key,p1:p1,src:(p1?'Part 1 · your Umrah · ':(q.ht&&HJ?qzHtTag(q).replace(/ only$/,'')+' · ':''))+'Quiz · '+t,type:'quiz'});});}
+  (FC_ORDER[journey()]||FC_ORDER.umrah).forEach(function(o){if(o[0]==='q')quiz(o[1]);else read(o[1],o[2],o[3]);});
+  qzSeq().forEach(function(i){quiz(QUIZ_LEVELS[i].key);});
+  try{fcST=JSON.parse(localStorage.getItem('us-cards')||'{}')||{};}catch(e){fcST={};}
   /* migrate v1 numeric keys (old deck order: HISTORY, VIRTUES, MADINAH, FIQHQA) once */
   var mig=false,old=[['hist',HISTORY.length],['virt',VIRTUES.length],['mad',MADINAH.length],['qa',FIQHQA.length]];
-  Object.keys(fcST).forEach(function(k){if(!/^\d+$/.test(k))return;mig=true;var i=+k,st=fcST[k];delete fcST[k];for(var j=0;j<old.length;j++){if(i<old[j][1]){var nk=old[j][0]+i;if(FC_MAP[nk]&&!fcST[nk])fcST[nk]=st;break;}i-=old[j][1];}});
+  Object.keys(fcST).forEach(function(k){if(!/^\d+$/.test(k))return;mig=true;var i=+k,st=fcST[k];delete fcST[k];for(var j=0;j<old.length;j++){if(i<old[j][1]){var nk=old[j][0]+i;if(fcST[nk]===undefined)fcST[nk]=st;break;}i-=old[j][1];}});
   if(mig)fcSave();
+  if(!FC_FILT.some(function(f){return f[0]===fcFilt&&(!f[2]||f[2]===journey());}))fcFilt='due';
 }
+/* F1: the phase decides the focus — departure near, on the trip before the 8th, each day of Hajj, after it. Umrah keeps its ≤28-day boost (deck order inside it). */
+function fcPhase(){var d=depDays(),HJ=journey()==='hajj';
+  if(!HJ)return (d!==null&&d<=28)?{b:['u-ihram','u-rites','know'],lbl:'Departure is near — ihram & tawaf cards first.',flat:true}:{b:[],lbl:''};
+  var hd=hajjDay(),T=hajjType()==='tamattu',p1=T&&!hajjPart2Active();
+  if(hd===8||hd===9)return {b:['h-arafah','h-nahr'],lbl:'Today: the '+hd+'th — '+(hd===8?'Mina & Arafah':'Arafah')+' cards first.'};
+  if(hd===10)return {b:['h-nahr','h-tashreeq','qa12'],lbl:'Today: the 10th — the Day of Nahr cards first.'};
+  if(typeof hd==='number')return {b:['h-tashreeq','qa14','qa12','h-fiqh'],lbl:'Today: the '+hd+'th — tashreeq & farewell cards first.'};
+  if(hd==='post')return {b:['u-virt','u-mad'],lbl:'After your Hajj — virtues & Madinah first.'};
+  if(onTrip())return {b:(p1?['u-rites']:[]).concat(['h-arafah','h-nahr','know9','qa11','qa13']),lbl:p1?'In Makkah — your Umrah first, then Arafah & the 10th.':'Before the 8th — Arafah & the 10th cards first.'};
+  if(d!==null&&d<=28&&d>0)return {b:['h-found','h-ihram','know8','know9','know0','know1'].concat(T?['u-rites']:[]),lbl:'Departure is near — foundations & ihram first.'};
+  return {b:[],lbl:''};}
+function fcRank(c,P){var r=P.b.indexOf(c.lk||'');if(r<0)r=P.b.indexOf(c.k);if(r<0&&P.flat&&c.rk==='know')r=P.b.indexOf('know');return r<0?-1:(P.flat?0:r);}
 function fcDue(){
-  var t=fcToday(),d=depDays(),soon=d!==null&&d<=28,due=[],idx={};
+  var t=fcToday(),P=fcPhase(),due=[],idx={};
   FC_DECK.forEach(function(c){var st=fcST[c.k];if(!st||st.due<=t){idx[c.k]=due.length;due.push(c.k);}});
-  function tier(k){var c=FC_MAP[k];if(c.type==='quiz'&&qzST.wrong[k])return 0;if(soon&&((c.type==='quiz'&&(c.lv===1||c.lv===2))||k.indexOf('know')===0))return 1;return 2;}
-  due.sort(function(a,b){return tier(a)-tier(b)||idx[a]-idx[b];});
+  function key(k){var c=FC_MAP[k];if(c.type==='quiz'&&qzST.wrong[k])return [0,0];var r=fcRank(c,P);return r>-1?[1,r]:[2,0];}
+  due.sort(function(a,b){var x=key(a),y=key(b);return x[0]-y[0]||x[1]-y[1]||idx[a]-idx[b];});
   return due;
 }
+/* the cards a filter draws from: Due = fcDue(); My mistakes = every visible quiz mistake; a topic = its due cards, in fcDue order */
+function fcFiltCards(f){if(f==='mist')return FC_DECK.filter(function(c){return c.type==='quiz'&&qzST.wrong[c.k];}).map(function(c){return c.k;});
+  var due=fcDue();return f==='due'?due:due.filter(function(k){return FC_MAP[k].g.indexOf(f)>-1;});}
+function fcAll(f){return FC_DECK.filter(function(c){return f==='due'||f==='mist'?(f==='due'||(c.type==='quiz'&&qzST.wrong[c.k])):c.g.indexOf(f)>-1;});}
+/* F3: New (never graded) · Learning (box 1–2) · Mastered (box 3) */
+function fcMastery(f){var o={n:0,l:0,m:0,t:0};fcAll(f).forEach(function(c){var st=fcST[c.k],b=st?st.box||0:0;o.t++;if(b>=3)o.m++;else if(b>=1)o.l++;else o.n++;});return o;}
 function fcBack(c){
-  if(c.type!=='quiz')return c.b;
-  var q=c.q,ans=qzAns(q);
-  return '<div class="fc-q">'+q.q+'</div><div class="fc-opts">'+qzOpts(q).map(function(o,i){return '<div class="'+(i===ans?'ok':'')+'">'+(i===ans?'✓ ':'')+o+'</div>';}).join('')+'</div>'+q.e;
+  var h;
+  if(c.type!=='quiz')h=c.b;
+  else{var q=c.q,ans=qzAns(q);h='<div class="fc-q">'+q.q+'</div><div class="fc-opts">'+qzOpts(q).map(function(o,i){return '<div class="'+(i===ans?'ok':'')+'">'+(i===ans?'✓ ':'')+o+'</div>';}).join('')+'</div>'+q.e;}
+  /* F7: the source chip, and a way back into the app — the day in the rites guide, or the topic in Learn */
+  var go='',st=c.type==='quiz'?(QUIZ_LEVELS[c.lv].study||{}):null;
+  if(st&&/^sec-hd/.test(st.id||''))go='<button class="fc-go" onclick="event.stopPropagation();openHajjDay(\''+st.id.slice(4)+'\')">'+mk('tent','mkt')+'Open the day</button>';
+  else if(st)go='<button class="fc-go" onclick="event.stopPropagation();qzStudyGo('+c.lv+')">'+mk('book','mkt')+'Open in Learn</button>';
+  else go='<button class="fc-go" onclick="event.stopPropagation();fcOpenLearn(\''+c.k+'\')">'+mk('book','mkt')+'Open in Learn</button>';
+  return h+'<div class="fc-foot">'+(c.type==='quiz'?qzSrc(c.q):'<span class="src-chip">'+esc(c.src.replace(/^Read · /,''))+'</span>')+go+'</div>';
 }
+function fcOpenLearn(k){var R=FC_READ[(/^[a-z]+/.exec(k)||[''])[0]];if(!R)return;goTab('plan','learn');var a=document.querySelector('#'+R[2]+' .acc[data-k="'+k+'"]');if(!a)return;
+  if(!a.classList.contains('open')){a.classList.add('open');var h=a.querySelector('.acc-h');if(h)h.setAttribute('aria-expanded','true');}
+  requestAnimationFrame(function(){setTimeout(function(){var y=a.getBoundingClientRect().top+window.scrollY-118;window.scrollTo({top:Math.max(0,y),behavior:smooth()});},30);});}
+function fcFiltHTML(){var HJ=journey()==='hajj';
+  return '<div class="fc-filt" role="group" aria-label="Choose cards">'+FC_FILT.filter(function(f){return !f[2]||f[2]===journey();}).map(function(f){var n=fcFiltCards(f[0]).length,on=f[0]===fcFilt;
+    return '<button class="pill'+(on?' on':'')+'" aria-pressed="'+(on?'true':'false')+'" onclick="fcSetFilt(\''+f[0]+'\')">'+f[1]+' <span class="fc-n">'+n+'</span></button>';}).join('')+'</div>';}
+function fcSetFilt(f){fcFilt=f;renderFC();vib(6);var b=document.querySelector('#fcArea .fc-filt .pill.on');if(b)try{b.focus({preventScroll:true});}catch(e){}}
+function fcMastHTML(f){var M=fcMastery(f),t=M.t||1;
+  return '<div class="fc-mast"><div class="fc-mbar" role="img" aria-label="'+M.n+' new, '+M.l+' learning, '+M.m+' mastered"><i class="m" style="width:'+(M.m/t*100).toFixed(1)+'%"></i><i class="l" style="width:'+(M.l/t*100).toFixed(1)+'%"></i></div>'
+    +'<div class="fc-mrow"><span><i class="dot n"></i>New '+M.n+'</span><span><i class="dot l"></i>Learning '+M.l+'</span><span><i class="dot m"></i>Mastered '+M.m+'</span></div></div>';}
+function fcHeadUpd(){var M=fcMastery('due'),el=document.getElementById('fcMastT');if(el)el.textContent=M.m+' of '+M.t+' mastered';
+  var sub=document.getElementById('fcSub');if(sub)sub.textContent=journey()==='hajj'?'A few minutes a day — spaced repetition over the Hajj levels first, then everything above and your quiz mistakes, paced to your departure and the days of Hajj.':'A few minutes a day — spaced repetition over everything above and your quiz mistakes, paced to your departure.';}
 function renderFC(){
   var area=document.getElementById('fcArea');if(!area)return;
   var due=fcDue(),started=fcStarted(),lbl=document.getElementById('fcDueLbl');
   if(lbl)lbl.textContent=due.length?(started?due.length+' due today.':due.length+' cards ready.'):'';
+  fcHeadUpd();
+  if(fcSes&&fcSes.done){area.innerHTML=fcSummaryHTML();return;}
   if(!fcQueue.length){
-    if(!due.length){area.innerHTML='<div class="note" style="margin:0">✅ Cards caught up — back tomorrow.</div>';return;}
-    var n=Math.min(started?12:5,due.length);
-    area.innerHTML='<button class="btn gold" onclick="startFC()">🃏 '+(started?'Review next '+n+' ('+due.length+' due)':'Start with '+n+' cards')+'</button>'+(qzWrongCount()?'<p style="font-size:var(--t-2);color:var(--ink3);margin-top:8px;text-align:center">Your quiz mistakes come first.</p>':'');return;
+    var list=fcFiltCards(fcFilt),P=fcPhase(),wc=qzWrongCount(),n=Math.min(started?12:5,list.length),h=fcFiltHTML()+fcMastHTML(fcFilt);
+    if(!list.length)h+='<div class="note" style="margin:0">'+(fcFilt==='due'?'✅ Cards caught up — back tomorrow.':fcFilt==='mist'?'No quiz mistakes to drill — mashallah.':'Nothing due in this topic today — pick another, or come back tomorrow.')+'</div>';
+    else{h+='<button class="btn gold fc-start" onclick="startFC()">🃏 '+(started?'Review next '+n+' ('+list.length+(fcFilt==='mist'?' to drill':' due')+')':'Start with '+n+' cards')+'</button>';
+      var why=fcFilt!=='due'?'':(wc&&due.length&&FC_MAP[due[0]].type==='quiz'&&qzST.wrong[due[0]])?'Your quiz mistakes come first.':P.lbl;
+      if(why)h+='<p class="fc-why">'+why+'</p>';}
+    area.innerHTML=h;return;
   }
   var k=fcQueue[fcIdx],c=FC_MAP[k];if(!c){fcEnd();return;}
-  var wrong=c.type==='quiz'&&!!qzST.wrong[k];
-  area.innerHTML='<div class="fc-prog">Card '+(fcIdx+1)+' / '+fcQueue.length+'</div>'
-   +'<div class="fc-wrap" id="fcWrap"><div class="fc" id="fcFlip" role="button" tabindex="0" aria-label="Reveal the answer" onclick="fcFlip()"><div class="fc-in">'
-   +'<div class="fc-face fc-front"><span class="fc-src'+(wrong?' wrong':'')+'">'+(wrong?'🔁 from your quiz':c.src)+'</span><div class="t">'+c.f+'</div><div class="hint">Tap to reveal · then grade yourself</div></div>'
+  var wrong=c.type==='quiz'&&!!qzST.wrong[k],rm=RM&&RM.matches;
+  area.innerHTML='<div class="fc-prog">Card '+(fcIdx+1)+' / '+fcQueue.length+(fcRq[k]===fcIdx?' · once more':'')+'</div>'
+   +'<div class="fc-wrap'+(rm?' rm':'')+'" id="fcWrap"><div class="fc" id="fcFlip" role="button" tabindex="0" aria-label="Reveal the answer" onclick="fcFlip()"><div class="fc-in">'
+   +'<div class="fc-face fc-front"><span class="fc-src'+(wrong?' wrong':'')+'">'+(wrong?'🔁 From your quiz · '+c.src.replace(/^.*Quiz · /,''):c.src)+'</span><div class="t">'+c.f+'</div><div class="hint">Tap to reveal · then grade yourself</div></div>'
    +'<div class="fc-face fc-back">'+fcBack(c)+'<span class="fc-showq" role="button" tabindex="0" onclick="event.stopPropagation();fcUnflip()">'+mk('chevl','mkt')+'Show question</span></div>'
    +'</div></div>'
-   +'<div class="fc-acts"><button onclick="fcGrade(false)">↺ Again</button><button class="good" onclick="fcGrade(true)">✓ Got it</button></div></div>'
+   +'<div class="fc-acts"><button onclick="fcGrade(false)">↺ Again</button><button class="good" onclick="fcGrade(true)">✓ Got it</button></div>'
+   +'<p class="fc-keys">'+(rm?'':'<span>Swipe right for Got it, left for Again</span>')+'<span class="kb">'+(rm?'':' · ')+'Keys: ← or 1 Again · → or 2 Got it · Esc ends</span></p></div>'
    +'<button class="fc-end" onclick="fcEnd()">✕ End session</button>';
+  fcSwipeBind();
 }
-function fcFlip(){var w=document.getElementById('fcWrap');if(w&&!w.classList.contains('flip')){w.classList.add('flip');vib(6);}}
+function fcFlip(){if(fcDrag&&fcDrag.moved)return;var w=document.getElementById('fcWrap');if(w&&!w.classList.contains('flip')){w.classList.add('flip');vib(6);var f=document.getElementById('fcFlip');if(f)f.setAttribute('aria-label','Answer shown');}}
 function fcUnflip(){var w=document.getElementById('fcWrap');if(w)w.classList.remove('flip');}
-function fcEnd(){fcQueue=[];fcIdx=0;renderFC();}
-function startFC(){fcQueue=fcDue().slice(0,fcStarted()?12:5);fcIdx=0;renderFC();}
+function fcEnd(){if(fcSes&&fcSes.n&&!fcSes.done){fcSes.done=true;fcQueue=[];fcIdx=0;renderFC();return;}fcQueue=[];fcIdx=0;fcSes=null;renderFC();}
+function startFC(){var L=fcFiltCards(fcFilt);fcQueue=L.slice(0,fcStarted()?12:5);fcIdx=0;fcRq={};fcSes={n:0,good:0,again:0,m0:fcMastery('due').m,f:fcFilt};renderFC();
+  var f=document.getElementById('fcFlip');if(f&&document.documentElement.classList.contains('kbd'))try{f.focus({preventScroll:true});}catch(e){}}
 function fcGrade(ok){
-  var k=fcQueue[fcIdx],st=fcST[k]||{box:0};
-  var box=ok?Math.min(3,(st.box||0)+1):1;
-  var gap=box===1?1:box===2?3:7;
-  fcST[k]={box:box,due:fcToday()+gap};fcSave();
+  var k=fcQueue[fcIdx];if(!k)return;var rep=fcRq[k]===fcIdx;
+  /* F6: "Again" sets box 1 (tomorrow) and also re-queues the card once at the end of this session — a learning step that does not move its box again */
+  if(!rep){var st=fcST[k]||{box:0},box=ok?Math.min(3,(st.box||0)+1):1,gap=box===1?1:box===2?3:7;fcST[k]={box:box,due:fcToday()+gap};fcSave();
+    if(fcSes){fcSes.n++;if(ok)fcSes.good++;else fcSes.again++;}
+    if(!ok&&fcRq[k]===undefined){fcRq[k]=fcQueue.length;fcQueue.push(k);}}
   vib(ok?20:[40,30,40]);
   fcIdx++;
-  if(fcIdx>=fcQueue.length){var n=fcQueue.length;fcQueue=[];fcIdx=0;var rem=fcDue().length;
-    if(rem)toast('🃏 '+n+' done · '+rem+' more due — keep going?','','Next '+Math.min(12,rem),function(){startFC();});
-    else toast('🃏 Session done — all caught up until tomorrow',true);}
-  renderFC();
+  if(fcIdx>=fcQueue.length){fcQueue=[];fcIdx=0;if(fcSes)fcSes.done=true;}
+  renderFC();renderReady();
+  var kb=document.documentElement.classList.contains('kbd'),f=fcQueue.length?document.getElementById('fcFlip'):document.querySelector('#fcArea .fc-sum .btn');
+  if(f&&kb)try{f.focus({preventScroll:true});}catch(e){}
 }
+/* F8: the end-of-session card — what you did, what moved to Mastered, and the next batch */
+function fcSummaryHTML(){var S=fcSes,m1=fcMastery('due').m,dm=m1-S.m0,rem=fcFiltCards(S.f).length,n=Math.min(12,rem);
+  return '<div class="fc-sum" role="status"><b class="fc-sum-h">Session done</b><p class="fc-sum-n"><span>'+S.n+' reviewed</span><span>'+S.good+' got it</span><span>'+S.again+' again</span></p>'
+    +'<p class="fc-sum-m">Mastered: '+m1+(dm>0?' <span class="up">(+'+dm+' today)</span>':'')+' of '+fcMastery('due').t+'</p>'
+    +(rem?'<button class="btn gold" onclick="fcNext()">🃏 Next '+n+'</button>':'<p class="fc-sum-m">All caught up until tomorrow.</p>')+'<button class="btn ghost" onclick="fcSes=null;renderFC()">Done</button></div>';}
+function fcNext(){fcSes=null;startFC();}
+/* F4: swipe the revealed card — right = Got it, left = Again (80px, or a quick flick); the card tilts up to 6° and its edge glows.
+   prefers-reduced-motion: no drag at all — the buttons (and keys) grade. */
+function fcSwipeBind(){var el=document.getElementById('fcFlip'),w=document.getElementById('fcWrap');if(!el||!w||(RM&&RM.matches))return;
+  el.addEventListener('pointerdown',function(e){if(!w.classList.contains('flip')||e.button>0)return;if(e.target.closest('button,a,.fc-showq,summary'))return;fcDrag={x:e.clientX,y:e.clientY,t:Date.now(),dx:0,moved:false,id:e.pointerId};});
+  el.addEventListener('pointermove',function(e){if(!fcDrag||e.pointerId!==fcDrag.id)return;var dx=e.clientX-fcDrag.x,dy=e.clientY-fcDrag.y;
+    if(!fcDrag.moved){if(Math.abs(dx)<8||Math.abs(dy)>Math.abs(dx)){if(Math.abs(dy)>12)fcDrag=null;return;}fcDrag.moved=true;try{el.setPointerCapture(e.pointerId);}catch(x){}}
+    fcDrag.dx=dx;var r=Math.max(-6,Math.min(6,dx/18));el.style.transform='translateX('+dx+'px) rotate('+r+'deg)';el.classList.toggle('sw-good',dx>30);el.classList.toggle('sw-again',dx<-30);});
+  function up(e){if(!fcDrag||e.pointerId!==fcDrag.id)return;var d=fcDrag,v=Math.abs(d.dx)/Math.max(1,Date.now()-d.t);el.style.transform='';el.classList.remove('sw-good','sw-again');
+    if(d.moved&&(Math.abs(d.dx)>=80||(v>.6&&Math.abs(d.dx)>30))){vib(20);setTimeout(function(){fcDrag=null;},0);fcGrade(d.dx>0);return;}
+    setTimeout(function(){fcDrag=null;},0);}
+  el.addEventListener('pointerup',up);el.addEventListener('pointercancel',up);}
+function fcKeys(e){var w=document.getElementById('fcWrap');if(!w||!w.offsetParent)return false;var k=e.key,onCtl=e.target&&e.target.closest&&e.target.closest('button,a,summary,[role="button"],[role="checkbox"]');
+  if(k==='Escape'){fcEnd();return true;}
+  if(!w.classList.contains('flip')){if((k===' '||k==='Enter')&&!onCtl){fcFlip();return true;}return false;}
+  if(k==='ArrowLeft'||k==='1'){fcGrade(false);return true;}
+  if(k==='ArrowRight'||k==='2'){fcGrade(true);return true;}
+  return false;}
 
 /* ════════════════════════ KIDS CORNER (quiz + story time) ════════════════════════ */
 var kqI=0,kqScore=0,kqLock=false,kqList=[],kqVoice=false;
-function kidsBestLbl(){var kb=document.getElementById('kidsBest'),v=localStorage.getItem('us-kids');if(kb&&v)kb.textContent=v+'/'+KIDSQ.length;}
+/* 6.4: the pool follows the journey (KIDSQ.filter(forMe)); a round is 8 questions — on a Hajj journey at least 5 of them about the Hajj — and the best score is kept per journey */
+function kidsKey(){return journey()==='hajj'?'us-kids-hajj':'us-kids';}
+function kidsN(){return Math.min(8,KIDSQ.filter(forMe).length);}
+function kidsBestLbl(){var kb=document.getElementById('kidsBest'),v=null;try{v=localStorage.getItem(kidsKey());}catch(e){}if(kb)kb.textContent=v?v+'/'+kidsN():'—';
+  var ks=document.getElementById('kidsQn');if(ks)ks.textContent=kidsN();
+  var ss=document.getElementById('storySub'),ns=KIDS_STORIES.filter(forMe).length;if(ss)ss.textContent=ns+' read-aloud stories about the rites and the sites — ages 6–10';}
+function kidsRound(){var P=KIDSQ.filter(forMe),n=Math.min(8,P.length);if(journey()!=='hajj')return qzShuffle(P.slice()).slice(0,n);
+  var H=qzShuffle(P.filter(function(q){return q.j==='hajj';})),O=qzShuffle(P.filter(function(q){return q.j!=='hajj';})),nh=Math.min(H.length,5+Math.floor(Math.random()*4)),no=Math.min(O.length,n-nh);
+  if(nh+no<n)nh=Math.min(H.length,n-no);return qzShuffle(H.slice(0,nh).concat(O.slice(0,no)));}
 /* P-28: shuffled copy, inline in the collapsed card, ✕ Done restores the Start row */
-function startKids(){kqList=qzShuffle(KIDSQ.slice());kqI=0;kqScore=0;kqVoice=false;var a=document.getElementById('kidsArea');if(a)a.hidden=false;var sb=document.getElementById('kidsStart');if(sb)sb.hidden=true;renderKQ();jumpTo('kidsCard',true);}
+function startKids(){kqList=kidsRound();kqI=0;kqScore=0;kqVoice=false;var a=document.getElementById('kidsArea');if(a)a.hidden=false;var sb=document.getElementById('kidsStart');if(sb)sb.hidden=true;renderKQ();jumpTo('kidsCard',true);}
 function kidsDone(){try{speechSynthesis.cancel();}catch(e){}var a=document.getElementById('kidsArea');if(a){a.hidden=true;a.innerHTML='';}var sb=document.getElementById('kidsStart');if(sb)sb.hidden=false;kqList=[];}
 function renderKQ(){
   kqLock=false;
@@ -2582,15 +2801,14 @@ function answerKQ(i){
 function nextKQ(){
   if(kqI<kqList.length-1){kqI++;renderKQ();return;}
   var stars=Math.max(1,Math.round(kqScore/kqList.length*5));
-  var best=+(localStorage.getItem('us-kids')||0);
-  if(kqScore>best){best=kqScore;localStorage.setItem('us-kids',String(best));}
-  document.getElementById('kidsArea').innerHTML='<div class="qz-final"><div class="kq-stars" role="img" aria-label="'+stars+' star'+(stars===1?'':'s')+'">'+new Array(stars+1).join(mk('starf'))+'</div><p style="font-size:1em"><b>'+kqScore+' / '+kqList.length+'</b> — '+(kqScore===kqList.length?'Mashallah, a little hafiz of Umrah!':'Great job — play again and get all the stars!')+'</p><button class="btn gold" onclick="startKids()">↺ Play again</button><button class="btn ghost" onclick="kidsDone()">✕ Done</button></div>';
+  var best=0;try{best=+(localStorage.getItem(kidsKey())||0);if(kqScore>best){best=kqScore;localStorage.setItem(kidsKey(),String(best));}}catch(e){}
+  document.getElementById('kidsArea').innerHTML='<div class="qz-final"><div class="kq-stars" role="img" aria-label="'+stars+' star'+(stars===1?'':'s')+'">'+new Array(stars+1).join(mk('starf'))+'</div><p style="font-size:1em"><b>'+kqScore+' / '+kqList.length+'</b> — '+(kqScore===kqList.length?(journey()==='hajj'?'Mashallah, a little hajji in training!':'Mashallah, a little hafiz of Umrah!'):'Great job — play again and get all the stars!')+'</p><button class="btn gold" onclick="startKids()">↺ Play again</button><button class="btn ghost" onclick="kidsDone()">✕ Done</button></div>';
   kidsBestLbl();
   vib([50,50,50,50,120]);if(kqScore===kqList.length)confetti(120);
 }
 /* P-37: story time — read-aloud stories under the kids quiz; openStory() is the target of the rite-step chips */
 function renderStories(){var a=document.getElementById('storyList');if(!a)return;
-  a.innerHTML=KIDS_STORIES.map(function(st){return '<div class="acc story" id="st-'+st.id+'"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)">'+st.emoji+' '+st.title+' <span class="acc-c">▶</span></div><div class="acc-b"><p>'+st.text+'</p><div class="story-when">'+mk('clock','mkt')+st.when+'</div><div class="story-acts"><button class="say" data-text="'+esc(st.title+'. '+st.text)+'" data-lang="en" data-rate=".9" onclick="speakBtn(this)" aria-label="Read the story aloud">🔊 Read aloud</button><span class="src">'+st.src+'</span></div></div></div>';}).join('');}
+  a.innerHTML=KIDS_STORIES.filter(forMe).map(function(st){return '<div class="acc story" id="st-'+st.id+'"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)">'+st.emoji+' '+st.title+' <span class="acc-c">▶</span></div><div class="acc-b"><p>'+st.text+'</p><div class="story-when">'+mk('clock','mkt')+st.when+'</div><div class="story-acts"><button class="say" data-text="'+esc(st.title+'. '+st.text)+'" data-lang="en" data-rate=".9" onclick="speakBtn(this)" aria-label="Read the story aloud">🔊 Read aloud</button><span class="src">'+st.src+'</span></div></div></div>';}).join('');}
 function togStories(el,open){var l=document.getElementById('storyList');if(!l)return;var on=open===undefined?l.hidden:!!open;l.hidden=!on;if(el){el.classList.toggle('open',on);el.setAttribute('aria-expanded',on?'true':'false');}}
 function openStory(id){var hd=document.querySelector('#kidsCard .story-h');togStories(hd,true);
   document.querySelectorAll('#storyList .acc').forEach(function(a){var me=a.id==='st-'+id;a.classList.toggle('open',me);var h=a.querySelector('.acc-h');if(h)h.setAttribute('aria-expanded',me?'true':'false');});
@@ -3007,7 +3225,7 @@ function initUI(){
   renderPlan();renderRites();renderDaily();placesBoot();renderPlaces();renderDuas();tbRestore();renderTB();
   buildDeck();renderFC();renderPost();updRemSw();applySubs();updChip();renderItin();renderVault();renderDuaSec();renderWater();updToolsOrder();updHotelLbl();loadHotelInfo();loadNiyyah();updKidsSw();applyProfile();renderCntHd();renderJourneys();
   if(!ST.onboarded&&!pendingGroup)setTimeout(function(){showOnboard(linkJourney==='hajj'?'hajj':undefined);},400);
-  kidsBestLbl();renderStories();
+  kidsBestLbl();renderStories();qzJourneyNote();
   var cm=document.getElementById('cityMakkah'),cd=document.getElementById('cityMadinah');
   if(cm){cm.classList.toggle('on',(ST.city||'Makkah')==='Makkah');cd.classList.toggle('on',ST.city==='Madinah');}
   renderKidNames();

@@ -15,12 +15,12 @@ An offline-first web app (`index.html` + `data.js` + `app.js`, zero build step).
 - **Hotel & emergency card** — save your hotel; a full-screen "Show to driver" page in Arabic + English; Saudi emergency numbers (911, 937, 1966, 930)
 - **Preparation checklists** — documents & bookings (Nusuk visa, Rawdah permit), packing (ihram, unscented toiletries…), health (Meningitis ACWY certificate, walking training), and knowledge & spiritual prep
 - **Knowledge Hub** — six study sections: **History & significance** (the Kaaba, Hajar & Zamzam, the Black Stone, Hira, the Year of the Elephant, the Kaaba's rebuilds, the talbiyah's meaning, the qibla change, the Hijrah & conquest), **Virtues of Umrah & the Haram** (sin expiation, poverty removal, guests of Allah, the Prophet's ﷺ own four Umrahs, 100,000× prayers, Zamzam), a dedicated **Madinah section** (1,000× prayers, the Rawdah, greeting the Prophet ﷺ, the sanctuary, Quba, Uhud, Ajwa), a **fiqh Q&A** (badal Umrah, wudu breaking mid-tawaf, menstruation, wheelchair tawaf, traveller's prayer…), and the practical **Know Before You Go** topics (miqats, ihram rules, how to wear the ihram, Nusuk, transport, common mistakes) and a **For sisters** section
-- **Knowledge circuit quiz** — 7 unlockable levels (8 on a Hajj journey), 74 true/false & multiple-choice questions (87 with the Hajj level) with referenced explanations; score 80% to unlock the next level and complete the circuit before you fly
+- **Knowledge circuit quiz** — one track per journey (the app counts the levels and questions from `QUIZ_ORDER` and the journey gating: today 7 Umrah levels, or 10 Hajj levels in the order of the five days with the Tawaf, History, Virtues and Madinah levels shared), true/false & multiple-choice questions with referenced explanations; score 80% to unlock the next level and complete the circuit before you fly
 - **Every hadith citation verified** against its collection (mostly Bukhari, Muslim, Tirmidhi, Ibn Majah, Nasai and Abu Dawud, plus a few from other collections) — paraphrases kept faithful, weak narrations avoided or marked
 - **Daily knowledge flashcards** — spaced repetition (1/3/7-day boxes) over the whole knowledge hub, paced for the run-up to departure
 - **Donation & scam awareness** — 10 guides to the common rip-offs: fake packages & visas, badal-Umrah traps, Nusuk phishing, "VIP access" touts, street begging gangs, QR-code "sadaqah", prize scams — with the official alternatives (umrah.nusuk.sa, Ehsan) and how to report (911 / care line 1966)
-- **Kids corner** — an 8-question big-button mini quiz with stars and read-aloud, plus five story-time tales for ages 6–10, so children prepare too
-- **Quiz upgrades** — "Review my mistakes" mode re-drills only the questions you got wrong; completing the circuit (7 levels, 8 on a Hajj journey) unlocks a downloadable **certificate**
+- **Kids corner** — an 8-question big-button mini quiz with stars and read-aloud (on a Hajj journey at least five of the eight are about the Hajj), plus story-time tales for ages 6–10 (two more for Hajj), so children prepare too
+- **Quiz upgrades** — "Review my mistakes" mode re-drills only the questions you got wrong; completing the circuit of your journey's track unlocks a downloadable **certificate**
 
 ### 🕋 Umrah — during the rites
 - **Step-by-step rites checklist** across 4 phases: Ihram at the miqat → Tawaf → Sa'i → Halq/Taqsir, with the key duas inline (Arabic, transliteration, translation)
@@ -83,6 +83,14 @@ Every push to the production branch auto-deploys. A `vercel.json` is included wi
 ## Running locally
 
 It's one file — just open `index.html` in a browser. Installable to the home screen as a PWA-style app.
+
+## v6.4 — Hajj learning
+
+- **Journey tracks**: `QUIZ_LEVELS` is append-only (stored progress stays `l<index>q<index>`); every level has a stable `key`, and `QUIZ_ORDER[journey]` sets the display order, so level numbers ("Level 3") are computed per track. Levels and questions are gated by `j` / `ht` through `forMe()`; `j:'off'` retires a level (the old "days of Hajj" level, whose questions now live, corrected, in the six Hajj levels — mistakes and card boxes moved once).
+- **Hajj track**: Foundations of Hajj · Ihram for Hajj & the talbiyah · Tawaf, Sa’i & Halq (shared) · the 8th & 9th · Muzdalifah & the 10th · Tashreeq & the farewell · Hajj fiqh · History, Virtues (Hajj set) and Madinah (shared). Umrah-only questions are hidden for Hajj; Tamattu’ sees its Part 1 Umrah questions, Qiran and Ifrad never do.
+- **Quiz**: per-level rings, a track header, source chips, a review list after every run with "Retry the ones I missed", keyboard answering (1–4 / A–D / T–F, Enter, Esc), type tags ("Tamattu’ only"), and on a Hajj journey a knowledge-only readiness score (quiz, cards and the five days read).
+- **Flashcards**: the deck follows the journey and the Hajj type (Hajj first; the phase — departure near, before the 8th, each day of Hajj, after — decides the focus), topic chips with due counts, new / learning / mastered counts, swipe or keys to grade (no drag under reduced motion), "Again" comes back once in the same session, "Open in Learn" / "Open the day" on the back, and a session summary.
+- **Learn**: "Hajj in 5 days" tiles (expected dates from the Umm al-Qura calendar, today's day highlighted) open each day in the rites guide; Umrah-only topics are gated and the shared ones worded for both journeys.
 
 ## v4.0 — Home, during-Umrah tools, planning tools
 - **Home dashboard** — greeting with Hijri date, your journey phase with a progress ring and next-step CTA, next prayer countdown, 9 quick actions, today's flashcard, daily quote

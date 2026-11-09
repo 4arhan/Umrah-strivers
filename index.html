@@ -1910,6 +1910,126 @@ html[data-text='lg'] #riteHeroT .rh-dot{display:none}html[data-text='lg'] #riteH
 
 /* ── reduced motion: no smooth scrolling either ── */
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* ═══════════ 6.4 · Hajj learning: journey tracks, level rings, readiness, flashcard decks ═══════════
+   The aubergine object (level discs, the readiness hero, today's Hajj day, the card front) with lavender rings and a violet halo;
+   chips, filters, review rows and the session card stay on lilac paper with violet marks; one aubergine CTA per view. */
+/* Q3 · level discs: the aubergine object with a lavender ring at the best score; a locked level is a quiet paper disc */
+.lvl .lvl-n,.lvl.next .lvl-n,.lvl.passed .lvl-n,.lvl.locked .lvl-n,.lnq .lvl-n{position:relative;display:grid;place-items:center;flex:none;width:40px;height:40px;border-radius:50%;opacity:1;
+  background:var(--hero-bg);box-shadow:inset 0 0 0 1px var(--hs-edge),0 4px 14px -6px var(--hs-glow-c);color:var(--hs-acc)}
+.lvl .lvl-n .mk,.lvl.next .lvl-n .mk,.lvl.passed .lvl-n .mk,.lnq .lvl-n .mk{position:relative;z-index:1;width:18px;height:18px;margin:0;color:var(--hs-acc)}
+.lvl.next .lvl-n{box-shadow:inset 0 0 0 1px var(--hs-edge),0 0 0 4px var(--gold-hair),0 6px 18px -6px var(--hs-glow-c)}
+.lvl .lvl-n.lk,.lvl.locked .lvl-n.lk{background:var(--bg-soft);box-shadow:inset 0 0 0 1px var(--line)}
+.lvl .lvl-n.lk .mk,.lvl.locked .lvl-n.lk .mk{color:var(--ink3);opacity:.55}
+.lvl-r{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg);overflow:visible}
+.lr-b{fill:none;stroke:var(--hs-track);stroke-width:3}
+.lr-f{fill:none;stroke:url(#gld);stroke-width:3;stroke-linecap:round;stroke-dasharray:113.1;filter:drop-shadow(0 0 3px var(--hs-ring-glow))}
+.lnq .lvl-n{width:44px;height:44px}
+/* Q4 · the track header: one segment per level (full = passed, half = attempted) */
+.qz-track{margin:0 0 14px}
+.qz-trk-h{display:flex;align-items:baseline;justify-content:space-between;gap:4px 10px;flex-wrap:wrap;margin-bottom:8px;font-size:var(--t-2);font-weight:500;line-height:1.35;color:var(--ink2)}
+.qz-trk-h>b{font-weight:600;color:var(--ink)}
+.qz-trk-h span b{font-weight:600;color:var(--hi-ink)}
+.qz-segs{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:4px}
+.qz-segs i{position:relative;display:block;height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.qz-segs i.on,.qz-segs i.half::before{background:linear-gradient(90deg,var(--brand-3),var(--brand-2))}
+.qz-segs i.half::before{content:'';position:absolute;left:0;top:0;bottom:0;width:50%;border-radius:inherit}
+/* Q7 · Hajj readiness: the hero grammar (kicker, title, ring, hairline metrics, glass pill) — knowledge only */
+.qz-ready{flex-wrap:wrap}
+.qz-ready .hero-t .v{font-size:var(--t-5);margin:4px 0 4px}
+.qz-ready>.hs-m{flex:1 1 100%;margin-top:6px}
+.qz-ready .qr-note{flex:1 1 100%;margin:12px 0 0;font-size:var(--t-2);font-weight:500;line-height:1.45;color:var(--hs-ink-3)}
+.qz-ready .ring-wrap,.qz-ready .ring-wrap svg{width:92px;height:92px}
+.qz-ready .ring-wrap::before{width:150px;height:150px}
+/* Q6 · type tag · Q1 · source chip */
+.qz-needrow{display:flex;align-items:center;flex-wrap:wrap;gap:6px 8px}
+.qz-ht{display:inline-flex;align-items:center;min-height:24px;padding:2px 10px;border-radius:var(--r-pill);background:var(--brand-soft);color:var(--brand-ink);font-size:var(--t-1);font-weight:600;line-height:1.3}
+.src-chip{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:var(--r-pill);border:1px solid var(--line);background:transparent;color:var(--gold-ink);font-family:var(--f-text);font-size:var(--t-1);font-weight:600;line-height:1.35;overflow-wrap:anywhere}
+/* Q5 / F5 · key hints for keyboard users only */
+.qz-keys,.fc-keys .kb{display:none}
+.kbd .qz-keys{display:block;margin:10px 0 0;font-size:var(--t-1);color:var(--ink3);text-align:center}
+.kbd .fc-keys .kb{display:inline}
+/* Q2 · the review list after every run: hairline rows, ✓ / ✗ discs, your answer struck through, the reason folded */
+.qz-rev{text-align:left;margin:18px 0 0;border-top:1px solid var(--line)}
+.qz-rev-h{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:14px 0 6px}
+.qz-rev-h b{font-size:var(--t-4);font-weight:600;color:var(--ink)}
+.qz-rev-h small{font-size:var(--t-2);color:var(--ink3)}
+.qz-rev ol{list-style:none;margin:0;padding:0}
+.qz-rev li{display:grid;grid-template-columns:26px minmax(0,1fr);gap:10px;padding:12px 0 6px;border-top:1px solid var(--line)}
+.qz-rm{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--done-soft);color:var(--done)}
+.qz-rev li.no .qz-rm{background:var(--danger-soft);color:var(--danger)}
+.qz-rm .mk{width:14px;height:14px;margin:0;stroke-width:2.2;color:inherit}
+.qz-rq{margin:2px 0 0;font-size:var(--t-3);font-weight:600;line-height:var(--lh-body);color:var(--ink)}
+.qz-ra{margin:4px 0 0;font-size:var(--t-3);line-height:var(--lh-body);color:var(--ink2)}
+.qz-ra s{color:var(--ink2);text-decoration-color:var(--danger);text-decoration-thickness:2px;margin-right:4px}
+.qz-ra b{font-weight:600;color:var(--done-ink)}
+.qz-rev details{margin-top:2px}
+.qz-rev summary{display:inline-flex;align-items:center;min-height:44px;cursor:pointer;font-size:var(--t-2);font-weight:600;color:var(--brand-2)}
+.qz-rev summary:focus-visible{outline:3px solid var(--brand-2);outline-offset:2px;border-radius:6px}
+.qz-rev details p{margin:0 0 4px;font-size:var(--t-2);line-height:var(--lh-meta);color:var(--ink2)}
+.qz-final .qz-rev .src-chip{margin:2px 0 6px}
+/* Learn › Hajj in 5 days: paper tiles in two columns (one when narrow or Large text), today's day is the aubergine object */
+.rtiles.hj{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,9.5rem),1fr));align-items:stretch;gap:8px;margin-bottom:12px}
+.rpre{grid-column:1/-1;display:flex;align-items:center;gap:12px;min-height:56px;padding:10px 12px;border:1px solid var(--line);border-radius:18px;background:var(--bg);cursor:pointer;color:var(--ink)}
+.rpre .i{display:grid;place-items:center;flex:none;width:36px;height:36px;border-radius:50%;background:var(--hero-bg);box-shadow:inset 0 0 0 1px var(--hs-edge)}
+.rpre .i .mk{width:18px;height:18px;margin:0;color:var(--hs-acc)}
+.rpre-t{flex:1;min-width:0;font-size:var(--t-3);font-weight:600;line-height:1.4}
+.rpre-go .mk{width:18px;height:18px;margin:0;color:var(--ink3)}
+.rpre:active{background:var(--bg-soft)}
+.rpre:focus-visible{outline:3px solid var(--brand-2);outline-offset:2px}
+.rtiles.hj .rtile,.rtiles.hj .rtile~.rtile{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0;min-height:0;padding:12px;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:18px}
+.rtiles.hj .rtile .i{display:grid;place-items:center;width:36px;height:36px;min-height:0;margin:0 0 6px;border-radius:50%;background:var(--brand-soft)}
+.rtiles.hj .rtile .i .mk{width:18px;height:18px;margin:0;color:var(--brand-2)}
+.rtiles.hj .rtile b{font-size:var(--t-3);font-weight:600;line-height:1.3;color:var(--ink)}
+.rtiles.hj .rtile small{font-size:var(--t-2);line-height:1.35;color:var(--ink2)}
+.rtiles.hj .rtile .rt-n{font-weight:600;color:var(--label-ink)}
+.rtiles.hj .rtile .rt-m{margin-top:4px;color:var(--ink3)}
+.rtiles.hj .rtile.now{background:var(--hero-bg);border-color:var(--k-edge);box-shadow:var(--sh-k)}
+.rtiles.hj .rtile.now .i{background:var(--hs-glass);box-shadow:inset 0 0 0 1px var(--hs-glass-edge)}
+.rtiles.hj .rtile.now .i .mk,.rtiles.hj .rtile.now .rt-n{color:var(--hs-acc)}
+.rtiles.hj .rtile.now b{color:var(--hs-ink)}
+.rtiles.hj .rtile.now small{color:var(--hs-ink-2)}
+.rtiles.hj .rtile:active{background:var(--bg-soft)}
+.rtiles.hj .rtile.now:active{background:var(--hero-bg)}
+.rite-btns .btn+.btn{margin-top:8px}
+/* F2 / F3 · topic chips with their due counts, the mastery bar (new · learning · mastered) */
+.fc-filt{display:flex;gap:8px;margin:-4px -16px 6px;padding:6px 16px 8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.fc-filt::-webkit-scrollbar{display:none}
+.fc-filt .pill{flex:none;min-height:44px;padding:8px 14px;white-space:nowrap}
+.fc-filt .fc-n{margin-left:2px;font-weight:600;color:var(--ink3);font-variant-numeric:tabular-nums}
+.fc-filt .pill.on .fc-n{color:inherit;opacity:.85}
+.fc-mast{margin:0 0 12px}
+.fc-mbar{display:flex;height:4px;border-radius:99px;background:var(--line);overflow:hidden}
+.fc-mbar i{display:block;height:100%}
+.fc-mbar i.m{background:linear-gradient(90deg,var(--brand-3),var(--brand-2))}
+.fc-mbar i.l{background:var(--brand-3);opacity:.35}
+.fc-mrow{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:8px;font-size:var(--t-2);font-weight:500;color:var(--ink2)}
+.fc-mrow .dot{display:inline-block;width:8px;height:8px;margin-right:6px;border-radius:50%;vertical-align:1px}
+.fc-mrow .dot.n{background:var(--bg-soft);box-shadow:inset 0 0 0 1px var(--ctl-line)}
+.fc-mrow .dot.l{background:var(--brand-3);opacity:.5}
+.fc-mrow .dot.m{background:var(--brand-2)}
+.fc-why{margin-top:8px;font-size:var(--t-2);color:var(--ink3);text-align:center}
+#fcCard h3 .lnm:empty{display:none}
+/* F4 · swipe: the revealed card follows the finger (≤6°) and its edge glows lavender (Got it) or rose (Again); no drag under reduced motion */
+.fc{touch-action:pan-y;transition:transform .22s cubic-bezier(.3,.7,.3,1)}
+.fc-wrap.rm .fc{transition:none}
+.fc.sw-good .fc-face{box-shadow:0 0 0 2px var(--hs-acc),0 0 22px var(--hs-ring-glow)}
+.fc.sw-again .fc-face{box-shadow:0 0 0 2px var(--danger),0 0 22px var(--danger-soft)}
+.fc-front .fc-src.wrong .mk{color:var(--hs-go-ink)}
+.fc-keys{margin:8px 0 0;font-size:var(--t-1);line-height:1.4;color:var(--ink3);text-align:center}
+.kbd .fc-keys .kb::before{content:''}
+/* F7 · back face: the source chip and a way back into the app */
+.fc-foot{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;margin-top:10px}
+.fc-foot .src-chip{margin:0}
+.fc-go{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;border:0;background:transparent;color:var(--brand-2);font-family:var(--f-text);font-size:var(--t-2);font-weight:600;cursor:pointer}
+.fc-go .mk{width:16px;height:16px}
+/* F8 · the end-of-session card: paper, one aubergine CTA */
+.fc-sum{padding:18px 16px 8px;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--bg);text-align:center}
+.fc-sum-h{display:block;font-size:var(--t-5);font-weight:600;line-height:1.3;color:var(--ink)}
+.fc-sum-n{display:flex;justify-content:center;flex-wrap:wrap;gap:2px 0;margin:8px 0 2px;font-size:var(--t-3);font-weight:500;color:var(--ink2)}
+.fc-sum-n span+span::before{content:'·';padding:0 8px;color:var(--ink3)}
+.fc-sum-m{margin:2px 0 12px;font-size:var(--t-2);color:var(--ink3)}
+.fc-sum-m .up{font-weight:600;color:var(--done-ink)}
 </style>
 </head>
 <body>
@@ -1971,15 +2091,15 @@ html[data-text='lg'] #riteHeroT .rh-dot{display:none}html[data-text='lg'] #riteH
   <input class="srch" id="lnSearch" type="search" placeholder="🔍 Search Learn — ihram, Zamzam, missed lap…" oninput="filterLearn()" aria-label="Search the Learn topics">
   <div class="jumps" id="lnJumps"><button data-for="ritesCard" onclick="jumpTo('ritesCard')" data-mk="map">Rites</button><button data-for="knowCard" onclick="jumpTo('knowCard')" data-mk="book">Essentials</button><button data-for="qaCard" onclick="jumpTo('qaCard')" data-mk="question">Q&amp;A</button><button data-for="histCard" onclick="jumpTo('histCard')" data-mk="clock">History</button><button data-for="virtCard" onclick="jumpTo('virtCard')" data-mk="star">Virtues</button><button data-for="madCard" onclick="jumpTo('madCard')" data-mk="dome">Madinah</button><button data-for="sisCard" onclick="jumpTo('sisCard')" data-mk="flower">Sisters</button><button data-for="scamCard" onclick="jumpTo('scamCard')" data-mk="alert">Scams</button><button data-for="fcCard" onclick="jumpTo('fcCard')" data-mk="cards">Cards</button><button data-for="lnQuizCard" onclick="jumpTo('lnQuizCard')" data-mk="quiz">Quiz</button></div>
   <div class="note" id="lnNone" hidden style="margin:0 0 12px">No topics match — try “ihram”, “Zamzam”, “wudu” or “period”.</div>
-  <div class="card card-pad" id="ritesCard"><h3 data-mk="compass">Umrah in 4 steps</h3><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:12px">The whole rite in order — learn this first, then the cards below.</p><div class="rtiles" id="riteTiles"></div><button class="btn ghost" onclick="goTab('umrah','steps')" data-mk="list">Full walkthrough &amp; duas</button></div>
+  <div class="card card-pad" id="ritesCard"><h3 data-mk="compass"><span id="ritesT">Umrah in 4 steps</span></h3><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:12px" id="ritesSub">The whole rite in order — learn this first, then the cards below.</p><div class="rtiles" id="riteTiles"></div><div class="rite-btns" id="riteBtns"><button class="btn ghost" onclick="goTab('umrah','steps')" data-mk="list">Full walkthrough &amp; duas</button></div></div>
 
-  <div class="card card-pad" id="knowCard"><h3 data-mk="book">Know before you go <span class="pillmini">Start here</span></h3><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:12px">Miqats, ihram &amp; the common mistakes — the knowledge that turns a trip into worship. Tap a topic to expand.</p><div id="knowContainer"></div></div>
+  <div class="card card-pad" id="knowCard"><h3 data-mk="book">Know before you go <span class="pillmini">Start here</span></h3><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:12px" id="knowSub">Miqats, ihram &amp; the common mistakes — the knowledge that turns a trip into worship. Tap a topic to expand.</p><div id="knowContainer"></div></div>
 
   <div class="card card-pad" id="qaCard"><h3 data-mk="quiz">Common questions (fiqh Q&amp;A)</h3><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:12px">The questions every first-timer asks — answered with evidence. <span class="lvlref">Covered in Level 7</span></p><div id="qaContainer"></div></div>
 
   <div class="card card-pad" id="histCard"><h3 data-mk="museum">History &amp; significance</h3><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:12px">Walk where the prophets walked — know the story behind every rite. <span class="lvlref">Covered in Level 4</span></p><div id="histContainer"></div></div>
 
-  <div class="card card-pad" id="virtCard"><h3 data-mk="star">Virtues of Umrah &amp; the Haram</h3><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:12px">What Allah has promised the pilgrim — the rewards that await you. <span class="lvlref">Covered in Level 5</span></p><div id="virtContainer"></div></div>
+  <div class="card card-pad" id="virtCard"><h3 data-mk="star"><span id="virtT">Virtues of Umrah &amp; the Haram</span></h3><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:12px">What Allah has promised the pilgrim — the rewards that await you. <span class="lvlref">Covered in Level 5</span></p><div id="virtContainer"></div></div>
 
   <div class="card card-pad" id="madCard"><h3 data-mk="dome">Madinah — virtues &amp; visiting</h3><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:12px">The City of the Prophet ﷺ deserves its own preparation. <span class="lvlref">Covered in Level 6</span></p><div id="madContainer"></div></div>
 
@@ -1987,22 +2107,23 @@ html[data-text='lg'] #riteHeroT .rh-dot{display:none}html[data-text='lg'] #riteH
 
   <div class="card card-pad" id="scamCard"><h3 data-mk="sos">Donations &amp; scams — stay sharp</h3><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:12px">Generosity is worship; being fooled is not. Every provider on <a href="https://umrah.nusuk.sa/" target="_blank" rel="noopener"><b>umrah.nusuk.sa</b></a> is ministry-licensed, and Saudi Arabia’s official donation platform is <a href="https://ehsan.sa/" target="_blank" rel="noopener"><b>Ehsan</b></a> — here is what to watch for.</p><div id="scamContainer"></div></div>
 
-  <div class="card card-pad" id="fcCard"><h3 data-mk="cards">Daily knowledge cards</h3><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:10px">A few minutes a day — spaced repetition over everything above and your quiz mistakes, paced to your departure. <b id="fcDueLbl"></b></p><div id="fcArea"></div></div>
+  <div class="card card-pad" id="fcCard"><h3 data-mk="cards">Daily knowledge cards <small class="lnm" id="fcMastT"></small></h3><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:10px"><span id="fcSub">A few minutes a day — spaced repetition over everything above and your quiz mistakes, paced to your departure.</span> <b id="fcDueLbl"></b></p><div id="fcArea"></div></div>
 
-  <div class="card card-pad" id="lnQuizCard"><h3 data-mk="quiz">Test what you learned</h3><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:4px" id="lnQuizSub">Seven levels (eight on a Hajj journey) · 80% unlocks the next.</p><div id="lnQuizArea"></div></div>
+  <div class="card card-pad" id="lnQuizCard"><h3 data-mk="quiz">Test what you learned</h3><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:4px" id="lnQuizSub">80% unlocks the next level.</p><div id="lnQuizArea"></div></div>
 
   </div><div class="sub" id="sub-plan-quiz">
+  <div class="hero hero-o qz-ready" id="qzReady" hidden></div>
   <div class="card kidscard" id="kidsCard">
-    <div class="kidsrow"><span class="mkt-i" aria-hidden="true" data-mk="kid"></span><div class="kr-t"><b>Kids corner</b><small id="kidsSub">8 big-button questions · 2 minutes · Best ⭐ <b id="kidsBest">—</b></small></div><button class="chip-btn kstart" id="kidsStart" onclick="startKids()" aria-label="Start the kids quiz">▶ Start</button></div>
+    <div class="kidsrow"><span class="mkt-i" aria-hidden="true" data-mk="kid"></span><div class="kr-t"><b>Kids corner</b><small id="kidsSub"><span id="kidsQn">8</span> big-button questions · 2 minutes · Best ⭐ <b id="kidsBest">—</b></small></div><button class="chip-btn kstart" id="kidsStart" onclick="startKids()" aria-label="Start the kids quiz">▶ Start</button></div>
     <div id="kidsArea" class="kidsbody" hidden></div>
-    <div class="kidsrow story-h" role="button" tabindex="0" aria-expanded="false" onclick="togStories(this)"><span class="mkt-i" aria-hidden="true" data-mk="book"></span><div class="kr-t"><b>Story time</b><small>5 read-aloud stories about the rites and the sites — ages 6–10</small></div><span class="acc-c" aria-hidden="true">▶</span></div>
+    <div class="kidsrow story-h" role="button" tabindex="0" aria-expanded="false" onclick="togStories(this)"><span class="mkt-i" aria-hidden="true" data-mk="book"></span><div class="kr-t"><b>Story time</b><small id="storySub">5 read-aloud stories about the rites and the sites — ages 6–10</small></div><span class="acc-c" aria-hidden="true">▶</span></div>
     <div id="storyList" class="kidsbody" hidden></div>
     <div class="kidsrow" style="border-top:1px solid var(--line)"><span class="mkt-i" aria-hidden="true" data-mk="star"></span><div class="kr-t"><b>Kids’ daily stars</b><small>Add each child by name — they get five tiles of their own on Daily › Today</small></div></div>
     <div id="kidNames" class="kidsbody"></div>
   </div>
   <div class="card card-pad" id="qzCard"><h3 data-mk="quiz">Knowledge circuit — quiz levels</h3>
-  <p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:8px">Seven levels (eight on a Hajj journey) · true/false &amp; multiple choice · <b>80%+</b> passes a level and unlocks the next. Complete the whole circuit before you fly. Passed: <b id="qzBest" style="color:var(--hi-ink)">0/7</b></p>
-  <div class="meter" style="margin-bottom:12px"><i id="qzMeter" style="width:0%"></i></div>
+  <p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:10px">True/false &amp; multiple choice · <b>80%+</b> passes a level and unlocks the next. Complete the whole circuit before you fly.</p>
+  <div class="qz-track" id="qzTrack"><div class="qz-trk-h"><b>Levels</b><span>Passed <b id="qzBest">0/0</b></span></div></div>
   <div id="qzArea"></div></div>
   </div>
 </div>
