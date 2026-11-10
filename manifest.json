@@ -2,7 +2,7 @@
   "id": "/",
   "name": "Miqah",
   "short_name": "Miqah",
-  "description": "Miqah, your Hajj & Umrah companion. Plan, learn, perform and track your Umrah. Rites walkthrough with duas, tawaf counter, prayer times, qibla, 51 places and sites and a daily worship tracker. Free, offline and private.",
+  "description": "Miqah, your Hajj & Umrah companion. Plan, learn, perform and track your Hajj or Umrah. Rites walkthrough with duas, tawaf counter, prayer times, qibla, 51 places and sites and a daily worship tracker. Free, offline and private.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

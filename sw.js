@@ -1,7 +1,9 @@
 /* Miqah — offline service worker */
 /* Release note: bump APP_VERSION here AND at the top of app.js for every release. */
-var APP_VERSION = '6.6.0';
+var APP_VERSION = '6.7.0';
 var CACHE = 'umrah-strivers-' + APP_VERSION;
+/* 6.7 (G3 #33): web fonts live in their own unversioned cache, kept across updates — an update applied in Mina without data keeps Manrope and Scheherazade */
+var FONTS = 'miqah-fonts';
 var CORE = ['./', './index.html', './data.js', './app.js', './manifest.json',
   './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-192.png',
   './icons/maskable-512.png', './icons/apple-touch-icon.png', './icons/favicon-32.png'];
@@ -14,7 +16,16 @@ self.addEventListener('install', function (e) {
 
 self.addEventListener('activate', function (e) {
   e.waitUntil(caches.keys().then(function (keys) {
-    return Promise.all(keys.filter(function (k) { return k !== CACHE; }).map(function (k) { return caches.delete(k); }));
+    // before an old versioned cache goes, its font files move to FONTS (earlier releases kept them in the versioned cache)
+    return Promise.all(keys.filter(function (k) { return k !== CACHE && k !== FONTS; }).map(function (k) {
+      return caches.open(k).then(function (c) {
+        return c.keys().then(function (reqs) {
+          return Promise.all(reqs.filter(function (r) { return /\/\/fonts\.(googleapis|gstatic)\.com\//.test(r.url); }).map(function (r) {
+            return c.match(r).then(function (res) { return res ? caches.open(FONTS).then(function (f) { return f.put(r, res); }) : null; });
+          }));
+        });
+      }).catch(function () {}).then(function () { return caches.delete(k); });
+    }));
   }).then(function () { return self.clients.claim(); }));
 });
 
@@ -75,13 +86,12 @@ self.addEventListener('fetch', function (e) {
     return;
   }
 
-  // Fonts: cache-first (they never change per URL)
+  // Fonts: cache-first (they never change per URL), kept in FONTS so an update never drops them; an older copy in a versioned cache still answers
   if (url.hostname === 'fonts.googleapis.com' || url.hostname === 'fonts.gstatic.com') {
     e.respondWith(
       caches.match(req).then(function (hit) {
         return hit || fetch(req).then(function (res) {
-          var copy = res.clone();
-          caches.open(CACHE).then(function (c) { c.put(req, copy); });
+          if (res && (res.ok || res.type === 'opaque')) { var copy = res.clone(); caches.open(FONTS).then(function (c) { c.put(req, copy); }); }
           return res;
         });
       })

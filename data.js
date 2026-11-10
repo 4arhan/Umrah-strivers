@@ -17,13 +17,14 @@ var PLAN=[
 {id:'hajjvisa',wk:8,j:'hajj',label:'Hajj visa issued through your package',exp:'The Hajj visa comes with the licensed package and is tied to it; a tourist or Umrah visa does not allow Hajj. Check the dates cover the 8th–13th of Dhul Hijjah plus your travel days.'},
 {id:'hajjtype',wk:4,j:'hajj',label:'Know which Hajj you’ll intend',exp:'Your group leader knows which one your package follows — Tamattu’ is the usual. Pick it here: the steps, duas and checklists follow it.'},
 {id:'visa',wk:3,j:'umrah',label:'Umrah visa / eVisa obtained (Nusuk)',exp:'Apply via the official Nusuk platform or an authorised agent — beware of unofficial sites. Since November 2025 a single-entry Umrah visa is cancelled if you have not entered Saudi Arabia within 30 days of issue, so don’t apply too early — check the current rules on Nusuk.'},
-{id:'flights',wk:8,label:'Flights booked',exp:'Jeddah (JED) for Makkah first, or Madinah (MED) if starting in Madinah.'},
-{id:'hotels',wk:8,label:'Hotels booked (near the Haram if possible)',exp:'Proximity means more prayers in congregation — worth every riyal.'},
+{id:'flights',wk:8,j:'umrah',label:'Flights booked',exp:'Jeddah (JED) for Makkah first, or Madinah (MED) if starting in Madinah.'},
+{id:'hotels',wk:8,j:'umrah',label:'Hotels booked (near the Haram if possible)',exp:'Proximity means more prayers in congregation — worth every riyal.'},
+{id:'hajjtravel',wk:8,j:'hajj',label:'Flights & hotels confirmed — the dates cover 8–13 Dhul Hijjah',exp:'Whether they come with your package or you book them yourself, check that the flight and hotel dates cover the 8th–13th of Dhul Hijjah plus your travel days, and keep the confirmations offline.'},
 {id:'nusuk',wk:4,label:'Nusuk app installed & account created',exp:'Needed for Rawdah permits in Madinah and official services.'},
 {id:'rawdah',wk:3,label:'Rawdah permit booked on Nusuk',exp:'Visiting the Rawdah in Masjid an-Nabawi requires a free timed permit — slots open only a short time ahead, so check Nusuk as your dates approach and book as soon as they open.',place:'rawdah',goL:'🕌 The Rawdah'},
 {id:'hady',wk:4,j:'hajj',ht:['tamattu','qiran'],label:'Hady (Adahi voucher) bought',exp:'Tamattu’ and Qiran pilgrims owe a sacrifice (Quran 2:196). Buy it as an Adahi voucher through the package or the official Adahi platform before you fly — it is slaughtered in Mina on your behalf; keep the receipt. Ifrad pilgrims owe none.'},
 {id:'maktab',wk:1,j:'hajj',label:'Maktab / camp number + group leader’s number on paper',exp:'Mina is a city of numbered camps and phones fail in the crowd. Write the maktab number, your camp street and the leader’s number on a card and on your wristband — it is how security walks you home if you are lost.'},
-{id:'insurance',wk:4,label:'Travel insurance arranged',exp:'Often included with your visa or package — confirm your coverage.'},
+{id:'insurance',wk:4,label:'Travel insurance arranged',exp:'Often included with your visa or package — confirm your coverage.',exh:'Check what your Hajj package covers, and arrange your own cover for anything it leaves out.'},
 {id:'copies',wk:1,label:'Copies of documents + emergency contacts',exp:'Physical and cloud copies of passport, visa, bookings; share your itinerary with family.'},
 {id:'hoho',wk:2,label:'Madinah ziyarah bus booked (optional)',exp:'The City Sightseeing hop-on hop-off covers Quba, Qiblatayn, Uhud and Baqi’ on one ticket (24- to 72-hour passes) — book it from the Places tab.',go:['places',null,'tourCard'],goL:'🚌 Ziyarah bus'},
 {id:'money',wk:1,label:'Saudi Riyals + travel card ready',exp:'Cards are widely accepted, but keep cash for taxis, barbers and small shops.'}
@@ -40,6 +41,7 @@ var PLAN=[
 {id:'meds',wk:2,bag:'carry',label:'Medications + prescriptions',exp:'Carry prescriptions; include painkillers, rehydration salts, blister plasters.'},
 {id:'vaseline',wk:1,bag:'ihram',label:'Petroleum jelly / anti-chafing balm',exp:'Unscented — long tawaf and sa’i walks in ihram cause chafing.'},
 {id:'adapter',wk:1,bag:'carry',label:'Power adapter (Type G) + power bank',exp:'Saudi uses UK-style 3-pin plugs. A power bank saves you in the Haram.'},
+{id:'offline',wk:0.3,label:'Ready for no signal — run the check',exp:'Two days before you fly, check the app will work in airplane mode: installed, saved for offline, fonts, prayer times through your return, the Arabic voice, hotel and companion saved, a recent backup.',go:'readySheet()',goL:'Run the check'},
 {id:'bottle',wk:1,bag:'carry',label:'Collapsible water bottle / Zamzam cup',exp:'Zamzam dispensers are everywhere in the Haram — stay hydrated.'},
 {id:'umbrella',wk:1,bag:'case',label:'Umbrella for sun protection',exp:'Midday courtyard marble is brutal — a light umbrella helps outside the mosque.'},
 {id:'dualist',wk:1,bag:'carry',label:'Written personal dua list',exp:'In front of the Kaaba the mind goes blank — write your duas down beforehand.',go:['daily','tools','duaCard'],goL:'🤲 My dua list'},
@@ -56,7 +58,7 @@ var PLAN=[
 {id:'walkhajj',wk:8,j:'hajj',label:'Walking training: 5 km in one go, in your sandals',exp:'Mina → Arafah → Muzdalifah → Mina → the Jamarat → the Haram can mean 20–25 km on foot across two days in the heat. Build up to 5 km without stopping, in the sandals you will actually wear, and add stairs.'},
 {id:'doctor',wk:6,label:'Doctor check-up if needed',exp:'Especially for chronic conditions — carry a doctor’s letter for devices/medication.'},
 {id:'perioddelay',wk:6,who:'w',label:'Ask a doctor about period-delay medication if needed (women)',exp:'Menstruation does not stop you entering ihram, making dua or doing sa’i after a valid tawaf — but tawaf itself must wait for purity. If your dates clash with a short trip, a doctor can advise; many sisters choose not to and simply wait.'},
-{id:'hygiene',wk:1,label:'Hand sanitiser & masks packed',exp:'The "Umrah flu" is real — prevention keeps your worship strong.'}
+{id:'hygiene',wk:1,label:'Hand sanitiser & masks packed',exp:'The "Umrah flu" is real — prevention keeps your worship strong.',exh:'The "pilgrim’s cough" is real — tents, buses and crowds are shared; prevention keeps your worship strong.'}
 ]},
 {id:'knowledge',ico:'🧠',short:'Knowledge',title:'Knowledge & spirit',items:[
 {id:'niyyah',wk:10,j:'umrah',label:'Set my intention & spiritual goals for this Umrah',exp:'Write it at the top of the Plan tab — the journey begins in the heart, not at the airport.',go:['plan','prep','niyCard'],goL:'✍️ Write it'},
@@ -260,7 +262,7 @@ var DAILY=[
 {id:'dhikr100',label:'La ilaha illallah / SubhanAllah dhikr',pts:5},
 {id:'dualist',label:'Went through my personal dua list',exp:'Use it in the mataf, between adhan & iqamah, and in sujood.',pts:8},
 {id:'duaothers',label:'Made dua for family & the ummah',ref:'Muslim 2733',exp:'The angel says: "Amin, and for you the same."',pts:5},
-{id:'htakbir',j:'hajj',hdays:[10,11,12,13],label:'Takbir after every prayer',exp:'After each obligatory prayer in these days. The schools differ on when it starts and ends — follow your group’s school.',pts:6,go:"openDua(duaIdx('Muzdalifah'))",goL:'📖 The words'}
+{id:'htakbir',j:'hajj',hdays:[10,11,12,13],label:'Takbir after the prayers',exp:'After each obligatory prayer in these days. The schools differ on when it starts and ends — for the pilgrim, Malikis and Shafi’is: from Dhuhr on the 10th to Fajr on the 13th; Hanbalis: from Dhuhr on the 10th to Asr on the 13th; Hanafis: from Fajr on the 9th to Asr on the 13th. Follow your group’s school.',pts:6,go:"openDua(duaIdx('Muzdalifah'))",goL:'📖 The words'}
 ]},
 {id:'extra',ico:'🤍',title:'Extra acts of worship',hn:'"Tawaf around the House is like prayer, except that you speak in it." — Tirmidhi 960',items:[
 {id:'ntawaf',label:'Nafl tawaf (7 rounds)',exp:'The greatest voluntary act available only in Makkah — do as many as you can.',pts:15,stk:'tawaf'},
