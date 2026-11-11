@@ -4,7 +4,7 @@
 
 > The app was previously called *Umrah Strivers*; the repository name `Umrah-strivers` and the `umrah-strivers.vercel.app` address are historical and still work.
 
-An offline-first web app (`index.html` + `data.js` + `app.js`, zero build step). No accounts, no servers, no tracking — all data stays on your device, with export/import backup and an encrypted document vault.
+An offline-first web app (`index.html` + `data.js` + `cites.js` + `app.js`, zero build step). No accounts, no servers, no tracking — all data stays on your device, with export/import backup and an encrypted document vault.
 
 ## Features
 
@@ -82,7 +82,7 @@ Every push to the production branch auto-deploys. A `vercel.json` is included wi
 
 ## Running locally
 
-No build step: open `index.html` in a browser (it loads `data.js` and `app.js` from the same folder), or run `npm start`. The service worker registers only over https, so offline caching does not run locally — check offline use and the installed app on the deployed site.
+No build step: open `index.html` in a browser (it loads `data.js`, `cites.js` and `app.js` from the same folder), or run `npm start`. The service worker registers only over https, so offline caching does not run locally — check offline use and the installed app on the deployed site.
 
 ## v6.4 — Hajj learning
 
@@ -139,6 +139,15 @@ No build step: open `index.html` in a browser (it loads `data.js` and `app.js` f
 - **Links & next journey**: an existing user opening `?dep=…&j=hajj` gets a confirm sheet (*Switch to it / Keep mine*), a past date gets a toast, `?dep=&j=hajj` opens the Hajj date screen; *Plan your next journey* clears post mode, the confirmed day, the shift and a past departure date (the date input opens empty, min = today)
 - **Onboarding**: ✕ on the Hajj screen reached from the journey question (no date set) returns to Umrah, and the screen offers *← Umrah instead*; *I'm already in Saudi Arabia* retitles the sheet, hides the flight date and uses a −/+ stepper; Settings › Journey stage speaks the journey's language and routes a Hajji's *I'm in Makkah* to the already-there screen
 - **Touch targets**: the *Today is 9 Dhul Hijjah, correct?* row is three full-width ≥ 44 px text buttons (*◀ One day earlier · ✓ Yes · One day later ▶*) and its toast speaks from the pilgrim's side; Part 2's *Missed it? / Delegated / Open counter* chips are 44 px buttons; rukn / wajib / sunnah pills are legible; segment buttons are 40 px; the rami counter asks before counting a jamarah out of order; the Home CTA skips the informational *sunnah order* row (`info:true`)
+
+## v6.10 — Trust and polish
+
+- **Sources** (More › Settings): every numbered hadith and Quran reference, grouped by collection, with the sentence that carries it, the grade where the app states one, and links to where it is used. Numbers follow sunnah.com; Sahih Muslim is numbered as in the Abdul Baqi edition.
+- **Citation registry** (`cites.js`): the list the Sources page is built from. The test suite reads every citation in `data.js`, `app.js` and `index.html` and fails if one is missing from the registry, or if the registry holds one that is no longer used.
+- **“Checked” dates**: visa, vaccine, permit, phone-number and transport items end with the day they were last checked and, where a verified one exists, the official page. `LAUNCH.md` lists every such item to re-verify before each season.
+- **Report a correction**: a button under every Learn article, step, dua, place and guide card opens a pre-filled email (item, title, app version, your note). Nothing is sent by the app itself.
+- **What’s new**: shown once after an update, and kept in More › Settings.
+- **Trip journal**: one line a day on Daily › Today, stored only on the device, included in backups, and one chosen line can be drawn on the keepsake image.
 
 ## Releasing an update
 The service-worker cache is named after `APP_VERSION`. For every release **bump `APP_VERSION` in both `app.js` and `sw.js`** — installed apps then pick the new version up automatically (an "Update" chip appears in the header; Settings › Check for updates forces a check). The app shell is served stale-while-revalidate, so it opens instantly from cache regardless of signal.
@@ -244,7 +253,7 @@ The service-worker cache is named after `APP_VERSION`. For every release **bump 
 npm install            # playwright-core only
 npm test               # end-to-end smoke suite (400+ checks) in headless Chromium
 ```
-Set `CHROME=/path/to/chromium` if Playwright cannot find a browser. Content lives in `data.js` (places, quiz, knowledge, duas); logic in `app.js`.
+Set `CHROME=/path/to/chromium` if Playwright cannot find a browser. Content lives in `data.js` (places, quiz, knowledge, duas); the citation registry in `cites.js`; logic in `app.js`.
 
 ## Tech
 

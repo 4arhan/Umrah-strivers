@@ -1,14 +1,14 @@
 /* Miqah — offline service worker */
 /* Release note: bump APP_VERSION here AND at the top of app.js for every release. */
-var APP_VERSION = '6.9.5';
+var APP_VERSION = '6.10.0';
 var CACHE = 'umrah-strivers-' + APP_VERSION;
 /* 6.7 (G3 #33): web fonts live in their own unversioned cache, kept across updates — an update applied in Mina without data keeps Manrope and Scheherazade */
 var FONTS = 'miqah-fonts';
-var CORE = ['./', './index.html', './data.js', './app.js', './manifest.json',
+var CORE = ['./', './index.html', './data.js', './cites.js', './app.js', './manifest.json',
   './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-192.png',
   './icons/maskable-512.png', './icons/apple-touch-icon.png', './icons/favicon-32.png',
   './icons/shortcut-sos-192.png', './icons/shortcut-help-192.png'];
-var SHELL = ['/', '/index.html', '/app.js', '/data.js'];
+var SHELL = ['/', '/index.html', '/app.js', '/data.js', '/cites.js'];
 
 self.addEventListener('install', function (e) {
   // No skipWaiting here: the new worker waits until the page asks (update chip) so the app never reloads under the pilgrim's feet.

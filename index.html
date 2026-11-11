@@ -2434,6 +2434,49 @@ select.srch{min-height:48px;max-width:100%}
 .rami-jam{margin:10px auto 2px;min-height:44px}
 .pin-res{border-color:var(--brand-2)}.pin-res[hidden]{display:none}.pin-res:focus{outline:none}.pin-res:focus-visible{outline:3px solid var(--brand-2);outline-offset:2px}.pin-box b,.pin-res b{display:block;font-size:var(--t-3);color:var(--ink);font-weight:var(--w-ui);line-height:var(--lh-meta)}.pin-box small,.pin-res small{display:block;font-size:var(--t-2);color:var(--ink2);line-height:var(--lh-meta);margin-top:6px}
 @media(max-width:340px){.camp-g{grid-template-columns:1fr}}
+
+/* ═══ 6.10 · trust and polish: correction link, “Checked” line, Sources, What’s new, journal ═══ */
+.corr{display:inline-flex;align-items:center;gap:6px;min-height:44px;border:0;background:transparent;color:var(--ink2);font-family:var(--f-text);font-size:var(--t-2);font-weight:var(--w-ui);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px;cursor:pointer;padding:0 2px;margin:4px 0 -6px}
+.corr .mk{width:15px;height:15px;flex:none;color:var(--gold-ink)}
+.corr:focus-visible,.src-ch:focus-visible,.ck-on a:focus-visible{outline:3px solid var(--brand-2);outline-offset:2px;border-radius:8px}
+.stp .corr{display:flex;margin-top:6px}.duacard>.corr{margin-top:8px}
+.place .place-x{display:none}.place.open .place-x{display:block;margin-top:8px}
+.ck-on{display:block;font-family:var(--f-text);font-size:var(--t-2);color:var(--ink2);line-height:var(--lh-meta);margin:8px 0 2px}
+.ck-on a{color:var(--brand-2);font-weight:var(--w-ui);display:inline-flex;align-items:center;gap:3px;min-height:44px;min-width:44px;text-underline-offset:3px}
+.ck-on a .mk{width:13px;height:13px;flex:none}
+.help-ck{color:var(--show-ink2);text-align:center;margin:10px 0 0}
+.sheet .corr-p{font-size:var(--t-2);color:var(--ink2);text-align:left;margin:10px 0 12px}
+.sheet .care-l[for="corrNote"],.sheet .care-l[for="srcQ"]{display:block;text-align:left}
+.src-note{text-align:left;margin:0 0 12px}
+.src-c{border-top:1px solid var(--line)}.src-c:last-child{border-bottom:1px solid var(--line)}
+.src-ch{display:flex;align-items:center;gap:10px;width:100%;min-height:52px;padding:6px 0;border:0;background:transparent;color:var(--ink);font-family:var(--f-text);font-size:var(--t-3);cursor:pointer;text-align:left}
+.src-ch b{font-weight:var(--w-ui);flex:1}.src-ch span{font-size:var(--t-2);color:var(--ink2);font-variant-numeric:tabular-nums}
+.src-ch .acc-c{position:static;font-style:normal;transition:transform .2s;color:var(--ink3)}.src-ch[aria-expanded="true"] .acc-c{transform:rotate(90deg)}
+.src-r{padding:12px 0 8px;border-top:1px solid var(--line)}
+.src-k{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}.src-k b{font-size:var(--t-3);font-weight:var(--w-title);color:var(--ink)}
+.src-g{font-size:var(--t-1);font-weight:var(--w-ui);color:var(--gold-ink);border:1px solid var(--gold-hair);border-radius:12px;padding:3px 10px;line-height:1.5}
+.sheet .pk-list .src-t{font-size:var(--t-3);color:var(--ink2);line-height:var(--lh-body);margin:6px 0 2px;text-align:left;overflow-wrap:anywhere}
+.src-u{display:flex;flex-wrap:wrap;align-items:center;gap:0 14px;font-size:var(--t-2);color:var(--ink2)}
+.src-ul{font-size:var(--t-1);font-weight:var(--w-ui);color:var(--ink3);margin-right:-4px}
+.src-u .src-l{font-size:var(--t-2);text-align:left;justify-content:flex-start}.src-u span.src-l{display:inline-flex;align-items:center;min-height:44px}
+.src-u .src-l.more{display:none}.src-u.all .src-l.more{display:inline-flex}.src-u .src-m{font-size:var(--t-2);color:var(--ink2)}
+.sheet .src-none{margin:12px 0}
+.wn-list{margin:0 0 4px}.wn-r{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--line)}.wn-r:first-child{border-top:0}
+.wn-i{flex:none;width:40px;height:40px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:var(--brand-soft);color:var(--brand-ink)}.wn-i .mk{width:20px;height:20px}
+.wn-r b{display:block;font-size:var(--t-3);font-weight:var(--w-title);color:var(--ink)}.sheet .pk-list .wn-r p{margin:2px 0 0;text-align:left}
+.jr h3{display:block}.jr h3 .mk{width:20px;height:20px;color:var(--gold-ink);vertical-align:-3px;margin-right:8px}
+.jr-meta{font-size:var(--t-2);font-weight:var(--w-ui);color:var(--gold-ink);margin:-2px 0 8px}
+.jr-wait{font-size:var(--t-3);color:var(--ink2);margin:0 0 6px}
+.jr .care-l{display:block}.jr .jr-in{min-height:64px;margin-top:4px;resize:none}
+.jr-row{display:flex;align-items:center;gap:10px;margin-top:10px}.jr-row .care-l{margin:0;flex:none}.jr-row .jr-city{flex:1;min-width:0;margin:0}
+.jr-cnt{flex:none;font-size:var(--t-2);color:var(--ink2);font-variant-numeric:tabular-nums}
+.jr-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:2px 12px;margin-top:8px}
+.jr-foot small{display:block;font-size:var(--t-2);color:var(--ink2);line-height:var(--lh-meta);padding:6px 0}.jr-foot small .mk{width:14px;height:14px;vertical-align:-2px;margin-right:6px}
+.jr-e{padding:12px 0;border-top:1px solid var(--line)}.jr-e:first-child{border-top:0}
+.jr-d{display:block;font-size:var(--t-2);font-weight:var(--w-ui);color:var(--gold-ink)}
+.sheet .pk-list .jr-t{font-size:var(--t-3);color:var(--ink);line-height:var(--lh-body);margin:4px 0 8px;text-align:left;overflow-wrap:anywhere}
+.jr-acts{display:flex;flex-wrap:wrap;gap:8px}.jr-acts .chip-btn{display:inline-flex;align-items:center;gap:6px}.jr-acts .chip-btn .mk{width:15px;height:15px}
+.jr-pick.on{background:var(--brand-soft);color:var(--brand-ink);border-color:var(--brand-2)}
 </style>
 </head>
 <body>
@@ -2491,6 +2534,7 @@ select.srch{min-height:48px;max-width:100%}
     <div class="kv"><span>Health (Ministry of Health line)</span><b><a href="tel:937" style="color:inherit;text-decoration:none">937</a></b></div>
     <div class="kv"><span>Ministry of Hajj &amp; Umrah care</span><b><a href="tel:1966" style="color:inherit;text-decoration:none">1966</a></b></div>
     <div class="kv"><span>Tourism helpline</span><b><a href="tel:930" style="color:inherit;text-decoration:none">930</a></b></div>
+    <small class="ck-on" id="telCk"></small>
     <button class="btn ghost" onclick="shareSetup()">📤 Share trip setup with group</button><button class="chip-btn grp-paste" onclick="pasteGroupSheet()" data-mk="link">Paste group link</button>
     <p style="font-size:var(--t-2);color:var(--ink3);margin-top:6px">Sends one link that sets the departure date, trip length, itinerary split, prayer city and this hotel card on their phones — their own progress is never touched.</p></div>
   <div id="planContainer"></div>
@@ -2652,6 +2696,7 @@ select.srch{min-height:48px;max-width:100%}
   <div id="todayTop"></div>
   <div id="kidsDay"></div>
   <div id="dailyContainer"></div>
+  <div id="jrCard"></div>
   <div class="stk-h">🔥 Streaks · consecutive days <span class="hint">highlighted at 3+ · tap to open the row</span></div>
   <div class="stat4 stk" id="stkTiles">
     <div class="st" id="skFajr" role="button" tabindex="0" onclick="stkGo('fajr')"><div class="i" data-mk="dome"></div><div class="n" id="skFajrN">0</div><div class="l">Fajr</div></div>
@@ -2766,6 +2811,7 @@ select.srch{min-height:48px;max-width:100%}
     <div class="setrow"><div><b>Share the app</b><small>Send it to your group before you fly</small></div><div class="set-acts"><button class="chip-btn" onclick="shareApp()" data-mk="share">Share</button><button class="chip-btn" onclick="showQR()" data-mk="grid">QR code</button></div></div>
     <div class="setrow" id="installRow" style="display:none"><div><b>Install app</b><small>Add to your home screen — works offline</small></div><button class="chip-btn" onclick="installApp()">📲 Install</button></div>
     <div class="setrow"><div><b>Check for updates</b><small>Version <span id="verLbl2"></span> · updates install automatically</small></div><button class="chip-btn" onclick="checkUpdates()">🔄 Check</button></div>
+    <div class="setrow" id="wnRow"><div><b data-mk="info">What’s new</b><small>The highlights of version <span id="verLbl3"></span></small></div><button class="chip-btn" onclick="whatsNewSheet()">Open</button></div>
     <div class="where">Where things are: Departure date → <a href="#" onclick="event.preventDefault();goTab('plan','prep','cdCard')">Plan › Prepare</a> · Prayer city &amp; reminders → <a href="#" onclick="event.preventDefault();goTab('daily','today')">Daily › Today</a> · Hotel → <a href="#" onclick="event.preventDefault();goTab('plan','prep','hotelCard')">Plan › Prepare</a> / <a href="#" onclick="event.preventDefault();goTab('places')">Places</a></div>
   </div>
 
@@ -2789,10 +2835,12 @@ select.srch{min-height:48px;max-width:100%}
   <div class="card card-pad" id="aboutCard"><h3 data-mk="book">About &amp; sources</h3>
     <p style="font-size:var(--t-3);color:var(--ink2);line-height:var(--lh-body)">Everything lives on your device only — no accounts, no servers, no tracking. Every hadith quoted in this app is cited to its collection (mostly Bukhari, Muslim, Tirmidhi, Ibn Majah, Nasai and Abu Dawud, plus a few from other collections) and has been checked against the source text; paraphrases are kept faithful and weak narrations are avoided or marked. This app is a study companion, <b>not a fatwa service</b> — for rulings about your specific situation, ask a qualified scholar.</p>
     <div class="note" style="margin:10px 0 12px"><b>Review status:</b> citations checked against the source texts · <b>scholar review: pending</b> — if you are a qualified scholar willing to review, please get in touch.</div>
+    <div class="setrow" id="srcRow" style="border-top:1px solid var(--line);margin-bottom:8px"><div><b data-mk="book">Sources</b><small>Every hadith and Quran reference: its number, the grade where one is stated, and where it is used</small></div><button class="chip-btn" id="srcBtn" onclick="sourcesSheet()">Open</button></div>
     <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap"><span style="font-size:var(--t-3);color:var(--ink2)"><b style="color:var(--ink)">Miqah</b> · v<span id="verLbl"></span> · Free · Offline · Private · No ads</span><a class="chip-btn" style="text-decoration:none" href="mailto:m.farhan.bava@gmail.com?subject=Miqah%20correction">✉️ Send a correction</a></div>
   </div>
 
-  <div class="card card-pad"><h3 data-mk="link">Official &amp; helpful links</h3>
+  <div class="card card-pad" id="linksCard"><h3 data-mk="link">Official &amp; helpful links</h3>
+    <small class="ck-on" id="linksCk" style="margin:-4px 0 8px"></small>
     <a href="https://www.nusuk.sa/" target="_blank" rel="noopener" class="res"><span class="i">🕌</span><span class="t"><b>Nusuk</b>Official Saudi platform — visas, Rawdah permits & bookings</span><span class="g">Open</span></a>
     <a href="https://umrah.nusuk.sa/" target="_blank" rel="noopener" class="res" id="nusukUm"><span class="i">🧳</span><span class="t"><b>Nusuk Umrah packages</b>Book visas &amp; packages from ministry-licensed providers only</span><span class="g">Open</span></a>
     <a href="https://ehsan.sa/" target="_blank" rel="noopener" class="res"><span class="i">💝</span><span class="t"><b>Ehsan</b>Saudi Arabia’s official donation platform — sadaqah without scams</span><span class="g">Open</span></a>
@@ -2854,6 +2902,7 @@ select.srch{min-height:48px;max-width:100%}
 <div class="toasts" id="toastC"></div>
 
 <script src="data.js"></script>
+<script src="cites.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
