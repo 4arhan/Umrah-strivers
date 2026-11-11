@@ -255,6 +255,8 @@ function applyTheme(){document.documentElement.setAttribute('data-theme',ST.them
 function togSec(el){var sec=el.closest('.sec');sec.classList.toggle('shut');el.setAttribute('aria-expanded',sec.classList.contains('shut')?'false':'true');}
 function setRing(id,pct){var el=document.getElementById(id);if(el)el.style.strokeDashoffset=239*(1-Math.min(100,pct)/100);}
 function goTab(t,sub,anchor){ST.tab=t;saveST();
+  /* G3 #31: the hotel card opens on today's city (the itinerary may have moved on since the app was opened) — never while a field in it is being edited */
+  if(t==='plan'&&!hotelTabC){var hae=document.activeElement;if(!(hae&&hae.closest&&hae.closest('#hotelCard')))loadHotelInfo();}
   var view=document.getElementById('view-'+t);if(!view)return;
   document.querySelectorAll('.view').forEach(function(e){e.classList.remove('on');});
   view.classList.add('on');
@@ -266,7 +268,7 @@ function goTab(t,sub,anchor){ST.tab=t;saveST();
   if(t==='plan')updPlan();
   if(t==='home')renderHome();
   updChip();qbAutoStop();
-  if(!ST.segNudged&&view.querySelector('.seg')){ST.segNudged=true;saveST();var on=view.querySelector('.seg button.on');if(on)on.classList.add('nudge');}
+  if(!ST.segNudged&&view.querySelector('.seg')){ST.segNudged=true;saveST();var on=view.querySelector('.seg button[data-sub].on');if(on)on.classList.add('nudge');}
   if(!anchor&&t==='umrah'&&(ST.sub||{}).umrah==='count'&&cntStarted())anchor=cntActive()+'Card';
   if(!anchor&&t==='umrah'&&(ST.sub||{}).umrah==='steps'){focusRites(false);var nxr=nextRite();anchor=nxr?'rw-'+nxr.st.id:(hajjPart2Active()?'hajjDone':'riteDone');}
   if(anchor){requestAnimationFrame(function(){setTimeout(function(){jumpTo(anchor,true);},30);});}
@@ -1990,7 +1992,9 @@ function renderHome(){
     /* H-05: the CTA names the first thing to do next */
     if(ST.onboarded){nextRows=planNext();if(nextRows.length){var r0=nextRows[0];cta=[r0.pre+fcText(r0.o.it.label),'plan','prep',ST.dep?'tlCard':'sec-'+r0.o.sec.id];}
       /* 6.7 (G3 #28): with no date the card names one task and does it — the pill sets the date in place (a native date input over it) */
-      if(!ST.dep)cta=['Set my departure date','js','hsDatePick()'];}}
+      if(!ST.dep)cta=['Set my departure date','js','hsDatePick()'];
+      /* G3 #26: in the last 48 hours the pill stops naming overdue paperwork — it leads to the leave-home list */
+      else if(d<=2)cta=['Before you leave home','js','hsLeaveGo()'];}}
   else if(d===0&&!tu&&!dayHasTicks(1)){pct=planTotals().pct;phase='🛫 Departure day — safe travels, labbayk!';cta=['Open the rites guide','umrah','steps'];lbl=HJ?'Ihram at the miqat — every step and dua is in the guide':'Ihram at the miqat → tawaf → sa’i → halq — every step and dua is in the guide';stageNow=1;hsK='dep';}
   else{var ed=expectedDay()||ST.day;dp=dayPct(ed)||0;pct=dp;phase='🕋 Day '+ed+' of '+ST.tripLen+' in the Haramain';cta=['Log today’s worship','daily','today'];lbl=dp+'% of today’s deeds · '+tu+' Umrah'+(tu===1?'':'s')+' completed';stageNow=tuT?2:1;
     var hLeft=(HJ&&HD[8])?daysUntil(HD[8]):null,qf=HJ&&ST.hajjTypeConfirmed&&hajjType()!=='tamattu';
@@ -2198,7 +2202,7 @@ function markPrepDay(){var days={};try{days=JSON.parse(localStorage.getItem('us-
   var sx=0,sy=0,ok=false;
   document.addEventListener('touchstart',function(e){var t=e.target;ok=ST.swipe!==false&&!(t&&t.closest&&t.closest('.tapring,.tb-btn,input,textarea,.jumps,.stops,.tb-chips,.focus,#duaFocus,.sheet-o,.heat,.ph-grid,.fc,.cnt,.wudu,.cnt-acts,.row'));sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
   document.addEventListener('touchend',function(e){if(!ok)return;var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)<90||Math.abs(dx)<=2.5*Math.abs(dy))return;
-    var view=document.querySelector('.view.on');if(!view)return;var btns=view.querySelectorAll('.seg button');if(!btns.length)return;
+    var view=document.querySelector('.view.on');if(!view)return;var btns=view.querySelectorAll('.seg button[data-sub]');if(!btns.length)return;
     var cur=0;btns.forEach(function(b,i){if(b.classList.contains('on'))cur=i;});
     var nx=dx<0?cur+1:cur-1;if(nx<0||nx>=btns.length)return;
     goSub(view.id.replace('view-',''),btns[nx].getAttribute('data-sub'));
@@ -2268,11 +2272,11 @@ function fdToggle(){fdOpen=!fdOpen;renderFocusDua();vib(6);}
 /* U-09: personal dua list without leaving the big counter (never touches the count) */
 /* G3 #29: on trip day 1 and on 9 Dhul Hijjah Home shows the intention's first line only (private text — never on a share card); a tap reads it whole */
 function niyHomeHTML(hd){var nv=niyText().trim();if(!nv||!onTrip())return '';var ed=expectedDay();if(!(ed===1||hd===9))return '';
-  var first=nv.split(/\n/)[0];return '<div class="card card-pad hniy" id="hNiy" role="button" tabindex="0" aria-label="Your intention — read it before you begin" onclick="niySheet()"><small>'+mk('heart','mkt')+'Your intention — read it before you begin</small><span class="hniy-l">'+esc(first)+'</span></div>';}
+  var first=nv.split(/\n/)[0];return '<div class="card card-pad hniy" id="hNiy" role="button" tabindex="0" aria-label="Your intention — read it before you begin" onclick="niySheet()"><small>'+mk('heart','mkt')+'<span>Your intention — read it before you begin</span></small><span class="hniy-l">'+esc(first)+'</span></div>';}
 function niySheet(){var nv=niyText().trim();if(!nv)return;openSheet('<div class="sheet-h">'+mk('heart')+'</div><h3>Why you came</h3><p class="niy-read">'+esc(nv).replace(/\n/g,'<br>')+'</p><button class="btn tall" onclick="closeSheet()">Bismillah</button><button class="btn ghost tall" onclick="closeSheet();goTab(\'plan\',\'prep\',\'niyCard\')">Edit it in Prepare</button>');}
 function myDuasSheet(){var h='<div class="sheet-h">'+mk('hands')+'</div><h3>My duas</h3>',nv=niyText().trim();
   /* G3 #29: the written intention first, read-only — "Why you came" */
-  if(nv)h+='<div class="why-came" id="whyCame"><small>'+mk('heart','mkt')+'Why you came</small><p>'+esc(nv).replace(/\n/g,'<br>')+'</p></div>';
+  if(nv)h+='<div class="why-came" id="whyCame"><small>'+mk('heart','mkt')+'<span>Why you came</span></small><p>'+esc(nv).replace(/\n/g,'<br>')+'</p></div>';
   h+='<p>Tick each one as you ask — the counter is not touched.</p>';
   if(!duas.length)h+='<p class="lead" style="text-align:center;color:var(--ink2)">Your list is empty — start with the people who asked you to pray for them.</p>';
   else h+=duas.map(function(d,i){return '<div class="brg'+(d.done?' done':'')+'" role="checkbox" tabindex="0" aria-checked="'+(d.done?'true':'false')+'" onclick="togDua('+i+');myDuasSheet()"><span class="tick"></span><span>'+esc(d.t)+'</span></div>';}).join('');
@@ -2958,7 +2962,7 @@ function readySheet(){var R=readyChecks();openSheet('<div class="sheet-h">'+mk('
 function readySet(R,id,ok,why){var r=R.filter(function(x){return x.id===id;})[0];if(!r)return;r.ok=ok;if(why)r.why=why;if(ok)r.fix='';var e=document.getElementById('rdy-'+id);if(e)e.outerHTML=readyRowHTML(r);}
 function readyAsync(R){var hasC=typeof caches!=='undefined'&&caches&&caches.match;
   if(hasC){Promise.all(READY_CORE.map(function(f){return caches.match(new URL(f,location.href).href).then(function(x){return !!x;}).catch(function(){return false;});})).then(function(a){var n=a.filter(Boolean).length;readySet(R,'cache',n===a.length,n===a.length?'The pages, rites, duas and places':n+' of '+a.length+' files saved — open the app once with signal');});
-    caches.keys().then(function(ks){var fk=ks.filter(function(k){return k==='miqah-fonts';});if(!fk.length)return 0;return caches.open(fk[0]).then(function(c){return c.keys().then(function(x){return x.length;});});}).then(function(n){readySet(R,'fonts',n>0,n>0?'Manrope and the Arabic script survive an update in Mina':'Not saved yet — open the app once with signal');}).catch(function(){readySet(R,'fonts',false,'Could not check on this browser');});}
+    caches.keys().then(function(ks){var fk=ks.filter(function(k){return k==='miqah-fonts';});if(!fk.length)return 0;return caches.open(fk[0]).then(function(c){return c.keys().then(function(x){return x.length;});});}).then(function(n){readySet(R,'fonts',n>0,n>0?'Manrope and the Arabic script survive an update in Mina':'Open the app once with signal to save them');}).catch(function(){readySet(R,'fonts',false,'Could not check on this browser');});}
   else{readySet(R,'cache',false,'This browser cannot save the app — open it from the website and install it');readySet(R,'fonts',false,'This browser cannot save fonts offline');}
   try{if(navigator.storage&&navigator.storage.persisted)navigator.storage.persisted().then(function(p){readySet(R,'persist',!!p,p?'The phone will not clear it when space runs low':'The phone may clear it when space runs low');});else readySet(R,'persist',false,'This browser does not say — installing the app helps');}catch(e){readySet(R,'persist',false,'This browser does not say');}}
 
@@ -3005,7 +3009,7 @@ function goSub(tab,sub,silent){
   ST.sub=ST.sub||{};ST.sub[tab]=sub;saveST();
   var view=document.getElementById('view-'+tab);if(!view)return;
   view.querySelectorAll('.sub').forEach(function(e){e.classList.toggle('on',e.id==='sub-'+tab+'-'+sub);});
-  view.querySelectorAll('.seg button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-sub')===sub);});
+  view.querySelectorAll('.seg button[data-sub]').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-sub')===sub);});
   if(!silent){vib(8);var top=view.querySelector('.seg');if(top){var y=top.getBoundingClientRect().top+window.scrollY-(62);if(window.scrollY>y)window.scrollTo({top:y,behavior:smooth()});}}
   if(tab==='daily'&&sub==='stats'){updStats();}
   if(tab==='daily'&&sub==='tools'){updToolsOrder();}
@@ -3022,7 +3026,7 @@ function applySubs(){
   ST.subAuto=ST.subAuto||{};var dd=depDays();
   if(!ST.sub.umrah||ST.subAuto.umrah){ST.sub.umrah=(dd!==null&&dd<=0)?'count':'steps';ST.subAuto.umrah=true;}
   ['plan','umrah','daily','more'].forEach(function(t){
-    var v=document.getElementById('view-'+t),first=v&&v.querySelector('.seg button');
+    var v=document.getElementById('view-'+t),first=v&&v.querySelector('.seg button[data-sub]');
     var sub=ST.sub[t]||(first?first.getAttribute('data-sub'):null);
     if(sub)goSub(t,sub,true);
   });
@@ -3120,6 +3124,7 @@ function leaveRows(){var L=ST.leave||{},h=hiOf(),mad=itinST().first==='madinah',
   R.push({id:'docs',t:'Document copies in the vault or printed',s:'Passport, visa or permit, bookings',on:!!L.docs});
   R.push({id:'charge',t:'Phone and power bank charged',s:'Save the hotel and group numbers before you fly',on:!!L.charge});
   return R;}
+function hsLeaveGo(){var e=document.getElementById('hLeave');if(!e){goTab('plan','prep','tlCard');return;}var y=e.getBoundingClientRect().top+window.scrollY-70;window.scrollTo({top:y,behavior:smooth()});}
 function leaveTog(id){ST.leave=ST.leave||{};ST.leave[id]=!ST.leave[id];saveST();vib(10);homeRefresh();}
 function landWin(){var t=ST.landT;if(!/^\d\d:\d\d$/.test(t||''))return null;var m=ptMin(t);return {a:minHM((m-45+1440)%1440),b:minHM((m-30+1440)%1440),al:minHM((m-60+1440)%1440)};}
 function setLand(v){ST.landT=/^\d\d:\d\d$/.test(v||'')?v:'';saveST();homeRefresh();}
@@ -3128,7 +3133,7 @@ function leaveHTML(){var R=leaveRows(),mad=itinST().first==='madinah',W=landWin(
   h+='<div class="card card-pad hnext hleave" id="hLeave"><h3>'+mk('bag','mkt')+'Before you leave home</h3>';
   R.forEach(function(r){h+='<div class="tli'+(r.on?' done':'')+'" role="'+(r.go?'button':'checkbox')+'" tabindex="0"'+(r.go?'':' aria-checked="'+(r.on?'true':'false')+'"')+' onclick="'+(r.go?r.go:'leaveTog(\''+r.id+'\')')+'"><span class="tick"></span><div class="tli-t">'+r.t+'<small>'+r.s+'</small></div>'+(r.go&&!r.on?'<span class="tli-when soon">Add →</span>':'')+'</div>';});
   if(srt)h+='<button class="lnk hn-srt" onclick="sortedSheet()">Booked and done? Tick the travel basics</button>';
-  if(mad)h+='<p class="hl-mad">'+mk('dome','mkt')+'<span>Madinah first? The miqat on your way to Makkah is Abyar Ali (Dhul-Hulayfah) — ihram before you set off from Madinah. Flying into Jeddah first? Ask your group leader whether to enter ihram on the plane.</span></p>';
+  if(mad)h+='<p class="hl-mad">'+mk('dome','mkt')+'<span>Madinah first? No ihram on this flight — the miqat on your way to Makkah is Dhul-Hulayfah (Abyar Ali), and you enter ihram there. Flying into Jeddah first? Ask your group leader whether to enter ihram on the plane.</span></p>';
   else{h+='<div class="hl-land"><label for="landT">Landing in Jeddah at <small>(Saudi time)</small></label><div class="hl-row"><input type="time" id="landT" value="'+esc(ST.landT||'')+'" onchange="setLand(this.value)"><button class="chip-btn'+(ST.landNext?' on':'')+'" role="switch" aria-checked="'+(ST.landNext?'true':'false')+'" onclick="setLandNext()">Lands the next day</button></div>';
     h+=W?'<p class="hl-win" id="landWin">Ihram clothes on before boarding (or at the stopover). Make the intention when the crew announces the miqat — about 30–45 min before Jeddah, so around <b>'+W.a+'–'+W.b+'</b>. The crew’s announcement is what counts.</p><button class="btn ghost tall" onclick="landICS()">'+mk('bell','mkt')+'Add an alarm — '+W.al+', an hour before landing</button>'
       :'<p class="hl-win">Add your landing time and the app works out when the miqat is likely to be announced.</p>';

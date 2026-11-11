@@ -589,6 +589,8 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 .srch:focus{border-color:var(--brand-2);box-shadow:0 0 0 3px var(--gold-hair)}
 .sheet-o{position:fixed;inset:0;background:var(--sheet-o);z-index:180;display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .sheet-o.on{display:flex}
+/* 6.7 (G3): a sheet taller than the screen scrolls inside itself — its first rows are never pushed off the top (small phones, Large text) */
+.sheet-o .sheet{max-height:calc(100vh - 16px);max-height:calc(100dvh - 16px);overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
 .sheet{background:var(--card);border-radius:28px 28px 0 0;padding:26px 20px calc(24px + var(--sab));width:100%;max-width:480px;animation:up .4s cubic-bezier(.2,.8,.3,1);box-shadow:0 -1px 0 var(--gold-line),0 -16px 50px -8px rgba(15,8,25,.45)}
 .sheet::before{content:'';position:absolute;left:50%;top:9px;width:40px;height:5px;transform:translateX(-50%);border-radius:99px;background:var(--line)}
 @keyframes up{from{transform:translateY(60px);opacity:0}to{transform:none;opacity:1}}
@@ -854,8 +856,8 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 .hl-mad .mk{flex:none;width:18px;height:18px;margin-top:2px;color:var(--brand-2)}
 /* 6.7 (G3 #29) the intention, one line on Home (trip day 1, 9 Dhul Hijjah), whole in a sheet and at the top of My duas */
 .hniy{display:flex;flex-direction:column;gap:4px;cursor:pointer}
-.hniy small{display:flex;align-items:center;gap:6px;font-size:var(--t-2);font-weight:600;color:var(--label-ink)}
-.hniy small .mk{width:16px;height:16px;margin:0;color:var(--brand-2)}
+.hniy small{display:flex;align-items:flex-start;gap:6px;font-size:var(--t-2);font-weight:600;color:var(--label-ink)}
+.hniy small .mk{flex:none;width:16px;height:16px;margin:2px 0 0;color:var(--brand-2)}.hniy small>span{flex:1 1 auto;min-width:0}
 .hniy-l{display:block;min-width:0;font-size:var(--t-4);font-weight:600;line-height:1.35;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hniy:focus-visible{outline:3px solid var(--brand-2);outline-offset:2px}
 .why-came{margin:0 0 12px;padding:12px 14px;border-radius:var(--r);background:var(--brand-soft);text-align:left}
@@ -893,6 +895,8 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 .rdy-t b{display:block;font-size:var(--t-3);font-weight:600;color:var(--ink)}
 .rdy-t small{display:block;font-size:var(--t-2);line-height:var(--lh-meta);color:var(--ink2)}
 .rdy-r .chip-btn{flex:none;max-width:44%;white-space:normal;text-align:center;line-height:1.25}
+[data-text='lg'] .rdy-r{flex-wrap:wrap}[data-text='lg'] .rdy-t{flex-basis:calc(100% - 42px)}[data-text='lg'] .rdy-r .chip-btn{max-width:none;margin:0 0 2px 42px}
+@media(max-width:359px){.rdy-r{flex-wrap:wrap}.rdy-t{flex-basis:calc(100% - 42px)}.rdy-r .chip-btn{max-width:none;margin:0 0 2px 42px}}
 .niy-read{font-size:var(--t-4);line-height:var(--lh-body);color:var(--ink);text-align:left;overflow-wrap:anywhere}
 .vh.hq{margin:4px 2px 10px}.vh.hq h2{font-size:var(--t-5)}
 .stage.cmp{margin-bottom:8px}.stage.cmp .stage-n{margin-top:9px;width:26px;height:26px;font-size:var(--t-2)}
