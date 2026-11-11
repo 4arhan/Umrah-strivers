@@ -66,7 +66,7 @@
   --sh-k:inset 0 1px 0 var(--hs-hi),var(--hs-sh);
   --sheet-o:rgba(12,6,22,.5);--r-xl:28px;--r-lg:22px;--r:16px;--r-sm:12px;--r-pill:999px;
   /* the show-to-a-stranger cards (driver, lost, help, QR): always paper white and dark ink, in both themes, so a stranger in sun can read them */
-  --show-bg:#FFFFFF;--show-ink:#111111;--show-ink2:#4A4A4A;--show-acc:#3B1478;--show-line:#E5E5E5;--show-danger:#B4350F;--show-on-danger:#FFFFFF;
+  --show-bg:#FFFFFF;--show-ink:#111111;--show-ink2:#4A4A4A;--show-acc:#3B1478;--show-line:#E5E5E5;--show-danger:#B4350F;--show-on-danger:#FFFFFF;--show-danger-soft:#FCEFEA;
   /* the aubergine object (the Home card, 6.2) — the source of every dark moment: heroes, discs, the nav, focus mode, toasts.
      Dark aubergine in BOTH themes · a violet halo round the ring · lavender progress · violet-tinted ink */
   --hs-bg-0:#0F0819;--hs-bg-1:#150B27;--hs-bg-2:#1F1037;--hs-glow:rgba(124,58,237,.16);--hs-glow-c:rgba(139,92,246,.32);--hs-glow-2:rgba(91,33,182,.22);
@@ -132,7 +132,7 @@
   --sh:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
   --sh-lg:0 8px 20px rgba(0,0,0,.55),0 24px 60px -12px rgba(76,29,149,.45);
   --sheet-o:rgba(3,1,8,.7);
-  --show-bg:#FFFFFF;--show-ink:#111111;--show-ink2:#4A4A4A;--show-acc:#3B1478;--show-line:#E5E5E5;--show-danger:#B4350F;--show-on-danger:#FFFFFF;
+  --show-bg:#FFFFFF;--show-ink:#111111;--show-ink2:#4A4A4A;--show-acc:#3B1478;--show-line:#E5E5E5;--show-danger:#B4350F;--show-on-danger:#FFFFFF;--show-danger-soft:#FCEFEA;
   /* the aubergine object (the Home card, 6.2): dark aubergine in BOTH themes · a violet halo round the ring · lavender progress · violet-tinted ink */
   --hs-bg-0:#0F0819;--hs-bg-1:#150B27;--hs-bg-2:#1F1037;--hs-glow:rgba(124,58,237,.16);--hs-glow-c:rgba(139,92,246,.32);--hs-glow-2:rgba(91,33,182,.22);
   --hs-ink:#F5F1FF;--hs-ink-2:#DDD5F5;--hs-ink-3:#B4A7D8;--hs-acc:#C4B5FD;--hs-due:#FDA4AF;
@@ -159,7 +159,7 @@
   --sh:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
   --sh-lg:0 8px 20px rgba(0,0,0,.55),0 24px 60px -12px rgba(76,29,149,.45);
   --sheet-o:rgba(3,1,8,.7);
-  --show-bg:#FFFFFF;--show-ink:#111111;--show-ink2:#4A4A4A;--show-acc:#3B1478;--show-line:#E5E5E5;--show-danger:#B4350F;--show-on-danger:#FFFFFF;
+  --show-bg:#FFFFFF;--show-ink:#111111;--show-ink2:#4A4A4A;--show-acc:#3B1478;--show-line:#E5E5E5;--show-danger:#B4350F;--show-on-danger:#FFFFFF;--show-danger-soft:#FCEFEA;
   /* the aubergine object (the Home card, 6.2): dark aubergine in BOTH themes · a violet halo round the ring · lavender progress · violet-tinted ink */
   --hs-bg-0:#0F0819;--hs-bg-1:#150B27;--hs-bg-2:#1F1037;--hs-glow:rgba(124,58,237,.16);--hs-glow-c:rgba(139,92,246,.32);--hs-glow-2:rgba(91,33,182,.22);
   --hs-ink:#F5F1FF;--hs-ink-2:#DDD5F5;--hs-ink-3:#B4A7D8;--hs-acc:#C4B5FD;--hs-due:#FDA4AF;
@@ -1196,7 +1196,7 @@ html[data-text='lg'] .setrow.lng{flex-wrap:wrap;row-gap:8px}html[data-text='lg']
 .rd-foot .xchip{margin:4px 0 0}
 .rd-note{margin-top:10px;background:var(--brand-soft);border-radius:var(--r-sm);padding:10px 12px;font-size:var(--t-2);font-weight:var(--w-ui);color:var(--brand-ink)}
 /* (review) text links get a real tap height; the "start fresh" / "reset" links are readable without glasses */
-.lnk{padding:6px 0}.note .lnk,.dua-acts .lnk,.hstat .lnk{min-height:0;display:inline;vertical-align:baseline;padding:10px 0}.rite-done .lnk.fresh,#logArea .lnk.fresh,.rite-lock .lnk.fresh,.cnt-done .lnk{font-size:var(--t-3);padding:10px 0}
+.lnk{padding:6px 0}.note .lnk,.dua-acts .lnk,.hstat .lnk{min-height:0;display:inline;vertical-align:baseline;padding:10px 0}.note .lnk.tap44{min-height:44px;display:inline-flex;align-items:center;vertical-align:middle;padding:0}.rite-done .lnk.fresh,#logArea .lnk.fresh,.rite-lock .lnk.fresh,.cnt-done .lnk{font-size:var(--t-3);padding:10px 0}
 .rd-acts{display:flex;gap:8px;justify-content:center;margin-top:8px;flex-wrap:wrap}
 .note.stale{font-style:normal;font-family:var(--f-text);font-size:var(--t-2)}
 .note.stale .lnk{font-size:1em;margin-left:4px}
@@ -1617,6 +1617,14 @@ html[data-text='lg'] .mataf text{font-size:15.5px}html[data-text='lg'] .mataf .m
   #printSheet .pr-dua{margin:3pt 0 0 6pt;padding-left:6pt;border-left:2px solid #888;font-size:10pt}
   #printSheet .pr-dua .ar{display:block;direction:rtl;text-align:right;font-family:var(--fa);font-size:14pt;line-height:1.9}
   #printSheet .pr-pack{columns:2;list-style:none;padding:0}
+  #printSheet .pr-cards{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:0 0 6pt;break-after:page}
+  #printSheet .pr-card{border:1px dashed #555;padding:7pt 9pt;min-height:52mm;break-inside:avoid;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:3pt;overflow:hidden}
+  #printSheet .pr-ct{font-size:8pt;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid #999;padding-bottom:2pt;margin-bottom:2pt}
+  #printSheet .pr-ar{font-family:var(--fa);direction:rtl;unicode-bidi:isolate;font-size:15pt;line-height:1.7}#printSheet .pr-arn{font-size:17pt;font-weight:600}
+  #printSheet .pr-big{font-size:19pt;font-weight:700;line-height:1.2;overflow-wrap:anywhere}#printSheet .pr-big.sm{font-size:14pt}
+  #printSheet .pr-s{font-size:8.5pt;line-height:1.35}#printSheet .pr-med{font-size:9pt;border:1px solid #000;padding:3pt 5pt;text-align:left}
+  #printSheet .pr-kid .pr-ar{font-size:13pt}#printSheet .pr-days{text-align:left}#printSheet .pr-days ul{list-style:none;padding:0}#printSheet .pr-days li{font-size:9pt;margin:0 0 2pt}#printSheet .pr-days i{color:#444!important}
+  #printSheet h1.pr-full{break-before:page}
   #printSheet .pr-pack li::before{content:'';display:inline-block;width:8pt;height:8pt;border:1px solid #000;margin-right:5pt;vertical-align:-1pt}
   body::before{display:none!important}
   #printSheet *{color:#000!important;background:transparent!important}
@@ -2264,6 +2272,97 @@ html[data-text='lg'] #riteHeroT .rh-dot{display:none}html[data-text='lg'] #riteH
 /* the big counter for the dua of Arafah: the long Arabic wraps, My duas stays */
 .focus.tasbih.arafah .focus-my{display:inline-flex!important}
 .focus.tasbih.arafah .focus-tip{font-size:var(--t-ar);width:100%;max-width:min(340px,calc(100vw - 48px));margin-left:auto;margin-right:auto;overflow-wrap:break-word}
+/* ════════ 6.8 (G4) · on the trip, safety and family ════════ */
+/* the stranger cards (#say, and the new blocks on the lost / Help cards): always white with dark ink, both themes */
+.say-body{padding-top:6px}
+.say-lead{font-size:var(--t-3);color:var(--show-ink2);margin:12px 0 4px;line-height:var(--lh-body)}
+.say-note{font-size:var(--t-2);color:var(--show-ink2);margin:12px 0 4px;line-height:var(--lh-body);text-align:center}
+.say-g{display:flex;align-items:center;gap:8px;margin:18px 0 2px;font-size:var(--t-1);font-weight:var(--w-ui);letter-spacing:.06em;text-transform:uppercase;color:var(--show-acc)}
+.say-g .mk{width:1.2em;height:1.2em}
+.say-row{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:56px;padding:10px 0;border:0;border-top:1px solid var(--show-line);background:transparent;color:var(--show-ink);font-family:var(--f-text);text-align:left;cursor:pointer}
+.say-g+.say-row{border-top:0}
+.say-rt{display:flex;flex-direction:column;gap:2px;min-width:0}.say-rt b{font-size:var(--t-5);font-weight:var(--w-ui);color:var(--show-ink);line-height:var(--lh-card)}.say-rt b .mk{width:1.1em;height:1.1em;vertical-align:-.18em;margin-right:.4em;color:var(--show-acc)}.say-rt small{font-size:var(--t-2);color:var(--show-ink2);line-height:var(--lh-meta)}
+.say-go{flex:none;display:grid;place-items:center;width:32px;height:32px;color:var(--show-acc)}.say-go .mk{width:18px;height:18px}
+.say-ar{font-family:var(--fa);direction:rtl;unicode-bidi:isolate;text-align:center;font-size:clamp(2rem,9.5vw,3rem);line-height:1.75;color:var(--show-ink);margin:22px 0 14px;font-weight:var(--w-ui);overflow-wrap:anywhere}
+.say-ar.long{font-size:clamp(1.5rem,6.6vw,2rem);line-height:1.9;text-align:right}
+.say-ar bdi,.say-en bdi{color:var(--show-acc);font-family:var(--f-text);font-weight:var(--w-ui)}
+.say-ar bdi[dir="ltr"]{font-size:.72em}.say-body bdi.num,.lost-me bdi.num{white-space:nowrap}.ck-row bdi{font-family:var(--f-text);font-weight:var(--w-ui)}.ck-ar bdi[dir="ltr"]{font-size:.75em}
+.say-en{font-size:var(--t-6);font-weight:var(--w-ui);text-align:center;line-height:var(--lh-title);color:var(--show-ink);overflow-wrap:anywhere}
+.say-tl{font-size:var(--t-3);font-style:italic;text-align:center;color:var(--show-ink2);margin-top:8px;line-height:var(--lh-body);overflow-wrap:anywhere}
+.say-b{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:10px 18px;border-radius:var(--r-pill);border:1px solid var(--show-acc);background:var(--show-acc);color:var(--show-bg);font-family:var(--f-text);font-size:var(--t-3);font-weight:var(--w-ui);cursor:pointer;text-decoration:none;line-height:1.25;text-align:center}
+.say-b .mk{width:1.15em;height:1.15em;flex:none}
+.say-b.ghost{background:var(--show-bg);color:var(--show-acc)}.say-b.ghost.on{background:var(--show-acc);color:var(--show-bg)}
+.say-b.danger{background:var(--show-danger);border-color:var(--show-danger);color:var(--show-on-danger)}
+.say-b:focus-visible,.say-row:focus-visible,.ck-row:focus-visible,.say-in:focus-visible,.med-row:focus-visible,.pt-tick:focus-visible,.pb-h:focus-visible{outline:3px solid var(--focus,#6D28D9);outline-offset:2px}
+.say-acts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}.say-acts:empty{display:none}
+.say-step{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:18px}.say-step .say-b{min-width:56px;font-size:var(--t-6)}
+.say-in{min-height:48px;width:110px;padding:8px 12px;border-radius:var(--r);border:1px solid var(--show-ink2);background:var(--show-bg);color:var(--show-ink);font-family:var(--f-text);font-size:var(--t-6);font-weight:var(--w-ui);text-align:center}
+.say-in.wide{width:100%;text-align:left;font-size:var(--t-4);font-weight:var(--w-text);margin-top:8px}
+.say-in::placeholder{color:var(--show-ink2);opacity:1}
+.say-lbl{display:block;margin:18px 0 0;font-size:var(--t-2);font-weight:var(--w-ui);color:var(--show-ink2)}
+.say-hotel{margin-top:12px}.say-hotel .drv-name{font-size:clamp(1.5rem,7vw,2.4rem);overflow-wrap:anywhere}.say-hotel .lost-kv{margin-top:12px}
+.say-kadd{display:flex;gap:8px;align-items:center}.say-kadd .say-in{margin:0;flex:1;min-width:0}
+.ck-row{display:flex;flex-direction:column;gap:6px;width:100%;padding:14px 0;border:0;border-top:1px solid var(--show-line);background:transparent;cursor:pointer;text-align:center;font-family:var(--f-text)}
+.ck-ar{font-family:var(--fa);direction:rtl;unicode-bidi:isolate;font-size:var(--t-ar-l);line-height:1.8;color:var(--show-ink);font-weight:var(--w-ui)}
+.ck-en{font-size:var(--t-3);color:var(--show-ink2);line-height:var(--lh-body)}.ck-row bdi{color:var(--show-acc)}
+#ckAdd{margin:14px auto 6px;display:flex}
+.kidc{padding:14px 0;border-top:1px solid var(--show-line)}
+.kidc-h{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.kidc-h b{font-size:var(--t-6);font-weight:var(--w-ui);color:var(--show-ink);overflow-wrap:anywhere}
+.kidc-g{display:flex;gap:6px}.kidc-g .say-b{min-height:44px;padding:8px 16px}
+.kidc-a{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.kidc-a .say-b{flex:1 1 auto}
+#kidPhAdd{margin-top:14px;width:100%}
+.kid-pic{display:flex;flex-direction:column;align-items:center;gap:4px;margin:16px auto 0}
+.kid-pic img{display:block;max-width:min(260px,70vw);max-height:300px;border-radius:var(--r);border:1px solid var(--show-line)}
+.kid-pic.none{position:relative;padding:18px 14px;border:2px dashed var(--show-acc);border-radius:var(--r);cursor:pointer;text-align:center;color:var(--show-ink)}
+.kid-pic.none .mk{width:32px;height:32px;color:var(--show-acc)}.kid-pic.none b{font-size:var(--t-4);color:var(--show-acc)}.kid-pic.none small{font-size:var(--t-2);color:var(--show-ink2);line-height:var(--lh-body)}
+.kid-pic.none:focus-within{outline:3px solid var(--show-acc);outline-offset:2px}
+.lost-me{width:100%;margin:6px 0 4px}
+.lost-me-n{display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 0;border-top:1px solid var(--show-line);text-align:center}
+.lost-me-ar{font-family:var(--fa);direction:rtl;unicode-bidi:isolate;font-size:var(--t-ar-l);line-height:1.7;color:var(--show-ink)}.lost-me-ar bdi{font-family:var(--f-text);font-size:.8em;font-weight:var(--w-ui)}
+.lost-me-n b{font-size:var(--t-6);font-weight:var(--w-ui);color:var(--show-ink);overflow-wrap:anywhere}
+.lost-med{margin:6px 0 10px;padding:12px 14px;border-radius:var(--r);border:1.5px solid var(--show-danger);background:var(--show-danger-soft);color:var(--show-ink);text-align:left}
+.lost-med b{display:flex;align-items:center;gap:8px;font-size:var(--t-3);font-weight:var(--w-ui);color:var(--show-danger);text-transform:uppercase;letter-spacing:.05em}.lost-med b .mk{width:1.2em;height:1.2em;color:var(--show-danger);margin:0}
+.lost-med p{margin:6px 0 0;font-size:var(--t-5);line-height:var(--lh-body);color:var(--show-ink);overflow-wrap:anywhere}.lost-med p span{font-size:var(--t-2);font-weight:var(--w-ui);color:var(--show-ink2);text-transform:uppercase;letter-spacing:.04em;margin-right:6px}
+.lost-kv b{overflow-wrap:anywhere;min-width:0}
+/* Settings › About me and medicines */
+.mecard{border-bottom:1px solid var(--line)}.mecard .acc-h{min-height:56px}.me-h{display:flex;flex-direction:column;gap:2px}.me-h b{font-size:var(--t-4);color:var(--ink)}.me-h small{font-size:var(--t-2);font-weight:var(--w-text);color:var(--ink3);line-height:var(--lh-meta)}
+.mecard .acc.open .acc-b,.mecard.open .acc-b{max-height:4000px}
+.me-p{font-size:var(--t-2);color:var(--ink3);line-height:var(--lh-body);margin:0 0 4px}.me-p .mk{width:1.1em;height:1.1em;vertical-align:-.18em;margin-right:.35em}
+.mecard .srch{margin-bottom:4px}.mecard .pnotes{margin-top:0;min-height:76px}
+.med-row{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:52px;padding:8px 0;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--ink);font-family:var(--f-text);text-align:left;cursor:pointer}
+.med-t{display:flex;flex-direction:column;gap:2px;min-width:0}.med-t b{font-size:var(--t-4);font-weight:var(--w-ui);overflow-wrap:anywhere}.med-t b span{font-weight:var(--w-text);color:var(--ink2)}.med-t small{font-size:var(--t-2);color:var(--ink3)}
+.med-row .say-go{color:var(--ink3)}#medAdd{margin:10px 0 4px}
+.med-times{display:grid;grid-template-columns:1fr 1fr;gap:8px}.med-times .srch{margin:0;min-width:0}
+.hcard2{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.hcard2 .chip-btn{flex:1 1 auto}
+/* #38 Say the count */
+.focus-bot{flex-wrap:wrap}.focus-say.on{background:var(--hs-go-bg);color:var(--hs-go-ink);border-color:transparent}
+.focus.tasbih .focus-say,.focus.rpause .focus-say{display:none!important}
+/* #40 my dua list in the reader */
+#duaFocus.mine .df-ar,#duaFocus.mine .df-tl,#duaFocus.mine .df-src{display:none}
+#duaFocus.mine .df-body{display:flex;flex-direction:column}
+#duaFocus.mine .df-tr{font-size:var(--t-7);line-height:1.35;font-weight:var(--w-ui);opacity:1;margin:auto 0;padding:18px 0;overflow-wrap:anywhere;color:var(--hs-ink)}
+.df-ask{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:64px;margin:10px 0 0;padding:8px 8px 8px 22px;border-radius:var(--r-pill);background:var(--hs-glass);color:var(--hs-ink);border:1px solid var(--hs-glass-edge);box-shadow:inset 0 1px 0 var(--hs-glass-hi);font-size:var(--t-5);font-weight:var(--w-ui);text-align:left}
+.df-ask .hs-go{display:grid;place-items:center;flex:none;width:48px;height:48px;border-radius:50%;background:var(--hs-go-bg);color:var(--hs-go-ink)}.df-ask .hs-go .mk{width:22px;height:22px}
+.df-ask.was{opacity:.8}.df-ask[hidden],.df-end[hidden]{display:none}
+.df-end{display:flex;flex-direction:column;align-items:center;gap:10px;margin:auto 0;text-align:center;color:var(--hs-ink)}.df-end b{font-size:var(--t-7);font-weight:var(--w-ui)}.df-end span{color:var(--hs-ink-2)}.df-end .btn{margin:8px 0 0}
+#duaFocus.mine.end .df-tr{display:none}
+.dua-read{margin:8px 0 0}.dua-read:empty{display:none}.df-read{display:inline-flex;align-items:center;gap:6px}
+.dua-mine{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 12px;margin:0 0 10px;padding:10px 14px;border-radius:var(--r);border:1px solid var(--line);background:var(--card);font-size:var(--t-3);color:var(--ink2)}.dua-mine>span{display:inline-flex;align-items:center;gap:6px}
+.sheet .df-read{margin:0 0 10px}
+/* #37 the prayer just missed */
+.pt-tick{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:6px 14px;margin:2px 0 2px 6px;border-radius:var(--r-pill);border:1px solid var(--gold-line);background:var(--card);color:var(--gold-ink);font-family:var(--f-text);font-size:var(--t-2);font-weight:var(--w-ui);cursor:pointer;vertical-align:middle;white-space:nowrap}
+span.pt-tick{min-height:0;padding:3px 10px;border-color:var(--line);color:var(--ink2);cursor:default}.pt-tick .mk{width:1.1em;height:1.1em;margin:0}
+.ptstrip .pt-next{display:flex;flex-wrap:wrap;align-items:center;gap:2px 4px}.hp-t #hNext .pt-tick{margin:6px 0 0;display:flex;width:max-content;max-width:100%}
+/* #34 today's plan on Home */
+.hplan{padding:12px 16px}.hpl-h{display:flex;align-items:center;justify-content:space-between;gap:10px}.hpl-h small{display:inline-flex;align-items:center;gap:6px;font-size:var(--t-1);font-weight:var(--w-ui);color:var(--gold-ink)}.hpl-h .xchip{margin:0;flex:none}
+.hpl-b{margin-top:6px;font-size:var(--t-3);line-height:var(--lh-body);color:var(--ink)}.hpl-c{display:inline-flex;align-items:center;gap:6px;font-weight:var(--w-ui);margin-right:8px}.hpl-t a,.hpl-t .plink{color:var(--brand-2)}
+/* #35 Prepare on the trip */
+.prep-before{margin:16px 0 0;border-top:1px solid var(--line)}
+.pb-h{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:60px;padding:12px 4px;border:0;background:transparent;color:var(--ink);font-family:var(--f-text);text-align:left;cursor:pointer}
+.pb-t{display:flex;flex-direction:column;gap:2px}.pb-t b{font-size:var(--t-5);font-weight:var(--w-title)}.pb-t small{font-size:var(--t-2);color:var(--ink3)}
+.pb-h .sec-chev{transition:transform .25s}.prep-before:not(.open) .pb-h .sec-chev{transform:rotate(-90deg)}.pb-b{padding-top:6px}
+@media (prefers-reduced-motion:reduce){.pb-h .sec-chev{transition:none}}
+[data-trip="1"]>#niyCard{margin-top:12px}
 </style>
 </head>
 <body>
@@ -2302,9 +2401,11 @@ html[data-text='lg'] #riteHeroT .rh-dot{display:none}html[data-text='lg'] #riteH
   <div class="card card-pad" id="hotelCard"><h3 data-mk="hotel">My hotel & emergency numbers</h3><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:10px">Fill this in before you land — then tap “Show to driver” whenever you need a ride back, or “I’m lost” if you get separated.</p>
     <div class="seg hseg" id="hotelSeg" role="tablist" aria-label="Which city’s hotel"><button role="tab" id="hsegMk" aria-selected="true" aria-controls="hotelCard" onclick="hotelTab('mk')" data-mk="kaaba">Makkah</button><button role="tab" id="hsegMd" aria-selected="false" aria-controls="hotelCard" onclick="hotelTab('md')" data-mk="dome">Madinah</button></div>
     <input class="srch" id="hName" placeholder="Hotel name (e.g. Swissôtel Makkah)" onchange="saveHotelInfo()" aria-label="Hotel name"><input class="srch" id="hAddr" placeholder="Address / landmark (e.g. Abraj Al Bait, King Abdulaziz Gate)" onchange="saveHotelInfo()" aria-label="Hotel address"><input class="srch" id="hPhone" type="tel" placeholder="Hotel phone" onchange="saveHotelInfo()" aria-label="Hotel phone">
+    <input class="srch" id="hAr" lang="ar" dir="auto" placeholder="Hotel name in Arabic, if you have it (ask reception to type it)" onchange="saveHotelInfo()" aria-label="Hotel name in Arabic, optional"><input class="srch" id="hGate" placeholder="Nearest Haram gate (ask at check-in)" onchange="saveHotelInfo()" aria-label="Nearest Haram gate, optional">
     <input class="srch" id="hMeet" placeholder="Family meeting point (e.g. King Fahd Gate 79, after each prayer)" onchange="saveHotelInfo()" aria-label="Family meeting point"><input class="srch" id="hLead" placeholder="Companion / group leader name & phone" onchange="saveHotelInfo()" aria-label="Companion or group leader name and phone">
     <div class="hstat"><span id="hotelLbl2">📍 Hotel not pinned</span><button class="chip-btn" onclick="setHotel()">📍 Set hotel location</button></div>
     <div class="hcard"><button class="main" onclick="showDriver()">🚕 Show to driver</button><button class="sos" onclick="showLost()">🆘 I’m lost — show this</button></div>
+    <div class="hcard2"><button class="chip-btn" id="ckBtn" onclick="showCheckin()" data-mk="hotel">Check-in card</button><button class="chip-btn" id="sayBtn" onclick="showSayList()" data-mk="speaker">Show a phrase</button></div>
     <p style="font-size:var(--t-2);color:var(--ink3);margin-top:8px" data-mk="bulb">Write the leader’s number on a wristband or a paper in each child’s pocket every morning.</p>
     <div class="campblk" id="campBlk" hidden><div class="subt" data-mk="tent">Mina camp &amp; group leader</div><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:10px">Every tent looks the same at 2 am. Save these before the 8th — from the 8th to the 13th they lead the driver card, the “I’m lost” card, Help and the Counters header.</p>
     <input class="srch" id="cN" placeholder="Camp / tent number (e.g. Camp 43, tent 12)" onchange="saveCamp()" aria-label="Camp or tent number"><input class="srch" id="cM" placeholder="Maktab number (if your company gives one)" onchange="saveCamp()" aria-label="Maktab number, if your company gives one">
@@ -2568,7 +2669,19 @@ html[data-text='lg'] #riteHeroT .rh-dot{display:none}html[data-text='lg'] #riteH
     <div class="setrow"><div><b>I am a…</b><small>Shows only the ihram, packing and halq/taqsir steps that apply to you</small></div><div class="segmini" id="profSeg"><button data-p="m" onclick="setProfile('m')">Brother</button><button data-p="w" onclick="setProfile('w')">Sister</button><button class="on" data-p="" onclick="setProfile('')">Both</button></div></div>
     <div class="setrow"><div><b>Travelling with children</b><small>Adds a children’s checklist to Plan › Prepare</small></div><button class="sw" id="kidsSw2" role="switch" aria-checked="false" aria-label="Travelling with children" onclick="togKids()"></button></div>
     <div class="setrow"><div><b>Dua audio</b><small>Arabic voice missing? Install it in your phone’s text-to-speech settings, then test here.</small></div><button class="say" onclick="testVoice(this)" aria-label="Test the Arabic voice" data-mk="speaker"><span>Test</span></button></div>
-    <div class="setrow"><div><b>Your name</b><small>Printed on your certificate</small></div><input class="numin" style="width:130px;text-align:left" id="nameIn" placeholder="Name" aria-label="Your name" onchange="ST.name=this.value.trim();saveST();"></div>
+    <div class="acc mecard" id="meCard"><div class="acc-h" role="button" tabindex="0" aria-expanded="false" onclick="accToggle(this)"><span class="me-h"><b data-mk="kid">About me</b><small id="meSum">Name, country, language, medical notes — for the “I’m lost” card</small></span> <span class="acc-c">▶</span></div><div class="acc-b">
+      <p class="me-p" data-mk="lock">Shown on the “I’m lost” card, Help and the printed pocket cards so a steward or paramedic knows who you are. Stored only on this phone; fill in only what you want shown.</p>
+      <label class="care-l" for="nameIn">Your name</label><input class="srch" id="nameIn" maxlength="60" placeholder="Name — also printed on your certificate" autocomplete="off" onchange="saveMe()">
+      <label class="care-l" for="meC">Country</label><input class="srch" id="meC" maxlength="60" placeholder="e.g. Pakistan" autocomplete="off" onchange="saveMe()">
+      <label class="care-l" for="meLang">Languages I speak</label><input class="srch" id="meLang" maxlength="60" placeholder="e.g. Urdu, English" autocomplete="off" onchange="saveMe()">
+      <label class="care-l" for="mePh">My phone</label><input class="srch" id="mePh" type="tel" inputmode="tel" maxlength="40" placeholder="The number I carry on this trip" autocomplete="off" onchange="saveMe()">
+      <label class="care-l" for="meHome">Family at home — name &amp; phone</label><input class="srch" id="meHome" maxlength="120" placeholder="e.g. Aisha · +44 7…" autocomplete="off" onchange="saveMe()">
+      <div class="subt" data-mk="cross" style="margin-top:14px">Medical — optional</div>
+      <label class="care-l" for="meMed">Medical notes</label><textarea class="pnotes" id="meMed" maxlength="300" placeholder="Conditions and allergies, in your own words" onchange="saveMe()"></textarea>
+      <label class="care-l" for="meBlood">Blood type</label><input class="srch" id="meBlood" maxlength="12" placeholder="Optional" autocomplete="off" onchange="saveMe()">
+      <div class="setrow"><div><b>Show the medical block on the “I’m lost” card</b><small>Anyone you show the card to can read it</small></div><button class="sw on" id="meMedSw" role="switch" aria-checked="true" aria-label="Show the medical block on the I’m lost card" onclick="togMeMed()"></button></div>
+      <div class="subt" data-mk="clock" style="margin-top:14px">Medicines</div><div id="medList"></div>
+    </div></div>
     <div class="setrow"><div><b data-mk="compass">Journey stage</b><small id="stageLbl">Re-declare where you are — nothing is reset</small></div><button class="chip-btn" onclick="showOnboard('stage')">Change</button></div>
     <div class="setrow"><div><b>Share the app</b><small>Send it to your group before you fly</small></div><div class="set-acts"><button class="chip-btn" onclick="shareApp()" data-mk="share">Share</button><button class="chip-btn" onclick="showQR()" data-mk="grid">QR code</button></div></div>
     <div class="setrow" id="installRow" style="display:none"><div><b>Install app</b><small>Add to your home screen — works offline</small></div><button class="chip-btn" onclick="installApp()">📲 Install</button></div>
@@ -2620,9 +2733,10 @@ html[data-text='lg'] #riteHeroT .rh-dot{display:none}html[data-text='lg'] #riteH
 <button data-v="more" onclick="goTab('more')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.6"/><circle cx="5" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg><span class="l">More</span></button>
 </nav>
 <canvas id="confetti" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:190;display:none"></canvas>
-<div class="focus" id="focus" role="dialog" aria-modal="true" aria-label="Big counter"><div class="focus-top"><span id="focusTitle" data-mk="kaaba">Tawaf</span><div style="display:flex;gap:8px"><button class="chip-btn" id="focusWudu" onclick="focusWudu()" aria-pressed="false" data-mk="drop">wudu</button><button class="chip-btn focus-prob" onclick="event.stopPropagation();troubleSheet()" aria-label="Something went wrong?" data-mk="alert">Problem?</button><button class="chip-btn" onclick="exitFocus()">✕ Exit</button></div></div><div class="focus-tap" role="button" tabindex="0" aria-label="Tap to count one round" onclick="focusTap()"><div class="srx" id="focusLive" aria-live="polite" aria-atomic="true"></div><div class="focus-n" id="focusN">0</div><div class="focus-of" id="focusOf">of 7 rounds</div><div class="focus-tip" id="focusTip"></div><div class="focus-hint" id="focusHint">tap anywhere to count</div><div class="focus-done" id="focusDone" hidden></div></div><div class="focus-dua" id="focusDua" role="button" tabindex="0" aria-label="Dua for this rite — tap for transliteration and meaning" onclick="event.stopPropagation();fdToggle()"></div><div class="focus-bot"><button class="btn undo" onclick="focusUndo()">− Undo</button><button class="chip-btn focus-my" onclick="myDuasSheet()" data-mk="hands">My duas</button></div></div>
+<div class="focus" id="focus" role="dialog" aria-modal="true" aria-label="Big counter"><div class="focus-top"><span id="focusTitle" data-mk="kaaba">Tawaf</span><div style="display:flex;gap:8px"><button class="chip-btn" id="focusWudu" onclick="focusWudu()" aria-pressed="false" data-mk="drop">wudu</button><button class="chip-btn focus-prob" onclick="event.stopPropagation();troubleSheet()" aria-label="Something went wrong?" data-mk="alert">Problem?</button><button class="chip-btn" onclick="exitFocus()">✕ Exit</button></div></div><div class="focus-tap" role="button" tabindex="0" aria-label="Tap to count one round" onclick="focusTap()"><div class="srx" id="focusLive" aria-live="polite" aria-atomic="true"></div><div class="focus-n" id="focusN">0</div><div class="focus-of" id="focusOf">of 7 rounds</div><div class="focus-tip" id="focusTip"></div><div class="focus-hint" id="focusHint">tap anywhere to count</div><div class="focus-done" id="focusDone" hidden></div></div><div class="focus-dua" id="focusDua" role="button" tabindex="0" aria-label="Dua for this rite — tap for transliteration and meaning" onclick="event.stopPropagation();fdToggle()"></div><div class="focus-bot"><button class="btn undo" onclick="focusUndo()">− Undo</button><button class="chip-btn focus-say" id="focusSay" aria-pressed="false" aria-label="Say the count aloud — for earphones" onclick="togSayCount()" data-mk="speaker">Say count</button><button class="chip-btn focus-my" onclick="myDuasSheet()" data-mk="hands">My duas</button></div></div>
 <div class="focus driver" id="driver" role="dialog" aria-modal="true" aria-label="Show to driver"><div class="focus-top"><span id="drvTop">🚕 Please take me to my hotel</span><button class="chip-btn" onclick="closeDriver()">✕ Close</button></div><div class="focus-tap lost-body" style="justify-content:flex-start;padding:10px 24px;cursor:default"><div class="drv-ar" id="drvLead">من فضلك خذني إلى هذا الفندق</div><div class="drv-arn" id="drvArName" lang="ar" dir="rtl" hidden></div><div class="drv-name" id="drvName">—</div><div class="drv-addr" id="drvAddr"></div><div class="drv-phone" id="drvPhone"></div><div class="drv-acts" id="drvActs"></div><div class="focus-hint" onclick="closeDriver()">tap here to close</div></div></div>
 <div class="focus driver" id="help" role="dialog" aria-modal="true" aria-label="Emergency help"><div class="focus-top"><span data-mk="sos">Help — emergency numbers</span><button class="chip-btn" onclick="closeHelp()">✕ Close</button></div><div class="lost-body" id="helpBody"></div></div>
+<div class="focus driver" id="say" role="dialog" aria-modal="true" aria-label="Show a phrase"><div class="focus-top"><span id="sayTop">Show a phrase</span><button class="chip-btn" onclick="closeSay()">✕ Close</button></div><div class="lost-body say-body" id="sayBody"></div></div>
 <div class="focus driver" id="lost" role="dialog" aria-modal="true" aria-label="I am lost"><div class="focus-top"><span>🆘 I’m lost — please help</span><button class="chip-btn" onclick="closeLost()">✕ Close</button></div><div class="lost-body" id="lostBody"></div></div>
 <div class="focus walk" id="walk" role="dialog" aria-modal="true" aria-label="Step-by-step walkthrough"><div class="focus-top"><span id="walkHd">Step 1</span><button class="chip-btn" onclick="closeWalk()">✕ Exit</button></div><div class="walk-body" id="walkBody"></div><div class="focus-bot walk-bot"><button class="chip-btn" id="walkBack" onclick="walkNav(-1)">← Back</button><button class="btn" id="walkNext" onclick="walkDone()">✓ Done → Next</button></div></div>
 <div id="printSheet" aria-hidden="true"></div>
@@ -2650,7 +2764,7 @@ html[data-text='lg'] #riteHeroT .rh-dot{display:none}html[data-text='lg'] #riteH
 </div></div>
 <div class="sheet-o" id="gSheet" onclick="if(event.target===this)closeSheet()"><div class="sheet" id="gSheetBody" role="dialog" aria-modal="true"></div></div>
 <div class="focus" id="duaFocus" role="dialog" aria-modal="true" aria-label="Dua reader"><div class="focus-top"><span id="dfTitle">Dua</span><button class="chip-btn" onclick="closeDua()">✕ Close</button></div>
-  <div class="df-body"><div class="df-ar" id="dfAr" lang="ar"></div><div class="df-tl" id="dfTl"></div><div class="df-tr" id="dfTr"></div><div class="df-src" id="dfSrc"></div><div class="df-hint">screen stays awake · swipe-free reading</div></div>
+  <div class="df-body"><div class="df-ar" id="dfAr" lang="ar"></div><div class="df-tl" id="dfTl"></div><div class="df-tr" id="dfTr"></div><div class="df-src" id="dfSrc"></div><div class="df-end" id="dfEndB" hidden></div><button class="btn df-ask" id="dfAsk" onclick="dfAsk()" hidden></button><div class="df-hint">screen stays awake · swipe-free reading</div></div>
   <div class="focus-bot" style="gap:10px"><button class="chip-btn" id="dfPrev" onclick="duaNav(-1)" aria-label="Previous dua">◀</button><button class="chip-btn" id="dfSay" data-ar="" onclick="speakBtn(this)" aria-label="Play recitation" data-mk="speaker">Listen</button><button class="chip-btn" id="dfNext" onclick="duaNav(1)" aria-label="Next dua">▶</button></div></div>
 <div class="focus driver" id="qrShow" onclick="this.classList.remove('on')" role="dialog" aria-label="QR code to install the app"><div class="focus-top"><span data-mk="grid">Scan to install</span><button class="chip-btn">✕ Close</button></div><div class="focus-tap" style="justify-content:flex-start;padding:6px 24px"><div class="qr-box"><svg viewBox="0 0 29 29" shape-rendering="crispEdges"><path fill="#111" d="M0 0h7v1h-7zM8 0h2v1h-2zM12 0h4v1h-4zM17 0h3v1h-3zM22 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h2v1h-2zM11 1h1v1h-1zM13 1h1v1h-1zM16 1h1v1h-1zM18 1h1v1h-1zM22 1h1v1h-1zM28 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM9 2h3v1h-3zM16 2h1v1h-1zM22 2h1v1h-1zM24 2h3v1h-3zM28 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM8 3h3v1h-3zM12 3h1v1h-1zM14 3h2v1h-2zM17 3h1v1h-1zM20 3h1v1h-1zM22 3h1v1h-1zM24 3h3v1h-3zM28 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM9 4h2v1h-2zM12 4h1v1h-1zM14 4h1v1h-1zM16 4h4v1h-4zM22 4h1v1h-1zM24 4h3v1h-3zM28 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM9 5h1v1h-1zM11 5h3v1h-3zM15 5h5v1h-5zM22 5h1v1h-1zM28 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h7v1h-7zM8 7h3v1h-3zM12 7h1v1h-1zM15 7h3v1h-3zM19 7h2v1h-2zM0 8h1v1h-1zM2 8h2v1h-2zM5 8h3v1h-3zM9 8h1v1h-1zM11 8h3v1h-3zM15 8h6v1h-6zM22 8h1v1h-1zM25 8h1v1h-1zM27 8h2v1h-2zM0 9h1v1h-1zM4 9h1v1h-1zM8 9h8v1h-8zM18 9h7v1h-7zM28 9h1v1h-1zM1 10h3v1h-3zM5 10h2v1h-2zM8 10h1v1h-1zM13 10h1v1h-1zM16 10h3v1h-3zM22 10h1v1h-1zM26 10h2v1h-2zM1 11h2v1h-2zM5 11h1v1h-1zM7 11h1v1h-1zM10 11h1v1h-1zM15 11h1v1h-1zM18 11h3v1h-3zM22 11h1v1h-1zM28 11h1v1h-1zM0 12h4v1h-4zM5 12h4v1h-4zM10 12h1v1h-1zM12 12h1v1h-1zM14 12h1v1h-1zM17 12h1v1h-1zM21 12h1v1h-1zM25 12h2v1h-2zM2 13h2v1h-2zM7 13h1v1h-1zM9 13h3v1h-3zM14 13h2v1h-2zM17 13h3v1h-3zM22 13h1v1h-1zM26 13h3v1h-3zM0 14h2v1h-2zM3 14h1v1h-1zM5 14h6v1h-6zM13 14h1v1h-1zM16 14h2v1h-2zM19 14h1v1h-1zM21 14h1v1h-1zM24 14h1v1h-1zM26 14h3v1h-3zM1 15h2v1h-2zM4 15h1v1h-1zM7 15h2v1h-2zM11 15h1v1h-1zM14 15h2v1h-2zM18 15h3v1h-3zM24 15h1v1h-1zM27 15h1v1h-1zM0 16h1v1h-1zM3 16h1v1h-1zM5 16h2v1h-2zM8 16h3v1h-3zM12 16h1v1h-1zM14 16h1v1h-1zM16 16h1v1h-1zM18 16h1v1h-1zM21 16h1v1h-1zM24 16h2v1h-2zM27 16h1v1h-1zM2 17h1v1h-1zM4 17h1v1h-1zM7 17h1v1h-1zM10 17h2v1h-2zM14 17h2v1h-2zM20 17h2v1h-2zM23 17h1v1h-1zM25 17h3v1h-3zM0 18h1v1h-1zM2 18h2v1h-2zM5 18h3v1h-3zM11 18h5v1h-5zM17 18h2v1h-2zM20 18h2v1h-2zM23 18h2v1h-2zM26 18h1v1h-1zM4 19h1v1h-1zM8 19h2v1h-2zM11 19h4v1h-4zM17 19h2v1h-2zM20 19h3v1h-3zM24 19h1v1h-1zM26 19h1v1h-1zM1 20h1v1h-1zM5 20h2v1h-2zM8 20h4v1h-4zM13 20h2v1h-2zM17 20h2v1h-2zM20 20h7v1h-7zM8 21h1v1h-1zM11 21h2v1h-2zM16 21h1v1h-1zM18 21h1v1h-1zM20 21h1v1h-1zM24 21h5v1h-5zM0 22h7v1h-7zM8 22h1v1h-1zM10 22h1v1h-1zM14 22h1v1h-1zM16 22h5v1h-5zM22 22h1v1h-1zM24 22h2v1h-2zM27 22h1v1h-1zM0 23h1v1h-1zM6 23h1v1h-1zM8 23h1v1h-1zM13 23h2v1h-2zM16 23h1v1h-1zM18 23h1v1h-1zM20 23h1v1h-1zM24 23h2v1h-2zM0 24h1v1h-1zM2 24h3v1h-3zM6 24h1v1h-1zM9 24h2v1h-2zM12 24h1v1h-1zM15 24h1v1h-1zM17 24h1v1h-1zM20 24h5v1h-5zM26 24h2v1h-2zM0 25h1v1h-1zM2 25h3v1h-3zM6 25h1v1h-1zM8 25h2v1h-2zM12 25h2v1h-2zM15 25h2v1h-2zM21 25h1v1h-1zM23 25h3v1h-3zM28 25h1v1h-1zM0 26h1v1h-1zM2 26h3v1h-3zM6 26h1v1h-1zM8 26h1v1h-1zM10 26h1v1h-1zM13 26h1v1h-1zM16 26h1v1h-1zM18 26h2v1h-2zM21 26h1v1h-1zM23 26h1v1h-1zM26 26h1v1h-1zM28 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM9 27h1v1h-1zM12 27h1v1h-1zM14 27h1v1h-1zM16 27h1v1h-1zM18 27h3v1h-3zM23 27h3v1h-3zM27 27h1v1h-1zM0 28h7v1h-7zM8 28h1v1h-1zM10 28h1v1h-1zM12 28h1v1h-1zM14 28h2v1h-2zM19 28h2v1h-2zM25 28h1v1h-1zM27 28h1v1h-1z"/></svg></div><div class="qr-url"><span class="ty-nw">umrah-strivers.</span><wbr>vercel.app</div><div class="qr-steps"><b>Scan</b>, <b>open</b>, then <b>Add to Home Screen</b><br>Free · offline · no account</div><div class="focus-hint">tap anywhere to close</div></div></div>
 <div class="toasts" id="toastC"></div>
