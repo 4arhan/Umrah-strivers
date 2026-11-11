@@ -242,7 +242,7 @@ The service-worker cache is named after `APP_VERSION`. For every release **bump 
 
 ```
 npm install            # playwright-core only
-npm test               # end-to-end smoke suite (~245 checks) in headless Chromium
+npm test               # end-to-end smoke suite (400+ checks) in headless Chromium
 ```
 Set `CHROME=/path/to/chromium` if Playwright cannot find a browser. Content lives in `data.js` (places, quiz, knowledge, duas); logic in `app.js`.
 

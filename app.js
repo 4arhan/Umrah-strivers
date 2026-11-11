@@ -1,6 +1,6 @@
 /* Miqah — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='6.9.2';
+var APP_VERSION='6.9.3';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* prefers-reduced-motion: JS motion (confetti, the % count-up, smooth scrolling) honours it like the CSS does */
 var RM=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
@@ -1272,7 +1272,7 @@ function goHajjCounter(m,k){if(tmodesDue().indexOf(m)>-1){setTmode(m,true);goCou
   else toast(tmWhyNot(m));}
 /* U-23: the one moment the Hajj type matters and the pilgrim can answer — before the hair is cut */
 function halqGate(id){var h='<div class="sheet-h">🤍</div><h3>What did you say at the miqat?</h3><p>Your words at the miqat decide whether you cut now or stay in ihram until the 10th. Your group leader knows which one your package follows.</p>';
-  ['tamattu','qiran','ifrad'].forEach(function(t){var T=HAJJ_TYPES[t];h+='<button class="opt big" onclick="halqGateGo(\''+t+'\',\''+id+'\')"><span lang="ar" style="font-size:var(--t-5)">'+T.ar.split(' ').slice(-1)[0]+'</span><div><b>'+T.talb+'</b><small>'+T.t+' · '+T.s+(t==='tamattu'?' — cut now':' — stay in ihram')+'</small></div></button>';});
+  ['tamattu','qiran','ifrad'].forEach(function(t){var T=HAJJ_TYPES[t];h+='<button class="opt big" onclick="halqGateGo(\''+t+'\',\''+id+'\')"><span lang="ar" dir="rtl" style="font-size:var(--t-5)">'+T.ar.split(' ').slice(2).join(' ')+'</span><div><b>'+T.talb+'</b><small>'+T.t+' · '+T.s+(t==='tamattu'?' — cut now':' — stay in ihram')+'</small></div></button>';});
   h+='<button class="btn ghost" onclick="closeSheet()">Not sure — ask my group leader first</button>';openSheet(h);}
 function halqGateGo(t,id){closeSheet();ST.hajjTypeConfirmed=true;
   if(t==='tamattu'){ST.hajjType='tamattu';saveST();applyJourney();if(!riteChk[id])togRite(id);else updRites();return;}
