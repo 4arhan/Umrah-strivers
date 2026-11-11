@@ -1,6 +1,6 @@
 /* Miqah — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='6.9.1';
+var APP_VERSION='6.9.2';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* prefers-reduced-motion: JS motion (confetti, the % count-up, smooth scrolling) honours it like the CSS does */
 var RM=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
@@ -1205,7 +1205,7 @@ function rulesRowHTML(where){var R=rulesToday();if(!R)return '';var D=hajjDates(
     +R.L.map(function(r){return '<button class="rul-c" onclick="rulingSheet(\''+r.id+'\')">'+esc(RUL_SHORT[r.id]||r.t)+'</button>';}).join('')+'</div></div>';}
 function renderRulesRow(){var a=document.getElementById('riteRules');if(!a)return;var h=rulesRowHTML('steps');a.hidden=!h;if(a.innerHTML!==h)a.innerHTML=h;}
 function rulingSheet(id){var R=rulesToday(),r=HAJJ_RULINGS.filter(function(x){return x.id===id;})[0];if(!r)return;var others=R?R.L.filter(function(x){return x.id!==id;}):[];
-  openSheet('<div class="sheet-h">'+mk('book')+'</div><h3>'+esc(r.t)+'</h3>'+(r.ar?'<p class="ar" lang="ar" style="font-size:var(--t-ar);text-align:center;line-height:1.9">'+r.ar+'</p><p class="tl" style="text-align:center">'+r.tl+'</p>':'')+'<div class="rul-b" id="rulB">'+r.b+'</div>'
+  openSheet('<div class="sheet-h">'+mk('book')+'</div><h3>'+esc(r.t)+'</h3>'+(r.ar?'<p class="ar" lang="ar" style="font-size:var(--t-ar);text-align:center;line-height:1.9">'+r.ar+'</p><p class="tl" style="text-align:center">'+r.tl+'</p>':'')+'<div class="rul-b" id="rulB">'+(r.id==='rule-d9-no-fast'&&curHajjYear()!==1448?r.b.replace('In mid-May heat, eat','Eat'):r.b)+'</div>'
     +'<p class="hajj-rule">'+mk('alert','mkt')+'<b>Hajj rulings:</b> confirm with your group leader or a scholar.</p>'
     +(others.length?'<div class="subt" style="margin-top:12px">More rulings today</div><div class="rul-l">'+others.map(function(x){return '<button class="rul-c" onclick="rulingSheet(\''+x.id+'\')">'+esc(RUL_SHORT[x.id]||x.t)+'</button>';}).join('')+'</div>':'')
     +'<button class="btn ghost" onclick="closeSheet()">Close</button>');}
@@ -1352,7 +1352,7 @@ var ramiOrderOK=false,ramiEarlyOK={};
 function ramiAny(d){var r=(ST.rami||{})[d]||{};return ramiJams(d).some(function(j){return (r[j]||0)>0;});}
 function ramiWinHTML(d){if(d!==hajjDay())return '';var S=siteTimes('Mina'),m=nowMin(),t;
   /* (G1 review) after sunset the window has not simply closed: the corrected h10rami / h11rami wording on stoning at night, and the step's "Missed it?" */
-  if(m>=S.sun&&!ramiDone(d))return '<div class="rami-win night" id="ramiWin">'+mk('moon','mkt')+'<span>Sunset ≈ '+minHM(S.sun)+' has passed — '+(d===13?'after sunset of the 13th the days of stoning are over and a dam is owed for what was left':'most scholars allow those who could not make it to stone at night (the Hanbali school has it done the next day after midday instead)')+' · ask your group leader <small>· computed ±2 min</small><button class="lnk" onclick="openStepMiss(\'h'+d+'rami\')">Read “Missed it?”</button></span></div>';
+  if(m>=S.sun&&!ramiDone(d))return '<div class="rami-win night" id="ramiWin">'+mk('moon','mkt')+'<span>Sunset ≈ '+minHM(S.sun)+' has passed — '+(d===13?'after sunset of the 13th the days of stoning are over and a dam is owed for a day’s stoning left undone (for a pebble or two the schools differ)':'most scholars allow those who could not make it to stone at night (the Hanbali school has it done the next day after midday instead)')+' · ask your group leader <small>· computed ±2 min</small><button class="lnk" onclick="openStepMiss(\'h'+d+'rami\')">Read “Missed it?”</button></span></div>';
   if(d===10)t=m<S.rise?'From sunrise ≈ '+minHM(S.rise)+' · in '+hjLiveHTML(S.rise):'From sunrise ≈ '+minHM(S.rise)+' · until sunset ≈ '+minHM(S.sun);
   else if(m<S.dhuhr)t='Opens after midday · Dhuhr ≈ '+minHM(S.dhuhr)+' in Mina · in '+hjLiveHTML(S.dhuhr);
   else if(d===12&&!ST.stay13&&ramiDone(12)&&m<S.sun)t='Leaving today? Out of Mina before sunset ≈ '+minHM(S.sun)+' · '+hjLiveHTML(S.sun);
@@ -3838,6 +3838,7 @@ function ampm(hm){var m=ptMin(hm),h=Math.floor(m/60),mm=m%60;return ((h+11)%12+1
 function heatTxt(x){var t=x.x,y=curHajjYear();
   if(x.id==='heat-why-1448'){var d8=hajjD8(1448);if(d8)t=t.replace('Friday 14 May',wdm(d8)).replace('Saturday 15 May',wdm(addDays(d8,1)));}
   if(x.id==='heat-jamarat-slot'){var b=hajjD8(y);if(b){var d=new Date(addDays(b,3)+'T00:00:00'),P=computePT('Mina',d.getFullYear(),d.getMonth(),d.getDate());t=t.replace('12:17 pm',ampm(P.t.Dhuhr)).replace('6:52 pm',ampm(P.t.Maghrib));}if(y!==1448)t=t.replace(' in mid-May 2027','');}
+  if(x.id==='heat-hours'&&y!==1448)t=t.replace('the Ministry’s advice for 2027','the Ministry’s advice for your Hajj year');
   return t;}
 function heatHomeHTML(id){var hd=heatOn();if(!hd)return '';var a=pkOf(HEAT_PACK,'heat-hours'),b=pkOf(HEAT_PACK,'heat-hydration');
   return '<div class="hero hero-o heat" id="'+(id||'heatHome')+'"><div class="hero-t"><div class="k">'+mk('sun','mkt')+'<span>Heat plan · '+hd+' Dhul Hijjah</span></div><span class="hs-u">'+esc(a.t)+'. '+esc(b.t)+'.</span></div>'
@@ -4013,7 +4014,7 @@ function homePTSheet(){var H=homeOK()?ST.home:{},m=homeMethod();homeDraft={lat:H
     +'<button class="btn ghost tall" id="hptGeo" onclick="homePTGeo()">'+mk('pin','mkt')+'Use my location once</button><p class="ob-err" id="hptErr" role="alert" hidden></p>'
     +'<label class="care-l" for="hptName">Name of the place</label><input class="srch" id="hptName" maxlength="30" autocomplete="off" placeholder="e.g. Leicester" value="'+esc(H.n||'')+'">'
     +'<div class="hpt-ll"><div><label class="care-l" for="hptLat">Latitude</label><input class="srch" id="hptLat" inputmode="decimal" autocomplete="off" placeholder="52.63" value="'+(typeof H.lat==='number'?H.lat:'')+'"></div><div><label class="care-l" for="hptLng">Longitude</label><input class="srch" id="hptLng" inputmode="decimal" autocomplete="off" placeholder="-1.13" value="'+(typeof H.lng==='number'?H.lng:'')+'"></div></div>'
-    +'<label class="care-l" for="hptM">Calculation method</label><select class="srch" id="hptM">'+Object.keys(PT_METHODS).map(function(k){var M=PT_METHODS[k];return '<option value="'+k+'"'+(k===m?' selected':'')+'>'+M.n+' — Fajr '+M.f+'°, Isha '+(M.i?M.i+'°':'90 min after Maghrib')+'</option>';}).join('')+'</select>'
+    +'<label class="care-l" for="hptM">Calculation method</label><select class="srch" id="hptM">'+Object.keys(PT_METHODS).map(function(k){var M=PT_METHODS[k];return '<option value="'+k+'"'+(k===m?' selected':'')+'>'+M.n+' — Fajr '+M.f+'°, Isha '+(M.i?M.i+'°':'90 min after Maghrib (120 in Ramadan)')+'</option>';}).join('')+'</select>'
     +'<div class="setrow"><div><b>Asr</b><small>Shadow one length (standard) or two (Hanafi)</small></div><div class="segmini" id="hptAsr"><button data-a="1" aria-pressed="'+(H.asr!==2)+'"'+(H.asr!==2?' class="on"':'')+' onclick="homePTAsr(1)">Standard</button><button data-a="2" aria-pressed="'+(H.asr===2)+'"'+(H.asr===2?' class="on"':'')+' onclick="homePTAsr(2)">Hanafi</button></div></div>'
     +'<button class="btn tall" onclick="homePTSave()">Save</button>'+(homeOK()?'<button class="btn ghost tall" onclick="homePTClear()">Remove the home city</button>':'')+'<button class="btn ghost tall" onclick="closeSheet()">Cancel</button>');homeDraft.asr=H.asr===2?2:1;}
 function homePTAsr(v){if(homeDraft)homeDraft.asr=v;document.querySelectorAll('#hptAsr button').forEach(function(b){var on=+b.getAttribute('data-a')===v;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on?'true':'false');});vib(6);}
