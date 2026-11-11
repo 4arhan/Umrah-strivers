@@ -101,8 +101,9 @@ footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);font-si
   <p>Every one of these is optional. Declining any of them leaves the rest of the app fully working.</p>
 
   <h2>Internet connections</h2>
-  <p>The app is built to work with no connection at all. When you do have a connection it may contact two services. Neither receives anything you have entered, but like any website they see your device's IP address and browser type:</p>
+  <p>The app is built to work with no connection at all. When you do have a connection it may contact three services. None receives anything you have entered, but like any website they see your device's IP address and browser type:</p>
   <ul>
+    <li><b>Vercel</b>, the web host the app itself is downloaded from, when you first open it and each time it checks for a newer version.</li>
     <li><b>Al Adhan</b>, to fetch prayer times for Makkah and Madinah. Only the city and month are requested. If it is unreachable, the app calculates the times itself on your device.</li>
     <li><b>Google Fonts</b>, to load the typefaces used in the design.</li>
   </ul>

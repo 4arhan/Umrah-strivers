@@ -1,6 +1,6 @@
 /* Miqah — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='6.9.3';
+var APP_VERSION='6.9.4';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* prefers-reduced-motion: JS motion (confetti, the % count-up, smooth scrolling) honours it like the CSS does */
 var RM=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
@@ -2785,8 +2785,8 @@ function renderWater(){
   var c=waterD[dayKey()]||0;l.textContent=c+' cup'+(c===1?'':'s')+' today · aim for 8, 10–12 in summer heat';if(b)b.style.width=Math.min(100,c/8*100)+'%';
 }
 function cupsTotal(){var n=0;Object.keys(waterD).forEach(function(k){n+=waterD[k]||0;});return n;}
-/* D-13/D-17: one shared estimate — 5.6 km per recorded Umrah (7 × 0.4 km tawaf + 7 × 394 m sa’i), the live counters, and every logged nafl tawaf */
-function kmEst(){var km=ST.umrahs*5.6+ST.tawaf*0.4+ST.sai*0.394;for(var i=1;i<=ST.tripLen;i++){var d=dailyChk['d'+i];if(d)km+=(d.ntawafN||(d.ntawaf?1:0))*2.8;}return Math.round(km*10)/10;}
+/* D-13/D-17: one shared estimate — 4.2 km per recorded Umrah (7 × 0.2 km ground-floor tawaf + 7 × 394 m sa’i; upper floors are longer), the live counters, and every logged nafl tawaf */
+function kmEst(){var km=ST.umrahs*4.2+ST.tawaf*0.2+ST.sai*0.394;for(var i=1;i<=ST.tripLen;i++){var d=dailyChk['d'+i];if(d)km+=(d.ntawafN||(d.ntawaf?1:0))*1.4;}return Math.round(km*10)/10;}
 
 /* ════════════════════════ ITINERARY ════════════════════════ */
 function itinST(){var it=ST.itin=ST.itin||{};if(it.mad===undefined)it.mad=3;if(!it.first)it.first='makkah';if(!it.custom)it.custom={};return it;}
