@@ -1,6 +1,6 @@
 /* Miqah — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='6.9.4';
+var APP_VERSION='6.9.5';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* prefers-reduced-motion: JS motion (confetti, the % count-up, smooth scrolling) honours it like the CSS does */
 var RM=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};

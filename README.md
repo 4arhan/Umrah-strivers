@@ -82,7 +82,7 @@ Every push to the production branch auto-deploys. A `vercel.json` is included wi
 
 ## Running locally
 
-It's one file — just open `index.html` in a browser. Installable to the home screen as a PWA-style app.
+No build step: open `index.html` in a browser (it loads `data.js` and `app.js` from the same folder), or run `npm start`. The service worker registers only over https, so offline caching does not run locally — check offline use and the installed app on the deployed site.
 
 ## v6.4 — Hajj learning
 
