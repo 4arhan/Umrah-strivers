@@ -1,7 +1,7 @@
 /* Miqah — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='6.10.1';
-var APP_URL='https://umrah-strivers.vercel.app/';
+var APP_VERSION='6.10.2';
+var APP_URL='https://miqah.app/';
 /* prefers-reduced-motion: JS motion (confetti, the % count-up, smooth scrolling) honours it like the CSS does */
 var RM=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
 function smooth(){return RM.matches?'auto':'smooth';}
@@ -1494,7 +1494,7 @@ function makeHajjKeepsake(i){var hist=[];try{hist=JSON.parse(localStorage.getIte
     g.rows.forEach(function(r){var t=r.t.replace(/ \(delegated\)| · and for .*/g,''),v=r.waived?'waived':hlogVal(r),fs=28,w=function(){x.font=fs+'px '+KB;var a=x.measureText(t).width;x.font='600 '+fs+'px '+KB;return a+x.measureText(v).width+18;};
       while(fs>18&&w()>x1-x0)fs--;x.textAlign='left';x.font=fs+'px '+KB;x.fillStyle=K.ihram2;x.fillText(t,x0,y);x.textAlign='right';x.font='600 '+fs+'px '+KB;x.fillStyle=K.ihram;x.fillText(v,x1,y);y+=48;});y+=14;});});
   x.textAlign='center';x.font='500 28px '+KB;x.fillStyle=K.gold3;jrDraw(x,JK,1150);x.fillText('“…he will return as if he were born anew.” — Bukhari 1521',540,1185+JH);
-  kFoot(x,'Miqah · umrah-strivers.vercel.app',540,1235+JH);
+  kFoot(x,'Miqah · miqah.app',540,1235+JH);
   exportImage(c,'my-hajj-'+(u.y||'')+'.png','My Hajj keepsake');}
 
 /* ════════════════════════ DAILY ════════════════════════ */
@@ -2426,7 +2426,7 @@ function makeKeepsake(no){
     x.fillText(r[1]?fmtTime(r[1])+(r[2]?' – '+fmtTime(r[2])+'  ('+fmtDur(r[2]-r[1])+')':''):'—',900,y);x.textAlign='left';y+=70;});
   if(lg.ihram&&lg.halq){x.fillStyle=K.gold2;x.font='600 34px '+KB;x.textAlign='center';x.fillText('Ihram to halq: '+fmtDur(lg.halq-lg.ihram),540,y+40);}
   x.textAlign='center';x.font='500 30px '+KB;x.fillStyle=K.gold3;jrDraw(x,JK,1085);x.fillText('“Umrah to Umrah is an expiation for what is between them.”',540,1140+JH);
-  kFoot(x,'Bukhari 1773 · umrah-strivers.vercel.app',540,1190+JH);
+  kFoot(x,'Bukhari 1773 · miqah.app',540,1190+JH);
   exportImage(c,'my-umrah-'+u.n+'.png','My Umrah keepsake');
 }
 /* ════════════════════════ AUBERGINE CANVAS (keepsakes, progress card, certificate) ════════════════════════ */
@@ -2924,7 +2924,7 @@ function shareCard(){
   x.textAlign='left';
   tiles.forEach(function(t,i){var lx=X0+(i%3)*CW+(i%3?36:0),ty=Y0+Math.floor(i/3)*RH;x.fillStyle=K.ihram3;x.font='500 26px '+KB;x.fillText(t[1],lx,ty+66);x.fillStyle=K.ihram;x.font='300 84px '+KB;try{x.letterSpacing='-3px';}catch(e){}x.fillText(String(t[0]),lx-3,ty+160);try{x.letterSpacing='0px';}catch(e){}});
   x.textAlign='center';
-  kFoot(x,'Make dua for me · umrah-strivers.vercel.app',540,1010);
+  kFoot(x,'Make dua for me · miqah.app',540,1010);
   exportImage(c,'umrah-progress.png','My progress card');
 }
 
@@ -2962,7 +2962,7 @@ function vView(id){vAll().then(function(all){var d=all.filter(function(x){return
 function vRemove(id){if(!confirm('Delete this document from the vault?'))return;vDel(id).then(renderVault);}
 function renderVault(){
   var a=document.getElementById('vaultArea');if(!a)return;
-  if(!('crypto' in window)||!crypto.subtle){a.innerHTML='<p style="font-size:var(--t-3);color:var(--ink3)">Secure storage needs HTTPS — open the app from umrah-strivers.vercel.app.</p>';return;}
+  if(!('crypto' in window)||!crypto.subtle){a.innerHTML='<p style="font-size:var(--t-3);color:var(--ink3)">Secure storage needs HTTPS — open the app from miqah.app.</p>';return;}
   var has=!!localStorage.getItem('us-vault-chk');
   if(!vKey){a.innerHTML='<div style="display:flex;gap:8px"><input class="srch" id="vPin" type="password" inputmode="numeric" placeholder="'+(has?'Enter your PIN':'Choose a PIN (4+ digits)')+'" style="margin:0" onkeydown="if(event.key===\'Enter\')vUnlock()"><button class="chip-btn" onclick="vUnlock()">'+(has?'🔓 Unlock':'🔐 Create')+'</button></div><p style="font-size:var(--t-2);color:var(--ink3);margin-top:8px">Forgotten PIN = lost documents. There is no reset — that is the point.</p>';return;}
   vAll().then(function(all){
@@ -3380,7 +3380,7 @@ function makeCertGo(){
   kFoot(x,'— Muslim 2699',540,1050);
   x.font='26px '+KB;x.fillStyle=K.ihram2;
   x.fillText(new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}),540,1170);
-  x.fillText('umrah-strivers.vercel.app',540,1215);
+  x.fillText('miqah.app',540,1215);
   exportImage(c,(HJc?'hajj':'umrah')+'-knowledge-certificate.png','Certificate of Knowledge');
 }
 
@@ -3674,7 +3674,7 @@ function walkDone(){var H=walkHajj(),L=walkList(),x=L[walkI];if(x){if(H){if(!haj
 function closeWalk(quiet){var H=walkHajj(),L=walkList(),x=L[walkI];walkOpen=false;document.getElementById('walk').classList.remove('on');document.body.style.overflow='';
   if(!quiet){if(x)openRiteStep(x.st.id);else if(H)jumpTo('hajjDone',true);else{setSecOpen('ph4',true);jumpTo('riteDone',true);}}}
 /* U-14: a printable briefing — rites with duas, the packing list and the emergency numbers */
-function buildPrint(){var e=document.getElementById('printSheet');if(!e)return;var H=hiNorm(ST.hotelInfo),hi={l:H.l},n=0,h=printCardsHTML()+'<h1 class="pr-full">Full rites &amp; duas</h1><p class="pr-sub">Miqah · printed '+new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})+(ST.name?' for '+esc(ST.name):'')+' · umrah-strivers.vercel.app</p>';
+function buildPrint(){var e=document.getElementById('printSheet');if(!e)return;var H=hiNorm(ST.hotelInfo),hi={l:H.l},n=0,h=printCardsHTML()+'<h1 class="pr-full">Full rites &amp; duas</h1><p class="pr-sub">Miqah · printed '+new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})+(ST.name?' for '+esc(ST.name):'')+' · miqah.app</p>';
   RITES.forEach(function(ph){h+='<h2>'+ph.title+'</h2><ol start="'+(n+1)+'">';ph.steps.forEach(function(st){if(!riteVis(st))return;n++;var v=riteStepView(st);h+='<li><b>'+v.b+'</b> — '+v.p+stDuas(v).map(function(d){return '<div class="pr-dua"><span class="ar" lang="ar" dir="rtl">'+d.ar+'</span><i>'+d.tl+'</i><br>'+d.tr+'</div>';}).join('')+'</li>';});h+='</ol>';});
   if(journey()==='hajj')hajjSecs().forEach(function(sc){h+='<h2>'+sc.title+'</h2><ol>';sc.steps.forEach(function(st){if(!forMe(st))return;var v=riteStepView(st);h+='<li><b>'+v.b+'</b> ('+v.req+') — '+v.p+stDuas(v).map(function(d){return '<div class="pr-dua"><span class="ar" lang="ar" dir="rtl">'+d.ar+'</span><i>'+d.tl+'</i><br>'+d.tr+'</div>';}).join('')+'</li>';});h+='</ol>';});
   var pack=PLAN.filter(function(sc){return sc.id==='pack';})[0];if(pack)h+='<h2>Packing</h2><ul class="pr-pack">'+pack.items.filter(forMe).map(function(it){return '<li>'+it.label+'</li>';}).join('')+'</ul>';
@@ -4511,7 +4511,7 @@ function showUpdate(w){swWaiting=w;var c=document.getElementById('updChip');if(c
 function dismissUpdate(){var c=document.getElementById('updChip');if(c)c.hidden=true;try{sessionStorage.setItem('us-upd-dismiss','1');}catch(e){}}
 function applyUpdate(){var c=document.getElementById('updChip');if(c)c.hidden=true;if(swWaiting){swReloading=true;swWaiting.postMessage({type:'SKIP_WAITING'});setTimeout(function(){location.reload();},1500);}else location.reload();}
 function checkUpdates(){
-  if(!swReg){toast(location.protocol==='https:'?'Checking… open the app again in a moment':'Updates arrive automatically when opened from umrah-strivers.vercel.app');return;}
+  if(!swReg){toast(location.protocol==='https:'?'Checking… open the app again in a moment':'Updates arrive automatically when opened from miqah.app');return;}
   toast('Checking for updates…');
   swReg.update().then(function(){setTimeout(function(){if(swReg.waiting){showUpdate(swReg.waiting);toast('⬆️ Update ready — tap the chip to reload',true);}else if(swReg.installing)toast('⬆️ Update found — installing…');else toast('✅ You have the latest version (v'+APP_VERSION+')');},800);}).catch(function(){toast('Could not check — are you online?');});
 }

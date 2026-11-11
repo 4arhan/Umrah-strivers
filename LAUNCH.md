@@ -1,6 +1,6 @@
 # Launching Miqah
 
-Store title: **Miqah: Hajj & Umrah**. Android package id: `com.miqah.app` (set in `twa-manifest.json` and `well-known/assetlinks.json`). The web address `umrah-strivers.vercel.app` is the historical name and stays as is.
+Store title: **Miqah: Hajj & Umrah**. Android package id: `com.miqah.app` (set in `twa-manifest.json` and `well-known/assetlinks.json`). The web address is `miqah.app` (DNS at Namecheap, pointed at Vercel). The earlier `umrah-strivers.vercel.app` address still works; do not redirect it, because data saved on a phone belongs to the address it was saved under.
 
 Everything in this repository is ready. What remains needs your accounts and your signing key, which only you should hold.
 
@@ -16,7 +16,7 @@ Everything in this repository is ready. What remains needs your accounts and you
 
 Every push to the production branch auto-deploys to Vercel.
 
-**If you attach a custom domain**, update every place the address is written (search the repository for `vercel.app`: the label under the QR code breaks the address with `<wbr>`, so a search for the full address misses it):
+**If the address ever changes again**, update every place it is written (search the repository for `miqah.app`):
 - `APP_URL` in `app.js`, plus the address drawn on the keepsake, progress-card and certificate images, printed in the print sheet’s subtitle, and shown in the secure-storage and Check-for-updates messages in `app.js`
 - `og:url` and `og:image` in `index.html` and `install.html`, and the install address in the desktop steps of `install.html`
 - `host`, `iconUrl`, `maskableIconUrl`, `webManifestUrl`, `fullScopeUrl` and each shortcut’s `chosenIconUrl` in `twa-manifest.json`
@@ -39,7 +39,7 @@ One payment of **$25**. It never renews.
 2. **Generate the Android package.** On a machine with Node and a JDK:
    ```bash
    npm i -g @bubblewrap/cli
-   bubblewrap init --manifest https://umrah-strivers.vercel.app/manifest.json
+   bubblewrap init --manifest https://miqah.app/manifest.json
    # when asked, accept the values already prepared in twa-manifest.json
    bubblewrap build
    ```
@@ -47,7 +47,7 @@ One payment of **$25**. It never renews.
 
    > **Keep the keystore safe.** Bubblewrap creates `android.keystore`. Back it up somewhere permanent and never commit it. Losing it means you can never update the app again. It is already covered by `.gitignore`.
 
-3. **Fix the asset links file.** After your first upload, Play Console shows the app signing certificate under *Release → Setup → App signing*. Copy the **SHA-256 certificate fingerprint** and paste it into `well-known/assetlinks.json`, replacing `REPLACE_WITH_SHA256_FINGERPRINT_FROM_PLAY_CONSOLE`. Push, and confirm it is live at `https://umrah-strivers.vercel.app/.well-known/assetlinks.json`.
+3. **Fix the asset links file.** After your first upload, Play Console shows the app signing certificate under *Release → Setup → App signing*. Copy the **SHA-256 certificate fingerprint** and paste it into `well-known/assetlinks.json`, replacing `REPLACE_WITH_SHA256_FINGERPRINT_FROM_PLAY_CONSOLE`. Push, and confirm it is live at `https://miqah.app/.well-known/assetlinks.json`.
 
    Until this matches, the app opens with a browser address bar visible instead of full screen.
 
@@ -60,7 +60,7 @@ One payment of **$25**. It never renews.
    | Phone screenshots, 1080×1920 | the six framed screenshots `store/store-home.png`, `store-steps.png`, `store-counter.png`, `store-daily.png`, `store-places.png` and `store-learn.png`. Do not upload `icons/shot-*.png`: at 390×844 the long side is more than twice the short side, which Play rejects |
    | Store title | `Miqah: Hajj & Umrah` |
    | Short and full description | The **Miqah Brief**, copy blocks section |
-   | Privacy policy URL | `https://umrah-strivers.vercel.app/privacy` |
+   | Privacy policy URL | `https://miqah.app/privacy` |
 
 5. **Data safety form.** Answer *no data collected* and *no data shared*. This is accurate. Declare the optional location, sensor and notification permissions as used on-device only.
 

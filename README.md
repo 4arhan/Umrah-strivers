@@ -2,7 +2,7 @@
 
 **Hajj & Umrah companion** — plan, learn, perform and track your Umrah. The sister app to [Ramadan Strivers](https://www.ramadanstrivers.com/).
 
-> The app was previously called *Umrah Strivers*; the repository name `Umrah-strivers` and the `umrah-strivers.vercel.app` address are historical and still work.
+> The app was previously called *Umrah Strivers*; the repository name `Umrah-strivers` is historical. The old address `umrah-strivers.vercel.app` still works, but data saved there stays there: use Backup on the old address and Restore on `miqah.app` to move it.
 
 An offline-first web app (`index.html` + `data.js` + `cites.js` + `app.js`, zero build step). No accounts, no servers, no tracking — all data stays on your device, with export/import backup and an encrypted document vault.
 
@@ -59,9 +59,9 @@ An offline-first web app (`index.html` + `data.js` + `cites.js` + `app.js`, zero
 
 | Where | Link |
 |---|---|
-| Web app | https://umrah-strivers.vercel.app |
-| Install instructions | https://umrah-strivers.vercel.app/install |
-| Privacy policy | https://umrah-strivers.vercel.app/privacy |
+| Web app | https://miqah.app |
+| Install instructions | https://miqah.app/install |
+| Privacy policy | https://miqah.app/privacy |
 
 Installable from any modern browser as a home-screen app. See **[LAUNCH.md](LAUNCH.md)** for the Google Play and App Store process, including what is already prepared and what still needs your developer accounts.
 
@@ -76,7 +76,7 @@ Or manually, in about a minute:
 1. Go to [vercel.com/new](https://vercel.com/new) and sign in (with GitHub).
 2. **Import** the `4arhan/Umrah-strivers` repository.
 3. Leave everything default (Framework Preset: **Other**, no build command, no output directory) and hit **Deploy**.
-4. Done — you get `umrah-strivers.vercel.app` (rename in Project Settings → Domains, or attach a custom domain).
+4. Done — you get `miqah.app` (rename in Project Settings → Domains, or attach a custom domain).
 
 Every push to the production branch auto-deploys. A `vercel.json` is included with sensible security headers.
 
