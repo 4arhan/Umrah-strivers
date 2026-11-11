@@ -1,6 +1,6 @@
 /* Miqah — application logic */
 /* Release note: bump APP_VERSION here AND in sw.js for every release (the SW cache name is derived from it). */
-var APP_VERSION='6.10.0';
+var APP_VERSION='6.10.1';
 var APP_URL='https://umrah-strivers.vercel.app/';
 /* prefers-reduced-motion: JS motion (confetti, the % count-up, smooth scrolling) honours it like the CSS does */
 var RM=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
@@ -128,7 +128,8 @@ function loadAll(){
   }catch(e){}
   migrateHotel();
 }
-function saveST(){localStorage.setItem('us-settings',JSON.stringify(ST));}
+var wnFresh=false; /* true when this launch began before onboarding: a first run, which never needs a What’s new sheet */
+function saveST(){if(wnFresh&&ST.onboarded&&!ST.seenVer)ST.seenVer=APP_VERSION;localStorage.setItem('us-settings',JSON.stringify(ST));}
 function save(k,o){localStorage.setItem(k,JSON.stringify(o));}
 
 /* ════════════════════════ GENERIC UI ════════════════════════ */
@@ -4558,7 +4559,7 @@ function initUI(){
 /* Places: the sticky filter row is see-through until it sticks, so the hero's shadow and halo never end in a hard edge */
 document.addEventListener('DOMContentLoaded',function(){var s=document.querySelector('.pl-sent'),row=document.querySelector('.pills.pl-sticky');if(!s||!row||!window.IntersectionObserver)return;row.classList.add('io');
   new IntersectionObserver(function(e){row.classList.toggle('stuck',!e[e.length-1].isIntersecting);},{rootMargin:'-57px 0px 0px 0px'}).observe(s);});
-document.addEventListener('DOMContentLoaded',function(){loadAll();pendingGroup=parseGroupLink();applyDepLink();parseGoLink();initUI();if(pendingGroup)setTimeout(function(){showGroupSheet(pendingGroup);},350);else if(pendingDep)setTimeout(depLinkSheet,350);registerSW();updBkLine();iabShow();bkUndoOffer();if(isStandalone())askPersist();setTimeout(bkNudgeCheck,3000);g6Init();setTimeout(whatsNewCheck,1400);});
+document.addEventListener('DOMContentLoaded',function(){loadAll();wnFresh=!ST.onboarded;pendingGroup=parseGroupLink();applyDepLink();parseGoLink();initUI();if(pendingGroup)setTimeout(function(){showGroupSheet(pendingGroup);},350);else if(pendingDep)setTimeout(depLinkSheet,350);registerSW();updBkLine();iabShow();bkUndoOffer();if(isStandalone())askPersist();setTimeout(bkNudgeCheck,3000);g6Init();setTimeout(whatsNewCheck,1400);});
 
 /* ════════ chrome typography pass (6.1 "Disciplined" type system) ════════
    Chrome strings (buttons, chips, labels, list rows) render their emoji as stroke marks (or drop them) and their
@@ -4669,7 +4670,7 @@ function ckDate(iso){var d=new Date(iso+'T00:00:00');return isNaN(d)?String(iso)
 function ckSrc(it){var k=it&&it.cks;if(k==='moh'&&journey()==='hajj')k='mohh';return k?CK_SRC[k]:null;}
 /* the one line every regulation, contact, transport and permit item ends with: the day it was last checked, and the official page where a verified one exists */
 function ckLine(it){if(!it||!it.ck)return '';var s=ckSrc(it);
-  return '<small class="ck-on">Checked '+ckDate(it.ck)+(s?' · official page (needs signal): <a href="'+s[1]+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">'+s[0]+mk('out','mkt')+'</a>':' · rules change, so confirm before you travel')+'</small>';}
+  return '<small class="ck-on">Checked '+ckDate(it.ck)+(s?' · official '+(it.cks==='nusuk'?'platform':'page')+' (needs signal): <a href="'+s[1]+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">'+s[0]+mk('out','mkt')+'</a>':' · rules change, so confirm before you travel')+'</small>';}
 
 /* ── #62 Report a correction ── */
 var CORR_TO='m.farhan.bava@gmail.com',corrCur=null;
@@ -4706,24 +4707,26 @@ var citeIdx=null,citeActs=[];
 function citeUses(){if(citeIdx)return citeIdx;var I={},HJ=journey()==='hajj';citeActs=[];
   function add(text,label,go){var seen={};citeScan(fcText(typeof text==='string'?text:JSON.stringify(text))).forEach(function(o){if(seen[o.k])return;seen[o.k]=1;var L=I[o.k]=I[o.k]||[];if(L.some(function(u){return u.l===label;}))return;var u={l:label};if(go){u.a=citeActs.length;citeActs.push(go);}L.push(u);});}
   var T=function(s){return fcText(dropEmoji(String(s||'')));};
+  /* a use is a link only when its target can be reached by this pilgrim: the steps drawn for this journey, sex and Hajj type; Hajj-only sheets on a Hajj journey; the heat plan on its days; Ramadan items the sheet shows */
+  var RV={},HV={},HEAT=heatOn();riteList().forEach(function(x){RV[x.st.id]=1;});if(HJ)hajjList().forEach(function(x){HV[x.st.id]=1;});
   QUOTES.forEach(function(q){add(q,'Home · a daily quote',function(){goTab('home');});});
   PLAN.forEach(function(s){s.items.forEach(function(it){add(it,'Plan · '+T(it.label),forMe(it)?function(){goTab('plan','prep');setTimeout(function(){openPlanSec(s.id);},80);}:null);});});
   LN_CARDS.forEach(function(c){c[2].forEach(function(it,i){add(it,'Learn · '+T(it.t),forMe(it)?function(){fcOpenLearn(c[3]+i);}:null);});});
-  RITES.forEach(function(p){add({hn:p.hn,kn:p.kn,sub:p.sub},'Umrah steps · '+T(p.title),function(){goTab('umrah','steps');});p.steps.forEach(function(st){add(st,'Umrah steps · '+T(st.b),function(){goTab('umrah','steps');setTimeout(function(){openRiteStep(st.id);},80);});});});
-  HAJJ_RITES.forEach(function(p){var go=HJ?function(){goTab('umrah','steps');}:null;add({hn:p.hn,kn:p.kn,sub:p.sub},'Hajj steps · '+T(p.title),go);p.steps.forEach(function(st){add(st,'Hajj steps · '+T(st.b),HJ?function(){goTab('umrah','steps');setTimeout(function(){openRiteStep(st.id);},80);}:null);});});
+  RITES.forEach(function(p){add({hn:p.hn,kn:p.kn,sub:p.sub},'Umrah steps · '+T(p.title),function(){goTab('umrah','steps');});p.steps.forEach(function(st){add(st,'Umrah steps · '+T(st.b),RV[st.id]?function(){goTab('umrah','steps');setTimeout(function(){openRiteStep(st.id);},80);}:null);});});
+  HAJJ_RITES.forEach(function(p){var go=HJ?function(){goTab('umrah','steps');}:null;add({hn:p.hn,kn:p.kn,sub:p.sub},'Hajj steps · '+T(p.title),go);p.steps.forEach(function(st){add(st,'Hajj steps · '+T(st.b),HJ&&HV[st.id]?function(){goTab('umrah','steps');setTimeout(function(){openRiteStep(st.id);},80);}:null);});});
   DUAS.forEach(function(d,i){add(d,'Duas · '+T(d.t),function(){openDua(i);});});
   PLACES.forEach(function(p){add(p,'Places · '+T(p.n),function(){openPlace(p.id);});});
   QUIZ_LEVELS.forEach(function(L){add(L,'Quiz · '+T(L.name),function(){goTab('plan','quiz');});});
   add(KIDSQ,'Kids quiz',function(){goTab('plan','quiz','kidsCard');});
   KIDS_STORIES.forEach(function(s){add(s,'Kids story · '+T(s.title),forMe(s)?function(){openStory(s.id);}:null);});
   DAILY.forEach(function(g){add({hn:g.hn},'Daily · '+T(g.title),function(){goTab('daily','today');});g.items.forEach(function(it){add(it,'Daily · '+T(it.label),function(){goTab('daily','today');});});});
-  TROUBLE_HAJJ.forEach(function(g){add(g,'Hajj help · '+T(g.t),function(){hajjTroubleSheet(g.id);});});
+  TROUBLE_HAJJ.forEach(function(g){add(g,'Hajj help · '+T(g.t),HJ?function(){hajjTroubleSheet(g.id);}:null);});
   RAMI_PROB.forEach(function(g){add(g,'Pebble problems · '+T(g.t),null);});
-  Object.keys(TB_HAJJ).forEach(function(k){add(TB_HAJJ[k],'Tasbih · '+T(TB_HAJJ[k].t),function(){goTab('daily','tools','tbCard');});});
+  Object.keys(TB_HAJJ).forEach(function(k){add(TB_HAJJ[k],'Tasbih · '+T(TB_HAJJ[k].t),HJ?function(){goTab('daily','tools','tbCard');}:null);});
   Object.keys(HAJJ_TYPES).forEach(function(k){add(HAJJ_TYPES[k],'Hajj type · '+T(HAJJ_TYPES[k].t),null);});
-  HAJJ_RULINGS.forEach(function(r){add(r,'Hajj rulings · '+T(r.t),function(){rulingSheet(r.id);});});
-  RAM_PACK.forEach(function(x){add(x,'Ramadan · '+T(x.t),function(){ramSheet(x.id);});});
-  HEAT_PACK.forEach(function(x){add(x,'Heat plan · '+T(x.t),function(){heatSheet(x.id);});});
+  HAJJ_RULINGS.forEach(function(r){add(r,'Hajj rulings · '+T(r.t),HJ?function(){rulingSheet(r.id);}:null);});
+  RAM_PACK.forEach(function(x){add(x,'Ramadan · '+T(x.t),ramShow(x.id)?function(){ramSheet(x.id);}:null);});
+  HEAT_PACK.forEach(function(x){add(x,'Heat plan · '+T(x.t),HEAT?function(){heatSheet(x.id);}:null);});
   WAY_PACK.forEach(function(x){add(x,'Wayfinding · '+T(x.t),/^go-/.test(x.id)?function(){goSheet(x.id);}:/^bound-/.test(x.id)?function(){waySheet(x.id);}:null);});
   add([HAJJ_PATH,BADGES,SAY,SCAMS.length?[]:[]],'Learn · Hajj in 5 days',null);
   CITES.forEach(function(e){var k=e.c+':'+e.n;if(e.a||!I[k]){(I[k]=I[k]||[]).push({l:'Screens and cards in the app'});}});
@@ -4732,19 +4735,22 @@ function citeGo(n){var f=citeActs[n];if(!f)return;closeSheet();setTimeout(functi
 function citeUsesHTML(e){var U=citeUses()[e.c+':'+e.n]||[],h=U.map(function(u,i){return (u.a!==undefined?'<button type="button" class="lnk src-l'+(i>2?' more':'')+'" onclick="citeGo('+u.a+')">'+esc(u.l)+'</button>':'<span class="src-l'+(i>2?' more':'')+'">'+esc(u.l)+'</span>');}).join('');
   if(U.length>3)h+='<button type="button" class="lnk src-m" aria-expanded="false" onclick="var p=this.parentNode,o=p.classList.toggle(\'all\');this.setAttribute(\'aria-expanded\',o);this.textContent=o?\'Show fewer\':\'and '+(U.length-3)+' more\'">and '+(U.length-3)+' more</button>';
   return h;}
-function citeRowHTML(e){return '<div class="src-r" id="src-'+e.c+'-'+String(e.n).replace(/[^\d]/g,'_')+'" data-q="'+esc((citeName(e)+' '+e.n+' '+e.t).toLowerCase())+'"><div class="src-k"><b>'+esc(citeName(e))+'</b>'+(e.g?'<span class="src-g">'+esc(e.g)+'</span>':'')+'</div><p class="src-t">'+esc(e.t)+'</p><div class="src-u"><span class="src-ul">Used in</span>'+citeUsesHTML(e)+'</div></div>';}
+/* search folds spelling: no apostrophes or diacritic marks, no al-/an-/at- prefix, so “nasa'i”, “al-Nasa’i” and “an-nasai” all find Nasai */
+function citeNorm(v){return String(v||'').toLowerCase().replace(/[’'‘`ʿʾ]/g,'').replace(/\b(?:al|an|at|as)-/g,'').replace(/[–—]/g,'-').replace(/\s+/g,' ').trim();}
+var CITE_ALIAS={quran:'qur’an koran surah ayah verse',bukhari:'sahih al-bukhari bukhaari',muslim:'sahih muslim',abudawud:'abu dawood sunan abi dawud abu daud',tirmidhi:'jami at-tirmidhi tirmizi',nasai:'sunan an-nasa’i nasaai',ibnmajah:'sunan ibn majah ibn maja',ahmad:'musnad ahmad ibn hanbal'};
+function citeRowHTML(e){return '<div class="src-r" id="src-'+e.c+'-'+String(e.n).replace(/[^\d]/g,'_')+'" data-q="'+esc(citeNorm(citeName(e)+' '+e.n+' '+e.t+' '+(CITE_ALIAS[e.c]||'')))+'"><div class="src-k"><b>'+esc(citeName(e))+'</b>'+(e.g?'<span class="src-g">'+esc(e.g)+'</span>':'')+'</div><p class="src-t'+(e.l?' src-tl':'')+'">'+(e.l?'<span class="src-in">Cited in</span> ':'')+esc(e.t)+'</p><div class="src-u"><span class="src-ul">Used in</span>'+citeUsesHTML(e)+'</div></div>';}
 function citeColTog(b){var bd=b.nextElementSibling,o=bd.hidden;if(o&&!bd.innerHTML){var c=b.getAttribute('data-c');bd.innerHTML=CITES.filter(function(e){return e.c===c;}).map(citeRowHTML).join('');}bd.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');}
-function citeFilter(v){var q=String(v||'').trim().toLowerCase(),n=0;document.querySelectorAll('#srcList .src-c').forEach(function(c){var b=c.querySelector('.src-ch'),bd=c.querySelector('.src-cb'),hit=0;
+function citeFilter(v){var q=citeNorm(v),n=0;document.querySelectorAll('#srcList .src-c').forEach(function(c){var b=c.querySelector('.src-ch'),bd=c.querySelector('.src-cb'),hit=0;
     if(q&&!bd.innerHTML){bd.innerHTML=CITES.filter(function(e){return e.c===b.getAttribute('data-c');}).map(citeRowHTML).join('');}
     bd.querySelectorAll('.src-r').forEach(function(r){var ok=!q||r.getAttribute('data-q').indexOf(q)>-1;r.hidden=!ok;if(ok)hit++;});
     if(q){bd.hidden=!hit;b.setAttribute('aria-expanded',hit?'true':'false');c.hidden=!hit;n+=hit;}else{c.hidden=false;bd.hidden=true;b.setAttribute('aria-expanded','false');}});
   var e=document.getElementById('srcNone');if(e)e.hidden=!q||n>0;}
 function sourcesSheet(openKey){citeIdx=null;var nH=CITES.filter(function(e){return e.c!=='quran';}).length,nQ=CITES.length-nH,on=CITES.length?CITES.map(function(e){return e.v;}).sort().pop():'';
-  var h='<div class="sheet-h">'+mk('book')+'</div><h3>Sources</h3><p>Every numbered hadith and Quran reference in Miqah: '+nH+' hadith and '+nQ+' Quran references, each with the sentence that carries it and where it is used.</p>'
+  var h='<div class="sheet-h">'+mk('book')+'</div><h3>Sources</h3><p>Every numbered hadith and Quran reference in Miqah: '+nH+' hadith and '+nQ+' Quran references, each with the app’s own sentence that cites it — or, where the reference sits in an item’s source line, the name of that item — and where it is used. These are the app’s words, not the text of the verse or hadith.</p>'
     +'<div class="note src-note" id="srcNote"><b>Numbering.</b> Hadith numbers follow sunnah.com; Sahih Muslim is numbered as in the Abdul Baqi edition. The Quran is cited as surah:ayah. A grade is shown only where the app states one. Reports the app cites without a number (such as the Muwatta) are not listed here.<br><b>Checked</b> against the source texts on '+ckDate(on)+'. Scholar review is still pending.</div>'
     +'<label class="care-l" for="srcQ">Find a reference</label><input class="srch" id="srcQ" type="search" placeholder="e.g. 1773, 2:196 or Arafah" autocomplete="off" oninput="citeFilter(this.value)">'
     +'<div class="pk-list" id="srcList">'+CITE_COLS.map(function(c){var n=CITES.filter(function(e){return e.c===c[0];}).length;return n?'<div class="src-c"><button type="button" class="src-ch" data-c="'+c[0]+'" aria-expanded="false" onclick="citeColTog(this)"><b>'+c[1]+'</b><span>'+n+'</span><i class="acc-c" aria-hidden="true">▶</i></button><div class="src-cb" hidden></div></div>':'';}).join('')+'</div>'
-    +'<p class="src-none" id="srcNone" hidden>Nothing matches. Try the number alone.</p>'
+    +'<p class="src-none" id="srcNone" role="status" hidden>Nothing matches. Try the number alone.</p>'
     +'<button class="btn ghost" onclick="corrSheet(\'source\',\'general\')">'+mk('pen','mkt')+'Report a wrong reference</button><button class="btn ghost tall" onclick="closeSheet()">Close</button>';
   openSheet(h);if(openKey){var b=document.querySelector('#srcList .src-ch[data-c="'+openKey+'"]');if(b)citeColTog(b);}}
 
@@ -4755,42 +4761,68 @@ var WHATS_NEW={v:'6.10.0',items:[
   ['pen','Report a correction','A button under every article, dua, step and place opens an email with the item already named.'],
   ['scroll','Trip journal','One line a day on Daily › Today. It stays on this phone, goes into your backup, and one line can sit on your keepsake.']]};
 function whatsNewSheet(){var W=WHATS_NEW;
-  openSheet('<div class="sheet-h">'+mk('info')+'</div><h3>What’s new</h3><p>Version '+esc(W.v)+'</p><div class="pk-list wn-list" id="wnList">'+W.items.map(function(x){return '<div class="wn-r"><span class="wn-i">'+mk(x[0])+'</span><div><b>'+esc(x[1])+'</b><p>'+esc(x[2])+'</p></div></div>';}).join('')+'</div>'
+  openSheet('<div class="sheet-h">'+mk('info')+'</div><h3>What’s new</h3><p>Version '+esc(APP_VERSION)+'</p><div class="pk-list wn-list" id="wnList">'+W.items.map(function(x){return '<div class="wn-r"><span class="wn-i">'+mk(x[0])+'</span><div><b>'+esc(x[1])+'</b><p>'+esc(x[2])+'</p></div></div>';}).join('')+'</div>'
     +'<p class="corr-p">Find this again in More › Settings › What’s new.</p><button class="btn tall" id="wnOk" onclick="closeSheet()">Got it</button>');}
-/* once after an update: a phone that has opened an earlier version sees the sheet on the first quiet launch of this one. A first install, and a profile from before 6.10 (no seenVer yet), are marked silently. The registry itself is cites.js. */
-function whatsNewCheck(){if(!ST.onboarded)return false;if(!ST.seenVer){ST.seenVer=APP_VERSION;return false;} /* kept in memory: it is written with the next save, so opening the app never rewrites storage by itself */
- if(ST.seenVer===APP_VERSION)return false;
+/* once after an update: a phone that opened an earlier version sees the sheet on the first quiet launch of this one. A profile that was already set up but has no recorded version comes from before 6.10 (nothing earlier stored one), so it counts as an update. Only a genuine first run is marked silently: saveST() stamps the version when onboarding completes. The registry itself is cites.js. */
+function verLt(a,b){a=String(a||'0').split('.');b=String(b||'0').split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x<y;}return false;}
+function whatsNewCheck(){if(!ST.onboarded)return false;
+  if(wnFresh){if(!ST.seenVer)ST.seenVer=APP_VERSION;return false;}
+  var seen=ST.seenVer||'';if(seen===APP_VERSION)return false;
   if(document.querySelector('.sheet-o.on,.focus.on,#obSheet.on'))return false;
-  ST.seenVer=APP_VERSION;saveST();if(WHATS_NEW.v!==APP_VERSION)return false;whatsNewSheet();return true;}
+  ST.seenVer=APP_VERSION;saveST();if(!verLt(seen,WHATS_NEW.v))return false;whatsNewSheet();return true;}
 
 /* ── #65 Private trip journal: one line a day, on this phone only (ST.journal → us-settings, so it is in every backup) ── */
 var JR_MAX=160;
-function jrAll(){return (ST.journal&&typeof ST.journal==='object')?ST.journal:{};}
-function jrKeys(){return Object.keys(jrAll()).filter(function(k){return jrAll()[k]&&jrAll()[k].t;}).sort();}
+var JR_KEY=/^\d{4}-\d\d-\d\d$/;
+function jrAll(){return (ST.journal&&typeof ST.journal==='object'&&!Array.isArray(ST.journal))?ST.journal:{};}
+/* storage and restored backups are not trusted: only date keys holding {t:string} survive, and t and c are made plain strings */
+function jrClean(){var J=ST.journal;if(J===undefined)return;if(!J||typeof J!=='object'||Array.isArray(J)){delete ST.journal;delete ST.jrPick;return;}
+  Object.keys(J).forEach(function(k){var e=J[k];if(!JR_KEY.test(k)||!e||typeof e!=='object'||typeof e.t!=='string'){delete J[k];return;}J[k]={t:e.t.slice(0,JR_MAX),c:typeof e.c==='string'?e.c.slice(0,40):''};});
+  if(ST.jrPick!==undefined&&(typeof ST.jrPick!=='string'||!JR_KEY.test(ST.jrPick)||!J[ST.jrPick]))delete ST.jrPick;}
+function jrKeys(){var J=jrAll();return Object.keys(J).filter(function(k){return JR_KEY.test(k)&&J[k]&&typeof J[k].t==='string'&&J[k].t;}).sort();}
 /* the date the card writes to: the day being viewed once the trip has begun (never a day still to come), today before it */
-function jrDay(){var ex=ST.dep?expectedDay():null;if(!ex)return {d:new Date(),n:0};var n=ST.day||1,d=dayDateObj(n);if(!d)return {d:new Date(),n:0};return {d:d,n:n,future:n>ex};}
+function jrDay(){var ex=ST.dep?expectedDay():null;if(!ex)return {d:new Date(),n:0};var n=ST.day||1,d=dayDateObj(n);if(!d)return {d:new Date(),n:0};var last=dayDateObj(ST.tripLen);return {d:d,n:n,future:n>ex,ended:!!last&&localMidnight(new Date())>localMidnight(last)};}
 function jrCityFor(J){if(!J.n)return '';var hd=null;try{hd=journey()==='hajj'?tripHajjDay(J.n):null;}catch(e){}if(hd===9)return 'Arafah';if(hd>=8&&hd<=13)return 'Mina';return itinCityOn(J.d)||ST.city||'';}
 function jrFmt(iso,long){var d=new Date(iso+'T00:00:00');return isNaN(d)?iso:d.toLocaleDateString('en-GB',long?{weekday:'long',day:'numeric',month:'long',year:'numeric'}:{weekday:'short',day:'numeric',month:'short'});}
-function renderJournal(){var a=document.getElementById('jrCard');if(!a)return;var J=jrDay(),iso=isoOf(J.d),e=jrAll()[iso]||{},n=jrKeys().length,city=e.c!==undefined&&e.t?e.c:jrCityFor(J);
-  var h='<div class="card card-pad jr" id="jrBox"><h3>'+mk('scroll')+'One line for today</h3>';
-  if(J.future)h+='<p class="jr-meta" id="jrMeta">'+esc(jrFmt(iso))+' · Day '+J.n+'</p><p class="jr-wait">This day has not come yet. Its line opens on the day.</p>';
-  else h+='<p class="jr-meta" id="jrMeta">'+esc(jrFmt(iso))+(J.n?' · Day '+J.n:'')+'</p>'
-    +'<label class="care-l" for="jrIn">What do you want to remember from today?</label><textarea class="pnotes jr-in" id="jrIn" rows="2" maxlength="'+JR_MAX+'" data-iso="'+iso+'" placeholder="One line, in your own words" oninput="jrCount()" onchange="jrSave()">'+esc(e.t||'')+'</textarea>'
-    +'<div class="jr-row"><label class="care-l" for="jrCity">Where</label><input class="srch jr-city" id="jrCity" maxlength="40" value="'+esc(city)+'" placeholder="City or place" autocomplete="off" onchange="jrSave()"><span class="jr-cnt" id="jrCnt" aria-live="off">'+(e.t||'').length+'/'+JR_MAX+'</span></div>';
-  h+='<div class="jr-foot"><small>'+mk('lock','mkt')+'Kept only on this phone, and in your backup.</small>'+(n?'<button type="button" class="lnk" id="jrAllBtn" onclick="jrSheet()">My '+n+' line'+(n===1?'':'s')+' →</button>':'')+'</div></div>';
-  a.innerHTML=h;}
+var jrT=0,jrBusy=false,jrNew={};
+function jrSig(J,iso){var today=iso===isoOf(new Date());return iso+'|'+(J.future?'f':today?'t':'o')+(J.ended?'e':'')+'|'+J.n;}
+function jrFootUpd(){var n=jrKeys().length,b=document.getElementById('jrAllBtn'),f=document.getElementById('jrFoot'),txt='My '+n+' line'+(n===1?'':'s')+' →';
+  if(!n){if(b)b.remove();}else if(b){if(b.textContent!==txt)b.textContent=txt;}else if(f)f.insertAdjacentHTML('beforeend','<button type="button" class="lnk" id="jrAllBtn" onclick="jrSheet()">'+txt+'</button>');}
+/* the field grows with its text, so a full 160-character line is never clipped (it needs four or more rows at 320 with Large text) */
+function jrGrow(){var i=document.getElementById('jrIn');if(!i||!i.scrollHeight)return;i.style.height='auto';i.style.height=(i.scrollHeight+(i.offsetHeight-i.clientHeight))+'px';}
+/* Daily redraws often (a tick, a timer, a day change). The card is rebuilt only when the day it writes to changes, or when force is set after a delete, undo or restore — never while its own day is on screen, so a field in use keeps its caret and its unsaved text. */
+function renderJournal(force){var a=document.getElementById('jrCard');if(!a||jrBusy)return;var J=jrDay(),iso=isoOf(J.d),sig=jrSig(J,iso),box=document.getElementById('jrBox');
+  if(box&&!force&&box.getAttribute('data-sig')===sig){jrFootUpd();jrGrow();return;}
+  if(box)jrFlush();
+  var e=jrAll()[iso]||{},n=jrKeys().length,today=iso===isoOf(new Date()),city=e.c!==undefined&&e.t?e.c:jrCityFor(J),when=jrFmt(iso);
+  var h='<div class="card card-pad jr" id="jrBox" data-sig="'+sig+'"><h3>'+mk('scroll')+'One line for '+(today?'today':esc(when))+'</h3>';
+  if(J.future)h+='<p class="jr-meta" id="jrMeta">'+esc(when)+' · Day '+J.n+'</p><p class="jr-wait">This day has not come yet. Its line opens on the day.</p>';
+  else h+='<p class="jr-meta" id="jrMeta">'+esc(when)+(J.n?' · Day '+J.n:'')+'</p>'
+    +(J.ended?'<p class="jr-wait" id="jrEnded">Your trip has ended. This line belongs to day '+J.n+' of it — the arrows above move to any other day.</p>':'')
+    +'<label class="care-l" for="jrIn">What do you want to remember from '+(today?'today':'that day')+'?</label><textarea class="pnotes jr-in" id="jrIn" rows="2" maxlength="'+JR_MAX+'" data-iso="'+iso+'" placeholder="One line, in your own words" oninput="jrCount();jrGrow();jrLater()" onchange="jrSave(1)">'+esc(e.t||'')+'</textarea>'
+    +'<div class="jr-row"><label class="care-l" for="jrCity">Where</label><input class="srch jr-city" id="jrCity" maxlength="40" value="'+esc(city)+'" placeholder="City or place" autocomplete="off" oninput="jrLater()" onchange="jrSave(1)"><span class="jr-cnt" id="jrCnt" aria-live="off">'+(e.t||'').length+'/'+JR_MAX+'</span></div>';
+  h+='<div class="jr-foot" id="jrFoot"><small>'+mk('lock','mkt')+'Kept only on this phone, and in your backup.</small>'+(n?'<button type="button" class="lnk" id="jrAllBtn" onclick="jrSheet()">My '+n+' line'+(n===1?'':'s')+' →</button>':'')+'</div></div>';
+  /* removing a focused field fires its change event: jrBusy keeps that from saving a half-removed card or re-entering this function */
+  jrBusy=true;try{a.innerHTML=h;}finally{jrBusy=false;}jrGrow();}
 function jrCount(){var i=document.getElementById('jrIn'),c=document.getElementById('jrCnt');if(i&&c)c.textContent=i.value.length+'/'+JR_MAX;}
-function jrSave(){var i=document.getElementById('jrIn'),c=document.getElementById('jrCity');if(!i)return;var iso=i.getAttribute('data-iso'),t=i.value.replace(/\s+/g,' ').trim().slice(0,JR_MAX),had=!!(jrAll()[iso]&&jrAll()[iso].t);
-  if(!ST.journal||typeof ST.journal!=='object')ST.journal={};
-  if(t)ST.journal[iso]={t:t,c:c?c.value.trim().slice(0,40):''};else{delete ST.journal[iso];if(ST.jrPick===iso)delete ST.jrPick;}
-  saveST();if(t&&!had)toast('Saved to your journal',true);
-  /* refresh the count link without stealing the caret from the field being typed in */
-  var act=document.activeElement&&document.activeElement.id;renderJournal();if(act==='jrIn'||act==='jrCity'){var el=document.getElementById(act);if(el)try{el.focus({preventScroll:true});}catch(x){}}}
-function jrPick(){var k=ST.jrPick,e=k&&jrAll()[k];return e&&e.t?{iso:k,t:e.t,c:e.c||''}:null;}
-function jrSetPick(iso){ST.jrPick=ST.jrPick===iso?null:iso;if(!ST.jrPick)delete ST.jrPick;saveST();jrSheet();toast(ST.jrPick?'This line will sit on your next keepsake':'Removed from the keepsake',true);}
-function jrDel(iso){var e=jrAll()[iso];if(!e)return;var keep=JSON.stringify(e),wasPick=ST.jrPick===iso;delete ST.journal[iso];if(wasPick)delete ST.jrPick;saveST();renderJournal();
+/* typing is saved after a short pause, and at once when the app is hidden or closed — a line is never held only in the field */
+function jrLater(){clearTimeout(jrT);jrT=setTimeout(function(){jrT=0;jrSave();},400);}
+function jrFlush(){if(!jrT)return;clearTimeout(jrT);jrT=0;jrSave();}
+function jrSave(done){if(jrBusy)return;if(done&&jrT){clearTimeout(jrT);jrT=0;}var i=document.getElementById('jrIn'),c=document.getElementById('jrCity');if(!i)return;var iso=i.getAttribute('data-iso');if(!JR_KEY.test(iso||''))return;
+  var t=i.value.replace(/\s+/g,' ').trim().slice(0,JR_MAX),cv=c?c.value.trim().slice(0,40):'',old=jrAll()[iso],had=!!(old&&old.t);
+  if(t){if(!had||old.t!==t||old.c!==cv){if(!ST.journal||typeof ST.journal!=='object'||Array.isArray(ST.journal))ST.journal={};ST.journal[iso]={t:t,c:cv};if(!had)jrNew[iso]=1;saveST();}}
+  else if(old){delete ST.journal[iso];if(ST.jrPick===iso)delete ST.jrPick;delete jrNew[iso];saveST();}
+  /* a place typed before the line stays in the field (the card is not redrawn) and is stored with the line */
+  if(done&&document.activeElement!==i&&i.value!==t){i.value=t;jrCount();jrGrow();}
+  if(done&&t&&jrNew[iso]){delete jrNew[iso];toast('Saved to your journal',true);}
+  jrFootUpd();}
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')jrFlush();});
+window.addEventListener('pagehide',jrFlush);
+function jrPick(){var k=ST.jrPick,e=typeof k==='string'&&JR_KEY.test(k)&&jrAll()[k];return e&&typeof e.t==='string'&&e.t?{iso:k,t:e.t,c:e.c||''}:null;}
+function jrSetPick(iso){if(!JR_KEY.test(iso)||!jrAll()[iso])return;ST.jrPick=ST.jrPick===iso?null:iso;if(!ST.jrPick)delete ST.jrPick;saveST();jrSheet();toast(ST.jrPick?'This line will sit on your next keepsake':'Removed from the keepsake',true);}
+function jrDel(iso){var e=jrAll()[iso];if(!e)return;var keep=JSON.stringify(e),wasPick=ST.jrPick===iso;delete ST.journal[iso];if(wasPick)delete ST.jrPick;saveST();renderJournal(true);
   if(jrKeys().length)jrSheet();else closeSheet();
-  toast('Line deleted',true,'Undo',function(){ST.journal[iso]=JSON.parse(keep);if(wasPick)ST.jrPick=iso;saveST();renderJournal();jrSheet();});}
+  toast('Line deleted',true,'Undo',function(){ST.journal[iso]=JSON.parse(keep);if(wasPick)ST.jrPick=iso;saveST();renderJournal(true);jrSheet();});}
 function jrSheet(){var K=jrKeys().reverse(),all=jrAll();
   openSheet('<div class="sheet-h">'+mk('scroll')+'</div><h3>My journal</h3><p>'+K.length+' line'+(K.length===1?'':'s')+', newest first. Stored only on this phone; export a backup in More › Settings to keep them.</p><div class="pk-list" id="jrList">'
     +K.map(function(k){var e=all[k],on=ST.jrPick===k;return '<div class="jr-e" id="jr-'+k+'"><small class="jr-d">'+esc(jrFmt(k,true))+(e.c?' · '+esc(e.c):'')+'</small><p class="jr-t">'+esc(e.t)+'</p><div class="jr-acts"><button type="button" class="chip-btn jr-pick'+(on?' on':'')+'" aria-pressed="'+(on?'true':'false')+'" onclick="jrSetPick(\''+k+'\')">'+mk(on?'check':'cards','mkt')+(on?'On my keepsake':'Put on my keepsake')+'</button><button type="button" class="chip-btn" aria-label="Delete the line for '+esc(jrFmt(k))+'" onclick="jrDel(\''+k+'\')">'+mk('trash','mkt')+'Delete</button></div></div>';}).join('')
@@ -4801,6 +4833,6 @@ function jrDraw(x,J,y){if(!J)return;x.save();x.textAlign='center';kLabel(x,'From
 
 function g6Init(){var e=document.getElementById('telCk');if(e)e.innerHTML='Numbers checked '+ckDate(CK);
   e=document.getElementById('linksCk');if(e)e.innerHTML='Links checked '+ckDate(CK)+' · they open in your browser and need signal';
-  e=document.getElementById('verLbl3');if(e)e.textContent=APP_VERSION;renderJournal();}
+  e=document.getElementById('verLbl3');if(e)e.textContent=APP_VERSION;jrClean();renderJournal(true);}
 /* canvas exporters wait for their webfonts (no Georgia/Arial flash on the keepsake, certificate or progress card) */
 ['makeKeepsake','makeHajjKeepsake','shareCard','makeCertGo'].forEach(function(n){var f=window[n];if(typeof f!=='function')return;window[n]=function(){var a=arguments,s=this;kFonts(function(){f.apply(s,a);});};});
