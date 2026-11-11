@@ -435,8 +435,8 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 .toast.gold{background:var(--hs-go-bg);color:var(--hs-go-ink);border-color:transparent;box-shadow:inset 0 1px 0 rgba(255,255,255,.4),var(--sh-lg)}
 @keyframes tIn{from{transform:translateY(-14px);opacity:0}to{transform:none;opacity:1}}
 @keyframes tOut{from{opacity:1}to{opacity:0}}
-.toast.act{pointer-events:auto;animation:tIn .3s ease,tOut .3s ease 5.7s;display:flex;align-items:center;gap:10px}
-.toast button{border:none;background:var(--ihram-line);color:inherit;font-family:var(--f-text);font-weight:var(--w-ui);font-size:var(--t-2);border-radius:999px;padding:5px 11px;cursor:pointer;white-space:nowrap}
+.toast.act{pointer-events:auto;animation:tIn .3s ease;display:flex;align-items:center;gap:8px;padding:8px 8px 8px 16px}.toast.act>span{flex:1;min-width:0}
+.toast button{border:none;background:var(--ihram-line);color:inherit;font-family:var(--f-text);font-weight:var(--w-ui);font-size:var(--t-2);border-radius:999px;padding:5px 14px;min-height:44px;min-width:44px;cursor:pointer;white-space:nowrap;flex:none}.toast button.toast-x{background:transparent;padding:5px}
 .toast.gold button{background:rgba(26,13,48,.12)}
 .chip.gold{background:var(--brand-soft);color:var(--brand-ink);border-color:var(--gold-line)}
 .chip.gold span{display:inline-flex;align-items:center;min-height:44px;padding:0 8px;margin:0 -8px 0 2px;opacity:.7;font-weight:var(--w-ui)}
@@ -977,6 +977,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 .niy.set{padding:12px 16px}
 .niy.set .niy-k,.niy.set h3,.niy.set .niy-p,.niy.set .niy-b,.niy.set .niy-l,.niy.set .niy-t,.niy.set .niy-s{display:none}
 .niy.set .niy-c{display:flex}
+.niy.trip .niy-k,.niy.trip h3,.niy.trip .niy-p,.niy.trip .niy-b{display:none}
 .niy-s .chip-btn{margin-left:8px;padding:4px 10px;min-height:0;font-size:var(--t-2);background:var(--ihram-well);color:var(--ihram);border-color:var(--gold-hair)}
 .tli-when.late{background:var(--bg-soft);color:var(--ink2)}
 .tli.done{opacity:.35;transition:opacity .3s}
@@ -1618,7 +1619,7 @@ html[data-text='lg'] .mataf text{font-size:15.5px}html[data-text='lg'] .mataf .m
   #printSheet .pr-dua .ar{display:block;direction:rtl;text-align:right;font-family:var(--fa);font-size:14pt;line-height:1.9}
   #printSheet .pr-pack{columns:2;list-style:none;padding:0}
   #printSheet .pr-cards{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:0 0 6pt;break-after:page}
-  #printSheet .pr-card{border:1px dashed #555;padding:7pt 9pt;min-height:52mm;break-inside:avoid;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:3pt;overflow:hidden}
+  #printSheet .pr-card{border:1px dashed #555;padding:7pt 9pt;min-height:46mm;break-inside:avoid;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:3pt;overflow:hidden}
   #printSheet .pr-ct{font-size:8pt;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid #999;padding-bottom:2pt;margin-bottom:2pt}
   #printSheet .pr-ar{font-family:var(--fa);direction:rtl;unicode-bidi:isolate;font-size:15pt;line-height:1.7}#printSheet .pr-arn{font-size:17pt;font-weight:600}
   #printSheet .pr-big{font-size:19pt;font-weight:700;line-height:1.2;overflow-wrap:anywhere}#printSheet .pr-big.sm{font-size:14pt}
@@ -2335,7 +2336,10 @@ html[data-text='lg'] #riteHeroT .rh-dot{display:none}html[data-text='lg'] #riteH
 .med-times{display:grid;grid-template-columns:1fr 1fr;gap:8px}.med-times .srch{margin:0;min-width:0}
 .hcard2{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.hcard2 .chip-btn{flex:1 1 auto}
 /* #38 Say the count */
-.focus-bot{flex-wrap:wrap}.focus-say.on{background:var(--hs-go-bg);color:var(--hs-go-ink);border-color:transparent}
+.focus-bot{flex-wrap:wrap}
+/* narrow phones: the pill is its speaker mark only (the aria-label names it), so Undo · Say count · My duas stay on one row */
+@media(max-width:360px){.focus-bot .focus-say{font-size:0;min-width:48px;padding-left:12px;padding-right:12px;gap:0}.focus-bot .focus-say .mk{width:20px;height:20px;margin:0}.focus-bot{gap:8px}}
+.focus-say.on{background:var(--hs-go-bg);color:var(--hs-go-ink);border-color:transparent}
 .focus.tasbih .focus-say,.focus.rpause .focus-say{display:none!important}
 /* #40 my dua list in the reader */
 #duaFocus.mine .df-ar,#duaFocus.mine .df-tl,#duaFocus.mine .df-src{display:none}
@@ -2367,11 +2371,12 @@ span.pt-tick{min-height:0;padding:3px 10px;border-color:var(--line);color:var(--
 /* ── 6.9 (G5) ── */
 .dua button.enl{border:0;background:transparent;font-family:var(--f-text);text-align:left;cursor:pointer;min-height:44px;display:flex;align-items:center;width:100%;margin-top:0;padding-left:0}
 .dua button.enl:focus-visible{outline:3px solid var(--brand-2);outline-offset:2px;border-radius:8px}
-.place-h:focus-visible{outline:3px solid var(--brand-2);outline-offset:-3px;border-radius:var(--r)}
+.place-tg{display:block}.place-tg:focus-visible{outline:3px solid var(--brand-2);outline-offset:3px;border-radius:8px}
 .bk-line{font-size:var(--t-3);font-weight:var(--w-ui);color:var(--ink);margin:0 0 4px}
+.bk-undo{flex-wrap:wrap;gap:10px}.bk-undo>div:first-child{flex:1 1 180px;min-width:0}.bk-undo small{display:block}.bk-undo-a{display:flex;gap:8px}.bk-undo-a .chip-btn{min-height:44px}
 #storeRow{border-bottom:0;padding-top:4px;flex-wrap:wrap}#storeRow>div{flex:1 1 180px}#storeRow small{display:block}
 .iab{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:10px 16px;background:var(--card);border-bottom:1px solid var(--line);color:var(--ink);font-size:var(--t-3);font-weight:600;line-height:var(--lh-meta)}
-.iab[hidden]{display:none}.iab-t{display:flex;gap:8px;align-items:flex-start;flex:1 1 220px;min-width:0}.iab-a{display:flex;gap:8px;margin-left:auto}
+.iab[hidden]{display:none}.iab.ob-iab{border:1px solid var(--line);border-radius:var(--r);margin:0 0 12px;text-align:left;padding:10px 12px}.sheet .ob-iab span{text-align:left}.iab-t{display:flex;gap:8px;align-items:flex-start;flex:1 1 220px;min-width:0}.iab-a{display:flex;gap:8px;margin-left:auto}
 .ios-keep-h{display:flex;gap:8px;align-items:flex-start;margin:0 0 12px;padding:12px 14px;border-radius:var(--r);border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:var(--t-3);font-weight:600;line-height:var(--lh-meta);text-decoration:none;min-height:44px}
 .ios-keep-h:focus-visible{outline:3px solid var(--brand-2);outline-offset:2px}
 .note.ios-keep a{color:var(--brand-2);font-weight:var(--w-ui)}
@@ -2380,7 +2385,10 @@ span.pt-tick{min-height:0;padding:3px 10px;border-color:var(--line);color:var(--
 .hpt{margin:0 0 12px;padding:14px 16px;border-radius:var(--r);background:var(--card);border:1px solid var(--line)}
 .hpt-off,.hpt-hd{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
 .hpt-t{min-width:0;flex:1 1 160px}.hpt-t b{display:block;font-size:var(--t-3);font-weight:var(--w-ui);color:var(--ink)}.hpt-t small{display:block;font-size:var(--t-2);color:var(--ink2);line-height:var(--lh-meta);margin-top:2px}
-.hpt-g{margin-top:10px}.pt.hpt-c{cursor:default;background:var(--bg)}.pt.hpt-c.next{border-color:var(--brand-2)}
+.hpt-one{display:flex;justify-content:flex-start;gap:6px;min-height:44px;margin:-2px 0 10px;padding:0 4px;text-align:left;font-size:var(--t-3)}.hpt-n b{color:var(--ink);font-weight:var(--w-ui)}
+.hpt-g{margin-top:10px;grid-template-columns:repeat(5,minmax(0,1fr))}.hpt-g .pt{min-width:0;overflow:hidden}
+/* narrow phones: five tiles cannot hold “Maghrib”, so three and two */
+@media(max-width:360px){.hpt-g{grid-template-columns:repeat(6,minmax(0,1fr))}.hpt-g .pt{grid-column:span 2}.hpt-g .pt:nth-child(n+4){grid-column:span 3}}.pt.hpt-c{cursor:default;background:var(--bg)}.pt.hpt-c.next{border-color:var(--brand-2)}
 .hpt-n{font-size:var(--t-2);color:var(--ink2);line-height:var(--lh-meta);margin:10px 0 0}
 .hpt-ll{display:grid;grid-template-columns:1fr 1fr;gap:10px}.hpt-ll>div{min-width:0}
 select.srch{min-height:48px;max-width:100%}
@@ -2412,18 +2420,19 @@ select.srch{min-height:48px;max-width:100%}
 .jam-seg{display:flex;margin:0 0 10px}.jam-seg button{flex:1}
 .jam-fig{margin:0 0 6px;padding:10px 8px;border-radius:var(--r);background:var(--bg);border:1px solid var(--line)}
 .jam-svg{display:block;width:100%;height:auto}
-.jam-svg text{font-family:var(--f-text);fill:var(--ink2)}.jam-svg .jm-s{font-size:9.5px;font-weight:600}.jam-svg .jm-e{font-size:11px;font-weight:700;fill:var(--ink)}.jam-svg .jm-l{font-size:11.5px;font-weight:700;fill:var(--ink3)}
+.jam-svg text{font-family:var(--f-text);fill:var(--ink2)}.jam-svg .jm-s{font-size:14.5px;font-weight:600}.jam-svg .jm-e{font-size:14.5px;font-weight:700;fill:var(--ink)}.jam-svg .jm-l{font-size:15px;font-weight:700;fill:var(--ink3)}
 .jam-svg path,.jam-svg ellipse,.jam-svg rect,.jam-svg circle{fill:none;stroke:var(--ink3);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .jam-svg .jm-road{stroke:var(--line);stroke-width:26}.jam-svg .jm-flow{stroke:var(--brand-2);stroke-width:2}.jam-svg .jm-arr,.jam-svg .jm-n path{stroke:var(--ink2)}
 .jam-svg .jm-j ellipse{fill:var(--card);stroke-dasharray:3 3}.jam-svg .jm-j .jm-b{fill:var(--card)}.jam-svg .jm-j .jm-bn{font-size:12px;font-weight:700;fill:var(--ink3)}
 .jam-svg .jm-j.on ellipse{stroke:var(--brand-2);stroke-dasharray:none;stroke-width:2}.jam-svg .jm-j.on path{stroke:var(--ink);stroke-width:3}.jam-svg .jm-j.on .jm-b{fill:var(--act-bg);stroke:var(--act-bg)}.jam-svg .jm-j.on .jm-bn{fill:var(--act-ink)}.jam-svg .jm-j.on .jm-l{fill:var(--ink)}
 .jam-ar{margin:8px 4px 0;text-align:center}.jam-ar .ar{display:block;font-family:var(--fa);font-size:1.25em;line-height:1.8;color:var(--ink)}.jam-ar .tl{display:block;font-size:var(--t-2);color:var(--ink2);font-style:italic;line-height:var(--lh-meta)}
 .jam-cap{font-size:var(--t-2);color:var(--ink2);line-height:var(--lh-meta);margin:8px 4px 2px}
-.camp-g{display:grid;grid-template-columns:1fr 1fr;gap:0 8px}.camp-g .srch{min-width:0}
+.camp-g{display:grid;grid-template-columns:1fr 1fr;gap:0 8px;align-items:end}.camp-g>div{min-width:0}.camp-g .srch{min-width:0;width:100%}#campBlk .care-l{margin:2px 0 4px}
 .camp-card .camp-h{font-size:var(--t-5);font-weight:700;margin-bottom:8px}
 .lost-kv.camp-kv{display:flex;flex-direction:row;justify-content:space-between;align-items:center;gap:12px}.camp-kv>span{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1 1 50%}.camp-kv>b{flex:0 1 50%;text-align:right;overflow-wrap:anywhere}.camp-ar{font-style:normal;font-family:var(--fa);font-size:1.15em;line-height:1.5;text-align:left;unicode-bidi:plaintext}
 .pin-box,.pin-res{margin:10px 0;padding:12px 14px;border-radius:var(--r);border:1px solid var(--line);background:var(--bg);text-align:left}
-.pin-res{border-color:var(--brand-2)}.pin-box b,.pin-res b{display:block;font-size:var(--t-3);color:var(--ink);font-weight:var(--w-ui);line-height:var(--lh-meta)}.pin-box small,.pin-res small{display:block;font-size:var(--t-2);color:var(--ink2);line-height:var(--lh-meta);margin-top:6px}
+.rami-jam{margin:10px auto 2px;min-height:44px}
+.pin-res{border-color:var(--brand-2)}.pin-res[hidden]{display:none}.pin-res:focus{outline:none}.pin-res:focus-visible{outline:3px solid var(--brand-2);outline-offset:2px}.pin-box b,.pin-res b{display:block;font-size:var(--t-3);color:var(--ink);font-weight:var(--w-ui);line-height:var(--lh-meta)}.pin-box small,.pin-res small{display:block;font-size:var(--t-2);color:var(--ink2);line-height:var(--lh-meta);margin-top:6px}
 @media(max-width:340px){.camp-g{grid-template-columns:1fr}}
 </style>
 </head>
@@ -2471,10 +2480,10 @@ select.srch{min-height:48px;max-width:100%}
     <div class="hcard2"><button class="chip-btn" id="ckBtn" onclick="showCheckin()" data-mk="hotel">Check-in card</button><button class="chip-btn" id="sayBtn" onclick="showSayList()" data-mk="speaker">Show a phrase</button></div>
     <p style="font-size:var(--t-2);color:var(--ink3);margin-top:8px" data-mk="bulb">Write the leader’s number on a wristband or a paper in each child’s pocket every morning.</p>
     <div class="campblk" id="campBlk" hidden><div class="subt" data-mk="tent">Mina camp &amp; group leader</div><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:10px">Every tent looks the same at 2 am. Save these before the 8th — from the 8th to the 13th they lead the driver card, the “I’m lost” card, Help and the Counters header.</p>
-    <input class="srch" id="cN" placeholder="Camp / tent number (e.g. Camp 43, tent 12)" onchange="saveCamp()" aria-label="Camp or tent number"><input class="srch" id="cM" placeholder="Maktab number (if your company gives one)" onchange="saveCamp()" aria-label="Maktab number, if your company gives one">
-    <input class="srch" id="cL" placeholder="Group leader name" onchange="saveCamp()" aria-label="Group leader name"><input class="srch" id="cP" placeholder="Group leader phone" inputmode="tel" onchange="saveCamp()" aria-label="Group leader phone">
+    <label class="care-l" for="cN">Camp number</label><input class="srch" id="cN" placeholder="e.g. Camp 43, tent 12" onchange="saveCamp()"><label class="care-l" for="cM">Maktab (if your company gives one)</label><input class="srch" id="cM" placeholder="e.g. 113" onchange="saveCamp()">
+    <label class="care-l" for="cL">Group supervisor</label><input class="srch" id="cL" placeholder="Name of your group leader" onchange="saveCamp()"><label class="care-l" for="cP">Group supervisor’s phone</label><input class="srch" id="cP" placeholder="e.g. +966 5…" inputmode="tel" onchange="saveCamp()">
     <div class="subt" style="margin-top:6px">For your camp card</div><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:10px">The Ministry of Hajj advises saving these and carrying proof of them — roads and camps in Mina look very alike.</p>
-    <div class="camp-g"><input class="srch" id="cZ" placeholder="Area number" onchange="saveCamp()" aria-label="Area number"><input class="srch" id="cS" placeholder="Street" onchange="saveCamp()" aria-label="Street"><input class="srch" id="cG" placeholder="Your camp’s gate" onchange="saveCamp()" aria-label="Your camp’s gate"><input class="srch" id="cT" placeholder="Train station no. (if you use the train)" onchange="saveCamp()" aria-label="Nearest train station number, if your group uses the Mashaer train"></div><input class="srch" id="cLm" placeholder="Nearest building or landmark" onchange="saveCamp()" aria-label="Nearest building or landmark">
+    <div class="camp-g"><div><label class="care-l" for="cZ">Area number</label><input class="srch" id="cZ" placeholder="e.g. 62" onchange="saveCamp()"></div><div><label class="care-l" for="cS">Street</label><input class="srch" id="cS" placeholder="e.g. B" onchange="saveCamp()"></div><div><label class="care-l" for="cG">Gate</label><input class="srch" id="cG" placeholder="Your camp’s gate" onchange="saveCamp()"></div><div><label class="care-l" for="cT">Train station number</label><input class="srch" id="cT" placeholder="If you use the train" onchange="saveCamp()"></div></div><label class="care-l" for="cLm">Nearest building or landmark</label><input class="srch" id="cLm" placeholder="What you can see from the gate" onchange="saveCamp()">
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px"><button class="chip-btn" onclick="showCampDriver()">🚕 To my camp</button><button class="chip-btn" id="campCardBtn" onclick="showCampCard()" data-mk="tent">Camp card</button><button class="chip-btn" onclick="campPinSheet()" data-mk="pin">My saved pin</button><button class="chip-btn" onclick="campWaySheet()">Finding your way back</button><button class="chip-btn sos" style="color:var(--danger)" onclick="showLost()">🆘 I’m lost</button></div></div>
     <div class="subt" style="margin-top:14px">☎️ Emergency & help in Saudi Arabia</div>
     <div class="kv"><span>Police · ambulance · fire</span><b><a href="tel:911" style="color:inherit;text-decoration:none">911</a></b></div>
@@ -2767,6 +2776,7 @@ select.srch{min-height:48px;max-width:100%}
   <div class="card card-pad" id="readyCard"><h3 data-mk="antenna">Ready for no signal</h3><div class="setrow"><div><b>Check before you fly</b><small>Installed, saved for offline, fonts, prayer times through your return, the Arabic voice, hotel and companion, storage, a recent backup</small></div><button class="chip-btn" onclick="readySheet()">Check</button></div></div>
   <div class="card card-pad" id="dataCard"><h3 data-mk="disk">Your data</h3>
     <p class="bk-line" id="bkLine" role="status">Last backup: never</p>
+    <div class="setrow bk-undo" id="bkUndoRow" hidden></div>
     <div class="note ios-keep" id="iosKeepSet" hidden></div>
     <div class="setrow" id="storeRow"><div><b>Kept on this phone</b><small id="storeS">Checking…</small></div><button class="chip-btn" id="storeBtn" onclick="askPersist(true)" hidden>Ask the phone</button></div>
     <p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:6px">Backup includes your checklists, quiz, tasbih, dua list, niyyah and journal. Encrypted vault documents are not included.</p>
@@ -2817,7 +2827,7 @@ select.srch{min-height:48px;max-width:100%}
 <div class="sheet-o" id="obSheet" onclick="if(event.target===this)closeOnboard()"><div class="sheet">
   <button class="ob-x" onclick="closeOnboard()" aria-label="Close">✕</button>
   <div id="obStep0">
-  <div class="sheet-h kaaba" aria-hidden="true"></div><h3>As-salamu alaykum</h3><p>What has Allah invited you to?</p>
+  <div class="sheet-h kaaba" aria-hidden="true"></div><h3>As-salamu alaykum</h3><div class="iab ob-iab" id="obIab" role="status" hidden></div><p>What has Allah invited you to?</p>
   <div class="setrow"><div><b>Larger text</b><small>Easier to read without glasses</small></div><button class="sw" id="obText0" role="switch" aria-checked="false" aria-label="Larger text" onclick="setText(ST.text==='lg'?'':'lg')"></button></div>
   <button class="opt big" onclick="chooseJourney('umrah')"><span class="kaaba-i" aria-hidden="true"></span><b>Umrah<small>Ihram → tawaf → sa’i → halq, most of the year (permits pause around the Hajj season — check Nusuk)</small></b></button>
   <button class="opt big" onclick="chooseJourney('hajj')"><span class="mk-i" data-mk="tent" aria-hidden="true"></span><b>Hajj<small>Ihram, then the five days of Dhul Hijjah — with your Umrah first if you do Tamattu’</small></b></button>

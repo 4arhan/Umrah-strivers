@@ -1,6 +1,6 @@
 /* Miqah — offline service worker */
 /* Release note: bump APP_VERSION here AND at the top of app.js for every release. */
-var APP_VERSION = '6.9.0';
+var APP_VERSION = '6.9.1';
 var CACHE = 'umrah-strivers-' + APP_VERSION;
 /* 6.7 (G3 #33): web fonts live in their own unversioned cache, kept across updates — an update applied in Mina without data keeps Manrope and Scheherazade */
 var FONTS = 'miqah-fonts';

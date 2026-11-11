@@ -21,9 +21,21 @@
     "path": "./android.keystore",
     "alias": "umrah"
   },
-  "appVersionName": "6.9.0",
+  "appVersionName": "6.9.1",
   "appVersionCode": 1,
   "shortcuts": [
+    {
+      "name": "I'm lost — show card",
+      "shortName": "I'm lost",
+      "url": "/?go=lost",
+      "chosenIconUrl": "https://umrah-strivers.vercel.app/icons/shortcut-sos-192.png"
+    },
+    {
+      "name": "Help numbers",
+      "shortName": "Help",
+      "url": "/?go=help",
+      "chosenIconUrl": "https://umrah-strivers.vercel.app/icons/shortcut-help-192.png"
+    },
     {
       "name": "Tawaf counter",
       "shortName": "Tawaf",
@@ -52,5 +64,5 @@
   "isMetaQuest": false,
   "fullScopeUrl": "https://umrah-strivers.vercel.app/",
   "minSdkVersion": 23,
-  "appVersion": "6.9.0"
+  "appVersion": "6.9.1"
 }
