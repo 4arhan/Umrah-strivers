@@ -882,7 +882,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 .ess-t.ess-lost{background:var(--danger-soft,var(--card));border-color:var(--danger);color:var(--danger-ink,var(--danger))}
 .ess-t.ess-lost .mk{color:var(--danger)}
 .ess-t:focus-visible{outline:3px solid var(--brand-2);outline-offset:2px}
-.ess-off{text-align:center;margin:6px 0 0}
+.ess-off{text-align:center;margin:6px 0 0}.ess-off .lnk{display:inline-block;padding:12px 0}
 /* 6.7 (G3 #33) Ready for no signal: hairline rows, a mark and a word for each state (never colour alone) */
 .rdy{margin:4px 0 12px;text-align:left}
 .rdy-r{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
@@ -2363,6 +2363,68 @@ span.pt-tick{min-height:0;padding:3px 10px;border-color:var(--line);color:var(--
 .pb-h .sec-chev{transition:transform .25s}.prep-before:not(.open) .pb-h .sec-chev{transform:rotate(-90deg)}.pb-b{padding-top:6px}
 @media (prefers-reduced-motion:reduce){.pb-h .sec-chev{transition:none}}
 [data-trip="1"]>#niyCard{margin-top:12px}
+
+/* ── 6.9 (G5) ── */
+.dua button.enl{border:0;background:transparent;font-family:var(--f-text);text-align:left;cursor:pointer;min-height:44px;display:flex;align-items:center;width:100%;margin-top:0;padding-left:0}
+.dua button.enl:focus-visible{outline:3px solid var(--brand-2);outline-offset:2px;border-radius:8px}
+.place-h:focus-visible{outline:3px solid var(--brand-2);outline-offset:-3px;border-radius:var(--r)}
+.bk-line{font-size:var(--t-3);font-weight:var(--w-ui);color:var(--ink);margin:0 0 4px}
+#storeRow{border-bottom:0;padding-top:4px;flex-wrap:wrap}#storeRow>div{flex:1 1 180px}#storeRow small{display:block}
+.iab{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:10px 16px;background:var(--card);border-bottom:1px solid var(--line);color:var(--ink);font-size:var(--t-3);font-weight:600;line-height:var(--lh-meta)}
+.iab[hidden]{display:none}.iab-t{display:flex;gap:8px;align-items:flex-start;flex:1 1 220px;min-width:0}.iab-a{display:flex;gap:8px;margin-left:auto}
+.ios-keep-h{display:flex;gap:8px;align-items:flex-start;margin:0 0 12px;padding:12px 14px;border-radius:var(--r);border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:var(--t-3);font-weight:600;line-height:var(--lh-meta);text-decoration:none;min-height:44px}
+.ios-keep-h:focus-visible{outline:3px solid var(--brand-2);outline-offset:2px}
+.note.ios-keep a{color:var(--brand-2);font-weight:var(--w-ui)}
+
+.hpt-off{margin-top:12px}
+.hpt{margin:0 0 12px;padding:14px 16px;border-radius:var(--r);background:var(--card);border:1px solid var(--line)}
+.hpt-off,.hpt-hd{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
+.hpt-t{min-width:0;flex:1 1 160px}.hpt-t b{display:block;font-size:var(--t-3);font-weight:var(--w-ui);color:var(--ink)}.hpt-t small{display:block;font-size:var(--t-2);color:var(--ink2);line-height:var(--lh-meta);margin-top:2px}
+.hpt-g{margin-top:10px}.pt.hpt-c{cursor:default;background:var(--bg)}.pt.hpt-c.next{border-color:var(--brand-2)}
+.hpt-n{font-size:var(--t-2);color:var(--ink2);line-height:var(--lh-meta);margin:10px 0 0}
+.hpt-ll{display:grid;grid-template-columns:1fr 1fr;gap:10px}.hpt-ll>div{min-width:0}
+select.srch{min-height:48px;max-width:100%}
+
+.hpt.hpt-off{margin:12px 0 0}
+.pk-list{text-align:left;margin:4px 0 12px}.sheet .pk-list p,.sheet .pk-list li,.sheet .pk-list h4,.sheet .pk-list small,.sheet .pk-list .acc-h,.sheet .pk-list .acc-b,.sheet .pk-list .subt{text-align:left}.sheet .pk-list .jam-ar{text-align:center}
+.pk{padding:14px 0;border-top:1px solid var(--line)}.pk:first-child{border-top:0;padding-top:4px}
+.pk h4{font-size:var(--t-3);font-weight:var(--w-ui);color:var(--ink);margin:0 0 8px;line-height:var(--lh-meta)}
+.pk p,.acc-b .pk-l,.pk .pk-l,.pk-list .acc-b p{font-size:var(--t-3);color:var(--ink2);line-height:var(--lh-body);margin:0 0 8px}
+.pk p b,.pk-list .acc-b p b{color:var(--ink)}
+.pk-l{padding-left:20px}.pk-l li{margin:0 0 6px}
+.pk-ar{margin:2px 0 10px;padding:12px 14px;border-radius:var(--r);background:var(--bg)}
+.pk-ar .ar{display:block;font-family:var(--fa);font-size:1.5em;line-height:1.9;color:var(--ink);text-align:right}
+.pk-ar .tl,.pk-ar .tr,.pk-ar .src{display:block;font-size:var(--t-2);color:var(--ink2);line-height:var(--lh-meta);margin-top:6px}.pk-ar .tl{font-style:italic}.pk-ar .src{color:var(--ink3)}
+.pk-on{display:block;font-size:var(--t-2);color:var(--ink3);line-height:var(--lh-meta);margin:2px 0 6px}.pk-on a{color:var(--brand-2);font-weight:var(--w-ui);display:inline-flex;align-items:center;min-height:44px;min-width:44px}
+.pk-cav{font-size:var(--t-2);color:var(--ink2);line-height:var(--lh-meta);margin:8px 0 10px}
+.pk-list .subt{margin:14px 0 4px}.pk-list .acc-b{padding-right:4px}
+.pk-acts{margin-top:12px}
+.hero.hero-o.ram,.hero.hero-o.heat{display:block;margin-bottom:14px}.hero.ram .hero-t,.hero.heat .hero-t{display:block;width:100%}.hero.ram .hs-pill,.hero.heat .hs-pill{display:flex;width:100%;box-sizing:border-box;min-height:56px;margin-top:10px}.hero.ram .hs-u,.hero.ram .hs-note,.hero.heat .hs-u{display:block}
+.hero.ram .ram-q{font-size:var(--t-3)}.hero.ram .ram-src{opacity:.92}
+.ramd-g{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.ramd-g .pt{min-height:56px;padding:9px 6px}
+.ramd-c,.way-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.way-row{margin:0 0 12px}
+.way-row .rul-c{display:inline-flex;align-items:center;gap:6px}
+.it-ram{display:flex;gap:6px;align-items:flex-start;margin-top:6px;font-size:var(--t-2);font-weight:600;color:var(--brand-2);line-height:var(--lh-meta)}
+.note.it-ramn{margin-top:10px}
+.btn.danger.heat-911{background:var(--danger);color:var(--on-danger);border-color:var(--danger);font-weight:700}
+.heat-911{display:flex;align-items:center;justify-content:center;gap:8px;min-height:60px;font-size:var(--t-4);text-decoration:none}
+.heat-tel{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 2px}.heat-tel .chip-btn{text-decoration:none;display:inline-flex;align-items:center;flex:1 1 140px;justify-content:center;text-align:center}
+.jam-seg{display:flex;margin:0 0 10px}.jam-seg button{flex:1}
+.jam-fig{margin:0 0 6px;padding:10px 8px;border-radius:var(--r);background:var(--bg);border:1px solid var(--line)}
+.jam-svg{display:block;width:100%;height:auto}
+.jam-svg text{font-family:var(--f-text);fill:var(--ink2)}.jam-svg .jm-s{font-size:9.5px;font-weight:600}.jam-svg .jm-e{font-size:11px;font-weight:700;fill:var(--ink)}.jam-svg .jm-l{font-size:11.5px;font-weight:700;fill:var(--ink3)}
+.jam-svg path,.jam-svg ellipse,.jam-svg rect,.jam-svg circle{fill:none;stroke:var(--ink3);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.jam-svg .jm-road{stroke:var(--line);stroke-width:26}.jam-svg .jm-flow{stroke:var(--brand-2);stroke-width:2}.jam-svg .jm-arr,.jam-svg .jm-n path{stroke:var(--ink2)}
+.jam-svg .jm-j ellipse{fill:var(--card);stroke-dasharray:3 3}.jam-svg .jm-j .jm-b{fill:var(--card)}.jam-svg .jm-j .jm-bn{font-size:12px;font-weight:700;fill:var(--ink3)}
+.jam-svg .jm-j.on ellipse{stroke:var(--brand-2);stroke-dasharray:none;stroke-width:2}.jam-svg .jm-j.on path{stroke:var(--ink);stroke-width:3}.jam-svg .jm-j.on .jm-b{fill:var(--act-bg);stroke:var(--act-bg)}.jam-svg .jm-j.on .jm-bn{fill:var(--act-ink)}.jam-svg .jm-j.on .jm-l{fill:var(--ink)}
+.jam-ar{margin:8px 4px 0;text-align:center}.jam-ar .ar{display:block;font-family:var(--fa);font-size:1.25em;line-height:1.8;color:var(--ink)}.jam-ar .tl{display:block;font-size:var(--t-2);color:var(--ink2);font-style:italic;line-height:var(--lh-meta)}
+.jam-cap{font-size:var(--t-2);color:var(--ink2);line-height:var(--lh-meta);margin:8px 4px 2px}
+.camp-g{display:grid;grid-template-columns:1fr 1fr;gap:0 8px}.camp-g .srch{min-width:0}
+.camp-card .camp-h{font-size:var(--t-5);font-weight:700;margin-bottom:8px}
+.lost-kv.camp-kv{display:flex;flex-direction:row;justify-content:space-between;align-items:center;gap:12px}.camp-kv>span{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1 1 50%}.camp-kv>b{flex:0 1 50%;text-align:right;overflow-wrap:anywhere}.camp-ar{font-style:normal;font-family:var(--fa);font-size:1.15em;line-height:1.5;text-align:left;unicode-bidi:plaintext}
+.pin-box,.pin-res{margin:10px 0;padding:12px 14px;border-radius:var(--r);border:1px solid var(--line);background:var(--bg);text-align:left}
+.pin-res{border-color:var(--brand-2)}.pin-box b,.pin-res b{display:block;font-size:var(--t-3);color:var(--ink);font-weight:var(--w-ui);line-height:var(--lh-meta)}.pin-box small,.pin-res small{display:block;font-size:var(--t-2);color:var(--ink2);line-height:var(--lh-meta);margin-top:6px}
+@media(max-width:340px){.camp-g{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -2372,6 +2434,7 @@ span.pt-tick{min-height:0;padding:3px 10px;border-color:var(--line);color:var(--
 </defs></svg>
 
 <div class="app">
+<div class="iab" id="iabBar" role="status" hidden></div>
 <div class="top">
   <div class="brand"><div class="brand-mark kaaba" aria-hidden="true"></div><h1>Miqah<small>Hajj &amp; Umrah companion</small></h1></div>
   <div style="display:flex;align-items:center;gap:8px"><button class="chip gold" id="updChip" hidden onclick="applyUpdate()" title="A new version is ready — tap to reload" aria-label="Update ready, tap to reload">⬆️ Update<span onclick="event.stopPropagation();dismissUpdate()" role="button" aria-label="Dismiss">✕</span></button><button class="chip" id="jChip" onclick="goTab('plan')" aria-label="Journey status" data-mk="compass">Plan</button><button class="iconbtn" onclick="toggleTheme()" aria-label="Toggle theme"><span id="themeIcon" style="display:flex"></span></button></div>
@@ -2410,9 +2473,12 @@ span.pt-tick{min-height:0;padding:3px 10px;border-color:var(--line);color:var(--
     <div class="campblk" id="campBlk" hidden><div class="subt" data-mk="tent">Mina camp &amp; group leader</div><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:10px">Every tent looks the same at 2 am. Save these before the 8th — from the 8th to the 13th they lead the driver card, the “I’m lost” card, Help and the Counters header.</p>
     <input class="srch" id="cN" placeholder="Camp / tent number (e.g. Camp 43, tent 12)" onchange="saveCamp()" aria-label="Camp or tent number"><input class="srch" id="cM" placeholder="Maktab number (if your company gives one)" onchange="saveCamp()" aria-label="Maktab number, if your company gives one">
     <input class="srch" id="cL" placeholder="Group leader name" onchange="saveCamp()" aria-label="Group leader name"><input class="srch" id="cP" placeholder="Group leader phone" inputmode="tel" onchange="saveCamp()" aria-label="Group leader phone">
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px"><button class="chip-btn" onclick="showCampDriver()">🚕 To my camp</button><button class="chip-btn sos" style="color:var(--danger)" onclick="showLost()">🆘 I’m lost</button></div></div>
+    <div class="subt" style="margin-top:6px">For your camp card</div><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:10px">The Ministry of Hajj advises saving these and carrying proof of them — roads and camps in Mina look very alike.</p>
+    <div class="camp-g"><input class="srch" id="cZ" placeholder="Area number" onchange="saveCamp()" aria-label="Area number"><input class="srch" id="cS" placeholder="Street" onchange="saveCamp()" aria-label="Street"><input class="srch" id="cG" placeholder="Your camp’s gate" onchange="saveCamp()" aria-label="Your camp’s gate"><input class="srch" id="cT" placeholder="Train station no. (if you use the train)" onchange="saveCamp()" aria-label="Nearest train station number, if your group uses the Mashaer train"></div><input class="srch" id="cLm" placeholder="Nearest building or landmark" onchange="saveCamp()" aria-label="Nearest building or landmark">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px"><button class="chip-btn" onclick="showCampDriver()">🚕 To my camp</button><button class="chip-btn" id="campCardBtn" onclick="showCampCard()" data-mk="tent">Camp card</button><button class="chip-btn" onclick="campPinSheet()" data-mk="pin">My saved pin</button><button class="chip-btn" onclick="campWaySheet()">Finding your way back</button><button class="chip-btn sos" style="color:var(--danger)" onclick="showLost()">🆘 I’m lost</button></div></div>
     <div class="subt" style="margin-top:14px">☎️ Emergency & help in Saudi Arabia</div>
     <div class="kv"><span>Police · ambulance · fire</span><b><a href="tel:911" style="color:inherit;text-decoration:none">911</a></b></div>
+    <div class="kv"><span>Saudi Red Crescent</span><b><a href="tel:997" style="color:inherit;text-decoration:none">997</a></b></div>
     <div class="kv"><span>Health (Ministry of Health line)</span><b><a href="tel:937" style="color:inherit;text-decoration:none">937</a></b></div>
     <div class="kv"><span>Ministry of Hajj &amp; Umrah care</span><b><a href="tel:1966" style="color:inherit;text-decoration:none">1966</a></b></div>
     <div class="kv"><span>Tourism helpline</span><b><a href="tel:930" style="color:inherit;text-decoration:none">930</a></b></div>
@@ -2507,6 +2573,7 @@ span.pt-tick{min-height:0;padding:3px 10px;border-color:var(--line);color:var(--
 
   <!-- J-08: rami counter (Hajj mode, days 10–13) — filled by renderRami() -->
   <div class="card cnt" id="ramiCard" hidden></div>
+  <div id="heatCnt"></div>
 
   </div><div class="sub" id="sub-umrah-steps">
   <div class="noww"><div class="now-strip" id="riteNow" aria-live="polite"></div></div>
@@ -2569,7 +2636,10 @@ span.pt-tick{min-height:0;padding:3px 10px;border-color:var(--line);color:var(--
       <div class="pt-grid" id="ptGrid"></div><div class="pt-note" id="ptNote">Umm al-Qura · local Makkah/Madinah time</div>
       <div class="pt-meet"><input class="srch" id="ptMeet" placeholder="📍 Meeting point (e.g. King Fahd Gate 79)" maxlength="120" onchange="setMeet(this.value)" aria-label="Group meeting point after prayers"><select class="numin ptlead" id="ptLead" onchange="setMeetLead(this.value)" aria-label="Leave the hotel this long before each prayer"><option value="">Leave hotel: —</option><option value="30">30 min before</option><option value="45">45 min before</option><option value="60">60 min before</option></select></div>
       <button class="btn ghost" style="margin-top:8px" onclick="sharePT()" data-mk="share">Share today’s times</button>
+      <div id="homePTin"></div>
     </div></div>
+  <div id="homePT"></div>
+  <div id="ramDay"></div>
   <div id="todayTop"></div>
   <div id="kidsDay"></div>
   <div id="dailyContainer"></div>
@@ -2602,7 +2672,7 @@ span.pt-tick{min-height:0;padding:3px 10px;border-color:var(--line);color:var(--
   </div>
   </div><div class="sub" id="sub-daily-stats">
   <div class="hero hero-o" id="stHero"><div class="hero-t"><div class="k" data-mk="chart">This trip</div><span class="hs-n" id="stHeroN">0</span><div class="s hs-u" id="stHeroOf">days with worship logged</div><div class="hs-m"><span class="hs-mi"><small class="hs-ml">Average</small><b class="hs-mv" id="stHeroAvg">0%</b></span><span class="hs-mi"><small class="hs-ml">Best day</small><b class="hs-mv" id="stHeroBest">—</b></span><span class="hs-mi"><small class="hs-ml" id="stHeroUL">Umrahs</small><b class="hs-mv" id="stHeroU">0</b></span></div></div></div>
-  <div class="note" id="stEmpty" hidden>Your stats fill in as you tick prayers and deeds in <a href="#" onclick="event.preventDefault();goSub('daily','today')">Today →</a> and count umrahs in the Umrah tab.</div>
+  <div class="note" id="stEmpty" hidden>Your stats fill in as you tick prayers and deeds in <a href="#" onclick="event.preventDefault();goSub('daily','today')">Today →</a> and <span id="stEmptyJ">count umrahs in the Umrah tab</span>.</div>
   <div class="card card-pad"><h3 data-mk="grid">Trip consistency</h3><div class="heat" id="heatGrid"></div><div class="hleg" id="heatLeg"></div></div>
   <div class="card card-pad"><h3 data-mk="chart">Trip stats</h3>
     <div class="kv"><span>Days with worship logged</span><b id="stDays">0</b></div>
@@ -2634,6 +2704,7 @@ span.pt-tick{min-height:0;padding:3px 10px;border-color:var(--line);color:var(--
   <input class="srch" id="plSearch" type="search" placeholder="🔍 Search places — Quba, Uhud, Hira, مسجد…" oninput="renderPlaces()">
   <div class="hotelrow"><span id="hotelLbl">🏨 Save your hotel to see walking times</span><button class="chip-btn" onclick="setHotel()" data-mk="hotel">Set hotel</button><button class="chip-btn" id="nearBtn" onclick="nearMe()" data-mk="antenna">Near me</button></div>
   <div class="note">Ziyarah is a virtuous extra, never a rite. The journey itself is for the two Harams: "Do not set out on a journey except to three mosques: al-Masjid al-Haram, the Mosque of the Messenger ﷺ, and al-Masjid al-Aqsa." — <a href="https://sunnah.com/bukhari:1189" target="_blank" rel="noopener">Bukhari 1189</a>. At Baqi’ and Mu’alla: give salam, make dua for the deceased, don’t ask of them.</div>
+  <div id="wayRowBox"></div>
   <div id="placesContainer"></div>
 </div>
 
@@ -2690,11 +2761,14 @@ span.pt-tick{min-height:0;padding:3px 10px;border-color:var(--line);color:var(--
   </div>
 
   <div class="card card-pad" id="campCard" hidden><h3 data-mk="tent">Mina camp &amp; group leader</h3><p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:10px" id="campSum">Not saved yet — every tent looks the same at 2 am.</p>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px"><button class="chip-btn" onclick="goCampEdit()" data-mk="pen">Edit in Plan › Prepare</button><button class="chip-btn" onclick="showCampDriver()">🚕 To my camp</button><button class="chip-btn sos" style="color:var(--danger)" onclick="showLost()">🆘 I’m lost</button></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px"><button class="chip-btn" onclick="goCampEdit()" data-mk="pen">Edit in Plan › Prepare</button><button class="chip-btn" onclick="showCampDriver()">🚕 To my camp</button><button class="chip-btn" onclick="showCampCard()" data-mk="tent">Camp card</button><button class="chip-btn sos" style="color:var(--danger)" onclick="showLost()">🆘 I’m lost</button></div>
   </div>
 
   <div class="card card-pad" id="readyCard"><h3 data-mk="antenna">Ready for no signal</h3><div class="setrow"><div><b>Check before you fly</b><small>Installed, saved for offline, fonts, prayer times through your return, the Arabic voice, hotel and companion, storage, a recent backup</small></div><button class="chip-btn" onclick="readySheet()">Check</button></div></div>
-  <div class="card card-pad"><h3 data-mk="disk">Your data</h3>
+  <div class="card card-pad" id="dataCard"><h3 data-mk="disk">Your data</h3>
+    <p class="bk-line" id="bkLine" role="status">Last backup: never</p>
+    <div class="note ios-keep" id="iosKeepSet" hidden></div>
+    <div class="setrow" id="storeRow"><div><b>Kept on this phone</b><small id="storeS">Checking…</small></div><button class="chip-btn" id="storeBtn" onclick="askPersist(true)" hidden>Ask the phone</button></div>
     <p style="font-size:var(--t-3);color:var(--ink2);margin-bottom:6px">Backup includes your checklists, quiz, tasbih, dua list, niyyah and journal. Encrypted vault documents are not included.</p>
     <button class="btn ghost" onclick="exportData()" data-mk="share">Export backup</button>
     <button class="btn ghost" onclick="document.getElementById('impFile').click()">📥 Import backup</button>
@@ -2734,7 +2808,7 @@ span.pt-tick{min-height:0;padding:3px 10px;border-color:var(--line);color:var(--
 </nav>
 <canvas id="confetti" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:190;display:none"></canvas>
 <div class="focus" id="focus" role="dialog" aria-modal="true" aria-label="Big counter"><div class="focus-top"><span id="focusTitle" data-mk="kaaba">Tawaf</span><div style="display:flex;gap:8px"><button class="chip-btn" id="focusWudu" onclick="focusWudu()" aria-pressed="false" data-mk="drop">wudu</button><button class="chip-btn focus-prob" onclick="event.stopPropagation();troubleSheet()" aria-label="Something went wrong?" data-mk="alert">Problem?</button><button class="chip-btn" onclick="exitFocus()">✕ Exit</button></div></div><div class="focus-tap" role="button" tabindex="0" aria-label="Tap to count one round" onclick="focusTap()"><div class="srx" id="focusLive" aria-live="polite" aria-atomic="true"></div><div class="focus-n" id="focusN">0</div><div class="focus-of" id="focusOf">of 7 rounds</div><div class="focus-tip" id="focusTip"></div><div class="focus-hint" id="focusHint">tap anywhere to count</div><div class="focus-done" id="focusDone" hidden></div></div><div class="focus-dua" id="focusDua" role="button" tabindex="0" aria-label="Dua for this rite — tap for transliteration and meaning" onclick="event.stopPropagation();fdToggle()"></div><div class="focus-bot"><button class="btn undo" onclick="focusUndo()">− Undo</button><button class="chip-btn focus-say" id="focusSay" aria-pressed="false" aria-label="Say the count aloud — for earphones" onclick="togSayCount()" data-mk="speaker">Say count</button><button class="chip-btn focus-my" onclick="myDuasSheet()" data-mk="hands">My duas</button></div></div>
-<div class="focus driver" id="driver" role="dialog" aria-modal="true" aria-label="Show to driver"><div class="focus-top"><span id="drvTop">🚕 Please take me to my hotel</span><button class="chip-btn" onclick="closeDriver()">✕ Close</button></div><div class="focus-tap lost-body" style="justify-content:flex-start;padding:10px 24px;cursor:default"><div class="drv-ar" id="drvLead">من فضلك خذني إلى هذا الفندق</div><div class="drv-arn" id="drvArName" lang="ar" dir="rtl" hidden></div><div class="drv-name" id="drvName">—</div><div class="drv-addr" id="drvAddr"></div><div class="drv-phone" id="drvPhone"></div><div class="drv-acts" id="drvActs"></div><div class="focus-hint" onclick="closeDriver()">tap here to close</div></div></div>
+<div class="focus driver" id="driver" role="dialog" aria-modal="true" aria-label="Show to driver"><div class="focus-top"><span id="drvTop">🚕 Please take me to my hotel</span><button class="chip-btn" onclick="closeDriver()">✕ Close</button></div><div class="focus-tap lost-body" style="justify-content:flex-start;padding:10px 24px;cursor:default"><div class="drv-ar" id="drvLead" lang="ar" dir="rtl">من فضلك خذني إلى هذا الفندق</div><div class="drv-arn" id="drvArName" lang="ar" dir="rtl" hidden></div><div class="drv-name" id="drvName">—</div><div class="drv-addr" id="drvAddr"></div><div class="drv-phone" id="drvPhone"></div><div class="drv-acts" id="drvActs"></div><div class="focus-hint" onclick="closeDriver()">tap here to close</div></div></div>
 <div class="focus driver" id="help" role="dialog" aria-modal="true" aria-label="Emergency help"><div class="focus-top"><span data-mk="sos">Help — emergency numbers</span><button class="chip-btn" onclick="closeHelp()">✕ Close</button></div><div class="lost-body" id="helpBody"></div></div>
 <div class="focus driver" id="say" role="dialog" aria-modal="true" aria-label="Show a phrase"><div class="focus-top"><span id="sayTop">Show a phrase</span><button class="chip-btn" onclick="closeSay()">✕ Close</button></div><div class="lost-body say-body" id="sayBody"></div></div>
 <div class="focus driver" id="lost" role="dialog" aria-modal="true" aria-label="I am lost"><div class="focus-top"><span>🆘 I’m lost — please help</span><button class="chip-btn" onclick="closeLost()">✕ Close</button></div><div class="lost-body" id="lostBody"></div></div>
@@ -2762,7 +2836,7 @@ span.pt-tick{min-height:0;padding:3px 10px;border-color:var(--line);color:var(--
   </div>
   <div id="obStep2" hidden></div>
 </div></div>
-<div class="sheet-o" id="gSheet" onclick="if(event.target===this)closeSheet()"><div class="sheet" id="gSheetBody" role="dialog" aria-modal="true"></div></div>
+<div class="sheet-o" id="gSheet" onclick="if(event.target===this){closeSheet();if(!ST.onboarded)setTimeout(showOnboard,300);}"><div class="sheet" id="gSheetBody" role="dialog" aria-modal="true"></div></div>
 <div class="focus" id="duaFocus" role="dialog" aria-modal="true" aria-label="Dua reader"><div class="focus-top"><span id="dfTitle">Dua</span><button class="chip-btn" onclick="closeDua()">✕ Close</button></div>
   <div class="df-body"><div class="df-ar" id="dfAr" lang="ar"></div><div class="df-tl" id="dfTl"></div><div class="df-tr" id="dfTr"></div><div class="df-src" id="dfSrc"></div><div class="df-end" id="dfEndB" hidden></div><button class="btn df-ask" id="dfAsk" onclick="dfAsk()" hidden></button><div class="df-hint">screen stays awake · swipe-free reading</div></div>
   <div class="focus-bot" style="gap:10px"><button class="chip-btn" id="dfPrev" onclick="duaNav(-1)" aria-label="Previous dua">◀</button><button class="chip-btn" id="dfSay" data-ar="" onclick="speakBtn(this)" aria-label="Play recitation" data-mk="speaker">Listen</button><button class="chip-btn" id="dfNext" onclick="duaNav(1)" aria-label="Next dua">▶</button></div></div>

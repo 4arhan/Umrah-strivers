@@ -1,6 +1,6 @@
 /* Miqah — offline service worker */
 /* Release note: bump APP_VERSION here AND at the top of app.js for every release. */
-var APP_VERSION = '6.8.0';
+var APP_VERSION = '6.9.0';
 var CACHE = 'umrah-strivers-' + APP_VERSION;
 /* 6.7 (G3 #33): web fonts live in their own unversioned cache, kept across updates — an update applied in Mina without data keeps Manrope and Scheherazade */
 var FONTS = 'miqah-fonts';
@@ -28,6 +28,15 @@ self.addEventListener('activate', function (e) {
       }).catch(function () {}).then(function () { return caches.delete(k); });
     }));
   }).then(function () { return self.clients.claim(); }));
+});
+
+/* 6.9 (G5 #47): a tap on a prayer or medicine reminder brings the open app forward, or opens it on Daily */
+self.addEventListener('notificationclick', function (e) {
+  e.notification.close();
+  e.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function (list) {
+    for (var i = 0; i < list.length; i++) { if ('focus' in list[i]) return list[i].focus(); }
+    return self.clients.openWindow ? self.clients.openWindow('./?go=daily') : null;
+  }));
 });
 
 self.addEventListener('message', function (e) {
