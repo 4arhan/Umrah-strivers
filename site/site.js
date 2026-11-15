@@ -1,5 +1,5 @@
-// Miqah product page: theme switch, the phone that changes screen as you scroll,
-// the live demo, and the older-updates button. The page reads fine without any of it.
+// Miqah product page: theme switch, the phone that changes screen as you scroll, the category
+// chips, the live demo, and the older-updates button. The page reads fine without any of it.
 (function () {
   var root = document.documentElement;
 
@@ -29,14 +29,23 @@
     beats.forEach(function (b) { io.observe(b); });
   });
 
-  // ── nav: mark the section in view ──
-  var links = [].slice.call(document.querySelectorAll('.nav-links a'));
+  // ── nav and category chips: mark the section in view; the chips appear once the hero has gone by ──
+  var bar = document.getElementById('catbar');
+  var links = [].slice.call(document.querySelectorAll('.nav-links a, .catbar a'));
   if (links.length && 'IntersectionObserver' in window) {
-    var secs = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    var ids = links.map(function (a) { return a.getAttribute('href').slice(1); });
     var nio = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) links.forEach(function (a, i) { a.classList.toggle('on', secs[i] === e.target); }); });
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a, i) {
+          var on = ids[i] === e.target.id; a.classList.toggle('on', on);
+          if (on && bar && a.parentNode === bar) bar.scrollTo({ left: a.offsetLeft - (bar.clientWidth - a.offsetWidth) / 2, behavior: 'smooth' });
+        });
+      });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    secs.forEach(function (s) { if (s) nio.observe(s); });
+    ids.filter(function (id, i) { return ids.indexOf(id) === i; }).forEach(function (id) { var s = document.getElementById(id); if (s) nio.observe(s); });
+    var hero = document.querySelector('.hero');
+    if (bar && hero) new IntersectionObserver(function (es) { bar.classList.toggle('show', !es[0].isIntersecting); }).observe(hero);
   }
 
   // ── live demo: the real app in a frame, loaded only when asked for ──
@@ -46,6 +55,14 @@
     f.title = 'Miqah, live'; f.src = 'https://miqah.app/'; f.setAttribute('referrerpolicy', 'no-referrer');
     function fit() { f.style.transform = 'scale(' + (ds.clientWidth / 390) + ')'; f.style.height = Math.ceil(ds.clientHeight / (ds.clientWidth / 390)) + 'px'; }
     ds.innerHTML = ''; ds.appendChild(f); fit(); window.addEventListener('resize', fit); f.focus();
+  });
+
+  // ── long feature lists: on a phone, the first five rows and a button for the rest ──
+  document.querySelectorAll('.tiles').forEach(function (ul) {
+    var n = ul.children.length; if (n < 7) return;
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'btn line sm more-btn'; b.textContent = 'Show all ' + n;
+    ul.classList.add('fold'); ul.parentNode.insertBefore(b, ul.nextSibling);
+    b.addEventListener('click', function () { ul.classList.remove('fold'); b.remove(); });
   });
 
   // ── older updates ──

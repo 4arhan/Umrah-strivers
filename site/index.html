@@ -22,14 +22,15 @@
 <script>(function(d){d.classList.add('js');try{var t=localStorage.getItem('miqah-site-theme');if(t==='light'||t==='dark')d.dataset.theme=t;}catch(e){}})(document.documentElement);</script>
 </head>
 <body id="top">
-<a class="sr" href="#plan">Skip to the features</a>
+<a class="sr" href="#features">Skip to the features</a>
 
 <header class="nav">
   <a class="brand" href="#top"><img src="icon-192.png" alt="" width="30" height="30">Miqah</a>
-  <nav class="nav-links" aria-label="Sections"><a href="#plan">Before you fly</a><a href="#rites">In ihram</a><a href="#hajj">The days of Hajj</a><a href="#daily">Every day there</a><a href="#safety">Safety</a><a href="#trust">Trust</a><a href="#new">What’s new</a></nav>
+  <nav class="nav-links" aria-label="Sections"><a href="#plan">Plan</a><a href="#learn">Learn</a><a href="#perform">Perform</a><a href="#duas">Duas</a><a href="#track">Track</a><a href="#explore">Explore</a><a href="#safety">Safety</a><a href="#together">Together</a><a href="#trust">Trust</a><a href="#new">What’s new</a></nav>
   <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch between light and dark"><svg class="ic i-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="ic i-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 18h16"/><path d="M7 18a5 5 0 0 1 10 0"/><path d="M12 7V4M5 11l1.5 1.5M19 11l-1.5 1.5"/></svg></button>
   <a class="btn lav sm" href="https://miqah.app/">Open the app</a>
 </header>
+<nav class="catbar" id="catbar" aria-label="Feature categories"><a href="#plan"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 3L10 14"/><path d="M21 3l-7 18-4-7-7-4z"/></svg>Plan</a><a href="#learn"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z"/></svg>Learn</a><a href="#perform"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 8.5h13v12H4z"/><path d="M4 8.5l3-3h13v12l-3 3"/><path d="M4 12h13m0 0l3-3"/><path d="M12.5 20.5v-5h2.5v5"/></svg>Perform</a><a href="#duas"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M11 20.5c-4.5 0-8-3-8-7V9.5a1.5 1.5 0 0 1 3 0V13"/><path d="M13 20.5c4.5 0 8-3 8-7V9.5a1.5 1.5 0 0 0-3 0V13"/><path d="M6 13V6.5a1.5 1.5 0 0 1 3 0V12"/><path d="M18 13V6.5a1.5 1.5 0 0 0-3 0V12"/><path d="M9 11.5V4.5a1.5 1.5 0 0 1 2-1.4"/><path d="M15 11.5V4.5a1.5 1.5 0 0 0-2-1.4"/></svg>Duas</a><a href="#track"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20V4M4 20h16"/><path d="M8 15l3-4 3 2 5-6"/></svg>Track</a><a href="#explore"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Explore</a><a href="#safety"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M5.6 5.6l3.6 3.6M14.8 14.8l3.6 3.6M18.4 5.6l-3.6 3.6M9.2 14.8l-3.6 3.6"/></svg>Safety</a><a href="#together"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 5a3.5 3.5 0 0 1 0 7"/><path d="M17.5 14a6 6 0 0 1 4 6"/></svg>Together</a><a href="#trust"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Trust</a></nav>
 
 <main>
   <section class="hero">
@@ -57,94 +58,186 @@
     </div>
   </section>
 
-  <section class="intro">
+  <section class="intro" id="features">
     <div class="wrap">
       <p class="big">Hajj and Umrah ask a lot of you at once: papers, rulings, crowds, heat, and a head full of duas. <span>Miqah holds the practical side, so your attention can stay where it belongs.</span></p>
-      <nav class="steps" aria-label="The journey">
-        <a href="#plan"><span class="n" aria-hidden="true">01</span><span><b>Before you fly</b><small>Plan, pack, learn</small></span></a>
-        <a href="#rites"><span class="n" aria-hidden="true">02</span><span><b>In ihram</b><small>Steps, counters, duas</small></span></a>
-        <a href="#hajj"><span class="n" aria-hidden="true">03</span><span><b>The days of Hajj</b><small>Arafah, Mina, Jamarat</small></span></a>
-        <a href="#daily"><span class="n" aria-hidden="true">04</span><span><b>Every day there</b><small>Prayers, places, journal</small></span></a>
+      <div class="ix-head">
+        <p class="eyebrow">What it does for you</p>
+        <h2 class="h2">Everything in Miqah, by what it gives you.</h2>
+        <p class="sub">112 features in 9 groups. Pick the one you care about, or scroll through them all.</p>
+      </div>
+      <nav class="ixgrid" aria-label="Feature categories">
+        <a class="ix" href="#plan"><span class="ix-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 3L10 14"/><path d="M21 3l-7 18-4-7-7-4z"/></svg></span><span class="ix-t"><b>Plan</b><span class="ix-v">Arrive ready, not rushed.</span></span><span class="ix-n">16 features<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13.5"/><path d="M13 6.5l5.5 5.5-5.5 5.5"/></svg></span><span class="ix-ph" aria-hidden="true"><div class="phone"><span class="screen"><img class="lt" src="shots/home-plan-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/home-plan-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span></div></span></a>
+        <a class="ix" href="#learn"><span class="ix-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z"/></svg></span><span class="ix-t"><b>Learn</b><span class="ix-v">Know what you are doing, and why.</span></span><span class="ix-n">12 features<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13.5"/><path d="M13 6.5l5.5 5.5-5.5 5.5"/></svg></span><span class="ix-ph" aria-hidden="true"><div class="phone"><span class="screen"><img class="lt" src="shots/quiz-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/quiz-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span></div></span></a>
+        <a class="ix" href="#perform"><span class="ix-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 8.5h13v12H4z"/><path d="M4 8.5l3-3h13v12l-3 3"/><path d="M4 12h13m0 0l3-3"/><path d="M12.5 20.5v-5h2.5v5"/></svg></span><span class="ix-t"><b>Perform</b><span class="ix-v">Each rite, one step at a time.</span></span><span class="ix-n">19 features<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13.5"/><path d="M13 6.5l5.5 5.5-5.5 5.5"/></svg></span><span class="ix-ph" aria-hidden="true"><div class="phone"><span class="screen"><img src="shots/focus-tawaf-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span></div></span></a>
+        <a class="ix" href="#duas"><span class="ix-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M11 20.5c-4.5 0-8-3-8-7V9.5a1.5 1.5 0 0 1 3 0V13"/><path d="M13 20.5c4.5 0 8-3 8-7V9.5a1.5 1.5 0 0 0-3 0V13"/><path d="M6 13V6.5a1.5 1.5 0 0 1 3 0V12"/><path d="M18 13V6.5a1.5 1.5 0 0 0-3 0V12"/><path d="M9 11.5V4.5a1.5 1.5 0 0 1 2-1.4"/><path d="M15 11.5V4.5a1.5 1.5 0 0 0-2-1.4"/></svg></span><span class="ix-t"><b>Duas</b><span class="ix-v">The words, when you need them.</span></span><span class="ix-n">8 features<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13.5"/><path d="M13 6.5l5.5 5.5-5.5 5.5"/></svg></span><span class="ix-ph" aria-hidden="true"><div class="phone"><span class="screen"><img class="lt" src="shots/duas-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/duas-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span></div></span></a>
+        <a class="ix" href="#track"><span class="ix-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20V4M4 20h16"/><path d="M8 15l3-4 3 2 5-6"/></svg></span><span class="ix-t"><b>Track</b><span class="ix-v">Make every day there count.</span></span><span class="ix-n">13 features<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13.5"/><path d="M13 6.5l5.5 5.5-5.5 5.5"/></svg></span><span class="ix-ph" aria-hidden="true"><div class="phone"><span class="screen"><img class="lt" src="shots/stats-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/stats-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span></div></span></a>
+        <a class="ix" href="#explore"><span class="ix-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="ix-t"><b>Explore</b><span class="ix-v">Visit with purpose. Find your way back.</span></span><span class="ix-n">11 features<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13.5"/><path d="M13 6.5l5.5 5.5-5.5 5.5"/></svg></span><span class="ix-ph" aria-hidden="true"><div class="phone"><span class="screen"><img class="lt" src="shots/places-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/places-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span></div></span></a>
+        <a class="ix" href="#safety"><span class="ix-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M5.6 5.6l3.6 3.6M14.8 14.8l3.6 3.6M18.4 5.6l-3.6 3.6M9.2 14.8l-3.6 3.6"/></svg></span><span class="ix-t"><b>Safety</b><span class="ix-v">When words fail, show the screen.</span></span><span class="ix-n">14 features<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13.5"/><path d="M13 6.5l5.5 5.5-5.5 5.5"/></svg></span><span class="ix-ph" aria-hidden="true"><div class="phone"><span class="screen"><img src="shots/lost-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span></div></span></a>
+        <a class="ix" href="#together"><span class="ix-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 5a3.5 3.5 0 0 1 0 7"/><path d="M17.5 14a6 6 0 0 1 4 6"/></svg></span><span class="ix-t"><b>Together</b><span class="ix-v">Bring the family and the group along.</span></span><span class="ix-n">8 features<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13.5"/><path d="M13 6.5l5.5 5.5-5.5 5.5"/></svg></span><span class="ix-ph" aria-hidden="true"><div class="phone"><span class="screen"><img class="lt" src="shots/essentials-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/essentials-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span></div></span></a>
+        <a class="ix" href="#trust"><span class="ix-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="ix-t"><b>Trust</b><span class="ix-v">Every reference numbered. Every changing fact dated.</span></span><span class="ix-n">11 features<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13.5"/><path d="M13 6.5l5.5 5.5-5.5 5.5"/></svg></span><span class="ix-ph" aria-hidden="true"><div class="phone"><span class="screen"><img class="lt" src="shots/sources-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/sources-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span></div></span></a>
       </nav>
     </div>
   </section>
 
-  <section class="chapter" id="plan">
+  <section class="cat" id="plan">
     <div class="wrap">
-      <header class="ch-head">
-        <span class="ch-n" aria-hidden="true">01</span>
-        <p class="eyebrow">Before you fly</p>
-        <h2 class="h2">Ready before the airport.</h2>
-        <p class="sub">Tell Miqah whether you are going for Umrah or Hajj and when you leave. It works out the rest.</p>
+      <header class="cat-head">
+        <span class="cat-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 3L10 14"/><path d="M21 3l-7 18-4-7-7-4z"/></svg></span>
+        <p class="eyebrow">Planning <span>· 16 features</span></p>
+        <h2 class="h2">Arrive ready, not rushed.</h2>
+        <p class="sub">Tell Miqah whether you are going for Umrah or Hajj and when you leave. It works out what to do, and when.</p>
       </header>
       <div class="story">
-        <div class="story-stage" aria-hidden="true"><div class="stage-in"><div class="phone"><span class="screen"><span class="shot on"><img class="lt" src="shots/home-plan-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/home-plan-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/prepare-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/prepare-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/itinerary-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/itinerary-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/quiz-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/quiz-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span></span></div><div class="dots"><i class="on"></i><i></i><i></i><i></i></div></div></div>
+        <div class="story-stage" aria-hidden="true"><div class="stage-in"><div class="phone"><span class="screen"><span class="shot on"><img class="lt" src="shots/home-plan-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/home-plan-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/prepare-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/prepare-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/itinerary-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/itinerary-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/leave-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/leave-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span></span></div><div class="dots"><i class="on"></i><i></i><i></i><i></i></div></div></div>
         <div class="beats">
         <article class="beat on">
           <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/home-plan-light.webp" alt="Home screen 57 days before departure, showing how prepared the pilgrim is and what to do next" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/home-plan-dark.webp" alt="Home screen 57 days before departure, showing how prepared the pilgrim is and what to do next" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
           <div class="beat-copy">
-            <p class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 3L10 14"/><path d="M21 3l-7 18-4-7-7-4z"/></svg>Home</p>
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 3L10 14"/><path d="M21 3l-7 18-4-7-7-4z"/></svg>Home</span></p>
             <h3>A countdown that knows what’s next</h3>
             <p class="t">Give Miqah your departure date and Home becomes your plan: days to go, how prepared you are, and the next thing to sort out, with anything overdue flagged.</p>
-            <ul class="chips"><li>Umrah or Hajj</li><li>Tamattu’, Qiran or Ifrad</li><li>Apply your group’s setup from one link</li></ul>
+            <ul class="chips"><li>Umrah or Hajj</li><li>Tamattu’, Qiran or Ifrad</li></ul>
           </div>
         </article>
         <article class="beat">
           <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/prepare-light.webp" alt="The Prepare screen with a readiness ring and the intention card" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/prepare-dark.webp" alt="The Prepare screen with a readiness ring and the intention card" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
           <div class="beat-copy">
-            <p class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6h1M4 12h1M4 18h1"/></svg>Plan › Prepare</p>
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6h1M4 12h1M4 18h1"/></svg>Plan › Prepare</span></p>
             <h3>One checklist for papers, health, packing and the heart</h3>
             <p class="t">Passport, visa, vaccines, bookings and packing, each with when to do it and why. It begins with the intention. Rules that change, like visas and permits, show the date they were last checked.</p>
-            <ul class="chips"><li>Share your readiness</li><li>A list for children who travel</li><li>Documents vault with a PIN</li></ul>
           </div>
         </article>
         <article class="beat">
           <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/itinerary-light.webp" alt="A suggested ten-day itinerary with Makkah first" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/itinerary-dark.webp" alt="A suggested ten-day itinerary with Makkah first" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
           <div class="beat-copy">
-            <p class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Plan › Prepare</p>
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Plan › Prepare</span></p>
             <h3>Your days, city by city</h3>
             <p class="t">A suggested itinerary for the length of your trip: Makkah first or Madinah first, at a standard or a family pace. Tap a day to change it.</p>
-            <ul class="chips"><li>The days of Hajj built in</li><li>Share it with your group</li></ul>
+            <ul class="chips"><li>The days of Hajj built in</li></ul>
+          </div>
+        </article>
+        <article class="beat">
+          <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/leave-light.webp" alt="Home screen one day before departure, with a list of things to do before leaving home" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/leave-dark.webp" alt="Home screen one day before departure, with a list of things to do before leaving home" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
+          <div class="beat-copy">
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M8 7v13M16 7v13"/></svg>Home</span></p>
+            <h3>The last 48 hours</h3>
+            <p class="t">Two days before you fly, Home turns into a leave-home list: the ihram kit in your hand luggage, the hotel card filled in, your documents saved. It can add a calendar alarm for entering ihram on the flight.</p>
+          </div>
+        </article>
+        </div>
+      </div>
+      <div class="also">
+        <h3 class="also-h">And 12 more <span>in planning</span></h3>
+        <div class="peeks">
+          <figure class="peek"><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/hotel-light.webp" alt="The hotel card with Makkah and Madinah tabs" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/hotel-dark.webp" alt="The hotel card with Makkah and Madinah tabs" width="780" height="1688" decoding="async" loading="lazy"></span></div></div><figcaption><b>Two hotels on one card</b><span>Makkah and Madinah, each with its Arabic name, nearest gate and meeting point.</span></figcaption></figure>
+          <figure class="peek"><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/vault-light.webp" alt="The document vault card" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/vault-dark.webp" alt="The document vault card" width="780" height="1688" decoding="async" loading="lazy"></span></div></div><figcaption><b>Document vault</b><span>Copies of your papers, encrypted with a PIN only you know.</span></figcaption></figure>
+        </div>
+        <ul class="tiles">
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b>What to do when</b><span>Every item has an ideal lead time, so you see what is due now and what can wait.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7"/></svg><b>Already sorted?</b><span>Booked before you installed? Tick it all on one sheet.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 20.5s-7.5-4.6-7.5-10A4 4 0 0 1 12 8a4 4 0 0 1 7.5 2.5c0 5.4-7.5 10-7.5 10z"/></svg><b>The written intention</b><span>Write why you are going. Miqah brings it back on the first day and on Arafah.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 19L8.5 6.5h7L22 19z"/><path d="M9 19l3-6 3 6"/><path d="M8.5 6.5L12 13l3.5-6.5"/></svg><b>Your Mina camp</b><span>For Hajj, the camp, maktab and group leader sit beside the hotel.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M8 7v13M16 7v13"/></svg><b>Packing by bag</b><span>Filter the list by ihram bag, carry-on or suitcase.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg><b>Travelling with children</b><span>Their passports, visas and vaccines join your timeline.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V4"/><path d="M8 8l4-4 4 4"/><path d="M5 13v6a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-6"/></svg><b>Share my readiness</b><span>Send your group how prepared you are.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21v-9"/><path d="M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path d="M8 14a5.5 5.5 0 0 1 0-8"/><path d="M16 14a5.5 5.5 0 0 0 0-8"/><path d="M5.5 16.5a9 9 0 0 1 0-13"/><path d="M18.5 16.5a9 9 0 0 0 0-13"/></svg><b>Ready for no signal</b><span>A check before you fly that everything is saved on the phone.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 18h16"/><path d="M7 18a5 5 0 0 1 10 0"/><path d="M12 7V4M5 11l1.5 1.5M19 11l-1.5 1.5"/></svg><b>Prayer times at home</b><span>Your own city’s times while you prepare.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><b>Calendar export</b><span>Add prayer times and the days of Hajj to your calendar.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="cat" id="learn">
+    <div class="wrap">
+      <header class="cat-head">
+        <span class="cat-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z"/></svg></span>
+        <p class="eyebrow">Learning <span>· 12 features</span></p>
+        <h2 class="h2">Know what you are doing, and why.</h2>
+        <p class="sub">Short lessons before you go, and the evidence behind each step when you are there.</p>
+      </header>
+      <div class="story">
+        <div class="story-stage" aria-hidden="true"><div class="stage-in"><div class="phone"><span class="screen"><span class="shot on"><img class="lt" src="shots/learn-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/learn-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/quiz-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/quiz-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/flashcard-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/flashcard-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/sisters-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/sisters-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span></span></div><div class="dots"><i class="on"></i><i></i><i></i><i></i></div></div></div>
+        <div class="beats">
+        <article class="beat on">
+          <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/learn-light.webp" alt="The Learn screen, opening with Umrah in four steps" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/learn-dark.webp" alt="The Learn screen, opening with Umrah in four steps" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
+          <div class="beat-copy">
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z"/></svg>Plan › Learn</span></p>
+            <h3>The whole rite, then the detail</h3>
+            <p class="t">Learn opens with the rite in order, then goes deeper: essentials, questions and answers, and the history of the places. Search finds anything, from Zamzam to a missed lap.</p>
+            <ul class="chips"><li>Rites</li><li>Essentials</li><li>Q&A</li><li>History</li></ul>
           </div>
         </article>
         <article class="beat">
           <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/quiz-light.webp" alt="A quiz question from level 1, Foundations of Umrah" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/quiz-dark.webp" alt="A quiz question from level 1, Foundations of Umrah" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
           <div class="beat-copy">
-            <p class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 1-1 1.7"/><path d="M12 16.5v.5"/></svg>Plan › Learn and Quiz</p>
-            <h3>Learn it before you live it</h3>
-            <p class="t">Short lessons, a daily deck of knowledge cards, and a quiz that unlocks level by level once you score 80%. Each answer shows its source.</p>
-            <ul class="chips"><li>Separate levels for Hajj</li><li>Kids’ corner and stories</li><li>A certificate at the end</li></ul>
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 1-1 1.7"/><path d="M12 16.5v.5"/></svg>Plan › Quiz</span></p>
+            <h3>A quiz that unlocks as you learn</h3>
+            <p class="t">Multiple choice and true or false, level by level. Score 80% to open the next, and each answer shows its source.</p>
+            <ul class="chips"><li>Separate levels for Hajj</li><li>A certificate at the end</li></ul>
+          </div>
+        </article>
+        <article class="beat">
+          <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/flashcard-light.webp" alt="A knowledge card from the daily deck" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/flashcard-dark.webp" alt="A knowledge card from the daily deck" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
+          <div class="beat-copy">
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7" y="3" width="13" height="16" rx="2"/><path d="M4 7v12a2 2 0 0 0 2 2h10"/></svg>Plan › Learn</span></p>
+            <h3>A few cards a day</h3>
+            <p class="t">Daily knowledge cards on spaced repetition, paced to your departure date, with your quiz mistakes mixed in.</p>
+          </div>
+        </article>
+        <article class="beat">
+          <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/sisters-light.webp" alt="The For sisters section of Learn" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/sisters-dark.webp" alt="The For sisters section of Learn" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
+          <div class="beat-copy">
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 5.5V10a5 5 0 0 0 10 0V5.5L14.5 8 12 4.5 9.5 8z"/><path d="M12 15v6"/><path d="M12 19.5c-.4-2.4-2.4-3.9-5-3.9.3 2.4 2.3 3.9 5 3.9z"/></svg>Plan › Learn</span></p>
+            <h3>For sisters, in one place</h3>
+            <p class="t">Everything that differs for women in a five-minute read: ihram clothing, periods, the women’s areas and staying together.</p>
           </div>
         </article>
         </div>
       </div>
+      <div class="also">
+        <h3 class="also-h">And 8 more <span>in learning</span></h3>
+        <div class="peeks">
+          <figure class="peek"><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/hajj-learn-light.webp" alt="Learn in Hajj mode, with a tile for each day of Hajj" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/hajj-learn-dark.webp" alt="Learn in Hajj mode, with a tile for each day of Hajj" width="780" height="1688" decoding="async" loading="lazy"></span></div></div><figcaption><b>Hajj in 5 days</b><span>One tile for each day of Hajj, with its expected date. Tap a day to open it in the rites guide.</span></figcaption></figure>
+          <figure class="peek"><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/quiz-levels-light.webp" alt="The list of quiz levels" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/quiz-levels-dark.webp" alt="The list of quiz levels" width="780" height="1688" decoding="async" loading="lazy"></span></div></div><figcaption><b>Quiz levels</b><span>See what each level covers and what it takes to pass.</span></figcaption></figure>
+          <figure class="peek"><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/scams-light.webp" alt="The Donations and scams section of Learn" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/scams-dark.webp" alt="The Donations and scams section of Learn" width="780" height="1688" decoding="async" loading="lazy"></span></div></div><figcaption><b>Donations and scams</b><span>How to give safely, and the common rip-offs to watch for.</span></figcaption></figure>
+        </div>
+        <ul class="tiles">
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"/><path d="M9.5 9.5a2.5 2.5 0 0 1 5 0c0 1.7-2.5 2-2.5 4"/><path d="M12 17v.2"/></svg><b>“Why?” on every step</b><span>The evidence behind each action, with its reference.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 4h12a2 2 0 0 1 2 2v1H8v10a2 2 0 0 1-4 0V6a2 2 0 0 1 2-2z"/><path d="M8 17a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7"/><path d="M11 10.5h6M11 13.5h6"/></svg><b>Today’s rulings</b><span>On each day of Hajj, the rulings that matter that day.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6h1M4 12h1M4 18h1"/></svg><b>Where the schools differ</b><span>The four schools are named, not folded into one view.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v4.5h-4.5"/></svg><b>Review my mistakes</b><span>Drill only the questions you got wrong.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="14.5" r="5.5"/><path d="M9.2 9.5L6.5 3h4l1.5 3.5L13.5 3h4l-2.7 6.5"/><path d="M9.8 14.7l1.5 1.5 3-3"/></svg><b>Certificate</b><span>Finish the circuit and get a certificate with your name.</span></li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <section class="chapter" id="rites">
+  <section class="cat" id="perform">
     <div class="wrap">
-      <header class="ch-head">
-        <span class="ch-n" aria-hidden="true">02</span>
-        <p class="eyebrow">In ihram</p>
-        <h2 class="h2">The rites, one step at a time.</h2>
+      <header class="cat-head">
+        <span class="cat-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 8.5h13v12H4z"/><path d="M4 8.5l3-3h13v12l-3 3"/><path d="M4 12h13m0 0l3-3"/><path d="M12.5 20.5v-5h2.5v5"/></svg></span>
+        <p class="eyebrow">Performing the rites <span>· 19 features</span></p>
+        <h2 class="h2">Each rite, one step at a time.</h2>
         <p class="sub">When you are tired and the crowd is moving, you should not have to remember what comes next.</p>
       </header>
       <div class="story">
-        <div class="story-stage" aria-hidden="true"><div class="stage-in"><div class="phone"><span class="screen"><span class="shot on"><img class="lt" src="shots/steps-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/steps-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/counters-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/counters-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img src="shots/focus-tawaf-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img src="shots/dua-reader-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span></span></div><div class="dots"><i class="on"></i><i></i><i></i><i></i></div></div></div>
+        <div class="story-stage" aria-hidden="true"><div class="stage-in"><div class="phone"><span class="screen"><span class="shot on"><img class="lt" src="shots/steps-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/steps-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/counters-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/counters-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img src="shots/focus-tawaf-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/home-arafah-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/home-arafah-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/hajj-counters-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/hajj-counters-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span></span></div><div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i></div></div></div>
         <div class="beats">
         <article class="beat on">
           <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/steps-light.webp" alt="The Umrah walkthrough at step 1 of 16" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/steps-dark.webp" alt="The Umrah walkthrough at step 1 of 16" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
           <div class="beat-copy">
-            <p class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z"/></svg>Umrah › Steps &amp; duas</p>
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z"/></svg>Umrah › Steps &amp; duas</span></p>
             <h3>Every step in order, with its dua</h3>
-            <p class="t">The whole rite as a walkthrough: what to do, what to say and why. Duas come in Arabic, transliteration and meaning, with a Listen button where your phone has an Arabic voice.</p>
-            <ul class="chips"><li>Guidance for sisters</li><li>A story for the kids</li><li>Report a correction on any step</li></ul>
+            <p class="t">The whole rite as a walkthrough: what to do, what to say and why. Duas come in Arabic, transliteration and meaning.</p>
+            <ul class="chips"><li>Guidance for sisters</li><li>A story for the kids</li></ul>
           </div>
         </article>
         <article class="beat">
           <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/counters-light.webp" alt="The tawaf counter showing round 3 of 7" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/counters-dark.webp" alt="The tawaf counter showing round 3 of 7" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
           <div class="beat-copy">
-            <p class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v4.5h-4.5"/></svg>Umrah › Counters</p>
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v4.5h-4.5"/></svg>Umrah › Counters</span></p>
             <h3>Count rounds without losing your place</h3>
             <p class="t">One big ring for tawaf and one for sa’i. Tap after each round and Miqah tells you which round you are on, with the dua for where you are standing.</p>
             <ul class="chips"><li>Wudu check before tawaf</li><li>Undo a round</li><li>Nafl tawaf too</li></ul>
@@ -153,154 +246,234 @@
         <article class="beat">
           <div class="beat-phone"><div class="phone"><span class="screen"><img src="shots/focus-tawaf-light.webp" alt="Focus mode: a full-screen tawaf counter on round 3 of 7" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
           <div class="beat-copy">
-            <p class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 9V4.5H9M15 4.5h4.5V9M19.5 15v4.5H15M9 19.5H4.5V15"/></svg>Focus mode</p>
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 9V4.5H9M15 4.5h4.5V9M19.5 15v4.5H15M9 19.5H4.5V15"/></svg>Focus mode</span></p>
             <h3>Eyes on the Kaaba, not the screen</h3>
-            <p class="t">Go full-screen and tap anywhere to count. The screen stays awake, and on phones with a built-in voice the count can be read aloud through your earphones.</p>
-            <ul class="chips"><li>Tap anywhere</li><li>Screen stays awake</li><li>Spoken count, off by default</li></ul>
+            <p class="t">Go full-screen and tap anywhere to count. The screen stays awake until you are done.</p>
+            <ul class="chips"><li>Tap anywhere</li><li>Screen stays awake</li></ul>
           </div>
         </article>
         <article class="beat">
-          <div class="beat-phone"><div class="phone"><span class="screen"><img src="shots/dua-reader-light.webp" alt="A personal dua shown full-screen, number 3 of 5" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
-          <div class="beat-copy">
-            <p class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M11 20.5c-4.5 0-8-3-8-7V9.5a1.5 1.5 0 0 1 3 0V13"/><path d="M13 20.5c4.5 0 8-3 8-7V9.5a1.5 1.5 0 0 0-3 0V13"/><path d="M6 13V6.5a1.5 1.5 0 0 1 3 0V12"/><path d="M18 13V6.5a1.5 1.5 0 0 0-3 0V12"/><path d="M9 11.5V4.5a1.5 1.5 0 0 1 2-1.4"/><path d="M15 11.5V4.5a1.5 1.5 0 0 0-2-1.4"/></svg>More › Duas</p>
-            <h3>The duas you were asked to make</h3>
-            <p class="t">Keep a list of your own duas and the ones people asked of you. Read them full-screen, one at a time, and mark each as asked.</p>
-          </div>
-        </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="chapter" id="hajj">
-    <div class="wrap">
-      <header class="ch-head">
-        <span class="ch-n" aria-hidden="true">03</span>
-        <p class="eyebrow">The days of Hajj</p>
-        <h2 class="h2">It knows which day of Hajj it is.</h2>
-        <p class="sub">From the 8th of Dhul Hijjah, the whole app turns to face the day you are in.</p>
-      </header>
-      <div class="story">
-        <div class="story-stage" aria-hidden="true"><div class="stage-in"><div class="phone"><span class="screen"><span class="shot on"><img class="lt" src="shots/home-arafah-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/home-arafah-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/hajj-today-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/hajj-today-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/hajj-counters-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/hajj-counters-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/jamarat-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/jamarat-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/heat-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/heat-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span></span></div><div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i></div></div></div>
-        <div class="beats">
-        <article class="beat on">
           <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/home-arafah-light.webp" alt="Home screen on 9 Dhul Hijjah: stand at Arafah, from Dhuhr until sunset" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/home-arafah-dark.webp" alt="Home screen on 9 Dhul Hijjah: stand at Arafah, from Dhuhr until sunset" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
           <div class="beat-copy">
-            <p class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 19h20"/><path d="M3 19c2.5-7 4.5-10 7.5-10s4 5.5 6 5.5 3-4.5 6-4.5"/></svg>Home</p>
-            <h3>The day’s rite and its window</h3>
-            <p class="t">During the days of Hajj, Home shows the rite for the day and when it must happen. On 9 Dhul Hijjah that is the standing at Arafah, from Dhuhr until sunset.</p>
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 19h20"/><path d="M3 19c2.5-7 4.5-10 7.5-10s4 5.5 6 5.5 3-4.5 6-4.5"/></svg>Home, on Hajj</span></p>
+            <h3>It knows which day of Hajj it is</h3>
+            <p class="t">From the 8th of Dhul Hijjah, Home shows the rite for the day and when it must happen. On the 9th that is the standing at Arafah, from Dhuhr until sunset.</p>
             <ul class="chips"><li>Dates you can correct</li><li>Your camp on every card</li></ul>
-          </div>
-        </article>
-        <article class="beat">
-          <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/hajj-today-light.webp" alt="The Daily screen on the Day of Arafah with the day’s checklist" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/hajj-today-dark.webp" alt="The Daily screen on the Day of Arafah with the day’s checklist" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
-          <div class="beat-copy">
-            <p class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Daily › Today</p>
-            <h3>A checklist for the day you are in</h3>
-            <p class="t">Each day of Hajj has its own list, from the intention and the Talbiyah on the 8th to the last day of stoning, beside your prayer times and your camp.</p>
           </div>
         </article>
         <article class="beat">
           <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/hajj-counters-light.webp" alt="The rami counter on 10 Dhul Hijjah at pebble 4 of 7" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/hajj-counters-dark.webp" alt="The rami counter on 10 Dhul Hijjah at pebble 4 of 7" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
           <div class="beat-copy">
-            <p class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 4.5l6-.5 5 4.5-.5 7-5.5 4.5-6.5-2-3-6z"/><path d="M9 4.5l3.5 5.5 7.5-1M12.5 10l-2 8.5"/></svg>Hajj › Counters</p>
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 4.5l6-.5 5 4.5-.5 7-5.5 4.5-6.5-2-3-6z"/><path d="M9 4.5l3.5 5.5 7.5-1M12.5 10l-2 8.5"/></svg>Hajj › Counters</span></p>
             <h3>Seven pebbles, counted per pillar</h3>
             <p class="t">A counter for each jamrah on each day, with the time window for stoning that day.</p>
-            <ul class="chips"><li>Stoning on someone’s behalf</li><li>If a pebble misses</li><li>Log it later if you could not tap</li></ul>
-          </div>
-        </article>
-        <article class="beat">
-          <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/jamarat-light.webp" alt="A simple sketch of the three Jamarat pillars" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/jamarat-dark.webp" alt="A simple sketch of the three Jamarat pillars" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
-          <div class="beat-copy">
-            <p class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg>Hajj › Counters</p>
-            <h3>The Jamarat, drawn simply</h3>
-            <p class="t">A sketch of the three pillars in the order you meet them, and where to pause for dua. It is not to scale: your group gives you the route, the level and the time.</p>
-          </div>
-        </article>
-        <article class="beat">
-          <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/heat-light.webp" alt="The heat plan, with emergency numbers at the top" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/heat-dark.webp" alt="The heat plan, with emergency numbers at the top" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
-          <div class="beat-copy">
-            <p class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 18h16"/><path d="M7 18a5 5 0 0 1 10 0"/><path d="M12 7V4M5 11l1.5 1.5M19 11l-1.5 1.5"/></svg>Home</p>
-            <h3>A plan for the heat</h3>
-            <p class="t">The signs of heat exhaustion and heatstroke, what to do, and who to call: 911, 997 for the Saudi Red Crescent, and 937 for the Ministry of Health.</p>
           </div>
         </article>
         </div>
       </div>
+      <div class="also">
+        <h3 class="also-h">And 14 more <span>in performing the rites</span></h3>
+        <div class="peeks">
+          <figure class="peek"><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/walk-light.webp" alt="The guided walkthrough, on step 1 of 16" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/walk-dark.webp" alt="The guided walkthrough, on step 1 of 16" width="780" height="1688" decoding="async" loading="lazy"></span></div></div><figcaption><b>Walk me through it</b><span>One step to a screen, with Done and Next.</span></figcaption></figure>
+          <figure class="peek"><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/hajj-today-light.webp" alt="The Daily screen on the Day of Arafah with the day’s checklist" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/hajj-today-dark.webp" alt="The Daily screen on the Day of Arafah with the day’s checklist" width="780" height="1688" decoding="async" loading="lazy"></span></div></div><figcaption><b>A checklist for each day of Hajj</b><span>From the intention on the 8th to the last day of stoning.</span></figcaption></figure>
+          <figure class="peek"><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/jamarat-light.webp" alt="A simple sketch of the three Jamarat pillars" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/jamarat-dark.webp" alt="A simple sketch of the three Jamarat pillars" width="780" height="1688" decoding="async" loading="lazy"></span></div></div><figcaption><b>The Jamarat, drawn simply</b><span>The three pillars in the order you meet them, and where to pause for dua. Not to scale.</span></figcaption></figure>
+        </div>
+        <ul class="tiles">
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6h1M4 12h1M4 18h1"/></svg><b>Tamattu’, Qiran or Ifrad</b><span>The steps follow the kind of Hajj you intend.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v4.5h-4.5"/></svg><b>More than one Umrah</b><span>Record a completed Umrah and start the next.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg><b>A map of the mataf</b><span>Where the Black Stone corner, the Hijr and the Safa exit are.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9.5v5h3.5L13 19V5L7.5 9.5z"/><path d="M16.5 9a4.5 4.5 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></svg><b>Spoken count</b><span>On phones with a built-in voice, hear the count through earphones.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b>Time left on Arafah</b><span>A countdown to sunset on the 9th.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 4.5l6-.5 5 4.5-.5 7-5.5 4.5-6.5-2-3-6z"/><path d="M9 4.5l3.5 5.5 7.5-1M12.5 10l-2 8.5"/></svg><b>The stoning window</b><span>Each day’s time for stoning, and the order if you are making one up.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M11 20.5c-4.5 0-8-3-8-7V9.5a1.5 1.5 0 0 1 3 0V13"/><path d="M13 20.5c4.5 0 8-3 8-7V9.5a1.5 1.5 0 0 0-3 0V13"/><path d="M6 13V6.5a1.5 1.5 0 0 1 3 0V12"/><path d="M18 13V6.5a1.5 1.5 0 0 0-3 0V12"/><path d="M9 11.5V4.5a1.5 1.5 0 0 1 2-1.4"/><path d="M15 11.5V4.5a1.5 1.5 0 0 0-2-1.4"/></svg><b>Stoning on someone’s behalf</b><span>Count pebbles for the people you are stoning for.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5l9.5 16.5h-19z"/><path d="M12 10v4.5"/><path d="M12 17.2v.3"/></svg><b>When something goes wrong</b><span>Lost count, a pebble that missed, a break in wudu: what to do.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 7l3 3"/><path d="M12 20h8"/></svg><b>Log it later</b><span>Could not tap at the time? Add the day afterwards.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 5.5V10a5 5 0 0 0 10 0V5.5L14.5 8 12 4.5 9.5 8z"/><path d="M12 15v6"/><path d="M12 19.5c-.4-2.4-2.4-3.9-5-3.9.3 2.4 2.3 3.9 5 3.9z"/></svg><b>If your period starts</b><span>What changes for the rites, for Umrah and for Hajj.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 8V3.5h10V8"/><path d="M5 8h14a1.5 1.5 0 0 1 1.5 1.5V16H17v4.5H7V16H3.5V9.5A1.5 1.5 0 0 1 5 8z"/><path d="M7 13h10"/></svg><b>Print the rites</b><span>The steps and duas as a page to print or save.</span></li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <section class="chapter" id="daily">
+  <section class="cat" id="duas">
     <div class="wrap">
-      <header class="ch-head">
-        <span class="ch-n" aria-hidden="true">04</span>
-        <p class="eyebrow">Every day there</p>
-        <h2 class="h2">Make every day count.</h2>
+      <header class="cat-head">
+        <span class="cat-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M11 20.5c-4.5 0-8-3-8-7V9.5a1.5 1.5 0 0 1 3 0V13"/><path d="M13 20.5c4.5 0 8-3 8-7V9.5a1.5 1.5 0 0 0-3 0V13"/><path d="M6 13V6.5a1.5 1.5 0 0 1 3 0V12"/><path d="M18 13V6.5a1.5 1.5 0 0 0-3 0V12"/><path d="M9 11.5V4.5a1.5 1.5 0 0 1 2-1.4"/><path d="M15 11.5V4.5a1.5 1.5 0 0 0-2-1.4"/></svg></span>
+        <p class="eyebrow">Duas and dhikr <span>· 8 features</span></p>
+        <h2 class="h2">The words, when you need them.</h2>
+        <p class="sub">Arabic, transliteration and meaning for the duas of the rites, and a place for your own.</p>
+      </header>
+      <div class="story">
+        <div class="story-stage" aria-hidden="true"><div class="stage-in"><div class="phone"><span class="screen"><span class="shot on"><img class="lt" src="shots/duas-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/duas-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img src="shots/dua-reader-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/tools-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/tools-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span></span></div><div class="dots"><i class="on"></i><i></i><i></i></div></div></div>
+        <div class="beats">
+        <article class="beat on">
+          <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/duas-light.webp" alt="The Duas screen, opening with the Talbiyah" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/duas-dark.webp" alt="The Duas screen, opening with the Talbiyah" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
+          <div class="beat-copy">
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9.5v5h3.5L13 19V5L7.5 9.5z"/><path d="M16.5 9a4.5 4.5 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></svg>More › Duas</span></p>
+            <h3>Every dua, with a Listen button</h3>
+            <p class="t">The essential duas in Arabic, transliteration and meaning. Tap one to read it full-screen in the Haram, or Listen where your phone has an Arabic voice.</p>
+          </div>
+        </article>
+        <article class="beat">
+          <div class="beat-phone"><div class="phone"><span class="screen"><img src="shots/dua-reader-light.webp" alt="A personal dua shown full-screen, number 3 of 5" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
+          <div class="beat-copy">
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M11 20.5c-4.5 0-8-3-8-7V9.5a1.5 1.5 0 0 1 3 0V13"/><path d="M13 20.5c4.5 0 8-3 8-7V9.5a1.5 1.5 0 0 0-3 0V13"/><path d="M6 13V6.5a1.5 1.5 0 0 1 3 0V12"/><path d="M18 13V6.5a1.5 1.5 0 0 0-3 0V12"/><path d="M9 11.5V4.5a1.5 1.5 0 0 1 2-1.4"/><path d="M15 11.5V4.5a1.5 1.5 0 0 0-2-1.4"/></svg>More › Duas</span></p>
+            <h3>The duas you were asked to make</h3>
+            <p class="t">Keep a list of your own duas and the ones people asked of you. Read them full-screen, one at a time, and mark each as asked.</p>
+          </div>
+        </article>
+        <article class="beat">
+          <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/tools-light.webp" alt="The tasbih counter" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/tools-dark.webp" alt="The tasbih counter" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
+          <div class="beat-copy">
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="11" r="7.5" stroke-dasharray=".1 3.7" stroke-width="2.6"/><path d="M12 18.5v3"/></svg>Daily › Tools</span></p>
+            <h3>A tasbih in your pocket</h3>
+            <p class="t">A dhikr counter with the common phrases and targets of 33, 34, 100 and 1000. On Hajj it adds the Talbiyah, the dua of Arafah and the takbir.</p>
+          </div>
+        </article>
+        </div>
+      </div>
+      <div class="also">
+        <h3 class="also-h">And 5 more <span>in duas and dhikr</span></h3>
+        <ul class="tiles">
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><b>Duas that follow the day</b><span>On Hajj, the dua of Arafah comes first on the 9th, and the takbir after it.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v4.5h-4.5"/></svg><b>A counter for the dua of Arafah</b><span>Tap as you repeat it on the day.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 9V4.5H9M15 4.5h4.5V9M19.5 15v4.5H15M9 19.5H4.5V15"/></svg><b>Full-screen dhikr</b><span>The tasbih has a focus mode too.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg><b>Starters for your list</b><span>Begin with the people who asked you to pray for them.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7"/></svg><b>A new round</b><span>Asked them all? Start the list again.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="cat" id="track">
+    <div class="wrap">
+      <header class="cat-head">
+        <span class="cat-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20V4M4 20h16"/><path d="M8 15l3-4 3 2 5-6"/></svg></span>
+        <p class="eyebrow">Tracking <span>· 13 features</span></p>
+        <h2 class="h2">Make every day there count.</h2>
         <p class="sub">The days between the rites are the ones that slip away. Miqah gives each of them a shape.</p>
       </header>
       <div class="story">
-        <div class="story-stage" aria-hidden="true"><div class="stage-in"><div class="phone"><span class="screen"><span class="shot on"><img class="lt" src="shots/today-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/today-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/ramadan-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/ramadan-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/places-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/places-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/place-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/place-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/journal-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/journal-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/home-after-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/home-after-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span></span></div><div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+        <div class="story-stage" aria-hidden="true"><div class="stage-in"><div class="phone"><span class="screen"><span class="shot on"><img class="lt" src="shots/today-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/today-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/ramadan-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/ramadan-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/journal-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/journal-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/keepsake-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/keepsake-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span></span></div><div class="dots"><i class="on"></i><i></i><i></i><i></i></div></div></div>
         <div class="beats">
         <article class="beat on">
           <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/today-light.webp" alt="The Daily screen on day 5 of 10 with prayer times and the day’s checklist" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/today-dark.webp" alt="The Daily screen on day 5 of 10 with prayer times and the day’s checklist" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
           <div class="beat-copy">
-            <p class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Daily › Today</p>
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Daily › Today</span></p>
             <h3>The day at a glance</h3>
             <p class="t">Prayer times for Makkah and Madinah, the day’s worship checklist, your hotel and meeting point, and a row for each child’s day.</p>
-            <ul class="chips"><li>Tick a prayer in one tap</li><li>Reminders if you want them</li><li>Times worked out on the phone when offline</li></ul>
+            <ul class="chips"><li>Times worked out on the phone when offline</li></ul>
           </div>
         </article>
         <article class="beat">
           <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/ramadan-light.webp" alt="Home screen in Ramadan, counting down to iftar" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/ramadan-dark.webp" alt="Home screen in Ramadan, counting down to iftar" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
           <div class="beat-copy">
-            <p class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>Home</p>
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>Home, in Ramadan</span></p>
             <h3>Ramadan mode</h3>
             <p class="t">Travelling in Ramadan? Home counts down to iftar and suhoor, and marks the odd nights of the last ten.</p>
           </div>
         </article>
         <article class="beat">
+          <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/journal-light.webp" alt="The journal with three one-line entries" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/journal-dark.webp" alt="The journal with three one-line entries" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
+          <div class="beat-copy">
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 4h12a2 2 0 0 1 2 2v1H8v10a2 2 0 0 1-4 0V6a2 2 0 0 1 2-2z"/><path d="M8 17a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7"/><path d="M11 10.5h6M11 13.5h6"/></svg>Daily › Today</span><span class="new">New</span></p>
+            <h3>One line a day</h3>
+            <p class="t">A private journal with one line for each day. It stays on your phone and in your backup.</p>
+          </div>
+        </article>
+        <article class="beat">
+          <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/keepsake-light.webp" alt="An Umrah keepsake image listing the time of each rite" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/keepsake-dark.webp" alt="An Umrah keepsake image listing the time of each rite" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
+          <div class="beat-copy">
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="5" width="17" height="14" rx="1.5"/><circle cx="9" cy="10" r="1.6"/><path d="M20.5 15.5l-4.5-4.5-8.5 8"/></svg>After each Umrah or Hajj</span></p>
+            <h3>A keepsake of the day you did it</h3>
+            <p class="t">Miqah notes the time of each rite as you tick it. When you finish, it becomes an image to keep, with a line from your journal if you choose.</p>
+          </div>
+        </article>
+        </div>
+      </div>
+      <div class="also">
+        <h3 class="also-h">And 9 more <span>in tracking</span></h3>
+        <div class="peeks">
+          <figure class="peek"><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/stats-light.webp" alt="Trip statistics and a consistency grid" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/stats-dark.webp" alt="Trip statistics and a consistency grid" width="780" height="1688" decoding="async" loading="lazy"></span></div></div><figcaption><b>Stats and streaks</b><span>The days you logged, and how consistent you were.</span></figcaption></figure>
+          <figure class="peek"><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/home-after-light.webp" alt="Home screen after the trip, tracking thirty days of habits" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/home-after-dark.webp" alt="Home screen after the trip, tracking thirty days of habits" width="780" height="1688" decoding="async" loading="lazy"></span></div></div><figcaption><b>Home again</b><span>Thirty days of habits to keep: prayers on time, Quran and dhikr.</span></figcaption></figure>
+        </div>
+        <ul class="tiles">
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7"/></svg><b>Tick a prayer in one tap</b><span>Straight from the prayer times row.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/><path d="M12 3v2"/></svg><b>Prayer reminders</b><span>A notice before each prayer, made on the phone.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 5.5V10a5 5 0 0 0 10 0V5.5L14.5 8 12 4.5 9.5 8z"/><path d="M12 15v6"/><path d="M12 19.5c-.4-2.4-2.4-3.9-5-3.9.3 2.4 2.3 3.9 5 3.9z"/></svg><b>Excused days</b><span>For sisters: prayer and tawaf rows pause without breaking a streak.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg><b>Water</b><span>A simple tracker for the hot days.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6h1M4 12h1M4 18h1"/></svg><b>Your Hajj, day by day</b><span>A record of each day, with a keepsake at the end.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V4"/><path d="M8 8l4-4 4 4"/><path d="M5 13v6a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-6"/></svg><b>Share my progress</b><span>An image of your trip so far.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 3L10 14"/><path d="M21 3l-7 18-4-7-7-4z"/></svg><b>My journeys</b><span>An archive of past trips, and a start on the next.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="cat" id="explore">
+    <div class="wrap">
+      <header class="cat-head">
+        <span class="cat-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+        <p class="eyebrow">Finding your way <span>· 11 features</span></p>
+        <h2 class="h2">Visit with purpose. Find your way back.</h2>
+        <p class="sub">The places worth seeing, what they mean, and how to get there and home again.</p>
+      </header>
+      <div class="story">
+        <div class="story-stage" aria-hidden="true"><div class="stage-in"><div class="phone"><span class="screen"><span class="shot on"><img class="lt" src="shots/places-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/places-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/place-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/place-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/getting-around-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/getting-around-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span></span></div><div class="dots"><i class="on"></i><i></i><i></i></div></div></div>
+        <div class="beats">
+        <article class="beat on">
           <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/places-light.webp" alt="The Places screen listing sites in Makkah and Madinah" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/places-dark.webp" alt="The Places screen listing sites in Makkah and Madinah" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
           <div class="beat-copy">
-            <p class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Places</p>
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Places</span></p>
             <h3>Ziyarah with purpose</h3>
             <p class="t">The sites of Makkah and Madinah, each with what happened there, a practical tip, a one-tap map, and a card to show your driver in Arabic.</p>
-            <ul class="chips"><li>Near me</li><li>Walking times from your hotel</li><li>Mark places visited</li></ul>
+            <ul class="chips"><li>Near me</li><li>Walking times from your hotel</li></ul>
           </div>
         </article>
         <article class="beat">
           <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/place-light.webp" alt="The Rawdah entry, noting that a free Nusuk permit is required" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/place-dark.webp" alt="The Rawdah entry, noting that a free Nusuk permit is required" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
           <div class="beat-copy">
-            <p class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg>Places</p>
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg>Places</span></p>
             <h3>What you need before you go</h3>
             <p class="t">Where a visit needs a permit, like the Rawdah, Miqah says so, links the official page, and shows the date it last checked.</p>
           </div>
         </article>
         <article class="beat">
-          <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/journal-light.webp" alt="The journal with three one-line entries" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/journal-dark.webp" alt="The journal with three one-line entries" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
+          <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/getting-around-light.webp" alt="The Getting around sheet, open on the Haramain High Speed Railway" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/getting-around-dark.webp" alt="The Getting around sheet, open on the Haramain High Speed Railway" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
           <div class="beat-copy">
-            <p class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 4h12a2 2 0 0 1 2 2v1H8v10a2 2 0 0 1-4 0V6a2 2 0 0 1 2-2z"/><path d="M8 17a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7"/><path d="M11 10.5h6M11 13.5h6"/></svg>Daily › Today</p>
-            <h3>One line a day</h3>
-            <p class="t">A private journal with one line for each day. It stays on your phone and in your backup, and one line can sit on your keepsake image.</p>
-          </div>
-        </article>
-        <article class="beat">
-          <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/home-after-light.webp" alt="Home screen after the trip, tracking thirty days of habits" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/home-after-dark.webp" alt="Home screen after the trip, tracking thirty days of habits" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
-          <div class="beat-copy">
-            <p class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21v-8"/><path d="M12 13c0-4.4 3.1-7 8-7 0 4.4-3.1 7-8 7z"/><path d="M12 16c0-3.3-2.4-5.5-6-5.5 0 3.3 2.4 5.5 6 5.5z"/></svg>Home</p>
-            <h3>Home again</h3>
-            <p class="t">After you return, Miqah turns to keeping the habits: prayers on time, Quran and dhikr for thirty days, and a start on your next journey.</p>
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="4" width="16" height="14" rx="2"/><path d="M4 11h16M8 18v2M16 18v2M8 14.5h1M15 14.5h1"/></svg>Places</span></p>
+            <h3>Getting around</h3>
+            <p class="t">The Haramain train, the Makkah and Madinah buses and taxis, and on Hajj the Mashaer metro and the walking routes. Each fact carries the date it was checked. No fares are given, because they change.</p>
           </div>
         </article>
         </div>
       </div>
+      <div class="also">
+        <h3 class="also-h">And 8 more <span>in finding your way</span></h3>
+        <div class="peeks">
+          <figure class="peek"><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/qibla-light.webp" alt="The qibla compass" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/qibla-dark.webp" alt="The qibla compass" width="780" height="1688" decoding="async" loading="lazy"></span></div></div><figcaption><b>Qibla compass</b><span>Points to the Kaaba using your phone’s sensors.</span></figcaption></figure>
+          <figure class="peek"><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/boundary-light.webp" alt="A sheet explaining the boundary signs of Arafah" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/boundary-dark.webp" alt="A sheet explaining the boundary signs of Arafah" width="780" height="1688" decoding="async" loading="lazy"></span></div></div><figcaption><b>Am I inside Arafah?</b><span>How to read the signs that mark Arafah, Muzdalifah and Mina.</span></figcaption></figure>
+        </div>
+        <ul class="tiles">
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 16l1.5-5.5A2 2 0 0 1 8.4 9h7.2a2 2 0 0 1 1.9 1.5L19 16"/><rect x="3" y="16" width="18" height="4" rx="1"/><path d="M6 20v1M18 20v1M7 18h1M16 18h1"/></svg><b>Show your driver</b><span>Any place, in Arabic, on a card to hold up.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg><b>Access notes</b><span>Permits, opening hours, men-only cemeteries and climbs, before you set off.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg><b>Route planner</b><span>Nearest first from your hotel, stop by stop.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="4" width="16" height="14" rx="2"/><path d="M4 11h16M8 18v2M16 18v2M8 14.5h1M15 14.5h1"/></svg><b>Madinah sightseeing bus</b><span>The hop-on hop-off stops and routes on one card.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 19L8.5 6.5h7L22 19z"/><path d="M9 19l3-6 3 6"/><path d="M8.5 6.5L12 13l3.5-6.5"/></svg><b>Save my camp</b><span>Save where your camp is in Mina, to find it again.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7"/></svg><b>Mark visited</b><span>Keep count of where you have been.</span></li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <section class="band" id="safety">
+  <section class="cat band" id="safety">
     <div class="wrap band-in">
-      <p class="eyebrow">Safety and family</p>
-      <h2 class="h2">When words fail, show the screen.</h2>
-      <p class="sub">Six cards made to be handed to a stranger. Arabic first, your language underneath, and always white so they can be read in full sun. Print them as pocket cards before you fly.</p>
+      <header class="cat-head">
+        <span class="cat-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M5.6 5.6l3.6 3.6M14.8 14.8l3.6 3.6M18.4 5.6l-3.6 3.6M9.2 14.8l-3.6 3.6"/></svg></span>
+        <p class="eyebrow">Staying safe <span>· 14 features</span></p>
+        <h2 class="h2">When words fail, show the screen.</h2>
+        <p class="sub">Six cards made to be handed to a stranger. Arabic first, your language underneath, and always white so they can be read in full sun.</p>
+      </header>
       <div class="rail">
         <figure><div class="crop"><div class="phone"><span class="screen"><img src="shots/lost-light.webp" alt="The I’m-lost card with Arabic first and a number to call" width="780" height="1688" decoding="async" loading="lazy"></span></div></div><figcaption><b>I’m lost</b><span>Your name, who to call and where you are from. Medical notes only if you choose to show them.</span></figcaption></figure>
         <figure><div class="crop"><div class="phone"><span class="screen"><img src="shots/phrase-light.webp" alt="A phrase card reading “I need a doctor” in Arabic and English" width="780" height="1688" decoding="async" loading="lazy"></span></div></div><figcaption><b>Show a phrase</b><span>Medical and wayfinding phrases, with Listen where your phone has an Arabic voice.</span></figcaption></figure>
@@ -309,56 +482,113 @@
         <figure><div class="crop"><div class="phone"><span class="screen"><img src="shots/driver-light.webp" alt="A card asking a driver to go to the hotel, in Arabic" width="780" height="1688" decoding="async" loading="lazy"></span></div></div><figcaption><b>Take me to my hotel</b><span>The hotel’s name in Arabic, with call and map buttons.</span></figcaption></figure>
         <figure><div class="crop"><div class="phone"><span class="screen"><img src="shots/help-light.webp" alt="Emergency and help numbers in Saudi Arabia" width="780" height="1688" decoding="async" loading="lazy"></span></div></div><figcaption><b>Emergency numbers</b><span>911 and the Saudi help lines, with the date they were last checked.</span></figcaption></figure>
       </div>
+      <div class="also">
+        <h3 class="also-h">And 8 more <span>in staying safe</span></h3>
+        <div class="peeks">
+          <figure class="peek"><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/heat-light.webp" alt="The heat plan, with emergency numbers at the top" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/heat-dark.webp" alt="The heat plan, with emergency numbers at the top" width="780" height="1688" decoding="async" loading="lazy"></span></div></div><figcaption><b>A plan for the heat</b><span>The signs of heatstroke, what to do, and who to call.</span></figcaption></figure>
+          <figure class="peek"><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/meds-light.webp" alt="The sheet for adding a medicine and its times" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/meds-dark.webp" alt="The sheet for adding a medicine and its times" width="780" height="1688" decoding="async" loading="lazy"></span></div></div><figcaption><b>Medicine reminders</b><span>Your medicines and their times, with reminders made on the phone.</span></figcaption></figure>
+          <figure class="peek"><div class="crop"><div class="phone"><span class="screen"><img src="shots/checkin-light.webp" alt="A card of hotel check-in phrases in Arabic" width="780" height="1688" decoding="async" loading="lazy"></span></div></div><figcaption><b>Hotel check-in</b><span>The questions you need at the desk, in Arabic.</span></figcaption></figure>
+        </div>
+        <ul class="tiles">
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg><b>About me</b><span>Country, languages and a contact at home, on the lost card.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 8V3.5h10V8"/><path d="M5 8h14a1.5 1.5 0 0 1 1.5 1.5V16H17v4.5H7V16H3.5V9.5A1.5 1.5 0 0 1 5 8z"/><path d="M7 13h10"/></svg><b>Pocket cards</b><span>Print the lost, hotel, camp and child cards for when the phone dies.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M5.6 5.6l3.6 3.6M14.8 14.8l3.6 3.6M18.4 5.6l-3.6 3.6M9.2 14.8l-3.6 3.6"/></svg><b>Home-screen shortcuts</b><span>Reach I’m lost and Help from the app icon.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 19L8.5 6.5h7L22 19z"/><path d="M9 19l3-6 3 6"/><path d="M8.5 6.5L12 13l3.5-6.5"/></svg><b>Cards that follow the day</b><span>On Hajj, the lost and driver cards show your camp, not your hotel.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><b>Family meeting point</b><span>One place to regroup, shown on the help card.</span></li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <section class="sec" id="trust">
+  <section class="cat" id="together">
     <div class="wrap">
-      <p class="eyebrow">Trust</p>
-      <h2 class="h2">Every reference numbered. Every changing fact dated.</h2>
-      <p class="sub">A wrong ruling does real harm, so Miqah shows its working. Facts that change, like visas, permits, vaccines, phone numbers and transport, carry the date they were last checked and a link to the official page.</p>
+      <header class="cat-head">
+        <span class="cat-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 5a3.5 3.5 0 0 1 0 7"/><path d="M17.5 14a6 6 0 0 1 4 6"/></svg></span>
+        <p class="eyebrow">Family and group <span>· 8 features</span></p>
+        <h2 class="h2">Bring the family and the group along.</h2>
+        <p class="sub">Few people make this journey alone. Miqah has something for the children, the parents and the group leader.</p>
+      </header>
+      <div class="story">
+        <div class="story-stage" aria-hidden="true"><div class="stage-in"><div class="phone"><span class="screen"><span class="shot on"><img class="lt" src="shots/essentials-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/essentials-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/kids-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/kids-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span><span class="shot"><img class="lt" src="shots/story-light.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/story-dark.webp" alt="" width="780" height="1688" decoding="async" loading="lazy"></span></span></div><div class="dots"><i class="on"></i><i></i><i></i></div></div></div>
+        <div class="beats">
+        <article class="beat on">
+          <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/essentials-light.webp" alt="Essentials Home: a status card and four large buttons" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/essentials-dark.webp" alt="Essentials Home: a status card and four large buttons" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
+          <div class="beat-copy">
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9.3h16M4 14.7h16M9.3 4v16M14.7 4v16"/></svg>Home</span></p>
+            <h3>A simpler Home for a parent’s phone</h3>
+            <p class="t">Set Miqah up for someone else and Home becomes the status card and four big buttons: count, duas, I’m lost and prayer times.</p>
+            <ul class="chips"><li>Larger text</li><li>Set up on one sheet</li></ul>
+          </div>
+        </article>
+        <article class="beat">
+          <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/kids-light.webp" alt="A kids’ quiz question with three large answer buttons" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/kids-dark.webp" alt="A kids’ quiz question with three large answer buttons" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
+          <div class="beat-copy">
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg>Plan › Quiz</span></p>
+            <h3>A quiz made for small hands</h3>
+            <p class="t">Kids’ corner asks big-button questions and can read them aloud.</p>
+            <ul class="chips"><li>Read it to me</li><li>Stars to earn</li></ul>
+          </div>
+        </article>
+        <article class="beat">
+          <div class="beat-phone"><div class="phone"><span class="screen"><img class="lt" src="shots/story-light.webp" alt="A children’s story about Ibrahim and Isma’il building the Kaaba" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/story-dark.webp" alt="A children’s story about Ibrahim and Isma’il building the Kaaba" width="780" height="1688" decoding="async" loading="lazy"></span></div></div>
+          <div class="beat-copy">
+            <p class="where"><span class="kicker"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z"/></svg>Plan › Quiz</span></p>
+            <h3>Stories for the journey</h3>
+            <p class="t">Read-aloud stories about the rites and the sites for ages 6 to 10, each with a moment to tell it: while you wait for tawaf to begin, for one.</p>
+          </div>
+        </article>
+        </div>
+      </div>
+      <div class="also">
+        <h3 class="also-h">And 5 more <span>in family and group</span></h3>
+        <ul class="tiles">
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1.5 1.5"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1.5-1.5"/></svg><b>Group setup link</b><span>A leader shares the trip setup. Everyone applies it in one tap, or pastes the link in.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V4"/><path d="M8 8l4-4 4 4"/><path d="M5 13v6a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-6"/></svg><b>Share the itinerary</b><span>Send the plan for the days to everyone travelling.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 4.6A8 8 0 1 0 15 19.4 7 7 0 0 1 15 4.6z"/><path d="M17.5 9l.9 1.9 2.1.3-1.5 1.5.4 2.1-1.9-1-1.9 1 .4-2.1-1.5-1.5 2.1-.3z"/></svg><b>Daily stars</b><span>Each child earns five a day, apart from your own tracker.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z"/></svg><b>A story at each step</b><span>“Story for the kids” sits inside the rites guide.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><b>Your group leader on the cards</b><span>The lost card tells a stranger who to call.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="cat" id="trust">
+    <div class="wrap">
+      <header class="cat-head">
+        <span class="cat-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
+        <p class="eyebrow">Trust <span>· 11 features</span></p>
+        <h2 class="h2">Every reference numbered. Every changing fact dated.</h2>
+        <p class="sub">A wrong ruling does real harm, so Miqah shows its working. Facts that change, like visas, permits, vaccines, phone numbers and transport, carry the date they were last checked and a link to the official page.</p>
+      </header>
       <div class="tgrid">
-        <article class="tcard"><div class="well"><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/sources-light.webp" alt="The Sources list of hadith and Quran references" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/sources-dark.webp" alt="The Sources list of hadith and Quran references" width="780" height="1688" decoding="async" loading="lazy"></span></div></div></div><div class="txt"><b>Sources</b><p>Every hadith and Quran reference in one searchable list, with its number, its grade where one is stated, and where the app uses it.</p></div></article>
-        <article class="tcard"><div class="well low" style="--up:0.86"><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/correction-light.webp" alt="The Report a correction sheet" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/correction-dark.webp" alt="The Report a correction sheet" width="780" height="1688" decoding="async" loading="lazy"></span></div></div></div><div class="txt"><b>Report a correction</b><p>A button under every article, dua, step and place opens an email with the item already named. Miqah sends nothing itself.</p></div></article>
-        <article class="tcard"><div class="well"><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/whats-new-light.webp" alt="The What’s new sheet listing recent changes" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/whats-new-dark.webp" alt="The What’s new sheet listing recent changes" width="780" height="1688" decoding="async" loading="lazy"></span></div></div></div><div class="txt"><b>What’s new</b><p>After each update, a short note says what changed in plain words.</p></div></article>
+        <article class="tcard"><div class="well"><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/sources-light.webp" alt="The Sources list of hadith and Quran references" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/sources-dark.webp" alt="The Sources list of hadith and Quran references" width="780" height="1688" decoding="async" loading="lazy"></span></div></div></div><div class="txt"><b>Sources<span class="new">New</span></b><p>Every hadith and Quran reference in one searchable list, with its number, its grade where one is stated, and where the app uses it.</p></div></article>
+        <article class="tcard"><div class="well low" style="--up:0.86"><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/correction-light.webp" alt="The Report a correction sheet" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/correction-dark.webp" alt="The Report a correction sheet" width="780" height="1688" decoding="async" loading="lazy"></span></div></div></div><div class="txt"><b>Report a correction<span class="new">New</span></b><p>A button under every article, dua, step and place opens an email with the item already named. Miqah sends nothing itself.</p></div></article>
+        <article class="tcard"><div class="well"><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/whats-new-light.webp" alt="The What’s new sheet listing recent changes" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/whats-new-dark.webp" alt="The What’s new sheet listing recent changes" width="780" height="1688" decoding="async" loading="lazy"></span></div></div></div><div class="txt"><b>What’s new<span class="new">New</span></b><p>After each update, a short note says what changed in plain words.</p></div></article>
       </div>
       <p class="note"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg><span><b>A study companion, not a fatwa service.</b> <span>Citations have been checked against the source texts. Review by a qualified scholar and a native-speaker check of the Arabic phrase cards are still pending, and the app says so. For a ruling on your own situation, ask a scholar you trust.</span></span></p>
-    </div>
-  </section>
-
-  <section class="sec" id="private" style="padding-top:0">
-    <div class="wrap">
-      <p class="eyebrow">Private by design</p>
-      <h2 class="h2">No account. No ads. No analytics.</h2>
-      <p class="sub">Miqah has no server to send your details to.</p>
-      <div class="pgrid">
-        <article class="pcell"><span class="ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><h3>Nothing to sign up for</h3><p>What you enter is saved in your phone’s own storage. The developer cannot see it.</p></article>
-        <article class="pcell"><span class="ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21v-9"/><path d="M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path d="M8 14a5.5 5.5 0 0 1 0-8"/><path d="M16 14a5.5 5.5 0 0 0 0-8"/><path d="M5.5 16.5a9 9 0 0 1 0-13"/><path d="M18.5 16.5a9 9 0 0 0 0-13"/></svg></span><h3>Works with no signal</h3><p>Once opened, Miqah runs offline. With a connection it fetches only prayer times, its fonts and its own updates.</p></article>
-        <article class="pcell"><span class="ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5a1 1 0 0 1 1-1h11l4 4v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M8 4v5h7V4"/><path d="M7 20v-6h10v6"/></svg></span><h3>Yours to keep or erase</h3><p>Export a backup file whenever you like, restore it on a new phone, or reset and wipe everything.</p></article>
+      <div class="priv">
+        <p class="eyebrow">Private by design</p>
+        <h3 class="h3">No account. No ads. No analytics.</h3>
+        <div class="pgrid">
+          <article class="pcell"><span class="ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><h4>Nothing to sign up for</h4><p>What you enter is saved in your phone’s own storage. The developer cannot see it.</p></article>
+          <article class="pcell"><span class="ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21v-9"/><path d="M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path d="M8 14a5.5 5.5 0 0 1 0-8"/><path d="M16 14a5.5 5.5 0 0 0 0-8"/><path d="M5.5 16.5a9 9 0 0 1 0-13"/><path d="M18.5 16.5a9 9 0 0 0 0-13"/></svg></span><h4>Works with no signal</h4><p>Once opened, Miqah runs offline. With a connection it fetches only prayer times, its fonts and its own updates.</p></article>
+          <article class="pcell"><span class="ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5a1 1 0 0 1 1-1h11l4 4v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M8 4v5h7V4"/><path d="M7 20v-6h10v6"/></svg></span><h4>Yours to keep or erase</h4><p>Export a backup file whenever you like, import it on a new phone, or reset and wipe everything.</p></article>
+        </div>
+        <a class="more-link" href="https://miqah.app/privacy">Read the privacy policy<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13.5"/><path d="M13 6.5l5.5 5.5-5.5 5.5"/></svg></a>
       </div>
-      <a class="more-link" href="[object Object]">Read the privacy policy<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13.5"/><path d="M13 6.5l5.5 5.5-5.5 5.5"/></svg></a>
-    </div>
-  </section>
-
-  <section class="sec" id="more" style="padding-top:0">
-    <div class="wrap">
-      <p class="eyebrow">Also inside</p>
-      <h2 class="h2">The small things you will be glad of.</h2>
-      <div class="trio"><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/tools-light.webp" alt="The Tools screen with the tasbih counter" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/tools-dark.webp" alt="The Tools screen with the tasbih counter" width="780" height="1688" decoding="async" loading="lazy"></span></div></div><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/stats-light.webp" alt="Trip statistics and consistency" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/stats-dark.webp" alt="Trip statistics and consistency" width="780" height="1688" decoding="async" loading="lazy"></span></div></div><div class="crop"><div class="phone"><span class="screen"><img class="lt" src="shots/quiz-levels-light.webp" alt="The quiz levels" width="780" height="1688" decoding="async" loading="lazy"><img class="dk" src="shots/quiz-levels-dark.webp" alt="The quiz levels" width="780" height="1688" decoding="async" loading="lazy"></span></div></div></div>
-      <ul class="tiles">
-        <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg><b>Qibla compass</b><span>Points to the Kaaba using your phone’s sensors.</span></li>
-        <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="11" r="7.5" stroke-dasharray=".1 3.7" stroke-width="2.6"/><path d="M12 18.5v3"/></svg><b>Tasbih</b><span>A dhikr counter with the common phrases and targets.</span></li>
-        <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg><b>Water</b><span>A simple tracker for the hot days.</span></li>
-        <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg><b>Medicine reminders</b><span>Your medicine list, with reminders made on the phone.</span></li>
-        <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg><b>Kids’ corner</b><span>A quiz, read-aloud stories and daily stars for children.</span></li>
-        <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9.3h16M4 14.7h16M9.3 4v16M14.7 4v16"/></svg><b>Essentials Home</b><span>A simpler Home with four big buttons, for a parent’s phone.</span></li>
-        <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 8V3.5h10V8"/><path d="M5 8h14a1.5 1.5 0 0 1 1.5 1.5V16H17v4.5H7V16H3.5V9.5A1.5 1.5 0 0 1 5 8z"/><path d="M7 13h10"/></svg><b>Pocket cards</b><span>Print the lost, hotel, camp and child cards to cut out.</span></li>
-        <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1.5 1.5"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1.5-1.5"/></svg><b>Group setup link</b><span>Share your trip setup; your group applies it in one tap.</span></li>
-        <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><b>Calendar export</b><span>Add prayer times and the days of Hajj to your calendar.</span></li>
-        <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20V4M4 20h16"/><path d="M8 15l3-4 3 2 5-6"/></svg><b>Stats and streaks</b><span>See the days you logged and the habits you kept.</span></li>
-        <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><b>Document vault</b><span>Copies of your papers, encrypted with a PIN only you know.</span></li>
-        <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><b>Dark mode and large text</b><span>Easier at night, and easier on tired eyes.</span></li>
-      </ul>
+      <div class="also">
+        <h3 class="also-h">And 8 more <span>in trust</span></h3>
+        <ul class="tiles">
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><b>“Checked” dates<span class="new">New</span></b><span>Visa, vaccine, permit, phone-number and transport rules show the day they were last checked.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6h1M4 12h1M4 18h1"/></svg><b>An automatic citation check<span class="new">New</span></b><span>A test fails if any reference in the app is missing from the verified list.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5l9.5 16.5h-19z"/><path d="M12 10v4.5"/><path d="M12 17.2v.3"/></svg><b>Weak narrations marked</b><span>Where a weak report is used, the app says so.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5a1 1 0 0 1 1-1h11l4 4v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M8 4v5h7V4"/><path d="M7 20v-6h10v6"/></svg><b>Backups that travel</b><span>Export to a file, share it, and import it on another phone.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><b>Asks the phone to keep your data</b><span>So the browser does not clear it when space runs low.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><b>Dark mode</b><span>Easier on the eyes at night.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg><b>Large text</b><span>One switch, for tired eyes and small screens.</span></li>
+          <li class="tile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9.5v5h3.5L13 19V5L7.5 9.5z"/><path d="M16.5 9a4.5 4.5 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></svg><b>Screen readers</b><span>Built to work with the phone’s assistive voice.</span></li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -415,7 +645,7 @@
 <footer class="foot">
   <div class="wrap foot-in">
     <a class="brand" href="#top"><img src="icon-192.png" alt="" width="30" height="30" loading="lazy">Miqah</a>
-    <nav aria-label="Links"><a href="https://miqah.app/">Open the app</a><a href="https://miqah.app/install">Install</a><a href="[object Object]">Privacy policy</a><a href="#new">What’s new</a></nav>
+    <nav aria-label="Links"><a href="https://miqah.app/">Open the app</a><a href="https://miqah.app/install">Install</a><a href="https://miqah.app/privacy">Privacy policy</a><a href="#new">What’s new</a></nav>
     <p>Free, with no ads. Miqah is a study companion, not a fatwa service. Every screenshot on this page is the real app, version 6.10.2, showing sample data: the names, numbers and hotels are made up.</p>
   </div>
 </footer>

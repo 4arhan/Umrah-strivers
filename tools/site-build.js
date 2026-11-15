@@ -1,4 +1,5 @@
-// Builds site/index.html (the product page at demo.miqah.app) from tools/site-content.js.
+// Builds site/index.html (the product page at demo.miqah.app) from tools/site-content.js:
+// a hero, an index of the feature categories, one section per category, the live demo and the updates.
 //
 //   node tools/site-build.js          write site/index.html and copy the icons
 //   node tools/site-build.js --check  exit 1 if site/index.html is out of date (test/smoke.js runs the same check)
@@ -38,40 +39,93 @@ function ring7() { // seven arcs for the seven rounds of tawaf; the first three 
   return '<svg class="ring7" viewBox="0 0 600 600" aria-hidden="true" focusable="false">' + h + '</svg>';
 }
 
-function chapter(ch) {
-  const beats = ch.beats.map((b, i) => `
+// ── features ──
+const CUR = VERSION.split('.').slice(0, 2).join('.'); // the current minor line: features from it are tagged New
+const tag = since => since === CUR ? '<span class="new">New</span>' : '';
+const countOf = c => (c.beats || []).length + (c.cards || []).length + (c.more || []).length;
+const plural = (n, w) => n + ' ' + w + (n === 1 ? '' : 's');
+
+function story(cat) {
+  const beats = cat.beats.map((b, i) => `
         <article class="beat${i ? '' : ' on'}">
           <div class="beat-phone">${phone(b.shot, b.alt, { one: b.one })}</div>
           <div class="beat-copy">
-            <p class="kicker">${ic(b.icon)}${esc(b.where)}</p>
+            <p class="where"><span class="kicker">${ic(b.icon)}${esc(b.where)}</span>${tag(b.since)}</p>
             <h3>${b.h3}</h3>
             <p class="t">${b.t}</p>${b.chips.length ? `
             <ul class="chips">${b.chips.map(c => '<li>' + c + '</li>').join('')}</ul>` : ''}
           </div>
         </article>`).join('');
-  const stage = ch.beats.map((b, i) => `<span class="shot${i ? '' : ' on'}">${imgs(b.shot, '', { one: b.one })}</span>`).join('');
+  const stage = cat.beats.map((b, i) => `<span class="shot${i ? '' : ' on'}">${imgs(b.shot, '', { one: b.one })}</span>`).join('');
   return `
-  <section class="chapter" id="${ch.id}">
-    <div class="wrap">
-      <header class="ch-head">
-        <span class="ch-n" aria-hidden="true">${ch.n}</span>
-        <p class="eyebrow">${esc(ch.nav)}</p>
-        <h2 class="h2">${ch.h2}</h2>
-        <p class="sub">${ch.sub}</p>
-      </header>
       <div class="story">
-        <div class="story-stage" aria-hidden="true"><div class="stage-in"><div class="phone"><span class="screen">${stage}</span></div><div class="dots">${ch.beats.map((b, i) => '<i' + (i ? '' : ' class="on"') + '></i>').join('')}</div></div></div>
+        <div class="story-stage" aria-hidden="true"><div class="stage-in"><div class="phone"><span class="screen">${stage}</span></div><div class="dots">${cat.beats.map((b, i) => '<i' + (i ? '' : ' class="on"') + '></i>').join('')}</div></div></div>
         <div class="beats">${beats}
         </div>
+      </div>`;
+}
+
+// everything else in the category: small screenshots first, then one-line rows
+function also(cat) {
+  const peeks = cat.more.filter(m => !Array.isArray(m)), rows = cat.more.filter(m => Array.isArray(m));
+  return `
+      <div class="also">
+        <h3 class="also-h">And ${cat.more.length} more <span>in ${esc(cat.noun.toLowerCase())}</span></h3>${peeks.length ? `
+        <div class="peeks">${peeks.map(m => `
+          <figure class="peek"><div class="crop">${phone(m.shot, m.alt, { one: m.one })}</div><figcaption><b>${m.b}${tag(m.since)}</b><span>${m.s}</span></figcaption></figure>`).join('')}
+        </div>` : ''}${rows.length ? `
+        <ul class="tiles">${rows.map(([i, b, t, since]) => `
+          <li class="tile">${ic(i)}<b>${b}${tag(since)}</b><span>${t}</span></li>`).join('')}
+        </ul>` : ''}
+      </div>`;
+}
+
+const catHead = cat => `
+      <header class="cat-head">
+        <span class="cat-ico">${ic(cat.icon)}</span>
+        <p class="eyebrow">${esc(cat.noun)} <span>· ${plural(countOf(cat), 'feature')}</span></p>
+        <h2 class="h2">${cat.value}</h2>
+        <p class="sub">${cat.sub}</p>
+      </header>`;
+
+function category(cat) {
+  if (cat.kind === 'cards') return `
+  <section class="cat band" id="${cat.id}">
+    <div class="wrap band-in">${catHead(cat)}
+      <div class="rail">${cat.cards.map(c => `
+        <figure><div class="crop">${phone(c.shot, c.alt, { one: true })}</div><figcaption><b>${c.b}${tag(c.since)}</b><span>${c.s}</span></figcaption></figure>`).join('')}
+      </div>${also(cat)}
+    </div>
+  </section>`;
+  if (cat.kind === 'trust') { const P = cat.privacy; return `
+  <section class="cat" id="${cat.id}">
+    <div class="wrap">${catHead(cat)}
+      <div class="tgrid">${cat.cards.map(c => `
+        <article class="tcard"><div class="well${c.up ? ' low" style="--up:' + c.up : ''}"><div class="crop">${phone(c.shot, c.alt)}</div></div><div class="txt"><b>${c.b}${tag(c.since)}</b><p>${c.s}</p></div></article>`).join('')}
       </div>
+      <p class="note">${ic('info')}<span>${cat.note}</span></p>
+      <div class="priv">
+        <p class="eyebrow">${esc(P.eyebrow)}</p>
+        <h3 class="h3">${P.h3}</h3>
+        <div class="pgrid">${P.cells.map(c => `
+          <article class="pcell"><span class="ico">${ic(c.icon)}</span><h4>${c.h}</h4><p>${c.p}</p></article>`).join('')}
+        </div>
+        <a class="more-link" href="${C.privacy}">Read the privacy policy${ic('arrow')}</a>
+      </div>${also(cat)}
+    </div>
+  </section>`; }
+  return `
+  <section class="cat" id="${cat.id}">
+    <div class="wrap">${catHead(cat)}${story(cat)}${also(cat)}
     </div>
   </section>`;
 }
 
 function build() {
-  const H = C.hero, S = C.safety, T = C.trust, P = C.privacy, M = C.more, D = C.demo, G = C.get, U = C.updates;
+  const H = C.hero, D = C.demo, G = C.get, U = C.updates, K = C.categories;
   if (U[0].v !== VERSION) throw new Error('the app is ' + VERSION + ' but the newest entry in tools/site-content.js is ' + U[0].v + ' — add what changed');
-  const nav = C.chapters.map(c => [c.id, c.nav]).concat([[S.id, S.nav], [T.id, T.nav], ['new', 'What’s new']]);
+  const total = K.reduce((n, c) => n + countOf(c), 0);
+  const nav = K.map(c => [c.id, c.nav]).concat([['new', 'What’s new']]);
   const SHOWN = 4;
   const html = `<!doctype html>
 <html lang="en">
@@ -97,7 +151,7 @@ function build() {
 <script>(function(d){d.classList.add('js');try{var t=localStorage.getItem('miqah-site-theme');if(t==='light'||t==='dark')d.dataset.theme=t;}catch(e){}})(document.documentElement);</script>
 </head>
 <body id="top">
-<a class="sr" href="#plan">Skip to the features</a>
+<a class="sr" href="#features">Skip to the features</a>
 
 <header class="nav">
   <a class="brand" href="#top"><img src="icon-192.png" alt="" width="30" height="30">Miqah</a>
@@ -105,6 +159,7 @@ function build() {
   <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch between light and dark">${ic('moon').replace('class="ic"', 'class="ic i-moon"')}${ic('sun').replace('class="ic"', 'class="ic i-sun"')}</button>
   <a class="btn lav sm" href="${C.app}">Open the app</a>
 </header>
+<nav class="catbar" id="catbar" aria-label="Feature categories">${K.map(c => `<a href="#${c.id}">${ic(c.icon)}${esc(c.nav)}</a>`).join('')}</nav>
 
 <main>
   <section class="hero">
@@ -132,61 +187,20 @@ function build() {
     </div>
   </section>
 
-  <section class="intro">
+  <section class="intro" id="features">
     <div class="wrap">
       <p class="big">${C.intro}</p>
-      <nav class="steps" aria-label="The journey">${C.chapters.map(c => `
-        <a href="#${c.id}"><span class="n" aria-hidden="true">${c.n}</span><span><b>${esc(c.nav)}</b><small>${esc(c.hint)}</small></span></a>`).join('')}
+      <div class="ix-head">
+        <p class="eyebrow">${esc(C.index.eyebrow)}</p>
+        <h2 class="h2">${C.index.h2}</h2>
+        <p class="sub">${plural(total, 'feature')} in ${plural(K.length, 'group')}. Pick the one you care about, or scroll through them all.</p>
+      </div>
+      <nav class="ixgrid" aria-label="Feature categories">${K.map(c => `
+        <a class="ix" href="#${c.id}"><span class="ix-ico">${ic(c.icon)}</span><span class="ix-t"><b>${esc(c.nav)}</b><span class="ix-v">${c.value}</span></span><span class="ix-n">${plural(countOf(c), 'feature')}${ic('arrow')}</span><span class="ix-ph" aria-hidden="true">${phone(c.cover, '', { one: c.coverOne })}</span></a>`).join('')}
       </nav>
     </div>
   </section>
-${C.chapters.map(chapter).join('\n')}
-
-  <section class="band" id="${S.id}">
-    <div class="wrap band-in">
-      <p class="eyebrow">${esc(S.eyebrow)}</p>
-      <h2 class="h2">${S.h2}</h2>
-      <p class="sub">${S.sub}</p>
-      <div class="rail">${S.cards.map(c => `
-        <figure><div class="crop">${phone(c.shot, c.alt, { one: true })}</div><figcaption><b>${c.b}</b><span>${c.s}</span></figcaption></figure>`).join('')}
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" id="${T.id}">
-    <div class="wrap">
-      <p class="eyebrow">${esc(T.eyebrow)}</p>
-      <h2 class="h2">${T.h2}</h2>
-      <p class="sub">${T.sub}</p>
-      <div class="tgrid">${T.cards.map(c => `
-        <article class="tcard"><div class="well${c.up ? ' low" style="--up:' + c.up : ''}"><div class="crop">${phone(c.shot, c.alt)}</div></div><div class="txt"><b>${c.b}</b><p>${c.s}</p></div></article>`).join('')}
-      </div>
-      <p class="note">${ic('info')}<span>${T.note}</span></p>
-    </div>
-  </section>
-
-  <section class="sec" id="${P.id}" style="padding-top:0">
-    <div class="wrap">
-      <p class="eyebrow">${esc(P.eyebrow)}</p>
-      <h2 class="h2">${P.h2}</h2>
-      <p class="sub">${P.sub}</p>
-      <div class="pgrid">${P.cells.map(c => `
-        <article class="pcell"><span class="ico">${ic(c.icon)}</span><h3>${c.h3}</h3><p>${c.p}</p></article>`).join('')}
-      </div>
-      <a class="more-link" href="${C.privacy}">Read the privacy policy${ic('arrow')}</a>
-    </div>
-  </section>
-
-  <section class="sec" id="${M.id}" style="padding-top:0">
-    <div class="wrap">
-      <p class="eyebrow">${esc(M.eyebrow)}</p>
-      <h2 class="h2">${M.h2}</h2>
-      <div class="trio">${M.trio.map(([k, alt]) => `<div class="crop">${phone(k, alt)}</div>`).join('')}</div>
-      <ul class="tiles">${M.tiles.map(([i, b, s]) => `
-        <li class="tile">${ic(i)}<b>${b}</b><span>${s}</span></li>`).join('')}
-      </ul>
-    </div>
-  </section>
+${K.map(category).join('\n')}
 
   <section class="band" id="${D.id}">
     <div class="wrap band-in try">

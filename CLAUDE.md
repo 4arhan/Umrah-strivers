@@ -16,8 +16,11 @@ Any change that bumps `APP_VERSION` is not finished until these are done:
 
 1. Add an entry at the top of `updates` in `tools/site-content.js` for the new version: a title and, in
    plain words, what changed for a pilgrim. A release of fixes still gets an entry.
-2. If the change has a screen worth showing, add or adjust its scene in `tools/site-shots.js` and its
-   beat, card or tile in `tools/site-content.js`. If it changed how an existing screen looks, the
+2. Put the feature in its category in `tools/site-content.js`. The page is grouped by what a feature
+   gives a pilgrim (Plan, Learn, Perform, Duas, Track, Explore, Safety, Together, Trust), and every
+   feature sits in exactly one group: as a `beat` (the showcase) or a `more` entry, with `since` set
+   to the version it arrived in so it gets a “New” tag. If it has a screen worth showing, add or
+   adjust its scene in `tools/site-shots.js`. If it changed how an existing screen looks, the
    screenshots are stale either way.
 3. Regenerate: `node tools/site-shots.js` (every scene; `ONLY=id,id` for a few), then
    `node tools/site-build.js`. Delete any screenshot the build reports as unused.
@@ -36,5 +39,7 @@ Rules for the page:
   `tools/site-shots.js` are made up; keep them that way.
 - Same design language as the app: lilac paper, white cards, one dark aubergine surface, Manrope, and
   Scheherazade New for Arabic. No emoji. Icons come from the app's own `MARKS`.
+- The owner asked (15 November 2026) for features to be grouped by their value, not by where they sit
+  in the app. A new kind of value gets a new category; do not start a miscellaneous one.
 - `site/index.html` is generated. Edit `tools/site-content.js` (words), `tools/site-build.js` (structure),
   `site/site.css` and `site/site.js`, then rebuild.
