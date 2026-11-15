@@ -1880,7 +1880,7 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
     check('6.10 group 6 contrast (' + th + '): the journal captions, the “Checked” line and its link, the correction button, the Sources rows and grade chip, What’s new and the Help card date all reach 4.5:1', A6.length === 0, A6); }
   await ctx6.close();
   }
-  // ── the product page (demo.miqah.app) keeps up with the app: a release that is not written up fails here ──
+  // ── the product page (about.miqah.app) keeps up with the app: a release that is not written up fails here ──
   {
     const fsS = require('fs'), SC = require('../tools/site-content.js'), SB = require('../tools/site-build.js');
     const appV = /APP_VERSION='([^']+)'/.exec(fsS.readFileSync(path.resolve(__dirname, '../app.js'), 'utf8'))[1];

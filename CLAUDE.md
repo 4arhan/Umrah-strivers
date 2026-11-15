@@ -9,7 +9,7 @@ Tests: `npm test` runs `test/smoke.js` and needs Chromium (`CHROME=/path/to/chro
 ## Standing instruction: the product page keeps up with the app
 
 The owner asked on 15 November 2026 that **every time a feature is added or the app is updated, it is
-included on the product page, with screenshots**. The page is https://demo.miqah.app. It lives in `site/`
+included on the product page, with screenshots**. The page is https://about.miqah.app. It lives in `site/`
 and is its own Vercel project (`miqah-demo`), separate from the app's project (`umrah-strivers`).
 
 Any change that bumps `APP_VERSION` is not finished until these are done:

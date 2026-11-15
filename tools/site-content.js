@@ -1,4 +1,4 @@
-// Everything the product page (demo.miqah.app) says, in one place.
+// Everything the product page (about.miqah.app) says, in one place.
 // tools/site-build.js turns this into site/index.html; tools/site-shots.js makes the screenshots.
 //
 // The page is grouped by what a feature gives a pilgrim (plan, learn, perform …), not by where it
@@ -18,7 +18,7 @@
 const APP = 'https://miqah.app/';
 
 module.exports = {
-  url: 'https://demo.miqah.app/',
+  url: 'https://about.miqah.app/',
   app: APP,
   install: APP + 'install',
   privacy: APP + 'privacy',

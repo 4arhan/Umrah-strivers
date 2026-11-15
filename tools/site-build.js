@@ -1,4 +1,4 @@
-// Builds site/index.html (the product page at demo.miqah.app) from tools/site-content.js:
+// Builds site/index.html (the product page at about.miqah.app) from tools/site-content.js:
 // a hero, an index of the feature categories, one section per category, the live demo and the updates.
 //
 //   node tools/site-build.js          write site/index.html and copy the icons

@@ -60,7 +60,7 @@ An offline-first web app (`index.html` + `data.js` + `cites.js` + `app.js`, zero
 | Where | Link |
 |---|---|
 | Web app | https://miqah.app |
-| Product page | https://demo.miqah.app |
+| Product page | https://about.miqah.app |
 | Install instructions | https://miqah.app/install |
 | Privacy policy | https://miqah.app/privacy |
 
