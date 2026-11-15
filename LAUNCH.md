@@ -16,6 +16,8 @@ Everything in this repository is ready. What remains needs your accounts and you
 
 Every push to the production branch auto-deploys to Vercel.
 
+**The product page** is https://demo.miqah.app: a separate Vercel project (`miqah-demo`) whose root is the `site/` folder. It is rebuilt from `tools/site-content.js` and from screenshots of the real app (`tools/site-shots.js`, then `tools/site-build.js`), and it must be updated with every release; `CLAUDE.md` has the steps and the smoke test enforces them. Its DNS is one record at Namecheap: CNAME `demo` → `cname.vercel-dns.com`.
+
 **If the address ever changes again**, update every place it is written (search the repository for `miqah.app`):
 - `APP_URL` in `app.js`, plus the address drawn on the keepsake, progress-card and certificate images, printed in the print sheet’s subtitle, and shown in the secure-storage and Check-for-updates messages in `app.js`
 - `og:url` and `og:image` in `index.html` and `install.html`, and the install address in the desktop steps of `install.html`

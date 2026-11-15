@@ -1880,6 +1880,24 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
     check('6.10 group 6 contrast (' + th + '): the journal captions, the “Checked” line and its link, the correction button, the Sources rows and grade chip, What’s new and the Help card date all reach 4.5:1', A6.length === 0, A6); }
   await ctx6.close();
   }
+  // ── the product page (demo.miqah.app) keeps up with the app: a release that is not written up fails here ──
+  {
+    const fsS = require('fs'), SC = require('../tools/site-content.js'), SB = require('../tools/site-build.js');
+    const appV = /APP_VERSION='([^']+)'/.exec(fsS.readFileSync(path.resolve(__dirname, '../app.js'), 'utf8'))[1];
+    check('site: the newest entry in tools/site-content.js is for the running version, so every release is written up on the product page', SC.updates[0].v === appV, { app: appV, site: SC.updates[0].v });
+    const why = SB.stale();
+    check('site: site/index.html is what tools/site-build.js writes today (rebuild it after changing the app version, the content or the screenshots)', why === '', why);
+    const ctxS = await browser.newContext({ viewport: { width: 390, height: 844 } }), pS = await ctxS.newPage(), errS = [];
+    pS.on('pageerror', e => errS.push(e.message)); await pS.route(/^https?:/, r => r.abort());
+    await pS.goto('file://' + path.resolve(__dirname, '../site/index.html')); await pS.waitForTimeout(400);
+    const S1 = await pS.evaluate(async () => { const im = [...document.querySelectorAll('.hero img')]; await Promise.all(im.map(i => i.decode().catch(() => 0)));
+      return { over: document.documentElement.scrollWidth - innerWidth, hero: im.length, ok: im.filter(i => i.naturalWidth > 0).length, ch: document.querySelectorAll('.chapter').length, beats: document.querySelectorAll('.beat').length, upd: document.querySelectorAll('#upd .u').length, ver: (document.querySelector('.fine b') || {}).textContent }; });
+    check('site: the page opens on a phone with no sideways scroll and no script errors; the hero screenshots load; chapters, beats and updates are all there; the version shown is the running one', S1.over <= 0 && S1.hero === 3 && S1.ok === 3 && S1.ch === SC.chapters.length && S1.beats === SC.chapters.reduce((n, c) => n + c.beats.length, 0) && S1.upd === SC.updates.length && S1.ver === 'Version ' + appV && !errS.length, { S1, errS });
+    await pS.setViewportSize({ width: 1280, height: 800 }); await pS.waitForTimeout(300);
+    const S2 = await pS.evaluate(() => { const st = document.querySelector('.story-stage'), bp = document.querySelector('.beat-phone'); return { over: document.documentElement.scrollWidth - innerWidth, stage: getComputedStyle(st).position, inline: getComputedStyle(bp).display, nav: getComputedStyle(document.querySelector('.nav-links')).display }; });
+    check('site: on a desktop the phone stays put while the text scrolls (sticky stage on, inline phones off), the section links show, and nothing overflows', S2.over <= 0 && S2.stage === 'sticky' && S2.inline === 'none' && S2.nav === 'flex', S2);
+    await ctxS.close();
+  }
   check('no JS errors', errors.length === 0, errors);
   await browser.close();
   console.log(failed ? `\n${failed} check(s) FAILED` : '\nAll checks passed');
