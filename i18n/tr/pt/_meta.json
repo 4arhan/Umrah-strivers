@@ -1,0 +1,74 @@
+{
+ "g": {
+  "D": [
+   "segunda-feira",
+   "terça-feira",
+   "quarta-feira",
+   "quinta-feira",
+   "sexta-feira",
+   "sábado",
+   "domingo"
+  ],
+  "d": [
+   "seg.",
+   "ter.",
+   "qua.",
+   "qui.",
+   "sex.",
+   "sáb.",
+   "dom."
+  ],
+  "M": [
+   "janeiro",
+   "fevereiro",
+   "março",
+   "abril",
+   "maio",
+   "junho",
+   "julho",
+   "agosto",
+   "setembro",
+   "outubro",
+   "novembro",
+   "dezembro"
+  ],
+  "m": [
+   "jan.",
+   "fev.",
+   "mar.",
+   "abr.",
+   "mai.",
+   "jun.",
+   "jul.",
+   "ago.",
+   "set.",
+   "out.",
+   "nov.",
+   "dez."
+  ],
+  "H": [
+   "Muharram",
+   "Safar",
+   "Rabiʻ I",
+   "Rabiʻ II",
+   "Jumada I",
+   "Jumada II",
+   "Rajab",
+   "Shaʻban",
+   "Ramadan",
+   "Shawwal",
+   "Dhuʻl-Qiʻdah",
+   "Dhuʻl-Hijjah"
+  ],
+  "P": [
+   "Fajr",
+   "Dhuhr",
+   "Asr",
+   "Maghrib",
+   "Isha"
+  ]
+ },
+ "note": "",
+ "quran": "Samir El-Hayek",
+ "checked": ""
+}

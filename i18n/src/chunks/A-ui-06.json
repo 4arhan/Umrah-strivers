@@ -1,0 +1,856 @@
+[
+ {
+  "h": "17tt5gl",
+  "k": "Your Hajj is intact. Arafah, Muzdalifah, the stoning, the trim — all valid without purity. Only tawaf al-ifadah (and the sa'i after it) waits: carry on with every other rite, and after the stoning and the trim on the {1}th stay in the first tahallul; keep up the dhikr and dua from the courtyards, and do ghusl, tawaf and sa'i when you are pure — even on the {2}th or later. Aishah (RA), whose period came before her tawaf, was told: \"Do all that the pilgrims do, except the tawaf of the House until you are pure\" (Bukhari {3}, {4}). <1>The farewell tawaf is waived</1> for you if you are still on your period when you leave (Bukhari {5}). If the group's flight comes before purity, scholars differ — some permit tawaf with precautions in genuine necessity; do not decide alone at the airport: tell your group leader / ask a scholar now, not on the last day.",
+  "c": ".acc-b < .acc < .sec-bd",
+  "refs": [
+   "bukhari:305",
+   "bukhari:1755"
+  ]
+ },
+ {
+  "h": "4vesuu",
+  "k": "Ibrahim calls the whole world to Hajj",
+  "c": ".acc-h < #st-call"
+ },
+ {
+  "h": "af9soa",
+  "k": "Hajar, baby Isma'il and the water from nowhere",
+  "c": ".acc-h < #st-hajar"
+ },
+ {
+  "h": "1mvn7cp",
+  "k": "Ibrahim and Isma'il build the Kaaba",
+  "c": ".acc-h < #st-kaaba"
+ },
+ {
+  "h": "1mmlv99",
+  "k": "Ibrahim, Isma'il and the great sacrifice",
+  "c": ".acc-h < #st-sacrifice"
+ },
+ {
+  "h": "1wkj4wp",
+  "k": "Young Muhammad ﷺ and the Black Stone",
+  "c": ".acc-h < #st-stone"
+ },
+ {
+  "h": "xi6plh",
+  "k": "Why is everyone wearing white?",
+  "c": ".acc-h < #st-white"
+ },
+ {
+  "h": "1hvxb4v",
+  "k": "Can someone else stone for me?",
+  "c": ".acc-h < .acc < #gSheetBody"
+ },
+ {
+  "h": "looz3m",
+  "k": "Does it work in the Haram without signal?",
+  "c": ".acc-h < .acc < .card"
+ },
+ {
+  "h": "bjvpiu",
+  "k": "Is it really free?",
+  "c": ".acc-h < .acc < .card"
+ },
+ {
+  "h": "qia9rz",
+  "k": "Is the religious content reliable?",
+  "c": ".acc-h < .acc < .card"
+ },
+ {
+  "h": "pc8wja",
+  "k": "Where is my data stored?",
+  "c": ".acc-h < .acc < .card"
+ },
+ {
+  "h": "flhfcu",
+  "k": "I am too weak for Muzdalifah / the stoning",
+  "c": ".acc-h < .acc < .sec-bd"
+ },
+ {
+  "h": "wuwrmo",
+  "k": "I cannot afford the hady",
+  "c": ".acc-h < .acc < .sec-bd"
+ },
+ {
+  "h": "1iuc6g4",
+  "k": "I did something forbidden in ihram",
+  "c": ".acc-h < .acc < .sec-bd"
+ },
+ {
+  "h": "t4l0d2",
+  "k": "I did the {1}th in the wrong order",
+  "c": ".acc-h < .acc < .sec-bd"
+ },
+ {
+  "h": "5bjwg8",
+  "k": "I left Makkah without the farewell tawaf",
+  "c": ".acc-h < .acc < .sec-bd"
+ },
+ {
+  "h": "rpma81",
+  "k": "I lost my group in Mina",
+  "c": ".acc-h < .acc < .sec-bd"
+ },
+ {
+  "h": "bs1rzp",
+  "k": "I missed the stoning time",
+  "c": ".acc-h < .acc < .sec-bd"
+ },
+ {
+  "h": "buo62a",
+  "k": "I reached Arafah after sunset / missed the standing",
+  "c": ".acc-h < .acc < .sec-bd"
+ },
+ {
+  "h": "oj2sr4",
+  "k": "My period started before tawaf al-ifadah",
+  "c": ".acc-h < .acc < .sec-bd"
+ },
+ {
+  "h": "15ary7v",
+  "k": "Go→",
+  "c": ".app-go < .applink < .apps"
+ },
+ {
+  "h": "l6lwa",
+  "k": "Open↗",
+  "c": ".app-go < .applink < .apps"
+ },
+ {
+  "h": "11oslm9",
+  "k": "Hajj duas with audio",
+  "c": ".app-t < .applink < .apps"
+ },
+ {
+  "h": "b09exx",
+  "k": "Hisnul Muslim",
+  "c": ".app-t < .applink < .apps"
+ },
+ {
+  "h": "1c9aubr",
+  "k": "Life with Allah",
+  "c": ".app-t < .applink < .apps"
+ },
+ {
+  "h": "9rd6xf",
+  "k": "Quran.com",
+  "c": ".app-t < .applink < .apps"
+ },
+ {
+  "h": "4x2fzs",
+  "k": "Tarteel AI",
+  "c": ".app-t < .applink < .apps"
+ },
+ {
+  "h": "ffyu5o",
+  "k": "Tasbih & my dua list",
+  "c": ".app-t < .applink < .apps"
+ },
+ {
+  "h": "m4o5hd",
+  "k": "Umrah duas with audio",
+  "c": ".app-t < .applink < .apps"
+ },
+ {
+  "h": "ruzsdy",
+  "k": "Helpful tools",
+  "c": ".apps-h < .apps < .sec-bd"
+ },
+ {
+  "h": "1dgiigb",
+  "k": "Hajj & Umrah companion",
+  "c": ".brand < .top < .app"
+ },
+ {
+  "h": "1r8el2j",
+  "k": "Hajj {1} companion",
+  "c": ".brand < .top < .app"
+ },
+ {
+  "h": "mxk1z",
+  "k": "Miqah",
+  "c": ".brand < .top < .app"
+ },
+ {
+  "h": "1geya1n",
+  "k": "Export backup",
+  "c": ".btn < #dataCard"
+ },
+ {
+  "h": "15y32v6",
+  "k": "Import backup",
+  "c": ".btn < #dataCard"
+ },
+ {
+  "h": "1lxvvsh",
+  "k": "Reset everything",
+  "c": ".btn < #dataCard"
+ },
+ {
+  "h": "1h9m7it",
+  "k": "Start with {1} cards",
+  "c": ".btn < #fcArea"
+ },
+ {
+  "h": "1lvjq1v",
+  "k": "Add camp details",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "1hzmxtu",
+  "k": "Back",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "aag678",
+  "k": "Back to the counter",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "uhmfn9",
+  "k": "Call {U1}",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "ew9em3",
+  "k": "Cancel",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "1phigtg",
+  "k": "Check the link",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "4j4eu2",
+  "k": "Count it anyway",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "t8quxl",
+  "k": "Download",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "5zjf48",
+  "k": "Edit camp details",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "1fe4x46",
+  "k": "Edit hotel & contacts",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "l8hqi2",
+  "k": "Got it",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "1ymoaua",
+  "k": "Mark Day {1} excused",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "1ogknri",
+  "k": "Mark today excused",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "jar724",
+  "k": "Not yet",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "16t9y8f",
+  "k": "Not yet — I'll make wudu first",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "116g0cx",
+  "k": "Open the ifadah step",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "b0buom",
+  "k": "Paste from clipboard",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "176ohzb",
+  "k": "Read the full sisters' guide",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "o04hpv",
+  "k": "Read the ruling",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "9c35st",
+  "k": "Remove",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "1huwyoc",
+  "k": "Report a wrong reference",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "glztpc",
+  "k": "Save — turn on Essentials Home",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "1fydfyu",
+  "k": "Take me to my camp",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "1tux75c",
+  "k": "Take me to my camp in Mina",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "1dzt68a",
+  "k": "Use my location — I'm at the hotel now",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "6j8491",
+  "k": "Wait for midday",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "1uea6k6",
+  "k": "Yes — mark it done",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "1wncj85",
+  "k": "{1} care",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "1uk6muo",
+  "k": "✓Yes, I have wudu — begin",
+  "c": ".btn < #gSheetBody"
+ },
+ {
+  "h": "ydgjtw",
+  "k": "Start Level {1}→",
+  "c": ".btn < #lnQuizArea"
+ },
+ {
+  "h": "b75r2f",
+  "k": "I'm already in Saudi Arabia",
+  "c": ".btn < #obHMain"
+ },
+ {
+  "h": "14ibsqq",
+  "k": "Continue→",
+  "c": ".btn < #obHere"
+ },
+ {
+  "h": "oyvlsd",
+  "k": "Plan a ziyarah route for Madinah",
+  "c": ".btn < #placesContainer"
+ },
+ {
+  "h": "139lhn2",
+  "k": "Plan a ziyarah route for Makkah",
+  "c": ".btn < #placesContainer"
+ },
+ {
+  "h": "fc5e27",
+  "k": "Full walkthrough & duas",
+  "c": ".btn < #riteBtns"
+ },
+ {
+  "h": "sc0ajx",
+  "k": "Quiz the day you are on",
+  "c": ".btn < #riteBtns"
+ },
+ {
+  "h": "1l18b6e",
+  "k": "Quiz the days of Hajj",
+  "c": ".btn < #riteBtns"
+ },
+ {
+  "h": "qm9a5d",
+  "k": "Open Part {1}→",
+  "c": ".btn < #riteLock"
+ },
+ {
+  "h": "1yx4yg9",
+  "k": "Open today's steps→",
+  "c": ".btn < .card < #homeArea"
+ },
+ {
+  "h": "m2bcgo",
+  "k": "Share",
+  "c": ".btn < .card < #homeArea"
+ },
+ {
+  "h": "1fawb49",
+  "k": "▦ Show QR",
+  "c": ".btn < .card < #homeArea"
+ },
+ {
+  "h": "1p767ih",
+  "k": "⛶Big counter",
+  "c": ".btn < .cnt-acts < .cnt-body"
+ },
+ {
+  "h": "13cn9g1",
+  "k": "Done",
+  "c": ".btn < .fc-sum < #fcArea"
+ },
+ {
+  "h": "1iky2rj",
+  "k": "Next {1}",
+  "c": ".btn < .fc-sum < #fcArea"
+ },
+ {
+  "h": "1dhoow1",
+  "k": "Begin your journey→",
+  "c": ".btn < .hhero < #homeArea"
+ },
+ {
+  "h": "tne7qu",
+  "k": "Hajj",
+  "c": ".btn < .jbtns < #nextCard"
+ },
+ {
+  "h": "inlw2z",
+  "k": "Show my camp card",
+  "c": ".btn < .pk-acts < .pk-list"
+ },
+ {
+  "h": "6vy081",
+  "k": "Share today's times",
+  "c": ".btn < .sec-bd < #ptSec"
+ },
+ {
+  "h": "1k733u1",
+  "k": "Common questions",
+  "c": ".card < #homeArea"
+ },
+ {
+  "h": "1qmxz3p",
+  "k": "Do next",
+  "c": ".card < #homeArea"
+ },
+ {
+  "h": "172x29c",
+  "k": "Free, no ads, no tracking. The sister app of <1>Ramadan Strivers</1>. Share it with anyone going to Umrah.",
+  "c": ".card < #homeArea"
+ },
+ {
+  "h": "ohiapz",
+  "k": "Hajj is obligatory on an able adult Muslim…",
+  "c": ".card < #homeArea"
+ },
+ {
+  "h": "3mci3c",
+  "k": "How to install it→",
+  "c": ".card < #homeArea"
+ },
+ {
+  "h": "my46k",
+  "k": "Made for the Ummah",
+  "c": ".card < #homeArea"
+ },
+ {
+  "h": "94qv01",
+  "k": "One prayer in Masjid al-Haram equals how many elsewhere?",
+  "c": ".card < #homeArea"
+ },
+ {
+  "h": "cxl16s",
+  "k": "Only if you stayed · three jamarat after midday · then leave Mina",
+  "c": ".card < #homeArea"
+ },
+ {
+  "h": "1th4hrb",
+  "k": "Privacy",
+  "c": ".card < #homeArea"
+ },
+ {
+  "h": "3r95m0",
+  "k": "Tap to study→",
+  "c": ".card < #homeArea"
+ },
+ {
+  "h": "8if1p3",
+  "k": "The pillar of Hajj · Dhuhr + Asr combined · wuquf until sunset",
+  "c": ".card < #homeArea"
+ },
+ {
+  "h": "cmlgxz",
+  "k": "Today's knowledge card · {1} ready",
+  "c": ".card < #homeArea"
+ },
+ {
+  "h": "1j3qmrj",
+  "k": "Umrah is often called…",
+  "c": ".card < #homeArea"
+ },
+ {
+  "h": "i6h7v5",
+  "k": "Achievements (",
+  "c": ".card < #sub-daily-stats"
+ },
+ {
+  "h": "12rotye",
+  "k": "Tap a locked badge to see how to earn it.",
+  "c": ".card < #sub-daily-stats"
+ },
+ {
+  "h": "1gcx556",
+  "k": "Trip consistency",
+  "c": ".card < #sub-daily-stats"
+ },
+ {
+  "h": "1nr6o6d",
+  "k": "Trip stats",
+  "c": ".card < #sub-daily-stats"
+ },
+ {
+  "h": "124v596",
+  "k": "Essential duas",
+  "c": ".card < #sub-more-duas"
+ },
+ {
+  "h": "1loa69s",
+  "k": "Tap any dua to open it full-screen for reading in the Haram.",
+  "c": ".card < #sub-more-duas"
+ },
+ {
+  "h": "1eqwycd",
+  "k": "Preferences",
+  "c": ".card < #sub-more-settings"
+ },
+ {
+  "h": "mxunmd",
+  "k": "Stamped automatically as you tick steps and tap the counters.",
+  "c": ".card < #sub-umrah-steps"
+ },
+ {
+  "h": "dq7jl",
+  "k": "This Umrah's timeline",
+  "c": ".card < #sub-umrah-steps"
+ },
+ {
+  "h": "1aedaxs",
+  "k": "Free, no ads, no tracking. The sister app of <1>Ramadan Strivers</1>. Share it with anyone going to Hajj.",
+  "c": ".card < .sec-bd < #sec-about"
+ },
+ {
+  "h": "uoxkn3",
+  "k": "Calculation method",
+  "c": ".care-l < #gSheetBody"
+ },
+ {
+  "h": "1xzcc7b",
+  "k": "Companion or group leader — name & phone",
+  "c": ".care-l < #gSheetBody"
+ },
+ {
+  "h": "xr0o9s",
+  "k": "Dose",
+  "c": ".care-l < #gSheetBody"
+ },
+ {
+  "h": "7wo038",
+  "k": "Find a reference",
+  "c": ".care-l < #gSheetBody"
+ },
+ {
+  "h": "4el6o6",
+  "k": "Name",
+  "c": ".care-l < #gSheetBody"
+ },
+ {
+  "h": "rl24jv",
+  "k": "Name of the place",
+  "c": ".care-l < #gSheetBody"
+ },
+ {
+  "h": "hqf859",
+  "k": "Their hotel",
+  "c": ".care-l < #gSheetBody"
+ },
+ {
+  "h": "1p39zt2",
+  "k": "Their name",
+  "c": ".care-l < #gSheetBody"
+ },
+ {
+  "h": "2s93d3",
+  "k": "What should be corrected? A source helps.",
+  "c": ".care-l < #gSheetBody"
+ },
+ {
+  "h": "6to4ch",
+  "k": "What do you want to remember from that day?",
+  "c": ".care-l < #jrBox"
+ },
+ {
+  "h": "k88mzd",
+  "k": "What do you want to remember from today?",
+  "c": ".care-l < #jrBox"
+ },
+ {
+  "h": "1tr3h8t",
+  "k": "Blood type",
+  "c": ".care-l < .acc-b < #meCard"
+ },
+ {
+  "h": "1diicx",
+  "k": "Country",
+  "c": ".care-l < .acc-b < #meCard"
+ },
+ {
+  "h": "1nz5av2",
+  "k": "Family at home — name & phone",
+  "c": ".care-l < .acc-b < #meCard"
+ },
+ {
+  "h": "12q2vj1",
+  "k": "Languages I speak",
+  "c": ".care-l < .acc-b < #meCard"
+ },
+ {
+  "h": "1vcch49",
+  "k": "Medical notes",
+  "c": ".care-l < .acc-b < #meCard"
+ },
+ {
+  "h": "1qir5mr",
+  "k": "My phone",
+  "c": ".care-l < .acc-b < #meCard"
+ },
+ {
+  "h": "g3lfb1",
+  "k": "Your name",
+  "c": ".care-l < .acc-b < #meCard"
+ },
+ {
+  "h": "udp36t",
+  "k": "Latitude",
+  "c": ".care-l < .hpt-ll < #gSheetBody"
+ },
+ {
+  "h": "sltujy",
+  "k": "Longitude",
+  "c": ".care-l < .hpt-ll < #gSheetBody"
+ },
+ {
+  "h": "14gwhko",
+  "k": "Where",
+  "c": ".care-l < .jr-row < #jrBox"
+ },
+ {
+  "h": "yfd5ls",
+  "k": "+{1} more days below",
+  "c": ".catch-more < #riteCatch"
+ },
+ {
+  "h": "6ausw4",
+  "k": "Send a correction",
+  "c": ".chip-btn < #aboutCard"
+ },
+ {
+  "h": "1etc9ca",
+  "k": "Edit in Plan▶Prepare",
+  "c": ".chip-btn < #campCard"
+ },
+ {
+  "h": "f5qdm5",
+  "k": "Excused today",
+  "c": ".chip-btn < #dayTools"
+ },
+ {
+  "h": "1dhp53f",
+  "k": "Trip finished? Stats & share card",
+  "c": ".chip-btn < #dayTools"
+ },
+ {
+  "h": "h89e6u",
+  "k": "Turn on Post-Umrah habits",
+  "c": ".chip-btn < #dayTools"
+ },
+ {
+  "h": "n4psp6",
+  "k": "Add Hajj days",
+  "c": ".chip-btn < #hajjIcsRow"
+ },
+ {
+  "h": "1e8gegw",
+  "k": "Install",
+  "c": ".chip-btn < #installRow"
+ },
+ {
+  "h": "2qqbr8",
+  "k": "Re-read / edit▾",
+  "c": ".chip-btn < #niyCol"
+ },
+ {
+  "h": "s4t6ue",
+  "k": "Write▾",
+  "c": ".chip-btn < #niyCol"
+ },
+ {
+  "h": "1yr1lra",
+  "k": "Export a backup",
+  "c": ".chip-btn < #rdy-backup"
+ },
+ {
+  "h": "bsu71s",
+  "k": "Reload once online",
+  "c": ".chip-btn < #rdy-cache"
+ },
+ {
+  "h": "on9bgd",
+  "k": "How to install",
+  "c": ".chip-btn < #rdy-inst"
+ },
+ {
+  "h": "pzgsfy",
+  "k": "Save them now",
+  "c": ".chip-btn < #rdy-pt"
+ },
+ {
+  "h": "o9ewh1",
+  "k": "Open Dua audio",
+  "c": ".chip-btn < #rdy-voice"
+ },
+ {
+  "h": "bi2jq4",
+  "k": "Show",
+  "c": ".chip-btn < #tawafSum"
+ },
+ {
+  "h": "16gte2l",
+  "k": "Create",
+  "c": ".chip-btn < #vaultArea"
+ },
+ {
+  "h": "n6hn1l",
+  "k": "Open",
+  "c": ".chip-btn < #wnRow"
+ },
+ {
+  "h": "emlsqk",
+  "k": "Ajyad / Misfalah",
+  "c": ".chip-btn < .anch < #gSheetBody"
+ },
+ {
+  "h": "9rii2",
+  "k": "Aziziyah",
+  "c": ".chip-btn < .anch < #gSheetBody"
+ },
+ {
+  "h": "1v9gfad",
+  "k": "Bab as-Salam (west)",
+  "c": ".chip-btn < .anch < #gSheetBody"
+ },
+ {
+  "h": "1uvel1u",
+  "k": "Baqi' side (east)",
+  "c": ".chip-btn < .anch < #gSheetBody"
+ },
+ {
+  "h": "12x9rh0",
+  "k": "Clock Tower",
+  "c": ".chip-btn < .anch < #gSheetBody"
+ },
+ {
+  "h": "1hzf7uq",
+  "k": "Jarwal",
+  "c": ".chip-btn < .anch < #gSheetBody"
+ },
+ {
+  "h": "cc2555",
+  "k": "King Abdulaziz Gate",
+  "c": ".chip-btn < .anch < #gSheetBody"
+ },
+ {
+  "h": "biti5x",
+  "k": "Kudai",
+  "c": ".chip-btn < .anch < #gSheetBody"
+ },
+ {
+  "h": "37ade",
+  "k": "Qiblatayn Rd",
+  "c": ".chip-btn < .anch < #gSheetBody"
+ },
+ {
+  "h": "1l8cy94",
+  "k": "Quba Avenue",
+  "c": ".chip-btn < .anch < #gSheetBody"
+ },
+ {
+  "h": "1adcxfz",
+  "k": "Sultanah",
+  "c": ".chip-btn < .anch < #gSheetBody"
+ },
+ {
+  "h": "6mnzt5",
+  "k": "Steps & duas for this phase",
+  "c": ".chip-btn < .cnt-acts < .cnt-body"
+ },
+ {
+  "h": "12e0z3d",
+  "k": "↻Untick all — new round",
+  "c": ".chip-btn < .dua-acts < #duaList"
+ },
+ {
+  "h": "jmduou",
+  "k": "Forgiveness",
+  "c": ".chip-btn < .dua-sug < #duaList"
+ },
+ {
+  "h": "88wcq8",
+  "k": "Guidance for family",
+  "c": ".chip-btn < .dua-sug < #duaList"
+ },
+ {
+  "h": "prcfqs",
+  "k": "Hajj next year",
+  "c": ".chip-btn < .dua-sug < #duaList"
+ },
+ {
+  "h": "f7e96a",
+  "k": "Husn al-khatimah",
+  "c": ".chip-btn < .dua-sug < #duaList"
+ },
+ {
+  "h": "1k07odm",
+  "k": "Parents",
+  "c": ".chip-btn < .dua-sug < #duaList"
+ },
+ {
+  "h": "15hqlj0",
+  "k": "Righteous spouse",
+  "c": ".chip-btn < .dua-sug < #duaList"
+ },
+ {
+  "h": "hhoa9v",
+  "k": "Shifa for…",
+  "c": ".chip-btn < .dua-sug < #duaList"
+ },
+ {
+  "h": "10ya4ws",
+  "k": "The Ummah",
+  "c": ".chip-btn < .dua-sug < #duaList"
+ },
+ {
+  "h": "o8ijjh",
+  "k": "Later▶",
+  "c": ".chip-btn < .hshift < .card"
+ }
+]

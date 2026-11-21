@@ -1,0 +1,611 @@
+[
+ {
+  "h": "1keompb",
+  "k": "Power adapter (Type G) + power bank",
+  "c": ".row-t < #pw-adapter"
+ },
+ {
+  "h": "q3rrd3",
+  "k": "Ihram belt / money pouch",
+  "c": ".row-t < #pw-belt"
+ },
+ {
+  "h": "1rud1n3",
+  "k": "Collapsible water bottle / Zamzam cup",
+  "c": ".row-t < #pw-bottle"
+ },
+ {
+  "h": "1wgvqu0",
+  "k": "Copies of documents + emergency contacts",
+  "c": ".row-t < #pw-copies"
+ },
+ {
+  "h": "t7xf3m",
+  "k": "Debts settled / disputes resolved",
+  "c": ".row-t < #pw-debts"
+ },
+ {
+  "h": "1hkvw5c",
+  "k": "Doctor check-up if needed",
+  "c": ".row-t < #pw-doctor"
+ },
+ {
+  "h": "s8i01y",
+  "k": "Written personal dua list",
+  "c": ".row-t < #pw-dualist"
+ },
+ {
+  "h": "351jg5",
+  "k": "Taught travel companions the rites",
+  "c": ".row-t < #pw-family"
+ },
+ {
+  "h": "6490fw",
+  "k": "Flights booked",
+  "c": ".row-t < #pw-flights"
+ },
+ {
+  "h": "1sgqjdk",
+  "k": "Hady (Adahi voucher) bought",
+  "c": ".row-t < #pw-hady"
+ },
+ {
+  "h": "15n67lk",
+  "k": "Flights & hotels confirmed — the dates cover {1}–{2} Dhul Hijjah",
+  "c": ".row-t < #pw-hajjtravel"
+ },
+ {
+  "h": "2gbwc4",
+  "k": "Know which Hajj you'll intend",
+  "c": ".row-t < #pw-hajjtype"
+ },
+ {
+  "h": "7xbv1f",
+  "k": "Trip funded from halal earnings",
+  "c": ".row-t < #pw-halal"
+ },
+ {
+  "h": "18m6ce5",
+  "k": "Hijab pins, undercaps & spare scarves (women)",
+  "c": ".row-t < #pw-hijabpins"
+ },
+ {
+  "h": "gedlps",
+  "k": "Madinah ziyarah bus booked (optional)",
+  "c": ".row-t < #pw-hoho"
+ },
+ {
+  "h": "e4thqj",
+  "k": "Hotels booked (near the Haram if possible)",
+  "c": ".row-t < #pw-hotels"
+ },
+ {
+  "h": "1m5zwg9",
+  "k": "Hand sanitiser & masks packed",
+  "c": ".row-t < #pw-hygiene"
+ },
+ {
+  "h": "1rwo4by",
+  "k": "{1} sets of ihram (men)",
+  "c": ".row-t < #pw-ihram"
+ },
+ {
+  "h": "zkjp52",
+  "k": "Ihram for boys",
+  "c": ".row-t < #pw-ihramboy",
+  "part_of": "Ihram for boys · loose modest clothes for girls"
+ },
+ {
+  "h": "1x66gh7",
+  "k": "Ihram for boys · loose modest clothes for girls",
+  "c": ".row-t < #pw-ihramboy"
+ },
+ {
+  "h": "85spkj",
+  "k": "loose modest clothes for girls",
+  "c": ".row-t < #pw-ihramboy",
+  "part_of": "Ihram for boys · loose modest clothes for girls"
+ },
+ {
+  "h": "9syubp",
+  "k": "Practised putting on the ihram at home (men)",
+  "c": ".row-t < #pw-ihramtry"
+ },
+ {
+  "h": "1i0a23n",
+  "k": "Travel insurance arranged",
+  "c": ".row-t < #pw-insurance"
+ },
+ {
+  "h": "13n8icb",
+  "k": "Routine vaccines / flu shot up to date",
+  "c": ".row-t < #pw-jabs"
+ },
+ {
+  "h": "10oc50m",
+  "k": "Waterproof ID wristband + a photo of each child every morning",
+  "c": ".row-t < #pw-kidsband"
+ },
+ {
+  "h": "idgyv5",
+  "k": "Children's medicines, rehydration salts & thermometer",
+  "c": ".row-t < #pw-kidsmeds"
+ },
+ {
+  "h": "f1d3vx",
+  "k": "Children's Meningitis ACWY certificates",
+  "c": ".row-t < #pw-kidsmenacwy"
+ },
+ {
+  "h": "xafvrz",
+  "k": "\"if lost, find a security guard\"",
+  "c": ".row-t < #pw-kidsprep",
+  "part_of": "Brief the children: meeting point · \"if lost, find a security guard\" · snacks & a comfort item"
+ },
+ {
+  "h": "tdlz10",
+  "k": "Brief the children: meeting point",
+  "c": ".row-t < #pw-kidsprep",
+  "part_of": "Brief the children: meeting point · \"if lost, find a security guard\" · snacks & a comfort item"
+ },
+ {
+  "h": "jgopz1",
+  "k": "Brief the children: meeting point · \"if lost, find a security guard\" · snacks & a comfort item",
+  "c": ".row-t < #pw-kidsprep"
+ },
+ {
+  "h": "1l97pqm",
+  "k": "snacks & a comfort item",
+  "c": ".row-t < #pw-kidsprep",
+  "part_of": "Brief the children: meeting point · \"if lost, find a security guard\" · snacks & a comfort item"
+ },
+ {
+  "h": "1woo9l7",
+  "k": "Umrah visa for each child",
+  "c": ".row-t < #pw-kidsvisa"
+ },
+ {
+  "h": "me78ug",
+  "k": "Learned the Umrah rites step by step",
+  "c": ".row-t < #pw-learn"
+ },
+ {
+  "h": "xpgwfs",
+  "k": "Learned the Hajj rites step by step",
+  "c": ".row-t < #pw-learnh"
+ },
+ {
+  "h": "13rnv9f",
+  "k": "Learned the five days of Hajj step by step",
+  "c": ".row-t < #pw-learnhajj"
+ },
+ {
+  "h": "9ycowp",
+  "k": "Maktab / camp number + group leader's number on paper",
+  "c": ".row-t < #pw-maktab"
+ },
+ {
+  "h": "sye817",
+  "k": "Medications + prescriptions",
+  "c": ".row-t < #pw-meds"
+ },
+ {
+  "h": "1r83mz2",
+  "k": "Meningitis ACWY vaccination certificate",
+  "c": ".row-t < #pw-menacwy"
+ },
+ {
+  "h": "6c1cku",
+  "k": "Mina kit: sleeping mat, small pillow, light blanket",
+  "c": ".row-t < #pw-minamat"
+ },
+ {
+  "h": "pidhgx",
+  "k": "Medications & basics for {1} days in Mina",
+  "c": ".row-t < #pw-minameds"
+ },
+ {
+  "h": "10grt1a",
+  "k": "Slip-on sandals, cap or umbrella, spare ihram set",
+  "c": ".row-t < #pw-minawear"
+ },
+ {
+  "h": "2mikar",
+  "k": "Saudi Riyals + travel card ready",
+  "c": ".row-t < #pw-money"
+ },
+ {
+  "h": "1hw1gg8",
+  "k": "Set my intention & spiritual goals for this Umrah",
+  "c": ".row-t < #pw-niyyah"
+ },
+ {
+  "h": "bfgyw8",
+  "k": "Set my intention & spiritual goals for this Hajj",
+  "c": ".row-t < #pw-niyyahh"
+ },
+ {
+  "h": "evlr0d",
+  "k": "Nusuk app installed & account created",
+  "c": ".row-t < #pw-nusuk"
+ },
+ {
+  "h": "167ywlk",
+  "k": "Ready for no signal — run the check",
+  "c": ".row-t < #pw-offline"
+ },
+ {
+  "h": "vpax16",
+  "k": "Passport valid {1}+ months",
+  "c": ".row-t < #pw-passport"
+ },
+ {
+  "h": "aneg9w",
+  "k": "Pebble pouch + unscented wipes",
+  "c": ".row-t < #pw-pebblepouch"
+ },
+ {
+  "h": "14czgpy",
+  "k": "Ask a doctor about period-delay medication if needed (women)",
+  "c": ".row-t < #pw-perioddelay"
+ },
+ {
+  "h": "1sx163u",
+  "k": "Completed the full knowledge circuit (all quiz levels {1}%+)",
+  "c": ".row-t < #pw-quiz80"
+ },
+ {
+  "h": "14ucb5u",
+  "k": "Rawdah permit booked on Nusuk",
+  "c": ".row-t < #pw-rawdah"
+ },
+ {
+  "h": "g69rib",
+  "k": "Comfortable sandals + shoe bag",
+  "c": ".row-t < #pw-sandals"
+ },
+ {
+  "h": "y4y18h",
+  "k": "Sanitary products for the whole trip (women)",
+  "c": ".row-t < #pw-sanitary"
+ },
+ {
+  "h": "5n5mld",
+  "k": "Small scissors for taqsir (women)",
+  "c": ".row-t < #pw-scissors"
+ },
+ {
+  "h": "tke2hu",
+  "k": "Decide: stroller or carrier?",
+  "c": ".row-t < #pw-stroller"
+ },
+ {
+  "h": "7uqcgd",
+  "k": "Memorised the talbiyah",
+  "c": ".row-t < #pw-talbiyah"
+ },
+ {
+  "h": "cm1zg4",
+  "k": "Sincere tawbah (repentance) made",
+  "c": ".row-t < #pw-tawbah"
+ },
+ {
+  "h": "x3tann",
+  "k": "Umbrella for sun protection",
+  "c": ".row-t < #pw-umbrella"
+ },
+ {
+  "h": "18fcio6",
+  "k": "Unscented soap, sunscreen & lip balm",
+  "c": ".row-t < #pw-unscented"
+ },
+ {
+  "h": "b091vg",
+  "k": "Petroleum jelly / anti-chafing balm",
+  "c": ".row-t < #pw-vaseline"
+ },
+ {
+  "h": "ofj3op",
+  "k": "Umrah visa / eVisa obtained (Nusuk)",
+  "c": ".row-t < #pw-visa"
+ },
+ {
+  "h": "1o4urd9",
+  "k": "Walking practice ({1}–{2}k steps/day)",
+  "c": ".row-t < #pw-walk"
+ },
+ {
+  "h": "1886c4s",
+  "k": "Walking training: {1} km in one go, in your sandals",
+  "c": ".row-t < #pw-walkhajj"
+ },
+ {
+  "h": "j6dzs0",
+  "k": "Wasiyyah (will) written or updated",
+  "c": ".row-t < #pw-will"
+ },
+ {
+  "h": "syl9jb",
+  "k": "ID wristband with camp / maktab number",
+  "c": ".row-t < #pw-wristband"
+ },
+ {
+  "h": "1uheo39",
+  "k": "Days in Madinah",
+  "c": ".setrow < #itinCard"
+ },
+ {
+  "h": "1fqwthw",
+  "k": "Check before you fly",
+  "c": ".setrow < #readyCard"
+ },
+ {
+  "h": "oa7u0c",
+  "k": "Installed, saved for offline, fonts, prayer times through your return, the Arabic voice, hotel and companion, storage, a recent backup",
+  "c": ".setrow < #readyCard"
+ },
+ {
+  "h": "beaqc1",
+  "k": "I'm lost — show this",
+  "c": ".sos < .hcard < #hotelCard"
+ },
+ {
+  "h": "1p06bfa",
+  "k": "For your camp card",
+  "c": ".subt < #campBlk"
+ },
+ {
+  "h": "i9ob3n",
+  "k": "Mina camp & group leader",
+  "c": ".subt < #campBlk"
+ },
+ {
+  "h": "4c8g4s",
+  "k": "Emergency & help in Saudi Arabia",
+  "c": ".subt < #hotelCard"
+ },
+ {
+  "h": "1c137tz",
+  "k": "Use it in the mataf, between adhan & iqamah, and in sujood.",
+  "c": ".x < .row-t < #dw-dualist"
+ },
+ {
+  "h": "91bqug",
+  "k": "The angel says: \"Amin, and for you the same.\"",
+  "c": ".x < .row-t < #dw-duaothers"
+ },
+ {
+  "h": "k2lmlo",
+  "k": "Isha in congregation is like praying half the night; Fajr in congregation completes the whole night. (Muslim {1})",
+  "c": ".x < .row-t < #dw-fajr",
+  "refs": [
+   "muslim:656"
+  ]
+ },
+ {
+  "h": "1173ds7",
+  "k": "Pushed a wheelchair, shared water, gave directions — service is worship.",
+  "c": ".x < .row-t < #dw-helped"
+ },
+ {
+  "h": "1ojab9g",
+  "k": "After each obligatory prayer in these days. The schools differ on when it starts and ends — for the pilgrim, Malikis and Shafi'is: from Dhuhr on the {1}th to Fajr on the {2}th; Hanbalis: from Dhuhr on the {3}th to Asr on the {4}th; Hanafis: from Fajr on the {5}th to Asr on the {6}th. Follow your group's school.",
+  "c": ".x < .row-t < #dw-htakbir"
+ },
+ {
+  "h": "l9sjed",
+  "k": "The greatest voluntary act available only in Makkah — do as many as you can.",
+  "c": ".x < .row-t < #dw-ntawaf"
+ },
+ {
+  "h": "1i6v9cf",
+  "k": "No pushing, no arguing — crowd patience is part of the test.",
+  "c": ".x < .row-t < #dw-patience"
+ },
+ {
+  "h": "5dqla2",
+  "k": "The Haram at {1}am is an experience you will never forget.",
+  "c": ".x < .row-t < #dw-tahajjud"
+ },
+ {
+  "h": "1mp0bpi",
+  "k": "Women wear normal modest dress in ihram — no face veil while in ihram, and in the majority view no gloves (Bukhari {1}; the Hanafis permit them).",
+  "c": ".x < .row-t < #pw-abaya",
+  "refs": [
+   "bukhari:1838"
+  ]
+ },
+ {
+  "h": "19lwp9x",
+  "k": "Saudi uses UK-style {1}-pin plugs. A power bank saves you in the Haram.",
+  "c": ".x < .row-t < #pw-adapter"
+ },
+ {
+  "h": "psjpmj",
+  "k": "Keeps documents and cash secure — ihram has no pockets.",
+  "c": ".x < .row-t < #pw-belt"
+ },
+ {
+  "h": "hdobem",
+  "k": "Zamzam dispensers are everywhere in the Haram — stay hydrated.",
+  "c": ".x < .row-t < #pw-bottle"
+ },
+ {
+  "h": "118ny2h",
+  "k": "Physical and cloud copies of passport, visa, bookings; share your itinerary with family.",
+  "c": ".x < .row-t < #pw-copies"
+ },
+ {
+  "h": "jqzsyx",
+  "k": "Seek forgiveness from people you've wronged before travelling.",
+  "c": ".x < .row-t < #pw-debts"
+ },
+ {
+  "h": "1yqqygq",
+  "k": "Especially for chronic conditions — carry a doctor's letter for devices/medication.",
+  "c": ".x < .row-t < #pw-doctor"
+ },
+ {
+  "h": "ss1tqz",
+  "k": "In front of the Kaaba the mind goes blank — write your duas down beforehand.",
+  "c": ".x < .row-t < #pw-dualist"
+ },
+ {
+  "h": "5jd6az",
+  "k": "Especially children and first-timers — review the steps together.",
+  "c": ".x < .row-t < #pw-family"
+ },
+ {
+  "h": "1y2l1q9",
+  "k": "Jeddah (JED) for Makkah first, or Madinah (MED) if starting in Madinah.",
+  "c": ".x < .row-t < #pw-flights"
+ },
+ {
+  "h": "w7zds6",
+  "k": "Tamattu' and Qiran pilgrims owe a sacrifice (Quran {1}). Buy it as an Adahi voucher through the package or the official Adahi platform before you fly — it is slaughtered in Mina on your behalf; keep the receipt. Ifrad pilgrims owe none.",
+  "c": ".x < .row-t < #pw-hady",
+  "refs": [
+   "quran:2:196"
+  ]
+ },
+ {
+  "h": "1pes8g1",
+  "k": "Hajj is only possible on a permit: through your country's official quota agents or the Nusuk Hajj platform (hajj.nusuk.sa) — never through a \"guaranteed visa\" on social media. Confirm the booking is in your name, keep the confirmation offline, and note your maktab (camp) number as soon as it is issued.",
+  "c": ".x < .row-t < #pw-hajjpermit"
+ },
+ {
+  "h": "1217kx",
+  "k": "Whether they come with your package or you book them yourself, check that the flight and hotel dates cover the {1}th–{2}th of Dhul Hijjah plus your travel days, and keep the confirmations offline.",
+  "c": ".x < .row-t < #pw-hajjtravel"
+ },
+ {
+  "h": "1sfka0j",
+  "k": "Your group leader knows which one your package follows — Tamattu' is the usual. Pick it here: the steps, duas and checklists follow it.",
+  "c": ".x < .row-t < #pw-hajjtype"
+ },
+ {
+  "h": "yrl3v5",
+  "k": "The Hajj visa comes with the licensed package and is tied to it; a tourist or Umrah visa does not allow Hajj. Check the dates cover the {1}th–{2}th of Dhul Hijjah plus your travel days.",
+  "c": ".x < .row-t < #pw-hajjvisa"
+ },
+ {
+  "h": "1p8xl0b",
+  "k": "A pilgrimage funded by the pure is more likely to be accepted.",
+  "c": ".x < .row-t < #pw-halal"
+ },
+ {
+  "h": "1bslbt0",
+  "k": "Wind in the courtyard and hours of prostration — an undercap keeps everything in place. A hijab is worn as normal in ihram; only the face veil is left off — and gloves, in the majority view.",
+  "c": ".x < .row-t < #pw-hijabpins"
+ },
+ {
+  "h": "s7r4wz",
+  "k": "The City Sightseeing hop-on hop-off covers Quba, Qiblatayn, Uhud and Baqi' on one ticket ({1}- to {2}-hour passes) — book it from the Places tab.",
+  "c": ".x < .row-t < #pw-hoho"
+ },
+ {
+  "h": "1k60txq",
+  "k": "Proximity means more prayers in congregation — worth every riyal.",
+  "c": ".x < .row-t < #pw-hotels"
+ },
+ {
+  "h": "i3c7ro",
+  "k": "The \"Umrah flu\" is real — prevention keeps your worship strong.",
+  "c": ".x < .row-t < #pw-hygiene"
+ },
+ {
+  "h": "1sudo0b",
+  "k": "The \"pilgrim's cough\" is real — tents, buses and crowds are shared; prevention keeps your worship strong.",
+  "c": ".x < .row-t < #pw-hygiene"
+ },
+ {
+  "h": "1s48qkd",
+  "k": "A spare set is a mercy after tawaf in the heat. Unstitched white cloth: izar & rida.",
+  "c": ".x < .row-t < #pw-ihram"
+ },
+ {
+  "h": "1w6l1q5",
+  "k": "A boy's ihram is like a man's (two unstitched cloths, no underwear); girls wear ordinary modest clothes. For a small child the guardian makes the intention and keeps them from the ihram prohibitions.",
+  "c": ".x < .row-t < #pw-ihramboy"
+ },
+ {
+  "h": "1h70gcu",
+  "k": "Wrap, walk, sit and use the bathroom in it until it feels normal — the number one first-timer anxiety.",
+  "c": ".x < .row-t < #pw-ihramtry"
+ },
+ {
+  "h": "gpqj9y",
+  "k": "Check what your Hajj package covers, and arrange your own cover for anything it leaves out.",
+  "c": ".x < .row-t < #pw-insurance"
+ },
+ {
+  "h": "spru7f",
+  "k": "Often included with your visa or package — confirm your coverage.",
+  "c": ".x < .row-t < #pw-insurance"
+ },
+ {
+  "h": "1qo4fwo",
+  "k": "Millions of pilgrims from around the world — protect yourself and others. Some pilgrims also need extra vaccines under Saudi MoH rules: polio or yellow fever if travelling from listed countries, and (in {1}) COVID-{2} vaccination or immunity proof for over-{3}s, pregnant women and people with certain chronic illnesses — check the current MoH requirements for your country.",
+  "c": ".x < .row-t < #pw-jabs"
+ },
+ {
+  "h": "b81hjb",
+  "k": "Name, your Saudi-reachable number and hotel on the band; a phone photo of each child in today's clothes makes a description instant if you are separated. Write the group leader's number on paper in the child's pocket every morning too.",
+  "c": ".x < .row-t < #pw-kidsband"
+ },
+ {
+  "h": "9atx1v",
+  "k": "Each child needs their own Hajj permit and visa through your licensed package. Saudi Arabia has changed the minimum age for Hajj in recent seasons (children were not allowed in {1}, and the {2} limit changed shortly before Hajj) — confirm the current rule with Nusuk Hajj or your country's Hajj mission before you book.",
+  "c": ".x < .row-t < #pw-kidshajj"
+ },
+ {
+  "h": "512rk8",
+  "k": "Paracetamol/ibuprofen in child doses, oral rehydration sachets, plasters, sunscreen (unscented if the child is in ihram).",
+  "c": ".x < .row-t < #pw-kidsmeds"
+ },
+ {
+  "h": "fe4f2x",
+  "k": "ACWY vaccination is required by the Saudi Ministry of Health for children too (UK Travel Health Pro gives the age as {1} year or older; check the current MoH rule, and which vaccine suits your child's age, with your clinic) — given at least {2} days before arrival.",
+  "c": ".x < .row-t < #pw-kidsmenacwy"
+ },
+ {
+  "h": "hceolu",
+  "k": "Every child needs their own passport with six months' validity from arrival — children's applications can need extra steps in some countries (in-person appointments, both parents' consent), so apply early.",
+  "c": ".x < .row-t < #pw-kidspass"
+ },
+ {
+  "h": "155js1p",
+  "k": "Agree a gate number to meet at after each prayer. Teach them to stay put and ask a uniformed guard, never to wander looking for you. Pack snacks and something familiar for the long waits.",
+  "c": ".x < .row-t < #pw-kidsprep"
+ },
+ {
+  "h": "y19j48",
+  "k": "Children need their own visa on Nusuk / through your agent, linked to a parent or guardian on the same booking. A single-entry Umrah visa is cancelled if not used within {1} days of issue, so apply close to travel.",
+  "c": ".x < .row-t < #pw-kidsvisa"
+ },
+ {
+  "h": "1rb8ig7",
+  "k": "Review the Umrah tab of this app until each step feels familiar.",
+  "c": ".x < .row-t < #pw-learn"
+ },
+ {
+  "h": "gtali5",
+  "k": "Review the Hajj tab of this app until each step feels familiar.",
+  "c": ".x < .row-t < #pw-learnh"
+ },
+ {
+  "h": "vgzt1s",
+  "k": "Read Part {1} of the rites — the {2}th to the {3}th — until you can say what happens on each day and which acts are pillars. Then take the Hajj quiz level.",
+  "c": ".x < .row-t < #pw-learnhajj"
+ },
+ {
+  "h": "h4qzzk",
+  "k": "Mina is a city of numbered camps and phones fail in the crowd. Write the maktab number, your camp street and the leader's number on a card and on your wristband — it is how security walks you home if you are lost.",
+  "c": ".x < .row-t < #pw-maktab"
+ },
+ {
+  "h": "gp263t",
+  "k": "Carry prescriptions; include painkillers, rehydration salts, blister plasters.",
+  "c": ".x < .row-t < #pw-meds"
+ }
+]

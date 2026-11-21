@@ -1,0 +1,303 @@
+[
+ {
+  "h": "29j3i9",
+  "k": "Group leader: {U1}",
+  "c": "#drvAddr"
+ },
+ {
+  "h": "1uzbl6v",
+  "k": "Hajj site — agree the price (and a return) before you set off",
+  "c": "#drvAddr",
+  "part_of": "Makkah · Hajj site — agree the price (and a return) before you set off"
+ },
+ {
+  "h": "1c9vdg9",
+  "k": "Madinah · ziyarah site — agree the price (and a return) before you set off",
+  "c": "#drvAddr"
+ },
+ {
+  "h": "1u330t9",
+  "k": "Makkah · Hajj site — agree the price (and a return) before you set off",
+  "c": "#drvAddr"
+ },
+ {
+  "h": "imcqx8",
+  "k": "Makkah · day trip — agree the price (and a return) before you set off",
+  "c": "#drvAddr"
+ },
+ {
+  "h": "dcgypo",
+  "k": "Makkah · ziyarah site — agree the price (and a return) before you set off",
+  "c": "#drvAddr"
+ },
+ {
+  "h": "1np75iy",
+  "k": "day trip — agree the price (and a return) before you set off",
+  "c": "#drvAddr",
+  "part_of": "Makkah · day trip — agree the price (and a return) before you set off"
+ },
+ {
+  "h": "arnd1u",
+  "k": "ziyarah site — agree the price (and a return) before you set off",
+  "c": "#drvAddr",
+  "part_of": "Makkah · ziyarah site — agree the price (and a return) before you set off"
+ },
+ {
+  "h": "n77gq7",
+  "k": "Madinah hotel instead",
+  "c": "#drvAlt"
+ },
+ {
+  "h": "jkq0q4",
+  "k": "Makkah hotel instead",
+  "c": "#drvAlt"
+ },
+ {
+  "h": "15a18ny",
+  "k": "Arafah · maktab {1}",
+  "c": "#drvName"
+ },
+ {
+  "h": "17kr0pe",
+  "k": "Mina · camp / tent {1} · maktab {2}",
+  "c": "#drvName"
+ },
+ {
+  "h": "s8q4fh",
+  "k": "camp / tent {1}",
+  "c": "#drvName",
+  "part_of": "Mina · camp / tent {1} · maktab {2}"
+ },
+ {
+  "h": "n6dpga",
+  "k": "Please take me here",
+  "c": "#drvTop"
+ },
+ {
+  "h": "1746i9o",
+  "k": "Please take me to my camp in Mina",
+  "c": "#drvTop"
+ },
+ {
+  "h": "owfvdb",
+  "k": "Please take me to my hotel",
+  "c": "#drvTop"
+ },
+ {
+  "h": "1d23rqc",
+  "k": "Please take me to my maktab's camp in Arafah",
+  "c": "#drvTop"
+ },
+ {
+  "h": "jwcqp2",
+  "k": "If separated: go to the meeting point after the next prayer, stay put, and call.",
+  "c": "#helpBody"
+ },
+ {
+  "h": "abmtkw",
+  "k": "Each child gets five daily stars on Daily▶Today — prayed with us, Zamzam, dhikr, patience, learned one thing. Three {1}-of-{2} days earn the Little Pilgrim badge.",
+  "c": "#kidNames"
+ },
+ {
+  "h": "xpq38b",
+  "k": "The card says \"this is his photo\". It stays on this phone — or show one from your gallery.",
+  "c": "#kidPicAdd"
+ },
+ {
+  "h": "mw3oic",
+  "k": "Show this card to a security officer or a member of the Haram staff. Tell them where and when you last saw your child, and what they were wearing.",
+  "c": "#kidTip"
+ },
+ {
+  "h": "1dn21m3",
+  "k": "▶Start",
+  "c": "#kidsStart"
+ },
+ {
+  "h": "1f7mbvz",
+  "k": "big-button questions · {1} minutes · Best",
+  "c": "#kidsSub"
+ },
+ {
+  "h": "l3ce9i",
+  "k": "big-button questions · {1} minutes · Best <1>—</1>",
+  "c": "#kidsSub"
+ },
+ {
+  "h": "1xronqm",
+  "k": "Am I inside Arafah?",
+  "c": "#pk-bound-arafah"
+ },
+ {
+  "h": "1ukykph",
+  "k": "The Prophet ﷺ said: \"Hajj is Arafah\" (Tirmidhi {1}), and: \"I stood here, and all of Arafah is a place of standing\" (Muslim {2}). So make sure you are inside Arafah for the standing, and check with your eyes, not with a phone. Signboards mark Arafah's boundary; read them to see which side is Arafah. The valley of Uranah, on Arafah's western edge, is not part of Arafah, and the western (front) part of Masjid Namirah stands in it. The Ministry of Hajj advises staying in your camp, because Arafah's roads look alike and it is easy to get lost, and praying there rather than going to Masjid Namirah unless necessary, to avoid getting lost or heatstroke. If you are unsure, ask your group leader or an official.",
+  "c": "#pk-bound-arafah",
+  "refs": [
+   "tirmidhi:889",
+   "muslim:1218"
+  ]
+ },
+ {
+  "h": "l17vga",
+  "k": "Muzdalifah and Mina: where they begin and end",
+  "c": "#pk-bound-muzdalifah-mina"
+ },
+ {
+  "h": "1s1d3co",
+  "k": "Muzdalifah lies between Arafah and Mina. Its eastern edge, towards Arafah, is the pass between the two mountains of al-Ma'zimayn. Its western edge is the eastern bank of Wadi Muhassir, the valley that separates it from Mina; the valley itself is not part of Muzdalifah. Mina runs west from Wadi Muhassir up to Jamrat al-Aqabah. The Prophet ﷺ said: \"I stood here, and all of Jam' (Muzdalifah) is a place of standing\" (Muslim {1}). Reports in the Muwatta and Ibn Majah tell pilgrims to keep out of the hollow of Muhassir. Where your bus stops, look for the boundary signs, and ask your group leader if you are unsure.",
+  "c": "#pk-bound-muzdalifah-mina",
+  "refs": [
+   "muslim:1218"
+  ]
+ },
+ {
+  "h": "1ekzc17",
+  "k": "Also save the camp's location in your phone's map app, and keep your Nusuk card and pilgrim bracelet on you at all times.",
+  "c": "#pk-camp-card"
+ },
+ {
+  "h": "31d3ym",
+  "k": "Roads and camps in Mina look very alike. The Ministry of Hajj advises you to save these on your phone and to carry proof of them with you:",
+  "c": "#pk-camp-card"
+ },
+ {
+  "h": "1jntp9s",
+  "k": "Your Mina camp card",
+  "c": "#pk-camp-card"
+ },
+ {
+  "h": "mfjrdb",
+  "k": "Finding your way back in Mina",
+  "c": "#pk-camp-finding-way"
+ },
+ {
+  "h": "wdpbel",
+  "k": "Five stations: Makkah (in al-Rusaifah), Jeddah (al-Sulaymaniyah), King Abdulaziz International Airport (linked to Terminal {1}), King Abdullah Economic City, and Madinah (in Knowledge Economic City). The Makkah and Madinah stations are not next to the Harams: in a straight line they are about {2} km from the Ka'bah and about {3} km from the Prophet's Mosque, so plan a taxi or bus for the last part.",
+  "c": "#pk-go-haramain"
+ },
+ {
+  "h": "1522pt",
+  "k": "Going from Madinah to Makkah for Umrah or Hajj? The train does not stop at the miqat. Put on ihram before boarding, and make the intention before the train passes the miqat.",
+  "c": "#pk-go-haramain"
+ },
+ {
+  "h": "1ypar3i",
+  "k": "Haramain High Speed Railway",
+  "c": "#pk-go-haramain"
+ },
+ {
+  "h": "1yofmcb",
+  "k": "Official {1} journey times: about {2} minutes from the airport to Makkah, about {3} hour {4} minutes from the airport to Madinah, and about {5}¼ hours from Makkah to Madinah. Some trains take longer, so check the time of your own train, and book only on the official Haramain website or app.",
+  "c": "#pk-go-haramain"
+ },
+ {
+  "h": "oz7plq",
+  "k": "Madinah Bus is the city's public bus network, overseen by the Madinah Region Development Authority. In {1} its routes included one between the airport and the Prophet's Mosque, and others serving the Haramain train station, the miqat and Masjid Quba. In the {2} Hajj season it also ran extra shuttles to the Prophet's Mosque and Masjid Quba. Routes change, so check routes, times and how to pay in the official Madinah Bus channels before you travel.",
+  "c": "#pk-go-madinah-bus"
+ },
+ {
+  "h": "1k2h8id",
+  "k": "Madinah Buses",
+  "c": "#pk-go-madinah-bus"
+ },
+ {
+  "h": "vnl6cm",
+  "k": "Makkah Bus",
+  "c": "#pk-go-makkah-bus"
+ },
+ {
+  "h": "1vs8nsc",
+  "k": "Makkah Bus is the city's public bus network, launched by the Royal Commission for Makkah City and Holy Sites. In {M1} {1} it had {2} routes and about {3} stops. Routes link stations near the Haram with the neighbourhoods, the Haramain train station, Masjid Aisha (Tan'eem) and the Hira Cultural District. Buy tickets in the Makkah Bus app or website, at ticket machines, or at sales points. Some routes have been changed in past Hajj seasons, so check the app for your route and times before you rely on it.",
+  "c": "#pk-go-makkah-bus"
+ },
+ {
+  "h": "m7g4ym",
+  "k": "Not every pilgrim rides it: the train is used by the groups assigned to it. If your group is one of them, your company tells you your station and times. Keep your train bracelet on your wrist, do not take luggage on board, do not sit or lie down in the stations, and follow your group's train schedule.",
+  "c": "#pk-go-mashaer-metro"
+ },
+ {
+  "h": "3f511y",
+  "k": "Runs only in the Hajj season, between Arafah, Muzdalifah and Mina. It has nine stations, three at each site; the last one is on the {1}th level of the Jamarat facility. It does not run to the Haram or to the hotel districts of Makkah. In Hajj {2} ({3}) it ran for seven days, from {4} Dhul Hijjah to the end of the days of tashriq.",
+  "c": "#pk-go-mashaer-metro"
+ },
+ {
+  "h": "17gf3l",
+  "k": "The Mashaer metro (Holy Sites train)",
+  "c": "#pk-go-mashaer-metro"
+ },
+ {
+  "h": "1rx2nxc",
+  "k": "Taxis and ride-hailing apps",
+  "c": "#pk-go-taxi"
+ },
+ {
+  "h": "19bbkxu",
+  "k": "Use a licensed taxi, or a ride-hailing app licensed by the Transport General Authority; in {1} the licensed apps included Careem and Uber. Licensed taxis show the driver's and the operating company's names. At airports, follow the signs for the official taxi rank or your app's pick-up point. The Authority warns visitors not to accept rides from unlicensed drivers who approach them.",
+  "c": "#pk-go-taxi"
+ },
+ {
+  "h": "hkq24z",
+  "k": "If you walk, the Ministry advises a sun umbrella and comfortable shoes.",
+  "c": "#pk-go-walking"
+ },
+ {
+  "h": "e4e9hf",
+  "k": "Walking between the holy sites",
+  "c": "#pk-go-walking"
+ },
+ {
+  "h": "1lni4y8",
+  "k": "Your Hajj company moves you between the sites on a fixed plan, by bus or train, and some groups walk to the Jamarat. The Ministry of Hajj tells pilgrims to travel with their group by the designated transport, for example from Arafah to Muzdalifah, and in {1} it asked pilgrims not to walk between the sites at the restricted times. If your group's plan does include walking, these are rough guides at a steady {2} to {3} km an hour. Walking routes are longer than these distances, and crowds and heat slow you down, so allow more time:",
+  "c": "#pk-go-walking"
+ },
+ {
+  "h": "i8e5po",
+  "k": "When you reach your camp in Mina or Arafah, stand at the camp gate and save the spot. Miqah keeps it on your phone, offline, and shows the straight-line distance and direction back to it. It only shows where you saved the pin. It cannot tell you whether a place is inside Mina, Muzdalifah or Arafah. Phone GPS is typically accurate to about {1} metres under open sky, and worse near buildings, bridges and other obstructions. Use it with your camp card, not instead of it.",
+  "c": "#pk-gps-save-camp"
+ },
+ {
+  "h": "1dy6lqf",
+  "k": "Heat is hardest on older people and on anyone with heart disease, diabetes, kidney or lung conditions, and some medicines add to the risk. Confusion is one of the signs of heatstroke, so the person may not ask for help: check on your companions through the day. See a doctor before you travel. Tell your group leader or group doctor early if anyone feels unwell; in the {1} season the Ministry of Health equipped field units near the holy sites with beds for heat exhaustion.",
+  "c": "#pk-heat-companions"
+ },
+ {
+  "h": "1v8oin3",
+  "k": "Watch each other",
+  "c": "#pk-heat-companions"
+ },
+ {
+  "h": "4q7kkc",
+  "k": "<1>Signs:</1> headache; dizziness or fainting; heavy sweating with pale, clammy skin; nausea or vomiting; cramps; tiredness or weakness; intense thirst.",
+  "c": "#pk-heat-exhaustion"
+ },
+ {
+  "h": "vwa6ih",
+  "k": "<1>What to do:</1> get into shade or air conditioning. Loosen or remove extra clothing. Spray or sponge the skin with cool water, especially the head and neck, and fan it; cold packs wrapped in cloth on the neck or armpits help. Drink cold water, or oral rehydration salts mixed with water.",
+  "c": "#pk-heat-exhaustion"
+ },
+ {
+  "h": "1ueoz9q",
+  "k": "Heat exhaustion: cool down now",
+  "c": "#pk-heat-exhaustion"
+ },
+ {
+  "h": "1h5g99d",
+  "k": "Stay with the person: they should feel better within about {1} minutes. If they are not better by then, or they vomit, or they get worse, call {2}. Heat exhaustion can turn into heatstroke.",
+  "c": "#pk-heat-exhaustion"
+ },
+ {
+  "h": "17wocwz",
+  "k": "Keep out of the sun from {1} am to {2} pm",
+  "c": "#pk-heat-hours"
+ },
+ {
+  "h": "lkof6v",
+  "k": "Saudi Arabia's Ministry of Health has told pilgrims to keep out of direct sun between {1} am and {2} pm, to use an umbrella in those hours, to avoid walking on hot surfaces, and not to climb hills or mountains on the Day of Arafah ({3}). On the Day of Arafah in {4} it asked pilgrims to stay inside their camps until {5} pm. Your standing at Arafah counts inside your tent: there is no need to climb Jabal ar-Rahmah or to stand in the sun. Rest after each rite, and follow the Ministry's advice for {6} when it is published.",
+  "c": "#pk-heat-hours"
+ },
+ {
+  "h": "1mu8zam",
+  "k": "Drink before you feel thirsty",
+  "c": "#pk-heat-hydration"
+ }
+]

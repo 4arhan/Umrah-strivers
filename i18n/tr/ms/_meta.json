@@ -1,0 +1,74 @@
+{
+ "g": {
+  "D": [
+   "Isnin",
+   "Selasa",
+   "Rabu",
+   "Khamis",
+   "Jumaat",
+   "Sabtu",
+   "Ahad"
+  ],
+  "d": [
+   "Isn",
+   "Sel",
+   "Rab",
+   "Kha",
+   "Jum",
+   "Sab",
+   "Ahd"
+  ],
+  "M": [
+   "Januari",
+   "Februari",
+   "Mac",
+   "April",
+   "Mei",
+   "Jun",
+   "Julai",
+   "Ogos",
+   "September",
+   "Oktober",
+   "November",
+   "Disember"
+  ],
+  "m": [
+   "Jan",
+   "Feb",
+   "Mac",
+   "Apr",
+   "Mei",
+   "Jun",
+   "Jul",
+   "Ogo",
+   "Sep",
+   "Okt",
+   "Nov",
+   "Dis"
+  ],
+  "H": [
+   "Muharam",
+   "Safar",
+   "Rabiulawal",
+   "Rabiulakhir",
+   "Jamadilawal",
+   "Jamadilakhir",
+   "Rejab",
+   "Syaaban",
+   "Ramadan",
+   "Syawal",
+   "Zulkaedah",
+   "Zulhijah"
+  ],
+  "P": [
+   "Subuh",
+   "Zohor",
+   "Asar",
+   "Maghrib",
+   "Isyak"
+  ]
+ },
+ "note": "",
+ "quran": "Abdullah Muhammad Basmeih",
+ "checked": ""
+}

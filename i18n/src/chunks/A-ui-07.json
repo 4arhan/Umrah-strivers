@@ -1,0 +1,864 @@
+[
+ {
+  "h": "1kqmmax",
+  "k": "◀Earlier",
+  "c": ".chip-btn < .hshift < .card"
+ },
+ {
+  "h": "dho565",
+  "k": "✓Yes",
+  "c": ".chip-btn < .hshift < .card"
+ },
+ {
+  "h": "oay2cq",
+  "k": "Delete",
+  "c": ".chip-btn < .jr-acts < #jr-2027-03-23"
+ },
+ {
+  "h": "p7fyzo",
+  "k": "Put on my keepsake",
+  "c": ".chip-btn < .jr-acts < #jr-2027-03-23"
+ },
+ {
+  "h": "1ey26u4",
+  "k": "Keepsake",
+  "c": ".chip-btn < .lg < #umrahsArea"
+ },
+ {
+  "h": "bzwfx1",
+  "k": "Open the {1}th",
+  "c": ".chip-btn < .rami-mk-a < #ramiMakeup"
+ },
+ {
+  "h": "us6kw7",
+  "k": "Read: I missed the stoning time",
+  "c": ".chip-btn < .rami-mk-a < #ramiMakeup"
+ },
+ {
+  "h": "1r50vo1",
+  "k": "＋Add",
+  "c": ".chip-btn < .rf-add < #gSheetBody"
+ },
+ {
+  "h": "12xvzys",
+  "k": "Print / save PDF",
+  "c": ".chip-btn < .rite-tools < #sub-umrah-steps"
+ },
+ {
+  "h": "1il0be8",
+  "k": "▶Walk me through it",
+  "c": ".chip-btn < .rite-tools < #sub-umrah-steps"
+ },
+ {
+  "h": "wwm59r",
+  "k": "Keep count at {1}",
+  "c": ".chip-btn < .rp-act < .acc-b"
+ },
+ {
+  "h": "cy7ia9",
+  "k": "−{1} — count them as one",
+  "c": ".chip-btn < .rp-act < .acc-b"
+ },
+ {
+  "h": "157jzo0",
+  "k": "Add week",
+  "c": ".chip-btn < .set-acts < .setrow"
+ },
+ {
+  "h": "1fq4ptv",
+  "k": "QR code",
+  "c": ".chip-btn < .set-acts < .setrow"
+ },
+ {
+  "h": "1ddsh3y",
+  "k": "＋cup",
+  "c": ".chip-btn < .setrow < #waterCard"
+ },
+ {
+  "h": "18wuq59",
+  "k": "Change",
+  "c": ".chip-btn < .setrow < .card"
+ },
+ {
+  "h": "oqqg2v",
+  "k": "Check",
+  "c": ".chip-btn < .setrow < .card"
+ },
+ {
+  "h": "kgmsf2",
+  "k": "Reset cycle",
+  "c": ".chip-btn < .tb-meta < #tbCard"
+ },
+ {
+  "h": "1i2xr2f",
+  "k": "⛶Focus",
+  "c": ".chip-btn < .tb-meta < #tbCard"
+ },
+ {
+  "h": "rzf8m3",
+  "k": "Lost",
+  "c": ".chip-btn < .tc-h < .card"
+ },
+ {
+  "h": "3wh218",
+  "k": "SOS",
+  "c": ".chip-btn < .tc-h < .card"
+ },
+ {
+  "h": "kus8dk",
+  "k": "Checked {1} {m1} {2} · official page (needs signal):",
+  "c": ".ck-on < .x < .row-t"
+ },
+ {
+  "h": "1bcpdt0",
+  "k": "Checked {1} {m1} {2} · official platform (needs signal):",
+  "c": ".ck-on < .x < .row-t"
+ },
+ {
+  "h": "1731pbr",
+  "k": "Checked {1} {m1} {2} · rules change, so confirm before you travel",
+  "c": ".ck-on < .x < .row-t"
+ },
+ {
+  "h": "18p8kz0",
+  "k": "haj.gov.sa",
+  "c": ".ck-on < .x < .row-t"
+ },
+ {
+  "h": "116w7no",
+  "k": "moh.gov.sa (PDF)",
+  "c": ".ck-on < .x < .row-t"
+ },
+ {
+  "h": "6m143t",
+  "k": "nusuk.sa",
+  "c": ".ck-on < .x < .row-t"
+ },
+ {
+  "h": "28uep3",
+  "k": "Say it slowly, again and again, with your own duas between. <1>Tap after each one</1> — no target.",
+  "c": ".cnt-sub < #arafahDhikr"
+ },
+ {
+  "h": "1cx21vf",
+  "k": "Tap the circle after each lap.",
+  "c": ".cnt-sub < .cnt-body < #saiCard"
+ },
+ {
+  "h": "1h7erny",
+  "k": "{1} laps — begin at Safa, finish at Marwah (Safa→Marwah = {2}).",
+  "c": ".cnt-sub < .cnt-body < #saiCard"
+ },
+ {
+  "h": "10oddcx",
+  "k": "<1>At the miqat you say one of three:</1> <2>Labbayk Allahumma 'Umrah</2> (Tamattu') · <3>Labbayk Allahumma 'Umratan wa Hajjan</3> (Qiran) · <4>Labbayk Allahumma Hajjan</4> (Ifrad). Your group leader knows which one your package follows — the app asks again before the hair is cut.",
+  "c": ".co-t < #niyHint"
+ },
+ {
+  "h": "nba6b0",
+  "k": "<1>Flying?</1> Wear ihram before boarding or at the stopover; pray the {1} rakahs at the airport; make the intention when the pilot announces the miqat.",
+  "c": ".co-t < .callout < .sec-bd"
+ },
+ {
+  "h": "1lyzm80",
+  "k": "Report a correction",
+  "c": ".corr < .acc-b < .acc"
+ },
+ {
+  "h": "9s08zv",
+  "k": "Find this again in More▶Settings▶What's new.",
+  "c": ".corr-p < #gSheetBody"
+ },
+ {
+  "h": "1sp6n0",
+  "k": "Opens your mail app with this item, the app version and your note filled in. Miqah sends nothing itself: no server, no account.",
+  "c": ".corr-p < #gSheetBody"
+ },
+ {
+  "h": "1tnyi3a",
+  "k": "The chosen line is drawn on the next keepsake image you make (Umrah or Hajj).",
+  "c": ".corr-p < #gSheetBody"
+ },
+ {
+  "h": "1rd1ss5",
+  "k": "May Allah invite you to His House and accept your",
+  "c": ".d < .foot < .app"
+ },
+ {
+  "h": "1ks202w",
+  "k": "screen stays awake · swipe-free reading",
+  "c": ".df-hint < .df-body < #duaFocus"
+ },
+ {
+  "h": "1kehpr6",
+  "k": "swipe-free reading",
+  "c": ".df-hint < .df-body < #duaFocus",
+  "part_of": "screen stays awake · swipe-free reading"
+ },
+ {
+  "h": "199uwxu",
+  "k": "Schools differ on shortening —",
+  "c": ".dn-sch < #dn-salah"
+ },
+ {
+  "h": "15pp62y",
+  "k": "Tonight",
+  "c": ".dt-k < #duaRam",
+  "part_of": "Tonight · the night of the {1}th — an odd night of the last ten"
+ },
+ {
+  "h": "tjhm8g",
+  "k": "Tonight · the night of the {1}th — an odd night of the last ten",
+  "c": ".dt-k < #duaRam"
+ },
+ {
+  "h": "1wukmv1",
+  "k": "Tonight · the night of the {1}th — one of the last ten nights",
+  "c": ".dt-k < #duaRam"
+ },
+ {
+  "h": "jt53a4",
+  "k": "the night of the {1}th — an odd night of the last ten",
+  "c": ".dt-k < #duaRam",
+  "part_of": "Tonight · the night of the {1}th — an odd night of the last ten"
+ },
+ {
+  "h": "1routi9",
+  "k": "the night of the {1}th — one of the last ten nights",
+  "c": ".dt-k < #duaRam",
+  "part_of": "Tonight · the night of the {1}th — one of the last ten nights"
+ },
+ {
+  "h": "u56n35",
+  "k": "Today · {1} Dhul Hijjah · Arafah",
+  "c": ".dt-k < #duaToday"
+ },
+ {
+  "h": "w3lvyl",
+  "k": "Today · {1} Dhul Hijjah · Tashriq · {2}nd day",
+  "c": ".dt-k < #duaToday"
+ },
+ {
+  "h": "1yi6fo9",
+  "k": "Today · {1} Dhul Hijjah · Tashriq · {2}rd day",
+  "c": ".dt-k < #duaToday"
+ },
+ {
+  "h": "ydvplo",
+  "k": "Today · {1} Dhul Hijjah · Tashriq · {2}st day",
+  "c": ".dt-k < #duaToday"
+ },
+ {
+  "h": "1i32alz",
+  "k": "Today · {1} Dhul Hijjah · Yawm an-Nahr",
+  "c": ".dt-k < #duaToday"
+ },
+ {
+  "h": "ka9muw",
+  "k": "{1}nd day",
+  "c": ".dt-k < #duaToday",
+  "part_of": "Today · {1} Dhul Hijjah · Tashriq · {2}nd day"
+ },
+ {
+  "h": "40xajo",
+  "k": "{1}rd day",
+  "c": ".dt-k < #duaToday",
+  "part_of": "Today · {1} Dhul Hijjah · Tashriq · {2}rd day"
+ },
+ {
+  "h": "14580m9",
+  "k": "{1}st day",
+  "c": ".dt-k < #duaToday",
+  "part_of": "Today · {1} Dhul Hijjah · Tashriq · {2}st day"
+ },
+ {
+  "h": "101voj7",
+  "k": "computed ±{1} min, follow your group",
+  "c": ".dt-s < #duaToday",
+  "part_of": "left · computed ±{1} min, follow your group"
+ },
+ {
+  "h": "1npu7z5",
+  "k": "left · computed ±{1} min, follow your group",
+  "c": ".dt-s < #duaToday"
+ },
+ {
+  "h": "1u49rmh",
+  "k": "{1} of {2} asked",
+  "c": ".dua-acts < #duaList"
+ },
+ {
+  "h": "dylzvm",
+  "k": "Count tawaf / sa'i",
+  "c": ".ess-t < #essGrid"
+ },
+ {
+  "h": "6zpex6",
+  "k": "↻Again",
+  "c": ".fc-acts < #fcWrap"
+ },
+ {
+  "h": "1kdxbmh",
+  "k": "✕End session",
+  "c": ".fc-end < #fcArea"
+ },
+ {
+  "h": "9bbsvy",
+  "k": "Open in Learn",
+  "c": ".fc-go < .fc-foot < .fc-face"
+ },
+ {
+  "h": "28toe0",
+  "k": "Open the day",
+  "c": ".fc-go < .fc-foot < .fc-face"
+ },
+ {
+  "h": "yreolh",
+  "k": "Swipe right for Got it, left for Again",
+  "c": ".fc-keys < #fcWrap"
+ },
+ {
+  "h": "r73izv",
+  "k": "<1></1>Learning {1}",
+  "c": ".fc-mrow < .fc-mast < #fcArea"
+ },
+ {
+  "h": "1b8dt7e",
+  "k": "<1></1>Mastered {1}",
+  "c": ".fc-mrow < .fc-mast < #fcArea"
+ },
+ {
+  "h": "1no6c43",
+  "k": "<1></1>New {1}",
+  "c": ".fc-mrow < .fc-mast < #fcArea"
+ },
+ {
+  "h": "1hr6pi1",
+  "k": "Card {1} / {2}",
+  "c": ".fc-prog < #fcArea"
+ },
+ {
+  "h": "1mtwcru",
+  "k": "Card {1} / {2} · once more",
+  "c": ".fc-prog < #fcArea"
+ },
+ {
+  "h": "17cfawl",
+  "k": "once more",
+  "c": ".fc-prog < #fcArea",
+  "part_of": "Card {1} / {2} · once more"
+ },
+ {
+  "h": "136rtmp",
+  "k": "Session done",
+  "c": ".fc-sum-h < .fc-sum < #fcArea"
+ },
+ {
+  "h": "rxi07g",
+  "k": "Mastered: {1} of {2}",
+  "c": ".fc-sum-m < .fc-sum < #fcArea"
+ },
+ {
+  "h": "g994lj",
+  "k": "{1} reviewed · {2} got it · {3} again",
+  "c": ".fc-sum-n < .fc-sum < #fcArea"
+ },
+ {
+  "h": "1aipze1",
+  "k": "After your Hajj — virtues & Madinah first.",
+  "c": ".fc-why < #fcArea"
+ },
+ {
+  "h": "kacj3u",
+  "k": "Departure is near — foundations & ihram first.",
+  "c": ".fc-why < #fcArea"
+ },
+ {
+  "h": "1cypuls",
+  "k": "Departure is near — ihram & tawaf cards first.",
+  "c": ".fc-why < #fcArea"
+ },
+ {
+  "h": "1pzfadd",
+  "k": "In Makkah — your Umrah first, then Arafah & the {1}th.",
+  "c": ".fc-why < #fcArea"
+ },
+ {
+  "h": "1839n6i",
+  "k": "Today: the {1}th — Arafah cards first.",
+  "c": ".fc-why < #fcArea"
+ },
+ {
+  "h": "1akg2aj",
+  "k": "Today: the {1}th — Mina & Arafah cards first.",
+  "c": ".fc-why < #fcArea"
+ },
+ {
+  "h": "31xmzg",
+  "k": "Today: the {1}th — tashreeq & farewell cards first.",
+  "c": ".fc-why < #fcArea"
+ },
+ {
+  "h": "12u29a",
+  "k": "Today: the {1}th — the Day of Nahr cards first.",
+  "c": ".fc-why < #fcArea"
+ },
+ {
+  "h": "fn99xw",
+  "k": "Checklists",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "1gijy6a",
+  "k": "Daily tracker",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "14eckq0",
+  "k": "Document vault",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "1ft1e37",
+  "k": "Dua list",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "154w265",
+  "k": "Duas + audio",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "1jj2vhk",
+  "k": "Flashcards",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "1m4odfq",
+  "k": "Focus mode",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "ucc3kh",
+  "k": "Habit keeper",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "oskaul",
+  "k": "Hop-on hop-off",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "1a6z1m2",
+  "k": "Itinerary",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "vleyui",
+  "k": "Keepsake card",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "lgmtlk",
+  "k": "Knowledge hub",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "toa90",
+  "k": "Maps & distances",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "l37ajw",
+  "k": "Mataf map",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "p87pz4",
+  "k": "Qibla",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "13c5wk5",
+  "k": "Reflections",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "1st2yoc",
+  "k": "Rites guide",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "nvl9gu",
+  "k": "Route planner",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "11pvj6i",
+  "k": "Streaks & badges",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "1ach7x2",
+  "k": "Tasbih",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "1u4fs2v",
+  "k": "Tawaf & Sa'i counters",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "hcu098",
+  "k": "{1} sites",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "1691riw",
+  "k": "{1}-level quiz",
+  "c": ".fchips < .stage-b < .stage"
+ },
+ {
+  "h": "19vzxr6",
+  "k": "Between the Yamani corner & Black Stone · tap for meaning",
+  "c": ".fd-k < #focusDua"
+ },
+ {
+  "h": "1wt51id",
+  "k": "On Safa & Marwah · tap for meaning",
+  "c": ".fd-k < #focusDua"
+ },
+ {
+  "h": "q4fotb",
+  "k": "Takbir with each pebble · tap for meaning",
+  "c": ".fd-k < #focusDua"
+ },
+ {
+  "h": "1t8lfmf",
+  "k": "For corrections, suggestions & feedback",
+  "c": ".foot < .app"
+ },
+ {
+  "h": "1170rs0",
+  "k": "reach out to <1>Farhan</1>",
+  "c": ".foot < .app"
+ },
+ {
+  "h": "1n3tkdr",
+  "k": "Built with love for the Ummah",
+  "c": ".foot-love < .foot < .app"
+ },
+ {
+  "h": "dya9c",
+  "k": "{1} DH",
+  "c": ".ft-d < #focusTitle",
+  "part_of": "· {1} DH"
+ },
+ {
+  "h": "cjqdvj",
+  "k": "· {1} DH",
+  "c": ".ft-d < #focusTitle"
+ },
+ {
+  "h": "1ojiym5",
+  "k": "Kids quiz→",
+  "c": ".go < .fchips < .stage-b"
+ },
+ {
+  "h": "1sp6d09",
+  "k": "✓Got it",
+  "c": ".good < .fc-acts < #fcWrap"
+ },
+ {
+  "h": "dwpswn",
+  "k": "Free · offline · private",
+  "c": ".hb-n < .hbrand < #homeArea"
+ },
+ {
+  "h": "sdp5z",
+  "k": "Is today {1} Dhul Hijjah?",
+  "c": ".hday-h < .card < #homeArea"
+ },
+ {
+  "h": "s8a289",
+  "k": "Today · Hajj {1}",
+  "c": ".hday-h < .card < #homeArea"
+ },
+ {
+  "h": "l49910",
+  "k": "<1>{1} · Saudi Red Crescent</1><2>{2} · Ministry of Health line</2>",
+  "c": ".heat-tel < .pk-list < #gSheetBody"
+ },
+ {
+  "h": "1hh57z2",
+  "k": "Everything you need <1>before, during and after</1> your journey — in one free, private app that works offline in the Haram.",
+  "c": ".hhero < #homeArea"
+ },
+ {
+  "h": "g6i12h",
+  "k": "Your complete Hajj & Umrah companion",
+  "c": ".hhero < #homeArea"
+ },
+ {
+  "h": "6nuijh",
+  "k": "highlighted at {1}+",
+  "c": ".hint < .stk-h < #sub-daily-today",
+  "part_of": "highlighted at {1}+ · tap to open the row"
+ },
+ {
+  "h": "18q2yz5",
+  "k": "highlighted at {1}+ · tap to open the row",
+  "c": ".hint < .stk-h < #sub-daily-today"
+ },
+ {
+  "h": "1ibqi2",
+  "k": "tap to open the row",
+  "c": ".hint < .stk-h < #sub-daily-today",
+  "part_of": "highlighted at {1}+ · tap to open the row"
+ },
+ {
+  "h": "162b5uh",
+  "k": "<1>{1}</1>Aqabah",
+  "c": ".hjd-chip < .hjd-chips < #hjdHome"
+ },
+ {
+  "h": "1nwmfbd",
+  "k": "<1>{1}</1>Hady",
+  "c": ".hjd-chip < .hjd-chips < #hjdHome"
+ },
+ {
+  "h": "1svh0gw",
+  "k": "<1>{1}</1>Halq / taqsir",
+  "c": ".hjd-chip < .hjd-chips < #hjdHome"
+ },
+ {
+  "h": "1iy8mcy",
+  "k": "<1>{1}</1>Ifadah",
+  "c": ".hjd-chip < .hjd-chips < #hjdHome"
+ },
+ {
+  "h": "1bopayz",
+  "k": "Computed for Arafah, ±{1} min — follow your group, not the phone.",
+  "c": ".hjd-hedge < #hjdHome"
+ },
+ {
+  "h": "1wtg3h",
+  "k": "Computed for Mina, ±{1} min — follow your group, not the phone.",
+  "c": ".hjd-hedge < #hjdHome"
+ },
+ {
+  "h": "bucc27",
+  "k": "Today · {1} Dhul Hijjah · Tarwiyah",
+  "c": ".hjd-k < #hjdDay"
+ },
+ {
+  "h": "dy3c7x",
+  "k": "Until the first pebble at Aqabah",
+  "c": ".hjd-s < #hjdDay"
+ },
+ {
+  "h": "1bokf65",
+  "k": "(Saudi time)",
+  "c": ".hl-land < #hLeave"
+ },
+ {
+  "h": "6p62fe",
+  "k": "Landing in Jeddah at",
+  "c": ".hl-land < #hLeave"
+ },
+ {
+  "h": "nig3jw",
+  "k": "Add your landing time and the app works out when the miqat is likely to be announced.",
+  "c": ".hl-win < .hl-land < #hLeave"
+ },
+ {
+  "h": "s4zr1n",
+  "k": "Tap a day to log it",
+  "c": ".hleg-h < #heatLeg"
+ },
+ {
+  "h": "dr2rx4",
+  "k": "A child's {1}/{2} day three times",
+  "c": ".how < .bdg < #bdgGrid"
+ },
+ {
+  "h": "1fi1kw",
+  "k": "Complete {1} Umrah",
+  "c": ".how < .bdg < #bdgGrid"
+ },
+ {
+  "h": "4o9itl",
+  "k": "Complete {1} Umrahs",
+  "c": ".how < .bdg < #bdgGrid"
+ },
+ {
+  "h": "1qeww5n",
+  "k": "Mark {1} places visited",
+  "c": ".how < .bdg < #bdgGrid"
+ },
+ {
+  "h": "1fb9gou",
+  "k": "Pass every quiz level",
+  "c": ".how < .bdg < #bdgGrid"
+ },
+ {
+  "h": "30tjgt",
+  "k": "Quran on {1} days",
+  "c": ".how < .bdg < #bdgGrid"
+ },
+ {
+  "h": "3onzqh",
+  "k": "Record a completed Hajj",
+  "c": ".how < .bdg < #bdgGrid"
+ },
+ {
+  "h": "of27ap",
+  "k": "Tahajjud on {1} nights",
+  "c": ".how < .bdg < #bdgGrid"
+ },
+ {
+  "h": "jwxrcb",
+  "k": "Tick every Prepare checklist item",
+  "c": ".how < .bdg < #bdgGrid"
+ },
+ {
+  "h": "1srlr1s",
+  "k": "{1} days at {2}%+",
+  "c": ".how < .bdg < #bdgGrid"
+ },
+ {
+  "h": "ck0qro",
+  "k": "After-Hajj mode · on",
+  "c": ".hp-t < .card < #homeArea"
+ },
+ {
+  "h": "1bipuuc",
+  "k": "Continue",
+  "c": ".hp-t < .card < #homeArea"
+ },
+ {
+  "h": "qocp8r",
+  "k": "Next prayer",
+  "c": ".hp-t < .card < #homeArea"
+ },
+ {
+  "h": "13usgtr",
+  "k": "Next prayer in Makkah",
+  "c": ".hp-t < .card < #homeArea"
+ },
+ {
+  "h": "p5ob08",
+  "k": "Post-Umrah mode · on",
+  "c": ".hp-t < .card < #homeArea"
+ },
+ {
+  "h": "wg0p8k",
+  "k": "Start here · {1}-minute read",
+  "c": ".hp-t < .card < #homeArea"
+ },
+ {
+  "h": "1i1m2nt",
+  "k": "Tawaf in progress · round {1} of {2}",
+  "c": ".hp-t < .card < #homeArea"
+ },
+ {
+  "h": "1bepsnn",
+  "k": "Your Hajj in five days",
+  "c": ".hp-t < .card < #homeArea"
+ },
+ {
+  "h": "182qyp",
+  "k": "{1} habit-days logged of {2}",
+  "c": ".hp-t < .card < #homeArea"
+ },
+ {
+  "h": "136txp1",
+  "k": "· keep the Haram version of you",
+  "c": ".hp-t < .card < #homeArea"
+ },
+ {
+  "h": "mu5gjf",
+  "k": "· {1} to {2} Dhul Hijjah (the {3}th if you stay) at a glance",
+  "c": ".hp-t < .card < #homeArea"
+ },
+ {
+  "h": "xs6ba8",
+  "k": "Today's plan · day {1} of {2}",
+  "c": ".hpl-h < #hPlan"
+ },
+ {
+  "h": "1a3uggg",
+  "k": "Prayer times at home",
+  "c": ".hpt-t < .hpt < #homePTin"
+ },
+ {
+  "h": "1m99y71",
+  "k": "Until you fly — worked out on this phone, no internet needed",
+  "c": ".hpt-t < .hpt < #homePTin"
+ },
+ {
+  "h": "1gqmwjr",
+  "k": "Madinah · Umm al-Qura timetable",
+  "c": ".hpt-t < .hpt-hd < #ramDayCard"
+ },
+ {
+  "h": "1k1b3nr",
+  "k": "Makkah · calculated on this phone, ±{1} min — stop eating a few minutes before Fajr; not an official timetable",
+  "c": ".hpt-t < .hpt-hd < #ramDayCard"
+ },
+ {
+  "h": "111b7co",
+  "k": "Continue · Level {1}",
+  "c": ".hs-ce < .hs-cw < .btn"
+ },
+ {
+  "h": "pyjwlu",
+  "k": "<1></1>Overdue",
+  "c": ".hs-ce < .hs-cw < .hcta"
+ },
+ {
+  "h": "1padbm0",
+  "k": "Next",
+  "c": ".hs-ce < .hs-cw < .hcta"
+ },
+ {
+  "h": "1bhqoze",
+  "k": "Next step",
+  "c": ".hs-ce < .hs-cw < .hcta"
+ },
+ {
+  "h": "1u3pgbl",
+  "k": "First",
+  "c": ".hs-ce < .hs-cw < .hs-pill"
+ },
+ {
+  "h": "1glqdyz",
+  "k": "Heatstroke",
+  "c": ".hs-ce < .hs-cw < .hs-pill"
+ },
+ {
+  "h": "13nkxl3",
+  "k": "Next in order",
+  "c": ".hs-ce < .hs-cw < .hs-pill"
+ },
+ {
+  "h": "14pzc89",
+  "k": "Ramadan guide",
+  "c": ".hs-ce < .hs-cw < .hs-pill"
+ },
+ {
+  "h": "qc55pl",
+  "k": "The heat plan",
+  "c": ".hs-ce < .hs-cw < .hs-pill"
+ },
+ {
+  "h": "8vraay",
+  "k": "The last ten nights",
+  "c": ".hs-ce < .hs-cw < .hs-pill"
+ },
+ {
+  "h": "1yo4h3f",
+  "k": "Weakest · Level {1}",
+  "c": ".hs-ce < .hs-cw < .hs-pill"
+ }
+]

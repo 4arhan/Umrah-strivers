@@ -1,0 +1,74 @@
+{
+ "g": {
+  "D": [
+   "Pazartesi",
+   "Salı",
+   "Çarşamba",
+   "Perşembe",
+   "Cuma",
+   "Cumartesi",
+   "Pazar"
+  ],
+  "d": [
+   "Pzt",
+   "Sal",
+   "Çar",
+   "Per",
+   "Cum",
+   "Cmt",
+   "Paz"
+  ],
+  "M": [
+   "Ocak",
+   "Şubat",
+   "Mart",
+   "Nisan",
+   "Mayıs",
+   "Haziran",
+   "Temmuz",
+   "Ağustos",
+   "Eylül",
+   "Ekim",
+   "Kasım",
+   "Aralık"
+  ],
+  "m": [
+   "Oca",
+   "Şub",
+   "Mar",
+   "Nis",
+   "May",
+   "Haz",
+   "Tem",
+   "Ağu",
+   "Eyl",
+   "Eki",
+   "Kas",
+   "Ara"
+  ],
+  "H": [
+   "Muharrem",
+   "Safer",
+   "Rebiülevvel",
+   "Rebiülahir",
+   "Cemaziyelevvel",
+   "Cemaziyelahir",
+   "Recep",
+   "Şaban",
+   "Ramazan",
+   "Şevval",
+   "Zilkade",
+   "Zilhicce"
+  ],
+  "P": [
+   "Sabah",
+   "Öğle",
+   "İkindi",
+   "Akşam",
+   "Yatsı"
+  ]
+ },
+ "note": "",
+ "quran": "Diyanet İşleri",
+ "checked": ""
+}

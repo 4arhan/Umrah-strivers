@@ -1,0 +1,74 @@
+{
+ "g": {
+  "D": [
+   "lunes",
+   "martes",
+   "miércoles",
+   "jueves",
+   "viernes",
+   "sábado",
+   "domingo"
+  ],
+  "d": [
+   "lun",
+   "mar",
+   "mié",
+   "jue",
+   "vie",
+   "sáb",
+   "dom"
+  ],
+  "M": [
+   "enero",
+   "febrero",
+   "marzo",
+   "abril",
+   "mayo",
+   "junio",
+   "julio",
+   "agosto",
+   "septiembre",
+   "octubre",
+   "noviembre",
+   "diciembre"
+  ],
+  "m": [
+   "ene",
+   "feb",
+   "mar",
+   "abr",
+   "may",
+   "jun",
+   "jul",
+   "ago",
+   "sept",
+   "oct",
+   "nov",
+   "dic"
+  ],
+  "H": [
+   "muharram",
+   "safar",
+   "rabiʻ I",
+   "rabiʻ II",
+   "jumada I",
+   "jumada II",
+   "rajab",
+   "shaʻban",
+   "ramadán",
+   "shawwal",
+   "dhuʻl-qiʻdah",
+   "dhuʻl-hijjah"
+  ],
+  "P": [
+   "Fayr",
+   "Dhuhr",
+   "Asr",
+   "Maghrib",
+   "Isha"
+  ]
+ },
+ "note": "",
+ "quran": "Muhammad Isa García",
+ "checked": ""
+}

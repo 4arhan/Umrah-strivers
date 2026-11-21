@@ -1,0 +1,655 @@
+[
+ {
+  "h": "16d6t22",
+  "k": "A woman of the Ansar had not been able to join the Hajj, so the Prophet ﷺ told her: \"When Ramadan comes, perform Umrah in it, for an Umrah in Ramadan is equal to a Hajj\" (Bukhari {1}; Muslim {2}). Another narration says \"equal to a Hajj with me\" (Bukhari {3}; Muslim {4}). Scholars explain that this refers to its reward: it does not replace the obligatory Hajj.",
+  "c": ".acc-b < #pka-ram-umrah-virtue",
+  "refs": [
+   "bukhari:1782",
+   "muslim:1256",
+   "bukhari:1863"
+  ]
+ },
+ {
+  "h": "1xw5oe3",
+  "k": "The Jamarat facility",
+  "c": ".acc-h < #pka-jam-facility"
+ },
+ {
+  "h": "1m2amqh",
+  "k": "Getting to the Jamarat",
+  "c": ".acc-h < #pka-jam-getting-there"
+ },
+ {
+  "h": "brzugw",
+  "k": "From pillars to walls",
+  "c": ".acc-h < #pka-jam-history"
+ },
+ {
+  "h": "8zzrgl",
+  "k": "The three jamarat, in order",
+  "c": ".acc-h < #pka-jam-order"
+ },
+ {
+  "h": "9nk91y",
+  "k": "What you aim at: the wall and the basin",
+  "c": ".acc-h < #pka-jam-wall-basin"
+ },
+ {
+  "h": "7l0p6g",
+  "k": "Who may skip a fast",
+  "c": ".acc-h < #pka-ram-excused"
+ },
+ {
+  "h": "1um0vef",
+  "k": "The reward of your fast",
+  "c": ".acc-h < #pka-ram-fasting"
+ },
+ {
+  "h": "5m2f1p",
+  "k": "After breaking your fast",
+  "c": ".acc-h < #pka-ram-iftar-dua"
+ },
+ {
+  "h": "c1q1wi",
+  "k": "Iftar in the Haram",
+  "c": ".acc-h < #pka-ram-iftar-haram"
+ },
+ {
+  "h": "1f14hs3",
+  "k": "How the Prophet ﷺ spent the last ten nights",
+  "c": ".acc-h < #pka-ram-last-ten"
+ },
+ {
+  "h": "hj66ft",
+  "k": "Laylat al-Qadr: seek it in the odd nights",
+  "c": ".acc-h < #pka-ram-qadr"
+ },
+ {
+  "h": "9a6hm4",
+  "k": "The dua for Laylat al-Qadr",
+  "c": ".acc-h < #pka-ram-qadr-dua"
+ },
+ {
+  "h": "1brsrgd",
+  "k": "Suhoor, and when to stop",
+  "c": ".acc-h < #pka-ram-suhoor"
+ },
+ {
+  "h": "iwawyd",
+  "k": "Taraweeh and tahajjud in the Haram",
+  "c": ".acc-h < #pka-ram-taraweeh"
+ },
+ {
+  "h": "1f1bn22",
+  "k": "Fasting while travelling, and during your stay",
+  "c": ".acc-h < #pka-ram-traveller"
+ },
+ {
+  "h": "93ktb0",
+  "k": "An Umrah in Ramadan",
+  "c": ".acc-h < #pka-ram-umrah-virtue"
+ },
+ {
+  "h": "wgzh0r",
+  "k": "Call hotel",
+  "c": ".btn < #drvActs"
+ },
+ {
+  "h": "vkw4fa",
+  "k": "Call leader",
+  "c": ".btn < #drvActs"
+ },
+ {
+  "h": "5lr1j9",
+  "k": "Add your hotel & a companion's number",
+  "c": ".btn < #lostBody"
+ },
+ {
+  "h": "f91gbw",
+  "k": "To my hotel",
+  "c": ".btn < .drv-acts < #helpBody"
+ },
+ {
+  "h": "1h75z7k",
+  "k": "✕Done",
+  "c": ".chip-btn < .fc-prog < #kidsArea"
+ },
+ {
+  "h": "1xewrxw",
+  "k": "+ Add a child",
+  "c": ".chip-btn < .kd-add < #kidNames"
+ },
+ {
+  "h": "74p21k",
+  "k": "I have a reservation under the name <1>{U1}</1>.",
+  "c": ".ck-en < .ck-row < #sayBody"
+ },
+ {
+  "h": "1p578zk",
+  "k": "I have a reservation under the name <1>…</1>.",
+  "c": ".ck-en < .ck-row < #sayBody"
+ },
+ {
+  "h": "1j9yz68",
+  "k": "Please write the hotel's name and address in Arabic.",
+  "c": ".ck-en < .ck-row < #sayBody"
+ },
+ {
+  "h": "113uaez",
+  "k": "What time is breakfast served?",
+  "c": ".ck-en < .ck-row < #sayBody"
+ },
+ {
+  "h": "u7peen",
+  "k": "Which floor is my room on?",
+  "c": ".ck-en < .ck-row < #sayBody"
+ },
+ {
+  "h": "c38l3b",
+  "k": "Which gate of the Haram is nearest to the hotel?",
+  "c": ".ck-en < .ck-row < #sayBody"
+ },
+ {
+  "h": "kzcn9z",
+  "k": "Question {1} / {2}",
+  "c": ".fc-prog < #kidsArea"
+ },
+ {
+  "h": "1ozihhb",
+  "k": "Kids' day",
+  "c": ".kd-h < .card < #kidsDay"
+ },
+ {
+  "h": "zjyhn1",
+  "k": "tap what they did · {1} of {2} =",
+  "c": ".kd-h < .card < #kidsDay"
+ },
+ {
+  "h": "70jsxg",
+  "k": "On Eid day, after the pebbles at the big pillar, what do pilgrims do?",
+  "c": ".kq-q < #kidsArea"
+ },
+ {
+  "h": "1rkoq08",
+  "k": "On the biggest day of Hajj, everyone stands on a huge plain and makes dua. What is it called?",
+  "c": ".kq-q < #kidsArea"
+ },
+ {
+  "h": "a5c3zg",
+  "k": "What happens at the very end of Umrah?",
+  "c": ".kq-q < #kidsArea"
+ },
+ {
+  "h": "xqfz48",
+  "k": "What is the name of the black cube we walk around?",
+  "c": ".kq-q < #kidsArea"
+ },
+ {
+  "h": "1w58pbl",
+  "k": "Which city has the Prophet's ﷺ beautiful mosque with the green dome?",
+  "c": ".kq-q < #kidsArea"
+ },
+ {
+  "h": "1azegq1",
+  "k": "Which prophet did Allah tell to call all the people to Hajj?",
+  "c": ".kq-q < #kidsArea"
+ },
+ {
+  "h": "1kq403i",
+  "k": "Add their passports, visas, vaccines, ID wristband and briefing to your timeline.",
+  "c": ".kr-t < #kidsRow"
+ },
+ {
+  "h": "srpq5n",
+  "k": "Travelling with children?",
+  "c": ".kr-t < #kidsRow"
+ },
+ {
+  "h": "133pdt4",
+  "k": "Add each child by name — they get five tiles of their own on Daily▶Today",
+  "c": ".kr-t < .kidsrow < #kidsCard"
+ },
+ {
+  "h": "1vksr5l",
+  "k": "Kids corner",
+  "c": ".kr-t < .kidsrow < #kidsCard"
+ },
+ {
+  "h": "1jica15",
+  "k": "Kids' daily stars",
+  "c": ".kr-t < .kidsrow < #kidsCard"
+ },
+ {
+  "h": "13etlm7",
+  "k": "Story time",
+  "c": ".kr-t < .kidsrow < #kidsCard"
+ },
+ {
+  "h": "bs9amr",
+  "k": "Set one→",
+  "c": ".lnk < .lost-kv < #helpBody"
+ },
+ {
+  "h": "j6aglb",
+  "k": "Emergency & help numbers in Saudi Arabia — {1} is free from any phone",
+  "c": ".lost-en < #helpBody"
+ },
+ {
+  "h": "e11sbx",
+  "k": "I am lost. Please help me reach my hotel, or call the emergency line.",
+  "c": ".lost-en < #lostBody"
+ },
+ {
+  "h": "1d84hcq",
+  "k": "I am with {U1}. Please call:",
+  "c": ".lost-en < #lostBody"
+ },
+ {
+  "h": "1grg5g",
+  "k": "Hajj & Umrah care line",
+  "c": ".lost-kv < #helpBody"
+ },
+ {
+  "h": "nih44i",
+  "k": "Health (Ministry of Health)",
+  "c": ".lost-kv < #helpBody"
+ },
+ {
+  "h": "1kh8p9s",
+  "k": "My camp",
+  "c": ".lost-kv < #helpBody"
+ },
+ {
+  "h": "d7wetv",
+  "k": "camp {1}",
+  "c": ".lost-kv < #helpBody",
+  "part_of": "{U1} · camp {1} · maktab {2}"
+ },
+ {
+  "h": "18mpn0",
+  "k": "maktab {1}",
+  "c": ".lost-kv < #helpBody",
+  "part_of": "{U1} · camp {1} · maktab {2}"
+ },
+ {
+  "h": "183tk85",
+  "k": "{U1} · camp {1} · maktab {2}",
+  "c": ".lost-kv < #helpBody"
+ },
+ {
+  "h": "v2y2ur",
+  "k": "Address",
+  "c": ".lost-kv < #lostBody"
+ },
+ {
+  "h": "19ku52t",
+  "k": "Arafah · maktab",
+  "c": ".lost-kv < #lostBody"
+ },
+ {
+  "h": "mfggbz",
+  "k": "Maktab",
+  "c": ".lost-kv < #lostBody"
+ },
+ {
+  "h": "1p8vx3j",
+  "k": "Mina camp / tent",
+  "c": ".lost-kv < #lostBody"
+ },
+ {
+  "h": "ljebwg",
+  "k": "Police · ambulance",
+  "c": ".lost-kv < #lostBody"
+ },
+ {
+  "h": "qwv8gf",
+  "k": "maktab",
+  "c": ".lost-kv < #lostBody",
+  "part_of": "Arafah · maktab"
+ },
+ {
+  "h": "3jyxad",
+  "k": "Area number, street and camp number",
+  "c": ".pk-l < #pk-camp-card"
+ },
+ {
+  "h": "1bi3o2d",
+  "k": "The nearest building or landmark",
+  "c": ".pk-l < #pk-camp-card"
+ },
+ {
+  "h": "klknq4",
+  "k": "The nearest train station number, if your group uses the Mashaer train",
+  "c": ".pk-l < #pk-camp-card"
+ },
+ {
+  "h": "1fbwd50",
+  "k": "Your group supervisor's name and phone number",
+  "c": ".pk-l < #pk-camp-card"
+ },
+ {
+  "h": "12q9js4",
+  "k": "Before you leave the camp, tell your supervisor, go with a companion and take your phone.",
+  "c": ".pk-l < #pk-camp-finding-way"
+ },
+ {
+  "h": "18na1wi",
+  "k": "If you are lost, show your Nusuk card to security staff, a scout or a Nusuk Care point. The Ministry calls the card the main way to identify you and get you help. Scouts run guidance points for lost pilgrims across Mina and walk them back to their camp.",
+  "c": ".pk-l < #pk-camp-finding-way"
+ },
+ {
+  "h": "1ab00ho",
+  "k": "Miqah cannot show a verified map of Mina's camps. Ask your camp guide how your camp's signs and numbers read before you need them.",
+  "c": ".pk-l < #pk-camp-finding-way"
+ },
+ {
+  "h": "1eo6lzq",
+  "k": "Note the gate you leave by and a building or landmark you can see from it.",
+  "c": ".pk-l < #pk-camp-finding-way"
+ },
+ {
+  "h": "jeso8h",
+  "k": "To get back, use the location you saved in your phone's map app.",
+  "c": ".pk-l < #pk-camp-finding-way"
+ },
+ {
+  "h": "1mj8pvb",
+  "k": "Arafah to Muzdalifah: about {1} to {2} km. {3} to {4}½ hours.",
+  "c": ".pk-l < #pk-go-walking"
+ },
+ {
+  "h": "c3savb",
+  "k": "Haram to the Jamarat: about {1} km in a straight line; camps at the far (Muzdalifah) end of Mina are about {2} km or more. {3} to {4} hours.",
+  "c": ".pk-l < #pk-go-walking"
+ },
+ {
+  "h": "1dbiqob",
+  "k": "Mina to Arafah: about {1} km, more between camps far apart. {2} to {3} hours or more.",
+  "c": ".pk-l < #pk-go-walking"
+ },
+ {
+  "h": "j21baq",
+  "k": "Muzdalifah to the Jamarat: about {1} km from the middle of Muzdalifah; less from its Mina side, more from its Arafah side. {2} to {3} hours.",
+  "c": ".pk-l < #pk-go-walking"
+ },
+ {
+  "h": "1dqzfe4",
+  "k": "Jamrat al-Aqabah (al-Kubra, the big one): at the Makkah end of Mina, the last one you reach.",
+  "c": ".pk-l < .acc-b < #pka-jam-order"
+ },
+ {
+  "h": "1venqot",
+  "k": "The middle jamrah (al-Wusta).",
+  "c": ".pk-l < .acc-b < #pka-jam-order"
+ },
+ {
+  "h": "87xbcf",
+  "k": "The small jamrah (as-Sughra, also called the first): the first one after Masjid al-Khayf.",
+  "c": ".pk-l < .acc-b < #pka-jam-order"
+ },
+ {
+  "h": "z049r6",
+  "k": "Checked {1} {m1} {2} · official pages: <1>pep.gov.sa</1>, <2>sar.com.sa</2> (need signal)",
+  "c": ".pk-on < #pk-go-haramain"
+ },
+ {
+  "h": "yf3zjh",
+  "k": "Checked {1} {m1} {2}",
+  "c": ".pk-on < #pk-go-makkah-bus"
+ },
+ {
+  "h": "iduglj",
+  "k": "Checked {1} {m1} {2} · official pages: <1>sar.com.sa</1>, <2>haj.gov.sa</2> (French PDF) (need signal)",
+  "c": ".pk-on < #pk-go-mashaer-metro"
+ },
+ {
+  "h": "ex89uh",
+  "k": "Checked {1} {m1} {2} · official pages: <1>haj.gov.sa</1> (French PDF) (need signal)",
+  "c": ".pk-on < #pk-go-walking"
+ },
+ {
+  "h": "1cbjvwz",
+  "k": "Read it to me",
+  "c": ".say < #kidsArea"
+ },
+ {
+  "h": "j2yusf",
+  "k": "Child's card",
+  "c": ".say-b < .kidc-a < #kidc-0"
+ },
+ {
+  "h": "11vj69v",
+  "k": "My child is lost",
+  "c": ".say-b < .kidc-a < #kidc-0"
+ },
+ {
+  "h": "1doxu8i",
+  "k": "Pocket card image",
+  "c": ".say-b < .kidc-a < #kidc-0"
+ },
+ {
+  "h": "pls6li",
+  "k": "All phrases",
+  "c": ".say-b < .say-acts < #sayBody"
+ },
+ {
+  "h": "cy11iw",
+  "k": "Help numbers",
+  "c": ".say-b < .say-acts < #sayBody"
+ },
+ {
+  "h": "172hig9",
+  "k": "At the hotel",
+  "c": ".say-g < #sayBody"
+ },
+ {
+  "h": "349n8y",
+  "k": "Children",
+  "c": ".say-g < #sayBody"
+ },
+ {
+  "h": "1i0yyze",
+  "k": "Finding the way",
+  "c": ".say-g < #sayBody"
+ },
+ {
+  "h": "hz9oqk",
+  "k": "Medical",
+  "c": ".say-g < #sayBody"
+ },
+ {
+  "h": "bx5mje",
+  "k": "Needs",
+  "c": ".say-g < #sayBody"
+ },
+ {
+  "h": "1n77vjm",
+  "k": "The number to call",
+  "c": ".say-lbl < #sayBody"
+ },
+ {
+  "h": "1nnt3tc",
+  "k": "One card per child, in Arabic and English. Set boy or girl so the Arabic is right; the name in Arabic is optional.",
+  "c": ".say-lead < #sayBody"
+ },
+ {
+  "h": "1lcjwot",
+  "k": "Tap a phrase, then show the screen. Arabic first, English underneath.",
+  "c": ".say-lead < #sayBody"
+ },
+ {
+  "h": "1ezc7lg",
+  "k": "Add your name in More▶Settings▶About me and the reservation line carries it.",
+  "c": ".say-note < #sayBody"
+ },
+ {
+  "h": "1yhof7l",
+  "k": "Show this only for a known low blood sugar.",
+  "c": ".say-note < #sayBody"
+ },
+ {
+  "h": "1sqlpz7",
+  "k": "The Arabic was checked letter by letter against its sources; a native speaker's final read is still pending.",
+  "c": ".say-note < #sayBody"
+ },
+ {
+  "h": "1ijhp4o",
+  "k": "Diabetic: my sugar is low",
+  "c": ".say-rt < .say-row < #sayBody"
+ },
+ {
+  "h": "19ezof8",
+  "k": "I don't speak Arabic",
+  "c": ".say-rt < .say-row < #sayBody"
+ },
+ {
+  "h": "11vi6t2",
+  "k": "I need a doctor",
+  "c": ".say-rt < .say-row < #sayBody"
+ },
+ {
+  "h": "1jwaf11",
+  "k": "I need a wheelchair",
+  "c": ".say-rt < .say-row < #sayBody"
+ },
+ {
+  "h": "180mivk",
+  "k": "Only for a known low blood sugar",
+  "c": ".say-rt < .say-row < #sayBody"
+ },
+ {
+  "h": "w9e6zq",
+  "k": "Please call an ambulance",
+  "c": ".say-rt < .say-row < #sayBody"
+ },
+ {
+  "h": "gyrjuo",
+  "k": "Please call this number",
+  "c": ".say-rt < .say-row < #sayBody"
+ },
+ {
+  "h": "1511ejp",
+  "k": "Please take me to this hotel",
+  "c": ".say-rt < .say-row < #sayBody"
+ },
+ {
+  "h": "rw67f9",
+  "k": "Thank you, may Allah reward you",
+  "c": ".say-rt < .say-row < #sayBody"
+ },
+ {
+  "h": "ab7mh5",
+  "k": "Where can I make wudu?",
+  "c": ".say-rt < .say-row < #sayBody"
+ },
+ {
+  "h": "w6q5nr",
+  "k": "Where is gate number …?",
+  "c": ".say-rt < .say-row < #sayBody"
+ },
+ {
+  "h": "rtnap7",
+  "k": "Where is the nearest toilet?",
+  "c": ".say-rt < .say-row < #sayBody"
+ },
+ {
+  "h": "1j6pcn0",
+  "k": "Where is the women's prayer area?",
+  "c": ".say-rt < .say-row < #sayBody"
+ },
+ {
+  "h": "17x3wju",
+  "k": "Which way to al-Masjid al-Haram?",
+  "c": ".say-rt < .say-row < #sayBody"
+ },
+ {
+  "h": "1u8n5jv",
+  "k": "Which way to al-Masjid an-Nabawi?",
+  "c": ".say-rt < .say-row < #sayBody"
+ },
+ {
+  "h": "yzvkzw",
+  "k": "Men in ihram must not cover the head. The Prophet ﷺ forbade the man in ihram the turban and the hooded cloak (Bukhari {1}), and scholars agree this rules out a cap, hat or ghutra, or a towel or cloth laid on the head. Shade that does not touch the head is different. Tents, buildings and trees: allowed by consensus. On the Day of Arafah the Prophet ﷺ rested in a tent pitched for him at Namirah (Muslim {2}). A hand-held umbrella: allowed by most scholars (the Hanafis, the Shafi'is, one narration from Imam Ahmad, and some Maliki authorities such as Khalil). When the Prophet ﷺ stoned Jamrat al-Aqabah, Usamah and Bilal (RA) were with him: one led his camel and the other held up a cloth over his head to shade him from the heat (Muslim {3}). Some jurists disliked or forbade it, but there is no consensus against it. Umbrella hats held on by a band round the head: better avoided. Most schools forbid tying a band round the head in ihram; Egypt's Dar al-Ifta allows such a hat only when nothing else is available, with a small charity if it is worn for a whole day, and advises a hand-held umbrella instead. Women cover their heads as usual, and may use an umbrella.",
+  "c": "HEAT_PACK.x",
+  "refs": [
+   "bukhari:1542",
+   "muslim:1218",
+   "muslim:1298"
+  ]
+ },
+ {
+  "h": "99th36",
+  "k": "Signs: body temperature of {1}°C or more; hot, red skin that may be dry or still sweaty; fast heartbeat and fast breathing; confusion, odd behaviour, or seeing and hearing things that are not there; a seizure; collapse or loss of consciousness. What to do: call {2} first (or {3}, the Saudi Red Crescent). Then cool the person hard while you wait: move them to shade or air conditioning, remove outer clothing, pour or spray cool water over them, especially the head and neck, and fan them; put ice or cold packs on the neck and armpits if you have them. Do not try to make someone drink if they are confused, drowsy or unconscious. If they become unconscious, lay them on their side in the recovery position and check their breathing; start CPR if there is no sign of life. For medical advice by phone, the Ministry of Health line {4} answers {5} hours a day (in the {6} Hajj season, in seven languages).",
+  "c": "HEAT_PACK.x"
+ },
+ {
+  "h": "m7w8wo",
+  "k": "Signs: headache; dizziness or fainting; heavy sweating with pale, clammy skin; nausea or vomiting; cramps; tiredness or weakness; intense thirst. What to do: get into shade or air conditioning. Loosen or remove extra clothing. Spray or sponge the skin with cool water, especially the head and neck, and fan it; cold packs wrapped in cloth on the neck or armpits help. Drink cold water, or oral rehydration salts mixed with water. Stay with the person: they should feel better within about {1} minutes. If they are not better by then, or they vomit, or they get worse, call {2}. Heat exhaustion can turn into heatstroke.",
+  "c": "HEAT_PACK.x"
+ },
+ {
+  "h": "1jbkg5c",
+  "k": "I have a reservation under the name {name}.",
+  "c": "SAY.en"
+ },
+ {
+  "h": "mfffmy",
+  "k": "My child is lost. This is her photo, and her name is {name}. Please help me find her. My phone number: {phone}",
+  "c": "SAY.en"
+ },
+ {
+  "h": "1vvp1wx",
+  "k": "My child is lost. This is his photo, and his name is {name}. Please help me find him. My phone number: {phone}",
+  "c": "SAY.en"
+ },
+ {
+  "h": "1iaijv3",
+  "k": "My name is {name}. I am lost. Please call my parents on this number: {phone}",
+  "c": "SAY.en"
+ },
+ {
+  "h": "1xjxytp",
+  "k": "Please call this number: {number}",
+  "c": "SAY.en"
+ },
+ {
+  "h": "1gvf962",
+  "k": "Where is gate number {gate}?",
+  "c": "SAY.en"
+ },
+ {
+  "h": "ljwtco",
+  "k": "Child card (boy)",
+  "c": "SAY.t"
+ },
+ {
+  "h": "4i4dfm",
+  "k": "Child card (girl)",
+  "c": "SAY.t"
+ },
+ {
+  "h": "jca53r",
+  "k": "I am lost (man)",
+  "c": "SAY.t"
+ },
+ {
+  "h": "3z26pt",
+  "k": "I am lost (woman)",
+  "c": "SAY.t"
+ },
+ {
+  "h": "1hfbhbu",
+  "k": "My child is lost (boy)",
+  "c": "SAY.t"
+ },
+ {
+  "h": "1yrferc",
+  "k": "My child is lost (girl)",
+  "c": "SAY.t"
+ },
+ {
+  "h": "176xxsq",
+  "k": "- Before you leave the camp, tell your supervisor, go with a companion and take your phone. - Note the gate you leave by and a building or landmark you can see from it. - To get back, use the location you saved in your phone's map app. - Miqah cannot show a verified map of Mina's camps. Ask your camp guide how your camp's signs and numbers read before you need them. - If you are lost, show your Nusuk card to security staff, a scout or a Nusuk Care point. The Ministry calls the card the main way to identify you and get you help. Scouts run guidance points for lost pilgrims across Mina and walk them back to their camp.",
+  "c": "WAY_PACK.x"
+ }
+]

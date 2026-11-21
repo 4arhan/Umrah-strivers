@@ -1,0 +1,852 @@
+[
+ {
+  "h": "18h70em",
+  "k": "Open Takbir with each pebble full screen",
+  "c": "@aria-label"
+ },
+ {
+  "h": "5tkfzf",
+  "k": "Open The Talbiyah full screen",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1oiqgtt",
+  "k": "Open The dua for Laylat al-Qadr full screen",
+  "c": "@aria-label"
+ },
+ {
+  "h": "24bn91",
+  "k": "Open The dua of Arafah full screen",
+  "c": "@aria-label"
+ },
+ {
+  "h": "74fbvj",
+  "k": "Open The travel dua full screen",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1pae4ni",
+  "k": "Open When drinking Zamzam full screen",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1711wp8",
+  "k": "Open after-Hajj habits",
+  "c": "@aria-label"
+ },
+ {
+  "h": "rjx8r8",
+  "k": "Open post-Umrah habits",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1x2gbth",
+  "k": "Open the dua of Arafah full screen",
+  "c": "@aria-label"
+ },
+ {
+  "h": "nyv94o",
+  "k": "Open the takbir full screen",
+  "c": "@aria-label"
+ },
+ {
+  "h": "vh2dxu",
+  "k": "Open this dua full screen",
+  "c": "@aria-label"
+ },
+ {
+  "h": "305f7f",
+  "k": "Overdue: Nusuk Hajj permit / package confirmed",
+  "c": "@aria-label"
+ },
+ {
+  "h": "ac7wum",
+  "k": "Overdue: Passport valid {1}+ months",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1h5fh2u",
+  "k": "Packing {1}% — open checklist",
+  "c": "@aria-label"
+ },
+ {
+  "h": "kiu71w",
+  "k": "Phrase: SubhanAllah — tap for the next phrase",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1amg5z1",
+  "k": "Places",
+  "c": "@aria-label"
+ },
+ {
+  "h": "e8qhp1",
+  "k": "Play recitation",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1lt4b3r",
+  "k": "Practise your weakest level: Foundations of Hajj",
+  "c": "@aria-label"
+ },
+ {
+  "h": "k8apq1",
+  "k": "Prayer reminders",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1k24umk",
+  "k": "Prayer times",
+  "c": "@aria-label"
+ },
+ {
+  "h": "k59iiy",
+  "k": "Prayer times — tap to expand",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1q3rfdu",
+  "k": "Previous day",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1q1tql2",
+  "k": "Previous dua",
+  "c": "@aria-label"
+ },
+ {
+  "h": "hhs8t7",
+  "k": "QR code to install the app",
+  "c": "@aria-label"
+ },
+ {
+  "h": "139uykr",
+  "k": "Question {1} of {2}",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1m6nthw",
+  "k": "Quiz",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1pesmi9",
+  "k": "Quiz Master, locked, {1} of {2} — Pass every quiz level",
+  "c": "@aria-label"
+ },
+ {
+  "h": "vm20ow",
+  "k": "Quran Companion, locked, {1} of {2} — Quran on {3} days",
+  "c": "@aria-label"
+ },
+ {
+  "h": "gnem7q",
+  "k": "Ramadan guide — Iftar in the Haram, taraweeh, fasting and travel",
+  "c": "@aria-label"
+ },
+ {
+  "h": "rbba9d",
+  "k": "Ramadan guide — Suhoor, fasting and travel, taraweeh",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1vp3vi",
+  "k": "Rami",
+  "c": "@aria-label"
+ },
+ {
+  "h": "ta7uyj",
+  "k": "Read my dua list full-screen — {1} of {2} asked",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1d8evzs",
+  "k": "Read the story aloud",
+  "c": "@aria-label"
+ },
+ {
+  "h": "17stg2t",
+  "k": "Read: your Hajj in five days",
+  "c": "@aria-label"
+ },
+ {
+  "h": "61qcre",
+  "k": "Remove a cup",
+  "c": "@aria-label"
+ },
+ {
+  "h": "rf8w4y",
+  "k": "Remove one mis-tap",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1vhd7sx",
+  "k": "Remove {U1}",
+  "c": "@aria-label"
+ },
+ {
+  "h": "5als3k",
+  "k": "Reset this counter",
+  "c": "@aria-label"
+ },
+ {
+  "h": "6q7mu9",
+  "k": "Resume tawaf",
+  "c": "@aria-label"
+ },
+ {
+  "h": "10lv8fu",
+  "k": "Resume tawaf ({1}/{2})",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1rorl4x",
+  "k": "Return date",
+  "c": "@aria-label"
+ },
+ {
+  "h": "rfucrn",
+  "k": "Reveal the answer",
+  "c": "@aria-label"
+ },
+ {
+  "h": "77r8p0",
+  "k": "Rites",
+  "c": "@aria-label"
+ },
+ {
+  "h": "133q97d",
+  "k": "Say the count aloud — for earphones",
+  "c": "@aria-label"
+ },
+ {
+  "h": "vqof6w",
+  "k": "Search the Learn topics",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1r84cvn",
+  "k": "Set the count to the number you are sure of",
+  "c": "@aria-label"
+ },
+ {
+  "h": "dq3m6b",
+  "k": "Share my readiness with my group",
+  "c": "@aria-label"
+ },
+ {
+  "h": "6jt9ra",
+  "k": "Show the medical block on the I'm lost card",
+  "c": "@aria-label"
+ },
+ {
+  "h": "avn9kd",
+  "k": "Show the sa'i counter",
+  "c": "@aria-label"
+ },
+ {
+  "h": "65lcsk",
+  "k": "Show the tawaf counter",
+  "c": "@aria-label"
+ },
+ {
+  "h": "sv80nw",
+  "k": "Show to driver: take me to my camp",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1cvdepf",
+  "k": "Something went wrong?",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1ujkngm",
+  "k": "Start the kids quiz",
+  "c": "@aria-label"
+ },
+ {
+  "h": "m6011w",
+  "k": "Step {1}, Halq / Taqsir — open in the rites guide",
+  "c": "@aria-label"
+ },
+ {
+  "h": "41soa4",
+  "k": "Step {1}, Ihram at the miqat — open in the rites guide",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1xfcpx",
+  "k": "Step {1}, Sa'i — {2} laps — open in the rites guide",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1vnfmsj",
+  "k": "Step {1}, Tawaf — {2} rounds — open in the rites guide",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1cq37ia",
+  "k": "Step-by-step walkthrough",
+  "c": "@aria-label"
+ },
+ {
+  "h": "n97mgg",
+  "k": "Study for Level {1}",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1ngqgzl",
+  "k": "Study today's knowledge card",
+  "c": "@aria-label"
+ },
+ {
+  "h": "bs6b2h",
+  "k": "Takbir — today's dhikr",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1s25z8a",
+  "k": "Talbiyah — today's dhikr",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1098e3y",
+  "k": "Tap to count one dhikr",
+  "c": "@aria-label"
+ },
+ {
+  "h": "12qpbb5",
+  "k": "Tap to count one lap",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1lyuqsg",
+  "k": "Tap to count one pebble",
+  "c": "@aria-label"
+ },
+ {
+  "h": "vlmpxg",
+  "k": "Tap to count one round",
+  "c": "@aria-label"
+ },
+ {
+  "h": "85fh53",
+  "k": "Target unlimited",
+  "c": "@aria-label"
+ },
+ {
+  "h": "13yqan3",
+  "k": "Target {1}",
+  "c": "@aria-label"
+ },
+ {
+  "h": "9yfaus",
+  "k": "Test the Arabic voice",
+  "c": "@aria-label"
+ },
+ {
+  "h": "lr9i37",
+  "k": "The heat plan — Hours, shade in ihram, water, your kit",
+  "c": "@aria-label"
+ },
+ {
+  "h": "qnsckg",
+  "k": "The last ten nights — Laylat al-Qadr and its dua",
+  "c": "@aria-label"
+ },
+ {
+  "h": "xzslh6",
+  "k": "The sunnah order today: Aqabah, Hady, Halq / taqsir, Ifadah",
+  "c": "@aria-label"
+ },
+ {
+  "h": "dukmwk",
+  "k": "Tick {P1} as prayed",
+  "c": "@aria-label"
+ },
+ {
+  "h": "od3vtv",
+  "k": "Time {1}",
+  "c": "@aria-label"
+ },
+ {
+  "h": "pfmqlu",
+  "k": "Today's itinerary: All five prayers in the Haram · nafl tawaf after Fajr · rest — edit",
+  "c": "@aria-label"
+ },
+ {
+  "h": "y1rxhs",
+  "k": "Today's itinerary: Arrive · ihram at the miqat (in flight) · Umrah tonight when rested — edit",
+  "c": "@aria-label"
+ },
+ {
+  "h": "j3apud",
+  "k": "Today's itinerary: Arrive · ihram at the miqat (in flight) · the arrival tawaf (and sa'i if you do it now) when rested — you stay in ihram until the {1}th — edit",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1isp1lm",
+  "k": "Today's itinerary: Haramain train · settle · Maghrib & Isha in Masjid an-Nabawi · salam to the Prophet ﷺ — edit",
+  "c": "@aria-label"
+ },
+ {
+  "h": "18i7pgy",
+  "k": "Today's itinerary: Last salam to the Prophet ﷺ · depart — edit",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1xe8lku",
+  "k": "Today's itinerary: Nafl tawaf · rest — save your strength for the {1}th — edit",
+  "c": "@aria-label"
+ },
+ {
+  "h": "9r2yd3",
+  "k": "Today's itinerary: Quran facing the Kaaba · Hijr Isma'il late night · Clock Tower museum — edit",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1z05h3s",
+  "k": "Today's itinerary: Tawaf al-wada — the last thing you do · {1} rounds · waived for sisters on their period · then the train to Madinah — edit",
+  "c": "@aria-label"
+ },
+ {
+  "h": "12b5ivk",
+  "k": "Toggle theme",
+  "c": "@aria-label"
+ },
+ {
+  "h": "xc2few",
+  "k": "Travel basics",
+  "c": "@aria-label"
+ },
+ {
+  "h": "p6jbue",
+  "k": "Travelling with children",
+  "c": "@aria-label"
+ },
+ {
+  "h": "14hj1xw",
+  "k": "Trip length in days",
+  "c": "@aria-label"
+ },
+ {
+  "h": "19l5bb1",
+  "k": "Undo one pebble at Jamrat al-Aqabah",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1lnvh2x",
+  "k": "Undo one pebble at Jamrat al-Wusta",
+  "c": "@aria-label"
+ },
+ {
+  "h": "anssgo",
+  "k": "Undo one pebble at Jamrat as-Sughra",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1ov7nci",
+  "k": "Update ready, tap to reload",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1kcmht8",
+  "k": "What time is breakfast? — show full screen",
+  "c": "@aria-label"
+ },
+ {
+  "h": "mtetnx",
+  "k": "What time is suhur? (Ramadan) — show full screen",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1ainbd9",
+  "k": "Which Haram gate is nearest? — show full screen",
+  "c": "@aria-label"
+ },
+ {
+  "h": "tdh7jd",
+  "k": "Which city's hotel",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1s8msyc",
+  "k": "Which day",
+  "c": "@aria-label"
+ },
+ {
+  "h": "8q7ocb",
+  "k": "Which floor is my room on? — show full screen",
+  "c": "@aria-label"
+ },
+ {
+  "h": "10622lm",
+  "k": "Which tawaf are you counting?",
+  "c": "@aria-label"
+ },
+ {
+  "h": "zrxqdg",
+  "k": "Why this step?",
+  "c": "@aria-label"
+ },
+ {
+  "h": "luject",
+  "k": "Write the hotel name in Arabic — show full screen",
+  "c": "@aria-label"
+ },
+ {
+  "h": "bjruve",
+  "k": "Yes, correct",
+  "c": "@aria-label"
+ },
+ {
+  "h": "kqk9zm",
+  "k": "Ziyarah with purpose — Explore places",
+  "c": "@aria-label"
+ },
+ {
+  "h": "7m9s83",
+  "k": "{1} Dhul Hijjah · Arafah — The pillar of Hajj · Dhuhr + Asr combined · wuquf until sunset — open today's steps",
+  "c": "@aria-label"
+ },
+ {
+  "h": "hzwtwb",
+  "k": "{1} Dhul Hijjah · First day of tashriq — Three jamarat after midday · the night in Mina — open today's steps",
+  "c": "@aria-label"
+ },
+ {
+  "h": "53yq67",
+  "k": "{1} Dhul Hijjah · Second day of tashriq — Three jamarat after midday · leave Mina before sunset, or stay for the {2}th — open today's steps",
+  "c": "@aria-label"
+ },
+ {
+  "h": "12reidi",
+  "k": "{1} Dhul Hijjah · Tarwiyah — Ihram from where you are staying · Mina · five prayers, the four-rakah ones shortened — open today's steps",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1rtxhjs",
+  "k": "{1} Dhul Hijjah · Yawm an-Nahr — Rami of Aqabah · hady · halq · tawaf al-ifadah & sa'i · back to Mina — open today's steps",
+  "c": "@aria-label"
+ },
+ {
+  "h": "8og6yr",
+  "k": "{1} Dhul Hijjah, Day {2} of {3} — open trip stats",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1a28hv8",
+  "k": "{1} full days",
+  "c": "@aria-label"
+ },
+ {
+  "h": "4g0isg",
+  "k": "{1} new, {2} learning, {3} mastered",
+  "c": "@aria-label"
+ },
+ {
+  "h": "3dw8ms",
+  "k": "{1} of {2} levels passed",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1oaezs8",
+  "k": "{1} step from the {2}th unticked — catch up",
+  "c": "@aria-label"
+ },
+ {
+  "h": "rw0oxi",
+  "k": "{1} steps from the Muzdalifah night unticked — catch up",
+  "c": "@aria-label"
+ },
+ {
+  "h": "m4muef",
+  "k": "{1} steps from the {2}th unticked — catch up",
+  "c": "@aria-label"
+ },
+ {
+  "h": "nvkcps",
+  "k": "{1}-day Nafl tawaf streak — open the row",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1cio031",
+  "k": "{1}-day Quran streak — open the row",
+  "c": "@aria-label"
+ },
+ {
+  "h": "ascyad",
+  "k": "{1}-day Tahajjud streak — open the row",
+  "c": "@aria-label"
+ },
+ {
+  "h": "gu8yzx",
+  "k": "{1}-day {P1} streak — open the row",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1fukuds",
+  "k": "{1}. Aqabah, to do",
+  "c": "@aria-label"
+ },
+ {
+  "h": "175sms",
+  "k": "{1}. Hady, to do",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1fqszzp",
+  "k": "{1}. Halq / taqsir, to do",
+  "c": "@aria-label"
+ },
+ {
+  "h": "c68lud",
+  "k": "{1}. Ifadah, to do",
+  "c": "@aria-label"
+ },
+ {
+  "h": "snxwj1",
+  "k": "{P1} {1}, prayed in congregation",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1k7bvky",
+  "k": "{P1} {1}, tap when prayed in congregation",
+  "c": "@aria-label"
+ },
+ {
+  "h": "11ijjty",
+  "k": "{U1} is a",
+  "c": "@aria-label"
+ },
+ {
+  "h": "kvf7i3",
+  "k": "{U1}'s day",
+  "c": "@aria-label"
+ },
+ {
+  "h": "bqnz7s",
+  "k": "{U1}: Learned one thing",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1q81psn",
+  "k": "{U1}: Patient in the crowd",
+  "c": "@aria-label"
+ },
+ {
+  "h": "137d76o",
+  "k": "{U1}: Prayed with us",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1nvysmf",
+  "k": "{U1}: SubhanAllah ×{1} / talbiyah",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1efztrl",
+  "k": "{U1}: Zamzam + a dua",
+  "c": "@aria-label"
+ },
+ {
+  "h": "1xdi2kd",
+  "k": "Add a dua…",
+  "c": "@placeholder"
+ },
+ {
+  "h": "1nzxoxu",
+  "k": "Address / landmark (e.g. Abraj Al Bait, King Abdulaziz Gate)",
+  "c": "@placeholder"
+ },
+ {
+  "h": "1tct98d",
+  "k": "Choose a PIN ({1}+ digits)",
+  "c": "@placeholder"
+ },
+ {
+  "h": "1b1jzps",
+  "k": "City or place",
+  "c": "@placeholder"
+ },
+ {
+  "h": "11u6igt",
+  "k": "Companion / group leader name & phone",
+  "c": "@placeholder"
+ },
+ {
+  "h": "xk828d",
+  "k": "Family meeting point (e.g. King Fahd Gate {1}, after each prayer)",
+  "c": "@placeholder"
+ },
+ {
+  "h": "15oocuo",
+  "k": "Hotel name (e.g. Swissôtel Makkah)",
+  "c": "@placeholder"
+ },
+ {
+  "h": "or3oye",
+  "k": "Hotel name in Madinah (e.g. near Masjid an-Nabawi)",
+  "c": "@placeholder"
+ },
+ {
+  "h": "pk6gj0",
+  "k": "Hotel name — for the driver card",
+  "c": "@placeholder"
+ },
+ {
+  "h": "xvur2z",
+  "k": "If you use the train",
+  "c": "@placeholder"
+ },
+ {
+  "h": "31fibd",
+  "k": "Meeting point (e.g. King Fahd Gate {1})",
+  "c": "@placeholder"
+ },
+ {
+  "h": "19tdlaw",
+  "k": "Name (e.g. Mum)",
+  "c": "@placeholder"
+ },
+ {
+  "h": "sfmnea",
+  "k": "Name of your group leader",
+  "c": "@placeholder"
+ },
+ {
+  "h": "1f62los",
+  "k": "Name — also printed on your certificate",
+  "c": "@placeholder"
+ },
+ {
+  "h": "14gtblq",
+  "k": "Nearest Haram gate (ask at check-in)",
+  "c": "@placeholder"
+ },
+ {
+  "h": "1yfbac9",
+  "k": "Optional",
+  "c": "@placeholder"
+ },
+ {
+  "h": "gc0vlk",
+  "k": "Phone number",
+  "c": "@placeholder"
+ },
+ {
+  "h": "ukbzhi",
+  "k": "Search Learn — ihram, Zamzam, missed lap…",
+  "c": "@placeholder"
+ },
+ {
+  "h": "1rqju5d",
+  "k": "Search places — Quba, Uhud, Hira, مسجد…",
+  "c": "@placeholder"
+ },
+ {
+  "h": "lthrf5",
+  "k": "The number I carry on this trip",
+  "c": "@placeholder"
+ },
+ {
+  "h": "1unz4vb",
+  "k": "What you can see from the gate",
+  "c": "@placeholder"
+ },
+ {
+  "h": "gjcrg",
+  "k": "Your camp's gate",
+  "c": "@placeholder"
+ },
+ {
+  "h": "1r41l89",
+  "k": "Your name (optional — for your certificate)",
+  "c": "@placeholder"
+ },
+ {
+  "h": "91jtd6",
+  "k": "Your name (optional — for your keepsakes)",
+  "c": "@placeholder"
+ },
+ {
+  "h": "2okhzd",
+  "k": "e.g. +{1} {2}…",
+  "c": "@placeholder"
+ },
+ {
+  "h": "18h533o",
+  "k": "e.g. Aisha · +{1} {2}…",
+  "c": "@placeholder"
+ },
+ {
+  "h": "102aniz",
+  "k": "e.g. Ammi, Abbu, Nana",
+  "c": "@placeholder"
+ },
+ {
+  "h": "o0zh2x",
+  "k": "e.g. B",
+  "c": "@placeholder"
+ },
+ {
+  "h": "uuvq2i",
+  "k": "e.g. Bilal · +{1} {2} …",
+  "c": "@placeholder"
+ },
+ {
+  "h": "4z20sm",
+  "k": "e.g. Camp {1}, tent {2}",
+  "c": "@placeholder"
+ },
+ {
+  "h": "pcui31",
+  "k": "e.g. Leicester",
+  "c": "@placeholder"
+ },
+ {
+  "h": "1fv5w6k",
+  "k": "e.g. Metformin",
+  "c": "@placeholder"
+ },
+ {
+  "h": "15av1ha",
+  "k": "e.g. Pakistan",
+  "c": "@placeholder"
+ },
+ {
+  "h": "2d9n07",
+  "k": "e.g. Urdu, English",
+  "c": "@placeholder"
+ },
+ {
+  "h": "sk07qo",
+  "k": "e.g. {1}",
+  "c": "@placeholder"
+ },
+ {
+  "h": "15qf114",
+  "k": "e.g. {1} mg, {2} tablet",
+  "c": "@placeholder"
+ },
+ {
+  "h": "huyu8u",
+  "k": "e.g. {1}, {2} or Arafah",
+  "c": "@placeholder"
+ },
+ {
+  "h": "3fwyee",
+  "k": "A new version is ready — tap to reload",
+  "c": "@title"
+ },
+ {
+  "h": "aahcp7",
+  "k": "Built in — works offline",
+  "c": "@title"
+ },
+ {
+  "h": "1scbfae",
+  "k": "Day {1} · {d1} {2} {M1}",
+  "c": "@title"
+ }
+]

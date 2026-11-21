@@ -1,0 +1,861 @@
+[
+ {
+  "h": "s3vc3w",
+  "k": "Checking… · The pages, rites, duas and places",
+  "c": ".rdy-t < #rdy-cache"
+ },
+ {
+  "h": "8mttlm",
+  "k": "Not yet · {1} of {2} files saved — open the app once with signal",
+  "c": ".rdy-t < #rdy-cache"
+ },
+ {
+  "h": "1tzk3m5",
+  "k": "The app is saved for offline use",
+  "c": ".rdy-t < #rdy-cache"
+ },
+ {
+  "h": "1kmh9fp",
+  "k": "Hotel and companion saved",
+  "c": ".rdy-t < #rdy-cards"
+ },
+ {
+  "h": "1nn23iu",
+  "k": "Hotel, companion and camp saved",
+  "c": ".rdy-t < #rdy-cards"
+ },
+ {
+  "h": "5pw2cx",
+  "k": "Ready · The driver and I'm-lost cards read them offline",
+  "c": ".rdy-t < #rdy-cards"
+ },
+ {
+  "h": "110jah1",
+  "k": "Checking… · Manrope and the Arabic script survive an update in Mina",
+  "c": ".rdy-t < #rdy-fonts"
+ },
+ {
+  "h": "14gmymu",
+  "k": "Fonts saved",
+  "c": ".rdy-t < #rdy-fonts"
+ },
+ {
+  "h": "1o60tyk",
+  "k": "Not yet · Open the app once with signal to save them",
+  "c": ".rdy-t < #rdy-fonts"
+ },
+ {
+  "h": "11zqk24",
+  "k": "Installed on the home screen",
+  "c": ".rdy-t < #rdy-inst"
+ },
+ {
+  "h": "2e7zqz",
+  "k": "Not yet · Opens like an app and keeps working without signal",
+  "c": ".rdy-t < #rdy-inst"
+ },
+ {
+  "h": "1xlimb1",
+  "k": "Not yet · The phone may clear it when space runs low",
+  "c": ".rdy-t < #rdy-persist"
+ },
+ {
+  "h": "tvnskk",
+  "k": "Storage kept by the phone",
+  "c": ".rdy-t < #rdy-persist"
+ },
+ {
+  "h": "1k8xu2o",
+  "k": "Not yet · {1} of {2} days not saved yet — computed times (±{3} min) fill the gap",
+  "c": ".rdy-t < #rdy-pt"
+ },
+ {
+  "h": "muls6p",
+  "k": "Prayer times saved through your return",
+  "c": ".rdy-t < #rdy-pt"
+ },
+ {
+  "h": "1pjwjee",
+  "k": "Ready · Umm al-Qura times for every day of the trip",
+  "c": ".rdy-t < #rdy-pt"
+ },
+ {
+  "h": "1jo0mwi",
+  "k": "Arabic voice for the duas",
+  "c": ".rdy-t < #rdy-voice"
+ },
+ {
+  "h": "1pqyozg",
+  "k": "Not yet · Install an Arabic voice in the phone's text-to-speech settings",
+  "c": ".rdy-t < #rdy-voice"
+ },
+ {
+  "h": "1uj8d8f",
+  "k": "↻After every prayer · ends Fajr or Asr of the {1}th, by school",
+  "c": ".rep < .dua-top < .dua"
+ },
+ {
+  "h": "1qq8epe",
+  "k": "↻After {P1} until it is light",
+  "c": ".rep < .dua-top < .dua"
+ },
+ {
+  "h": "wg75o1",
+  "k": "↻Every round",
+  "c": ".rep < .dua-top < .dua"
+ },
+ {
+  "h": "8mqxhv",
+  "k": "↻Keep reciting until tawaf",
+  "c": ".rep < .dua-top < .dua"
+ },
+ {
+  "h": "1d50f8w",
+  "k": "↻Keep repeating until sunset",
+  "c": ".rep < .dua-top < .dua"
+ },
+ {
+  "h": "1q6mh96",
+  "k": "↻On Safa · then every lap",
+  "c": ".rep < .dua-top < .dua"
+ },
+ {
+  "h": "1jrrffg",
+  "k": "↻Start of every round",
+  "c": ".rep < .dua-top < .dua"
+ },
+ {
+  "h": "19xef9m",
+  "k": "↻Until the first pebble at Aqabah",
+  "c": ".rep < .dua-top < .dua"
+ },
+ {
+  "h": "1pvlz9f",
+  "k": "Also stoning for:",
+  "c": ".rf-l < #ramiFor"
+ },
+ {
+  "h": "at2lwx",
+  "k": "done",
+  "c": ".ring-num < .ring-wrap < #hjdHome"
+ },
+ {
+  "h": "52pxm8",
+  "k": "left",
+  "c": ".ring-num < .ring-wrap < #hjdHome"
+ },
+ {
+  "h": "39rjx0",
+  "k": "Ready",
+  "c": ".ring-num < .ring-wrap < #planHero"
+ },
+ {
+  "h": "da11h6",
+  "k": "Habits",
+  "c": ".ring-num < .ring-wrap < .hs-r"
+ },
+ {
+  "h": "j27kqw",
+  "k": "Prepared",
+  "c": ".ring-num < .ring-wrap < .hs-r"
+ },
+ {
+  "h": "363wsd",
+  "k": "Now: Jamrat al-Aqabah · {1} of {2}",
+  "c": ".rp-act < .acc-b < .acc"
+ },
+ {
+  "h": "k2rmka",
+  "k": "Now: Jamrat as-Sughra · {1} of {2}",
+  "c": ".rp-act < .acc-b < .acc"
+ },
+ {
+  "h": "afxo4e",
+  "k": "Before",
+  "c": ".rpre-t < .rpre < #riteTiles",
+  "part_of": "Before · Part {1} — your Umrah in {2} steps"
+ },
+ {
+  "h": "4gaiqp",
+  "k": "Before · Part {1} — your Umrah in {2} steps",
+  "c": ".rpre-t < .rpre < #riteTiles"
+ },
+ {
+  "h": "o5lpeg",
+  "k": "Before · the arrival tawaf (and the sa'i, if you do it now) — no cutting, you stay in ihram",
+  "c": ".rpre-t < .rpre < #riteTiles"
+ },
+ {
+  "h": "1s96h81",
+  "k": "Part {1} — your Umrah in {2} steps",
+  "c": ".rpre-t < .rpre < #riteTiles",
+  "part_of": "Before · Part {1} — your Umrah in {2} steps"
+ },
+ {
+  "h": "1hermhj",
+  "k": "{1} steps",
+  "c": ".rt-m < .rtile < #riteTiles"
+ },
+ {
+  "h": "1cffn39",
+  "k": "{d1} {1} {M1} · {2} steps",
+  "c": ".rt-m < .rtile < #riteTiles"
+ },
+ {
+  "h": "j65vry",
+  "k": "{d1} {1} {M1} – {d2} {2} {M2} · {3} steps",
+  "c": ".rt-m < .rtile < #riteTiles"
+ },
+ {
+  "h": "y24nci",
+  "k": "Days {1}–{2}",
+  "c": ".rt-n < .rtile < #riteTiles"
+ },
+ {
+  "h": "1r9zad5",
+  "k": "Last",
+  "c": ".rt-n < .rtile < #riteTiles"
+ },
+ {
+  "h": "130fke9",
+  "k": "Night",
+  "c": ".rt-n < .rtile < #riteTiles"
+ },
+ {
+  "h": "lg8v5i",
+  "k": "Today · Day {1}",
+  "c": ".rt-n < .rtile < #riteTiles"
+ },
+ {
+  "h": "3y3qaq",
+  "k": "Today · Days {1}–{2}",
+  "c": ".rt-n < .rtile < #riteTiles"
+ },
+ {
+  "h": "10khkh3",
+  "k": "Ihram · Mina · five prayers",
+  "c": ".rt-s < .rtile < #riteTiles"
+ },
+ {
+  "h": "1p818g8",
+  "k": "Still in ihram · Mina · five prayers",
+  "c": ".rt-s < .rtile < #riteTiles"
+ },
+ {
+  "h": "1gwxo0w",
+  "k": "Stone · sacrifice · shave · ifadah",
+  "c": ".rt-s < .rtile < #riteTiles"
+ },
+ {
+  "h": "1he4edv",
+  "k": "Stone · shave · ifadah (no hady for Ifrad)",
+  "c": ".rt-s < .rtile < #riteTiles"
+ },
+ {
+  "h": "e7tt0z",
+  "k": "Tawaf al-wada, then home",
+  "c": ".rt-s < .rtile < #riteTiles"
+ },
+ {
+  "h": "4kqf16",
+  "k": "The standing until sunset",
+  "c": ".rt-s < .rtile < #riteTiles"
+ },
+ {
+  "h": "k436nx",
+  "k": "Three jamarat after midday · {1}th optional",
+  "c": ".rt-s < .rtile < #riteTiles"
+ },
+ {
+  "h": "1qs8t52",
+  "k": "{P1} + {P2} · rest · pebbles",
+  "c": ".rt-s < .rtile < #riteTiles"
+ },
+ {
+  "h": "1jgtn5p",
+  "k": "Eid (Nahr)",
+  "c": ".rtile < #riteTiles",
+  "part_of": "{1}th · Eid (Nahr)"
+ },
+ {
+  "h": "1gq0z4l",
+  "k": "Farewell",
+  "c": ".rtile < #riteTiles"
+ },
+ {
+  "h": "10353aw",
+  "k": "Halq / Taqsir",
+  "c": ".rtile < #riteTiles"
+ },
+ {
+  "h": "utafb6",
+  "k": "Ihram at the miqat",
+  "c": ".rtile < #riteTiles"
+ },
+ {
+  "h": "6hjti8",
+  "k": "Sa'i — {1} laps",
+  "c": ".rtile < #riteTiles"
+ },
+ {
+  "h": "kv922p",
+  "k": "Step {1} · {2} to-dos",
+  "c": ".rtile < #riteTiles"
+ },
+ {
+  "h": "1p0000a",
+  "k": "Tarwiyah",
+  "c": ".rtile < #riteTiles",
+  "part_of": "{1}th · Tarwiyah"
+ },
+ {
+  "h": "1564ipm",
+  "k": "Tashreeq",
+  "c": ".rtile < #riteTiles",
+  "part_of": "{1}th–{2}th · Tashreeq"
+ },
+ {
+  "h": "53mxec",
+  "k": "Tawaf — {1} rounds",
+  "c": ".rtile < #riteTiles"
+ },
+ {
+  "h": "kb107c",
+  "k": "{1}th",
+  "c": ".rtile < #riteTiles",
+  "part_of": "{1}th · Tarwiyah"
+ },
+ {
+  "h": "1r5tg86",
+  "k": "{1}th · Arafah",
+  "c": ".rtile < #riteTiles"
+ },
+ {
+  "h": "h9tri7",
+  "k": "{1}th · Eid (Nahr)",
+  "c": ".rtile < #riteTiles"
+ },
+ {
+  "h": "1tjawdg",
+  "k": "{1}th · Tarwiyah",
+  "c": ".rtile < #riteTiles"
+ },
+ {
+  "h": "1w1wldr",
+  "k": "{1}th–{2}th",
+  "c": ".rtile < #riteTiles",
+  "part_of": "{1}th–{2}th · Tashreeq"
+ },
+ {
+  "h": "10bmf91",
+  "k": "{1}th–{2}th · Tashreeq",
+  "c": ".rtile < #riteTiles"
+ },
+ {
+  "h": "1rl528q",
+  "k": "Finding your camp",
+  "c": ".rul-c < #wayRow"
+ },
+ {
+  "h": "luchwi",
+  "k": "Taraweeh",
+  "c": ".rul-c < .ramd-c < #ramDayCard"
+ },
+ {
+  "h": "kbjrz5",
+  "k": "Eid prayer?",
+  "c": ".rul-c < .rul-l < #rul-home"
+ },
+ {
+  "h": "rduid8",
+  "k": "Fasting at Arafah?",
+  "c": ".rul-c < .rul-l < #rul-home"
+ },
+ {
+  "h": "153ts2",
+  "k": "Fasting these days?",
+  "c": ".rul-c < .rul-l < #rul-home"
+ },
+ {
+  "h": "1slchgo",
+  "k": "Hady and udhiyah",
+  "c": ".rul-c < .rul-l < #rul-home"
+ },
+ {
+  "h": "1ftklpo",
+  "k": "Prayer in Mina",
+  "c": ".rul-c < .rul-l < #rul-home"
+ },
+ {
+  "h": "sw1w1p",
+  "k": "Prayers at Arafah",
+  "c": ".rul-c < .rul-l < #rul-home"
+ },
+ {
+  "h": "4074gr",
+  "k": "Prayers at Muzdalifah",
+  "c": ".rul-c < .rul-l < #rul-home"
+ },
+ {
+  "h": "1id8uuk",
+  "k": "Takbir: the words",
+  "c": ".rul-c < .rul-l < #rul-home"
+ },
+ {
+  "h": "174ecdu",
+  "k": "Takbir: when",
+  "c": ".rul-c < .rul-l < #rul-home"
+ },
+ {
+  "h": "1ytnojo",
+  "k": "Talbiyah on the way",
+  "c": ".rul-c < .rul-l < #rul-home"
+ },
+ {
+  "h": "1mnidcm",
+  "k": "Today's rulings",
+  "c": ".rul-h < #rul-home"
+ },
+ {
+  "h": "1wh7pzz",
+  "k": "{1} Dhul Hijjah · Tarwiyah",
+  "c": ".rul-h < #rul-home"
+ },
+ {
+  "h": "1fvukv1",
+  "k": "{1} Dhul Hijjah · Tashriq · {2}nd day",
+  "c": ".rul-h < #rul-home"
+ },
+ {
+  "h": "t80k5l",
+  "k": "{1} Dhul Hijjah · Tashriq · {2}rd day",
+  "c": ".rul-h < #rul-home"
+ },
+ {
+  "h": "p636r0",
+  "k": "{1} Dhul Hijjah · Tashriq · {2}st day",
+  "c": ".rul-h < #rul-home"
+ },
+ {
+  "h": "1pj0b90",
+  "k": "of {1} days kept · hold the Haram version of you",
+  "c": ".s < .hero-t < #postHero"
+ },
+ {
+  "h": "iygvb",
+  "k": "What you know of the rites and their fiqh",
+  "c": ".s < .hero-t < #qzReady"
+ },
+ {
+  "h": "suz4cm",
+  "k": "Listen",
+  "c": ".say < .dua-top < .dua"
+ },
+ {
+  "h": "dbbxmt",
+  "k": "Test",
+  "c": ".say < .setrow < .card"
+ },
+ {
+  "h": "br6gp2",
+  "k": "Read aloud",
+  "c": ".say < .story-acts < .acc-b"
+ },
+ {
+  "h": "1nliyjp",
+  "k": "Boy",
+  "c": ".say-b < .kidc-g < .kidc-h"
+ },
+ {
+  "h": "9ko3wj",
+  "k": "Girl",
+  "c": ".say-b < .kidc-g < .kidc-h"
+ },
+ {
+  "h": "1gfem0b",
+  "k": "Edit the camp card",
+  "c": ".say-b < .say-acts < #campCardB"
+ },
+ {
+  "h": "1ud6w9k",
+  "k": "A card for each child, in Arabic and English",
+  "c": ".say-rt < #helpKids"
+ },
+ {
+  "h": "2p1kmu",
+  "k": "Child cards",
+  "c": ".say-rt < #helpKids",
+  "part_of": "Child cards · my child is lost"
+ },
+ {
+  "h": "4wipi3",
+  "k": "Child cards · my child is lost",
+  "c": ".say-rt < #helpKids"
+ },
+ {
+  "h": "1flwb8j",
+  "k": "my child is lost",
+  "c": ".say-rt < #helpKids",
+  "part_of": "Child cards · my child is lost"
+ },
+ {
+  "h": "bkhyxe",
+  "k": "Doctor, wheelchair, gate, toilets, wudu — in Arabic, full screen",
+  "c": ".say-rt < #helpSay"
+ },
+ {
+  "h": "haniz",
+  "k": "Hotel check-in card",
+  "c": ".say-rt < #sayHotelRow"
+ },
+ {
+  "h": "1sbczra",
+  "k": "Reservation, meals, floor, nearest gate",
+  "c": ".say-rt < #sayHotelRow"
+ },
+ {
+  "h": "k5mnp9",
+  "k": "A card for each child, and \"my child is lost\"",
+  "c": ".say-rt < #sayKidsRow"
+ },
+ {
+  "h": "13527fv",
+  "k": "Schematic, not to scale. Between the Yamani corner and the Black Stone recite \"Rabbana atina…\". The sa'i gallery entrance is on the Safa side, south-east of the Black Stone.",
+  "c": ".sec-bd < #matafSec"
+ },
+ {
+  "h": "ji73mb",
+  "k": "Tap to open the schematic",
+  "c": ".sec-hd < #matafSec"
+ },
+ {
+  "h": "1s0ac5d",
+  "k": "The mataf — where everything is",
+  "c": ".sec-hd < #matafSec"
+ },
+ {
+  "h": "1nzpcut",
+  "k": "About this app",
+  "c": ".sec-hd < #sec-about"
+ },
+ {
+  "h": "1sg9xet",
+  "k": "Free · offline · private · hadith checked against the sources",
+  "c": ".sec-hd < #sec-about"
+ },
+ {
+  "h": "qnrogl",
+  "k": "Documents & bookings",
+  "c": ".sec-hd < #sec-docs"
+ },
+ {
+  "h": "12nu5vr",
+  "k": "My dua list",
+  "c": ".sec-hd < #sec-dualist"
+ },
+ {
+  "h": "1k17xct",
+  "k": "Hop-on hop-off & practical stops",
+  "c": ".sec-hd < #sec-grp-madinah-tour"
+ },
+ {
+  "h": "h7eadb",
+  "k": "The Hajj sites",
+  "c": ".sec-hd < #sec-grp-makkah-hajj"
+ },
+ {
+  "h": "un7r01",
+  "k": "{1} sites · {2} visited · tap to show",
+  "c": ".sec-hd < #sec-grp-makkah-hajj"
+ },
+ {
+  "h": "1yiryzm",
+  "k": "Museums & culture",
+  "c": ".sec-hd < #sec-grp-makkah-museum"
+ },
+ {
+  "h": "1705m93",
+  "k": "{1} Dhul Hijjah · Yawm an-Nahr",
+  "c": ".sec-hd < #sec-hd10"
+ },
+ {
+  "h": "u2ujgw",
+  "k": "{1} {M1} {2} · Rami of Aqabah · hady · halq · tawaf al-ifadah & sa'i · back to Mina",
+  "c": ".sec-hd < #sec-hd10"
+ },
+ {
+  "h": "1ew5axf",
+  "k": "{1} {M1} {2} · Rami of Aqabah · halq · tawaf al-ifadah & sa'i · back to Mina",
+  "c": ".sec-hd < #sec-hd10"
+ },
+ {
+  "h": "1ghiofd",
+  "k": "{1} Dhul Hijjah · First day of tashriq",
+  "c": ".sec-hd < #sec-hd11"
+ },
+ {
+  "h": "l9yee3",
+  "k": "{1} {M1} {2} · Three jamarat after midday · the night in Mina",
+  "c": ".sec-hd < #sec-hd11"
+ },
+ {
+  "h": "hvzbmz",
+  "k": "{1} Dhul Hijjah · Second day of tashriq",
+  "c": ".sec-hd < #sec-hd12"
+ },
+ {
+  "h": "dl118k",
+  "k": "{1} {M1} {2} · Three jamarat after midday · leave Mina before sunset, or stay for the {3}th",
+  "c": ".sec-hd < #sec-hd12"
+ },
+ {
+  "h": "1cdb7pc",
+  "k": "{1} Dhul Hijjah · Third day of tashriq",
+  "c": ".sec-hd < #sec-hd13"
+ },
+ {
+  "h": "qt7eos",
+  "k": "{1} {M1} {2} · Only if you stayed · three jamarat after midday · then leave Mina",
+  "c": ".sec-hd < #sec-hd13"
+ },
+ {
+  "h": "u7fn8r",
+  "k": "{1} Dhul Hijjah · Tarwiyah — ihram for Hajj & Mina",
+  "c": ".sec-hd < #sec-hd8"
+ },
+ {
+  "h": "1a8gx3i",
+  "k": "{1} {M1} {2} · Ihram from where you are staying · Mina · five prayers, the four-rakah ones shortened",
+  "c": ".sec-hd < #sec-hd8"
+ },
+ {
+  "h": "1qy9ky4",
+  "k": "{1} {M1} {2} · You are already in ihram — stay in it · Mina · five prayers, the four-rakah ones shortened",
+  "c": ".sec-hd < #sec-hd8"
+ },
+ {
+  "h": "w5huz5",
+  "k": "{1} Dhul Hijjah · Arafah",
+  "c": ".sec-hd < #sec-hd9"
+ },
+ {
+  "h": "8xxdyn",
+  "k": "{1} {M1} {2} · The pillar of Hajj · Dhuhr + Asr combined · wuquf until sunset",
+  "c": ".sec-hd < #sec-hd9"
+ },
+ {
+  "h": "1pzlla4",
+  "k": "Night before the {1}th · Muzdalifah",
+  "c": ".sec-hd < #sec-hd9n"
+ },
+ {
+  "h": "1hkamer",
+  "k": "{1} {M1} {2} · night · Maghrib + Isha together · sleep · pebbles · the weak leave after midnight",
+  "c": ".sec-hd < #sec-hd9n"
+ },
+ {
+  "h": "zv6jf2",
+  "k": "Before you leave Makkah · Tawaf al-Wada",
+  "c": ".sec-hd < #sec-hdw"
+ },
+ {
+  "h": "10dr480",
+  "k": "The last thing you do · {1} rounds · waived for sisters on their period",
+  "c": ".sec-hd < #sec-hdw"
+ },
+ {
+  "h": "5rz172",
+  "k": "If something goes wrong in the days of Hajj",
+  "c": ".sec-hd < #sec-htrouble"
+ },
+ {
+  "h": "1cwuc0i",
+  "k": "Missed stoning · period before ifadah · too weak · lost in Mina · wrong order",
+  "c": ".sec-hd < #sec-htrouble"
+ },
+ {
+  "h": "1g8o6yy",
+  "k": "Knowledge & spirit",
+  "c": ".sec-hd < #sec-knowledge"
+ },
+ {
+  "h": "t3fsvx",
+  "k": "Phase {1} · Ihram at the miqat",
+  "c": ".sec-hd < #sec-ph1"
+ },
+ {
+  "h": "157s6ou",
+  "k": "Phase {1} · Tawaf — {2} rounds",
+  "c": ".sec-hd < #sec-ph2"
+ },
+ {
+  "h": "1fd562o",
+  "k": "Phase {1} · Sa'i — {2} laps",
+  "c": ".sec-hd < #sec-ph3"
+ },
+ {
+  "h": "15xkaep",
+  "k": "Phase {1} · Halq / Taqsir",
+  "c": ".sec-hd < #sec-ph4"
+ },
+ {
+  "h": "czsup9",
+  "k": "If something goes wrong",
+  "c": ".sec-hd < #sec-trouble"
+ },
+ {
+  "h": "1j1bg9b",
+  "k": "Lost count · wudu broke · forbidden by mistake · missed the miqat",
+  "c": ".sec-hd < #sec-trouble"
+ },
+ {
+  "h": "4f26x8",
+  "k": "Stats",
+  "c": ".seg < .segw < #view-daily"
+ },
+ {
+  "h": "15cdqf0",
+  "k": "Tools",
+  "c": ".seg < .segw < #view-daily"
+ },
+ {
+  "h": "ktdb8o",
+  "k": "Settings",
+  "c": ".seg < .segw < #view-more"
+ },
+ {
+  "h": "ab0tkl",
+  "k": "Learn",
+  "c": ".seg < .segw < #view-plan"
+ },
+ {
+  "h": "ydwvtc",
+  "k": "Counters",
+  "c": ".seg < .segw < #view-umrah"
+ },
+ {
+  "h": "1g7kyn1",
+  "k": "{1}th – {2}th",
+  "c": ".segmini < #jamBody"
+ },
+ {
+  "h": "1qq3gob",
+  "k": "On by default for them",
+  "c": ".setrow < #gSheetBody"
+ },
+ {
+  "h": "eionq",
+  "k": "Shadow one length (standard) or two (Hanafi)",
+  "c": ".setrow < #gSheetBody"
+ },
+ {
+  "h": "4d9jv8",
+  "k": "They are a…",
+  "c": ".setrow < #gSheetBody"
+ },
+ {
+  "h": "6ye5hm",
+  "k": "Hajj dates look one day off?",
+  "c": ".setrow < #hajjSet"
+ },
+ {
+  "h": "1e9osqa",
+  "k": "Hajj type",
+  "c": ".setrow < #hajjSet"
+ },
+ {
+  "h": "7km7ke",
+  "k": "Your group leader knows which one your package follows — Tamattu' is the usual. Tap a type to read what changes.",
+  "c": ".setrow < #hajjSet"
+ },
+ {
+  "h": "1pb8o7o",
+  "k": "List them on the \"I'm lost\" card",
+  "c": ".setrow < #medList"
+ },
+ {
+  "h": "1mwrk7e",
+  "k": "Names and doses, in the medical block",
+  "c": ".setrow < #medList"
+ },
+ {
+  "h": "1ms3yxa",
+  "k": "Remind me at these times",
+  "c": ".setrow < #medList"
+ },
+ {
+  "h": "e371ar",
+  "k": "While the app is open — follows this phone's clock. A notification where the phone allows it.",
+  "c": ".setrow < #medList"
+ },
+ {
+  "h": "1hx4j2u",
+  "k": "Day {1} = the day you arrived",
+  "c": ".setrow < #obHere"
+ },
+ {
+  "h": "1wurx01",
+  "k": "Have you already done your Umrah of Tamattu'?",
+  "c": ".setrow < #obHere"
+ },
+ {
+  "h": "6z0k32",
+  "k": "Tawaf, sa'i and the hair cut on arrival",
+  "c": ".setrow < #obHere"
+ },
+ {
+  "h": "4mpoxs",
+  "k": "Which day of your trip?",
+  "c": ".setrow < #obHere"
+ },
+ {
+  "h": "1gdnplb",
+  "k": "Easier to read without glasses",
+  "c": ".setrow < #obStep0"
+ },
+ {
+  "h": "2zz4md",
+  "k": "Larger text",
+  "c": ".setrow < #obStep0"
+ },
+ {
+  "h": "7lpvkr",
+  "k": "Tailors ihram, packing & halq/taqsir steps",
+  "c": ".setrow < #obStep1"
+ },
+ {
+  "h": "h3qoz0",
+  "k": "Tailors ihram, packing & the hair-cutting steps",
+  "c": ".setrow < #obStep2"
+ },
+ {
+  "h": "1u4iz6a",
+  "k": "{1}-day habit keeper + reflections",
+  "c": ".setrow < #postCard"
+ },
+ {
+  "h": "t9m7ju",
+  "k": "Zamzam / water today",
+  "c": ".setrow < #waterCard"
+ },
+ {
+  "h": "j0z6ae",
+  "k": "Anyone you show the card to can read it",
+  "c": ".setrow < .acc-b < #meCard"
+ },
+ {
+  "h": "8fwna0",
+  "k": "Show the medical block on the \"I'm lost\" card",
+  "c": ".setrow < .acc-b < #meCard"
+ },
+ {
+  "h": "1h9b6zo",
+  "k": "A simpler Home for someone else's phone: the status card and four big buttons",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "byxhzw",
+  "k": "Add this week's prayer times to my calendar",
+  "c": ".setrow < .card < #sub-more-settings"
+ }
+]

@@ -1,0 +1,592 @@
+[
+ {
+  "h": "kghhzx",
+  "k": "What time is suhur? (Ramadan)",
+  "c": "#sayTop"
+ },
+ {
+  "h": "109nc57",
+  "k": "Where is the nearest women's toilet?",
+  "c": "#sayTop"
+ },
+ {
+  "h": "1kls2m5",
+  "k": "Which Haram gate is nearest?",
+  "c": "#sayTop"
+ },
+ {
+  "h": "gfc7ml",
+  "k": "Write the hotel name in Arabic",
+  "c": "#sayTop"
+ },
+ {
+  "h": "1xuu1rd",
+  "k": "{U1} — if I am lost",
+  "c": "#sayTop"
+ },
+ {
+  "h": "18zuplw",
+  "k": "Donations & scams — stay sharp",
+  "c": "#scamCard"
+ },
+ {
+  "h": "cv2xn8",
+  "k": "Generosity is worship; being fooled is not. Every provider on <1><2>umrah.nusuk.sa</2></1> is ministry-licensed, and Saudi Arabia's official donation platform is <3><4>Ehsan</4></3> — here is what to watch for.",
+  "c": "#scamCard"
+ },
+ {
+  "h": "1wmmbcg",
+  "k": "Share card unlocks after your first day",
+  "c": "#shareBtn"
+ },
+ {
+  "h": "u5wgfh",
+  "k": "Share my progress card",
+  "c": "#shareBtn"
+ },
+ {
+  "h": "xy4psz",
+  "k": "Everything that differs for women, in one five-minute read — ihram clothing, pace, exiting ihram, periods, women's areas and safety.",
+  "c": "#sisCard"
+ },
+ {
+  "h": "ewusd4",
+  "k": "Period started? Your Hajj is still valid — what to do",
+  "c": "#sisLine"
+ },
+ {
+  "h": "1qqar2u",
+  "k": "Period started? Your ihram is still valid — what to do",
+  "c": "#sisLine"
+ },
+ {
+  "h": "1qfxp4j",
+  "k": "d",
+  "c": "#skFajrN"
+ },
+ {
+  "h": "8x525t",
+  "k": "Show a phrase in Arabic",
+  "c": "#sosSay"
+ },
+ {
+  "h": "72wf6v",
+  "k": "{1}/{2} asked",
+  "c": "#sp-dualist"
+ },
+ {
+  "h": "kgw9o9",
+  "k": "optional",
+  "c": "#sp-hd13"
+ },
+ {
+  "h": "24r2qk",
+  "k": "steps {1}–{2}",
+  "c": "#sp-ph1"
+ },
+ {
+  "h": "1dp9w96",
+  "k": "✓done",
+  "c": "#sp-ph1"
+ },
+ {
+  "h": "vy3gpc",
+  "k": "in Part {1}",
+  "c": "#sp-ph4"
+ },
+ {
+  "h": "zw0b7w",
+  "k": "step {1}",
+  "c": "#sp-ph4"
+ },
+ {
+  "h": "1uiyg3d",
+  "k": "Nothing matches. Try the number alone.",
+  "c": "#srcNone"
+ },
+ {
+  "h": "138wk99",
+  "k": "<1>Checked</1> against the source texts on {1} {m1} {2}. Scholar review is still pending.",
+  "c": "#srcNote"
+ },
+ {
+  "h": "1xejfa0",
+  "k": "<1>Numbering.</1> Hadith numbers follow sunnah.com; Sahih Muslim is numbered as in the Abdul Baqi edition. The Quran is cited as surah:ayah. A grade is shown only where the app states one. Reports the app cites without a number (such as the Muwatta) are not listed here.",
+  "c": "#srcNote"
+ },
+ {
+  "h": "1ssbgrg",
+  "k": "Every hadith and Quran reference: its number, the grade where one is stated, and where it is used",
+  "c": "#srcRow"
+ },
+ {
+  "h": "195ydw1",
+  "k": "Sources",
+  "c": "#srcRow"
+ },
+ {
+  "h": "vncbjl",
+  "k": "Hady (Adahi voucher)",
+  "c": "#srt-hady"
+ },
+ {
+  "h": "ypuln6",
+  "k": "Nusuk Hajj permit / package",
+  "c": "#srt-hajjpermit"
+ },
+ {
+  "h": "14d5yqh",
+  "k": "Flights & hotels",
+  "c": "#srt-hajjtravel"
+ },
+ {
+  "h": "f03yxb",
+  "k": "Hajj visa",
+  "c": "#srt-hajjvisa"
+ },
+ {
+  "h": "1w4ddjm",
+  "k": "Hotels booked",
+  "c": "#srt-hotels"
+ },
+ {
+  "h": "1d76f1",
+  "k": "Travel insurance",
+  "c": "#srt-insurance"
+ },
+ {
+  "h": "ovb130",
+  "k": "MenACWY certificate",
+  "c": "#srt-menacwy"
+ },
+ {
+  "h": "1ak9g4e",
+  "k": "Nusuk app",
+  "c": "#srt-nusuk"
+ },
+ {
+  "h": "bvpdy7",
+  "k": "Umrah visa",
+  "c": "#srt-visa"
+ },
+ {
+  "h": "lewgh4",
+  "k": "Save",
+  "c": "#srtSave"
+ },
+ {
+  "h": "flr5k8",
+  "k": "Day {1} ({2}%)",
+  "c": "#stBest"
+ },
+ {
+  "h": "r8gg7h",
+  "k": "{1} of {2}",
+  "c": "#stDuas"
+ },
+ {
+  "h": "1hs386f",
+  "k": "Your stats fill in as you tick prayers and deeds in <1>Today→</1> and",
+  "c": "#stEmpty"
+ },
+ {
+  "h": "1mo427s",
+  "k": "count umrahs in the Umrah tab",
+  "c": "#stEmptyJ"
+ },
+ {
+  "h": "1bm7lb6",
+  "k": "record your Hajj in the Hajj tab",
+  "c": "#stEmptyJ"
+ },
+ {
+  "h": "1bcoobz",
+  "k": "{1} days",
+  "c": "#stFajr"
+ },
+ {
+  "h": "1hmvxjn",
+  "k": "Hajj steps ticked",
+  "c": "#stHajjRow"
+ },
+ {
+  "h": "1qcxesh",
+  "k": "Days of Hajj complete",
+  "c": "#stHdRow"
+ },
+ {
+  "h": "afka1a",
+  "k": "days with worship logged",
+  "c": "#stHeroOf"
+ },
+ {
+  "h": "uumv6e",
+  "k": "of {1} days with worship logged",
+  "c": "#stHeroOf"
+ },
+ {
+  "h": "7ubk4p",
+  "k": "Hajj steps",
+  "c": "#stHeroUL"
+ },
+ {
+  "h": "15jqjv3",
+  "k": "Umrahs",
+  "c": "#stHeroUL"
+ },
+ {
+  "h": "1ex8ajs",
+  "k": "≈ {1} km",
+  "c": "#stKm"
+ },
+ {
+  "h": "3uzuww",
+  "k": "Pebbles thrown",
+  "c": "#stPebRow"
+ },
+ {
+  "h": "fgyr7",
+  "k": "Re-declare where you are — nothing is reset",
+  "c": "#stageLbl"
+ },
+ {
+  "h": "1v0eknn",
+  "k": "re-declare where you are — nothing is reset",
+  "c": "#stageLbl"
+ },
+ {
+  "h": "1wlyn60",
+  "k": "I am staying for the {1}th (nafr ath-thani — what the Prophet ﷺ did)",
+  "c": "#stay13Row"
+ },
+ {
+  "h": "1yw60qt",
+  "k": "Ask the phone",
+  "c": "#storeBtn"
+ },
+ {
+  "h": "1eiyu06",
+  "k": "Kept on this phone",
+  "c": "#storeRow"
+ },
+ {
+  "h": "vyewnp",
+  "k": "Checking…",
+  "c": "#storeS"
+ },
+ {
+  "h": "12qlwai",
+  "k": "Not protected yet — the phone may clear it when space runs low. Install the app and keep a backup.",
+  "c": "#storeS"
+ },
+ {
+  "h": "1uyuzlq",
+  "k": "{1} read-aloud stories about the rites and the sites — ages {2}–{3}",
+  "c": "#storySub"
+ },
+ {
+  "h": "1kuglsw",
+  "k": "Tap the circle after each round.",
+  "c": "#tawafSub"
+ },
+ {
+  "h": "17ec6pd",
+  "k": "The pillar that completes your Hajj — {1} rounds in ordinary clothes, no raml or idtiba' (Hanafis and Shafi'is: raml if a sa'i follows), with wudu. Ticks Part {2}; your Umrah record is untouched.",
+  "c": "#tawafSub"
+ },
+ {
+  "h": "7rqgah",
+  "k": "{1} rounds at a normal pace — no raml or idtiba'. Wudu is still required.",
+  "c": "#tawafSub"
+ },
+ {
+  "h": "1m4un2s",
+  "k": "{1} rounds, counter-clockwise, from the Black Stone corner.",
+  "c": "#tawafSub"
+ },
+ {
+  "h": "947vvs",
+  "k": "Nafl tawaf · {1}/{2}",
+  "c": "#tawafSum"
+ },
+ {
+  "h": "1flmsm6",
+  "k": "Tawaf al-ifadah · {1}/{2}",
+  "c": "#tawafSum"
+ },
+ {
+  "h": "1c2wc7d",
+  "k": "Tawaf · {1}/{2}",
+  "c": "#tawafSum"
+ },
+ {
+  "h": "8xjbg8",
+  "k": "tap to count",
+  "c": "#tawafTap"
+ },
+ {
+  "h": "esj1i7",
+  "k": "− Undo last round",
+  "c": "#tawafUndo"
+ },
+ {
+  "h": "1d22z36",
+  "k": "Tasbih counter",
+  "c": "#tbCard"
+ },
+ {
+  "h": "mfjlnv",
+  "k": "Dua of Arafah",
+  "c": "#tbHajj"
+ },
+ {
+  "h": "1w100jk",
+  "k": "Takbir",
+  "c": "#tbHajj"
+ },
+ {
+  "h": "1a2uymj",
+  "k": "Talbiyah",
+  "c": "#tbHajj"
+ },
+ {
+  "h": "t6uqnc",
+  "k": "of",
+  "c": "#tbOf"
+ },
+ {
+  "h": "1bfqc2q",
+  "k": "tap",
+  "c": "#tbOf",
+  "part_of": "· tap"
+ },
+ {
+  "h": "1u2l1uz",
+  "k": "· tap",
+  "c": "#tbOf"
+ },
+ {
+  "h": "11cepb4",
+  "k": "· SubhanAllah {1}",
+  "c": "#tbPhraseN"
+ },
+ {
+  "h": "18ldae7",
+  "k": "Numbers checked {1} {m1} {2}",
+  "c": "#telCk"
+ },
+ {
+  "h": "1v0q9n8",
+  "k": "Large",
+  "c": "#textSeg"
+ },
+ {
+  "h": "9d6h6p",
+  "k": "Set your departure date above to get a dated to-do timeline.",
+  "c": "#tlSub"
+ },
+ {
+  "h": "1n3k2j2",
+  "k": "Set your departure date to get a dated to-do timeline.",
+  "c": "#tlSub"
+ },
+ {
+  "h": "ybjevy",
+  "k": "You're on your journey — this timeline is done. Switch to the Hajj and Daily tabs.",
+  "c": "#tlSub"
+ },
+ {
+  "h": "1ckfbtq",
+  "k": "You're on your journey — this timeline is done. Switch to the Umrah and Daily tabs.",
+  "c": "#tlSub"
+ },
+ {
+  "h": "1kfltyj",
+  "k": "{1} day to go",
+  "c": "#tlSub",
+  "part_of": "{1} day to go · {2} not ticked yet · {3} travel-blocking"
+ },
+ {
+  "h": "4rctu7",
+  "k": "{1} day to go · {2} not ticked yet · {3} travel-blocking",
+  "c": "#tlSub"
+ },
+ {
+  "h": "15u1ahu",
+  "k": "{1} days to go",
+  "c": "#tlSub",
+  "part_of": "{1} days to go · {2} not ticked yet · {3} travel-blocking"
+ },
+ {
+  "h": "va07i8",
+  "k": "{1} days to go · {2} not ticked yet",
+  "c": "#tlSub"
+ },
+ {
+  "h": "m6j3o4",
+  "k": "{1} days to go · {2} not ticked yet · {3} travel-blocking",
+  "c": "#tlSub"
+ },
+ {
+  "h": "kxw5lh",
+  "k": "{1} not ticked yet",
+  "c": "#tlSub",
+  "part_of": "{1} days to go · {2} not ticked yet · {3} travel-blocking"
+ },
+ {
+  "h": "au62y8",
+  "k": "{1} travel-blocking",
+  "c": "#tlSub",
+  "part_of": "{1} days to go · {2} not ticked yet · {3} travel-blocking"
+ },
+ {
+  "h": "4dfexh",
+  "k": "This trip's Umrah is not recorded yet — tick its steps below as you did them, then record it. Part {1} (the days of Hajj) is already live further down.",
+  "c": "#umrahNudge"
+ },
+ {
+  "h": "1nf4gh",
+  "k": "Every step from miqat to halq — with counters that keep count for you.",
+  "c": "#umrahVhP"
+ },
+ {
+  "h": "cdc6z7",
+  "k": "Part {1} — your Umrah. Part {2} — the five days of Hajj. Counters keep count for you.",
+  "c": "#umrahVhP"
+ },
+ {
+  "h": "1azt0jt",
+  "k": "No Umrah recorded yet — when you tap \"Record completed Umrah\", it appears here with a keepsake card.",
+  "c": "#umrahsArea"
+ },
+ {
+  "h": "19yssmb",
+  "k": "My Umrahs",
+  "c": "#umrahsCard"
+ },
+ {
+  "h": "uk4kus",
+  "k": "Update",
+  "c": "#updChip"
+ },
+ {
+  "h": "1n8g6lf",
+  "k": "Forgotten PIN = lost documents. There is no reset — that is the point.",
+  "c": "#vaultArea"
+ },
+ {
+  "h": "16ol4uh",
+  "k": "Passport, visa, bookings — encrypted on this device with a PIN you choose (AES-{1}). Nothing is uploaded anywhere.",
+  "c": "#vaultCard"
+ },
+ {
+  "h": "16zhsdg",
+  "k": "What Allah has promised the pilgrim — the rewards that await you.",
+  "c": "#virtCard"
+ },
+ {
+  "h": "by1ltx",
+  "k": "Virtues of Hajj & the Haram",
+  "c": "#virtT"
+ },
+ {
+  "h": "1b8fedz",
+  "k": "Virtues of Umrah & the Haram",
+  "c": "#virtT"
+ },
+ {
+  "h": "17ypyxi",
+  "k": "Drink your fill and make dua — \"Zamzam water is for whatever it is drunk for\" (Ibn Majah {1}). Your trip total is in Stats.",
+  "c": "#waterCard",
+  "refs": [
+   "ibnmajah:3062"
+  ]
+ },
+ {
+  "h": "mntwi0",
+  "k": "Zamzam & water",
+  "c": "#waterCard"
+ },
+ {
+  "h": "iwcta",
+  "k": "aim for {1}, {2}–{3} in summer heat",
+  "c": "#waterLbl",
+  "part_of": "{1} cups today · aim for {2}, {3}–{4} in summer heat"
+ },
+ {
+  "h": "qhlgd8",
+  "k": "{1} cups today",
+  "c": "#waterLbl",
+  "part_of": "{1} cups today · aim for {2}, {3}–{4} in summer heat"
+ },
+ {
+  "h": "1oa86dt",
+  "k": "{1} cups today · aim for {2}, {3}–{4} in summer heat",
+  "c": "#waterLbl"
+ },
+ {
+  "h": "14sbxtg",
+  "k": "Am I inside Arafah?→",
+  "c": "#way-h9arrive"
+ },
+ {
+  "h": "1p5am4y",
+  "k": "Where Muzdalifah begins and ends→",
+  "c": "#way-h9nstay"
+ },
+ {
+  "h": "39sy5e",
+  "k": "The highlights of version",
+  "c": "#wnRow"
+ },
+ {
+  "h": "2j3iur",
+  "k": "What's new",
+  "c": "#wnRow"
+ },
+ {
+  "h": "zvootq",
+  "k": "Not yet — tap to confirm",
+  "c": "#wuduSt"
+ },
+ {
+  "h": "1s8vg9q",
+  "k": "✓Wudu made",
+  "c": "#wuduSt"
+ },
+ {
+  "h": "27nm6r",
+  "k": "Long ago, Allah showed Prophet Ibrahim the place of His House and told him: keep it pure for those who come to worship. Then Allah told him: \"Call the people to Hajj — they will come to you on foot and on every lean camel, from every distant road.\" Look around you now — people from every country and every colour, the men all in the same two white cloths. Every one of them is part of that promise. So are you!",
+  "c": ".acc-b < #st-call"
+ },
+ {
+  "h": "ro3blk",
+  "k": "In the year the Prophet Muhammad ﷺ was born, a king called Abrahah had a big idea — a bad one. He wanted people to come to his own building instead of the Kaaba, so he marched to Makkah with a huge army and a giant elephant to knock the Kaaba down. The people of Makkah were scared. They could not fight such an army, so they left the city and watched from the hills. But the Kaaba belongs to Allah — and Allah protects His House. When the army came close, the elephant sat down and would not move! Then the sky filled with flocks of little birds, each carrying tiny stones. The birds dropped the stones, and the mighty army was beaten. Allah tells this story in the Quran in a short surah called al-Fil — \"The Elephant\". Can you recite it?",
+  "c": ".acc-b < #st-elephant"
+ },
+ {
+  "h": "10w47az",
+  "k": "Once, Prophet Ibrahim brought his wife Hajar and their baby Isma'il to this valley. There was no water, no crops, no people — just sand and two little hills. Allah had told him to leave them here. Hajar asked, \"Did Allah tell you to do this?\" Ibrahim said yes. Hajar said, \"Then Allah will not leave us alone.\" Soon the water ran out and the baby cried. Hajar climbed the hill of Safa to look for help — nothing. She ran to the hill of Marwah — nothing. Seven times she ran between the two hills! Then she heard a sound. Next to her baby, water was bubbling up out of the ground — Zamzam! Allah had sent it. When we walk seven times between Safa and Marwah, we are remembering brave Hajar and how she trusted Allah. And the Zamzam you drink today is that very same water.",
+  "c": ".acc-b < #st-hajar"
+ },
+ {
+  "h": "xtpx5j",
+  "k": "A long, long time ago, when only a few families lived in Makkah around the well of Zamzam, Allah told Prophet Ibrahim to build a special House — a House just for worshipping Allah. Ibrahim was old, but his son Isma'il was young and strong. Isma'il carried the stones and Ibrahim stacked them up, wall by wall. When the walls grew too high to reach, Ibrahim stood on a stone — you can still see that stone today; it is called Maqam Ibrahim. While they worked they kept praying: \"Our Lord, accept this from us!\" They did not build it for a king. They built it for Allah. That is the Kaaba — the very first House built for people to worship Allah. Every Muslim in the whole world faces it when they pray — and now you are standing right in front of it!",
+  "c": ".acc-b < #st-kaaba"
+ },
+ {
+  "h": "2j63le",
+  "k": "Prophet Ibrahim saw in a dream that Allah wanted him to sacrifice his son — most scholars say it was Isma'il. It was the hardest thing in the world. He asked his son, and his son said: \"O my father, do as you are commanded. You will find me, if Allah wills, patient.\" They both obeyed — and Allah called out to Ibrahim that he had fulfilled the dream, and ransomed his son with a great sacrifice. On Eid al-Adha we sacrifice too, and Allah tells us what matters: \"Their meat will not reach Allah, nor will their blood, but what reaches Him is your taqwa.\"",
+  "c": ".acc-b < #st-sacrifice"
+ },
+ {
+  "h": "1s0nkfo",
+  "k": "Do you see the black stone in the corner of the Kaaba? The Prophet ﷺ told us it came down from Paradise, and that it was once whiter than milk. Before Muhammad ﷺ became a prophet, the people of Makkah rebuilt the Kaaba's walls. When it was time to put the Black Stone back, every tribe wanted the honour. They argued and argued and nearly started a fight! Then they agreed: the next man to walk in would decide. In walked Muhammad ﷺ — and everyone was happy, because they all called him al-Amin, the Trustworthy. He spread a cloth on the ground, put the Stone on it, and asked one man from every tribe to hold an edge. Together they lifted it — and he set the Stone in place with his own hands. Nobody fought. Being fair and trustworthy fixed everything.",
+  "c": ".acc-b < #st-stone"
+ },
+ {
+  "h": "193t4vo",
+  "k": "Look around — thousands of people, and the men are all wearing the same two plain white cloths! No shirts, no fancy jackets, no trainers. That is called ihram. The Prophet ﷺ taught that a pilgrim leaves his everyday clothes behind, and he told us to wear white clothes and said they are among the best. Why does everyone dress the same? Because in front of Allah, a king and a street cleaner, a footballer and a farmer, a rich man and a poor man are exactly the same. Nobody can tell who is important — only Allah knows what is in our hearts. Women wear their ordinary modest clothes, and they are pilgrims too. Everyone says the same words — Labbayk Allahumma labbayk, \"Here I am, O Allah!\" — and everyone walks around the same Kaaba. One family, one Lord.",
+  "c": ".acc-b < #st-white"
+ }
+]

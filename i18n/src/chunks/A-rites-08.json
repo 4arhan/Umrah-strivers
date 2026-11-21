@@ -1,0 +1,255 @@
+[
+ {
+  "h": "59ktqj",
+  "k": "Go to Mina · pray Dhuhr, Asr, Maghrib, Isha and Fajr there — each at its time, the four-rakah ones shortened",
+  "c": ".stp-t < #rw-h8mina"
+ },
+ {
+  "h": "1rohss3",
+  "k": "Most groups move by bus (some walk) in the morning or afternoon — the Mashaer train links only Mina, Muzdalifah and Arafah, not Makkah itself; find your camp and maktab number before you do anything else. Four-rakah prayers are prayed as two, each at its own time, in your tent or at Masjid al-Khayf. Shortening is for travellers: Malikis shorten in Mina and Arafah regardless (as do many Saudi scholars today); Hanafis ({1}+ days in Makkah before the {2}th) count you a resident and pray four rakahs here; Shafi'is count you a resident after {3} full days in Makkah (not counting the days of arrival and departure), but let you shorten from the moment you leave for Mina if you will set off for home after the rites without another {4} full days in Makkah (al-Majmu' {5}/{6}); Hanbalis shorten unless you will stay on in Makkah for more than {7} days after the Hajj — ask your group leader which your group follows. Spend the day in talbiyah, Quran and rest — tomorrow is the big day.",
+  "c": ".stp-t < #rw-h8mina"
+ },
+ {
+  "h": "1x4ktxg",
+  "k": "Drink water, charge your phone, put tomorrow's essentials (ihram spare, umbrella, dua list) in your day-bag. Go to bed early. In the morning, after Fajr and sunrise, move to Arafah with your group saying the talbiyah and the takbir.",
+  "c": ".stp-t < #rw-h8night"
+ },
+ {
+  "h": "1ml0mfm",
+  "k": "Sleep in Mina",
+  "c": ".stp-t < #rw-h8night",
+  "part_of": "Sleep in Mina · leave for Arafah after sunrise"
+ },
+ {
+  "h": "jxabr9",
+  "k": "Sleep in Mina · leave for Arafah after sunrise",
+  "c": ".stp-t < #rw-h8night"
+ },
+ {
+  "h": "1amfw7t",
+  "k": "leave for Arafah after sunrise",
+  "c": ".stp-t < #rw-h8night",
+  "part_of": "Sleep in Mina · leave for Arafah after sunrise"
+ },
+ {
+  "h": "52q7ve",
+  "k": "Make the intention for Hajj",
+  "c": ".stp-t < #rw-h8niyyah"
+ },
+ {
+  "h": "12u97pm",
+  "k": "Say it with your heart and tongue before you set off for Mina. From this moment the ihram rules apply again until the {1}th. If you fear illness or an obstacle, add the condition (ishtirat) — see your Umrah ihram step.",
+  "c": ".stp-t < #rw-h8niyyah"
+ },
+ {
+  "h": "1klukzo",
+  "k": "Your ihram from the miqat covers both Umrah and Hajj. No new intention, no new ghusl is required (a shower without scent is fine). Keep the talbiyah going and head to Mina with your group.",
+  "c": ".stp-t < #rw-h8stay"
+ },
+ {
+  "h": "1m3erlm",
+  "k": "Your ihram from the miqat is the ihram of Hajj. No new intention is needed (a shower without scent is fine). Keep the talbiyah going and head to Mina with your group.",
+  "c": ".stp-t < #rw-h8stay"
+ },
+ {
+  "h": "4jel5w",
+  "k": "Men aloud, women softly — in the bus, in the tent, on the walk. It only stops on the {1}th at Jamrat al-Aqabah: most scholars say at the first pebble; others continue to the last. Either is fine (Malikis stop it on arriving at Arafah after midday on the {2}th).",
+  "c": ".stp-t < #rw-h8talb"
+ },
+ {
+  "h": "zdf8uf",
+  "k": "Arrive and check you are inside Arafah",
+  "c": ".stp-t < #rw-h9arrive"
+ },
+ {
+  "h": "azmzx",
+  "k": "Large signs mark the boundary; Wadi Uranah and part of Masjid Namirah lie outside it. Your camp will be inside — but if you walk, stay within the signs. Rest in the shade until Dhuhr; do not fast today — the Prophet ﷺ drank milk at Arafah in front of the people (Bukhari {1}, {2}).",
+  "c": ".stp-t < #rw-h9arrive",
+  "refs": [
+   "bukhari:1988"
+  ]
+ },
+ {
+  "h": "1wx2zra",
+  "k": "Say it slowly, again and again, with your own duas between. These hours of Arafah are among the most precious of the whole year — \"there is no day on which Allah frees more people from the Fire than the Day of Arafah\" (Sahih Muslim).",
+  "c": ".stp-t < #rw-h9dua"
+ },
+ {
+  "h": "1kk387d",
+  "k": "Dhikr and dua at al-Mash'ar al-Haram",
+  "c": ".stp-t < #rw-h9ndhikr"
+ },
+ {
+  "h": "6s1tlk",
+  "k": "Stand facing the qibla after Fajr — by the mosque of al-Mash'ar if you are near it, otherwise where you slept. Takbir, tahlil, hamd, then your duas. This is the last of the great standing places — do not sleep through it.",
+  "c": ".stp-t < #rw-h9ndhikr"
+ },
+ {
+  "h": "k1oq72",
+  "k": "Chickpea-sized, from the ground anywhere — Muzdalifah, Mina or the road; there is nothing special about Muzdalifah stones, it is simply convenient. There is no need to wash them (the Prophet ﷺ is not reported to have done so; some scholars recommend it), and do not pick big ones. Keep them in a small pouch: {1} for the {2}th, then {3} a day for the {4}th and {5}th (and the {6}th if you stay).",
+  "c": ".stp-t < #rw-h9npebbles"
+ },
+ {
+  "h": "9sj10o",
+  "k": "Collect {1} small pebbles for tomorrow ({2} or {3} if you want them all now)",
+  "c": ".stp-t < #rw-h9npebbles"
+ },
+ {
+  "h": "rnahb6",
+  "k": "Muzdalifah is wide (\"all of Muzdalifah is a place of standing\" — Abu Dawud {1}), but check the boundary signs where your bus stops; the valley of Muhassir is outside it. Pray as soon as you arrive — Maghrib in full, Isha shortened (four rakahs if your school counts you a resident of Makkah — see the {2}th; in the relied-upon Shafi'i view such a resident also prays the two each at its own time), no nafl after. If you fear you will arrive only after midnight, many scholars (including the Saudi fatwa bodies) say pray both on the way before midnight; the four schools still count Isha as on time until Fajr when there is a need. Never let Fajr come without praying them.",
+  "c": ".stp-t < #rw-h9nsalah",
+  "refs": [
+   "abudawud:1936"
+  ]
+ },
+ {
+  "h": "1u4rifp",
+  "k": "On arrival: Maghrib ({1}) + Isha ({2}) together, then nothing else",
+  "c": ".stp-t < #rw-h9nsalah"
+ },
+ {
+  "h": "1i0f4u2",
+  "k": "Sleep on the ground under the sky — the Prophet ﷺ rested rather than staying up in night prayer (many scholars still advise not leaving the witr). Pray Fajr at its first moment, then face the qibla and make dhikr and dua until it is light. Leave for Mina before the sun rises, with the talbiyah.",
+  "c": ".stp-t < #rw-h9nstay"
+ },
+ {
+  "h": "18fz52k",
+  "k": "Spend the night here",
+  "c": ".stp-t < #rw-h9nstay",
+  "part_of": "Spend the night here · Fajr early · dhikr until the sky brightens · leave before sunrise"
+ },
+ {
+  "h": "17jt96m",
+  "k": "Spend the night here · Fajr early · dhikr until the sky brightens · leave before sunrise",
+  "c": ".stp-t < #rw-h9nstay"
+ },
+ {
+  "h": "5rxssb",
+  "k": "dhikr until the sky brightens",
+  "c": ".stp-t < #rw-h9nstay",
+  "part_of": "Spend the night here · Fajr early · dhikr until the sky brightens · leave before sunrise"
+ },
+ {
+  "h": "klplw0",
+  "k": "leave before sunrise",
+  "c": ".stp-t < #rw-h9nstay",
+  "part_of": "Spend the night here · Fajr early · dhikr until the sky brightens · leave before sunrise"
+ },
+ {
+  "h": "7j1q0v",
+  "k": "{P1} early",
+  "c": ".stp-t < #rw-h9nstay",
+  "part_of": "Spend the night here · Fajr early · dhikr until the sky brightens · leave before sunrise"
+ },
+ {
+  "h": "cqd9re",
+  "k": "Elderly, unwell, sisters and their carers: you may leave after midnight",
+  "c": ".stp-t < #rw-h9nweak"
+ },
+ {
+  "h": "1nmv08",
+  "k": "If standing in the crowds at dawn is beyond you — age, illness, pregnancy, small children, or you are the one escorting them — leave once the moon has set (on this night between about {1} and {2} am, in the last third of the night; Shafi'is and Hanbalis already allow leaving after midnight) and go to Mina. Leaving Muzdalifah after moonset is agreed for the weak; this is a concession the Prophet ﷺ gave, using it is not a shortcoming, and nothing is owed. The time of the stoning differs: Shafi'is and Hanbalis allow it from after midnight (Asma stoned before Fajr, Bukhari {3}); Hanafis and Malikis hold it is valid only from Fajr. Follow your group's school; if unsure, wait for Fajr — it is valid for everyone.",
+  "c": ".stp-t < #rw-h9nweak",
+  "refs": [
+   "bukhari:1679"
+  ]
+ },
+ {
+  "h": "1pme9e3",
+  "k": "Dhuhr + Asr together at Dhuhr time, two rakahs each",
+  "c": ".stp-t < #rw-h9salah"
+ },
+ {
+  "h": "1u8ri3y",
+  "k": "Pray behind the imam at Namirah if you are there, otherwise in the tent with your group: one adhan, two iqamahs, nothing in between. Then the standing begins. Hanafis combine the two only when praying behind the Hajj imam (otherwise each at its own time), and a pilgrim their school counts as a resident of Makkah ({1}+ days; Shafi'is: {2} full days, not counting arrival and departure, and staying on {3} full days after the Hajj; Hanbalis: if staying on in Makkah more than {4} days after the Hajj) prays four rakahs each — in the relied-upon Shafi'i view such a resident also prays each at its own time, since the combining is tied to travel — ask your group leader.",
+  "c": ".stp-t < #rw-h9salah"
+ },
+ {
+  "h": "1bmucia",
+  "k": "Do not join the rush before sunset. When the disc has gone, follow your group to the buses or walk — the path is marked. Maghrib is not prayed on the road: when asked, the Prophet ﷺ said \"the prayer is ahead of you\" (Bukhari {1}). Keep the talbiyah going.",
+  "c": ".stp-t < #rw-h9sunset",
+  "refs": [
+   "bukhari:1667"
+  ]
+ },
+ {
+  "h": "djplcb",
+  "k": "Stay until the sun has set, then leave calmly for Muzdalifah",
+  "c": ".stp-t < #rw-h9sunset"
+ },
+ {
+  "h": "f3sjsm",
+  "k": "Stand at Arafah — from {P1} until sunset",
+  "c": ".stp-t < #rw-h9wuquf"
+ },
+ {
+  "h": "8qxuon",
+  "k": "This is the Hajj. Face the qibla, raise your hands and talk to your Lord: istighfar, dua for yourself, your parents, your list, the ummah. Sitting, lying down, in a wheelchair or a bus, inside the tent — it all counts; there is no need to climb Jabal ar-Rahmah. Menstruating sisters stand like everyone else — purity is not required. Pace yourself: water, shade, a little Quran, then dua again.",
+  "c": ".stp-t < #rw-h9wuquf"
+ },
+ {
+  "h": "r5oxwy",
+  "k": "Tawaf al-wada — {1} rounds in ordinary clothes, then leave",
+  "c": ".stp-t < #rw-hwada"
+ },
+ {
+  "h": "bu559j",
+  "k": "With wudu, {1} rounds, no raml, no idtiba', no sa'i; two rakahs after it if you can, a last drink of Zamzam, a last dua at the door — and go. If you leave tawaf al-ifadah to the day you depart, it counts as the farewell tawaf too for the Malikis and Hanbalis (and Ibn Baz and Ibn Uthaymin); the Shafi'is still require a separate farewell tawaf — ask your group leader. Not required if you live in Makkah. Going to Madinah next? Do it when you leave Makkah, not after Madinah. Jeddah counts as leaving.",
+  "c": ".stp-t < #rw-hwada"
+ },
+ {
+  "h": "zb2vn9",
+  "k": "Finish everything else first — bags packed, shopping done",
+  "c": ".stp-t < #rw-hwadaready"
+ },
+ {
+  "h": "v5foug",
+  "k": "The farewell tawaf must be your last act in Makkah. Settle the hotel, pack, buy the dates and Zamzam, then go to the Haram. Buying food for the road or waiting for your bus afterwards is fine; a long stay or another errand means repeating it (Hanafis: it still counts, though repeating it is preferred).",
+  "c": ".stp-t < #rw-hwadaready"
+ },
+ {
+  "h": "1g4thom",
+  "k": "If you are pure: {1} rounds in ordinary clothes, no sa'i, then leave as your last act. If your period (or postnatal bleeding) has started and you have already done tawaf al-ifadah: you owe nothing and may leave straight away — say your goodbyes to the House with dua from the courtyard or the gate, without entering the prayer hall. If you have NOT yet done tawaf al-ifadah, that is a different matter — see its step.",
+  "c": ".stp-t < #rw-hwadaw"
+ },
+ {
+  "h": "6w1sdt",
+  "k": "Sisters: tawaf al-wada if you are pure — waived if you are on your period",
+  "c": ".stp-t < #rw-hwadaw"
+ },
+ {
+  "h": "h6nj4n",
+  "k": "Idtiba' (men): uncover the right shoulder",
+  "c": ".stp-t < #rw-idtiba"
+ },
+ {
+  "h": "8kc70j",
+  "k": "Pass the rida under the right arm and over the left shoulder — for this tawaf only.",
+  "c": ".stp-t < #rw-idtiba"
+ },
+ {
+  "h": "1k4bgv7",
+  "k": "Safa→Marwah is one lap. Men jog lightly between the green lights; women walk throughout. Dhikr and dua freely — no fixed formula.",
+  "c": ".stp-t < #rw-laps"
+ },
+ {
+  "h": "kympnn",
+  "k": "{1} laps complete — (you finish on Marwah)",
+  "c": ".stp-t < #rw-laps"
+ },
+ {
+  "h": "i63wpv",
+  "k": "Cover both shoulders, then pray {1} rakahs behind Maqam Ibrahim",
+  "c": ".stp-t < #rw-maqam"
+ },
+ {
+  "h": "12jga45",
+  "k": "Men: cover both shoulders first. Al-Kafirun in the first rakah, al-Ikhlas in the second. If crowded, pray anywhere in the mosque.",
+  "c": ".stp-t < #rw-maqam"
+ },
+ {
+  "h": "us69ex",
+  "k": "Each time you reach Marwah or Safa: face the Kaaba & repeat the dhikr",
+  "c": ".stp-t < #rw-marwah"
+ }
+]

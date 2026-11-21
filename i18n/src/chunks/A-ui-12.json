@@ -1,0 +1,943 @@
+[
+ {
+  "h": "1p34euy",
+  "k": "Adds a children's checklist to Plan▶Prepare",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "12tm976",
+  "k": "Arabic voice missing? Install it in your phone's text-to-speech settings, then test here.",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "v9i6me",
+  "k": "Check for updates",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "5pztug",
+  "k": "Dark mode",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "10hwgzr",
+  "k": "Dua audio",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "tgyvjr",
+  "k": "Easier on the eyes at night",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "1mnaxrj",
+  "k": "Essentials Home",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "1rsjzt3",
+  "k": "How many days is your trip? ({1}–{2})",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "1i41711",
+  "k": "I am a…",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "18o3nu9",
+  "k": "Journey stage",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "16us7mj",
+  "k": "Language",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "1vn7dp4",
+  "k": "Larger text for duas, tips and the nav",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "yr7xgf",
+  "k": "My journey",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "hp3d53",
+  "k": "Notifies ~{1} min before each prayer while the app is open — for alarms with the screen off, add the week to your calendar below",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "9egmfc",
+  "k": "Send it to your group before you fly",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "1u0363s",
+  "k": "Share the app",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "ty1dxu",
+  "k": "Shows only the ihram, packing and halq/taqsir steps that apply to you",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "i1vi0r",
+  "k": "Swipe between sections",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "1i7cbph",
+  "k": "Swipe left/right to change sub-tabs",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "c7nuir",
+  "k": "Text size",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "9p0s1m",
+  "k": "Trip length",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "q0zd4n",
+  "k": "Version",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "g890l3",
+  "k": "updates install automatically",
+  "c": ".setrow < .card < #sub-more-settings",
+  "part_of": "· updates install automatically"
+ },
+ {
+  "h": "1p4scby",
+  "k": "· updates install automatically",
+  "c": ".setrow < .card < #sub-more-settings"
+ },
+ {
+  "h": "164pjby",
+  "k": "Ibn Majah {1}",
+  "c": ".src < .pk-ar < .acc-b",
+  "part_of": "Ibn Majah {1} · Tirmidhi {2}"
+ },
+ {
+  "h": "1n8syjl",
+  "k": "Ibn Majah {1} · Tirmidhi {2}",
+  "c": ".src < .pk-ar < .acc-b",
+  "refs": [
+   "ibnmajah:3850",
+   "tirmidhi:3513"
+  ]
+ },
+ {
+  "h": "122j3ar",
+  "k": "Abu Dawud {1}",
+  "c": ".src < .story-acts < .acc-b",
+  "part_of": "Bukhari {1} · Abu Dawud {2}"
+ },
+ {
+  "h": "150sx3o",
+  "k": "Bukhari {1}",
+  "c": ".src < .story-acts < .acc-b",
+  "part_of": "Quran {1} · Quran {2} · Bukhari {3}"
+ },
+ {
+  "h": "udb0b9",
+  "k": "Bukhari {1} (the elephant held back)",
+  "c": ".src < .story-acts < .acc-b",
+  "part_of": "Quran {1} (Surah al-Fil) · the seerah of Ibn Hisham (Ibn Ishaq) · Bukhari {2} (the elephant held back)"
+ },
+ {
+  "h": "rp0po2",
+  "k": "Bukhari {1} · Abu Dawud {2}",
+  "c": ".src < .story-acts < .acc-b",
+  "refs": [
+   "bukhari:1542",
+   "abudawud:3878"
+  ]
+ },
+ {
+  "h": "1u3c7xz",
+  "k": "Quran {1}",
+  "c": ".src < .story-acts < .acc-b",
+  "part_of": "Quran {1} · Quran {2} · Bukhari {3}"
+ },
+ {
+  "h": "1vgmpk0",
+  "k": "Quran {1} (Surah al-Fil)",
+  "c": ".src < .story-acts < .acc-b",
+  "part_of": "Quran {1} (Surah al-Fil) · the seerah of Ibn Hisham (Ibn Ishaq) · Bukhari {2} (the elephant held back)"
+ },
+ {
+  "h": "15vepie",
+  "k": "Quran {1} (Surah al-Fil) · the seerah of Ibn Hisham (Ibn Ishaq) · Bukhari {2} (the elephant held back)",
+  "c": ".src < .story-acts < .acc-b",
+  "refs": [
+   "quran:105",
+   "bukhari:2731"
+  ]
+ },
+ {
+  "h": "y6ffh5",
+  "k": "Quran {1} · Quran {2} · Bukhari {3}",
+  "c": ".src < .story-acts < .acc-b",
+  "refs": [
+   "quran:2:127",
+   "quran:3:96",
+   "bukhari:3364"
+  ]
+ },
+ {
+  "h": "g87puw",
+  "k": "Quran {1}–{2}",
+  "c": ".src < .story-acts < .acc-b",
+  "refs": [
+   "quran:22:26"
+  ]
+ },
+ {
+  "h": "1w6s1fz",
+  "k": "Quran {1}–{2} · Quran {3}",
+  "c": ".src < .story-acts < .acc-b",
+  "refs": [
+   "quran:37:102",
+   "quran:22:37"
+  ]
+ },
+ {
+  "h": "1tdg7ng",
+  "k": "Tirmidhi {1} (the Stone from Paradise)",
+  "c": ".src < .story-acts < .acc-b",
+  "part_of": "Tirmidhi {1} (the Stone from Paradise) · the seerah of Ibn Hisham"
+ },
+ {
+  "h": "pcmba4",
+  "k": "Tirmidhi {1} (the Stone from Paradise) · the seerah of Ibn Hisham",
+  "c": ".src < .story-acts < .acc-b",
+  "refs": [
+   "tirmidhi:877"
+  ]
+ },
+ {
+  "h": "1wzeruq",
+  "k": "the seerah of Ibn Hisham",
+  "c": ".src < .story-acts < .acc-b",
+  "part_of": "Tirmidhi {1} (the Stone from Paradise) · the seerah of Ibn Hisham"
+ },
+ {
+  "h": "paumva",
+  "k": "the seerah of Ibn Hisham (Ibn Ishaq)",
+  "c": ".src < .story-acts < .acc-b",
+  "part_of": "Quran {1} (Surah al-Fil) · the seerah of Ibn Hisham (Ibn Ishaq) · Bukhari {2} (the elephant held back)"
+ },
+ {
+  "h": "1ls0ks4",
+  "k": "Abu Dawud",
+  "c": ".src-ch < .src-c < #srcList"
+ },
+ {
+  "h": "4j1omv",
+  "k": "Bukhari",
+  "c": ".src-ch < .src-c < #srcList"
+ },
+ {
+  "h": "51dfzp",
+  "k": "Ibn Majah",
+  "c": ".src-ch < .src-c < #srcList"
+ },
+ {
+  "h": "1omr49e",
+  "k": "Muslim",
+  "c": ".src-ch < .src-c < #srcList"
+ },
+ {
+  "h": "lvl4gy",
+  "k": "Musnad Ahmad",
+  "c": ".src-ch < .src-c < #srcList"
+ },
+ {
+  "h": "mqhj9v",
+  "k": "Nasai",
+  "c": ".src-ch < .src-c < #srcList"
+ },
+ {
+  "h": "696hx5",
+  "k": "Tirmidhi",
+  "c": ".src-ch < .src-c < #srcList"
+ },
+ {
+  "h": "180bmbl",
+  "k": "Ibn Abbas in al-Muwatta' (Hajj; mawquf, sahih)",
+  "c": ".src-chip < .fc-foot < .fc-face"
+ },
+ {
+  "h": "70mfzj",
+  "k": "Muslim {1} · Abu Dawud {2}",
+  "c": ".src-chip < .fc-foot < .fc-face",
+  "refs": [
+   "muslim:1218",
+   "abudawud:1765"
+  ]
+ },
+ {
+  "h": "n135bw",
+  "k": "Muslim {1} · Bukhari {2}",
+  "c": ".src-chip < .fc-foot < .fc-face",
+  "refs": [
+   "muslim:1218",
+   "bukhari:1662"
+  ]
+ },
+ {
+  "h": "1wtof4o",
+  "k": "Muslim {1} · Bukhari {2} · Bukhari {3}",
+  "c": ".src-chip < .fc-foot < .fc-face",
+  "refs": [
+   "muslim:1218",
+   "bukhari:1653",
+   "bukhari:1655"
+  ]
+ },
+ {
+  "h": "1yqac1r",
+  "k": "Muslim {1} · Quran {2}",
+  "c": ".src-chip < .fc-foot < .fc-face",
+  "refs": [
+   "muslim:1337",
+   "quran:3:97"
+  ]
+ },
+ {
+  "h": "lw3n84",
+  "k": "Muslim {1} · Tirmidhi {2}",
+  "c": ".src-chip < .fc-foot < .fc-face",
+  "refs": [
+   "muslim:1336",
+   "tirmidhi:926"
+  ]
+ },
+ {
+  "h": "1iwmdyg",
+  "k": "Tirmidhi {1} · Quran {2}",
+  "c": ".src-chip < .fc-foot < .fc-face",
+  "refs": [
+   "tirmidhi:889",
+   "quran:22:29"
+  ]
+ },
+ {
+  "h": "fbi5r8",
+  "k": "weak — al-Albani and others",
+  "c": ".src-g < .src-k < #src-abudawud-1833"
+ },
+ {
+  "h": "1d4r84g",
+  "k": "hasan sahih — al-Albani",
+  "c": ".src-g < .src-k < #src-abudawud-2356"
+ },
+ {
+  "h": "1tyo3pl",
+  "k": "weak",
+  "c": ".src-g < .src-k < #src-ibnmajah-2233"
+ },
+ {
+  "h": "1frenio",
+  "k": "weak chain",
+  "c": ".src-g < .src-k < #src-ibnmajah-3012"
+ },
+ {
+  "h": "1mmv5xh",
+  "k": "weak chain; its meaning is accepted",
+  "c": ".src-g < .src-k < #src-ibnmajah-3038"
+ },
+ {
+  "h": "33lcpu",
+  "k": "chain sahih — al-Albani",
+  "c": ".src-g < .src-k < #src-nasai-3077",
+  "part_of": "chain sahih — al-Albani · da'if — Zubair Ali Zai"
+ },
+ {
+  "h": "1k3hmlb",
+  "k": "chain sahih — al-Albani · da'if — Zubair Ali Zai",
+  "c": ".src-g < .src-k < #src-nasai-3077"
+ },
+ {
+  "h": "37l3ch",
+  "k": "hasan sahih — al-Tirmidhi · sahih — al-Albani · some graders weaken its chain",
+  "c": ".src-g < .src-k < #src-tirmidhi-3513"
+ },
+ {
+  "h": "zvxdc7",
+  "k": "some graders weaken its chain",
+  "c": ".src-g < .src-k < #src-tirmidhi-3513",
+  "part_of": "hasan sahih — al-Tirmidhi · sahih — al-Albani · some graders weaken its chain"
+ },
+ {
+  "h": "9ndzuj",
+  "k": "da'if — Zubair Ali Zai",
+  "c": ".src-g < .src-k < #src-tirmidhi-3585",
+  "part_of": "hasan — al-Albani · hasan gharib — al-Tirmidhi · da'if — Zubair Ali Zai"
+ },
+ {
+  "h": "1td2o9z",
+  "k": "hasan gharib — al-Tirmidhi",
+  "c": ".src-g < .src-k < #src-tirmidhi-3585",
+  "part_of": "hasan — al-Albani · hasan gharib — al-Tirmidhi · da'if — Zubair Ali Zai"
+ },
+ {
+  "h": "3ey1l",
+  "k": "hasan — al-Albani",
+  "c": ".src-g < .src-k < #src-tirmidhi-3585",
+  "part_of": "hasan — al-Albani · hasan gharib — al-Tirmidhi · da'if — Zubair Ali Zai"
+ },
+ {
+  "h": "18752pj",
+  "k": "hasan — al-Albani · hasan gharib — al-Tirmidhi · da'if — Zubair Ali Zai",
+  "c": ".src-g < .src-k < #src-tirmidhi-3585"
+ },
+ {
+  "h": "1s0ehwx",
+  "k": "hasan sahih — al-Tirmidhi",
+  "c": ".src-g < .src-k < #src-tirmidhi-806",
+  "part_of": "hasan sahih — al-Tirmidhi · sahih — al-Albani"
+ },
+ {
+  "h": "13nmab0",
+  "k": "hasan sahih — al-Tirmidhi · sahih — al-Albani",
+  "c": ".src-g < .src-k < #src-tirmidhi-806"
+ },
+ {
+  "h": "pt5mez",
+  "k": "sahih — al-Albani",
+  "c": ".src-g < .src-k < #src-tirmidhi-806",
+  "part_of": "hasan sahih — al-Tirmidhi · sahih — al-Albani"
+ },
+ {
+  "h": "y4odcd",
+  "k": "Musnad Ahmad {1}",
+  "c": ".src-k < #src-ahmad-15243",
+  "refs": [
+   "ahmad:15243"
+  ]
+ },
+ {
+  "h": "nzxhk8",
+  "k": "Nasai {1}",
+  "c": ".src-k < #src-nasai-2625",
+  "refs": [
+   "nasai:2625"
+  ]
+ },
+ {
+  "h": "81m4oc",
+  "k": "Hajj rulings · Hady and udhiyah: not the same",
+  "c": ".src-l < .src-u < #src-abudawud-1936"
+ },
+ {
+  "h": "1hl7yc6",
+  "k": "Hajj steps · {1} Dhul Hijjah · Tarwiyah — ihram for Hajj & Mina",
+  "c": ".src-l < .src-u < #src-abudawud-1970"
+ },
+ {
+  "h": "1npatom",
+  "k": "Tarwiyah — ihram for Hajj & Mina",
+  "c": ".src-l < .src-u < #src-abudawud-1970",
+  "part_of": "Hajj steps · {1} Dhul Hijjah · Tarwiyah — ihram for Hajj & Mina"
+ },
+ {
+  "h": "1gy81c8",
+  "k": "Hajj steps · Leaving today? Be out of Mina before the sun sets — otherwise stay and stone on the {1}th",
+  "c": ".src-l < .src-u < #src-abudawud-1973"
+ },
+ {
+  "h": "1t5ire8",
+  "k": "Hajj steps · The night of the {1}th in Mina",
+  "c": ".src-l < .src-u < #src-abudawud-1973"
+ },
+ {
+  "h": "141bmsh",
+  "k": "Umrah steps · Women: trim a fingertip's length",
+  "c": ".src-l < .src-u < #src-abudawud-1984"
+ },
+ {
+  "h": "rozx8d",
+  "k": "Hajj steps · Make the intention for Hajj",
+  "c": ".src-l < .src-u < #src-bukhari-1"
+ },
+ {
+  "h": "mn9f61",
+  "k": "Learn · Elderly & unwell pilgrims — the concessions",
+  "c": ".src-l < .src-u < #src-bukhari-1513"
+ },
+ {
+  "h": "du0s1h",
+  "k": "Hajj help · I did something forbidden in ihram",
+  "c": ".src-l < .src-u < #src-bukhari-1536"
+ },
+ {
+  "h": "6j3e1m",
+  "k": "Hajj steps · Men: shave (halq) or trim all around (taqsir) — the first tahallul",
+  "c": ".src-l < .src-u < #src-bukhari-1536"
+ },
+ {
+  "h": "8ye20q",
+  "k": "Hajj steps · Sisters: trim a fingertip's length — the first tahallul",
+  "c": ".src-l < .src-u < #src-bukhari-1536"
+ },
+ {
+  "h": "1uujwvg",
+  "k": "Hajj steps · You are already in ihram — stay in it",
+  "c": ".src-l < .src-u < #src-bukhari-1536"
+ },
+ {
+  "h": "7mqeez",
+  "k": "You are already in ihram — stay in it",
+  "c": ".src-l < .src-u < #src-bukhari-1536",
+  "part_of": "Hajj steps · You are already in ihram — stay in it"
+ },
+ {
+  "h": "cntla2",
+  "k": "Hajj steps · Ghusl, perfume on the body, ihram garments — from your hotel",
+  "c": ".src-l < .src-u < #src-bukhari-1539"
+ },
+ {
+  "h": "yn07f0",
+  "k": "Heat plan · Shade in ihram: what men may use",
+  "c": ".src-l < .src-u < #src-bukhari-1542"
+ },
+ {
+  "h": "1pxkv26",
+  "k": "Tasbih · The talbiyah",
+  "c": ".src-l < .src-u < #src-bukhari-1549"
+ },
+ {
+  "h": "evtzva",
+  "k": "The talbiyah",
+  "c": ".src-l < .src-u < #src-bukhari-1549",
+  "part_of": "Tasbih · The talbiyah"
+ },
+ {
+  "h": "193yajs",
+  "k": "Hajj type · Qiran",
+  "c": ".src-l < .src-u < #src-bukhari-1551"
+ },
+ {
+  "h": "1yeur12",
+  "k": "Hajj steps · The sa'i of Hajj — {1} laps, Safa to Marwah",
+  "c": ".src-l < .src-u < #src-bukhari-1556"
+ },
+ {
+  "h": "ezbq7m",
+  "k": "Learn · The three kinds of Hajj — and which to choose",
+  "c": ".src-l < .src-u < #src-bukhari-1558"
+ },
+ {
+  "h": "6af7ro",
+  "k": "Hajj type · Tamattu'",
+  "c": ".src-l < .src-u < #src-bukhari-1572"
+ },
+ {
+  "h": "12aa2uj",
+  "k": "Hajj help · I am too weak for Muzdalifah / the stoning",
+  "c": ".src-l < .src-u < #src-bukhari-1607"
+ },
+ {
+  "h": "1xukyzv",
+  "k": "Hajj rulings · Mina: shorten, but do not combine",
+  "c": ".src-l < .src-u < #src-bukhari-1653"
+ },
+ {
+  "h": "if1ya",
+  "k": "Hajj steps · Go to Mina · pray Dhuhr, Asr, Maghrib, Isha and Fajr there — each at its time, the four-rakah ones shortened",
+  "c": ".src-l < .src-u < #src-bukhari-1653"
+ },
+ {
+  "h": "2zsku",
+  "k": "Learn · The five days of Hajj at a glance",
+  "c": ".src-l < .src-u < #src-bukhari-1653"
+ },
+ {
+  "h": "11wmxl",
+  "k": "Hajj steps · Takbir after every prayer · Quran · rest · dua",
+  "c": ".src-l < .src-u < #src-bukhari-1655"
+ },
+ {
+  "h": "1895tzc",
+  "k": "Hajj rulings · Arafah: Dhuhr and Asr together, shortened",
+  "c": ".src-l < .src-u < #src-bukhari-1662"
+ },
+ {
+  "h": "1g7o9cg",
+  "k": "Hajj steps · Dhuhr + Asr together at Dhuhr time, two rakahs each",
+  "c": ".src-l < .src-u < #src-bukhari-1662"
+ },
+ {
+  "h": "1jok7wi",
+  "k": "Hajj rulings · Muzdalifah: Maghrib and Isha together on arrival",
+  "c": ".src-l < .src-u < #src-bukhari-1667"
+ },
+ {
+  "h": "1gbo8c6",
+  "k": "Hajj steps · Stay until the sun has set, then leave calmly for Muzdalifah",
+  "c": ".src-l < .src-u < #src-bukhari-1667"
+ },
+ {
+  "h": "1xszml8",
+  "k": "Hajj steps · On arrival: Maghrib ({1}) + Isha ({2}) together, then nothing else",
+  "c": ".src-l < .src-u < #src-bukhari-1673"
+ },
+ {
+  "h": "11mf6up",
+  "k": "Hajj steps · Elderly, unwell, sisters and their carers: you may leave after midnight",
+  "c": ".src-l < .src-u < #src-bukhari-1676"
+ },
+ {
+  "h": "7rwg2w",
+  "k": "Hajj steps · Stone Jamrat al-Aqabah only — {1} pebbles, takbir with each",
+  "c": ".src-l < .src-u < #src-bukhari-1679"
+ },
+ {
+  "h": "mz2sol",
+  "k": "Hajj steps · Recite the talbiyah abundantly",
+  "c": ".src-l < .src-u < #src-bukhari-1685"
+ },
+ {
+  "h": "m4g9tz",
+  "k": "Hajj help · I did the {1}th in the wrong order",
+  "c": ".src-l < .src-u < #src-bukhari-1722"
+ },
+ {
+  "h": "gx9ue3",
+  "k": "Hajj steps · The sunnah order: rami→hady→halq→tawaf al-ifadah",
+  "c": ".src-l < .src-u < #src-bukhari-1723"
+ },
+ {
+  "h": "1xqfcdm",
+  "k": "Hajj steps · {1} Dhul Hijjah · Yawm an-Nahr",
+  "c": ".src-l < .src-u < #src-bukhari-1736"
+ },
+ {
+  "h": "1brlndy",
+  "k": "Hajj rulings · Pilgrims are not asked to pray Eid",
+  "c": ".src-l < .src-u < #src-bukhari-1739"
+ },
+ {
+  "h": "10d664z",
+  "k": "Hajj steps · Back to Mina — sleep there tonight",
+  "c": ".src-l < .src-u < #src-bukhari-1745"
+ },
+ {
+  "h": "1ovgu7g",
+  "k": "Hajj steps · Sleep in Mina tonight",
+  "c": ".src-l < .src-u < #src-bukhari-1745"
+ },
+ {
+  "h": "179mj6g",
+  "k": "Hajj steps · After midday: small jamarah→middle→Aqabah, {1} pebbles each, dua after the first two",
+  "c": ".src-l < .src-u < #src-bukhari-1746"
+ },
+ {
+  "h": "1vv547n",
+  "k": "Hajj steps · After midday: small→middle→Aqabah, {1} each — then leave Mina",
+  "c": ".src-l < .src-u < #src-bukhari-1746"
+ },
+ {
+  "h": "1l0rcb",
+  "k": "Hajj steps · After midday: small→middle→Aqabah, {1} each, dua after the first two",
+  "c": ".src-l < .src-u < #src-bukhari-1746"
+ },
+ {
+  "h": "1snqmo1",
+  "k": "Wayfinding",
+  "c": ".src-l < .src-u < #src-bukhari-1748",
+  "part_of": "Wayfinding · The {1}th: where to stand at Jamrat al-Aqabah"
+ },
+ {
+  "h": "11k0r0e",
+  "k": "Wayfinding · The {1}th: where to stand at Jamrat al-Aqabah",
+  "c": ".src-l < .src-u < #src-bukhari-1748"
+ },
+ {
+  "h": "1unwow1",
+  "k": "Wayfinding · {1}th to {2}th: where to pause for dua",
+  "c": ".src-l < .src-u < #src-bukhari-1751"
+ },
+ {
+  "h": "1u8bl53",
+  "k": "Pebble problems",
+  "c": ".src-l < .src-u < #src-bukhari-1753",
+  "part_of": "Pebble problems · Threw two or more at once"
+ },
+ {
+  "h": "jekja2",
+  "k": "Pebble problems · Threw two or more at once",
+  "c": ".src-l < .src-u < #src-bukhari-1753"
+ },
+ {
+  "h": "3b7klj",
+  "k": "Threw two or more at once",
+  "c": ".src-l < .src-u < #src-bukhari-1753",
+  "part_of": "Pebble problems · Threw two or more at once"
+ },
+ {
+  "h": "zyxaa1",
+  "k": "Hajj help · I left Makkah without the farewell tawaf",
+  "c": ".src-l < .src-u < #src-bukhari-1755"
+ },
+ {
+  "h": "1nme04p",
+  "k": "Hajj steps · Before you leave Makkah · Tawaf al-Wada",
+  "c": ".src-l < .src-u < #src-bukhari-1755"
+ },
+ {
+  "h": "rj3wmi",
+  "k": "Hajj steps · Sisters: tawaf al-wada if you are pure — waived if you are on your period",
+  "c": ".src-l < .src-u < #src-bukhari-1755"
+ },
+ {
+  "h": "8na4ir",
+  "k": "Hajj steps · Tawaf al-wada — {1} rounds in ordinary clothes, then leave",
+  "c": ".src-l < .src-u < #src-bukhari-1755"
+ },
+ {
+  "h": "171eqto",
+  "k": "Learn · Tawaf al-wada — the rules",
+  "c": ".src-l < .src-u < #src-bukhari-1755"
+ },
+ {
+  "h": "r0ssnf",
+  "k": "Tawaf al-Wada",
+  "c": ".src-l < .src-u < #src-bukhari-1755",
+  "part_of": "Hajj steps · Before you leave Makkah · Tawaf al-Wada"
+ },
+ {
+  "h": "x1inav",
+  "k": "Hajj steps · Tawaf al-ifadah — {1} rounds, with wudu, no raml, no idtiba'",
+  "c": ".src-l < .src-u < #src-bukhari-1757"
+ },
+ {
+  "h": "1bjx3fg",
+  "k": "Plan · Set my intention & spiritual goals for this Hajj",
+  "c": ".src-l < .src-u < #src-bukhari-1773"
+ },
+ {
+  "h": "ifwcy2",
+  "k": "Plan · Loose, modest clothing (women)",
+  "c": ".src-l < .src-u < #src-bukhari-1838"
+ },
+ {
+  "h": "cs8gfq",
+  "k": "Heat plan · Cool off with water: ihram allows it",
+  "c": ".src-l < .src-u < #src-bukhari-1840"
+ },
+ {
+  "h": "1vf1erl",
+  "k": "Hajj rulings · Pilgrims do not fast the Day of Arafah",
+  "c": ".src-l < .src-u < #src-bukhari-1988"
+ },
+ {
+  "h": "1034zqm",
+  "k": "Hajj steps · Arrive and check you are inside Arafah",
+  "c": ".src-l < .src-u < #src-bukhari-1988"
+ },
+ {
+  "h": "1avlpvc",
+  "k": "Learn · The hady — who owes it and how to pay",
+  "c": ".src-l < .src-u < #src-bukhari-1988"
+ },
+ {
+  "h": "jxps79",
+  "k": "Hajj rulings · No fasting on Eid or the days of tashriq",
+  "c": ".src-l < .src-u < #src-bukhari-1990"
+ },
+ {
+  "h": "r43mjl",
+  "k": "Hajj help · I cannot afford the hady",
+  "c": ".src-l < .src-u < #src-bukhari-1997"
+ },
+ {
+  "h": "10bddj1",
+  "k": "Hajj steps · The hady — your sacrifice",
+  "c": ".src-l < .src-u < #src-bukhari-1997"
+ },
+ {
+  "h": "6ifiao",
+  "k": "Ramadan · The busiest nights of the year",
+  "c": ".src-l < .src-u < #src-bukhari-2017"
+ },
+ {
+  "h": "doetod",
+  "k": "The busiest nights of the year",
+  "c": ".src-l < .src-u < #src-bukhari-2017",
+  "part_of": "Ramadan · The busiest nights of the year"
+ },
+ {
+  "h": "arvnz9",
+  "k": "Hajj help",
+  "c": ".src-l < .src-u < #src-bukhari-305",
+  "part_of": "Hajj help · My period started before tawaf al-ifadah"
+ },
+ {
+  "h": "16pow71",
+  "k": "Hajj help · My period started before tawaf al-ifadah",
+  "c": ".src-l < .src-u < #src-bukhari-305"
+ },
+ {
+  "h": "si9yry",
+  "k": "Learn · Hajj for sisters — period, ifadah, wada, clothing",
+  "c": ".src-l < .src-u < #src-bukhari-305"
+ },
+ {
+  "h": "fn7hww",
+  "k": "Tasbih · The dua of the Day of Arafah",
+  "c": ".src-l < .src-u < #src-bukhari-3293"
+ },
+ {
+  "h": "1m8pg3c",
+  "k": "The dua of the Day of Arafah",
+  "c": ".src-l < .src-u < #src-bukhari-3293",
+  "part_of": "Tasbih · The dua of the Day of Arafah"
+ },
+ {
+  "h": "1r0bks7",
+  "k": "Screens and cards in the app",
+  "c": ".src-l < .src-u < #src-bukhari-38"
+ },
+ {
+  "h": "11jadbg",
+  "k": "Hajj rulings",
+  "c": ".src-l < .src-u < #src-bukhari-970",
+  "part_of": "Hajj rulings · On the way to Arafah: talbiyah, and takbir too"
+ },
+ {
+  "h": "1qp9cds",
+  "k": "Hajj rulings · On the way to Arafah: talbiyah, and takbir too",
+  "c": ".src-l < .src-u < #src-bukhari-970"
+ },
+ {
+  "h": "vy92xi",
+  "k": "Hajj help · I missed the stoning time",
+  "c": ".src-l < .src-u < #src-ibnmajah-3038"
+ },
+ {
+  "h": "12az8w2",
+  "k": "Learn · Can someone stone the jamarat for me?",
+  "c": ".src-l < .src-u < #src-ibnmajah-3038"
+ },
+ {
+  "h": "pq5t8u",
+  "k": "Hajj steps · Finish everything else first — bags packed, shopping done",
+  "c": ".src-l < .src-u < #src-ibnmajah-3070"
+ },
+ {
+  "h": "dzwjf4",
+  "k": "Hajj steps · Dhikr and dua at al-Mash'ar al-Haram",
+  "c": ".src-l < .src-u < #src-muslim-1218"
+ },
+ {
+  "h": "ij4fu8",
+  "k": "Hajj steps · Sleep in Mina · leave for Arafah after sunrise",
+  "c": ".src-l < .src-u < #src-muslim-1218"
+ },
+ {
+  "h": "1k47cxb",
+  "k": "Hajj steps · Spend the night here · Fajr early · dhikr until the sky brightens · leave before sunrise",
+  "c": ".src-l < .src-u < #src-muslim-1218"
+ },
+ {
+  "h": "lal7ar",
+  "k": "Hajj steps · Stand at Arafah — from Dhuhr until sunset",
+  "c": ".src-l < .src-u < #src-muslim-1218"
+ },
+ {
+  "h": "nka6kk",
+  "k": "Heat plan · Jamarat: keep to your group's time",
+  "c": ".src-l < .src-u < #src-muslim-1299"
+ },
+ {
+  "h": "1o5f706",
+  "k": "How big should the pebbles be?",
+  "c": ".src-l < .src-u < #src-muslim-1299",
+  "part_of": "Pebble problems · How big should the pebbles be?"
+ },
+ {
+  "h": "1hmuuid",
+  "k": "Pebble problems · How big should the pebbles be?",
+  "c": ".src-l < .src-u < #src-muslim-1299"
+ },
+ {
+  "h": "e49hnm",
+  "k": "Pebble problems · Stoning at night, or late",
+  "c": ".src-l < .src-u < #src-muslim-1299"
+ },
+ {
+  "h": "g4orrr",
+  "k": "Stoning at night, or late",
+  "c": ".src-l < .src-u < #src-muslim-1299",
+  "part_of": "Pebble problems · Stoning at night, or late"
+ },
+ {
+  "h": "1ce4z9b",
+  "k": "Not sure how many you have thrown",
+  "c": ".src-l < .src-u < #src-muslim-571",
+  "part_of": "Pebble problems · Not sure how many you have thrown"
+ },
+ {
+  "h": "7nylbi",
+  "k": "Pebble problems · Not sure how many you have thrown",
+  "c": ".src-l < .src-u < #src-muslim-571"
+ },
+ {
+  "h": "1xj2zr9",
+  "k": "Hajj steps · Collect {1} small pebbles for tomorrow ({2} or {3} if you want them all now)",
+  "c": ".src-l < .src-u < #src-nasai-3057"
+ },
+ {
+  "h": "nx75r9",
+  "k": "Kids story · Ibrahim calls the whole world to Hajj",
+  "c": ".src-l < .src-u < #src-quran-22_26_27"
+ },
+ {
+  "h": "evqzh4",
+  "k": "Kids story · Ibrahim, Isma'il and the great sacrifice",
+  "c": ".src-l < .src-u < #src-quran-22_37"
+ },
+ {
+  "h": "t8kwxi",
+  "k": "Fasting, tawaf and sleep",
+  "c": ".src-l < .src-u < #src-quran-2_184",
+  "part_of": "Ramadan · Fasting, tawaf and sleep"
+ },
+ {
+  "h": "iashor",
+  "k": "Ramadan · Fasting, tawaf and sleep",
+  "c": ".src-l < .src-u < #src-quran-2_184"
+ },
+ {
+  "h": "l84boj",
+  "k": "Hajj steps · No hady is owed for Ifrad",
+  "c": ".src-l < .src-u < #src-quran-2_196"
+ },
+ {
+  "h": "15gytrw",
+  "k": "No hady is owed for Ifrad",
+  "c": ".src-l < .src-u < #src-quran-2_196",
+  "part_of": "Hajj steps · No hady is owed for Ifrad"
+ },
+ {
+  "h": "8n3gd0",
+  "k": "Plan · Hady (Adahi voucher) bought",
+  "c": ".src-l < .src-u < #src-quran-2_196"
+ },
+ {
+  "h": "1e4kilb",
+  "k": "Hajj steps · Night before the {1}th · Muzdalifah",
+  "c": ".src-l < .src-u < #src-quran-2_198"
+ }
+]

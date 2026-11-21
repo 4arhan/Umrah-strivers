@@ -1,0 +1,414 @@
+[
+ {
+  "h": "1776kbl",
+  "k": "One ticket, two loops: the Red route is the history loop (Uhud, Qiblatayn, Quba), the Green route starts at the Prophet's Mosque. Stops can change, so check the operator's current route map (csmadinah.com), timetable and price when booking.",
+  "c": "#tourCard"
+ },
+ {
+  "h": "18zt1hs",
+  "k": "Book on city-sightseeing.com→",
+  "c": ".btn < #tourCard"
+ },
+ {
+  "h": "cv00kv",
+  "k": "inside the Haram",
+  "c": ".distchip < .place-tg < .place-t"
+ },
+ {
+  "h": "1e2pyux",
+  "k": "Ziyarah is a virtuous extra, never a rite. The journey itself is for the two Harams: \"Do not set out on a journey except to three mosques: al-Masjid al-Haram, the Mosque of the Messenger ﷺ, and al-Masjid al-Aqsa.\" — <1>Bukhari {1}</1>. At Baqi' and Mu'alla: give salam, make dua for the deceased, don't ask of them.",
+  "c": ".note < #view-places",
+  "refs": [
+   "bukhari:1189"
+  ]
+ },
+ {
+  "h": "1dn0kon",
+  "k": "Open in Maps",
+  "c": ".place-a < #pl-haram"
+ },
+ {
+  "h": "5qksei",
+  "k": "Show driver",
+  "c": ".place-a < #pl-haram"
+ },
+ {
+  "h": "lsjyzh",
+  "k": "Getting there",
+  "c": ".place-a < #pl-jamarat"
+ },
+ {
+  "h": "1xk6auq",
+  "k": "The Jamarat, drawn",
+  "c": ".place-a < #pl-jamarat"
+ },
+ {
+  "h": "oftnxq",
+  "k": "Where it begins and ends",
+  "c": ".place-a < #pl-muzdalifah"
+ },
+ {
+  "h": "8kg1er",
+  "k": "Get the free Rawdah permit on Nusuk",
+  "c": ".place-a < #pl-rawdah"
+ },
+ {
+  "h": "70vtu4",
+  "k": "Umrah steps — ihram from here",
+  "c": ".place-a < #pl-taneem"
+ },
+ {
+  "h": "1gbkblt",
+  "k": "The mountain rising directly east of the Haram, held by tradition to be the first mountain placed on earth and the place the Black Stone was safeguarded during the flood.",
+  "c": ".place-t < .place-h < #pl-abuqubays"
+ },
+ {
+  "h": "1orgp23",
+  "k": "\"A messenger came to me from my Lord and said: pray in this blessed valley\" (Bukhari {1}). The valley of Madinah's old estates and the path to the miqat.",
+  "c": ".place-t < .place-h < #pl-aqiq",
+  "refs": [
+   "bukhari:1534"
+  ]
+ },
+ {
+  "h": "10f5sw0",
+  "k": "The plain of the Farewell Sermon where Hajj reaches its peak — \"Hajj is Arafah\" (Tirmidhi {1}). Standing here on {2} Dhul-Hijjah is the heart of Hajj.",
+  "c": ".place-t < .place-h < #pl-arafat",
+  "refs": [
+   "tirmidhi:889"
+  ]
+ },
+ {
+  "h": "15qxcva",
+  "k": "The historic western gate of the mosque — for centuries the traditional entrance by which visitors approach to greet the Prophet ﷺ, Abu Bakr and 'Umar.",
+  "c": ".place-t < .place-h < #pl-babsalam"
+ },
+ {
+  "h": "gxcp0w",
+  "k": "Resting place of 'Uthman (RA), most of the Prophet's ﷺ wives, his daughters, his son Ibrahim, and — by common estimate — some ten thousand companions.",
+  "c": ".place-t < .place-h < #pl-baqi"
+ },
+ {
+  "h": "nk1x8",
+  "k": "Where the people of Madinah secretly pledged allegiance to the Prophet ﷺ in the two Pledges of Aqabah ({1}–{2} CE) — the moment that opened the door to the Hijrah.",
+  "c": ".place-t < .place-h < #pl-bayah"
+ },
+ {
+  "h": "1r48fqa",
+  "k": "By long-standing tradition the site of the house of Aminah where the Prophet ﷺ was born in the Year of the Elephant, in the Shi'b Ali quarter. Today it houses a library.",
+  "c": ".place-t < .place-h < #pl-birth"
+ },
+ {
+  "h": "1emzylg",
+  "k": "'Uthman (RA) bought this well and made it free for all Muslims after the Prophet ﷺ asked: \"Who will buy the well of Rumah and put his bucket with the buckets of the Muslims, for better than it in Paradise?\" (Tirmidhi {1}; see also Bukhari {2}). Its endowment still funds charity {3} years later.",
+  "c": ".place-t < .place-h < #pl-biruthman",
+  "refs": [
+   "tirmidhi:3703",
+   "bukhari:2778"
+  ]
+ },
+ {
+  "h": "1k2oev5",
+  "k": "Astronomy and Islamic timekeeping museum atop the Abraj al-Bait — four floors, then a breathtaking balcony view over the Haram.",
+  "c": ".place-t < .place-h < #pl-clock"
+ },
+ {
+  "h": "ckruck",
+  "k": "The seerah and the history of Madinah with detailed models of the city across the ages.",
+  "c": ".place-t < .place-h < #pl-darmadinah"
+ },
+ {
+  "h": "ar9ypl",
+  "k": "Historic Kaaba doors, kiswah textiles, the old Zamzam well-head, Maqam Ibrahim casings and rare artefacts of the Haramain across the centuries.",
+  "c": ".place-t < .place-h < #pl-exhibition"
+ },
+ {
+  "h": "twxnco",
+  "k": "Where the Prophet ﷺ prayed Eid and istisqa (the rain prayer) — a cloud (ghamamah) is said to have shaded him here.",
+  "c": ".place-t < .place-h < #pl-ghamamah"
+ },
+ {
+  "h": "1ij0w3c",
+  "k": "The House of Allah, qibla of the world, site of your tawaf. \"The first House established for mankind\" (Quran {1}); every prayer here is worth {2} (Ibn Majah {3}).",
+  "c": ".place-t < .place-h < #pl-haram",
+  "refs": [
+   "quran:3:96",
+   "ibnmajah:1406"
+  ]
+ },
+ {
+  "h": "hogoma",
+  "k": "The {1} Ottoman terminus of the Damascus–Madinah line, built to carry pilgrims to the Haramain. The restored station is now a museum of Madinah's history and the railway.",
+  "c": ".place-t < .place-h < #pl-hijazrail"
+ },
+ {
+  "h": "87vftl",
+  "k": "The semicircle beside the Kaaba was part of Ibrahim's original building — praying inside it counts as praying inside the Kaaba (Tirmidhi {1}). Maqam Ibrahim is the stone he stood on while raising the walls (Bukhari {2}; Quran {3}).",
+  "c": ".place-t < .place-h < #pl-hijr",
+  "refs": [
+   "tirmidhi:876",
+   "bukhari:3364",
+   "quran:2:125"
+  ]
+ },
+ {
+  "h": "1p76ur1",
+  "k": "Where the first revelation \"Iqra\" descended upon the Prophet ﷺ (Bukhari {1}).",
+  "c": ".place-t < .place-h < #pl-hira",
+  "refs": [
+   "bukhari:3"
+  ]
+ },
+ {
+  "h": "15n5u0n",
+  "k": "A modern museum at the foot of Jabal an-Nour telling the story of wahy (revelation) with immersive exhibits — the context for everything you recite.",
+  "c": ".place-t < .place-h < #pl-hirac"
+ },
+ {
+  "h": "jbh9wl",
+  "k": "Site of the Treaty of Hudaybiyyah ({1} AH) and the Pledge under the Tree — \"Allah was pleased with the believers when they pledged allegiance to you under the tree\" (Quran {2}). Also a miqat on the western Haram boundary.",
+  "c": ".place-t < .place-h < #pl-hudaybiyyah",
+  "refs": [
+   "quran:48:18"
+  ]
+ },
+ {
+  "h": "1esyiap",
+  "k": "The mosque of Banu Mu'awiyah where the Prophet ﷺ prayed and made a long dua: \"I asked my Lord three things — He granted me two and withheld one\" (Muslim {1}).",
+  "c": ".place-t < .place-h < #pl-ijabah",
+  "refs": [
+   "muslim:2890"
+  ]
+ },
+ {
+  "h": "14rh6vx",
+  "k": "The three jamarat (now long walls) marking where, in a report from Ibn Abbas (RA), Ibrahim (AS) stoned Shaytan when tempted to disobey — re-enacted by every Hajj pilgrim on the Day of Sacrifice (the big jamrah only) and the days of Tashriq.",
+  "c": ".place-t < .place-h < #pl-jamarat"
+ },
+ {
+  "h": "1bax21f",
+  "k": "The UNESCO-listed old town that was the sea gate of pilgrims to Makkah for thirteen centuries — coral-stone houses, wooden rawashin balconies, ancient mosques.",
+  "c": ".place-t < .place-h < #pl-jeddah"
+ },
+ {
+  "h": "1saffq8",
+  "k": "By tradition the place where a group of jinn came to the Prophet ﷺ, heard him recite the Quran and pledged allegiance (cf. Muslim {1}) — hence its other name, the Mosque of Allegiance. Surah al-Jinn ({2}) tells of jinn believing on hearing the Quran.",
+  "c": ".place-t < .place-h < #pl-jinn",
+  "refs": [
+   "muslim:450"
+  ]
+ },
+ {
+  "h": "15iau47",
+  "k": "Where the Prophet ﷺ assumed ihram for his Umrah after the Battle of Hunayn (Bukhari {1}) — one of his four Umrahs. A miqat for those already in Makkah.",
+  "c": ".place-t < .place-h < #pl-jiranah",
+  "refs": [
+   "bukhari:1778"
+  ]
+ },
+ {
+  "h": "bvslwk",
+  "k": "In the valley of Ranuna, where the Prophet ﷺ led his first Friday prayer, on the way from Quba into Madinah after the Hijrah.",
+  "c": ".place-t < .place-h < #pl-jumuah"
+ },
+ {
+  "h": "tdadkk",
+  "k": "Where the Muslims dug the trench at the foot of Mount Sila' in {1} AH and Allah sent the wind against the confederates (Quran {2}). By tradition, small mosques mark the posts of the Prophet ﷺ, Salman, Abu Bakr, 'Umar, 'Ali and Fatimah.",
+  "c": ".place-t < .place-h < #pl-khandaq",
+  "refs": [
+   "quran:33:9"
+  ]
+ },
+ {
+  "h": "1ioej9d",
+  "k": "The great mosque of Mina where the Prophet ﷺ prayed during his Hajj; narrations reported by at-Tabarani say many prophets before him prayed in this valley.",
+  "c": ".place-t < .place-h < #pl-khayf"
+ },
+ {
+  "h": "78njuq",
+  "k": "Where the black silk covering of the Kaaba is woven each year and embroidered with about {1} kg of gold thread and {2} kg of silver thread — a craft of honouring the House that is centuries old.",
+  "c": ".place-t < .place-h < #pl-kiswah"
+ },
+ {
+  "h": "jw1llm",
+  "k": "The history of the Hijaz from pre-Islamic times through the prophetic era to the modern Kingdom, in a {1}s palace.",
+  "c": ".place-t < .place-h < #pl-makkahmuseum"
+ },
+ {
+  "h": "1fa4ndi",
+  "k": "The old caravan-halt and market ground west of the mosque — by tradition the site of the market the Prophet ﷺ chose for Madinah (the report that he said \"this is your market\", Ibn Majah {1}, is graded weak). Masjid al-Ghamamah stands on its edge.",
+  "c": ".place-t < .place-h < #pl-manakha",
+  "refs": [
+   "ibnmajah:2233"
+  ]
+ },
+ {
+  "h": "pgblxr",
+  "k": "Marks the spot where the Prophet ﷺ stood at Muzdalifah making dua until the sky brightened — \"remember Allah at al-Mash'ar al-Haram\" (Quran {1}).",
+  "c": ".place-t < .place-h < #pl-mashar",
+  "refs": [
+   "quran:2:198"
+  ]
+ },
+ {
+  "h": "o7qqfb",
+  "k": "The tent city of Hajj — {1} fireproof tents — and the site of the Jamarat and the sacrifice.",
+  "c": ".place-t < .place-h < #pl-mina"
+ },
+ {
+  "h": "1ez3qp3",
+  "k": "The miqat the Prophet ﷺ appointed for the people of Madinah (Bukhari {1}) — where you will assume ihram before travelling to Makkah, as he did.",
+  "c": ".place-t < .place-h < #pl-miqat",
+  "refs": [
+   "bukhari:1524"
+  ]
+ },
+ {
+  "h": "4bvwn6",
+  "k": "Makkah's ancient cemetery — resting place of Khadijah (RA), the Prophet's ﷺ beloved first wife, and of his grandfather Abdul-Muttalib and uncle Abu Talib.",
+  "c": ".place-t < .place-h < #pl-mualla"
+ },
+ {
+  "h": "1oh71o0",
+  "k": "Where Hajj pilgrims sleep under the open sky between Arafat and Mina — named in the Quran as al-Mash'ar al-Haram ({1}).",
+  "c": ".place-t < .place-h < #pl-muzdalifah"
+ },
+ {
+  "h": "2wfqu9",
+  "k": "The Prophet's ﷺ mosque, built with his own hands — one prayer here is better than a thousand elsewhere, except al-Masjid al-Haram (Bukhari {1}).",
+  "c": ".place-t < .place-h < #pl-nabawi",
+  "refs": [
+   "bukhari:1190"
+  ]
+ },
+ {
+  "h": "1jhatg5",
+  "k": "The Prophet ﷺ had his tent pitched at Namirah on the day of Arafah, then addressed the people and prayed Dhuhr and Asr combined (Muslim {1}). One of the largest mosques in the world.",
+  "c": ".place-t < .place-h < #pl-namirah",
+  "refs": [
+   "muslim:1218"
+  ]
+ },
+ {
+  "h": "1bpdeu2",
+  "k": "One of Madinah's largest malls — a practical hop-off for food courts, kids' areas, pharmacies and gifts.",
+  "c": ".place-t < .place-h < #pl-noormall"
+ },
+ {
+  "h": "w88bna",
+  "k": "Where the revelation to turn the qibla from Jerusalem to Makkah came mid-prayer (Quran {1}) — the congregation turned as one.",
+  "c": ".place-t < .place-h < #pl-qiblatain",
+  "refs": [
+   "quran:2:144"
+  ]
+ },
+ {
+  "h": "19a2npj",
+  "k": "The first mosque of Islam, \"founded on taqwa\" (Quran {1}). Praying here with wudu from home earns the reward of an Umrah (Ibn Majah {2}).",
+  "c": ".place-t < .place-h < #pl-quba",
+  "refs": [
+   "quran:9:108",
+   "ibnmajah:1412"
+  ]
+ },
+ {
+  "h": "xuw87i",
+  "k": "The {1} km palm-lined pedestrian avenue from the Haram to Masjid Quba — walk it as the Prophet ﷺ did on his Saturday visits (Bukhari {2}).",
+  "c": ".place-t < .place-h < #pl-qubasq",
+  "refs": [
+   "bukhari:1193"
+  ]
+ },
+ {
+  "h": "15ey8s",
+  "k": "Two museums beside the Haram: rare mushafs and the science of the Quran, and a sensory walk through the seerah.",
+  "c": ".place-t < .place-h < #pl-quranmuseum"
+ },
+ {
+  "h": "1jvq95u",
+  "k": "\"Between my house and my minbar is a garden from the gardens of Paradise\" (Bukhari {1}).",
+  "c": ".place-t < .place-h < #pl-rawdah",
+  "refs": [
+   "bukhari:1195"
+  ]
+ },
+ {
+  "h": "179t7vj",
+  "k": "\"The Mosque of the Banner\" — by tradition the spot where the Prophet ﷺ planted his standard as he entered Makkah at the Conquest of {1} AH, forgiving the city that had expelled him.",
+  "c": ".place-t < .place-h < #pl-rayah"
+ },
+ {
+  "h": "fcltsr",
+  "k": "\"Indeed Safa and Marwah are among the symbols of Allah\" (Quran {1}). The two hills of Hajar's seven runs, now an air-conditioned {2} m gallery inside the mosque.",
+  "c": ".place-t < .place-h < #pl-safa",
+  "refs": [
+   "quran:2:158"
+  ]
+ },
+ {
+  "h": "1025e87",
+  "k": "The palm garden associated with Salman's (RA) freedom — reports say the Prophet ﷺ planted the date palms with his own hands to pay the price of his manumission.",
+  "c": ".place-t < .place-h < #pl-salman"
+ },
+ {
+  "h": "1mleltf",
+  "k": "The main restaurant and shopping strip — Madinah dates, perfume, and the city's best-known eateries.",
+  "c": ".place-t < .place-h < #pl-sultanah"
+ },
+ {
+  "h": "1r3z5px",
+  "k": "The mountain city that stoned the Prophet ﷺ in the {1}th year of his mission — when the Angel of the Mountains offered to bring the two mountains (al-Akhshabayn) down upon those who rejected him, he refused, hoping for believing descendants (Bukhari {2}). Today: cool air, rose farms, and the mosque of Ibn Abbas (RA).",
+  "c": ".place-t < .place-h < #pl-taif",
+  "refs": [
+   "bukhari:3231"
+  ]
+ },
+ {
+  "h": "1obvqr7",
+  "k": "The nearest boundary of the Haram — where the Prophet ﷺ sent Aishah (RA) to take ihram for her Umrah (Bukhari {1}). Take ihram here for an additional Umrah.",
+  "c": ".place-t < .place-h < #pl-taneem",
+  "refs": [
+   "bukhari:1784"
+  ]
+ },
+ {
+  "h": "658nyy",
+  "k": "The cave where the Prophet ﷺ and Abu Bakr hid for three nights during the Hijrah — \"Do not grieve; indeed Allah is with us\" (Quran {1}).",
+  "c": ".place-t < .place-h < #pl-thawr",
+  "refs": [
+   "quran:9:40"
+  ]
+ },
+ {
+  "h": "crp3eh",
+  "k": "Site of the Battle of Uhud ({1} AH) — resting place of Hamza (RA) and seventy martyrs. \"Uhud is a mountain that loves us and we love it\" (Bukhari {2}).",
+  "c": ".place-t < .place-h < #pl-uhud",
+  "refs": [
+   "bukhari:4083"
+  ]
+ },
+ {
+  "h": "y9mym5",
+  "k": "Gushed out where an angel dug the ground with his heel — at the spot where baby Isma'il had been left — after Hajar's seventh run between the hills (Bukhari {1}). \"Zamzam water is for whatever it is drunk for\" (Ibn Majah {2}).",
+  "c": ".place-t < .place-h < #pl-zamzam",
+  "refs": [
+   "bukhari:3364",
+   "ibnmajah:3062"
+  ]
+ },
+ {
+  "h": "q06be7",
+  "k": "Al Hijaz Railway Station & Museum",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "1qnmdty",
+  "k": "Al Manakha Square",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "ozj9z5",
+  "k": "Al-Noor Mall",
+  "c": ".place-tg < .place-t < .place-h"
+ }
+]

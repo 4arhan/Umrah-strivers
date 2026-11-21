@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
+<script>/* language: direction and script are set before the first paint; the text waits for its pack (i18n.js) */
+(function(d){try{var l=localStorage.getItem('us-lang');if(l&&l!=='en'&&/^[a-z]{2}$/.test(l)){d.lang=l;if(/^(ar|ur|fa)$/.test(l))d.dir='rtl';d.className+=' i18n-wait';}}catch(e){}})(document.documentElement);</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -179,7 +181,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 @media(min-width:900px){body{background:linear-gradient(160deg,var(--bg),var(--bg-soft))}}
 
 /* ─────────── Arabic: a mushaf, not a text field ─────────── */
-.ar,[lang="ar"],.plar,.drv-ar,.drv-arn,.lost-ar,.df-ar,.focus-dua .ar,.focus.tasbih .focus-tip,#printSheet .pr-dua .ar{font-family:var(--fa);direction:rtl;unicode-bidi:isolate;font-weight:var(--w-text);font-feature-settings:'liga','calt','kern'}
+.ar,[lang="ar"]:not(html),.plar,.drv-ar,.drv-arn,.lost-ar,.df-ar,.focus-dua .ar,.focus.tasbih .focus-tip,#printSheet .pr-dua .ar{font-family:var(--fa);direction:rtl;unicode-bidi:isolate;font-weight:var(--w-text);font-feature-settings:'liga','calt','kern'}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 
 /* ─────────── top bar: opaque paper so scrolled text never ghosts behind the brand ─────────── */
@@ -2478,6 +2480,27 @@ select.srch{min-height:48px;max-width:100%}
 .sheet .pk-list .jr-t{font-size:var(--t-3);color:var(--ink);line-height:var(--lh-body);margin:4px 0 8px;text-align:left;overflow-wrap:anywhere}
 .jr-acts{display:flex;flex-wrap:wrap;gap:8px}.jr-acts .chip-btn{display:inline-flex;align-items:center;gap:6px}.jr-acts .chip-btn .mk{width:15px;height:15px}
 .jr-pick.on{background:var(--brand-soft);color:var(--brand-ink);border-color:var(--brand-2)}
+
+/* ───────── 6.11 · languages ───────── */
+html.i18n-wait body{visibility:hidden}
+.lang-list{display:grid;gap:0;margin:6px 0 14px;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;text-align:start}
+.lang-opt{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;min-height:56px;padding:10px 16px;border:0;border-top:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;text-align:start;cursor:pointer}
+.lang-opt:first-child{border-top:0}
+.lang-n{display:grid;gap:1px}
+.lang-n b{font-size:var(--t-5);font-weight:var(--w-strong,600);line-height:1.35}
+.lang-n small{font-size:var(--t-2);color:var(--ink3)}
+.lang-r{flex:none;width:22px;height:22px;border-radius:50%;box-shadow:inset 0 0 0 2px var(--ctl-line)}
+.lang-opt.on{background:var(--brand-soft)}
+.lang-opt.on .lang-r{box-shadow:inset 0 0 0 2px var(--brand-2),inset 0 0 0 6px var(--card),inset 0 0 0 11px var(--brand-2)}
+.lang-h2{font-size:var(--t-2);font-weight:var(--w-text);color:var(--ink3);margin-inline-start:6px}
+.lang-note{font-size:var(--t-2);color:var(--ink3);line-height:1.5;margin:0 0 14px;text-align:start}
+#obLangLnk{display:inline-flex;align-items:center;gap:8px}
+/* right-to-left (Arabic, Urdu, Persian): the browser mirrors flex and grid; these are the physical leftovers */
+[dir="rtl"] body{line-height:1.7}
+[dir="rtl"] .opt,[dir="rtl"] .setrow,[dir="rtl"] .sheet,[dir="rtl"] .card{text-align:right}
+[dir="rtl"] a[href^="tel:"],[dir="rtl"] .ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+[dir="rtl"] .ty-arrow,[dir="rtl"] .ty-chevr,[dir="rtl"] .ty-chevl,[dir="rtl"] .mk-chevr,[dir="rtl"] .mk-chevl,[dir="rtl"] .mk-arrow{transform:scaleX(-1)}
+html:lang(bn) body,html:lang(hi) body{line-height:1.7}
 </style>
 </head>
 <body>
@@ -2779,6 +2802,7 @@ select.srch{min-height:48px;max-width:100%}
   <div class="card card-pad"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px"><h3 style="margin:0" data-mk="hands">Essential duas</h3><button class="xchip" style="margin:0" onclick="goTab('daily','tools','duaCard')" data-mk="hands">My dua list →</button></div><p style="font-size:var(--t-2);color:var(--ink2);margin-bottom:10px">Tap any dua to open it full-screen for reading in the Haram.</p><div id="duaContainer"></div></div>
   </div><div class="sub" id="sub-more-settings">
   <div class="card card-pad"><h3 data-mk="gear">Preferences</h3>
+    <div class="setrow"><div><b>Language</b><small id="langLbl" data-i18n-skip>English</small></div><button class="chip-btn" onclick="I18N.sheet()">Change</button></div>
     <div class="setrow"><div><b>Dark mode</b><small>Easier on the eyes at night</small></div><button class="sw" id="dmTgl" role="switch" aria-checked="false" aria-label="Dark mode" onclick="toggleTheme()"></button></div>
     <div class="setrow"><div><b>Text size</b><small>Larger text for duas, tips and the nav</small></div><div class="segmini" id="textSeg"><button class="on" data-t="" onclick="setText('')">Normal</button><button data-t="lg" onclick="setText('lg')">Large</button></div></div>
     <div class="setrow"><div><b>Essentials Home</b><small>A simpler Home for someone else’s phone: the status card and four big buttons</small></div><button class="sw" id="essSw" role="switch" aria-checked="false" aria-label="Essentials Home" onclick="togEssentials()"></button></div>
@@ -2880,7 +2904,7 @@ select.srch{min-height:48px;max-width:100%}
   <div class="setrow"><div><b>Larger text</b><small>Easier to read without glasses</small></div><button class="sw" id="obText0" role="switch" aria-checked="false" aria-label="Larger text" onclick="setText(ST.text==='lg'?'':'lg')"></button></div>
   <button class="opt big" onclick="chooseJourney('umrah')"><span class="kaaba-i" aria-hidden="true"></span><b>Umrah<small>Ihram → tawaf → sa’i → halq, most of the year (permits pause around the Hajj season — check Nusuk)</small></b></button>
   <button class="opt big" onclick="chooseJourney('hajj')"><span class="mk-i" data-mk="tent" aria-hidden="true"></span><b>Hajj<small>Ihram, then the five days of Dhul Hijjah — with your Umrah first if you do Tamattu’</small></b></button>
-  <div class="ob-links"><button class="lnk" id="obPasteLnk" onclick="pasteGroupSheet()">Joining a group? Paste the leader’s link</button><button class="lnk" id="obCareLnk" onclick="careSheet()">Setting this up for someone else?</button></div>
+  <div class="ob-links"><button class="lnk" id="obLangLnk" onclick="closeOnboard();I18N.sheet(function(){showOnboard();})"><span class="mk-i" data-mk="globe" aria-hidden="true"></span><span id="obLangN" data-i18n-skip>English</span></button><button class="lnk" id="obPasteLnk" onclick="pasteGroupSheet()">Joining a group? Paste the leader’s link</button><button class="lnk" id="obCareLnk" onclick="careSheet()">Setting this up for someone else?</button></div>
   </div>
   <div id="obStep1" hidden>
   <div class="sheet-h kaaba" aria-hidden="true"></div><h3>As-salamu alaykum</h3><p>Where are you on your Umrah journey? We'll take you straight to the right place.</p>
@@ -2895,13 +2919,15 @@ select.srch{min-height:48px;max-width:100%}
   </div>
   <div id="obStep2" hidden></div>
 </div></div>
-<div class="sheet-o" id="gSheet" onclick="if(event.target===this){closeSheet();if(!ST.onboarded)setTimeout(showOnboard,300);}"><div class="sheet" id="gSheetBody" role="dialog" aria-modal="true"></div></div>
+<div class="sheet-o" id="gSheet" onclick="if(event.target===this){var lg=this.querySelector('[data-lang-sheet]');closeSheet();if(!ST.onboarded&&!lg)setTimeout(showOnboard,300);}"><div class="sheet" id="gSheetBody" role="dialog" aria-modal="true"></div></div>
 <div class="focus" id="duaFocus" role="dialog" aria-modal="true" aria-label="Dua reader"><div class="focus-top"><span id="dfTitle">Dua</span><button class="chip-btn" onclick="closeDua()">✕ Close</button></div>
   <div class="df-body"><div class="df-ar" id="dfAr" lang="ar"></div><div class="df-tl" id="dfTl"></div><div class="df-tr" id="dfTr"></div><div class="df-src" id="dfSrc"></div><div class="df-end" id="dfEndB" hidden></div><button class="btn df-ask" id="dfAsk" onclick="dfAsk()" hidden></button><div class="df-hint">screen stays awake · swipe-free reading</div></div>
   <div class="focus-bot" style="gap:10px"><button class="chip-btn" id="dfPrev" onclick="duaNav(-1)" aria-label="Previous dua">◀</button><button class="chip-btn" id="dfSay" data-ar="" onclick="speakBtn(this)" aria-label="Play recitation" data-mk="speaker">Listen</button><button class="chip-btn" id="dfNext" onclick="duaNav(1)" aria-label="Next dua">▶</button></div></div>
 <div class="focus driver" id="qrShow" onclick="this.classList.remove('on')" role="dialog" aria-label="QR code to install the app"><div class="focus-top"><span data-mk="grid">Scan to install</span><button class="chip-btn">✕ Close</button></div><div class="focus-tap" style="justify-content:flex-start;padding:6px 24px"><div class="qr-box"><svg viewBox="0 0 25 25" shape-rendering="crispEdges"><path fill="#111" d="M0 0h7v1h-7zM10 0h1v1h-1zM12 0h1v1h-1zM14 0h2v1h-2zM18 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM11 1h1v1h-1zM18 1h1v1h-1zM24 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM8 2h2v1h-2zM14 2h3v1h-3zM18 2h1v1h-1zM20 2h3v1h-3zM24 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM9 3h1v1h-1zM12 3h1v1h-1zM15 3h1v1h-1zM18 3h1v1h-1zM20 3h3v1h-3zM24 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM8 4h1v1h-1zM11 4h1v1h-1zM14 4h3v1h-3zM18 4h1v1h-1zM20 4h3v1h-3zM24 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h2v1h-2zM18 5h1v1h-1zM24 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h7v1h-7zM9 7h5v1h-5zM15 7h2v1h-2zM1 8h1v1h-1zM4 8h1v1h-1zM6 8h1v1h-1zM8 8h3v1h-3zM13 8h1v1h-1zM16 8h2v1h-2zM19 8h2v1h-2zM22 8h1v1h-1zM1 9h1v1h-1zM3 9h3v1h-3zM8 9h1v1h-1zM10 9h1v1h-1zM13 9h4v1h-4zM20 9h2v1h-2zM23 9h1v1h-1zM1 10h1v1h-1zM6 10h4v1h-4zM11 10h2v1h-2zM15 10h1v1h-1zM17 10h3v1h-3zM21 10h2v1h-2zM0 11h3v1h-3zM5 11h1v1h-1zM7 11h1v1h-1zM11 11h1v1h-1zM14 11h3v1h-3zM19 11h2v1h-2zM22 11h2v1h-2zM2 12h6v1h-6zM9 12h1v1h-1zM11 12h1v1h-1zM13 12h2v1h-2zM17 12h3v1h-3zM21 12h4v1h-4zM0 13h1v1h-1zM3 13h2v1h-2zM7 13h4v1h-4zM13 13h1v1h-1zM15 13h3v1h-3zM20 13h1v1h-1zM23 13h1v1h-1zM2 14h2v1h-2zM5 14h2v1h-2zM9 14h9v1h-9zM19 14h4v1h-4zM3 15h3v1h-3zM8 15h1v1h-1zM11 15h1v1h-1zM14 15h1v1h-1zM19 15h2v1h-2zM22 15h2v1h-2zM0 16h2v1h-2zM3 16h1v1h-1zM6 16h3v1h-3zM11 16h3v1h-3zM15 16h8v1h-8zM8 17h1v1h-1zM10 17h2v1h-2zM13 17h2v1h-2zM16 17h1v1h-1zM20 17h1v1h-1zM0 18h7v1h-7zM9 18h2v1h-2zM16 18h1v1h-1zM18 18h1v1h-1zM20 18h1v1h-1zM0 19h1v1h-1zM6 19h1v1h-1zM9 19h1v1h-1zM11 19h2v1h-2zM14 19h3v1h-3zM20 19h5v1h-5zM0 20h1v1h-1zM2 20h3v1h-3zM6 20h1v1h-1zM8 20h3v1h-3zM12 20h3v1h-3zM16 20h7v1h-7zM24 20h1v1h-1zM0 21h1v1h-1zM2 21h3v1h-3zM6 21h1v1h-1zM9 21h3v1h-3zM14 21h1v1h-1zM17 21h3v1h-3zM22 21h3v1h-3zM0 22h1v1h-1zM2 22h3v1h-3zM6 22h1v1h-1zM9 22h1v1h-1zM11 22h1v1h-1zM14 22h2v1h-2zM17 22h2v1h-2zM21 22h1v1h-1zM23 22h1v1h-1zM0 23h1v1h-1zM6 23h1v1h-1zM8 23h2v1h-2zM12 23h2v1h-2zM15 23h1v1h-1zM17 23h1v1h-1zM19 23h5v1h-5zM0 24h7v1h-7zM9 24h2v1h-2zM13 24h3v1h-3zM17 24h2v1h-2zM22 24h3v1h-3z"/></svg></div><div class="qr-url"><span class="ty-nw">miqah.app</span></div><div class="qr-steps"><b>Scan</b>, <b>open</b>, then <b>Add to Home Screen</b><br>Free · offline · no account</div><div class="focus-hint">tap anywhere to close</div></div></div>
 <div class="toasts" id="toastC"></div>
 
+<script src="i18n/index.js"></script>
+<script src="i18n.js"></script>
 <script src="data.js"></script>
 <script src="cites.js"></script>
 <script src="app.js"></script>

@@ -10,6 +10,7 @@ function smooth(){return RM.matches?'auto':'smooth';}
    Heroes, segment labels, stage cards, card titles, counter titles, the journey chip and the onboarding rows carry these instead of emoji;
    content rows (checklist items, places, FAQ, toasts) keep their emoji. Colour comes from context: lavender on aubergine, --brand-2 on paper (see .mk in index.html). */
 var MARKS={
+  globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.5 3.9 5.5 3.9 9s-1.3 6.5-3.9 9c-2.6-2.5-3.9-5.5-3.9-9S9.400 5.500 12 3z"/>',
   out:'<path d="M8 16 16 8"/><path d="M9.5 8H16v6.5"/>',
   kaaba:'<path d="M4 8.5h13v12H4z"/><path d="M4 8.5l3-3h13v12l-3 3"/><path d="M4 12h13m0 0l3-3"/><path d="M12.5 20.5v-5h2.5v5"/>',
   tent:'<path d="M2 19L8.5 6.5h7L22 19z"/><path d="M9 19l3-6 3 6"/><path d="M8.5 6.5L12 13l3.5-6.5"/>',
@@ -3921,6 +3922,7 @@ function wayRowHTML(){var HJ=journey()==='hajj';return '<div class="way-row" id=
 /* 6.9 (G5 #47): a system notification goes through the service worker's registration — Chrome on Android refuses `new Notification()`.
    The constructor is the fallback where there is no worker (desktop, file://). Still only while the app is open. */
 function sysNotify(title,body,tag){try{if(!('Notification' in window)||Notification.permission!=='granted')return false;
+  if(window.I18N&&I18N.t){title=I18N.t(title);body=I18N.t(body);}
   var o={body:body,tag:tag||'us',icon:'icons/icon-192.png',badge:'icons/favicon-32.png',renotify:false};
   if(swReg&&swReg.showNotification){var p=swReg.showNotification(title,o);if(p&&p.catch)p.catch(function(){});return true;}
   new Notification(title,{body:body,tag:o.tag});return true;}catch(e){return false;}}
@@ -4538,7 +4540,9 @@ function initUI(){
   buildDeck();renderFC();renderPost();updRemSw();applySubs();updChip();renderItin();renderVault();renderDuaSec();renderWater();updToolsOrder();updHotelLbl();loadHotelInfo();loadNiyyah();updKidsSw();applyProfile();renderCntHd();renderJourneys();updEssSw();
   /* an “I’m lost” / “Help” shortcut opened before setup shows its card first — it works with nothing saved (911, 1966) — and setup follows when the card is closed */
   obAfterCard=!ST.onboarded&&!pendingGroup&&(linkGo==='lost'||linkGo==='help');
-  if(!ST.onboarded&&!pendingGroup&&!obAfterCard)setTimeout(function(){showOnboard(linkJourney==='hajj'?'hajj':undefined);},400);
+  /* 6.11: on a first launch the language comes first, when more than English ships */
+  if(!ST.onboarded&&!pendingGroup&&!obAfterCard)setTimeout(function(){var go=function(){showOnboard(linkJourney==='hajj'?'hajj':undefined);};if(window.I18N&&I18N.unset()&&Object.keys(I18N.packs).length)I18N.sheet(go);else go();},400);
+  if(window.I18N)I18N.label();
   kidsBestLbl();renderStories();qzJourneyNote();
   var cm=document.getElementById('cityMakkah'),cd=document.getElementById('cityMadinah');
   if(cm){cm.classList.toggle('on',(ST.city||'Makkah')==='Makkah');cd.classList.toggle('on',ST.city==='Madinah');}
@@ -4559,7 +4563,7 @@ function initUI(){
 /* Places: the sticky filter row is see-through until it sticks, so the hero's shadow and halo never end in a hard edge */
 document.addEventListener('DOMContentLoaded',function(){var s=document.querySelector('.pl-sent'),row=document.querySelector('.pills.pl-sticky');if(!s||!row||!window.IntersectionObserver)return;row.classList.add('io');
   new IntersectionObserver(function(e){row.classList.toggle('stuck',!e[e.length-1].isIntersecting);},{rootMargin:'-57px 0px 0px 0px'}).observe(s);});
-document.addEventListener('DOMContentLoaded',function(){loadAll();wnFresh=!ST.onboarded;pendingGroup=parseGroupLink();applyDepLink();parseGoLink();initUI();if(pendingGroup)setTimeout(function(){showGroupSheet(pendingGroup);},350);else if(pendingDep)setTimeout(depLinkSheet,350);registerSW();updBkLine();iabShow();bkUndoOffer();if(isStandalone())askPersist();setTimeout(bkNudgeCheck,3000);g6Init();setTimeout(whatsNewCheck,1400);});
+document.addEventListener('DOMContentLoaded',function(){loadAll();wnFresh=!ST.onboarded;pendingGroup=parseGroupLink();applyDepLink();parseGoLink();initUI();if(pendingGroup)setTimeout(function(){showGroupSheet(pendingGroup);},350);else if(pendingDep)setTimeout(depLinkSheet,350);registerSW();updBkLine();iabShow();bkUndoOffer();if(isStandalone())askPersist();setTimeout(bkNudgeCheck,3000);g6Init();if(ST.onboarded&&window.I18N&&I18N.offerOnce)setTimeout(function(){I18N.offerOnce(whatsNewCheck);},900);setTimeout(whatsNewCheck,1400);});
 
 /* ════════ chrome typography pass (6.1 "Disciplined" type system) ════════
    Chrome strings (buttons, chips, labels, list rows) render their emoji as stroke marks (or drop them) and their
@@ -4568,7 +4572,7 @@ var CHROME_SEL='button,a,.res .i,.btn,.chip-btn,.lnk,.pill,.xchip,.chip,label,.a
 var GLYPH_MK={'↻':'refresh','✓':'check','✔':'check','▶':'chevr','►':'chevr','◀':'chevl','◄':'chevl','←':'chevl','▾':'chevd','▼':'chevd','▴':'chevu','▲':'chevu','✕':'close','✖':'close','×':'close','⛶':'expand','＋':'plus','↗':'ext','→':'arrow','↺':'refresh','↔':'lr'};
 var CHROME_RE=/(?:[⌚⌛⏩-⏺☀-✒✔-➿⬆⬇⬛⬜⭐]|[\ud83c-\ud83e][\udc00-\udfff])(?:[️‍]|[\ud83c-\ud83e][\udc00-\udfff]|[☀-➿])*|[↻↺↔✓✔▶►◀◄←▾▼▴▲✕✖⛶＋↗→]/g;
 function chromeText(tn){
-  var el=tn.parentElement;if(!el||el.closest('.ar,[lang="ar"],script,style,textarea,svg'))return;
+  var el=tn.parentElement;if(!el||el.closest('.ar,[lang="ar"]:not(html),script,style,textarea,svg'))return;
   var v=tn.nodeValue;
   if(v.indexOf('"')>=0)curlBlock(el);v=tn.nodeValue;
   if(v.indexOf('ﷺ')>=0){var f=document.createDocumentFragment(),parts=[];v.split('ﷺ').forEach(function(p,i){if(i){var sp=document.createElement('span');sp.className='ty-saw';sp.lang='ar';sp.textContent='ﷺ';f.appendChild(sp);}var t=document.createTextNode(p);parts.push(t);f.appendChild(t);});tn.parentNode.replaceChild(f,tn);parts.forEach(function(t){if(t.nodeValue)chromeText(t);});return;}
@@ -4591,7 +4595,7 @@ function chromeText(tn){
 /* content copy (notes, answers, stories, quiz text): no colour emoji. An emoji that opens its block becomes its stroke mark;
    any other is dropped with the space before it. Returns the text node that replaces tn (or tn). */
 function contentEmoji(tn){var v=tn.nodeValue;EMO_RE.lastIndex=0;if(!EMO_RE.test(v))return tn;
-  var el=tn.parentElement;if(!el||el.closest('input,textarea,select,option,title,.ar,[lang="ar"],svg,script,style'))return tn;
+  var el=tn.parentElement;if(!el||el.closest('input,textarea,select,option,title,.ar,[lang="ar"]:not(html),svg,script,style'))return tn;
   EMO_RE.lastIndex=0;var m=EMO_RE.exec(v),lead='';if(m&&!v.slice(0,m.index).trim()&&atBlockStart(tn))lead=emk(m[0]);
   EMO_RE.lastIndex=0;var nv=v.replace(EMO_RE,'\u0001').replace(/(\s*)\u0001+(\s*)/g,function(s,a,b,off,str){if(!str.slice(0,off).trim())return a&&!atBlockStart(tn)?' ':'';return (a||b)?' ':'';});
   var nt=document.createTextNode(nv);tn.parentNode.replaceChild(nt,tn);
@@ -4602,7 +4606,7 @@ function atBlockStart(tn){var n=tn;for(var up=0;n&&up<6;up++){var p=n.previousSi
 function inFlow(el){try{return !/flex|grid/.test(getComputedStyle(el).display);}catch(e){return true;}}
 /* in copy (paragraphs, notes, meta lines) → ✓ ↺ ↻ ↔ would fall back to a system font: each becomes its stroke mark, in place */
 var COPY_RE=/[→✓✔↺↻↔]/g;
-function copyGlyphs(tn){var el=tn.parentElement;if(!el||el.closest('input,textarea,select,option,title,.ar,[lang="ar"],svg,script,style'))return;var v=tn.nodeValue;COPY_RE.lastIndex=0;if(!COPY_RE.test(v))return;COPY_RE.lastIndex=0;
+function copyGlyphs(tn){var el=tn.parentElement;if(!el||el.closest('input,textarea,select,option,title,.ar,[lang="ar"]:not(html),svg,script,style'))return;var v=tn.nodeValue;COPY_RE.lastIndex=0;if(!COPY_RE.test(v))return;COPY_RE.lastIndex=0;
   var out='',last=0,m;while((m=COPY_RE.exec(v))){var g=m[0],pre=v.slice(last,m.index),lead=!out&&/^\s*$/.test(pre),trail=/^\s*$/.test(v.slice(m.index+1));out+=escT(lead?'':pre);out+=mk(GLYPH_MK[g]||'check','ty-g ty-'+(GLYPH_MK[g]||'check')+(lead?' ty-lead':trail?' ty-trail':' ty-mid'));last=m.index+1;if(lead&&v.charAt(last)===' ')last++;}
   out+=escT(v.slice(last));if(/ty-trail[^>]*>[\s\S]*<\/svg>$/.test(out))out=out.replace(/\s+(<svg[^>]*ty-trail[^>]*>[\s\S]*?<\/svg>)$/,'$1');if(inFlow(el))out=out.replace(/([^\s<>]+)(<svg[^>]*ty-trail[^>]*>[\s\S]*?<\/svg>)$/,'<span class="ty-nw">$1$2</span>');
   var tp=document.createElement('template');tp.innerHTML=out;tn.parentNode.replaceChild(tp.content,tn);}
@@ -4620,7 +4624,7 @@ var TIE_SEL='.fd-k,.focus-hint,.df-hint,.ptc,#hNext span,.tli-t small,.row-t .x,
 var TIE_W=/^(?:Hajj|Umrah|Day|day|Step|step|Round|round|Level|level|Part|Lap|lap|Q)$/;
 function tieAll(root){if(!root)return;if(root.nodeType===3)root=root.parentElement;if(!root||!root.closest)return;var els=[],c=root.closest(TIE_SEL);if(c)els.push(c);if(root.querySelectorAll)els=els.concat([].slice.call(root.querySelectorAll(TIE_SEL)));
   els.forEach(function(el){var tw=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),a=[],n,last=null;while((n=tw.nextNode())){if(n.nodeValue.trim())last=n;if(/ \S/.test(n.nodeValue))a.push(n);}a.forEach(function(t){tieNode(t,t===last);});});}
-function tieNode(tn,isLast){var p=tn.parentElement;if(!p||p.closest('.ty-nw,.ar,[lang="ar"],input,textarea,svg,script,style'))return;
+function tieNode(tn,isLast){var p=tn.parentElement;if(!p||p.closest('.ty-nw,.ar,[lang="ar"]:not(html),input,textarea,svg,script,style'))return;
   var w=tn.nodeValue.split(' '),N=w.length;if(N<2)return;var tie=[],any=false,i,a,b;
   for(i=1;i<N;i++){a=w[i-1];b=w[i];var t=false;
     if(a&&b&&/\d[%+]?[,.:;]?$/.test(a)&&/^[\w%’'\/]{1,8}[.,;:)?!]?$/.test(b))t=true;           // 30 days · 5 steps · 1448 AH · 0 of

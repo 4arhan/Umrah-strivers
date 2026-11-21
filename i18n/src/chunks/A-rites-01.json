@@ -1,0 +1,128 @@
+[
+ {
+  "h": "1bzb61g",
+  "k": "Still unticked (not required to record, but read \"Missed it?\" on each first): the hady · the night of the {1}th in Mina · rami of the {2}th · the night of the {3}th · rami of the {4}th.",
+  "c": "#hajjWajibNote"
+ },
+ {
+  "h": "kquf8w",
+  "k": "Still unticked (not required to record, but read \"Missed it?\" on each first): the night at Muzdalifah · the hady · the night of the {1}th in Mina · rami of the {2}th · the night of the {3}th · rami of the {4}th.",
+  "c": "#hajjWajibNote"
+ },
+ {
+  "h": "1ojuc64",
+  "k": "Still unticked (not required to record, but read \"Missed it?\" on each first): the night at Muzdalifah · the hady · the night of the {1}th in Mina · the night of the {2}th · rami of the {3}th.",
+  "c": "#hajjWajibNote"
+ },
+ {
+  "h": "1atz69x",
+  "k": "Still unticked (not required to record, but read \"Missed it?\" on each first): the night at Muzdalifah · the hady · the night of the {1}th in Mina · the night of the {2}th.",
+  "c": "#hajjWajibNote"
+ },
+ {
+  "h": "11ahana",
+  "k": "Still unticked (not required to record, but read \"Missed it?\" on each first): the night at Muzdalifah · the night of the {1}th in Mina · rami of the {2}th · the night of the {3}th · rami of the {4}th.",
+  "c": "#hajjWajibNote"
+ },
+ {
+  "h": "1okqy0f",
+  "k": "Still unticked (not required to record, but read \"Missed it?\" on each first): the night at Muzdalifah · the night of the {1}th in Mina · the night of the {2}th.",
+  "c": "#hajjWajibNote"
+ },
+ {
+  "h": "15bdee1",
+  "k": "<1>Missed it?</1> Cannot afford a hady? The Quran's own alternative: fast three days during Hajj and seven days when you are home. Best the {1}th–{2}th (Shafi'i) or the {3}th–{4}th (Hanafi / Hanbali — the {5}th is allowed for the one who owes this fast). Missed them? Malikis and Hanbalis allow the days of tashriq (Bukhari {6}–{7}), as does al-Shafi'i's old view; the relied-upon Shafi'i view does not, so the three days are made up later; Hanafis say the hady is then owed instead. Forgot to arrange it? It may be slaughtered until sunset on the {8}th according to Hanafis, Malikis and Hanbalis, or the {9}th according to many contemporary scholars (Shafi'is set no last day, though the {10}th is best); after that most scholars say it is still owed and must be made up. Tell your group leader / ask a scholar.",
+  "c": "#miss-h10hady",
+  "refs": [
+   "bukhari:1997"
+  ]
+ },
+ {
+  "h": "fj65oi",
+  "k": "<1>Missed it?</1> Changed into normal clothes before cutting? Put the ihram back on if you can and cut now. Whether a fidyah is owed differs: Shafi'is and Hanbalis excuse clothing worn forgetfully or unknowingly, but not cutting hair or nails; Hanafis require it regardless, and so do Malikis unless you had already stoned (for them the stoning alone opens the first tahallul); some Hanbalis and many contemporary scholars say nothing is owed for forgetting or not knowing (Bukhari {1}) — a fast of {2} days, feeding {3} poor, or a sheep (Quran {4}; the amounts are from Bukhari {5}). Shaved before the hady or before the rami? \"No harm\" (Bukhari {6}) for Shafi'is and Hanbalis; Hanafis: a dam; Malikis: a fidyah for shaving before the rami. Left Makkah without ever cutting? Cut as soon as you remember, wherever you are — until then intimacy stays forbidden. Hanafis and Malikis say a dam is owed; Shafi'is and Hanbalis say nothing is owed for the delay. Tell your group leader / ask a scholar.",
+  "c": "#miss-h10halq",
+  "refs": [
+   "bukhari:1536",
+   "quran:2:196",
+   "bukhari:1814",
+   "bukhari:1736"
+  ]
+ },
+ {
+  "h": "cpplf6",
+  "k": "<1>Missed it?</1> Forgot to cut? Cut now. Your ordinary clothes were never a problem — women wear them in ihram — and the delay itself owes nothing if you cut by the {1}th. If you did something else forbidden before cutting (perfume, cutting nails, niqab or gloves): Shafi'is and Hanbalis excuse perfume used forgetfully but not cutting nails; Hanafis require the fidyah regardless; Malikis owe nothing once you had stoned (the stoning alone opens their first tahallul); many contemporary scholars excuse all forgetting (Bukhari {2}) — a fast of {3} days, feeding {4} poor, or a sheep (Quran {5}; the amounts are from Bukhari {6}). Left Makkah without cutting? Cut as soon as you remember. Hanafis and Malikis say a dam is owed; Shafi'is and Hanbalis say nothing is owed for the delay. Tell your group leader / ask a scholar.",
+  "c": "#miss-h10halqw",
+  "refs": [
+   "bukhari:1536",
+   "quran:2:196",
+   "bukhari:1814"
+  ]
+ },
+ {
+  "h": "sbp0cs",
+  "k": "<1>Missed it?</1> Never done? The Hajj is not complete: intimacy stays forbidden until you do it — even if that means months later or a return trip; nothing else substitutes for it. Delayed past the {1}th? Valid, and most scholars say nothing is owed (Hanafis: a dam once sunset on the {2}th has passed, unless a period caused the delay; Malikis: a dam once Dhul Hijjah ends). A sister whose period will not end before the group leaves: scholars differ — some permit tawaf with precautions in genuine necessity; do not decide alone. Tell your group leader / ask a scholar.",
+  "c": "#miss-h10ifadah"
+ },
+ {
+  "h": "16m3z4j",
+  "k": "<1>Missed it?</1> Spent the night in Makkah or Aziziyah with no excuse? Most scholars say a dam is owed if the nights are missed (some say one dam for all the nights; Hanafis treat the nights as sunnah with no dam). Illness, caring for the sick, or no space in the camp are valid excuses. Tell your group leader / ask a scholar.",
+  "c": "#miss-h10night"
+ },
+ {
+  "h": "1k6agr",
+  "k": "<1>Missed it?</1> Did them out of order? \"No harm\" (Bukhari {1}) — Shafi'is and Hanbalis say nothing is owed. Hanafis: a dam for shaving before the stoning, or (Qiran / Tamattu') for sacrificing before the stoning or shaving before the hady; Malikis: a fidyah for shaving before the stoning, and a dam for a tawaf al-ifadah done before it. Mention it to your group leader so the rest of the day is sequenced right, and ask a scholar if your group follows the Hanafi school.",
+  "c": "#miss-h10order",
+  "refs": [
+   "bukhari:1736"
+  ]
+ },
+ {
+  "h": "1ojd89t",
+  "k": "<1>Missed it?</1> Not stoned today? Do it tonight (most scholars; the Hanbali school: tomorrow after midday) or, at the latest, tomorrow before that day's three jamarat (today's first, in order) — the stoning is made up. Shafi'is and Hanbalis: nothing more is owed; Hanafis: nothing if you stone before Fajr of the {1}th, a dam if it waits until the next day; Malikis: a dam is owed for the delay. If the {2}th passes with it undone, a dam is owed by all. Unable to go at all (illness, age, pregnancy, fear of the crush)? Appoint someone who has stoned for themselves to throw your seven — delegation for the one unable is permitted by all four schools (al-Mughni; the companions stoned on behalf of the children, Ibn Majah {3} — weak chain, meaning accepted); Malikis add that the one unable still owes a dam. Tell your group leader / ask a scholar.",
+  "c": "#miss-h10rami",
+  "refs": [
+   "ibnmajah:3038"
+  ]
+ },
+ {
+  "h": "11vxga7",
+  "k": "<1>Missed it?</1> Forgot it or left it for later? Do it whenever you remember, even days later — it does not need ihram or a new tawaf, only to come after a tawaf you have already done (Malikis: do the sa'i straight after the tawaf; after a long gap repeat the tawaf first). Never done at all? It is a pillar for the majority (a wajib with a dam for Hanafis), so the Hajj stays incomplete until it is done. Tell your group leader / ask a scholar.",
+  "c": "#miss-h10sai"
+ },
+ {
+  "h": "vfhvyp",
+  "k": "<1>Missed it?</1> Nothing to make up — a Mufrid owes no hady. If a package insists you pay for one, tell your group leader / ask a scholar.",
+  "c": "#miss-h10udhiyah"
+ },
+ {
+  "h": "sfqxhi",
+  "k": "<1>Missed it?</1> Missed with no excuse? For this night alone the schools differ: the Malikis owe a dam, as do the Hanbalis in their relied-upon view (another Hanbali view: a mudd of food), the Shafi'is a mudd of food, the Hanafis nothing; missing all the nights owes a dam for the majority — see the night of the {1}th. Excuses (illness, caring, no space) remove it. Tell your group leader / ask a scholar.",
+  "c": "#miss-h11night"
+ },
+ {
+  "h": "1b6gku2",
+  "k": "<1>Missed it?</1> Missed today? Stone it tomorrow before that day's three, in order: today's three first, then tomorrow's — the stoning is made up. Shafi'is and Hanbalis: nothing more is owed; Hanafis and Malikis: a dam is owed for the delay. Stoned before midday? The majority count it as not done — repeat it after midday (Hanafis allow before midday only on the {1}th; a few contemporary scholars permit it on the {2}th for the weak in severe crowding — ask before relying on it). Unable to go? Delegate to someone who has stoned for themselves (permitted by all four schools — Ibn Majah {3} has a weak chain, its meaning is accepted; Malikis add a dam for the one unable). If the {4}th passes with any day undone, a dam is owed by all. Tell your group leader / ask a scholar.",
+  "c": "#miss-h11rami",
+  "refs": [
+   "ibnmajah:3038"
+  ]
+ },
+ {
+  "h": "nevfin",
+  "k": "<1>Missed it?</1> Sun set while you were still in the camp with your bags, and you left anyway without stoning on the {1}th? The majority say a dam is owed; some scholars excuse those who had already begun to leave and were only held up. Still in Mina now? Simply stay — the {2}th's stoning is after midday tomorrow. Tell your group leader / ask a scholar.",
+  "c": "#miss-h12leave"
+ },
+ {
+  "h": "188wgbm",
+  "k": "<1>Missed it?</1> Missed or done before midday? Repeat after midday, or stone tomorrow in order (the {1}th's three, then the {2}th's) — the stoning is made up; Shafi'is and Hanbalis: nothing more is owed, Hanafis and Malikis: a dam for the delay. If the {3}th passes with it undone, a dam is owed by all. Unable? Delegate (permitted by all four schools — Ibn Majah {4} has a weak chain, its meaning is accepted; Malikis add a dam for the one unable). Tell your group leader / ask a scholar.",
+  "c": "#miss-h12rami",
+  "refs": [
+   "ibnmajah:3038"
+  ]
+ },
+ {
+  "h": "1nhbb2y",
+  "k": "<1>Missed it?</1> Missed with no excuse? For a single night the schools differ: the Malikis owe a dam, as do the Hanbalis in their relied-upon view (another Hanbali view: a mudd of food), the Shafi'is a mudd of food, the Hanafis nothing (they count the nights as sunnah); missing all the nights owes a dam for the majority. Valid excuses remove it. Tell your group leader / ask a scholar.",
+  "c": "#miss-h13night"
+ }
+]

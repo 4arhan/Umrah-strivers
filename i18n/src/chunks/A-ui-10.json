@@ -1,0 +1,915 @@
+[
+ {
+  "h": "1bvqlqe",
+  "k": "Devoted",
+  "c": ".n < .bdg < #bdgGrid"
+ },
+ {
+  "h": "1ptqmzu",
+  "k": "Explorer",
+  "c": ".n < .bdg < #bdgGrid"
+ },
+ {
+  "h": "stmhic",
+  "k": "First Umrah",
+  "c": ".n < .bdg < #bdgGrid"
+ },
+ {
+  "h": "r4t7hr",
+  "k": "Fully Prepped",
+  "c": ".n < .bdg < #bdgGrid"
+ },
+ {
+  "h": "6jl8nh",
+  "k": "Hajji",
+  "c": ".n < .bdg < #bdgGrid"
+ },
+ {
+  "h": "4bw7sf",
+  "k": "Little Pilgrim",
+  "c": ".n < .bdg < #bdgGrid"
+ },
+ {
+  "h": "1di3al2",
+  "k": "Night in the Haram",
+  "c": ".n < .bdg < #bdgGrid"
+ },
+ {
+  "h": "1cl0a2i",
+  "k": "Quiz Master",
+  "c": ".n < .bdg < #bdgGrid"
+ },
+ {
+  "h": "ngh69e",
+  "k": "Quran Companion",
+  "c": ".n < .bdg < #bdgGrid"
+ },
+ {
+  "h": "1rpq50n",
+  "k": "<1>Review status:</1> citations checked against the source texts · <2>scholar review: pending</2> — if you are a qualified scholar willing to review, please get in touch.",
+  "c": ".note < #aboutCard"
+ },
+ {
+  "h": "1fq9lzv",
+  "k": "Ifrad — Hajj alone.",
+  "c": ".note < #hajjContainer"
+ },
+ {
+  "h": "1ek1awl",
+  "k": "Qiran — Umrah and Hajj in one ihram.",
+  "c": ".note < #hajjContainer"
+ },
+ {
+  "h": "1lo9y7l",
+  "k": "Tamattu' — Umrah first, exit ihram, then Hajj on {1} Dhul Hijjah.",
+  "c": ".note < #hajjContainer"
+ },
+ {
+  "h": "1najfgc",
+  "k": "each day opens on its date; nothing closes because a day has passed.",
+  "c": ".note < #hajjContainer",
+  "part_of": "{1} Dhul Hijjah ≈ {2} {M1} {3} · each day opens on its date; nothing closes because a day has passed."
+ },
+ {
+  "h": "1c5l8q4",
+  "k": "{1} Dhul Hijjah ≈ {2} {M1} {3}",
+  "c": ".note < #hajjContainer",
+  "part_of": "{1} Dhul Hijjah ≈ {2} {M1} {3} · each day opens on its date; nothing closes because a day has passed."
+ },
+ {
+  "h": "1620qxy",
+  "k": "{1} Dhul Hijjah ≈ {2} {M1} {3} · each day opens on its date; nothing closes because a day has passed.",
+  "c": ".note < #hajjContainer"
+ },
+ {
+  "h": "pr37ia",
+  "k": "\"They will come to you on foot and on every lean camel from every distant pass.\" — Quran {1}",
+  "c": ".note < #homeArea",
+  "refs": [
+   "quran:22:27"
+  ]
+ },
+ {
+  "h": "1b5tdl9",
+  "k": "A man said, \"I did not realise, and shaved before slaughtering.\" He ﷺ said: \"Slaughter now, there is no harm.\" Another: \"I did not realise, and slaughtered before stoning.\" — \"Stone now, there is no harm.\" — Bukhari {1}",
+  "c": ".note < .sec-bd < #sec-hd10",
+  "refs": [
+   "bukhari:1736"
+  ]
+ },
+ {
+  "h": "1rp0695",
+  "k": "\"The days of Mina are three; whoever hastens in two days there is no sin on him, and whoever delays, there is no sin on him.\" — Tirmidhi {1} (cf. Quran {2})",
+  "c": ".note < .sec-bd < #sec-hd11",
+  "refs": [
+   "tirmidhi:889",
+   "quran:2:203"
+  ]
+ },
+ {
+  "h": "1ucezaz",
+  "k": "\"…whoever hastens in two days there is no sin on him.\" — Quran {1}",
+  "c": ".note < .sec-bd < #sec-hd12",
+  "refs": [
+   "quran:2:203"
+  ]
+ },
+ {
+  "h": "epnpl",
+  "k": "\"…and whoever delays, there is no sin on him — for the one who fears Allah.\" — Quran {1}",
+  "c": ".note < .sec-bd < #sec-hd13",
+  "refs": [
+   "quran:2:203"
+  ]
+ },
+ {
+  "h": "1ogouye",
+  "k": "\"Learn your rites, for I do not know whether I will perform Hajj after this one.\" — Abu Dawud {1} (also in Muslim)",
+  "c": ".note < .sec-bd < #sec-hd8",
+  "refs": [
+   "abudawud:1970"
+  ]
+ },
+ {
+  "h": "1ohh9h2",
+  "k": "\"Hajj is Arafah.\" — Tirmidhi {1}",
+  "c": ".note < .sec-bd < #sec-hd9",
+  "refs": [
+   "tirmidhi:889"
+  ]
+ },
+ {
+  "h": "14ec1xv",
+  "k": "\"…remember Allah at al-Mash'ar al-Haram.\" — Quran {1}",
+  "c": ".note < .sec-bd < #sec-hd9n",
+  "refs": [
+   "quran:2:198"
+  ]
+ },
+ {
+  "h": "1yx9eyj",
+  "k": "\"The people were ordered to make the tawaf of the House the last thing — except the menstruating women, who were excused.\" — Bukhari {1}",
+  "c": ".note < .sec-bd < #sec-hdw",
+  "refs": [
+   "bukhari:1755"
+  ]
+ },
+ {
+  "h": "8v7xno",
+  "k": "A woman lifted up a child and asked, \"Is there Hajj for this one?\" The Prophet ﷺ said: \"Yes, and you will have a reward.\" — Sahih Muslim. A child's Umrah is valid and rewarded; a guardian makes the intention for a small child.",
+  "c": ".note < .sec-bd < #sec-kids"
+ },
+ {
+  "h": "eckado",
+  "k": "\"Actions are but by intentions, and every person shall have what they intended.\" — Bukhari {1}",
+  "c": ".note < .sec-bd < #sec-ph1",
+  "refs": [
+   "bukhari:1"
+  ]
+ },
+ {
+  "h": "5cz4ql",
+  "k": "\"Whoever performs tawaf around this House seven times and keeps count of it, it is like freeing a slave.\" — Tirmidhi {1}",
+  "c": ".note < .sec-bd < #sec-ph2",
+  "refs": [
+   "tirmidhi:959"
+  ]
+ },
+ {
+  "h": "baol6n",
+  "k": "\"Indeed, Safa and Marwah are among the symbols of Allah.\" — Quran {1}",
+  "c": ".note < .sec-bd < #sec-ph3",
+  "refs": [
+   "quran:2:158"
+  ]
+ },
+ {
+  "h": "2qk9z8",
+  "k": "\"O Allah, forgive those who shave their heads.\" He said it three times, and the fourth: \"…and those who shorten.\" — Bukhari {1}",
+  "c": ".note < .sec-bd < #sec-ph4",
+  "refs": [
+   "bukhari:1728"
+  ]
+ },
+ {
+  "h": "1oruz5f",
+  "k": "Part {1}",
+  "c": ".now-k < .now-l < #riteNow",
+  "part_of": "Part {1} · step {2} of {3}"
+ },
+ {
+  "h": "1cp8usk",
+  "k": "Part {1} · step {2} of {3}",
+  "c": ".now-k < .now-l < #riteNow"
+ },
+ {
+  "h": "kxzbv9",
+  "k": "Step {1} of {2}",
+  "c": ".now-k < .now-l < #riteNow"
+ },
+ {
+  "h": "18kmtjb",
+  "k": "Today · Arafah · step {1} of {2}",
+  "c": ".now-k < .now-l < #riteNow"
+ },
+ {
+  "h": "8w3evv",
+  "k": "Today · First day of tashriq · step {1} of {2}",
+  "c": ".now-k < .now-l < #riteNow"
+ },
+ {
+  "h": "19tursn",
+  "k": "Today · Second day of tashriq · step {1} of {2}",
+  "c": ".now-k < .now-l < #riteNow"
+ },
+ {
+  "h": "70q7nd",
+  "k": "Today · Tarwiyah · step {1} of {2}",
+  "c": ".now-k < .now-l < #riteNow"
+ },
+ {
+  "h": "nwuw68",
+  "k": "Today · Tawaf al-Wada · step {1} of {2}",
+  "c": ".now-k < .now-l < #riteNow"
+ },
+ {
+  "h": "bdnyjt",
+  "k": "Today · Yawm an-Nahr · step {1} of {2}",
+  "c": ".now-k < .now-l < #riteNow"
+ },
+ {
+  "h": "1q1ib05",
+  "k": "step {1} of {2}",
+  "c": ".now-k < .now-l < #riteNow",
+  "part_of": "Part {1} · step {2} of {3}"
+ },
+ {
+  "h": "1c7wjk6",
+  "k": "Ghusl & grooming",
+  "c": ".now-t < .now-l < #riteNow"
+ },
+ {
+  "h": "h4tkbf",
+  "k": "Ghusl, perfume on the body, ihram garments — from your hotel",
+  "c": ".now-t < .now-l < #riteNow"
+ },
+ {
+  "h": "e4zn8q",
+  "k": "✓Done",
+  "c": ".now-tick < #riteNow"
+ },
+ {
+  "h": "q75l84",
+  "k": "You are here",
+  "c": ".nowtag < .stage-h < .stage-b"
+ },
+ {
+  "h": "20ktns",
+  "k": "essential duas with audio",
+  "c": ".nums < #homeArea"
+ },
+ {
+  "h": "95vn9t",
+  "k": "knowledge topics",
+  "c": ".nums < #homeArea"
+ },
+ {
+  "h": "5luqmr",
+  "k": "places & sites",
+  "c": ".nums < #homeArea"
+ },
+ {
+  "h": "6xlnnm",
+  "k": "quiz questions in {1} levels",
+  "c": ".nums < #homeArea"
+ },
+ {
+  "h": "1ubnx5f",
+  "k": "of {1} laps",
+  "c": ".of < .tr-mid < #saiRingBtn"
+ },
+ {
+  "h": "gkwh5s",
+  "k": "of {1} rounds",
+  "c": ".of < .tr-mid < #tawafRingBtn"
+ },
+ {
+  "h": "6lkra7",
+  "k": "✓After the small and the middle only",
+  "c": ".ok < .fc-opts < .fc-face"
+ },
+ {
+  "h": "1n03ztg",
+  "k": "✓After the sun had passed its zenith (zawal)",
+  "c": ".ok < .fc-opts < .fc-face"
+ },
+ {
+  "h": "1rwxq4j",
+  "k": "✓Arafah",
+  "c": ".ok < .fc-opts < .fc-face"
+ },
+ {
+  "h": "1vct2y1",
+  "k": "✓False",
+  "c": ".ok < .fc-opts < .fc-face"
+ },
+ {
+  "h": "ueremp",
+  "k": "✓Ihram→Tawaf→Sa'i→Halq/Taqsir",
+  "c": ".ok < .fc-opts < .fc-face"
+ },
+ {
+  "h": "ij3xgo",
+  "k": "✓Once in a lifetime",
+  "c": ".ok < .fc-opts < .fc-face"
+ },
+ {
+  "h": "1wnjp34",
+  "k": "✓Prayed Dhuhr, Asr, Maghrib, Isha and Fajr there, each in its own time",
+  "c": ".ok < .fc-opts < .fc-face"
+ },
+ {
+  "h": "eugro6",
+  "k": "✓Small (nearest Masjid al-Khayf)→middle→Aqabah",
+  "c": ".ok < .fc-opts < .fc-face"
+ },
+ {
+  "h": "1b6mp3i",
+  "k": "✓The Hajj stands, and a dam (a sheep slaughtered in the Haram) is owed",
+  "c": ".ok < .fc-opts < .fc-face"
+ },
+ {
+  "h": "1pjohql",
+  "k": "✓The minor pilgrimage",
+  "c": ".ok < .fc-opts < .fc-face"
+ },
+ {
+  "h": "vw7oxk",
+  "k": "✓The standing at Arafah and tawaf al-ifadah",
+  "c": ".ok < .fc-opts < .fc-face"
+ },
+ {
+  "h": "1bi4azu",
+  "k": "✓The {1}th, {2}th and {3}th of Dhul Hijjah",
+  "c": ".ok < .fc-opts < .fc-face"
+ },
+ {
+  "h": "1kgxlq1",
+  "k": "✓Together at Dhuhr time, two rakahs each, one adhan and two iqamahs",
+  "c": ".ok < .fc-opts < .fc-face"
+ },
+ {
+  "h": "1ce5i5q",
+  "k": "✓True",
+  "c": ".ok < .fc-opts < .fc-face"
+ },
+ {
+  "h": "fxuoxb",
+  "k": "✓Yawm at-Tarwiyah",
+  "c": ".ok < .fc-opts < .fc-face"
+ },
+ {
+  "h": "1lteiza",
+  "k": "✓{1}th–{2}th",
+  "c": ".ok < .fc-opts < .fc-face"
+ },
+ {
+  "h": "dic2gw",
+  "k": "Tamattu'",
+  "c": ".on < #hajjTypeSeg"
+ },
+ {
+  "h": "vuco",
+  "k": "Standard",
+  "c": ".on < #hptAsr"
+ },
+ {
+  "h": "r5wqai",
+  "k": "No",
+  "c": ".on < #obUmSeg"
+ },
+ {
+  "h": "mkyb42",
+  "k": "Both",
+  "c": ".on < #profSeg"
+ },
+ {
+  "h": "onobjm",
+  "k": "Normal",
+  "c": ".on < #textSeg"
+ },
+ {
+  "h": "ihcnmi",
+  "k": "Ifadah",
+  "c": ".on < #tmodeSeg"
+ },
+ {
+  "h": "1wtax7p",
+  "k": "Umrah tawaf",
+  "c": ".on < #tmodeSeg"
+ },
+ {
+  "h": "1akqxyh",
+  "k": "After",
+  "c": ".on < .seg < .segw"
+ },
+ {
+  "h": "1v6mjr0",
+  "k": "Prepare",
+  "c": ".on < .seg < .segw"
+ },
+ {
+  "h": "1fpf8c5",
+  "k": "Steps & duas",
+  "c": ".on < .seg < .segw"
+ },
+ {
+  "h": "1sawk0u",
+  "k": "Today",
+  "c": ".on < .seg < .segw"
+ },
+ {
+  "h": "k83ifj",
+  "k": "The {1}th",
+  "c": ".on < .segmini < #jamBody"
+ },
+ {
+  "h": "1kof7b5",
+  "k": "Ihram, then the five days of Dhul Hijjah — with your Umrah first if you do Tamattu'",
+  "c": ".opt < #obStep0"
+ },
+ {
+  "h": "149ujp6",
+  "k": "Ihram→tawaf→sa'i→halq, most of the year (permits pause around the Hajj season — check Nusuk)",
+  "c": ".opt < #obStep0"
+ },
+ {
+  "h": "6no651",
+  "k": "Checklists, countdown & knowledge",
+  "c": ".opt < #obStep1"
+ },
+ {
+  "h": "164k74t",
+  "k": "Count my earlier Umrahs, plan the next",
+  "c": ".opt < #obStep1"
+ },
+ {
+  "h": "yfx24s",
+  "k": "Counters, rites & daily tracker",
+  "c": ".opt < #obStep1"
+ },
+ {
+  "h": "1aswqb9",
+  "k": "Flying soon",
+  "c": ".opt < #obStep1"
+ },
+ {
+  "h": "1rzrwth",
+  "k": "I'm in Makkah / Madinah",
+  "c": ".opt < #obStep1"
+ },
+ {
+  "h": "rfserh",
+  "k": "I've been before",
+  "c": ".opt < #obStep1"
+ },
+ {
+  "h": "h0oz5b",
+  "k": "I've returned",
+  "c": ".opt < #obStep1"
+ },
+ {
+  "h": "hpl7pn",
+  "k": "Keep the habits alive",
+  "c": ".opt < #obStep1"
+ },
+ {
+  "h": "1szv2yc",
+  "k": "Learn the rites step by step, then quiz",
+  "c": ".opt < #obStep1"
+ },
+ {
+  "h": "19c21x5",
+  "k": "Planning my trip",
+  "c": ".opt < #obStep1"
+ },
+ {
+  "h": "11hz73p",
+  "k": "Before you flew",
+  "c": ".pb-t < #prepBeforeH"
+ },
+ {
+  "h": "qu95nh",
+  "k": "Daily Quran",
+  "c": ".ph-hd < .ph-row < #postArea"
+ },
+ {
+  "h": "ne088w",
+  "k": "Daily dhikr",
+  "c": ".ph-hd < .ph-row < #postArea"
+ },
+ {
+  "h": "1ry6vq7",
+  "k": "Five prayers on time",
+  "c": ".ph-hd < .ph-row < #postArea"
+ },
+ {
+  "h": "lfawnp",
+  "k": "Due",
+  "c": ".pill < .fc-filt < #fcArea"
+ },
+ {
+  "h": "edr069",
+  "k": "Fiqh",
+  "c": ".pill < .fc-filt < #fcArea"
+ },
+ {
+  "h": "17k0g9n",
+  "k": "History & virtues",
+  "c": ".pill < .fc-filt < #fcArea"
+ },
+ {
+  "h": "8i0c58",
+  "k": "Ihram",
+  "c": ".pill < .fc-filt < #fcArea"
+ },
+ {
+  "h": "cnfg70",
+  "k": "My mistakes",
+  "c": ".pill < .fc-filt < #fcArea"
+ },
+ {
+  "h": "1qyxkju",
+  "k": "Tawaf & sa'i",
+  "c": ".pill < .fc-filt < #fcArea"
+ },
+ {
+  "h": "tjjwnr",
+  "k": "The five days",
+  "c": ".pill < .fc-filt < #fcArea"
+ },
+ {
+  "h": "1nfo14g",
+  "k": "Water",
+  "c": ".pill < .pills < #sub-daily-tools"
+ },
+ {
+  "h": "wnjk2s",
+  "k": "All",
+  "c": ".pill < .pills < .sec-bd"
+ },
+ {
+  "h": "87kvtu",
+  "k": "Carry-on",
+  "c": ".pill < .pills < .sec-bd"
+ },
+ {
+  "h": "1qw6ize",
+  "k": "Ihram bag",
+  "c": ".pill < .pills < .sec-bd"
+ },
+ {
+  "h": "r6h2h8",
+  "k": "Suitcase",
+  "c": ".pill < .pills < .sec-bd"
+ },
+ {
+  "h": "1ch7ihv",
+  "k": "Start here",
+  "c": ".pillmini < #knowCard"
+ },
+ {
+  "h": "10ks5nx",
+  "k": "First aid and prevention only. This page cannot tell you that someone is fine — if you are unsure, call.",
+  "c": ".pk-cav < .pk-list < #gSheetBody"
+ },
+ {
+  "h": "9zwvrg",
+  "k": "It shows where you saved the pin — nothing else. It never tells you whether a place is inside or outside Mina, Muzdalifah or Arafah.",
+  "c": ".pk-cav < .pk-list < #gSheetBody"
+ },
+ {
+  "h": "242jrj",
+  "k": "Miqah does not check this with GPS: there is no published official boundary to check against, and a phone's position is not exact enough at the edge. Read the signs, and ask your group leader.",
+  "c": ".pk-cav < .pk-list < #gSheetBody"
+ },
+ {
+  "h": "1bcvlc2",
+  "k": "Jumu'ah",
+  "c": ".pn < #pt-Dhuhr"
+ },
+ {
+  "h": "1ceqrfp",
+  "k": "Iftar",
+  "c": ".pn < .pt < .ramd-g",
+  "part_of": "Iftar · {P1}"
+ },
+ {
+  "h": "10arahl",
+  "k": "Iftar · {P1}",
+  "c": ".pn < .pt < .ramd-g"
+ },
+ {
+  "h": "1p2q431",
+  "k": "Suhoor ends",
+  "c": ".pn < .pt < .ramd-g",
+  "part_of": "Suhoor ends · {P1}"
+ },
+ {
+  "h": "mdjzyp",
+  "k": "Suhoor ends · {P1}",
+  "c": ".pn < .pt < .ramd-g"
+ },
+ {
+  "h": "bul38z",
+  "k": "Camp {1}",
+  "c": ".pr-big < .pr-card < .pr-cards",
+  "part_of": "Camp {1} · maktab {2}"
+ },
+ {
+  "h": "ezged8",
+  "k": "Camp {1} · maktab {2}",
+  "c": ".pr-big < .pr-card < .pr-cards"
+ },
+ {
+  "h": "157y32j",
+  "k": "Take me to my hotel",
+  "c": ".pr-ct < .pr-card < .pr-cards",
+  "part_of": "Take me to my hotel · Makkah"
+ },
+ {
+  "h": "1gcducq",
+  "k": "Take me to my hotel · Madinah",
+  "c": ".pr-ct < .pr-card < .pr-cards"
+ },
+ {
+  "h": "yhatu7",
+  "k": "Take me to my hotel · Makkah",
+  "c": ".pr-ct < .pr-card < .pr-cards"
+ },
+ {
+  "h": "1lsd8j7",
+  "k": "The days of Hajj",
+  "c": ".pr-ct < .pr-card < .pr-cards"
+ },
+ {
+  "h": "dke3oh",
+  "k": "if I am lost",
+  "c": ".pr-ct < .pr-card < .pr-cards",
+  "part_of": "{U1} · if I am lost"
+ },
+ {
+  "h": "5xz42y",
+  "k": "{U1} · if I am lost",
+  "c": ".pr-ct < .pr-card < .pr-cards"
+ },
+ {
+  "h": "1ytqiwf",
+  "k": "<1>Medical:</1> {U1} · blood type O+ · medicines: {U2} {U3}",
+  "c": ".pr-med < .pr-card < .pr-cards"
+ },
+ {
+  "h": "14u3ntd",
+  "k": "Family at home: {U1}",
+  "c": ".pr-s < .pr-card < .pr-cards",
+  "part_of": "From: {U1} · I speak: {U2} · My phone: +{1} {2} {3} · Family at home: {U3}"
+ },
+ {
+  "h": "1texf4x",
+  "k": "From: {U1}",
+  "c": ".pr-s < .pr-card < .pr-cards",
+  "part_of": "From: {U1} · I speak: {U2} · My phone: +{1} {2} {3} · Family at home: {U3}"
+ },
+ {
+  "h": "o79lq5",
+  "k": "From: {U1} · I speak: {U2} · My phone: +{1} {2} {3} · Family at home: {U3}",
+  "c": ".pr-s < .pr-card < .pr-cards"
+ },
+ {
+  "h": "w76d2z",
+  "k": "Group leader: {U1} · +{1} {2} {3} {4}",
+  "c": ".pr-s < .pr-card < .pr-cards"
+ },
+ {
+  "h": "1bdd97o",
+  "k": "I am lost — please call this number ({U1}). Police",
+  "c": ".pr-s < .pr-card < .pr-cards",
+  "part_of": "I am lost — please call this number ({U1}). Police · ambulance {1}"
+ },
+ {
+  "h": "1awmz6w",
+  "k": "I am lost — please call this number ({U1}). Police · ambulance {1}",
+  "c": ".pr-s < .pr-card < .pr-cards"
+ },
+ {
+  "h": "422ko7",
+  "k": "I am lost — please call this number. Police",
+  "c": ".pr-s < .pr-card < .pr-cards",
+  "part_of": "I am lost — please call this number. Police · ambulance {1}"
+ },
+ {
+  "h": "1win3gr",
+  "k": "I am lost — please call this number. Police · ambulance {1}",
+  "c": ".pr-s < .pr-card < .pr-cards"
+ },
+ {
+  "h": "1cjzfym",
+  "k": "I speak: {U1}",
+  "c": ".pr-s < .pr-card < .pr-cards",
+  "part_of": "From: {U1} · I speak: {U2} · My phone: +{1} {2} {3} · Family at home: {U3}"
+ },
+ {
+  "h": "92r6hn",
+  "k": "My name is <1>{U1}</1>. I am lost. Please call my parents on this number: <2>+{1} {2} {3}</2>",
+  "c": ".pr-s < .pr-card < .pr-cards"
+ },
+ {
+  "h": "z7h2cg",
+  "k": "My phone: +{1} {2} {3}",
+  "c": ".pr-s < .pr-card < .pr-cards",
+  "part_of": "From: {U1} · I speak: {U2} · My phone: +{1} {2} {3} · Family at home: {U3}"
+ },
+ {
+  "h": "1chv3t2",
+  "k": "ambulance {1}",
+  "c": ".pr-s < .pr-card < .pr-cards",
+  "part_of": "I am lost — please call this number. Police · ambulance {1}"
+ },
+ {
+  "h": "1nndyjq",
+  "k": "gate: {U1}",
+  "c": ".pr-s < .pr-card < .pr-cards",
+  "part_of": "{U1} · phone +{1} {2} {3} {4} · gate: {U2} · meet: {U3}"
+ },
+ {
+  "h": "tru09m",
+  "k": "meet: {U1}",
+  "c": ".pr-s < .pr-card < .pr-cards",
+  "part_of": "{U1} · phone +{1} {2} {3} {4} · gate: {U2} · meet: {U3}"
+ },
+ {
+  "h": "per1yy",
+  "k": "phone +{1} {2} {3} {4}",
+  "c": ".pr-s < .pr-card < .pr-cards",
+  "part_of": "{U1} · phone +{1} {2} {3} {4} · gate: {U2} · meet: {U3}"
+ },
+ {
+  "h": "udw14y",
+  "k": "{U1} · phone +{1} {2} {3} {4} · gate: {U2} · meet: {U3}",
+  "c": ".pr-s < .pr-card < .pr-cards"
+ },
+ {
+  "h": "1sd2wig",
+  "k": "{U1} · phone +{1} {2} {3} {4} · meet: {U2}",
+  "c": ".pr-s < .pr-card < .pr-cards"
+ },
+ {
+  "h": "1iukqx",
+  "k": "Prayed {P1}",
+  "c": ".pt-tick < #hNext"
+ },
+ {
+  "h": "16zx1g1",
+  "k": "· arrive early — the Haram fills {1}–{2} h before",
+  "c": ".ptc < #ptNext"
+ },
+ {
+  "h": "1a3qae8",
+  "k": "· {1} · Madinah",
+  "c": ".ptc < #ptNext"
+ },
+ {
+  "h": "1mp6tjp",
+  "k": "· {1} · Makkah",
+  "c": ".ptc < #ptNext"
+ },
+ {
+  "h": "1bdi3ej",
+  "k": "Hotel / SOS",
+  "c": ".qa < .qa-grid < #homeArea"
+ },
+ {
+  "h": "1hx1kn6",
+  "k": "I'm lost",
+  "c": ".qa < .qa-grid < #homeArea",
+  "part_of": "· driver card · I'm lost · {1} · {2}"
+ },
+ {
+  "h": "19syfca",
+  "k": "· driver card",
+  "c": ".qa < .qa-grid < #homeArea",
+  "part_of": "· driver card · I'm lost · {1} · {2}"
+ },
+ {
+  "h": "1hfmqk1",
+  "k": "· driver card · I'm lost · {1} · {2}",
+  "c": ".qa < .qa-grid < #homeArea"
+ },
+ {
+  "h": "1kc6fv5",
+  "k": "N",
+  "c": ".qb-n < .qb-dial < #qiblaCard"
+ },
+ {
+  "h": "19kfop",
+  "k": "Knowledge only — your quiz, cards and the five days read. It cannot measure intention or acceptance; that is with Allah.",
+  "c": ".qr-note < #qzReady"
+ },
+ {
+  "h": "iilg04",
+  "k": "Hajj · {1} levels · Ifrad",
+  "c": ".qz-trk-h < #qzTrack"
+ },
+ {
+  "h": "stoled",
+  "k": "Hajj · {1} levels · Qiran",
+  "c": ".qz-trk-h < #qzTrack"
+ },
+ {
+  "h": "2lu9d3",
+  "k": "Hajj · {1} levels · Tamattu'",
+  "c": ".qz-trk-h < #qzTrack"
+ },
+ {
+  "h": "1s6yaru",
+  "k": "Levels",
+  "c": ".qz-trk-h < #qzTrack"
+ },
+ {
+  "h": "aw7jug",
+  "k": "Passed <1>{1}/{2}</1>",
+  "c": ".qz-trk-h < #qzTrack"
+ },
+ {
+  "h": "15onmue",
+  "k": "Umrah",
+  "c": ".qz-trk-h < #qzTrack",
+  "part_of": "Umrah · {1} levels"
+ },
+ {
+  "h": "1p53ymz",
+  "k": "Umrah · {1} levels",
+  "c": ".qz-trk-h < #qzTrack"
+ },
+ {
+  "h": "yxvm1f",
+  "k": "{1} levels",
+  "c": ".qz-trk-h < #qzTrack",
+  "part_of": "Umrah · {1} levels"
+ },
+ {
+  "h": "da25tw",
+  "k": "· {1} questions",
+  "c": ".qzc-n < .hs-ce < .hs-cw"
+ },
+ {
+  "h": "ndg2mm",
+  "k": "the big one · nearest Makkah",
+  "c": ".rami-t < #rj-aqabah"
+ },
+ {
+  "h": "12nghon",
+  "k": "the big one · nearest Makkah · after the previous one",
+  "c": ".rami-t < #rj-aqabah"
+ },
+ {
+  "h": "1fzmr69",
+  "k": "{1}. Jamrat al-Aqabah",
+  "c": ".rami-t < #rj-aqabah"
+ },
+ {
+  "h": "i5s1xj",
+  "k": "the small one · nearest Mina",
+  "c": ".rami-t < #rj-sughra"
+ },
+ {
+  "h": "179ow6c",
+  "k": "{1}. Jamrat as-Sughra",
+  "c": ".rami-t < #rj-sughra"
+ },
+ {
+  "h": "ygjlsi",
+  "k": "the middle one · after the previous one",
+  "c": ".rami-t < #rj-wusta"
+ },
+ {
+  "h": "c14mwd",
+  "k": "{1}. Jamrat al-Wusta",
+  "c": ".rami-t < #rj-wusta"
+ },
+ {
+  "h": "1791t9i",
+  "k": "Another Umrah? Take ihram from",
+  "c": ".rd-foot < #riteDone"
+ },
+ {
+  "h": "1hzdgkz",
+  "k": "Backup in the last {1} days",
+  "c": ".rdy-t < #rdy-backup"
+ },
+ {
+  "h": "1g9e56g",
+  "k": "Not yet · No backup yet from this phone",
+  "c": ".rdy-t < #rdy-backup"
+ }
+]

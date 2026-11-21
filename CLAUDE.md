@@ -6,6 +6,38 @@ A free, offline, private Hajj and Umrah companion. Vanilla HTML, CSS and JS with
 Tests: `npm test` runs `test/smoke.js` and needs Chromium (`CHROME=/path/to/chromium`, and `NODE_PATH` if
 `playwright-core` is not installed locally).
 
+## Languages
+
+The app is written in English and stays English inside. `i18n.js` translates what is on the screen: each line is
+reduced to a canonical form (numbers, dates, prayer names and the pilgrim's own words become placeholders) and
+looked up in a language pack, `i18n/<code>.js`. A line with no entry stays in English. Arabic text is never touched.
+A language shows in the picker only when `i18n/index.js` lists its pack.
+
+When the app's text changes (any release):
+
+1. `node tools/i18n-extract.js` reads every screen and rewrites `i18n/src/units.json` (about 5 minutes).
+2. `node tools/i18n-build.js chunks` puts the lines that are new into new batches under `i18n/src/chunks/`.
+   Batches that exist keep their lines, so only what changed needs translating.
+3. Translate each new batch into each language, then have it checked by someone who did not translate it:
+   `i18n/src/BRIEF.md` and `i18n/src/VERIFY.md` are the instructions; translations live in `i18n/tr/<lang>/`.
+   `node tools/i18n-build.js status` shows what is missing.
+4. `node tools/i18n-build.js pack` checks every line and writes the packs. A refused line is listed in
+   `i18n/tr/<lang>/_rejects.json` and stays in English until it is fixed.
+5. `npm test`. The checks that start with `i18n` fail when the inventory is not from the running version or a
+   shipped line breaks a rule below.
+
+Rules for translations:
+
+- Miqah never translates a verse of the Quran itself. A pack quotes one named, published translation per language
+  (`tools/i18n-sources.js` lists them; `i18n/src/quran.json` holds the text).
+- A hadith line is the app's own wording. Its translation is checked against the Arabic text
+  (`i18n/src/hadith.json`), not only against the English.
+- No translation may change a number, a reference, a web address, an arrow or ﷺ. They are placeholders or protected
+  marks, and `tools/i18n-build.js` refuses a line that breaks them.
+- Each pack carries a note, shown in the language sheet, that says how it was made and checked. Keep it true: a pack
+  that no scholar or native editor has reviewed says so.
+- Text drawn into pictures (the keepsake, the certificate) and search stay in English for now.
+
 ## Standing instruction: the product page keeps up with the app
 
 The owner asked on 15 November 2026 that **every time a feature is added or the app is updated, it is

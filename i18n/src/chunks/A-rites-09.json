@@ -1,0 +1,383 @@
+[
+ {
+  "h": "nge15c",
+  "k": "Same praise and dua as on Safa. Sa'i commemorates Hajar's trust in Allah — walk it with reflection.",
+  "c": ".stp-t < #rw-marwah"
+ },
+ {
+  "h": "18kkfm8",
+  "k": "At the miqat — or, if flying, when the pilot announces it (~{1}–{2} min before Jeddah). The rules of ihram now apply.",
+  "c": ".stp-t < #rw-niyyah"
+ },
+ {
+  "h": "2fvxei",
+  "k": "Make the intention at the miqat",
+  "c": ".stp-t < #rw-niyyah"
+ },
+ {
+  "h": "w1k0a3",
+  "k": "Make the intention for Hajj (Ifrad) at the miqat",
+  "c": ".stp-t < #rw-niyyah"
+ },
+ {
+  "h": "l29ruw",
+  "k": "Make the intention for Umrah and Hajj together (Qiran) at the miqat",
+  "c": ".stp-t < #rw-niyyah"
+ },
+ {
+  "h": "1o7511e",
+  "k": "Counter-clockwise, Kaaba on your left. Men: raml (brisk short steps) in rounds {1}–{2} only; women walk normally. Make any dhikr and dua you love. Go round the outside of the Hijr Isma'il semicircle — walking through it does not count as a round.",
+  "c": ".stp-t < #rw-rounds"
+ },
+ {
+  "h": "9wd5r8",
+  "k": "{1} rounds complete — use the counter",
+  "c": ".stp-t < #rw-rounds"
+ },
+ {
+  "h": "1uk1na",
+  "k": "Ascend Safa, face the Kaaba & make dua",
+  "c": ".stp-t < #rw-safa"
+ },
+ {
+  "h": "1m3bqgs",
+  "k": "Recite the ayah once on approaching Safa, then praise Allah facing the Kaaba and repeat this dhikr with your own duas three times:",
+  "c": ".stp-t < #rw-safa"
+ },
+ {
+  "h": "7ba2q7",
+  "k": "Pray {1} rakahs (if possible)",
+  "c": ".stp-t < #rw-salah2"
+ },
+ {
+  "h": "kp3z52",
+  "k": "Recommended before ihram — an obligatory prayer, or {1} rakahs of wudu.",
+  "c": ".stp-t < #rw-salah2"
+ },
+ {
+  "h": "1v34x8p",
+  "k": "Face the Stone, raise your hand and say \"Bismillahi wallahu akbar\". Kiss or touch it only if easy — never push.",
+  "c": ".stp-t < #rw-start"
+ },
+ {
+  "h": "w5mr0m",
+  "k": "Start at the Black Stone corner",
+  "c": ".stp-t < #rw-start"
+ },
+ {
+  "h": "mtdtus",
+  "k": "Men aloud, women softly — keep reciting until you begin tawaf.",
+  "c": ".stp-t < #rw-talb"
+ },
+ {
+  "h": "nz9ov4",
+  "k": "Men aloud, women softly. In Qiran this is the talbiyah of your Hajj as well, so it does not end at the arrival tawaf as it does in an Umrah: it only stops on the {1}th at Jamrat al-Aqabah (Malikis stop it on arriving at Arafah after midday on the {2}th).",
+  "c": ".stp-t < #rw-talb"
+ },
+ {
+  "h": "1ia885q",
+  "k": "Men aloud, women softly. This is the talbiyah of your Hajj, so it does not end at the arrival tawaf as it does in an Umrah: it only stops on the {1}th at Jamrat al-Aqabah (Malikis stop it on arriving at Arafah after midday on the {2}th).",
+  "c": ".stp-t < #rw-talb"
+ },
+ {
+  "h": "1egqtc4",
+  "k": "Recite the talbiyah abundantly",
+  "c": ".stp-t < #rw-talb"
+ },
+ {
+  "h": "1xf0jov",
+  "k": "Make wudu — required for tawaf",
+  "c": ".stp-t < #rw-wudu"
+ },
+ {
+  "h": "fikkqp",
+  "k": "Most scholars hold tawaf is not valid without wudu, so make it before you enter. If it breaks mid-tawaf, renew it: the Hanafi and Shafi'i schools let you continue from where you stopped; the Maliki and Hanbali schools say restart the tawaf, which is the safer course. Enter the mosque with the right foot:",
+  "c": ".stp-t < #rw-wudu"
+ },
+ {
+  "h": "1kd118s",
+  "k": "Each round: touch the Yamani corner if easy, then recite…",
+  "c": ".stp-t < #rw-yamani"
+ },
+ {
+  "h": "1ad6gm0",
+  "k": "Touch the Yamani corner if easy (don't kiss it), and between it and the Black Stone recite:",
+  "c": ".stp-t < #rw-yamani"
+ },
+ {
+  "h": "1xckjyg",
+  "k": "Drink Zamzam water",
+  "c": ".stp-t < #rw-zamzam"
+ },
+ {
+  "h": "185ancs",
+  "k": "Drink your fill and make dua — \"Zamzam water is for whatever it is drunk for.\" (Ibn Majah {1})",
+  "c": ".stp-t < #rw-zamzam",
+  "refs": [
+   "ibnmajah:3062"
+  ]
+ },
+ {
+  "h": "7gak1g",
+  "k": "Allah is the Greatest (three times). None has the right to be worshipped but Allah alone, without partner; His is the dominion and the praise, and He is able to do all things. We return, repenting, worshipping, travelling, praising our Lord. Allah fulfilled His promise, gave victory to His servant, and defeated the confederates alone. — Said on every rise of the road on the way home.",
+  "c": ".tr < .dua < .duacard"
+ },
+ {
+  "h": "pbye1h",
+  "k": "Allah is the Greatest, Allah is the Greatest, there is no god but Allah; Allah is the Greatest, Allah is the Greatest, and to Allah belongs all praise. — After Fajr at Muzdalifah until the sky brightens, with your own duas; and after every prayer in the days of Mina.",
+  "c": ".tr < .dua < .duacard"
+ },
+ {
+  "h": "10m96qz",
+  "k": "Allah is the Greatest. — One pebble, one takbir, seven times at each jamarah.",
+  "c": ".tr < .dua < .duacard"
+ },
+ {
+  "h": "lfc9o8",
+  "k": "Glory to Him who has subjected this to us, and we could never have it by our efforts. Surely to our Lord we are returning.",
+  "c": ".tr < .dua < .duacard"
+ },
+ {
+  "h": "1iudbwu",
+  "k": "Here I am, O Allah, for Hajj. — A Tamattu' pilgrim says it from the hotel in Makkah on the morning of {1} Dhul Hijjah; an Ifrad pilgrim at the miqat.",
+  "c": ".tr < .dua < .duacard"
+ },
+ {
+  "h": "1afxpah",
+  "k": "Here I am, O Allah, for Umrah and Hajj. — One ihram for both; you stay in it until the {1}th.",
+  "c": ".tr < .dua < .duacard"
+ },
+ {
+  "h": "1xst67",
+  "k": "None has the right to be worshipped but Allah alone, without partner. His is the dominion and His is the praise, and He is able to do all things. — \"The best of supplication is the supplication of the Day of Arafah, and the best of what I and the prophets before me have said is…\"",
+  "c": ".tr < .dua < .duacard"
+ },
+ {
+  "h": "1wxwsqy",
+  "k": "None has the right to be worshipped but Allah alone, without partner. His is the dominion and the praise, and He is able to do all things. None has the right to be worshipped but Allah alone; He fulfilled His promise, gave victory to His servant, and defeated the confederates alone. (Repeat {1}× with your own duas between.)",
+  "c": ".tr < .dua < .duacard"
+ },
+ {
+  "h": "1al8m0m",
+  "k": "O Allah, I ask You of Your bounty.",
+  "c": ".tr < .dua < .duacard"
+ },
+ {
+  "h": "1svb6hu",
+  "k": "O Allah, open for me the gates of Your mercy.",
+  "c": ".tr < .dua < .duacard"
+ },
+ {
+  "h": "ts2a8n",
+  "k": "Our Lord, give us good in this world and good in the Hereafter, and protect us from the punishment of the Fire.",
+  "c": ".tr < .dua < .duacard"
+ },
+ {
+  "h": "62ck6n",
+  "k": "Peace be upon you, O Messenger of Allah, and the mercy of Allah and His blessings. (Then salam upon Abu Bakr and 'Umar.)",
+  "c": ".tr < .dua < .duacard"
+ },
+ {
+  "h": "2ow7uk",
+  "k": "Allah is the Greatest — with every pebble.",
+  "c": ".tr < .dua < .stp-t"
+ },
+ {
+  "h": "1ajsllj",
+  "k": "Allah is the Greatest, Allah is the Greatest, there is no god but Allah; Allah is the Greatest, Allah is the Greatest, and to Allah belongs all praise.",
+  "c": ".tr < .dua < .stp-t"
+ },
+ {
+  "h": "1koonia",
+  "k": "Allah is the Greatest, Allah is the Greatest, there is no god but Allah; Allah is the Greatest, Allah is the Greatest, and to Allah belongs all praise. (This wording is the takbir of these days reported from Ibn Mas'ud (RA) — Ibn Abi Shaybah; the Prophet ﷺ made takbir and tahlil here, Muslim {1})",
+  "c": ".tr < .dua < .stp-t",
+  "refs": [
+   "muslim:1218"
+  ]
+ },
+ {
+  "h": "k57j8f",
+  "k": "Here I am, O Allah, for Hajj.",
+  "c": ".tr < .dua < .stp-t"
+ },
+ {
+  "h": "hz44lr",
+  "k": "Here I am, O Allah, for Umrah and Hajj.",
+  "c": ".tr < .dua < .stp-t"
+ },
+ {
+  "h": "pcozex",
+  "k": "Here I am, O Allah, for Umrah.",
+  "c": ".tr < .dua < .stp-t"
+ },
+ {
+  "h": "ywbi1m",
+  "k": "Here I am, O Allah, here I am. Here I am, You have no partner, here I am. All praise, favour and sovereignty are Yours. You have no partner.",
+  "c": ".tr < .dua < .stp-t"
+ },
+ {
+  "h": "1y9f4u9",
+  "k": "In the name of Allah, Allah is the Greatest — facing the Stone at the start of each round.",
+  "c": ".tr < .dua < .stp-t"
+ },
+ {
+  "h": "1kay3rl",
+  "k": "Indeed, Safa and Marwah are among the symbols of Allah (Quran {1}) — recited once on approaching Safa.",
+  "c": ".tr < .dua < .stp-t",
+  "refs": [
+   "quran:2:158"
+  ]
+ },
+ {
+  "h": "nlvvo3",
+  "k": "None has the right to be worshipped but Allah alone, without partner. His is the dominion and His is the praise, and He is able to do all things.",
+  "c": ".tr < .dua < .stp-t"
+ },
+ {
+  "h": "9oc92i",
+  "k": "None has the right to be worshipped but Allah alone, without partner. His is the dominion and the praise, and He is able to do all things. None has the right to be worshipped but Allah alone; He fulfilled His promise, gave victory to His servant, and defeated the confederates alone.",
+  "c": ".tr < .dua < .stp-t"
+ },
+ {
+  "h": "mdk3xe",
+  "k": "O Allah, I ask You for beneficial knowledge, abundant provision, and cure from every illness. (Reported from Ibn Abbas RA)",
+  "c": ".tr < .dua < .stp-t"
+ },
+ {
+  "h": "1oq2avl",
+  "k": "O Allah, my place of release is wherever You detain me. — The Prophet ﷺ taught Duba'ah bint az-Zubayr (RA), who was unwell, to add this condition (Bukhari {1}): if illness or another obstacle stops you, you leave ihram with no penalty (the Shafi'i and Hanbali view; the Hanafi and Maliki schools do not give the condition this effect).",
+  "c": ".tr < .dua < .stp-t",
+  "refs": [
+   "bukhari:5089"
+  ]
+ },
+ {
+  "h": "114cuu0",
+  "k": "O Allah, open the gates of Your mercy for me.",
+  "c": ".tr < .dua < .stp-t"
+ },
+ {
+  "h": "12as400",
+  "k": "Our Lord, give us good in this world and good in the Hereafter, and protect us from the punishment of the Fire. (Quran {1})",
+  "c": ".tr < .dua < .stp-t",
+  "refs": [
+   "quran:2:201"
+  ]
+ },
+ {
+  "h": "mfl4pe",
+  "k": "Why?",
+  "c": ".why < .stp-t < #rw-ghusl"
+ },
+ {
+  "h": "rvm0vb",
+  "k": "Cutting the hair ends ihram; his dua for those who shave shows halq is the higher choice for men (Bukhari {1}).",
+  "c": ".whyb < .stp-t < #rw-cut",
+  "refs": [
+   "bukhari:1727"
+  ]
+ },
+ {
+  "h": "1pljfvj",
+  "k": "Women are commanded to shorten, not shave — the Prophet ﷺ said \"women do not shave, they trim\" (Abu Dawud {1}).",
+  "c": ".whyb < .stp-t < #rw-cutw",
+  "refs": [
+   "abudawud:1984"
+  ]
+ },
+ {
+  "h": "xy9p48",
+  "k": "Unstitched cloth strips away rank and wealth: king and labourer stand identical before Allah, dressed as they will be shrouded.",
+  "c": ".whyb < .stp-t < #rw-garb"
+ },
+ {
+  "h": "1octp8j",
+  "k": "The Prophet ﷺ bathed before entering ihram (Tirmidhi {1}) — you meet Allah's House purified inside and out.",
+  "c": ".whyb < .stp-t < #rw-ghusl",
+  "refs": [
+   "tirmidhi:830"
+  ]
+ },
+ {
+  "h": "mzbw2r",
+  "k": "\"Whoever joins Umrah to Hajj must offer what hady is easy; whoever cannot, fasts three days during Hajj and seven when you return — ten in all\" (Quran {1}). The Prophet ﷺ slaughtered at Mina and said \"all of Mina is a place of sacrifice\" (Abu Dawud {2}).",
+  "c": ".whyb < .stp-t < #rw-h10hady",
+  "refs": [
+   "quran:2:196",
+   "abudawud:1936"
+  ]
+ },
+ {
+  "h": "to3kqh",
+  "k": "\"O Allah, forgive those who shave their heads\" — three times, and once for those who shorten (Bukhari {1}). \"…with your heads shaved and [hair] shortened, not fearing\" (Quran {2}).",
+  "c": ".whyb < .stp-t < #rw-h10halq",
+  "refs": [
+   "bukhari:1728",
+   "quran:48:27"
+  ]
+ },
+ {
+  "h": "1cn3i7v",
+  "k": "\"Shaving is not a duty laid on women; only clipping the hair is incumbent on them\" (Abu Dawud {1}).",
+  "c": ".whyb < .stp-t < #rw-h10halqw",
+  "refs": [
+   "abudawud:1984"
+  ]
+ },
+ {
+  "h": "1u1xlbo",
+  "k": "\"…then let them complete their rites, fulfil their vows and circle the Ancient House\" (Quran {1}). He ﷺ rode to the House and performed tawaf on the Day of Nahr, then prayed Dhuhr in Makkah (Muslim {2}). Safiyyah (RA) got her period after it, and he said \"then she will not delay us\" (Bukhari {3}).",
+  "c": ".whyb < .stp-t < #rw-h10ifadah",
+  "refs": [
+   "quran:22:29",
+   "muslim:1218",
+   "bukhari:1757"
+  ]
+ },
+ {
+  "h": "1rlom4i",
+  "k": "The Prophet ﷺ returned to Mina (Muslim {1}) and spent the nights of tashriq there (Aishah, Abu Dawud {2}); he exempted only the water-carriers of Zamzam and the herdsmen from the nights (Bukhari {3}, Abu Dawud {4}) — so for everyone else it is a duty (the majority view; Hanafis: a sunnah).",
+  "c": ".whyb < .stp-t < #rw-h10night",
+  "refs": [
+   "muslim:1308",
+   "abudawud:1973",
+   "bukhari:1745",
+   "abudawud:1975"
+  ]
+ },
+ {
+  "h": "1atps9g",
+  "k": "He ﷺ stoned, then slaughtered, then shaved, then went to the House — and when people did it in another order he said \"do it, no harm\" (Bukhari {1}, {2}).",
+  "c": ".whyb < .stp-t < #rw-h10order",
+  "refs": [
+   "bukhari:1736"
+  ]
+ },
+ {
+  "h": "awigtz",
+  "k": "He ﷺ stoned Jamrat al-Aqabah on the Day of Nahr in the forenoon, seven pebbles, saying Allahu akbar with each (Tirmidhi {1}, Bukhari {2}), and stopped the talbiyah with it (Bukhari {3}). After Aqabah he did not stop for dua (Bukhari {4}).",
+  "c": ".whyb < .stp-t < #rw-h10rami",
+  "refs": [
+   "tirmidhi:894",
+   "bukhari:1750",
+   "bukhari:1685",
+   "bukhari:1753"
+  ]
+ },
+ {
+  "h": "rb44ic",
+  "k": "Aishah (RA): those who had assumed ihram for Umrah \"performed tawaf round the Kaaba and between Safa and Marwah, then finished their ihram; after returning from Mina they performed another tawaf [between Safa and Marwah]. Those who had combined Hajj and Umrah performed only one\" (Bukhari {1}). Tamattu' = two sa'is; Qiran and Ifrad = one (Hanafis: two for a Qarin).",
+  "c": ".whyb < .stp-t < #rw-h10sai",
+  "refs": [
+   "bukhari:1556"
+  ]
+ },
+ {
+  "h": "w1n3xj",
+  "k": "The hady of Quran {1} is for those who join Umrah to Hajj; a Mufrid owes none. An udhiyah on the day of Eid remains a sunnah for anyone who can, by most schools (the well-known Maliki view does not prescribe it for the pilgrim, and the Hanafi school makes it obligatory for a pilgrim who counts as resident and has the means).",
+  "c": ".whyb < .stp-t < #rw-h10udhiyah",
+  "refs": [
+   "quran:2:196"
+  ]
+ }
+]

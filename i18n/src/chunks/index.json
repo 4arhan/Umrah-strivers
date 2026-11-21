@@ -1,0 +1,442 @@
+[
+ {
+  "id": "A-packs-01",
+  "tier": "A",
+  "group": "packs",
+  "units": 58,
+  "chars": 8798,
+  "refs": 2
+ },
+ {
+  "id": "A-packs-02",
+  "tier": "A",
+  "group": "packs",
+  "units": 35,
+  "chars": 8856,
+  "refs": 10
+ },
+ {
+  "id": "A-packs-03",
+  "tier": "A",
+  "group": "packs",
+  "units": 37,
+  "chars": 8758,
+  "refs": 10
+ },
+ {
+  "id": "A-packs-04",
+  "tier": "A",
+  "group": "packs",
+  "units": 128,
+  "chars": 8634,
+  "refs": 2
+ },
+ {
+  "id": "A-packs-05",
+  "tier": "A",
+  "group": "packs",
+  "units": 6,
+  "chars": 3834,
+  "refs": 0
+ },
+ {
+  "id": "A-plan-01",
+  "tier": "A",
+  "group": "plan",
+  "units": 170,
+  "chars": 5888,
+  "refs": 1
+ },
+ {
+  "id": "A-plan-02",
+  "tier": "A",
+  "group": "plan",
+  "units": 119,
+  "chars": 8968,
+  "refs": 3
+ },
+ {
+  "id": "A-plan-03",
+  "tier": "A",
+  "group": "plan",
+  "units": 56,
+  "chars": 4585,
+  "refs": 1
+ },
+ {
+  "id": "A-rites-01",
+  "tier": "A",
+  "group": "rites",
+  "units": 20,
+  "chars": 8979,
+  "refs": 7
+ },
+ {
+  "id": "A-rites-02",
+  "tier": "A",
+  "group": "rites",
+  "units": 24,
+  "chars": 8676,
+  "refs": 4
+ },
+ {
+  "id": "A-rites-03",
+  "tier": "A",
+  "group": "rites",
+  "units": 25,
+  "chars": 8778,
+  "refs": 4
+ },
+ {
+  "id": "A-rites-04",
+  "tier": "A",
+  "group": "rites",
+  "units": 29,
+  "chars": 8980,
+  "refs": 4
+ },
+ {
+  "id": "A-rites-05",
+  "tier": "A",
+  "group": "rites",
+  "units": 54,
+  "chars": 8970,
+  "refs": 9
+ },
+ {
+  "id": "A-rites-06",
+  "tier": "A",
+  "group": "rites",
+  "units": 111,
+  "chars": 8968,
+  "refs": 4
+ },
+ {
+  "id": "A-rites-07",
+  "tier": "A",
+  "group": "rites",
+  "units": 66,
+  "chars": 8969,
+  "refs": 14
+ },
+ {
+  "id": "A-rites-08",
+  "tier": "A",
+  "group": "rites",
+  "units": 47,
+  "chars": 8974,
+  "refs": 4
+ },
+ {
+  "id": "A-rites-09",
+  "tier": "A",
+  "group": "rites",
+  "units": 64,
+  "chars": 8879,
+  "refs": 17
+ },
+ {
+  "id": "A-rites-10",
+  "tier": "A",
+  "group": "rites",
+  "units": 60,
+  "chars": 8826,
+  "refs": 38
+ },
+ {
+  "id": "A-rites-11",
+  "tier": "A",
+  "group": "rites",
+  "units": 18,
+  "chars": 8575,
+  "refs": 8
+ },
+ {
+  "id": "A-rites-12",
+  "tier": "A",
+  "group": "rites",
+  "units": 49,
+  "chars": 6495,
+  "refs": 6
+ },
+ {
+  "id": "A-ui-01",
+  "tier": "A",
+  "group": "ui",
+  "units": 170,
+  "chars": 8167,
+  "refs": 6
+ },
+ {
+  "id": "A-ui-02",
+  "tier": "A",
+  "group": "ui",
+  "units": 170,
+  "chars": 6216,
+  "refs": 2
+ },
+ {
+  "id": "A-ui-03",
+  "tier": "A",
+  "group": "ui",
+  "units": 170,
+  "chars": 6707,
+  "refs": 10
+ },
+ {
+  "id": "A-ui-04",
+  "tier": "A",
+  "group": "ui",
+  "units": 116,
+  "chars": 8922,
+  "refs": 1
+ },
+ {
+  "id": "A-ui-05",
+  "tier": "A",
+  "group": "ui",
+  "units": 17,
+  "chars": 8290,
+  "refs": 8
+ },
+ {
+  "id": "A-ui-06",
+  "tier": "A",
+  "group": "ui",
+  "units": 170,
+  "chars": 4317,
+  "refs": 1
+ },
+ {
+  "id": "A-ui-07",
+  "tier": "A",
+  "group": "ui",
+  "units": 170,
+  "chars": 4853,
+  "refs": 0
+ },
+ {
+  "id": "A-ui-08",
+  "tier": "A",
+  "group": "ui",
+  "units": 170,
+  "chars": 5825,
+  "refs": 3
+ },
+ {
+  "id": "A-ui-09",
+  "tier": "A",
+  "group": "ui",
+  "units": 170,
+  "chars": 5974,
+  "refs": 0
+ },
+ {
+  "id": "A-ui-10",
+  "tier": "A",
+  "group": "ui",
+  "units": 170,
+  "chars": 5949,
+  "refs": 13
+ },
+ {
+  "id": "A-ui-11",
+  "tier": "A",
+  "group": "ui",
+  "units": 170,
+  "chars": 5559,
+  "refs": 0
+ },
+ {
+  "id": "A-ui-12",
+  "tier": "A",
+  "group": "ui",
+  "units": 170,
+  "chars": 6823,
+  "refs": 15
+ },
+ {
+  "id": "A-ui-13",
+  "tier": "A",
+  "group": "ui",
+  "units": 170,
+  "chars": 8417,
+  "refs": 2
+ },
+ {
+  "id": "A-ui-14",
+  "tier": "A",
+  "group": "ui",
+  "units": 170,
+  "chars": 7343,
+  "refs": 0
+ },
+ {
+  "id": "A-ui-15",
+  "tier": "A",
+  "group": "ui",
+  "units": 170,
+  "chars": 5848,
+  "refs": 0
+ },
+ {
+  "id": "A-ui-16",
+  "tier": "A",
+  "group": "ui",
+  "units": 170,
+  "chars": 5383,
+  "refs": 0
+ },
+ {
+  "id": "A-ui-17",
+  "tier": "A",
+  "group": "ui",
+  "units": 170,
+  "chars": 6448,
+  "refs": 2
+ },
+ {
+  "id": "A-ui-18",
+  "tier": "A",
+  "group": "ui",
+  "units": 19,
+  "chars": 547,
+  "refs": 0
+ },
+ {
+  "id": "B-learn-01",
+  "tier": "B",
+  "group": "learn",
+  "units": 34,
+  "chars": 8949,
+  "refs": 15
+ },
+ {
+  "id": "B-learn-02",
+  "tier": "B",
+  "group": "learn",
+  "units": 48,
+  "chars": 8782,
+  "refs": 13
+ },
+ {
+  "id": "B-learn-03",
+  "tier": "B",
+  "group": "learn",
+  "units": 33,
+  "chars": 8597,
+  "refs": 17
+ },
+ {
+  "id": "B-learn-04",
+  "tier": "B",
+  "group": "learn",
+  "units": 22,
+  "chars": 8752,
+  "refs": 11
+ },
+ {
+  "id": "B-learn-05",
+  "tier": "B",
+  "group": "learn",
+  "units": 38,
+  "chars": 8889,
+  "refs": 14
+ },
+ {
+  "id": "B-learn-06",
+  "tier": "B",
+  "group": "learn",
+  "units": 82,
+  "chars": 3378,
+  "refs": 2
+ },
+ {
+  "id": "B-places-01",
+  "tier": "B",
+  "group": "places",
+  "units": 65,
+  "chars": 8983,
+  "refs": 27
+ },
+ {
+  "id": "B-places-02",
+  "tier": "B",
+  "group": "places",
+  "units": 170,
+  "chars": 7910,
+  "refs": 2
+ },
+ {
+  "id": "B-places-03",
+  "tier": "B",
+  "group": "places",
+  "units": 18,
+  "chars": 323,
+  "refs": 0
+ },
+ {
+  "id": "B-quiz-01",
+  "tier": "B",
+  "group": "quiz",
+  "units": 126,
+  "chars": 8928,
+  "refs": 1
+ },
+ {
+  "id": "B-quiz-02",
+  "tier": "B",
+  "group": "quiz",
+  "units": 125,
+  "chars": 8977,
+  "refs": 11
+ },
+ {
+  "id": "B-quiz-03",
+  "tier": "B",
+  "group": "quiz",
+  "units": 55,
+  "chars": 8989,
+  "refs": 18
+ },
+ {
+  "id": "B-quiz-04",
+  "tier": "B",
+  "group": "quiz",
+  "units": 56,
+  "chars": 8935,
+  "refs": 23
+ },
+ {
+  "id": "B-quiz-05",
+  "tier": "B",
+  "group": "quiz",
+  "units": 170,
+  "chars": 6226,
+  "refs": 7
+ },
+ {
+  "id": "B-quiz-06",
+  "tier": "B",
+  "group": "quiz",
+  "units": 170,
+  "chars": 5290,
+  "refs": 0
+ },
+ {
+  "id": "B-quiz-07",
+  "tier": "B",
+  "group": "quiz",
+  "units": 167,
+  "chars": 8961,
+  "refs": 6
+ },
+ {
+  "id": "B-quiz-08",
+  "tier": "B",
+  "group": "quiz",
+  "units": 60,
+  "chars": 2742,
+  "refs": 17
+ }
+]

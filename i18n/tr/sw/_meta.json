@@ -1,0 +1,74 @@
+{
+ "g": {
+  "D": [
+   "Jumatatu",
+   "Jumanne",
+   "Jumatano",
+   "Alhamisi",
+   "Ijumaa",
+   "Jumamosi",
+   "Jumapili"
+  ],
+  "d": [
+   "Jumatatu",
+   "Jumanne",
+   "Jumatano",
+   "Alhamisi",
+   "Ijumaa",
+   "Jumamosi",
+   "Jumapili"
+  ],
+  "M": [
+   "Januari",
+   "Februari",
+   "Machi",
+   "Aprili",
+   "Mei",
+   "Juni",
+   "Julai",
+   "Agosti",
+   "Septemba",
+   "Oktoba",
+   "Novemba",
+   "Desemba"
+  ],
+  "m": [
+   "Jan",
+   "Feb",
+   "Mac",
+   "Apr",
+   "Mei",
+   "Jun",
+   "Jul",
+   "Ago",
+   "Sep",
+   "Okt",
+   "Nov",
+   "Des"
+  ],
+  "H": [
+   "Muharram",
+   "Safar",
+   "Rabiʻ I",
+   "Rabiʻ II",
+   "Jumada I",
+   "Jumada II",
+   "Rajab",
+   "Shaʻban",
+   "Ramadan",
+   "Shawwal",
+   "Dhuʻl-Qiʻdah",
+   "Dhuʻl-Hijjah"
+  ],
+  "P": [
+   "Alfajiri",
+   "Adhuhuri",
+   "Alasiri",
+   "Magharibi",
+   "Isha"
+  ]
+ },
+ "note": "",
+ "quran": "Ali Muhsin Al-Barwani",
+ "checked": ""
+}

@@ -1,0 +1,278 @@
+[
+ {
+  "h": "18i9a74",
+  "k": "Not yet in ihram and already in Mina or Arafah? Make the intention now, wherever you are — the Hajj is valid as long as you are in ihram before your standing at Arafah ends; whether a dam is owed for assuming it outside Makkah differs between the schools (the Hanbali school: none; others require one, some only outside the Haram boundary, which Mina is inside). If Fajr of the {1}th comes and you never entered ihram, there is no Hajj this year. Tell your group leader / ask a scholar.",
+  "c": "HAJJ_RITES.miss"
+ },
+ {
+  "h": "dq867",
+  "k": "Nothing to make up — a Mufrid owes no hady. If a package insists you pay for one, tell your group leader / ask a scholar.",
+  "c": "HAJJ_RITES.miss"
+ },
+ {
+  "h": "1cvxq8w",
+  "k": "Nothing to make up — this is a permission, not a duty. If you are unsure whether your excuse counts, tell your group leader / ask a scholar.",
+  "c": "HAJJ_RITES.miss"
+ },
+ {
+  "h": "qpdhjl",
+  "k": "Prayed Maghrib at Arafah or on the bus? For the majority the prayer is valid — combining here is the sunnah, not a condition of Hajj — and nothing is owed. Hanafis say a Maghrib prayed before Muzdalifah must be prayed again there before Fajr, so if your group is Hanafi, repeat it on arrival. Tell your group leader if you are unsure.",
+  "c": "HAJJ_RITES.miss"
+ },
+ {
+  "h": "v50fn8",
+  "k": "Prayed them separately or at Asr time? Both prayers are valid; combining is the sunnah, not an obligation. Nothing is owed. Tell your group leader if you are unsure what the group is doing next.",
+  "c": "HAJJ_RITES.miss"
+ },
+ {
+  "h": "r62brd",
+  "k": "Spent the night in Makkah or Aziziyah with no excuse? Most scholars say a dam is owed if the nights are missed (some say one dam for all the nights; Hanafis treat the nights as sunnah with no dam). Illness, caring for the sick, or no space in the camp are valid excuses. Tell your group leader / ask a scholar.",
+  "c": "HAJJ_RITES.miss"
+ },
+ {
+  "h": "iuuqd7",
+  "k": "Still in Arafah? Stay until the disc has gone — then nothing is owed. Left before sunset? Hanafis, Shafi'is and Hanbalis: the Hajj is valid. Hanafis and Hanbalis: a dam (a sheep, distributed in the Haram) is owed — Hanafis: returning before sunset removes it; Hanbalis: returning any time before Fajr removes it. Shafi'is (their sounder view): staying until sunset is only recommended, so the dam is recommended, not owed. Malikis: being inside Arafah for part of the night after sunset is a pillar — go back before Fajr or the Hajj is missed. Tell your group leader / ask a scholar.",
+  "c": "HAJJ_RITES.miss"
+ },
+ {
+  "h": "1wj5le5",
+  "k": "Sun set while you were still in the camp with your bags, and you left anyway without stoning on the {1}th? The majority say a dam is owed; some scholars excuse those who had already begun to leave and were only held up. Still in Mina now? Simply stay — the {2}th's stoning is after midday tomorrow. Tell your group leader / ask a scholar.",
+  "c": "HAJJ_RITES.miss"
+ },
+ {
+  "h": "1pqpyzr",
+  "k": "Your package took you straight to Arafah, or you reached Mina only at night? Nothing is owed — the day and night in Mina are sunnah, not a pillar. Rest, keep up the talbiyah, and be in Arafah tomorrow. If in doubt, tell your group leader / ask a scholar.",
+  "c": "HAJJ_RITES.miss"
+ },
+ {
+  "h": "145xq6v",
+  "k": "stay{1}",
+  "c": "HAJJ_RITES.opt"
+ },
+ {
+  "h": "1v5v7n7",
+  "k": "Straight after tawaf al-ifadah: the Safa dhikr, {1} laps, finish on Marwah. With tawaf and sa'i done you are in the second tahallul — everything is allowed.",
+  "c": "HAJJ_RITES.p"
+ },
+ {
+  "h": "1oxijl0",
+  "k": "Your ihram from the miqat still stands. Keep the talbiyah going and head to Mina with your group.",
+  "c": "HAJJ_RITES.p"
+ },
+ {
+  "h": "srldth",
+  "k": "After every prayer",
+  "c": "HAJJ_RITES.rep",
+  "part_of": "After every prayer · ends Fajr or Asr of the {1}th, by school"
+ },
+ {
+  "h": "1j0wc3u",
+  "k": "After every prayer · ends Fajr or Asr of the {1}th, by school",
+  "c": "HAJJ_RITES.rep"
+ },
+ {
+  "h": "oy4f0p",
+  "k": "After {P1} until it is light",
+  "c": "HAJJ_RITES.rep"
+ },
+ {
+  "h": "bqbg7x",
+  "k": "Keep repeating until sunset",
+  "c": "HAJJ_RITES.rep"
+ },
+ {
+  "h": "1he5nyt",
+  "k": "ends {P1} or {P2} of the {1}th, by school",
+  "c": "HAJJ_RITES.rep",
+  "part_of": "After every prayer · ends Fajr or Asr of the {1}th, by school"
+ },
+ {
+  "h": "1p7qpl0",
+  "k": "Maghrib + Isha together · sleep · pebbles · the weak leave after midnight",
+  "c": "HAJJ_RITES.sub"
+ },
+ {
+  "h": "1oox907",
+  "k": "Only if you stayed",
+  "c": "HAJJ_RITES.sub",
+  "part_of": "Only if you stayed · three jamarat after midday · then leave Mina"
+ },
+ {
+  "h": "739k8o",
+  "k": "The last thing you do",
+  "c": "HAJJ_RITES.sub",
+  "part_of": "The last thing you do · {1} rounds · waived for sisters on their period"
+ },
+ {
+  "h": "rglupg",
+  "k": "The pillar of Hajj",
+  "c": "HAJJ_RITES.sub",
+  "part_of": "The pillar of Hajj · Dhuhr + Asr combined · wuquf until sunset"
+ },
+ {
+  "h": "bhv83o",
+  "k": "then leave Mina",
+  "c": "HAJJ_RITES.sub",
+  "part_of": "Only if you stayed · three jamarat after midday · then leave Mina"
+ },
+ {
+  "h": "tu0il1",
+  "k": "three jamarat after midday",
+  "c": "HAJJ_RITES.sub",
+  "part_of": "Only if you stayed · three jamarat after midday · then leave Mina"
+ },
+ {
+  "h": "2moxvt",
+  "k": "{P1} + {P2} together",
+  "c": "HAJJ_RITES.sub",
+  "part_of": "Maghrib + Isha together · sleep · pebbles · the weak leave after midnight"
+ },
+ {
+  "h": "v2bgxq",
+  "k": "{1}n",
+  "c": "HAJJ_RULINGS.d"
+ },
+ {
+  "h": "1xjzet5",
+  "k": "Hajj on its own, no Umrah joined to it. Arrival tawaf and sa'i, then you stay in ihram until the {1}th. No hady is owed (an udhiyah is optional — a sunnah for most schools; Malikis do not prescribe it for the pilgrim, and the Hanafi school makes it obligatory for a pilgrim who counts as resident and has the means).",
+  "c": "HAJJ_TYPES.d"
+ },
+ {
+  "h": "1g8kvda",
+  "k": "One ihram carries both — most scholars hold this was the Prophet's ﷺ own Hajj (Bukhari {1}, {2}), though some reports describe it as Ifrad (Bukhari {3}). You do the arrival tawaf and sa'i but do not cut your hair — you stay in ihram from the miqat until the {4}th. A hady is owed.",
+  "c": "HAJJ_TYPES.d",
+  "refs": [
+   "bukhari:1551",
+   "bukhari:1562"
+  ]
+ },
+ {
+  "h": "6obl4k",
+  "k": "The way the Prophet ﷺ told his companions without a sacrificial animal to do it (Bukhari {1}, {2}): Umrah on arrival, a few free days in Makkah, then ihram again for Hajj. The easiest for the family and the one most packages assume. A hady is owed.",
+  "c": "HAJJ_TYPES.d",
+  "refs": [
+   "bukhari:1572"
+  ]
+ },
+ {
+  "h": "h57gql",
+  "k": "Hajj alone",
+  "c": "HAJJ_TYPES.s"
+ },
+ {
+  "h": "1v1jfh6",
+  "k": "Umrah and Hajj in one ihram",
+  "c": "HAJJ_TYPES.s"
+ },
+ {
+  "h": "1p01luy",
+  "k": "Umrah first, exit ihram, then Hajj on {1} Dhul Hijjah",
+  "c": "HAJJ_TYPES.s"
+ },
+ {
+  "h": "otpny4",
+  "k": "The {1} miqats",
+  "c": "RITES.goL"
+ },
+ {
+  "h": "u7oy74",
+  "k": "conditional intention (ishtirat)",
+  "c": "RITES.opt",
+  "part_of": "Optional · conditional intention (ishtirat)"
+ },
+ {
+  "h": "cgic49",
+  "k": "Every lap",
+  "c": "RITES.rep"
+ },
+ {
+  "h": "gdqxf0",
+  "k": "Every round",
+  "c": "RITES.rep"
+ },
+ {
+  "h": "15oa0vm",
+  "k": "Keep reciting until tawaf",
+  "c": "RITES.rep"
+ },
+ {
+  "h": "q3jt9t",
+  "k": "On Safa",
+  "c": "RITES.rep",
+  "part_of": "On Safa · then every lap"
+ },
+ {
+  "h": "10l99ot",
+  "k": "On Safa · then every lap",
+  "c": "RITES.rep"
+ },
+ {
+  "h": "r2gwt3",
+  "k": "Start of every round",
+  "c": "RITES.rep"
+ },
+ {
+  "h": "1wpsl30",
+  "k": "then every lap",
+  "c": "RITES.rep",
+  "part_of": "On Safa · then every lap"
+ },
+ {
+  "h": "icq930",
+  "k": "Here I am, O Allah, here I am. Here I am, You have no partner, here I am. All praise, favour and sovereignty are Yours. You have no partner. (Bukhari {1})",
+  "c": "TB_HAJJ.b",
+  "refs": [
+   "bukhari:1549"
+  ]
+ },
+ {
+  "h": "7k0jwu",
+  "k": "Say it after the prayers and at any time in these days. Ibn Umar (RA) would say the takbir in Mina after the prayers, on his bed, in his tent, where he sat and as he walked (reported by al-Bukhari in a chapter heading, without its chain).",
+  "c": "TB_HAJJ.b"
+ },
+ {
+  "h": "w91akn",
+  "k": "Say it often from the moment you enter ihram: men aloud, women softly. In Hajj, keep it going until you stone Jamrat al-Aqabah on the {1}th: the Prophet ﷺ kept on saying it until he stoned the Jamrah (Bukhari {2}). Most scholars stop at the first pebble; the Malikis stop at Arafah after midday on the {3}th (al-Muwatta). In Umrah, the majority stop when they begin tawaf. Use the counter only to keep your own tally.",
+  "c": "TB_HAJJ.b",
+  "refs": [
+   "bukhari:1685"
+  ]
+ },
+ {
+  "h": "jyczg7",
+  "k": "Say it often on the Day of Arafah, with your own duas in between, until sunset. These same words said {1} times in a day have their own reward (Bukhari {2}; Muslim {3}).",
+  "c": "TB_HAJJ.b",
+  "refs": [
+   "bukhari:3293",
+   "muslim:2691"
+  ]
+ },
+ {
+  "h": "1rvocjq",
+  "k": "The Prophet ﷺ said: \"The best of supplication is the supplication of the Day of Arafah, and the best of what I and the prophets before me have said is: la ilaha illallahu wahdahu la sharika lah…\" (Tirmidhi {1}). Grade: al-Albani, hasan; al-Tirmidhi called it hasan gharib and noted that one narrator is not strong; Zubair Ali Zai, da'if. Malik reports a shorter wording as a mursal report (al-Muwatta).",
+  "c": "TB_HAJJ.b",
+  "refs": [
+   "tirmidhi:3585"
+  ]
+ },
+ {
+  "h": "1ns6j9d",
+  "k": "The takbir after the prayers starts and ends at different times in each school. For the pilgrim: Malikis and Shafi'is, from Dhuhr on the {1}th to Fajr on the {2}th; Hanbalis (and Ibn Baz and Ibn Uthaymin), from Dhuhr on the {3}th to Asr on the {4}th; Hanafis, from Fajr on the {5}th to Asr on the {6}th. Follow your group's school.",
+  "c": "TB_HAJJ.b"
+ },
+ {
+  "h": "135u0l5",
+  "k": "This is not a hadith of the Prophet ﷺ: it is the takbir that the Companion Ibn Mas'ud (RA) said in the days of tashriq, recorded by Ibn Abi Shaybah in al-Musannaf with a chain its editor grades sahih. No wording is fixed from the Prophet ﷺ, so other forms are also fine.",
+  "c": "TB_HAJJ.b"
+ },
+ {
+  "h": "iktnu4",
+  "k": "The takbir of the days of Mina",
+  "c": "TB_HAJJ.t"
+ },
+ {
+  "h": "3d4zva",
+  "k": "wudu",
+  "c": "TROUBLE_QA"
+ }
+]

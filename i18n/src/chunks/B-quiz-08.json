@@ -1,0 +1,376 @@
+[
+ {
+  "h": "1xkfftp",
+  "k": "True or false: whoever leaves Mina on the {1}th must be out before sunset — or else stay and stone on the {2}th.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1tcs3hr",
+  "k": "True or false: women jog between the green lights during sa'i.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "181vdcx",
+  "k": "True or false: wudu is required for tawaf.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "ot7to5",
+  "k": "True or false: you may pause tawaf or sa'i to rest, drink Zamzam, or join the obligatory prayer, then continue.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1j89cj2",
+  "k": "True or false: you may perform a second Umrah in the same trip by taking ihram from Tan'eem.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "175k3dg",
+  "k": "Visiting the Rawdah requires…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "igy4dg",
+  "k": "What does \"Labbayk\" mean?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "izu29c",
+  "k": "What does \"an Umrah in Ramadan\" equal, according to the Prophet ﷺ?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "x7n7pq",
+  "k": "What dua is sunnah between the Yamani corner and the Black Stone?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "19t07ve",
+  "k": "What follows the farewell tawaf?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1yrjany",
+  "k": "What is prayed immediately after tawaf?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "ch37i4",
+  "k": "What is raml?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "ha20du",
+  "k": "When did the Prophet ﷺ leave Arafah?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "10g14hr",
+  "k": "When did the Prophet ﷺ perform his one Hajj after the Hijrah?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1fz3hlq",
+  "k": "When does the Hajj pilgrim stop the talbiyah?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "ffjckq",
+  "k": "When does the pilgrim stop reciting the talbiyah in Umrah?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1jcw900",
+  "k": "Where may the hady be slaughtered?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1tp0fk3",
+  "k": "Which is NOT an ihram violation?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "2foifb",
+  "k": "Which of these does the Quran itself forbid in ihram?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "b1ry1a",
+  "k": "Which of these is NOT a concession given to the weak?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1q6e9fx",
+  "k": "Which of these is a pillar (rukn) of Hajj that no dam can replace?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "lat1aq",
+  "k": "Which of these is a pillar of Hajj that no dam can replace?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "d7a4g7",
+  "k": "Which of these is a sunnah of Hajj — leaving it costs nothing?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1hqif4f",
+  "k": "Which of these is prohibited in ihram?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1yr9izx",
+  "k": "Which place does the Quran call al-Mash'ar al-Haram?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1o8wsau",
+  "k": "Which violation is the only one that can spoil the Hajj itself?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "n18viz",
+  "k": "Which words open a Qiran Hajj at the miqat?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "bat6m1",
+  "k": "Who is excused from the farewell tawaf?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "qcx9vt",
+  "k": "Who owes a hady (sacrifice)?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1dojg8v",
+  "k": "Who rests beside the Prophet ﷺ in his chamber?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1v9dmzc",
+  "k": "Whom did the Prophet ﷺ excuse from spending the nights of Mina in Mina?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1o5d2tv",
+  "k": "You cannot reach the Black Stone. What do you do?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "a680dq",
+  "k": "Your wudu breaks in round {1} of tawaf al-ifadah. What do you do?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "51recl",
+  "k": "Your wudu breaks in round {1} of tawaf. What happens?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1k5751x",
+  "k": "Foundations",
+  "c": "QUIZ_LEVELS.short"
+ },
+ {
+  "h": "1cksbt2",
+  "k": "Hajj fiqh",
+  "c": "QUIZ_LEVELS.short"
+ },
+ {
+  "h": "1qyj9xc",
+  "k": "Ihram & talbiyah",
+  "c": "QUIZ_LEVELS.short"
+ },
+ {
+  "h": "d5dvqp",
+  "k": "Mina & Arafah",
+  "c": "QUIZ_LEVELS.short"
+ },
+ {
+  "h": "4wmiy4",
+  "k": "Tashreeq & farewell",
+  "c": "QUIZ_LEVELS.short"
+ },
+ {
+  "h": "n69qny",
+  "k": "Abu Dawud {1} · Tirmidhi {2}",
+  "c": "QUIZ_LEVELS.src",
+  "refs": [
+   "abudawud:1814",
+   "tirmidhi:829"
+  ]
+ },
+ {
+  "h": "b6lzg8",
+  "k": "Bukhari {1} · Muslim {2}",
+  "c": "QUIZ_LEVELS.src",
+  "refs": [
+   "bukhari:1691",
+   "muslim:1218"
+  ]
+ },
+ {
+  "h": "e9toum",
+  "k": "Bukhari {1} · Quran {2}",
+  "c": "QUIZ_LEVELS.src",
+  "refs": [
+   "bukhari:45",
+   "quran:5:3"
+  ]
+ },
+ {
+  "h": "1aw1rbj",
+  "k": "Ibn Majah {1} (weak chain; the practice is agreed)",
+  "c": "QUIZ_LEVELS.src",
+  "part_of": "Quran {1} · Ibn Majah {2} (weak chain; the practice is agreed)"
+ },
+ {
+  "h": "1j0x2wf",
+  "k": "Ibn Umar in al-Muwatta' (Hajj; mawquf, sahih)",
+  "c": "QUIZ_LEVELS.src",
+  "part_of": "Quran {1} · Ibn Umar in al-Muwatta' (Hajj; mawquf, sahih) · Tirmidhi {2}"
+ },
+ {
+  "h": "yba7hr",
+  "k": "Muslim {1} · Muslim {2}",
+  "c": "QUIZ_LEVELS.src",
+  "refs": [
+   "muslim:1305",
+   "muslim:1218"
+  ]
+ },
+ {
+  "h": "vpusvf",
+  "k": "Muslim {1} · Muslim {2} · Bukhari {3}",
+  "c": "QUIZ_LEVELS.src",
+  "refs": [
+   "muslim:1218",
+   "muslim:1288",
+   "bukhari:1673"
+  ]
+ },
+ {
+  "h": "18kloc0",
+  "k": "Nasai {1} · Ibn Majah {2} · Muslim {3}",
+  "c": "QUIZ_LEVELS.src",
+  "refs": [
+   "nasai:3057",
+   "ibnmajah:3029",
+   "muslim:1299"
+  ]
+ },
+ {
+  "h": "1rwrzus",
+  "k": "Nasai {1} · Muslim {2}",
+  "c": "QUIZ_LEVELS.src",
+  "refs": [
+   "nasai:3057",
+   "muslim:1282"
+  ]
+ },
+ {
+  "h": "o9u2ti",
+  "k": "Quran {1} · Bukhari {2}",
+  "c": "QUIZ_LEVELS.src",
+  "refs": [
+   "quran:2:196",
+   "bukhari:1809"
+  ]
+ },
+ {
+  "h": "bx5flm",
+  "k": "Quran {1} · Bukhari {2} · Bukhari {3}",
+  "c": "QUIZ_LEVELS.src",
+  "refs": [
+   "quran:2:125",
+   "bukhari:1691",
+   "bukhari:1764"
+  ]
+ },
+ {
+  "h": "9cudoh",
+  "k": "Quran {1} · Ibn Majah {2} (weak chain; the practice is agreed)",
+  "c": "QUIZ_LEVELS.src",
+  "refs": [
+   "quran:64:16",
+   "ibnmajah:3038"
+  ]
+ },
+ {
+  "h": "116r2tx",
+  "k": "Quran {1} · Ibn Umar in al-Muwatta' (Hajj; mawquf, sahih) · Tirmidhi {2}",
+  "c": "QUIZ_LEVELS.src",
+  "refs": [
+   "quran:2:203",
+   "tirmidhi:889"
+  ]
+ },
+ {
+  "h": "182xak5",
+  "k": "Quran {1} · Muslim {2}",
+  "c": "QUIZ_LEVELS.src",
+  "refs": [
+   "quran:2:198",
+   "muslim:1218"
+  ]
+ },
+ {
+  "h": "ucrqt5",
+  "k": "Quran {1}–{2} · Muslim {3}",
+  "c": "QUIZ_LEVELS.src",
+  "refs": [
+   "quran:5:95",
+   "muslim:1218"
+  ]
+ },
+ {
+  "h": "1qd9kg7",
+  "k": "Tirmidhi {1} (hasan — al-Albani)",
+  "c": "QUIZ_LEVELS.src",
+  "part_of": "Tirmidhi {1} (hasan — al-Albani) · al-Muwatta' (mursal of Talhah ibn 'Ubaydullah ibn Kariz)"
+ },
+ {
+  "h": "myjla5",
+  "k": "Tirmidhi {1} (hasan — al-Albani) · al-Muwatta' (mursal of Talhah ibn 'Ubaydullah ibn Kariz)",
+  "c": "QUIZ_LEVELS.src",
+  "refs": [
+   "tirmidhi:3585"
+  ]
+ },
+ {
+  "h": "1mke37c",
+  "k": "Tirmidhi {1} · Abu Dawud {2} · Bukhari {3}",
+  "c": "QUIZ_LEVELS.src",
+  "refs": [
+   "tirmidhi:757",
+   "abudawud:2438",
+   "bukhari:969"
+  ]
+ },
+ {
+  "h": "tr07kz",
+  "k": "Tirmidhi {1} · Bukhari {2}",
+  "c": "QUIZ_LEVELS.src",
+  "refs": [
+   "tirmidhi:919",
+   "bukhari:1685"
+  ]
+ },
+ {
+  "h": "o0jtjb",
+  "k": "Tirmidhi {1} · Umar's ruling, al-Muwatta' (Hajj; mawquf — broken chain: Sulayman ibn Yasar from Umar)",
+  "c": "QUIZ_LEVELS.src",
+  "refs": [
+   "tirmidhi:889"
+  ]
+ },
+ {
+  "h": "3nu2ji",
+  "k": "al-Muwatta' (mursal of Talhah ibn 'Ubaydullah ibn Kariz)",
+  "c": "QUIZ_LEVELS.src",
+  "part_of": "Tirmidhi {1} (hasan — al-Albani) · al-Muwatta' (mursal of Talhah ibn 'Ubaydullah ibn Kariz)"
+ }
+]

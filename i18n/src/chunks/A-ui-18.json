@@ -1,0 +1,98 @@
+[
+ {
+  "h": "nphoga",
+  "k": "Use my current location",
+  "c": "toast"
+ },
+ {
+  "h": "ghi03",
+  "k": "Vault created",
+  "c": "toast"
+ },
+ {
+  "h": "1pt2c44",
+  "k": "Vault unlocked",
+  "c": "toast"
+ },
+ {
+  "h": "thogn",
+  "k": "Write what should be corrected first",
+  "c": "toast"
+ },
+ {
+  "h": "1he3f95",
+  "k": "Wrong PIN",
+  "c": "toast"
+ },
+ {
+  "h": "r5elnm",
+  "k": "Wudu confirmed — bismillah, begin at the Black Stone corner",
+  "c": "toast"
+ },
+ {
+  "h": "1we0ltn",
+  "k": "Your dua list is empty — add the first one",
+  "c": "toast"
+ },
+ {
+  "h": "44ixer",
+  "k": "{1} cups — good, keep going in the heat",
+  "c": "toast"
+ },
+ {
+  "h": "1sobmff",
+  "k": "{1} dhikr today — checklist updated!",
+  "c": "toast"
+ },
+ {
+  "h": "1lt61yw",
+  "k": "{1}, alhamdulillah",
+  "c": "toast",
+  "part_of": "Post-salah tasbih complete — {1} · {2} · {3}, alhamdulillah"
+ },
+ {
+  "h": "1c7qtp3",
+  "k": "{P1} in {1} min (Madinah)",
+  "c": "toast"
+ },
+ {
+  "h": "ctlm6g",
+  "k": "{P1} in {1} min (Makkah)",
+  "c": "toast"
+ },
+ {
+  "h": "1ftjlsl",
+  "k": "{P1} in {1} minutes",
+  "c": "toast"
+ },
+ {
+  "h": "4a517w",
+  "k": "✓Backup kept",
+  "c": "toast"
+ },
+ {
+  "h": "xmgs2o",
+  "k": "✓Dhul Hijjah day confirmed",
+  "c": "toast"
+ },
+ {
+  "h": "1v3eelu",
+  "k": "✓Link copied — paste it in Safari or Chrome",
+  "c": "toast"
+ },
+ {
+  "h": "1vo0byo",
+  "k": "✓Location read once — rounded to about a kilometre",
+  "c": "toast"
+ },
+ {
+  "h": "126ww5p",
+  "k": "✓Photo kept on this phone only",
+  "c": "toast"
+ },
+ {
+  "h": "12agba1",
+  "k": "✓Pin saved on this phone only",
+  "c": "toast"
+ }
+]

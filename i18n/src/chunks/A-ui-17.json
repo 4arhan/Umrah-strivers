@@ -1,0 +1,861 @@
+[
+ {
+  "h": "yhnai1",
+  "k": "vaultCard",
+  "c": "PREP_ORDER"
+ },
+ {
+  "h": "1xdtyat",
+  "k": "Egyptian General Authority",
+  "c": "PT_METHODS.n"
+ },
+ {
+  "h": "18qg30y",
+  "k": "ISNA (North America)",
+  "c": "PT_METHODS.n"
+ },
+ {
+  "h": "14erutj",
+  "k": "Muslim World League",
+  "c": "PT_METHODS.n"
+ },
+ {
+  "h": "1xnvkc4",
+  "k": "Umm al-Qura, Makkah",
+  "c": "PT_METHODS.n"
+ },
+ {
+  "h": "1txbwb4",
+  "k": "University of Islamic Sciences, Karachi",
+  "c": "PT_METHODS.n"
+ },
+ {
+  "h": "q3lndv",
+  "k": "h-arafah#{1}",
+  "c": "QZ_MOVED.0"
+ },
+ {
+  "h": "1y5kmai",
+  "k": "h-fiqh#{1}",
+  "c": "QZ_MOVED.12"
+ },
+ {
+  "h": "1upkgol",
+  "k": "h-nahr#{1}",
+  "c": "QZ_MOVED.3"
+ },
+ {
+  "h": "itoopp",
+  "k": "h-tashreeq#{1}",
+  "c": "QZ_MOVED.4"
+ },
+ {
+  "h": "1iyb896",
+  "k": "h-found#{1}",
+  "c": "QZ_MOVED.6"
+ },
+ {
+  "h": "1usi2t5",
+  "k": "h-ihram#{1}",
+  "c": "QZ_MOVED.7"
+ },
+ {
+  "h": "1j1fsb1",
+  "k": "ram-season-{1}",
+  "c": "RAM_1448"
+ },
+ {
+  "h": "1w8ft9j",
+  "k": "Permits and dates",
+  "c": "RAM_GROUPS"
+ },
+ {
+  "h": "1e7p1md",
+  "k": "app.js",
+  "c": "READY_CORE"
+ },
+ {
+  "h": "q08ac6",
+  "k": "data.js",
+  "c": "READY_CORE"
+ },
+ {
+  "h": "1uk6a76",
+  "k": "index.html",
+  "c": "READY_CORE"
+ },
+ {
+  "h": "v5srig",
+  "k": "manifest.json",
+  "c": "READY_CORE"
+ },
+ {
+  "h": "1s0w1dt",
+  "k": "(prefers-reduced-motion: reduce)",
+  "c": "RM.media"
+ },
+ {
+  "h": "8ir966",
+  "k": "Ask for yourself, your family and everyone who asked you.",
+  "c": "SAI_TIPS"
+ },
+ {
+  "h": "131sj9e",
+  "k": "Back to Safa.",
+  "c": "SAI_TIPS"
+ },
+ {
+  "h": "188paz9",
+  "k": "Dua for the ummah.",
+  "c": "SAI_TIPS"
+ },
+ {
+  "h": "zycgav",
+  "k": "Halfway.",
+  "c": "SAI_TIPS"
+ },
+ {
+  "h": "f5dcec",
+  "k": "Last lap",
+  "c": "SAI_TIPS",
+  "part_of": "Last lap · Safa→Marwah — you finish on Marwah."
+ },
+ {
+  "h": "1a5plsd",
+  "k": "Last lap · Safa→Marwah — you finish on Marwah.",
+  "c": "SAI_TIPS"
+ },
+ {
+  "h": "1diclsw",
+  "k": "Men: shave (best) or trim; women: trim a fingertip's length — never shave. Your Umrah is done. Taqabbal Allah!",
+  "c": "SAI_TIPS"
+ },
+ {
+  "h": "14n8n05",
+  "k": "On Safa: face the Kaaba, praise Allah, repeat the dhikr {1}× with your own duas.",
+  "c": "SAI_TIPS"
+ },
+ {
+  "h": "1xpr538",
+  "k": "One to go.",
+  "c": "SAI_TIPS"
+ },
+ {
+  "h": "371omz",
+  "k": "Remember Hajar's trust: \"He will not abandon us\" (Bukhari {1}).",
+  "c": "SAI_TIPS",
+  "refs": [
+   "bukhari:3364"
+  ]
+ },
+ {
+  "h": "5sytya",
+  "k": "Sa'i complete.",
+  "c": "SAI_TIPS"
+ },
+ {
+  "h": "1s048ob",
+  "k": "Safa→Marwah — you finish on Marwah.",
+  "c": "SAI_TIPS",
+  "part_of": "Last lap · Safa→Marwah — you finish on Marwah."
+ },
+ {
+  "h": "1apb3cc",
+  "k": "Salawat and istighfar.",
+  "c": "SAI_TIPS"
+ },
+ {
+  "h": "78570m",
+  "k": "Sip Zamzam from the coolers if you need to.",
+  "c": "SAI_TIPS"
+ },
+ {
+  "h": "f2wwlp",
+  "k": "The Prophet ﷺ made dua on Safa and Marwah — pour out your heart.",
+  "c": "SAI_TIPS"
+ },
+ {
+  "h": "162b17p",
+  "k": "The angel says \"Amin, and for you the same\" (Muslim {1}).",
+  "c": "SAI_TIPS",
+  "refs": [
+   "muslim:2733"
+  ]
+ },
+ {
+  "h": "fnh9mt",
+  "k": "Then halq / taqsir.",
+  "c": "SAI_TIPS"
+ },
+ {
+  "h": "11y1idw",
+  "k": "waySheet('bound-arafah')",
+  "c": "STEP_WAY.h9arrive"
+ },
+ {
+  "h": "1xiy0hg",
+  "k": "Where Muzdalifah begins and ends",
+  "c": "STEP_WAY.h9nstay"
+ },
+ {
+  "h": "1sdz9ye",
+  "k": "waySheet('bound-muzdalifah-mina')",
+  "c": "STEP_WAY.h9nstay"
+ },
+ {
+  "h": "g3entk",
+  "k": "Don't push at the Stone — point and say Allahu Akbar.",
+  "c": "TAWAF_TIPS"
+ },
+ {
+  "h": "u2z3tw",
+  "k": "Istighfar.",
+  "c": "TAWAF_TIPS"
+ },
+ {
+  "h": "srj1ec",
+  "k": "Keep your group in sight — agree a meeting point now.",
+  "c": "TAWAF_TIPS"
+ },
+ {
+  "h": "y6shjm",
+  "k": "Keep your pace (raml for men).",
+  "c": "TAWAF_TIPS"
+ },
+ {
+  "h": "1rjd7pi",
+  "k": "Last raml round for men.",
+  "c": "TAWAF_TIPS"
+ },
+ {
+  "h": "14tzl4p",
+  "k": "Last round — finish at the Black Stone corner.",
+  "c": "TAWAF_TIPS"
+ },
+ {
+  "h": "1327xib",
+  "k": "Men: cover both shoulders again. {1} rakahs behind Maqam Ibrahim — anywhere in the mosque if crowded — then Zamzam.",
+  "c": "TAWAF_TIPS"
+ },
+ {
+  "h": "68brih",
+  "k": "Normal pace now.",
+  "c": "TAWAF_TIPS"
+ },
+ {
+  "h": "142kbia",
+  "k": "Salawat on the Prophet ﷺ.",
+  "c": "TAWAF_TIPS"
+ },
+ {
+  "h": "ap0xaw",
+  "k": "Start at the Black Stone corner — \"Bismillahi wallahu akbar\", Kaaba on your left.",
+  "c": "TAWAF_TIPS"
+ },
+ {
+  "h": "1m9u5i3",
+  "k": "Tawaf complete.",
+  "c": "TAWAF_TIPS"
+ },
+ {
+  "h": "eyjmj0",
+  "k": "Then men cover both shoulders; {1} rakahs behind Maqam Ibrahim.",
+  "c": "TAWAF_TIPS"
+ },
+ {
+  "h": "r980sd",
+  "k": "h{1}ifadah",
+  "c": "TM.chk"
+ },
+ {
+  "h": "14sskkp",
+  "k": "h{1}sai",
+  "c": "TM.chk"
+ },
+ {
+  "h": "1y4dndy",
+  "k": "Wada",
+  "c": "TM.lbl"
+ },
+ {
+  "h": "1xyb8ks",
+  "k": "Add a phone number for the card first",
+  "c": "toast"
+ },
+ {
+  "h": "1f5ffno",
+  "k": "Already counted — tap Undo if wrong",
+  "c": "toast"
+ },
+ {
+  "h": "1mfy9r1",
+  "k": "Already counted — tap −{1} if wrong",
+  "c": "toast"
+ },
+ {
+  "h": "18h89m7",
+  "k": "Answer now",
+  "c": "toast"
+ },
+ {
+  "h": "1rgy7o9",
+  "k": "Audio not supported on this browser",
+  "c": "toast"
+ },
+ {
+  "h": "1m7whx4",
+  "k": "Backup imported — reloading…",
+  "c": "toast"
+ },
+ {
+  "h": "1jq6rpm",
+  "k": "Checking for updates…",
+  "c": "toast"
+ },
+ {
+  "h": "vumu4r",
+  "k": "Children's to-dos added to your timeline",
+  "c": "toast"
+ },
+ {
+  "h": "1uftvm5",
+  "k": "Cleared — nothing was recorded",
+  "c": "toast"
+ },
+ {
+  "h": "1ezvgex",
+  "k": "Copied — paste it into your group chat",
+  "c": "toast"
+ },
+ {
+  "h": "oq4xkm",
+  "k": "Could not check — are you online?",
+  "c": "toast"
+ },
+ {
+  "h": "48l2so",
+  "k": "Could not open — wrong PIN?",
+  "c": "toast"
+ },
+ {
+  "h": "ck7vw9",
+  "k": "Distances and the order of stops depend on where you begin.",
+  "c": "toast"
+ },
+ {
+  "h": "imnukn",
+  "k": "Encryption not available in this browser",
+  "c": "toast"
+ },
+ {
+  "h": "1r8yo53",
+  "k": "Enter your hotel name first",
+  "c": "toast"
+ },
+ {
+  "h": "lmfa66",
+  "k": "Exit→Record your Hajj",
+  "c": "toast"
+ },
+ {
+  "h": "clhaqb",
+  "k": "Exit→tick halq / taqsir",
+  "c": "toast"
+ },
+ {
+  "h": "1hift5h",
+  "k": "File too large ({1} MB max)",
+  "c": "toast"
+ },
+ {
+  "h": "1m6mf1x",
+  "k": "Give the medicine a name",
+  "c": "toast"
+ },
+ {
+  "h": "1bahnj1",
+  "k": "Head out with wudu — the Haram fills early. May it be accepted.",
+  "c": "toast"
+ },
+ {
+  "h": "1dfq7e4",
+  "k": "Hold the phone flat, away from metal, and rotate until the points up",
+  "c": "toast"
+ },
+ {
+  "h": "dsmurh",
+  "k": "Home city removed",
+  "c": "toast"
+ },
+ {
+  "h": "69o3uz",
+  "k": "Hotel saved — add the address & phone in Plan▶Prepare",
+  "c": "toast"
+ },
+ {
+  "h": "17x125x",
+  "k": "I'm at my hotel now — save it",
+  "c": "toast"
+ },
+ {
+  "h": "mbbhtg",
+  "k": "Import failed — invalid file",
+  "c": "toast"
+ },
+ {
+  "h": "5is6ge",
+  "k": "Installed — on Android, press and hold the Miqah icon for \"I'm lost\" and \"Help numbers\"",
+  "c": "toast"
+ },
+ {
+  "h": "1og7f5p",
+  "k": "Intention set — may Allah accept it",
+  "c": "toast"
+ },
+ {
+  "h": "7074t",
+  "k": "Jumu'ah in {1} min (Madinah)",
+  "c": "toast"
+ },
+ {
+  "h": "ir1jri",
+  "k": "Jumu'ah in {1} min (Makkah)",
+  "c": "toast"
+ },
+ {
+  "h": "1musgiz",
+  "k": "Jumu'ah in {1} minutes",
+  "c": "toast"
+ },
+ {
+  "h": "1jkqbjr",
+  "k": "Jumu'ah — the Haram fills {1}–{2} hours before. Head out with wudu.",
+  "c": "toast"
+ },
+ {
+  "h": "33fyze",
+  "k": "Knowledge circuit complete!",
+  "c": "toast"
+ },
+ {
+  "h": "1tggitm",
+  "k": "Line deleted",
+  "c": "toast"
+ },
+ {
+  "h": "138x1bl",
+  "k": "Link copied — share it with your group",
+  "c": "toast"
+ },
+ {
+  "h": "1ky605m",
+  "k": "Locating…",
+  "c": "toast"
+ },
+ {
+  "h": "rakm5l",
+  "k": "Location denied",
+  "c": "toast"
+ },
+ {
+  "h": "4qguml",
+  "k": "Location denied — pick a landmark instead",
+  "c": "toast"
+ },
+ {
+  "h": "l2vi4h",
+  "k": "Location not supported",
+  "c": "toast"
+ },
+ {
+  "h": "vpwowr",
+  "k": "Location not supported — pick a landmark",
+  "c": "toast"
+ },
+ {
+  "h": "i3owwm",
+  "k": "Location unavailable.",
+  "c": "toast"
+ },
+ {
+  "h": "1h2qv84",
+  "k": "Location unavailable. In Makkah the direction changes street to street — use the qibla sticker on the hotel ceiling, or allow location in your browser settings and retry.",
+  "c": "toast"
+ },
+ {
+  "h": "2tu204",
+  "k": "Mark removed",
+  "c": "toast"
+ },
+ {
+  "h": "v3ouwr",
+  "k": "Medicine reminders off",
+  "c": "toast"
+ },
+ {
+  "h": "11y9586",
+  "k": "Medicine time",
+  "c": "toast"
+ },
+ {
+  "h": "1fghm08",
+  "k": "Meeting point saved — shown on Home, the lost card and the counters",
+  "c": "toast"
+ },
+ {
+  "h": "d9dt3u",
+  "k": "Needs signal — try again on Wi-Fi",
+  "c": "toast"
+ },
+ {
+  "h": "1rq4zoj",
+  "k": "New round — every dua is unticked",
+  "c": "toast"
+ },
+ {
+  "h": "kzm3rm",
+  "k": "No Arabic voice on this device — follow the transliteration",
+  "c": "toast"
+ },
+ {
+  "h": "pozpmo",
+  "k": "No mistakes to review — mashallah!",
+  "c": "toast"
+ },
+ {
+  "h": "wrx6ql",
+  "k": "Not enough space to keep the photo",
+  "c": "toast"
+ },
+ {
+  "h": "1ym1aav",
+  "k": "Not in Makkah or Madinah — pick a landmark instead",
+  "c": "toast"
+ },
+ {
+  "h": "wm0qro",
+  "k": "Not there yet? Pick a landmark near your hotel→",
+  "c": "toast"
+ },
+ {
+  "h": "7ytgh3",
+  "k": "Notifications allowed — medicine reminders also notify while the app is open",
+  "c": "toast"
+ },
+ {
+  "h": "1c2y9w0",
+  "k": "Notifications blocked — allow them in browser settings",
+  "c": "toast"
+ },
+ {
+  "h": "1bbspnm",
+  "k": "Notifications not supported here",
+  "c": "toast"
+ },
+ {
+  "h": "12r9yi1",
+  "k": "Open Part {1}",
+  "c": "toast"
+ },
+ {
+  "h": "12w5akd",
+  "k": "Opening your mail app — if nothing opens, copy the report instead",
+  "c": "toast"
+ },
+ {
+  "h": "td7r0y",
+  "k": "PIN needs at least {1} digits",
+  "c": "toast"
+ },
+ {
+  "h": "802y1h",
+  "k": "Part {1} done",
+  "c": "toast"
+ },
+ {
+  "h": "4808cn",
+  "k": "Pick Tamattu', Qiran or Ifrad",
+  "c": "toast"
+ },
+ {
+  "h": "aypwxk",
+  "k": "Pin removed",
+  "c": "toast"
+ },
+ {
+  "h": "id95sy",
+  "k": "Post-salah tasbih complete — {1}",
+  "c": "toast",
+  "part_of": "Post-salah tasbih complete — {1} · {2} · {3}, alhamdulillah"
+ },
+ {
+  "h": "1bm22lp",
+  "k": "Post-salah tasbih complete — {1} · {2} · {3}, alhamdulillah",
+  "c": "toast"
+ },
+ {
+  "h": "19zvblk",
+  "k": "Putting your data back…",
+  "c": "toast"
+ },
+ {
+  "h": "ffajpd",
+  "k": "Reminders off",
+  "c": "toast"
+ },
+ {
+  "h": "knpcin",
+  "k": "Reminders on — while the app is open. For screen-off alarms add the week to your calendar (Settings)",
+  "c": "toast"
+ },
+ {
+  "h": "1g3qbud",
+  "k": "Removed from your route",
+  "c": "toast"
+ },
+ {
+  "h": "1hbg3gi",
+  "k": "Route cleared",
+  "c": "toast"
+ },
+ {
+  "h": "9x5opc",
+  "k": "Sa'i complete — you stay in ihram until the {1}th",
+  "c": "toast"
+ },
+ {
+  "h": "mhdzmi",
+  "k": "Sa'i complete! Before anything is cut: what did you say at the miqat?",
+  "c": "toast"
+ },
+ {
+  "h": "u80wv1",
+  "k": "Sa'i complete! Next: halq / taqsir",
+  "c": "toast"
+ },
+ {
+  "h": "q1b97s",
+  "k": "Sa'i done. Before anything is cut: what did you say at the miqat? Tamattu' cuts now; Qiran / Ifrad stay in ihram until the {1}th.",
+  "c": "toast"
+ },
+ {
+  "h": "ds9nm1",
+  "k": "Sa'i done→halq / taqsir. Men shave (best) or trim; women trim a fingertip's length — never shave. Ihram ends only after cutting.",
+  "c": "toast"
+ },
+ {
+  "h": "1754uf6",
+  "k": "Safe travels — labbayk!",
+  "c": "toast"
+ },
+ {
+  "h": "19nxbd5",
+  "k": "Saved to vault",
+  "c": "toast"
+ },
+ {
+  "h": "vtxb03",
+  "k": "Saved to your journal",
+  "c": "toast"
+ },
+ {
+  "h": "1ozq1t5",
+  "k": "Saving the prayer times — check again in a moment",
+  "c": "toast"
+ },
+ {
+  "h": "13alwo5",
+  "k": "Say the count is off",
+  "c": "toast"
+ },
+ {
+  "h": "j7ptqc",
+  "k": "Say the count is on — use earphones in the Haram",
+  "c": "toast"
+ },
+ {
+  "h": "9vxklu",
+  "k": "Secure storage needs HTTPS — open the app from miqah.app.",
+  "c": "toast"
+ },
+ {
+  "h": "1afaf9l",
+  "k": "Sent — open it in Calendar to add the alerts",
+  "c": "toast"
+ },
+ {
+  "h": "e6rpoc",
+  "k": "Set aside today — you are excused",
+  "c": "toast"
+ },
+ {
+  "h": "1e4a82k",
+  "k": "Set your Hajj year first",
+  "c": "toast"
+ },
+ {
+  "h": "1ywfii4",
+  "k": "Set your departure date first",
+  "c": "toast"
+ },
+ {
+  "h": "1a0ux4b",
+  "k": "Set your departure date first — or the trip is already over",
+  "c": "toast"
+ },
+ {
+  "h": "1wgchl5",
+  "k": "Start Sa'i→",
+  "c": "toast"
+ },
+ {
+  "h": "1foszty",
+  "k": "Stay in ihram — Part {1} on {2} Dhul Hijjah",
+  "c": "toast"
+ },
+ {
+  "h": "ky4lc5",
+  "k": "Stop",
+  "c": "toast"
+ },
+ {
+  "h": "15oml4e",
+  "k": "Switch to the Hajj journey first",
+  "c": "toast"
+ },
+ {
+  "h": "1otnomn",
+  "k": "Tawaf al-wada complete — {1} rakahs if you can, Zamzam, and leave with Allah's peace",
+  "c": "toast"
+ },
+ {
+  "h": "dibl1u",
+  "k": "Tawaf al-wada complete — {1} rakahs if you can, a last Zamzam, a last dua, then leave Makkah with Allah's peace.",
+  "c": "toast"
+ },
+ {
+  "h": "1tkublx",
+  "k": "Tawaf al-wada marked waived for you — if you are pure before you leave, untick it in Steps",
+  "c": "toast"
+ },
+ {
+  "h": "6yitpp",
+  "k": "Tawaf complete! {1} rakahs at Maqam Ibrahim, Zamzam, then Safa",
+  "c": "toast"
+ },
+ {
+  "h": "18klnkd",
+  "k": "Tawaf complete. Men: cover both shoulders. {1} rakahs behind Maqam Ibrahim — anywhere in the mosque if crowded — then Zamzam, then Safa.",
+  "c": "toast"
+ },
+ {
+  "h": "13p4k0k",
+  "k": "That date has passed — pick your departure date",
+  "c": "toast"
+ },
+ {
+  "h": "1wpidzw",
+  "k": "That date has passed — pick your departure date, or tap \"I'm already in Saudi Arabia\"",
+  "c": "toast"
+ },
+ {
+  "h": "1dbcxv8",
+  "k": "That file is not a photo",
+  "c": "toast"
+ },
+ {
+  "h": "1fcg8xv",
+  "k": "That time has passed — tick 'Lands the next day' if you land after midnight",
+  "c": "toast"
+ },
+ {
+  "h": "1ruekjp",
+  "k": "The day counter, prayer times and Part {1} start from where you are; the days of Hajj follow the Hijri calendar.",
+  "c": "toast"
+ },
+ {
+  "h": "as58aj",
+  "k": "This browser does not offer it — installing the app helps",
+  "c": "toast"
+ },
+ {
+  "h": "1ou0wo2",
+  "k": "This browser does not offer it — keep a backup",
+  "c": "toast"
+ },
+ {
+  "h": "tj5gq1",
+  "k": "This link's date has passed — ask your group leader for a fresh one",
+  "c": "toast"
+ },
+ {
+  "h": "1app6e5",
+  "k": "This phone has no voice for the count",
+  "c": "toast"
+ },
+ {
+  "h": "1xfhily",
+  "k": "Tick a few deeds in Today first",
+  "c": "toast"
+ },
+ {
+  "h": "70dztz",
+  "k": "Times unavailable · <1>tap to retry</1>",
+  "c": "toast"
+ },
+ {
+  "h": "3qfgew",
+  "k": "Tip: swipe left/right to move between sections",
+  "c": "toast"
+ },
+ {
+  "h": "wt6yxb",
+  "k": "To plan a route I need a start point",
+  "c": "toast"
+ },
+ {
+  "h": "ptoghu",
+  "k": "Today is the day!",
+  "c": "toast"
+ },
+ {
+  "h": "vp93p0",
+  "k": "Umrah marked done — taqabbal Allah",
+  "c": "toast"
+ },
+ {
+  "h": "17be8jt",
+  "k": "Umrah — set your new departure date",
+  "c": "toast"
+ },
+ {
+  "h": "1nuadsj",
+  "k": "Up to eight medicines",
+  "c": "toast"
+ },
+ {
+  "h": "19nnwjb",
+  "k": "Up to four people a day",
+  "c": "toast"
+ },
+ {
+  "h": "l8rmmh",
+  "k": "Up to {1} children",
+  "c": "toast"
+ },
+ {
+  "h": "6942el",
+  "k": "Update found — installing…",
+  "c": "toast"
+ },
+ {
+  "h": "zynjkz",
+  "k": "Update ready — tap the chip to reload",
+  "c": "toast"
+ },
+ {
+  "h": "qu3uq6",
+  "k": "Use Madinah (approx. {1}°)",
+  "c": "toast"
+ }
+]

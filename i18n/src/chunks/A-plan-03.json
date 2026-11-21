@@ -1,0 +1,285 @@
+[
+ {
+  "h": "1fqrwal",
+  "k": "Required by the Saudi Ministry of Health for every Umrah and Hajj pilgrim: a conjugate ACWY vaccine within the last {1} years (or polysaccharide within {2} years), given at least {3} days before arrival. The certificate should name the vaccine and the date — check the current MoH requirements.",
+  "c": ".x < .row-t < #pw-menacwy"
+ },
+ {
+  "h": "18gh9vq",
+  "k": "Many Mina tents give each pilgrim only a narrow sofa-bed or thin mattress, and Muzdalifah is open ground — a roll mat and an inflatable pillow turn two nights into rest. Keep the whole Mina kit in one small bag you can carry yourself.",
+  "c": ".x < .row-t < #pw-minamat"
+ },
+ {
+  "h": "1n2nkyf",
+  "k": "Your regular medicines for the whole {1}th–{2}th, rehydration salts, painkillers, blister plasters, a small first-aid kit, a power bank and cable — the camp is not the hotel; what you forget stays forgotten.",
+  "c": ".x < .row-t < #pw-minameds"
+ },
+ {
+  "h": "4wfz2l",
+  "k": "You will walk {1}+ km over the days of Mina: broken-in slip-on sandals with a strap. A cap is only for after the first tahallul — in ihram men keep the head uncovered and use an umbrella. A second ihram set is a mercy after Muzdalifah.",
+  "c": ".x < .row-t < #pw-minawear"
+ },
+ {
+  "h": "tryxe2",
+  "k": "Cards are widely accepted, but keep cash for taxis, barbers and small shops.",
+  "c": ".x < .row-t < #pw-money"
+ },
+ {
+  "h": "c25iwb",
+  "k": "Write it at the top of the Plan tab — the journey begins in the heart, not at the airport.",
+  "c": ".x < .row-t < #pw-niyyah"
+ },
+ {
+  "h": "1d1qkbs",
+  "k": "Write it at the top of the Plan tab — \"the accepted Hajj has no reward except Paradise\" (Bukhari {1}). Decide now what you will ask for at Arafah.",
+  "c": ".x < .row-t < #pw-niyyahh",
+  "refs": [
+   "bukhari:1773"
+  ]
+ },
+ {
+  "h": "ow9sr7",
+  "k": "Needed for Rawdah permits in Madinah and official services.",
+  "c": ".x < .row-t < #pw-nusuk"
+ },
+ {
+  "h": "150n2t9",
+  "k": "Two days before you fly, check the app will work in airplane mode: installed, saved for offline, fonts, prayer times through your return, the Arabic voice, hotel and companion saved, a recent backup.",
+  "c": ".x < .row-t < #pw-offline"
+ },
+ {
+  "h": "pwz476",
+  "k": "Saudi Arabia requires at least six months of validity from arrival.",
+  "c": ".x < .row-t < #pw-passport"
+ },
+ {
+  "h": "tqyx8a",
+  "k": "A small drawstring pouch for {1} chickpea-sized pebbles, and unscented wipes for freshening up in ihram (scented ones are forbidden in ihram).",
+  "c": ".x < .row-t < #pw-pebblepouch"
+ },
+ {
+  "h": "sns7qg",
+  "k": "Menstruation does not stop you entering ihram, making dua or doing sa'i after a valid tawaf — but tawaf itself must wait for purity. If your dates clash with a short trip, a doctor can advise; many sisters choose not to and simply wait.",
+  "c": ".x < .row-t < #pw-perioddelay"
+ },
+ {
+  "h": "1o9dosm",
+  "k": "Pass all seven levels in the Quiz tab ({1}%+ each). This ticks itself when the circuit is complete.",
+  "c": ".x < .row-t < #pw-quiz80"
+ },
+ {
+  "h": "gfgui8",
+  "k": "Pass all ten levels in the Quiz tab ({1}%+ each). This ticks itself when the circuit is complete.",
+  "c": ".x < .row-t < #pw-quiz80"
+ },
+ {
+  "h": "rh5hqr",
+  "k": "Visiting the Rawdah in Masjid an-Nabawi requires a free timed permit — slots open only a short time ahead, so check Nusuk as your dates approach and book as soon as they open.",
+  "c": ".x < .row-t < #pw-rawdah"
+ },
+ {
+  "h": "87zjp1",
+  "k": "Men's ihram footwear should leave the ankle exposed. Shoes get lost at mosque entrances.",
+  "c": ".x < .row-t < #pw-sandals"
+ },
+ {
+  "h": "1al5cj4",
+  "k": "Bring more than you expect — the heat and travel can shift cycles. Available locally, but not always near the Haram.",
+  "c": ".x < .row-t < #pw-sanitary"
+ },
+ {
+  "h": "1ecs6gc",
+  "k": "Women end ihram by trimming a fingertip's length — there are no barbers for sisters, so carry your own. Pack them in checked luggage (hand-luggage rules vary by airline).",
+  "c": ".x < .row-t < #pw-scissors"
+ },
+ {
+  "h": "l0tpo4",
+  "k": "Strollers are not allowed on the ground floor of the mataf and can be turned away when the mataf or mas'a is crowded; pram tawaf is allowed on the upper floors and in the mas'a. A soft carrier is easier for tawaf and sa'i.",
+  "c": ".x < .row-t < #pw-stroller"
+ },
+ {
+  "h": "1dtetjn",
+  "k": "Labbayk Allahumma labbayk — see the Duas section in More.",
+  "c": ".x < .row-t < #pw-talbiyah"
+ },
+ {
+  "h": "1sssc1j",
+  "k": "Arrive with a clean heart — resolve to leave sins behind.",
+  "c": ".x < .row-t < #pw-tawbah"
+ },
+ {
+  "h": "18ry7lo",
+  "k": "Midday courtyard marble is brutal — a light umbrella helps outside the mosque.",
+  "c": ".x < .row-t < #pw-umbrella"
+ },
+ {
+  "h": "nhxyz2",
+  "k": "Perfumed products are prohibited in ihram — buy unscented before you travel.",
+  "c": ".x < .row-t < #pw-unscented"
+ },
+ {
+  "h": "1gdpfjd",
+  "k": "Unscented — long tawaf and sa'i walks in ihram cause chafing.",
+  "c": ".x < .row-t < #pw-vaseline"
+ },
+ {
+  "h": "bu0qup",
+  "k": "Apply via the official Nusuk platform or an authorised agent — beware of unofficial sites. Since {M1} {1} a single-entry Umrah visa is cancelled if you have not entered Saudi Arabia within {2} days of issue, so don't apply too early — check the current rules on Nusuk.",
+  "c": ".x < .row-t < #pw-visa"
+ },
+ {
+  "h": "1p8jwed",
+  "k": "Tawaf + sa'i is about {1} km on the ground floor, more upstairs; you may walk {2}–{3} km a day. Train before you go.",
+  "c": ".x < .row-t < #pw-walk"
+ },
+ {
+  "h": "1hrz6qi",
+  "k": "Mina→Arafah→Muzdalifah→Mina→the Jamarat→the Haram can mean {1} km or more on foot across two days in the heat. Build up to {2} km without stopping, in the sandals you will actually wear, and add stairs.",
+  "c": ".x < .row-t < #pw-walkhajj"
+ },
+ {
+  "h": "113m4dw",
+  "k": "A sunnah of preparedness for any traveller.",
+  "c": ".x < .row-t < #pw-will"
+ },
+ {
+  "h": "1mzkrbi",
+  "k": "Name, nationality, group, maktab number, a Saudi-reachable phone number and any medical condition — waterproof, on the wrist, from the moment you leave for Mina.",
+  "c": ".x < .row-t < #pw-wristband"
+ },
+ {
+  "h": "1t4vha5",
+  "k": "The words→",
+  "c": ".xchip < .row-t < #dw-htakbir"
+ },
+ {
+  "h": "eq781p",
+  "k": "Places→",
+  "c": ".xchip < .row-t < #dw-ziyarah"
+ },
+ {
+  "h": "d7jhhr",
+  "k": "My dua list→",
+  "c": ".xchip < .row-t < #pw-dualist"
+ },
+ {
+  "h": "sjmpyj",
+  "k": "Ziyarah bus→",
+  "c": ".xchip < .row-t < #pw-hoho"
+ },
+ {
+  "h": "1ix9c5w",
+  "k": "How to wear it→",
+  "c": ".xchip < .row-t < #pw-ihramtry"
+ },
+ {
+  "h": "9t949d",
+  "k": "Umrah steps→",
+  "c": ".xchip < .row-t < #pw-learn"
+ },
+ {
+  "h": "1fhrzz5",
+  "k": "Hajj steps→",
+  "c": ".xchip < .row-t < #pw-learnh"
+ },
+ {
+  "h": "pry784",
+  "k": "Days of Hajj→",
+  "c": ".xchip < .row-t < #pw-learnhajj"
+ },
+ {
+  "h": "eg5ds1",
+  "k": "Write it→",
+  "c": ".xchip < .row-t < #pw-niyyah"
+ },
+ {
+  "h": "ztu1dl",
+  "k": "Run the check→",
+  "c": ".xchip < .row-t < #pw-offline"
+ },
+ {
+  "h": "19hyp6a",
+  "k": "Quiz→",
+  "c": ".xchip < .row-t < #pw-quiz80"
+ },
+ {
+  "h": "1ntx3v",
+  "k": "The Rawdah→",
+  "c": ".xchip < .row-t < #pw-rawdah"
+ },
+ {
+  "h": "wtgjkk",
+  "k": "Duas→",
+  "c": ".xchip < .row-t < #pw-talbiyah"
+ },
+ {
+  "h": "9rol7m",
+  "k": "Morning & evening adhkar and duas from the Sunnah, with audio",
+  "c": "DAILY.d"
+ },
+ {
+  "h": "10s6j9u",
+  "k": "Read, listen and study with translations",
+  "c": "DAILY.d"
+ },
+ {
+  "h": "pk30nd",
+  "k": "Recite and get word-level mistake detection; memorisation tracking",
+  "c": "DAILY.d"
+ },
+ {
+  "h": "153ciwr",
+  "k": "The classic dua collection — every occasion, referenced",
+  "c": "DAILY.d"
+ },
+ {
+  "h": "ts86f1",
+  "k": "The words",
+  "c": "DAILY.goL"
+ },
+ {
+  "h": "1aas3l9",
+  "k": "https://hisnmuslim.com/",
+  "c": "DAILY.u"
+ },
+ {
+  "h": "12o7ead",
+  "k": "https://lifewithallah.com/app",
+  "c": "DAILY.u"
+ },
+ {
+  "h": "k84b77",
+  "k": "https://quran.com/",
+  "c": "DAILY.u"
+ },
+ {
+  "h": "1ptd9fu",
+  "k": "https://tarteel.ai/",
+  "c": "DAILY.u"
+ },
+ {
+  "h": "hhs0b2",
+  "k": "Days of Hajj",
+  "c": "PLAN.goL"
+ },
+ {
+  "h": "14sdccu",
+  "k": "How to wear it",
+  "c": "PLAN.goL"
+ },
+ {
+  "h": "7w1qp",
+  "k": "Run the check",
+  "c": "PLAN.goL"
+ },
+ {
+  "h": "tw4wll",
+  "k": "Write it",
+  "c": "PLAN.goL"
+ },
+ {
+  "h": "u5ru8r",
+  "k": "Ziyarah bus",
+  "c": "PLAN.goL"
+ }
+]

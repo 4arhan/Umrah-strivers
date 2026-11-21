@@ -1,0 +1,872 @@
+[
+ {
+  "h": "1jaev8b",
+  "k": "With your group",
+  "c": ".hs-ce < .hs-cw < .hs-pill"
+ },
+ {
+  "h": "augsop",
+  "k": "Set hotel",
+  "c": ".hs-ce < .hs-cw < .pl-near"
+ },
+ {
+  "h": "1rp7xtn",
+  "k": "Foundations of Umrah",
+  "c": ".hs-ct < .hs-cw < .btn"
+ },
+ {
+  "h": "dal3b5",
+  "k": "Open today's steps",
+  "c": ".hs-ct < .hs-cw < .btn"
+ },
+ {
+  "h": "1rm2yj9",
+  "k": "Stand at Arafah",
+  "c": ".hs-ct < .hs-cw < .hcta"
+ },
+ {
+  "h": "1d0oro1",
+  "k": "Aqabah",
+  "c": ".hs-ct < .hs-cw < .hs-pill"
+ },
+ {
+  "h": "ljeeu9",
+  "k": "Foundations of Hajj",
+  "c": ".hs-ct < .hs-cw < .hs-pill"
+ },
+ {
+  "h": "bnoshp",
+  "k": "Hours, shade in ihram, water, your kit",
+  "c": ".hs-ct < .hs-cw < .hs-pill"
+ },
+ {
+  "h": "1qzms9k",
+  "k": "Iftar in the Haram, taraweeh, fasting and travel",
+  "c": ".hs-ct < .hs-cw < .hs-pill"
+ },
+ {
+  "h": "nbo5zj",
+  "k": "Laylat al-Qadr and its dua",
+  "c": ".hs-ct < .hs-cw < .hs-pill"
+ },
+ {
+  "h": "r2xkyb",
+  "k": "Rami of the {1}th",
+  "c": ".hs-ct < .hs-cw < .hs-pill",
+  "part_of": "Rami of the {1}th · after midday"
+ },
+ {
+  "h": "1kclnu4",
+  "k": "Rami of the {1}th · after midday",
+  "c": ".hs-ct < .hs-cw < .hs-pill"
+ },
+ {
+  "h": "18a1wy2",
+  "k": "Share my readiness",
+  "c": ".hs-ct < .hs-cw < .hs-pill"
+ },
+ {
+  "h": "noqyl7",
+  "k": "Suhoor, fasting and travel, taraweeh",
+  "c": ".hs-ct < .hs-cw < .hs-pill"
+ },
+ {
+  "h": "1yf2ke8",
+  "k": "The signs, and what to do — call {1}",
+  "c": ".hs-ct < .hs-cw < .hs-pill"
+ },
+ {
+  "h": "nn5vjv",
+  "k": "after midday",
+  "c": ".hs-ct < .hs-cw < .hs-pill",
+  "part_of": "Rami of the {1}th · after midday"
+ },
+ {
+  "h": "1fhpn9n",
+  "k": "See distances & walking times",
+  "c": ".hs-ct < .hs-cw < .pl-near"
+ },
+ {
+  "h": "14jfx13",
+  "k": "As-salamu alaykum",
+  "c": ".hs-g < .hs-t < .hstatus"
+ },
+ {
+  "h": "tp6usd",
+  "k": "As-salamu alaykum, {U1}",
+  "c": ".hs-g < .hs-t < .hstatus"
+ },
+ {
+  "h": "8vp6oq",
+  "k": "{H1} {1}, {2} AH",
+  "c": ".hs-hj < .hs-d < .hs-t"
+ },
+ {
+  "h": "1jw65l",
+  "k": "Back home",
+  "c": ".hs-k < .hs-main < #hsHero"
+ },
+ {
+  "h": "ksy4w6",
+  "k": "Planning your Umrah",
+  "c": ".hs-k < .hs-main < #hsHero"
+ },
+ {
+  "h": "2yquux",
+  "k": "Your Hajj",
+  "c": ".hs-k < .hs-main < #hsHero"
+ },
+ {
+  "h": "ivt1cj",
+  "k": "Your Umrah",
+  "c": ".hs-k < .hs-main < #hsHero"
+ },
+ {
+  "h": "1nuf1ta",
+  "k": "Arafah on {1} {M1} {2} · {3} of {4} prep items",
+  "c": ".hs-l < .hs-t < .hstatus"
+ },
+ {
+  "h": "1iehjj3",
+  "k": "Ihram from where you are staying · Mina · five prayers, the four-rakah ones shortened · {1} of {2} steps today",
+  "c": ".hs-l < .hs-t < .hstatus"
+ },
+ {
+  "h": "1hpxk5x",
+  "k": "Only if you stayed · three jamarat after midday · then leave Mina · {1} of {2} steps today",
+  "c": ".hs-l < .hs-t < .hstatus"
+ },
+ {
+  "h": "r5v641",
+  "k": "Rami of Aqabah · hady · halq · tawaf al-ifadah & sa'i · back to Mina · {1} of {2} steps today",
+  "c": ".hs-l < .hs-t < .hstatus"
+ },
+ {
+  "h": "649cml",
+  "k": "Step {1} of {2} · ihram before the miqat",
+  "c": ".hs-l < .hs-t < .hstatus"
+ },
+ {
+  "h": "12iqmpc",
+  "k": "The pillar of Hajj · Dhuhr + Asr combined · wuquf until sunset · {1} of {2} steps today",
+  "c": ".hs-l < .hs-t < .hstatus"
+ },
+ {
+  "h": "1svcpe7",
+  "k": "Three jamarat after midday · leave Mina before sunset, or stay for the {1}th · {2} of {3} steps today",
+  "c": ".hs-l < .hs-t < .hstatus"
+ },
+ {
+  "h": "mozs04",
+  "k": "Three jamarat after midday · the night in Mina · {1} of {2} steps today",
+  "c": ".hs-l < .hs-t < .hstatus"
+ },
+ {
+  "h": "1ljqq51",
+  "k": "Your Part {1} ticks are waiting — record the Hajj to keep its timeline and keepsake",
+  "c": ".hs-l < .hs-t < .hstatus"
+ },
+ {
+  "h": "p2rrkj",
+  "k": "{1} habit-days logged of {2} · keep the Haram version of you",
+  "c": ".hs-l < .hs-t < .hstatus"
+ },
+ {
+  "h": "2astt5",
+  "k": "{1} of {2} prep items · {3}/{4} quiz levels",
+  "c": ".hs-l < .hs-t < .hstatus"
+ },
+ {
+  "h": "fytlbd",
+  "k": "{1}% of today's deeds · {2} Umrah completed",
+  "c": ".hs-l < .hs-t < .hstatus"
+ },
+ {
+  "h": "xmg7t8",
+  "k": "Arafah",
+  "c": ".hs-ml < .hs-mi < #hsMet"
+ },
+ {
+  "h": "1shbjhd",
+  "k": "Dhikr",
+  "c": ".hs-ml < .hs-mi < #hsMet"
+ },
+ {
+  "h": "g7kmgw",
+  "k": "Part {1} steps",
+  "c": ".hs-ml < .hs-mi < #hsMet"
+ },
+ {
+  "h": "1igq891",
+  "k": "Prayers on time",
+  "c": ".hs-ml < .hs-mi < #hsMet"
+ },
+ {
+  "h": "gnycle",
+  "k": "Prep",
+  "c": ".hs-ml < .hs-mi < #hsMet"
+ },
+ {
+  "h": "n7h2w3",
+  "k": "Quiz levels",
+  "c": ".hs-ml < .hs-mi < #hsMet"
+ },
+ {
+  "h": "1f4bk6l",
+  "k": "Steps today",
+  "c": ".hs-ml < .hs-mi < #hsMet"
+ },
+ {
+  "h": "16xwg1f",
+  "k": "Today's deeds",
+  "c": ".hs-ml < .hs-mi < #hsMet"
+ },
+ {
+  "h": "12yb7gs",
+  "k": "Trip day",
+  "c": ".hs-ml < .hs-mi < #hsMet"
+ },
+ {
+  "h": "jzhdjc",
+  "k": "Average",
+  "c": ".hs-ml < .hs-mi < .hs-m"
+ },
+ {
+  "h": "1kk1rst",
+  "k": "Best day",
+  "c": ".hs-ml < .hs-mi < .hs-m"
+ },
+ {
+  "h": "j42yae",
+  "k": "Days read",
+  "c": ".hs-ml < .hs-mi < .hs-m"
+ },
+ {
+  "h": "1isvol7",
+  "k": "Prayers",
+  "c": ".hs-ml < .hs-mi < .hs-m"
+ },
+ {
+  "h": "fhrjge",
+  "k": "{1} visited",
+  "c": ".hs-mv < .hs-mi < #plHeroS"
+ },
+ {
+  "h": "10swyku",
+  "k": "{1}<1> of {2}</1>",
+  "c": ".hs-n < .hero-t < #hjdHome"
+ },
+ {
+  "h": "1aocruy",
+  "k": "Hajj begins in {1} day",
+  "c": ".hs-n < .hs-b < .hs-main"
+ },
+ {
+  "h": "1w0jubc",
+  "k": "not yet recorded",
+  "c": ".hs-n < .hs-b < .hs-main"
+ },
+ {
+  "h": "6fus9m",
+  "k": "set your departure date",
+  "c": ".hs-n < .hs-b < .hs-main"
+ },
+ {
+  "h": "n16fdl",
+  "k": "when do you fly?",
+  "c": ".hs-n < .hs-b < .hs-main"
+ },
+ {
+  "h": "5jrjna",
+  "k": "Dhuhr + Asr together at Dhuhr ≈ {1}, with your group, then the standing until sunset",
+  "c": ".hs-note < .hero-t < #arafahCard"
+ },
+ {
+  "h": "8m6gyw",
+  "k": "Calculated on this phone, ±{1} min — not an official timetable. Dates follow the Umm al-Qura calendar; the official start can differ by a day.",
+  "c": ".hs-note < .hero-t < #ramHome"
+ },
+ {
+  "h": "luxfca",
+  "k": "Umm al-Qura timetable",
+  "c": ".hs-note < .hero-t < #ramHome",
+  "part_of": "Umm al-Qura timetable · Madinah. Dates follow the Umm al-Qura calendar; the official start can differ by a day."
+ },
+ {
+  "h": "1k4fzy5",
+  "k": "Umm al-Qura timetable · Madinah. Dates follow the Umm al-Qura calendar; the official start can differ by a day.",
+  "c": ".hs-note < .hero-t < #ramHome"
+ },
+ {
+  "h": "kcgjh9",
+  "k": "Day",
+  "c": ".hs-pre < .hs-nr < .hs-b"
+ },
+ {
+  "h": "sa1bvl",
+  "k": "Halq",
+  "c": ".hs-sl < .hs-sg < #riteSegs"
+ },
+ {
+  "h": "jel10p",
+  "k": "Sa'i",
+  "c": ".hs-sl < .hs-sg < #riteSegs"
+ },
+ {
+  "h": "qlmf28",
+  "k": "Tawaf",
+  "c": ".hs-sl < .hs-sg < #riteSegs"
+ },
+ {
+  "h": "ss74ii",
+  "k": "until sunset ≈ {1} at Arafah",
+  "c": ".hs-u < .hero-t < #arafahCard"
+ },
+ {
+  "h": "1g1d53k",
+  "k": "Keep out of the sun from {1} am to {2} pm. Drink before you feel thirsty.",
+  "c": ".hs-u < .hero-t < #heatHome"
+ },
+ {
+  "h": "mi3g1j",
+  "k": "Be out of Mina before sunset ≈ {1} — otherwise stay and stone on the {2}th",
+  "c": ".hs-u < .hero-t < #hjdHome"
+ },
+ {
+  "h": "1je9skq",
+  "k": "Follow it if you can — if the order changes, the schools differ on what is owed",
+  "c": ".hs-u < .hero-t < #hjdHome"
+ },
+ {
+  "h": "7ozsgg",
+  "k": "until sunset ≈ {1} — stay in Arafah until the sun has set",
+  "c": ".hs-u < .hero-t < #hjdHome"
+ },
+ {
+  "h": "1ddfu0r",
+  "k": "to stop eating — {1} minutes before Fajr ≈ {2} in Madinah",
+  "c": ".hs-u < .hero-t < #ramHome"
+ },
+ {
+  "h": "eqmwt",
+  "k": "until iftar",
+  "c": ".hs-u < .hero-t < #ramHome",
+  "part_of": "until iftar · {P1} ≈ {1} in Madinah"
+ },
+ {
+  "h": "apzgwt",
+  "k": "until iftar · {P1} {1} in Madinah",
+  "c": ".hs-u < .hero-t < #ramHome"
+ },
+ {
+  "h": "1xpnhz1",
+  "k": "until iftar · {P1} ≈ {1} in Madinah",
+  "c": ".hs-u < .hero-t < #ramHome"
+ },
+ {
+  "h": "19g3lxx",
+  "k": "until suhoor ends",
+  "c": ".hs-u < .hero-t < #ramHome",
+  "part_of": "until suhoor ends · {P1} {1} in Madinah"
+ },
+ {
+  "h": "pr3uz9",
+  "k": "until suhoor ends · {P1} {1} in Madinah",
+  "c": ".hs-u < .hero-t < #ramHome"
+ },
+ {
+  "h": "164efdq",
+  "k": "{P1} {1} in Madinah",
+  "c": ".hs-u < .hero-t < #ramHome",
+  "part_of": "until iftar · {P1} {1} in Madinah"
+ },
+ {
+  "h": "1fjtrza",
+  "k": "{P1} ≈ {1} in Madinah",
+  "c": ".hs-u < .hero-t < #ramHome",
+  "part_of": "until iftar · {P1} ≈ {1} in Madinah"
+ },
+ {
+  "h": "1ofy5ts",
+  "k": "Dhul Hijjah · Arafah",
+  "c": ".hs-u < .hs-b < .hs-main"
+ },
+ {
+  "h": "vtruom",
+  "k": "Dhul Hijjah · Tarwiyah",
+  "c": ".hs-u < .hs-b < .hs-main"
+ },
+ {
+  "h": "hmnb3x",
+  "k": "Dhul Hijjah · Tashriq · {1}nd day",
+  "c": ".hs-u < .hs-b < .hs-main"
+ },
+ {
+  "h": "1shkkp",
+  "k": "Dhul Hijjah · Tashriq · {1}rd day",
+  "c": ".hs-u < .hs-b < .hs-main"
+ },
+ {
+  "h": "1wro958",
+  "k": "Dhul Hijjah · Tashriq · {1}st day",
+  "c": ".hs-u < .hs-b < .hs-main"
+ },
+ {
+  "h": "1gpgcim",
+  "k": "Dhul Hijjah · Yawm an-Nahr",
+  "c": ".hs-u < .hs-b < .hs-main"
+ },
+ {
+  "h": "qmgjk7",
+  "k": "Umrah completed",
+  "c": ".hs-u < .hs-b < .hs-main"
+ },
+ {
+  "h": "1e06n7t",
+  "k": "day until departure",
+  "c": ".hs-u < .hs-b < .hs-main"
+ },
+ {
+  "h": "1011hai",
+  "k": "days until departure",
+  "c": ".hs-u < .hs-b < .hs-main"
+ },
+ {
+  "h": "89u150",
+  "k": "days until you fly",
+  "c": ".hs-u < .hs-b < .hs-main"
+ },
+ {
+  "h": "15m2ka0",
+  "k": "of {1} in the Haramain",
+  "c": ".hs-u < .hs-b < .hs-main"
+ },
+ {
+  "h": "1fcsyp0",
+  "k": "Hajj {1} ·",
+  "c": ".hs-x < .hs-b < .hs-main"
+ },
+ {
+  "h": "pluw59",
+  "k": "Hajj {1} —",
+  "c": ".hs-x < .hs-b < .hs-main"
+ },
+ {
+  "h": "15zv97s",
+  "k": "Planning —",
+  "c": ".hs-x < .hs-b < .hs-main"
+ },
+ {
+  "h": "vawsj1",
+  "k": "Umrah first ·",
+  "c": ".hs-x < .hs-b < .hs-main"
+ },
+ {
+  "h": "rhre8t",
+  "k": "Your Hajj —",
+  "c": ".hs-x < .hs-b < .hs-main"
+ },
+ {
+  "h": "1kp1ubv",
+  "k": "— alhamdulillah",
+  "c": ".hs-x < .hs-b < .hs-main"
+ },
+ {
+  "h": "l8t9dr",
+  "k": "Not to scale. The circles give the order you meet them in. The drawing shows no level, entrance or standing place: your group is given a route, a level and a time.",
+  "c": ".jam-cap < .jam-fig < #jamBody"
+ },
+ {
+  "h": "1unl6g0",
+  "k": "Bus stops",
+  "c": ".jumps < #placesContainer"
+ },
+ {
+  "h": "184ss7l",
+  "k": "Day trips",
+  "c": ".jumps < #placesContainer"
+ },
+ {
+  "h": "jlgfiu",
+  "k": "Hajj sites",
+  "c": ".jumps < #placesContainer"
+ },
+ {
+  "h": "p1edm2",
+  "k": "Haram",
+  "c": ".jumps < #placesContainer"
+ },
+ {
+  "h": "fw340",
+  "k": "Mosques",
+  "c": ".jumps < #placesContainer"
+ },
+ {
+  "h": "1g1n1gy",
+  "k": "Museums",
+  "c": ".jumps < #placesContainer"
+ },
+ {
+  "h": "1gytjvr",
+  "k": "Prophet's Mosque",
+  "c": ".jumps < #placesContainer"
+ },
+ {
+  "h": "1bc9s61",
+  "k": "Ziyarah",
+  "c": ".jumps < #placesContainer"
+ },
+ {
+  "h": "ys3wjp",
+  "k": "Heat plan · {1} Dhul Hijjah",
+  "c": ".k < .hero-t < #heatHome"
+ },
+ {
+  "h": "1ism9o",
+  "k": "Leaving Mina today?",
+  "c": ".k < .hero-t < #hjdHome"
+ },
+ {
+  "h": "1afc1vn",
+  "k": "Wuquf",
+  "c": ".k < .hero-t < #hjdHome",
+  "part_of": "Wuquf · Arafah"
+ },
+ {
+  "h": "zqy5mf",
+  "k": "Wuquf · Arafah",
+  "c": ".k < .hero-t < #hjdHome"
+ },
+ {
+  "h": "af1rw5",
+  "k": "Yawm an-Nahr · the sunnah order",
+  "c": ".k < .hero-t < #hjdHome"
+ },
+ {
+  "h": "1daldyx",
+  "k": "the sunnah order",
+  "c": ".k < .hero-t < #hjdHome",
+  "part_of": "Yawm an-Nahr · the sunnah order"
+ },
+ {
+  "h": "kfrmjm",
+  "k": "Makkah & Madinah",
+  "c": ".k < .hero-t < #plHero"
+ },
+ {
+  "h": "1b48l6",
+  "k": "Preparation",
+  "c": ".k < .hero-t < #planHero"
+ },
+ {
+  "h": "72u6k8",
+  "k": "Hajj {1} · knowledge",
+  "c": ".k < .hero-t < #qzReady"
+ },
+ {
+  "h": "heegvf",
+  "k": "knowledge",
+  "c": ".k < .hero-t < #qzReady",
+  "part_of": "Hajj {1} · knowledge"
+ },
+ {
+  "h": "1nefjg1",
+  "k": "Ramadan · day {1}",
+  "c": ".k < .hero-t < #ramHome"
+ },
+ {
+  "h": "18forqe",
+  "k": "day {1}",
+  "c": ".k < .hero-t < #ramHome",
+  "part_of": "Ramadan · day {1}"
+ },
+ {
+  "h": "waw358",
+  "k": "This trip",
+  "c": ".k < .hero-t < #stHero"
+ },
+ {
+  "h": "yrkllh",
+  "k": "· Keys:◀or {1} Again ·→or {2} Got it · Esc ends",
+  "c": ".kb < .fc-keys < #fcWrap"
+ },
+ {
+  "h": "pql44d",
+  "k": "<1>With children:</1> you may throw the pebbles on behalf of a small child (agreed fiqh — Ibn Majah {1} has a weak chain, its meaning is accepted) · keep them away from the Jamarat crush — one parent goes while the other waits with them · do the tawaf on the upper floor or at night.",
+  "c": ".kn < .sec-bd < #sec-hd10",
+  "refs": [
+   "ibnmajah:3038"
+  ]
+ },
+ {
+  "h": "2se8vc",
+  "k": "<1>With children:</1> stay inside the tent during the midday heat · the standing is valid sitting, lying down or asleep · let them hold your hand while you make dua · leave for the buses only when the group leader says.",
+  "c": ".kn < .sec-bd < #sec-hd9"
+ },
+ {
+  "h": "11zocmq",
+  "k": "<1>With children:</1> use the upper floor or a pre-Fajr slot · keep the child close beside you, holding hands, and stay well away from the Kaaba wall · pushchairs and wheelchairs take the middle lanes of the Mas'a · agree a numbered-gate meeting point · let an older child tap the counter.",
+  "c": ".kn < .sec-bd < #sec-ph2"
+ },
+ {
+  "h": "7hw4jq",
+  "k": "Average completion",
+  "c": ".kv < .card < #sub-daily-stats"
+ },
+ {
+  "h": "1p7aw8d",
+  "k": "Days at {1}% or more",
+  "c": ".kv < .card < #sub-daily-stats"
+ },
+ {
+  "h": "afk7hq",
+  "k": "Days with worship logged",
+  "c": ".kv < .card < #sub-daily-stats"
+ },
+ {
+  "h": "1e8ybxf",
+  "k": "Dhikr counted",
+  "c": ".kv < .card < #sub-daily-stats"
+ },
+ {
+  "h": "2yces6",
+  "k": "Duas asked",
+  "c": ".kv < .card < #sub-daily-stats"
+ },
+ {
+  "h": "8w5hxg",
+  "k": "Nafl tawafs logged",
+  "c": ".kv < .card < #sub-daily-stats"
+ },
+ {
+  "h": "56figr",
+  "k": "Places visited",
+  "c": ".kv < .card < #sub-daily-stats"
+ },
+ {
+  "h": "1yta93e",
+  "k": "Umrahs completed",
+  "c": ".kv < .card < #sub-daily-stats"
+ },
+ {
+  "h": "1joowt7",
+  "k": "Walked in worship (est.)",
+  "c": ".kv < .card < #sub-daily-stats"
+ },
+ {
+  "h": "wcn2j5",
+  "k": "Zamzam cups this trip",
+  "c": ".kv < .card < #sub-daily-stats"
+ },
+ {
+  "h": "cz81p2",
+  "k": "{P1} streak (current)",
+  "c": ".kv < .card < #sub-daily-stats"
+ },
+ {
+  "h": "1weslg8",
+  "k": "Tahajjud",
+  "c": ".l < #skTahaj"
+ },
+ {
+  "h": "1g832ym",
+  "k": "Daily",
+  "c": ".l < .nav"
+ },
+ {
+  "h": "n0mxf2",
+  "k": "Home",
+  "c": ".l < .on < .nav"
+ },
+ {
+  "h": "13wasqa",
+  "k": "Docs",
+  "c": ".l < .st < #catTiles"
+ },
+ {
+  "h": "16a2x0v",
+  "k": "Health",
+  "c": ".l < .st < #catTiles"
+ },
+ {
+  "h": "1bjf0qz",
+  "k": "Knowledge",
+  "c": ".l < .st < #catTiles"
+ },
+ {
+  "h": "slnki0",
+  "k": "Packing",
+  "c": ".l < .st < #catTiles"
+ },
+ {
+  "h": "1t8wja9",
+  "k": "<1>Departing within days?</1> Ask a scholar or your group's alim about the concessions — do not decide alone.",
+  "c": ".lead < #gSheetBody"
+ },
+ {
+  "h": "1jyway3",
+  "k": "<1>Meanwhile</1>, everything else in Daily still counts: dhikr and dua, Quran by listening or tafsir (the Malikis and many scholars, including Ibn Baz, also allow reciting from memory), sadaqah, serving pilgrims, Zamzam, your dua list.",
+  "c": ".lead < #gSheetBody"
+ },
+ {
+  "h": "kb0tu0",
+  "k": "Menstruating? The Prophet ﷺ told Aishah (RA): <1>\"Do what all the pilgrims do, except that you do not perform tawaf around the Ka'bah until you are clean\"</1> (Bukhari {1}).",
+  "c": ".lead < #gSheetBody",
+  "refs": [
+   "bukhari:305"
+  ]
+ },
+ {
+  "h": "y4e009",
+  "k": "When Aishah (RA) got her period at Sarif, the Prophet ﷺ told her: <1>\"Do what all the pilgrims do, except that you do not perform tawaf around the Ka'bah until you are clean\"</1> (Bukhari {1}).",
+  "c": ".lead < #gSheetBody",
+  "refs": [
+   "bukhari:305"
+  ]
+ },
+ {
+  "h": "uwwys8",
+  "k": "Halq / taqsir",
+  "c": ".lg-t < .lg < #logArea"
+ },
+ {
+  "h": "x8hin",
+  "k": "Ihram (intention)",
+  "c": ".lg-t < .lg < #logArea"
+ },
+ {
+  "h": "ur7jco",
+  "k": "Sa'i complete",
+  "c": ".lg-t < .lg < #logArea"
+ },
+ {
+  "h": "waxwio",
+  "k": "Sa'i started",
+  "c": ".lg-t < .lg < #logArea"
+ },
+ {
+  "h": "z7a1x3",
+  "k": "Tawaf complete",
+  "c": ".lg-t < .lg < #logArea"
+ },
+ {
+  "h": "ybacst",
+  "k": "Tawaf started",
+  "c": ".lg-t < .lg < #logArea"
+ },
+ {
+  "h": "1rlut98",
+  "k": "Umrah #{1} <1>{2} {m1} {3}</1>",
+  "c": ".lg-t < .lg < #umrahsArea"
+ },
+ {
+  "h": "cya3ht",
+  "k": "Open today's rami step",
+  "c": ".lnk < #gSheetBody"
+ },
+ {
+  "h": "1n21qoe",
+  "k": "Booked and done? Tick the travel basics",
+  "c": ".lnk < #hLeave"
+ },
+ {
+  "h": "1kstuyc",
+  "k": "Skip, I don't know yet",
+  "c": ".lnk < #obStep2"
+ },
+ {
+  "h": "1s57myo",
+  "k": "↻Start fresh (nothing recorded)",
+  "c": ".lnk < #riteDone"
+ },
+ {
+  "h": "1141n2l",
+  "k": "Not Ifrad? Change what you said at the miqat",
+  "c": ".lnk < #riteLock"
+ },
+ {
+  "h": "1uv3g3y",
+  "k": "Not Qiran? Change what you said at the miqat",
+  "c": ".lnk < #riteLock"
+ },
+ {
+  "h": "ng5dbe",
+  "k": "Done these already? Tick them",
+  "c": ".lnk < .card < #homeArea"
+ },
+ {
+  "h": "2zps2o",
+  "k": "Reset",
+  "c": ".lnk < .card < #homeArea"
+ },
+ {
+  "h": "1i9862q",
+  "k": "See full timeline→",
+  "c": ".lnk < .card < #homeArea"
+ },
+ {
+  "h": "1cf4z5r",
+  "k": "Set a departure date for a dated timeline→",
+  "c": ".lnk < .card < #homeArea"
+ },
+ {
+  "h": "17u20gm",
+  "k": "Reset sa'i to {1}",
+  "c": ".lnk < .cnt-body < #saiCard"
+ },
+ {
+  "h": "1qnpa2j",
+  "k": "Reset tawaf to {1}",
+  "c": ".lnk < .cnt-body < #tawafCard"
+ },
+ {
+  "h": "835n4m",
+  "k": "see the {1}th for your school",
+  "c": ".lnk < .dn-sch < #dn-salah"
+ },
+ {
+  "h": "11gpj9k",
+  "k": "Went through my list today? Tick it",
+  "c": ".lnk < .dua-acts < #duaList"
+ },
+ {
+  "h": "1o1d3yr",
+  "k": "Show the full Home",
+  "c": ".lnk < .ess-off < #homeArea"
+ },
+ {
+  "h": "g7xqlm",
+  "k": "Read \"Missed it?\"",
+  "c": ".lnk < .hero-t < #hjdHome"
+ },
+ {
+  "h": "1fmyjk9",
+  "k": "Staying for the {1}th instead? Tell the app",
+  "c": ".lnk < .hero-t < #hjdHome"
+ },
+ {
+  "h": "1hspb3",
+  "k": "Change type",
+  "c": ".lnk < .note < #hajjContainer"
+ },
+ {
+  "h": "910tkt",
+  "k": "Learn · Can I perform Umrah on behalf of someone else?",
+  "c": ".lnk < .src-u < #src-abudawud-1810"
+ },
+ {
+  "h": "14c2iw2",
+  "k": "Duas · Between the Yamani corner & Black Stone",
+  "c": ".lnk < .src-u < #src-abudawud-1892"
+ },
+ {
+  "h": "1x1g7gq",
+  "k": "Learn · Exiting ihram — trim, never shave",
+  "c": ".lnk < .src-u < #src-abudawud-1984"
+ },
+ {
+  "h": "1p0mwio",
+  "k": "Learn · Greeting the Prophet ﷺ",
+  "c": ".lnk < .src-u < #src-abudawud-2041"
+ }
+]

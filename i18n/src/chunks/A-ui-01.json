@@ -1,0 +1,881 @@
+[
+ {
+  "h": "m7jb4t",
+  "k": "<1>Miqah</1> · v",
+  "c": "#aboutCard"
+ },
+ {
+  "h": "bgmh2m",
+  "k": "About & sources",
+  "c": "#aboutCard"
+ },
+ {
+  "h": "2bhr6k",
+  "k": "Everything lives on your device only — no accounts, no servers, no tracking. Every hadith quoted in this app is cited to its collection (mostly Bukhari, Muslim, Tirmidhi, Ibn Majah, Nasai and Abu Dawud, plus a few from other collections) and has been checked against the source text; paraphrases are kept faithful and weak narrations are avoided or marked. This app is a study companion, <1>not a fatwa service</1> — for rulings about your specific situation, ask a qualified scholar.",
+  "c": "#aboutCard"
+ },
+ {
+  "h": "7va5tn",
+  "k": "Free",
+  "c": "#aboutCard",
+  "part_of": "· Free · Offline · Private · No ads"
+ },
+ {
+  "h": "vepugo",
+  "k": "No ads",
+  "c": "#aboutCard",
+  "part_of": "· Free · Offline · Private · No ads"
+ },
+ {
+  "h": "1iimwg8",
+  "k": "Offline",
+  "c": "#aboutCard",
+  "part_of": "· Free · Offline · Private · No ads"
+ },
+ {
+  "h": "1lqvc18",
+  "k": "Private",
+  "c": "#aboutCard",
+  "part_of": "· Free · Offline · Private · No ads"
+ },
+ {
+  "h": "vttb1m",
+  "k": "· Free · Offline · Private · No ads",
+  "c": "#aboutCard"
+ },
+ {
+  "h": "zgk3hr",
+  "k": "Last backup: never",
+  "c": "#bkLine"
+ },
+ {
+  "h": "1lm9fiq",
+  "k": "Camp card",
+  "c": "#campCardBtn"
+ },
+ {
+  "h": "1m4s1tz",
+  "k": "Camp {1} · maktab {2} · {U1} · +{3} {4} {5} {6}",
+  "c": "#campSum"
+ },
+ {
+  "h": "1o4w7vq",
+  "k": "Not saved yet — every tent looks the same at {1} am.",
+  "c": "#campSum"
+ },
+ {
+  "h": "1jia0yz",
+  "k": "<1>{1}</1> from the {2}th unticked",
+  "c": "#catchNow"
+ },
+ {
+  "h": "86gbd5",
+  "k": "Catch up",
+  "c": "#catchNow"
+ },
+ {
+  "h": "1ymlc7s",
+  "k": "<1>{1}</1> from the Muzdalifah night unticked",
+  "c": "#catchp-hd9n"
+ },
+ {
+  "h": "19ct9pn",
+  "k": "Final checks — passport, ihram, dua list.",
+  "c": "#cdS"
+ },
+ {
+  "h": "utb9pr",
+  "k": "Prepare with excellence — the countdown is on.",
+  "c": "#cdS"
+ },
+ {
+  "h": "boa25a",
+  "k": "Set your date and watch the days melt away",
+  "c": "#cdS"
+ },
+ {
+  "h": "11ijtnl",
+  "k": "Switch to the Hajj & Daily tabs.",
+  "c": "#cdS"
+ },
+ {
+  "h": "ane6kp",
+  "k": "Switch to the Umrah & Daily tabs.",
+  "c": "#cdS"
+ },
+ {
+  "h": "13slhhy",
+  "k": "Your date unlocks the countdown, a dated to-do timeline, the itinerary and the journey chip.",
+  "c": "#cdS"
+ },
+ {
+  "h": "18foa6x",
+  "k": "Set my departure date",
+  "c": "#cdSetBtn"
+ },
+ {
+  "h": "1fplciw",
+  "k": "Departure countdown",
+  "c": "#cdT"
+ },
+ {
+  "h": "aqp5id",
+  "k": "Tomorrow!",
+  "c": "#cdT"
+ },
+ {
+  "h": "fie54p",
+  "k": "When do you fly?",
+  "c": "#cdT"
+ },
+ {
+  "h": "1g94hyw",
+  "k": "You're on your journey",
+  "c": "#cdT"
+ },
+ {
+  "h": "2rrhdj",
+  "k": "until departure",
+  "c": "#cdT"
+ },
+ {
+  "h": "1rciku5",
+  "k": "day",
+  "c": "#cdU"
+ },
+ {
+  "h": "1wewy2y",
+  "k": "days",
+  "c": "#cdU"
+ },
+ {
+  "h": "m7qpnf",
+  "k": "on trip",
+  "c": "#cdU"
+ },
+ {
+  "h": "blgo2e",
+  "k": "Madinah ~{1}°C — extreme heat: umbrella, electrolytes, tawaf at night.",
+  "c": "#cdW",
+  "part_of": "Typical highs: Makkah ~{1}°C · Madinah ~{2}°C — extreme heat: umbrella, electrolytes, tawaf at night."
+ },
+ {
+  "h": "dpi7p7",
+  "k": "Madinah ~{1}°C — hot: hydrate, sunscreen (unscented), pace yourself.",
+  "c": "#cdW",
+  "part_of": "Typical highs: Makkah ~{1}°C · Madinah ~{2}°C — hot: hydrate, sunscreen (unscented), pace yourself."
+ },
+ {
+  "h": "dz0va6",
+  "k": "Madinah ~{1}°C — mild: still bring sun protection; nights can be cool.",
+  "c": "#cdW",
+  "part_of": "Typical highs: Makkah ~{1}°C · Madinah ~{2}°C — mild: still bring sun protection; nights can be cool."
+ },
+ {
+  "h": "10zta7r",
+  "k": "Typical highs: Makkah ~{1}°C",
+  "c": "#cdW",
+  "part_of": "Typical highs: Makkah ~{1}°C · Madinah ~{2}°C — hot: hydrate, sunscreen (unscented), pace yourself."
+ },
+ {
+  "h": "ig9ws6",
+  "k": "Typical highs: Makkah ~{1}°C · Madinah ~{2}°C — extreme heat: umbrella, electrolytes, tawaf at night.",
+  "c": "#cdW"
+ },
+ {
+  "h": "ijf8b",
+  "k": "Typical highs: Makkah ~{1}°C · Madinah ~{2}°C — hot: hydrate, sunscreen (unscented), pace yourself.",
+  "c": "#cdW"
+ },
+ {
+  "h": "igldtq",
+  "k": "Typical highs: Makkah ~{1}°C · Madinah ~{2}°C — mild: still bring sun protection; nights can be cool.",
+  "c": "#cdW"
+ },
+ {
+  "h": "ko410w",
+  "k": "Madinah al-Munawwarah",
+  "c": "#city-madinah"
+ },
+ {
+  "h": "vnwv8h",
+  "k": "Makkah al-Mukarramah",
+  "c": "#city-makkah"
+ },
+ {
+  "h": "1ebso73",
+  "k": "Add the nearest Haram gate",
+  "c": "#ckAdd"
+ },
+ {
+  "h": "1d52s6l",
+  "k": "Add your hotel",
+  "c": "#ckAdd"
+ },
+ {
+  "h": "14wv0lh",
+  "k": "Check-in card",
+  "c": "#ckBtn"
+ },
+ {
+  "h": "goztkd",
+  "k": "Copy the report instead",
+  "c": "#corrCopy"
+ },
+ {
+  "h": "v86jjr",
+  "k": "Open my mail app",
+  "c": "#corrGo"
+ },
+ {
+  "h": "10ic0uy",
+  "k": "of {1} completed",
+  "c": "#dHeroS"
+ },
+ {
+  "h": "1udqey",
+  "k": "Bismillah",
+  "c": "#dHeroT"
+ },
+ {
+  "h": "1olf6yc",
+  "k": "Good start",
+  "c": "#dHeroT"
+ },
+ {
+  "h": "228ene",
+  "k": "Keep going",
+  "c": "#dHeroT"
+ },
+ {
+  "h": "1asnwzx",
+  "k": "Backup includes your checklists, quiz, tasbih, dua list, niyyah and journal. Encrypted vault documents are not included.",
+  "c": "#dataCard"
+ },
+ {
+  "h": "28x7ge",
+  "k": "Your data",
+  "c": "#dataCard"
+ },
+ {
+  "h": "bdxgf",
+  "k": "Set your departure date in Plan▶Prepare for real dates",
+  "c": "#dayDate"
+ },
+ {
+  "h": "5w1mpp",
+  "k": "{d1} {1} {M1} · {H1} {2}, {3} AH",
+  "c": "#dayDate"
+ },
+ {
+  "h": "17ze4bh",
+  "k": "{d1} {1} {m1} · {H1} {2}, {3} AH",
+  "c": "#dayDate"
+ },
+ {
+  "h": "wh9nq7",
+  "k": "of {1}",
+  "c": "#dayDisp"
+ },
+ {
+  "h": "43q4is",
+  "k": "· day {1} of {2}",
+  "c": "#dayDisp"
+ },
+ {
+  "h": "1v6618m",
+  "k": "Today ▸",
+  "c": "#dayToday"
+ },
+ {
+  "h": "1o221ii",
+  "k": "Delegated",
+  "c": "#del-h10rami"
+ },
+ {
+  "h": "mzfptn",
+  "k": "Asked✓→next",
+  "c": "#dfAsk"
+ },
+ {
+  "h": "gbebcb",
+  "k": "My dua {1} of {2}",
+  "c": "#dfTitle"
+ },
+ {
+  "h": "1dyoalj",
+  "k": "Read my list full-screen",
+  "c": "#dlRead"
+ },
+ {
+  "h": "d3ndox",
+  "k": "Fill your day with remembrance in the most sacred place on Earth.",
+  "c": "#dn-dhikr"
+ },
+ {
+  "h": "i2xj06",
+  "k": "\"Tawaf around the House is like prayer, except that you speak in it.\" — Tirmidhi {1}",
+  "c": "#dn-extra",
+  "refs": [
+   "tirmidhi:960"
+  ]
+ },
+ {
+  "h": "7z5l2x",
+  "k": "\"Read the Quran, for it will come as an intercessor for its companions on the Day of Resurrection.\" — Muslim {1}",
+  "c": "#dn-quran",
+  "refs": [
+   "muslim:804"
+  ]
+ },
+ {
+  "h": "w54gg0",
+  "k": "\"One prayer in al-Masjid al-Haram is better than one hundred thousand prayers elsewhere.\" — Ibn Majah {1}",
+  "c": "#dn-salah",
+  "refs": [
+   "ibnmajah:1406"
+  ]
+ },
+ {
+  "h": "1azousx",
+  "k": "Dhikr & dua",
+  "c": "#dt-dhikr"
+ },
+ {
+  "h": "gxcy4l",
+  "k": "Extra acts of worship",
+  "c": "#dt-extra"
+ },
+ {
+  "h": "igppcw",
+  "k": "Quran",
+  "c": "#dt-quran"
+ },
+ {
+  "h": "hjjy0c",
+  "k": "Arafah — {P1} + {P2} together",
+  "c": "#dt-salah"
+ },
+ {
+  "h": "9bs3a3",
+  "k": "Salah in Mina — shortened, each on time",
+  "c": "#dt-salah"
+ },
+ {
+  "h": "j5n43j",
+  "k": "Salah in the Haram",
+  "c": "#dt-salah"
+ },
+ {
+  "h": "1kp1upc",
+  "k": "Write them before you fly; tick them as you ask in the Haram.",
+  "c": "#duaHint"
+ },
+ {
+  "h": "cln8nl",
+  "k": "Write them before you fly; tick them as you ask — at Arafah above all.",
+  "c": "#duaHint"
+ },
+ {
+  "h": "1ww7q3i",
+  "k": "Your list is empty. Start with the people who asked you to pray for them — or tap a starter:",
+  "c": "#duaList"
+ },
+ {
+  "h": "t5mxw2",
+  "k": "My dua list · {1} of {2} asked",
+  "c": "#duaMine"
+ },
+ {
+  "h": "yjh4p6",
+  "k": "{1} cards ready.",
+  "c": "#fcDueLbl"
+ },
+ {
+  "h": "8feojr",
+  "k": "{1} due today.",
+  "c": "#fcDueLbl"
+ },
+ {
+  "h": "2f59zo",
+  "k": "{1} of {2} mastered",
+  "c": "#fcMastT"
+ },
+ {
+  "h": "1u0j9hg",
+  "k": "A few minutes a day — spaced repetition over everything above and your quiz mistakes, paced to your departure.",
+  "c": "#fcSub"
+ },
+ {
+  "h": "d9vk2v",
+  "k": "A few minutes a day — spaced repetition over the Hajj levels first, then everything above and your quiz mistakes, paced to your departure and the days of Hajj.",
+  "c": "#fcSub"
+ },
+ {
+  "h": "uvas28",
+  "k": "screen stays awake",
+  "c": "#focusHint",
+  "part_of": "tap anywhere to count · screen stays awake"
+ },
+ {
+  "h": "1fl8td3",
+  "k": "tap anywhere to count",
+  "c": "#focusHint"
+ },
+ {
+  "h": "fnugrj",
+  "k": "tap anywhere to count · screen stays awake",
+  "c": "#focusHint"
+ },
+ {
+  "h": "1czof0y",
+  "k": "Jamrat al-Aqabah {1} of {2}",
+  "c": "#focusLive"
+ },
+ {
+  "h": "1rmtubh",
+  "k": "Jamrat as-Sughra {1} of {2}",
+  "c": "#focusLive"
+ },
+ {
+  "h": "i08vkc",
+  "k": "Lap undefined of {1}",
+  "c": "#focusLive"
+ },
+ {
+  "h": "1x9v8cm",
+  "k": "Lap {1} of {2}",
+  "c": "#focusLive"
+ },
+ {
+  "h": "1rtrnnt",
+  "k": "Round {1} of {2}",
+  "c": "#focusLive"
+ },
+ {
+  "h": "1nsxx4t",
+  "k": "{1} today",
+  "c": "#focusLive"
+ },
+ {
+  "h": "av80cf",
+  "k": "no target",
+  "c": "#focusOf",
+  "part_of": "no target · today {1}"
+ },
+ {
+  "h": "1qb0wow",
+  "k": "no target · today {1}",
+  "c": "#focusOf"
+ },
+ {
+  "h": "1rvcdk5",
+  "k": "of {1} pebbles · {2} of {3}",
+  "c": "#focusOf"
+ },
+ {
+  "h": "1qs3tcr",
+  "k": "of {1} · today {2}",
+  "c": "#focusOf"
+ },
+ {
+  "h": "ezu89t",
+  "k": "today {1}",
+  "c": "#focusOf",
+  "part_of": "no target · today {1}"
+ },
+ {
+  "h": "72twxb",
+  "k": "Say count",
+  "c": "#focusSay"
+ },
+ {
+  "h": "svfs5q",
+  "k": "Jamrat al-Aqabah",
+  "c": "#focusTitle"
+ },
+ {
+  "h": "1t2a3p3",
+  "k": "Jamrat as-Sughra",
+  "c": "#focusTitle"
+ },
+ {
+  "h": "1ljrm9g",
+  "k": "The dua of Arafah",
+  "c": "#focusTitle"
+ },
+ {
+  "h": "lbioiz",
+  "k": "Wudu?",
+  "c": "#focusWudu"
+ },
+ {
+  "h": "t543pb",
+  "k": "Wudu✓",
+  "c": "#focusWudu"
+ },
+ {
+  "h": "otrgia",
+  "k": "Hajj and Umrah",
+  "c": "#footJ"
+ },
+ {
+  "h": "fezy8r",
+  "k": "\"Tawaf around the House is like salah\" (Tirmidhi {1}) — it needs wudu. Sa'i does not.",
+  "c": "#gSheetBody",
+  "refs": [
+   "tirmidhi:960"
+  ]
+ },
+ {
+  "h": "t1ojed",
+  "k": "Already did your Umrah?",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "16pa7ol",
+  "k": "Already sorted?",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1opot4n",
+  "k": "Also stoning for…",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "ctuaqq",
+  "k": "Arafah: {P1} and {P2} together, shortened",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "fk4ccx",
+  "k": "Are you in wudu?",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1xj0q23",
+  "k": "At each jamrah you throw seven for yourself first, then seven for each person, then move on. The counter keeps a block of seven for each.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1gd3n5q",
+  "k": "Before you fly, check the app will work in airplane mode — in the Haram, in Mina, on the bus.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1a8ppk3",
+  "k": "Camp / tent {1} · Maktab {2} · {U1}",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "e61nk1",
+  "k": "Copy the trip-setup link your group leader shared (WhatsApp, SMS, email) and paste it here. The dates, itinerary, prayer city and hotel card — and for a Hajj group the journey, Hajj type and camp — are copied. Your checklists stay as they are.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "35gxi5",
+  "k": "Dates follow the Umm al-Qura calendar; the official start can differ by a day.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1kpo8hd",
+  "k": "Do not enter tawaf. Delay tawaf — and the sa'i after it — until you are pure, then ghusl, tawaf and sa'i. Nothing is lost.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1n5e290",
+  "k": "Dua: <1>x</1>",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "9ieo9e",
+  "k": "Each fact carries the year it describes — routes and rules change, so check before you rely on one. No fares are given.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "15fau03",
+  "k": "Edit medicine",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1h8vxy6",
+  "k": "Every numbered hadith and Quran reference in Miqah: {1} hadith and {2} Quran references, each with the app's own sentence that cites it — or, where the reference sits in an item's source line, the name of that item — and where it is used. These are the app's words, not the text of the verse or hadith.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "n9o5xy",
+  "k": "Excused today?",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "num8x8",
+  "k": "Fill in their details. The app then opens on a simpler Home in large text — the status card and four big buttons. You can switch it off in More▶Settings.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "d517pa",
+  "k": "Guide: <1>x</1>",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "y4ticq",
+  "k": "Hady and udhiyah: not the same",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1va6zqu",
+  "k": "Heat plan",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "bkv4dw",
+  "k": "If you leave Makkah while still on your period, no farewell tawaf is owed (Bukhari {1}) — and for Umrah many scholars require none at all.",
+  "c": "#gSheetBody",
+  "refs": [
+   "bukhari:1755"
+  ]
+ },
+ {
+  "h": "emhp3w",
+  "k": "It is listed as \"recorded on arrival\": the app did not see it, so it has no timeline, and its keepsake card shows the date but no times. You can remove the mark under More▶After▶My journeys.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1aq1wt2",
+  "k": "It is {1} — before midday",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1oy8gk6",
+  "k": "Keep up the talbiyah, dhikr and dua; the Haram courtyards are open to you.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "v89t14",
+  "k": "Learn: <1>Nusuk & permits</1>",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "12m2li0",
+  "k": "Learn: <1>x</1>",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "nmft0q",
+  "k": "Mark it done and the app moves on to your daily worship — the counter opens on Nafl.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "wpigov",
+  "k": "Mina camp",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1al2sx5",
+  "k": "Mina: shorten, but do not combine",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "mlgnk8",
+  "k": "Muzdalifah: {P1} and {P2} together on arrival",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1q5s4v",
+  "k": "My Umrah keepsake",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "11soqhg",
+  "k": "My journal",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1y9zqpn",
+  "k": "No fasting on Eid or the days of tashriq",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "dpkg2i",
+  "k": "No hotel saved yet — add it in Plan▶Prepare so the driver card works offline.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "ot3cd6",
+  "k": "On the way to Arafah: talbiyah, and takbir too",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "x9fr2e",
+  "k": "Paste the leader's link",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "we9a7v",
+  "k": "Period started? Your Hajj is intact",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1dqfxqy",
+  "k": "Period started? Your ihram is still valid",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "b5fxsw",
+  "k": "Pilgrims are not asked to pray Eid",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "110f8qz",
+  "k": "Pilgrims do not fast the Day of Arafah",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "qqev4x",
+  "k": "Place: <1>x</1>",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "9lqrqv",
+  "k": "Places measures walking times and routes from it — one pin per city, so you can set both before you fly.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "153rrod",
+  "k": "Press and hold the image to save it to Photos, or download it.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "15votgn",
+  "k": "Quran (listening or tafsir; the Malikis and many scholars, including Ibn Baz, also allow reciting from memory without touching the mushaf), adhkar, dhikr, dua, sadaqah, serving pilgrims, ziyarah and Zamzam continue and still count.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "m381hb",
+  "k": "Ready for no signal?",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1o9byhr",
+  "k": "Salah, tahajjud, duha and nafl tawaf are <1>set aside</1> today — they are not performed during menses, and missed salah is not made up (Bukhari {1}). They will not count against you.",
+  "c": "#gSheetBody",
+  "refs": [
+   "bukhari:321"
+  ]
+ },
+ {
+  "h": "a4x2ci",
+  "k": "Save your camp and maktab number and the group leader's phone — the way back when every tent looks the same.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "bbwqot",
+  "k": "Save your camp's location",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "qxg967",
+  "k": "Something wrong?",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "11zcmey",
+  "k": "Step: <1>x</1>",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1qtm9f8",
+  "k": "Stoned before midday already? Read \"Missed it?\" on today's rami step.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1o6vud6",
+  "k": "Stored only on this phone. The app reminds; it gives no medical advice — follow your doctor.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "j4r15v",
+  "k": "Streaks pause — they neither grow nor break on an excused day.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1rw3c38",
+  "k": "Tap a question — your count is not touched unless you tap its button.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1svhdku",
+  "k": "Tap a question — your count is not touched.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1gvtlol",
+  "k": "Tap what is already booked or done — Save ticks them all at once (Undo puts them back).",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1cwwehg",
+  "k": "Tawaf al-wada already?",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "kfejo6",
+  "k": "The farewell tawaf is the last thing you do — after tawaf al-ifadah. If you did the ifadah without the counter, tick its step first; then the wada counter opens.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1ildaqk",
+  "k": "The stoning of the undefinedth is after midday (Dhuhr ≈ {1} in Mina, computed ±{2} min). Count anyway?",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "kkug18",
+  "k": "The takbir after prayers: when it starts and ends",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1c84ivg",
+  "k": "The takbir of these days: the words",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "f1f0l1",
+  "k": "Tick each one as you ask — the counter is not touched.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1wn5f73",
+  "k": "Umrah in Ramadan",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1tpuxvs",
+  "k": "Used only before your trip. The place stays on this phone; the times are worked out here, with no internet.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "ofob10",
+  "k": "Version {1}",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "tdi9bu",
+  "k": "Where is your hotel?",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "1ngln50",
+  "k": "Your ihram stays valid — stay in it.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "6dx7i6",
+  "k": "{1} lines, newest first. Stored only on this phone; export a backup in More▶Settings to keep them.",
+  "c": "#gSheetBody"
+ },
+ {
+  "h": "en24k3",
+  "k": "{U1} · meet at {U2}",
+  "c": "#gSheetBody"
+ }
+]

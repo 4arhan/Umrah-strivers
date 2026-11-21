@@ -1,0 +1,855 @@
+[
+ {
+  "h": "2pkkcq",
+  "k": "The minor pilgrimage",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "9jm676",
+  "k": "The miqat they flew over on arrival",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "d2msao",
+  "k": "The neighbours of the Kaaba",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "w9id46",
+  "k": "The night at Muzdalifah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "ppoa8f",
+  "k": "The people of the cloak",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1uqu41p",
+  "k": "The plain of Arafah itself",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "15jrgn5",
+  "k": "The qibla changed there mid-prayer",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "bfyjhc",
+  "k": "The sa'i between Safa and Marwah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1qnlm9h",
+  "k": "The sins committed between them",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1nohxn",
+  "k": "The small one only",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1jqhvz6",
+  "k": "The soldiers of Allah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "6k2agr",
+  "k": "The standing at Arafah and tawaf al-ifadah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "vqljse",
+  "k": "The stone he stood on while building the Kaaba",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "mwp141",
+  "k": "The stoning ritual",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "13d4wzt",
+  "k": "The whole Umrah is invalid",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "si5rcr",
+  "k": "The {1}th, {2}th and {3}th of Dhul Hijjah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "18chh70",
+  "k": "There is no dua",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1q3yr00",
+  "k": "These ten days — the first ten of Dhul Hijjah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "r43aq4",
+  "k": "Thobe & ghutrah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1ld5q8q",
+  "k": "Throw all seventy pebbles at once on the {1}th",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1bpemlo",
+  "k": "Throw them from the hotel",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "t4tohj",
+  "k": "Tie a niqab over her face",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "ajnv8i",
+  "k": "Together at Dhuhr time, two rakahs each, one adhan and two iqamahs",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "8ell96",
+  "k": "Together at {P1} time",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "17n1vkd",
+  "k": "Together at {P1} time, two rakahs each",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "n4oqx0",
+  "k": "Together on arrival — Maghrib three rakahs, Isha two",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1p5vxwn",
+  "k": "Travels back to the miqat to renew the ihram",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "14oby65",
+  "k": "Trim a fingertip's length of hair",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "17cme6h",
+  "k": "Trimming nails",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "92gzwp",
+  "k": "Two",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1q5buey",
+  "k": "Two rakahs, then you set off",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1kq10v2",
+  "k": "Uthman & Ali",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1g6um6a",
+  "k": "Valid only for the elderly",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1nmo0e1",
+  "k": "Wait until it clears",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "58xvaz",
+  "k": "Wealth and many children",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "572o8j",
+  "k": "Wear coloured clothes",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1wrf3xb",
+  "k": "Wear her ordinary modest clothes",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "19u45fn",
+  "k": "Wear socks",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "2sxrme",
+  "k": "Wearing a watch or a ring",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1v52n8p",
+  "k": "Wearing a wristwatch",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1nwkdm",
+  "k": "Wearing perfume",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "ezfnc6",
+  "k": "Wearing prescription glasses",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "11jiuo2",
+  "k": "Wearing sandals",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "pkv1c1",
+  "k": "When beginning tawaf",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "71uk7z",
+  "k": "Where they are staying in Makkah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "s6zaak",
+  "k": "With a share of the sacrifice",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "uz6l72",
+  "k": "With a title of honour",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "vpa9xc",
+  "k": "With double the reward of Umrah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1nzxfqn",
+  "k": "Yalamlam",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "i3taja",
+  "k": "Yalamlam (As-Sa'diyyah)",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "524exw",
+  "k": "Yawm at-Tarwiyah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "fbp48l",
+  "k": "Yes — after having performed your own Umrah first",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "eiefmw",
+  "k": "Yes — he fasted, as on every day of Arafah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1370suc",
+  "k": "Yes — pebbles from anywhere else do not count",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "e2icm9",
+  "k": "Yes — reaching Arafah before Fajr on the {1}th catches it",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "3porw3",
+  "k": "Yes, and all seventy must be picked there that night",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1g8lrww",
+  "k": "Yes, but only until the {P1} prayer",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1osod0w",
+  "k": "You must restart from round {1} tomorrow",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "6qijbb",
+  "k": "Your Hajj is invalid and must be repeated",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "ybqzif",
+  "k": "jannah (Paradise)",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "193j395",
+  "k": "mulk (the sovereignty)",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "igh4w",
+  "k": "rahmah (the mercy)",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1vqzznq",
+  "k": "{1} Umrahs",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "9dn1nc",
+  "k": "{1} elsewhere",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1xdxohj",
+  "k": "{1} elsewhere (except al-Masjid al-Haram)",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "a1kqdj",
+  "k": "{1} rakahs behind Maqam Ibrahim",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1q4mhdb",
+  "k": "{1} rakahs of Duha",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1asxw2",
+  "k": "{1} years of prayer",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "me8xde",
+  "k": "\"Do you not know that Islam wipes out what came before it, the Hijrah wipes out what came before it, and ___ wipes out what came before it?\"",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "vf2oih",
+  "k": "\"None of you should depart until his last act is at the House\" — this is about…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "ho0an6",
+  "k": "\"The best dua is the dua of the Day of Arafah, and the best that I and the prophets before me said is…\"",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1tg8dgu",
+  "k": "\"There are no days in which righteous deeds are more beloved to Allah than…\"",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "6qtb1s",
+  "k": "\"There is no day on which Allah frees more servants from the Fire than…\"",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "13ohtay",
+  "k": "\"This day I have perfected for you your religion\" (Quran {1}) was revealed…",
+  "c": "QUIZ_LEVELS.q",
+  "refs": [
+   "quran:5:3"
+  ]
+ },
+ {
+  "h": "1vkp7mu",
+  "k": "\"Umrah to Umrah is an expiation for what is between them, and the reward of an accepted Hajj (mabrur) is…\"",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "tzs30m",
+  "k": "\"Whoever eats seven ___ dates in the morning will not be harmed that day by poison or magic.\"",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "7i28fl",
+  "k": "\"Whoever performs Hajj for Allah, with no intimacy and no sin, returns…\"",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1246wwi",
+  "k": "\"Zamzam water is…\"",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "16ar1bl",
+  "k": "A Qiran pilgrim…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "52ujir",
+  "k": "A Tamattu' or Qiran pilgrim cannot afford the hady. Quran {1} says…",
+  "c": "QUIZ_LEVELS.q",
+  "refs": [
+   "quran:2:196"
+  ]
+ },
+ {
+  "h": "1k502ps",
+  "k": "A pilgrim flying in for Hajj enters ihram…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1y5774c",
+  "k": "A pilgrim in ihram is blocked from reaching the House. Quran {1} says…",
+  "c": "QUIZ_LEVELS.q",
+  "refs": [
+   "quran:2:196"
+  ]
+ },
+ {
+  "h": "d7k0mk",
+  "k": "A pilgrim is too ill to reach the jamarat. He may…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "514wqm",
+  "k": "A pilgrim misses the standing at Arafah altogether — he arrives after Fajr on the {1}th. What follows?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "76kbzt",
+  "k": "A pilgrim's bus is stuck and reaches Arafah at {1} a.m., the night before the {2}th. Has he caught the standing?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "s7pc2",
+  "k": "A woman in ihram should not…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "169adk6",
+  "k": "A woman's period begins after ihram. She…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "d1p2le",
+  "k": "After her Hajj, Aishah (RA) — whose period had kept her from her Umrah — performed an Umrah from…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "bshnuw",
+  "k": "After the stoning and the shave on the {1}th, which ONE of these is still forbidden — in all four schools?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "e8dga6",
+  "k": "As a Tamattu' pilgrim, your Part {1} Umrah runs in which order?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "z3rvbi",
+  "k": "At Arafah, {P1} and {P2} are prayed…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "76t54n",
+  "k": "At Muzdalifah, the Prophet ﷺ prayed Maghrib and Isha…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "4r3hhq",
+  "k": "Before Islam, Quraysh stopped at Muzdalifah instead of Arafah. Quran {1} commands…",
+  "c": "QUIZ_LEVELS.q",
+  "refs": [
+   "quran:2:199"
+  ]
+ },
+ {
+  "h": "1no1x7",
+  "k": "Complete the talbiyah: \"…inna al-hamda wan-ni'mata laka wal-___, la sharika lak.\"",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1muqrw",
+  "k": "Completing tawaf while keeping count of it is likened to…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "ljjq6a",
+  "k": "Did the Prophet ﷺ fast on the day of Arafah during his Hajj?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "12izx1l",
+  "k": "During the Hijrah, the Prophet ﷺ and Abu Bakr hid in…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "3cdhun",
+  "k": "For the majority, when does the Hajj pilgrim stop the talbiyah?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "yaevd9",
+  "k": "How are men told to recite the talbiyah?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1on5l7f",
+  "k": "How did the young Muhammad ﷺ resolve the Quraysh dispute over placing the Black Stone?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "cwwq6r",
+  "k": "How does a woman come out of ihram — after sa'i in Umrah, or after the stoning on the {1}th in Hajj?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "th3gru",
+  "k": "How many Umrahs did the Prophet ﷺ perform?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1p6986v",
+  "k": "Ihram for Umrah at the miqat (in the months of Hajj), out of ihram after it, then a fresh ihram for Hajj on the {1}th. Which type of Hajj is this?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "h8ina3",
+  "k": "In ihram, a man may NOT wear…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "n8yjo2",
+  "k": "Killing game while in ihram is compensated by…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1offw9j",
+  "k": "Leaving Mina on the {1}th, how many pebbles will you have thrown in all?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1na84hr",
+  "k": "Lice forced a man in ihram to shave his head. Quran {1} and the Prophet ﷺ set a fidyah of…",
+  "c": "QUIZ_LEVELS.q",
+  "refs": [
+   "quran:2:196"
+  ]
+ },
+ {
+  "h": "fk1h2e",
+  "k": "Maqam Ibrahim is…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "cic0sr",
+  "k": "Masjid al-Qiblatayn is famous because…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "ytjpfj",
+  "k": "Most flights arriving from the east (UAE, Pakistan, India…) cross which miqat?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "prq333",
+  "k": "Must the pebbles be picked up at Muzdalifah?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "2eep4z",
+  "k": "On arrival in Makkah, a pilgrim who stays in Qiran or Ifrad…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "xclr7d",
+  "k": "On the {1}th of Dhul Hijjah, which jamarah is stoned?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1t0tysn",
+  "k": "On the {1}th you realise you put on a stitched shirt by mistake an hour ago. What do you do first?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "jxgkvd",
+  "k": "On the {1}th, a Qiran or Ifrad pilgrim…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1b7vryq",
+  "k": "On the {1}th, a Tamattu' pilgrim enters ihram for Hajj from…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "4yxnn3",
+  "k": "On the {1}th, people asked the Prophet ﷺ about doing these acts out of order — shaving before the sacrifice, sacrificing before stoning. He said…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "4nrei5",
+  "k": "Pilgrims are described by the Prophet ﷺ as…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1ewj9zh",
+  "k": "Praying in Masjid Quba (with wudu from home) equals…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "2hibtf",
+  "k": "Qiran or Ifrad: you did the sa'i right after your arrival tawaf. For the majority, after tawaf al-ifadah you…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1gmu6cc",
+  "k": "Sa'i begins at… and ends at…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1dzfijp",
+  "k": "Sa'i between Safa and Marwah commemorates…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1qcoomk",
+  "k": "Stoning on the {1}th, {2}th and {3}th is done…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "740j4g",
+  "k": "Tamattu': the companions who had done Umrah first did the sa'i of their Hajj…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "13q455n",
+  "k": "Tamattu': to end your Part {1} Umrah, the Prophet ﷺ told those without a hady to…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "xo00sk",
+  "k": "Tamattu': when does the talbiyah of your Part {1} Umrah end, for the majority?",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "d7th6i",
+  "k": "Tawaf in a wheelchair or on the upper floors is…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1nbzwbq",
+  "k": "The Kaaba is described in the Quran as…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "114058q",
+  "k": "The Prophet ﷺ said about Uhud…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1qwxz32",
+  "k": "The Rawdah is described by the Prophet ﷺ as…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "18lhx7s",
+  "k": "The first revelation came to the Prophet ﷺ in…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "ql2uvi",
+  "k": "The miqat for pilgrims travelling to Makkah from Madinah is…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "h71hb2",
+  "k": "The sunnah order of the Day of Nahr (the {1}th) is…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "wtjeqf",
+  "k": "The two garments of a man's ihram are called…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1df7tej",
+  "k": "The well of Zamzam sprang for…",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1rcfyna",
+  "k": "True or false: \"Follow up between Hajj and Umrah, for they remove poverty and sins…\"",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "16wcw3p",
+  "k": "True or false: Muslims always prayed towards the Kaaba from the beginning of Islam.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "wwab3f",
+  "k": "True or false: Quran {1} rules out sexual relations, disobedience and disputing for the one who has entered Hajj.",
+  "c": "QUIZ_LEVELS.q",
+  "refs": [
+   "quran:2:197"
+  ]
+ },
+ {
+  "h": "1fdcqdb",
+  "k": "True or false: Safa→Marwah counts as one full lap of sa'i.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "9umckh",
+  "k": "True or false: a man's ihram garments must be brand new and pure white.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "vayevk",
+  "k": "True or false: a menstruating woman must perform tawaf al-wada before leaving.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "nyy5pu",
+  "k": "True or false: a pilgrim flying to Jeddah may delay ihram until after landing.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "i8eei0",
+  "k": "True or false: a woman must wear a niqab (face veil) in ihram.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1eqlf5i",
+  "k": "True or false: a woman whose period starts before tawaf al-ifadah may leave without it, just as with the farewell tawaf.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "4t7ims",
+  "k": "True or false: an accepted pilgrimage returns you \"as the day your mother bore you\".",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "e4afe4",
+  "k": "True or false: because the Haram multiplies reward, wrongdoing there is also graver.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1rze0j4",
+  "k": "True or false: children may perform Umrah, with guardians handling the rites for the very young.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1sgpprf",
+  "k": "True or false: each round of tawaf has its own fixed, prescribed dua.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1nl5k3s",
+  "k": "True or false: for men, shaving the head (halq) carries more reward than trimming (taqsir).",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "qtabza",
+  "k": "True or false: for the majority, a pilgrim who is still in Mina when the sun sets on the {1}th stays the night and stones on the {2}th.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "un7jo5",
+  "k": "True or false: if you break an ihram rule by genuine mistake or forgetfulness, your Umrah is ruined.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "87lznr",
+  "k": "True or false: in ihram you may wash with plain water and change into a clean set of ihram garments.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "49iz5n",
+  "k": "True or false: men may wear a money belt or waist pouch in ihram.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "dpm1mh",
+  "k": "True or false: praying inside Hijr Isma'il counts as praying inside the Kaaba.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "5mt1cf",
+  "k": "True or false: skipping raml or idtiba' invalidates the tawaf.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "ym94fv",
+  "k": "True or false: speaking during tawaf breaks it, exactly like speaking in salah.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1d1wekn",
+  "k": "True or false: tawaf al-ifadah done after the days of tashreeq — because a period kept you waiting — is still valid.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1skqcgh",
+  "k": "True or false: the Black Stone descended from Paradise whiter than milk.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "198ov0u",
+  "k": "True or false: the Dajjal and the plague can enter Madinah.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "laitm9",
+  "k": "True or false: the Prophet ﷺ called Hajj and Umrah the jihad of the elderly, the young, the weak and women.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "o4l5mk",
+  "k": "True or false: the Prophet ﷺ called Makkah the most beloved of Allah's land to Allah.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "blvg6r",
+  "k": "True or false: the Prophet ﷺ declared Madinah a sacred sanctuary (haram).",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "sy2svn",
+  "k": "True or false: the Prophet ﷺ let the weak leave Muzdalifah during the night, ahead of the crowds.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1od0oud",
+  "k": "True or false: the Prophet ﷺ will intercede for the one who dies in Madinah.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1gmz3yp",
+  "k": "True or false: the intention for Umrah must be made before crossing the miqat.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "16er42y",
+  "k": "True or false: the weak, the elderly and women may leave Muzdalifah after midnight.",
+  "c": "QUIZ_LEVELS.q"
+ },
+ {
+  "h": "1bjzd9e",
+  "k": "True or false: visiting Madinah is a required rite of Umrah or Hajj.",
+  "c": "QUIZ_LEVELS.q"
+ }
+]

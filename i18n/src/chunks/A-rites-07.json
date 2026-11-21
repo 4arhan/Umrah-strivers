@@ -1,0 +1,388 @@
+[
+ {
+  "h": "ok4b2j",
+  "k": "Ghusl & ihram at the miqat · wudu before tawaf",
+  "c": ".rh-s < #riteHeroS"
+ },
+ {
+  "h": "665lww",
+  "k": "Kaaba on your left · tap the ring after each round",
+  "c": ".rh-s < #riteHeroS"
+ },
+ {
+  "h": "8rrp8w",
+  "k": "Make wudu, then start at the Black Stone corner",
+  "c": ".rh-s < #riteHeroS"
+ },
+ {
+  "h": "17v2hg2",
+  "k": "One pebble at a time, \"Allahu akbar\" with each · tap to keep counting",
+  "c": ".rh-s < #riteHeroS"
+ },
+ {
+  "h": "5i87h0",
+  "k": "Sunset ≈ {1}",
+  "c": ".rh-s < #riteHeroS",
+  "part_of": "Sunset ≈ {1} ·"
+ },
+ {
+  "h": "1i82wq9",
+  "k": "Sunset ≈ {1} ·",
+  "c": ".rh-s < #riteHeroS"
+ },
+ {
+  "h": "1muop6",
+  "k": "left · follow your group",
+  "c": ".rh-s < #riteHeroS"
+ },
+ {
+  "h": "15u8us5",
+  "k": "Bukhari {1} · Bukhari {2}",
+  "c": ".src < .dua < .duacard",
+  "refs": [
+   "bukhari:1750",
+   "bukhari:1753"
+  ]
+ },
+ {
+  "h": "9dt8qh",
+  "k": "Bukhari {1} · Bukhari {2} · the Prophet's ﷺ own words: \"Labbayka 'umratan wa hajjan\" (Muslim {3})",
+  "c": ".src < .dua < .duacard",
+  "refs": [
+   "bukhari:1551",
+   "bukhari:1691",
+   "muslim:1232"
+  ]
+ },
+ {
+  "h": "1ihh0ga",
+  "k": "Etiquette: calm voice, no crowding",
+  "c": ".src < .dua < .duacard"
+ },
+ {
+  "h": "1muh3x4",
+  "k": "Muslim {1} (Jabir)",
+  "c": ".src < .dua < .duacard",
+  "part_of": "Muslim {1} (Jabir) · Bukhari {2}"
+ },
+ {
+  "h": "ityv0x",
+  "k": "Muslim {1} (Jabir) · Bukhari {2}",
+  "c": ".src < .dua < .duacard",
+  "refs": [
+   "muslim:1218",
+   "bukhari:1562"
+  ]
+ },
+ {
+  "h": "1auw0h9",
+  "k": "Quran {1} · Abu Dawud {2}",
+  "c": ".src < .dua < .duacard",
+  "refs": [
+   "quran:2:201",
+   "abudawud:1892"
+  ]
+ },
+ {
+  "h": "kraumm",
+  "k": "Quran {1}-{2}",
+  "c": ".src < .dua < .duacard",
+  "part_of": "Quran {1}-{2} · Muslim {3}"
+ },
+ {
+  "h": "1krl0ir",
+  "k": "Quran {1}-{2} · Muslim {3}",
+  "c": ".src < .dua < .duacard",
+  "refs": [
+   "quran:43:13",
+   "muslim:1342"
+  ]
+ },
+ {
+  "h": "1yktrkq",
+  "k": "Tirmidhi {1}",
+  "c": ".src < .dua < .duacard",
+  "refs": [
+   "tirmidhi:950"
+  ]
+ },
+ {
+  "h": "jcgq1s",
+  "k": "Tirmidhi {1} · hasan (al-Albani)",
+  "c": ".src < .dua < .duacard",
+  "refs": [
+   "tirmidhi:3585"
+  ]
+ },
+ {
+  "h": "1vt6ie4",
+  "k": "Wording reported from Ibn Mas'ud (RA) (Ibn Abi Shaybah); the Prophet ﷺ made takbir and tahlil here (Muslim {1}); Quran {2}",
+  "c": ".src < .dua < .duacard",
+  "refs": [
+   "muslim:1218",
+   "quran:2:198"
+  ]
+ },
+ {
+  "h": "br0i04",
+  "k": "hasan (al-Albani)",
+  "c": ".src < .dua < .duacard",
+  "part_of": "Tirmidhi {1} · hasan (al-Albani)"
+ },
+ {
+  "h": "v5jvqz",
+  "k": "\"Zamzam is for whatever it is drunk for\" — Ibn Majah {1}",
+  "c": ".src < .dua < .stp-t",
+  "refs": [
+   "ibnmajah:3062"
+  ]
+ },
+ {
+  "h": "19tavan",
+  "k": "Men: shave (halq) or trim all around (taqsir)",
+  "c": ".stp-t < #rw-cut"
+ },
+ {
+  "h": "h0zdze",
+  "k": "Shaving carries the greater reward. Licensed barbershops cluster around the Marwah exit.",
+  "c": ".stp-t < #rw-cut"
+ },
+ {
+  "h": "1dibkrw",
+  "k": "Gather the hair and cut about {1} cm from the ends — never shave.",
+  "c": ".stp-t < #rw-cutw"
+ },
+ {
+  "h": "1eacp0",
+  "k": "Women: trim a fingertip's length",
+  "c": ".stp-t < #rw-cutw"
+ },
+ {
+  "h": "16lsygd",
+  "k": "Men: two unstitched white cloths (izar & rida), sandals. Women: ordinary modest clothing.",
+  "c": ".stp-t < #rw-garb"
+ },
+ {
+  "h": "4ofu00",
+  "k": "Wear ihram garments",
+  "c": ".stp-t < #rw-garb"
+ },
+ {
+  "h": "1jybbm",
+  "k": "Shower, trim nails, remove unwanted hair. Men may apply perfume to the body (not the garments) before intention.",
+  "c": ".stp-t < #rw-ghusl"
+ },
+ {
+  "h": "1ivbddh",
+  "k": "A Qarin owes a hady exactly like a Mutamatti' (Quran {1} covers both by the majority view). Nearly every pilgrim pays it as an Adahi voucher through the package or the official Adahi platform; it is slaughtered on your behalf in Mina on the {2}th or the days of tashriq — you do not need to be there. Keep the receipt. Once your time slot has passed, you may shave.",
+  "c": ".stp-t < #rw-h10hady",
+  "refs": [
+   "quran:2:196"
+  ]
+ },
+ {
+  "h": "65o40s",
+  "k": "Nearly every pilgrim pays it as an Adahi voucher through the package or the official Adahi platform; it is slaughtered on your behalf in Mina on the {1}th or during the days of tashriq — you do not need to be there. Keep the receipt. Once your time slot has passed (or the voucher says so), you may shave. Buying a sheep yourself and attending is a beautiful sunnah if your group arranges it.",
+  "c": ".stp-t < #rw-h10hady"
+ },
+ {
+  "h": "1lf1wp2",
+  "k": "The hady — your sacrifice",
+  "c": ".stp-t < #rw-h10hady"
+ },
+ {
+  "h": "1ohy5s7",
+  "k": "Men: shave (halq) or trim all around (taqsir) — the first tahallul",
+  "c": ".stp-t < #rw-h10halq"
+ },
+ {
+  "h": "1n956j",
+  "k": "Shaving is the greater reward. Barbers crowd the Jamarat exits and the Aziziyah streets — use a licensed shop and a fresh blade. After the stoning and the cut (Shafi'is and Hanbalis: any two of stoning, cut and tawaf) you are in the first tahallul: everything is allowed again except intimacy and the marriage contract (Hanafis: intimacy only, since they permit the contract even in ihram; Malikis: and hunting; they also dislike perfume until tawaf al-ifadah, with nothing owed) — shower, normal clothes. Aishah (RA) perfumed the Prophet ﷺ at this point, before his tawaf (Bukhari {1}).",
+  "c": ".stp-t < #rw-h10halq",
+  "refs": [
+   "bukhari:1539"
+  ]
+ },
+ {
+  "h": "s4f36s",
+  "k": "Gather the hair and cut about {1} cm from the ends, somewhere private — in the tent, the ladies' area or the hotel. A husband or mahram may cut it for you once he has exited his own ihram. From now on everything is allowed except intimacy and the marriage contract (Hanafis: intimacy only, since they permit the contract even in ihram; Malikis: and hunting; they also dislike perfume until tawaf al-ifadah).",
+  "c": ".stp-t < #rw-h10halqw"
+ },
+ {
+  "h": "a1zvo5",
+  "k": "Sisters: trim a fingertip's length — the first tahallul",
+  "c": ".stp-t < #rw-h10halqw"
+ },
+ {
+  "h": "33x832",
+  "k": "Tawaf al-ifadah — {1} rounds, with wudu, no raml, no idtiba'",
+  "c": ".stp-t < #rw-h10ifadah"
+ },
+ {
+  "h": "fa52g5",
+  "k": "The pillar that completes your Hajj. Go to the Haram (today is the sunnah; any day of tashriq is fine — Hanafis: by sunset on the {1}th — and later is still valid). Same {2} rounds as your Umrah tawaf, but in ordinary clothes and without the brisk walk (Hanafis and Shafi'is: raml in the first three if a sa'i follows) — then two rakahs and Zamzam. Open the counter — it will not touch your Umrah record. <1>Sisters on their period:</1> wait until you are pure, then do ghusl, tawaf and sa'i; your Hajj is intact and you remain in the first tahallul meanwhile. If your flight comes first, see \"Missed it?\".",
+  "c": ".stp-t < #rw-h10ifadah"
+ },
+ {
+  "h": "14mqn1y",
+  "k": "After the Haram, return to your camp and spend the night (most of it) in Mina. Pray the prayers shortened (four rakahs if your school counts you a resident of Makkah — see the {1}th), keep the takbir of tashriq going after each one, and rest — tomorrow's stoning is after midday.",
+  "c": ".stp-t < #rw-h10night"
+ },
+ {
+  "h": "1ud4h9i",
+  "k": "Back to Mina — sleep there tonight",
+  "c": ".stp-t < #rw-h10night"
+ },
+ {
+  "h": "nbq6l2",
+  "k": "Follow it if you can. If the group's schedule or the crowds change the order, nothing is lost — the Prophet ﷺ was asked about every variation that day and answered \"no harm\".",
+  "c": ".stp-t < #rw-h10order"
+ },
+ {
+  "h": "op5wkq",
+  "k": "The sunnah order: rami→hady→halq→tawaf al-ifadah",
+  "c": ".stp-t < #rw-h10order"
+ },
+ {
+  "h": "158gsw3",
+  "k": "Stone Jamrat al-Aqabah only — {1} pebbles, takbir with each",
+  "c": ".stp-t < #rw-h10rami"
+ },
+ {
+  "h": "cmsqa7",
+  "k": "Walk from Muzdalifah or your Mina camp to the big pillar (the one nearest Makkah, on the level of the bridge your group is assigned). One pebble at a time — never a handful — each with \"Allahu akbar\"; it must land inside the basin. Stop the talbiyah at the first pebble. Do not stop for dua here. Time: from sunrise until sunset; most scholars allow those who could not make it to stone at night (the Hanbali school has it done the next day after midday instead). The weak who left Muzdalifah early: Shafi'is and Hanbalis allow the stoning from after midnight (Bukhari {1}), Hanafis and Malikis only from Fajr — if unsure, wait for Fajr, which is valid for everyone. Too frail or in a wheelchair? Delegate it — see \"Missed it?\".",
+  "c": ".stp-t < #rw-h10rami",
+  "refs": [
+   "bukhari:1679"
+  ]
+ },
+ {
+  "h": "rk72bt",
+  "k": "If you did sa'i after your arrival tawaf, nothing more is needed and you are now in the second tahallul. If you did not, do it now, straight after tawaf al-ifadah: Safa dhikr, {1} laps, finish on Marwah.",
+  "c": ".stp-t < #rw-h10sai"
+ },
+ {
+  "h": "1vy6429",
+  "k": "If you did sa'i after your arrival tawaf, you are done — one sa'i covers both for a Qarin by the majority view, and you are now in the second tahallul. If you did not, do it now after tawaf al-ifadah. Hanafis hold that a Qarin performs two sa'is (one for Umrah, one for Hajj): if you follow that school or your group leader says so, do the second one — an extra sa'i never harms.",
+  "c": ".stp-t < #rw-h10sai"
+ },
+ {
+  "h": "rqu4ms",
+  "k": "The sa'i of Hajj — only if you have not already done it",
+  "c": ".stp-t < #rw-h10sai"
+ },
+ {
+  "h": "hbd37p",
+  "k": "The sa'i of Hajj — {1} laps, Safa to Marwah",
+  "c": ".stp-t < #rw-h10sai"
+ },
+ {
+  "h": "jde2v6",
+  "k": "Your Umrah sa'i was for the Umrah; this one is for the Hajj. Straight after tawaf al-ifadah, in ordinary clothes: the same Safa dhikr, {1} laps, finish on Marwah. Use the sa'i counter. With tawaf and sa'i done you are in the second tahallul — everything is allowed.",
+  "c": ".stp-t < #rw-h10sai"
+ },
+ {
+  "h": "179oowx",
+  "k": "You carry no sacrifice debt. If you wish, an Adahi voucher as an udhiyah earns the reward of Eid (Hanafis: obligatory if you count as resident — {1}+ days in Makkah — and have the means).",
+  "c": ".stp-t < #rw-h10udhiyah"
+ },
+ {
+  "h": "1k9k7vy",
+  "k": "Most of the night in the camp. If you went to the Haram for tawaf al-ifadah today, come back before you sleep.",
+  "c": ".stp-t < #rw-h11night"
+ },
+ {
+  "h": "1c6ly1f",
+  "k": "Sleep in Mina tonight",
+  "c": ".stp-t < #rw-h11night"
+ },
+ {
+  "h": "j0yvz1",
+  "k": "After midday: small jamarah→middle→Aqabah, {1} pebbles each, dua after the first two",
+  "c": ".stp-t < #rw-h11rami"
+ },
+ {
+  "h": "1ge1htn",
+  "k": "Start with the small pillar (nearest Masjid al-Khayf), then the middle, then the big one towards Makkah — the order matters. One pebble at a time with \"Allahu akbar\". After the first and the second, step aside, face the qibla and make a long dua with your hands raised; after Aqabah, walk away. Time: from midday until sunset; most scholars allow those who cannot make it to stone during the night until Fajr (the Hanbali school has it done the next day after midday instead). Groups are given slots to avoid the crush — keep to yours.",
+  "c": ".stp-t < #rw-h11rami"
+ },
+ {
+  "h": "13mckqq",
+  "k": "Pray shortened in the camp or at Masjid al-Khayf — the Prophet ﷺ prayed two rakahs in Mina (Bukhari {1}); four rakahs if your school counts you a resident of Makkah (see the {2}th) — say the takbir after each prayer, drink, eat well and sleep: your body is carrying you through five days of worship. Visit Masjid al-Khayf if it is near; call home.",
+  "c": ".stp-t < #rw-h11worship",
+  "refs": [
+   "bukhari:1655"
+  ]
+ },
+ {
+  "h": "e3b678",
+  "k": "Takbir after every prayer",
+  "c": ".stp-t < #rw-h11worship",
+  "part_of": "Takbir after every prayer · Quran · rest · dua"
+ },
+ {
+  "h": "heo8dc",
+  "k": "Takbir after every prayer · Quran · rest · dua",
+  "c": ".stp-t < #rw-h11worship"
+ },
+ {
+  "h": "1rbcbmx",
+  "k": "dua",
+  "c": ".stp-t < #rw-h11worship",
+  "part_of": "Takbir after every prayer · Quran · rest · dua"
+ },
+ {
+  "h": "1lovbda",
+  "k": "Both choices are from the Quran: leave after today's stoning (nafr al-awwal) or stay the extra night and stone again tomorrow (nafr ath-thani — what the Prophet ﷺ did, and the greater reward). If you choose to leave, your group must be outside Mina's boundary before sunset. If the sun sets while you are still inside — the majority say you now stay the night and stone on the {1}th (Hanafis: only if you are still there at Fajr). Being stuck in a departing bus inside the boundary is, for most scholars, excused.",
+  "c": ".stp-t < #rw-h12leave"
+ },
+ {
+  "h": "16iigo3",
+  "k": "Leaving today? Be out of Mina before the sun sets — otherwise stay and stone on the {1}th",
+  "c": ".stp-t < #rw-h12leave"
+ },
+ {
+  "h": "17y1omu",
+  "k": "After midday: small→middle→Aqabah, {1} each, dua after the first two",
+  "c": ".stp-t < #rw-h12rami"
+ },
+ {
+  "h": "tv2xc6",
+  "k": "Same sequence, same pace, same dua stops. If you are leaving Mina today, carry your bags to the buses first, then stone, then go — or stone and return for the bags, but watch the time. Pebbles: {1}.",
+  "c": ".stp-t < #rw-h12rami"
+ },
+ {
+  "h": "1647s4h",
+  "k": "Same as the other nights — most of it in the camp.",
+  "c": ".stp-t < #rw-h13night"
+ },
+ {
+  "h": "1qo69xp",
+  "k": "The night of the {1}th in Mina",
+  "c": ".stp-t < #rw-h13night"
+ },
+ {
+  "h": "1xjlpc8",
+  "k": "After midday: small→middle→Aqabah, {1} each — then leave Mina",
+  "c": ".stp-t < #rw-h13rami"
+ },
+ {
+  "h": "1h8c67x",
+  "k": "Your last {1} pebbles, in order, with takbir and the two dua stops. Then collect your bags and leave Mina; the days of Mina are over. The Prophet ﷺ rested at al-Muhassab (al-Abtah) on the way into Makkah (Bukhari {2}) — a sunnah of convenience, not a rite.",
+  "c": ".stp-t < #rw-h13rami",
+  "refs": [
+   "bukhari:1765"
+  ]
+ },
+ {
+  "h": "12qscg8",
+  "k": "Morning of the {1}th (or the night before, if your bus leaves early). Shower, trim nails, men perfume the body not the cloth, put on the izar and rida. Women: ordinary modest clothing. There is no miqat for this ihram — you assume it where you are staying in Makkah, Aziziyah included.",
+  "c": ".stp-t < #rw-h8ghusl"
+ },
+ {
+  "h": "167vkd3",
+  "k": "Go to Mina",
+  "c": ".stp-t < #rw-h8mina",
+  "part_of": "Go to Mina · pray Dhuhr, Asr, Maghrib, Isha and Fajr there — each at its time, the four-rakah ones shortened"
+ }
+]

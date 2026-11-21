@@ -1,0 +1,74 @@
+{
+ "g": {
+  "D": [
+   "Senin",
+   "Selasa",
+   "Rabu",
+   "Kamis",
+   "Jumat",
+   "Sabtu",
+   "Minggu"
+  ],
+  "d": [
+   "Sen",
+   "Sel",
+   "Rab",
+   "Kam",
+   "Jum",
+   "Sab",
+   "Min"
+  ],
+  "M": [
+   "Januari",
+   "Februari",
+   "Maret",
+   "April",
+   "Mei",
+   "Juni",
+   "Juli",
+   "Agustus",
+   "September",
+   "Oktober",
+   "November",
+   "Desember"
+  ],
+  "m": [
+   "Jan",
+   "Feb",
+   "Mar",
+   "Apr",
+   "Mei",
+   "Jun",
+   "Jul",
+   "Agu",
+   "Sep",
+   "Okt",
+   "Nov",
+   "Des"
+  ],
+  "H": [
+   "Muharam",
+   "Safar",
+   "Rabiulawal",
+   "Rabiulakhir",
+   "Jumadilawal",
+   "Jumadilakhir",
+   "Rajab",
+   "Syakban",
+   "Ramadan",
+   "Syawal",
+   "Zulkaidah",
+   "Zulhijah"
+  ],
+  "P": [
+   "Subuh",
+   "Zuhur",
+   "Asar",
+   "Magrib",
+   "Isya"
+  ]
+ },
+ "note": "",
+ "quran": "Kementerian Agama RI",
+ "checked": ""
+}

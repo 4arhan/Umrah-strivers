@@ -1,0 +1,852 @@
+[
+ {
+  "h": "hw8zcq",
+  "k": "Ihram→tawaf→sa'i, then in ihram until the {1}th",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1te6ewa",
+  "k": "Ihram→tawaf→sa'i→cut, then out of ihram until the {1}th",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1pha1iy",
+  "k": "In {1} AH",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1hckfuu",
+  "k": "In {1} AH — the Farewell Hajj",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "o9fcax",
+  "k": "In {1} AH, right after the Conquest",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1y20ekw",
+  "k": "Invalid",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1b5y2on",
+  "k": "Is still in the ihram from the miqat, and sets out for Mina",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1d2j1ht",
+  "k": "It has two minarets",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "gwp0t0",
+  "k": "It is the oldest mosque",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1rps9pj",
+  "k": "It runs on until the stoning on the {1}th",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "v4rchf",
+  "k": "Izar & rida",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1c2k2ch",
+  "k": "Jabal Uhud",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1u17ros",
+  "k": "Jamrat al-Aqabah only",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "7wqgj4",
+  "k": "Jogging the whole sa'i",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "jb51p4",
+  "k": "Joins Umrah and Hajj in one ihram and stays in it until the {1}th",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "9uczoj",
+  "k": "Keep it on, since the harm is already done",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "izq4el",
+  "k": "La ilaha illallah wahdahu la sharika lah, lahul-mulk wa lahul-hamd, wa huwa 'ala kulli shay'in qadir",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "14lkm6q",
+  "k": "Labbayk 'Umratan wa Hajjan",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "10fyq3a",
+  "k": "Labbayk 'an Shubrumah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "yufpox",
+  "k": "Laylatul Qadr",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1dgliid",
+  "k": "Leave ihram and enter it again at the miqat",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "xe5drs",
+  "k": "Leave the hair untouched and leave ihram anyway",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "105jpbz",
+  "k": "Leave the tawaf until next year's Hajj",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "do2exl",
+  "k": "Leaves ihram for the day and re-enters it at Arafah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "ssyid4",
+  "k": "Leaves ihram on arrival and enters it again on the {1}th",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "ld7g0m",
+  "k": "Leaving Muzdalifah during the night",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "c2q0y4",
+  "k": "Leaving ihram and entering it again at the miqat",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1qiejj2",
+  "k": "Let each tribe keep its own place of standing",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "102mdvi",
+  "k": "Losing a pebble before throwing it",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "nhvhep",
+  "k": "Major sins only",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1nxew13",
+  "k": "Makes a fresh ihram and intention at the hotel",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1gjvxno",
+  "k": "Maqam Ibrahim",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "o6c2x3",
+  "k": "Marital intimacy",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1wvoos6",
+  "k": "Marital intimacy before the first release",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1uvz26s",
+  "k": "Marwah→Safa",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "13tvusi",
+  "k": "Masjid Aisha at Tan'eem, outside the Haram",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1kcq7vk",
+  "k": "Masjid al-Haram",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "gti3ap",
+  "k": "Medjool",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "ea8kfx",
+  "k": "Musa & Harun",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "v9eojy",
+  "k": "Must leave Makkah immediately",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1dny5gp",
+  "k": "Never",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1fu20bx",
+  "k": "Never — the sa'i of their Umrah covered it",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1sszt9s",
+  "k": "No one — not even his own household",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1awxfzr",
+  "k": "No — he drank milk in front of the people",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "129bpds",
+  "k": "No — pebbles picked up elsewhere count too; his were picked on the morning of the {1}th",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "zdp9i7",
+  "k": "No — the time for the standing ended at sunset",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "g0qhcb",
+  "k": "Nobody — it is optional",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "3woq0n",
+  "k": "Nobody — the sacrifice on Eid is optional",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "lmshx2",
+  "k": "Normal clothes",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "dvbuhk",
+  "k": "Not at all",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "cgn86i",
+  "k": "Nothing",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1xcfnmy",
+  "k": "Nothing but Paradise",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "av8loy",
+  "k": "Nothing is owed, since Arafah is a sunnah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1ftbms7",
+  "k": "Nothing required",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "o5yl12",
+  "k": "Nothing specific",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1plil2i",
+  "k": "Nothing the first time, and a sheep the second",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "rwftvv",
+  "k": "Nothing — the hady falls away completely",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "ta6qyh",
+  "k": "Nothing — walk in anytime",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "19qgzfl",
+  "k": "Nothing — wudu is optional",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1wjagse",
+  "k": "Nothing, since an illness excuses it",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "kz0fpq",
+  "k": "Offer whatever hady is easy, then leave ihram",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "12cv8ht",
+  "k": "On Laylat al-Qadr, in the cave of Hira",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1u18c5e",
+  "k": "On beginning tawaf, as in Umrah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1d7tosb",
+  "k": "On first seeing the buildings of Makkah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "hwww0",
+  "k": "On reaching Mina",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "fyw8c8",
+  "k": "On seeing the Kaaba",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1qmuus6",
+  "k": "On stoning Jamrat al-Aqabah on the {1}th",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "13p1wcu",
+  "k": "On the day of Arafah, during the Farewell Hajj",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1i478uz",
+  "k": "On the day of the Conquest of Makkah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "b4goi0",
+  "k": "On the morning after the battle of Badr",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1b9xxuv",
+  "k": "On the road, each at its time, before arriving",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "17lmpqb",
+  "k": "On the {1}th of Dhul Hijjah, from Mina",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1dokd0r",
+  "k": "Once in a lifetime",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1i927xx",
+  "k": "Once only, at the miqat, and then not again",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "7ym8b3",
+  "k": "One",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1sjubed",
+  "k": "One more stoning of Aqabah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "15d7432",
+  "k": "Only at night",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "jphyb7",
+  "k": "Only back home, after the Hajj is over",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "nth4qc",
+  "k": "Only during Hajj season",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1wiohm8",
+  "k": "Only for mothers",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "140il7j",
+  "k": "Only for pilgrims",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1j7e82b",
+  "k": "Only for the sick",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "19gbv3q",
+  "k": "Only if he stays at Arafah until noon on the {1}th",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "jep3of",
+  "k": "Only in congregation, led by the group leader",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "jcc3d5",
+  "k": "Only in the courtyard beside the Kaaba",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "13v4v5h",
+  "k": "Only on the plain of Arafah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1vznyfl",
+  "k": "Only once he has paid a dam for arriving late",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "19iu01i",
+  "k": "Only pebbles carried from Arafah count",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1ko3xua",
+  "k": "Only the elderly and the sick of his family",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1uamcfz",
+  "k": "Only {P1} that night, and {P2} at {P3} time",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1srl1d1",
+  "k": "Owe a dam for doing it so early",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1vcgrfg",
+  "k": "Pay for two sacrifices on the next trip",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "hz2mv4",
+  "k": "Point towards it and say Allahu Akbar",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "109kgw1",
+  "k": "Praise be to Allah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1xuily1",
+  "k": "Prayed Dhuhr, Asr, Maghrib, Isha and Fajr there, each in its own time",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "5ktg76",
+  "k": "Proposing marriage",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "16bsfqm",
+  "k": "Push through the crowd",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "x36em6",
+  "k": "Qamis & sirwal",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "e85f4v",
+  "k": "Qarn al-Manazil",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1wqmo2m",
+  "k": "Qarn al-Manazil (As-Sayl)",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "5ib7ta",
+  "k": "Quraysh",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "19jjckl",
+  "k": "Quraysh pilgrims",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1k3wfo4",
+  "k": "Rabbana atina fid-dunya hasanah…",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1d3dl42",
+  "k": "Renew the wudu and return to the tawaf",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1qvh5uv",
+  "k": "Renew wudu and return to the tawaf",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "me2f34",
+  "k": "Repeat it, since the first came before Arafah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "nf07r6",
+  "k": "Repeating the whole Hajj the following year",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "jxdck6",
+  "k": "Sacrifice→tawaf→stoning→shave",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "18gbik5",
+  "k": "Sacrificing a camel in the Haram",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "edatg6",
+  "k": "Safa→Marwah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1pwyx0p",
+  "k": "Salat al-Janazah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "6vh89b",
+  "k": "Sandals that leave the ankles uncovered",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1otzqn2",
+  "k": "Seven",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1axmrne",
+  "k": "Shave completely and stay in ihram until the {1}th",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "8qm50n",
+  "k": "Shave her head",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1cyip0a",
+  "k": "Shave→stoning→tawaf→sacrifice",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "up3zko",
+  "k": "Showering with plain water",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1liurj9",
+  "k": "Silently, in the heart only, so as not to show off",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1o6e68n",
+  "k": "Sitting in the shade of a tent",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "xfx9fn",
+  "k": "Skip that round",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "aimctn",
+  "k": "Skip the stoning with nothing owed",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "15foala",
+  "k": "Skipping tawaf al-ifadah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "77jfuz",
+  "k": "Small (nearest Masjid al-Khayf)→middle→Aqabah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1tu9x2r",
+  "k": "Spending the {1}th and the night before Arafah in Mina",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "u3blwv",
+  "k": "Stand in Mina, closer to the House",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "17q69yf",
+  "k": "Standing at Arafah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1cby5qz",
+  "k": "Stay at Muzdalifah, as Quraysh had always done",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "ukd75t",
+  "k": "Stay in ihram until the following year",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1sqk1yg",
+  "k": "Stoning the jamarat",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "71aned",
+  "k": "Stoning the jamarat on the days of tashreeq",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1w4iysx",
+  "k": "Stoning→sacrifice→shave→tawaf al-ifadah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "hgi487",
+  "k": "Straight after praying {P1} and {P2}",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "qqld4s",
+  "k": "Subhan Allah wa bihamdihi, subhan Allah al-'Azim",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "17srh7z",
+  "k": "Sukkari",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1r9x8a3",
+  "k": "Surah al-Fatihah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1nrq7zw",
+  "k": "Take it off at once, carry on, then ask about any fidyah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1gq5gdp",
+  "k": "Tamattu' and Qiran pilgrims",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1em4hzv",
+  "k": "Tamattu' and Qiran pilgrims whose family is not present at al-Masjid al-Haram",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1szt1nv",
+  "k": "Tawaf al-ifadah, the pillar of the {1}th",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "55mziw",
+  "k": "Tawaf al-qudum, the tawaf of arrival",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "5jfj79",
+  "k": "Tawaf al-wada, the farewell tawaf",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1p1f1x6",
+  "k": "Tawaf→ihram→sa'i→cut, then out of ihram until the {1}th",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1xfrkiu",
+  "k": "Tawaf→stoning→sacrifice→shave",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "181zetq",
+  "k": "The Black Stone (Hajar al-Aswad) corner",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "150ce40",
+  "k": "The Farewell Sermon",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "c6u07r",
+  "k": "The Hajj is missed: he leaves ihram by an Umrah and repeats Hajj later",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "2n9uhb",
+  "k": "The Hajj stands, and a dam (a sheep slaughtered in the Haram) is owed",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "13ci0oz",
+  "k": "The Hijrah route",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "rcxgkq",
+  "k": "The Kaaba door",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1w62jsy",
+  "k": "The Prophet ﷺ was born there",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1kw047q",
+  "k": "The Yamani corner",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "eqvrbu",
+  "k": "The army of the Elephant",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1cmahh",
+  "k": "The best of gardens",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "fcnub0",
+  "k": "The cave of Hira",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1qn3wav",
+  "k": "The cave of Hira on Jabal an-Nour",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "y2aa7o",
+  "k": "The cave of Thawr",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "tu1gug",
+  "k": "The conquest of Makkah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "19h2qpc",
+  "k": "The day of Arafah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1kr5ry5",
+  "k": "The delegation (guests) of Allah",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "mytnvs",
+  "k": "The door of the Kaaba",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "natwx3",
+  "k": "The farewell tawaf",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "11qdspx",
+  "k": "The first House established for mankind",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1yxc16c",
+  "k": "The first masjid",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "xp743m",
+  "k": "The first of Muharram",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1p6j14w",
+  "k": "The first ten days of Muharram",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "1cpzer4",
+  "k": "The house of Adam",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "sc03h4",
+  "k": "The largest building of its time",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "5atnl",
+  "k": "The mataf",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "p35gh2",
+  "k": "The middle of Sha'ban",
+  "c": "QUIZ_LEVELS.o"
+ },
+ {
+  "h": "11ad571",
+  "k": "The middle one only",
+  "c": "QUIZ_LEVELS.o"
+ }
+]

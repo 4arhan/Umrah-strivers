@@ -1,0 +1,38 @@
+{
+ "_about": "The words every batch must write the same way. For each language, i18n/tr/<lang>/_terms.json gives the chosen form for every entry here, plus the style choices at the end.",
+ "rites": {
+  "Hajj": "", "Umrah": "", "Ihram": "the state and the two cloths", "Miqat": "the boundary where ihram begins", "niyyah / intention": "", "Talbiyah": "",
+  "Tawaf": "", "Tawaf al-Qudum": "arrival tawaf", "Tawaf al-Ifadah": "the pillar tawaf of Hajj", "Tawaf al-Wada": "farewell tawaf", "Sa'i": "", "Safa": "", "Marwah": "",
+  "Idtiba": "baring the right shoulder", "Raml": "brisk walk in the first three circuits", "Istilam": "touching or gesturing to the Black Stone",
+  "Halq": "shaving the head", "Taqsir": "trimming the hair", "Tahallul": "leaving ihram (first / second release)",
+  "Wuquf": "the standing at Arafah", "Rami": "stoning the Jamarat", "Jamarat": "", "Jamrat al-Aqabah": "the large one", "Hady / sacrifice": "", "Fidyah": "", "Dam": "a penalty sacrifice",
+  "Tamattu": "", "Qiran": "", "Ifrad": "", "Day of Tarwiyah": "8 Dhul-Hijjah", "Day of Arafah": "", "Day of Nahr / Eid day": "", "Days of Tashriq": ""
+ },
+ "places": {
+  "Makkah": "", "Madinah": "", "Mina": "", "Arafah": "", "Muzdalifah": "", "the Kaaba": "", "the Black Stone": "", "Maqam Ibrahim": "", "Hijr Ismail / the Hateem": "", "the Multazam": "", "Zamzam": "",
+  "al-Masjid al-Haram": "", "the Haram": "", "the Prophet's Mosque": "", "the Rawdah": "", "Quba": "", "Uhud": "", "al-Baqi": "", "Mataf": "the tawaf floor", "Mas'a": "the sa'i walkway"
+ },
+ "worship": {
+  "Allah": "", "the Prophet ﷺ": "", "the Messenger of Allah ﷺ": "", "Quran": "", "hadith": "", "sunnah": "", "dua": "", "dhikr": "", "salah / prayer": "", "wudu": "", "ghusl": "", "tayammum": "",
+  "fard / obligatory": "", "wajib": "", "sunnah (recommended)": "", "mustahabb": "", "makruh / disliked": "", "haram / forbidden": "", "rukn / pillar": "", "valid / invalid": "",
+  "mahram": "", "qiblah": "", "adhan": "", "iqamah": "", "Jumu'ah": "", "janazah": "funeral prayer", "qasr": "shortening prayers", "nafl": "", "witr": "", "tahajjud": "", "tarawih": "", "i'tikaf": "",
+  "takbir": "", "tahlil": "", "tasbih": "", "salawat": "", "istighfar": "", "sadaqah": "", "suhoor": "", "iftar": "", "Ramadan": "", "Eid": ""
+ },
+ "schools_and_sources": {
+  "Hanafi": "", "Maliki": "", "Shafi'i": "", "Hanbali": "", "the majority of scholars": "", "scholars differ": "",
+  "Bukhari": "", "Muslim": "", "Tirmidhi": "", "Abu Dawud": "", "Nasai": "", "Ibn Majah": "", "Muwatta": "", "Ahmad": "", "sahih": "", "hasan": "", "da'if": ""
+ },
+ "app": {
+  "Miqah": "the app's name: keep in Latin letters", "Home": "tab", "Plan": "tab", "Prepare": "", "Learn": "", "Quiz": "", "Rites": "tab", "Counters": "", "Steps": "", "Daily": "tab", "Today": "", "Tools": "", "Stats": "", "Places": "tab", "More": "tab", "Guide": "", "Duas": "", "Settings": "",
+  "pilgrim": "", "group": "", "group leader": "", "camp": "the Mina camp", "checklist": "", "counter": "", "circuit / round": "one of the seven of tawaf", "lap": "one of the seven of sa'i", "pebble": "",
+  "the “I'm lost” card": "a card shown to a stranger", "driver card": "a card shown to a taxi driver", "keepsake": "a picture of the finished journey", "backup": "", "journal": "", "streak": "", "badge": "", "flashcards": "", "level": "", "permit": "", "Nusuk": "the official Saudi app: keep in Latin letters"
+ },
+ "_style": {
+  "address": "How the reader is addressed (formal or informal 'you'), and why that suits a religious guide in this language.",
+  "register": "One or two sentences on tone and sentence style.",
+  "punctuation": "Comma, question mark, quotation marks and any spacing rules of this language.",
+  "transliteration": "How Arabic phrases given in Latin letters (e.g. 'Labbayk Allahumma labbayk') are shown: kept in Latin, or written in this language's script, and how.",
+  "numerals": "The app always supplies digits 0-9 through placeholders; say only if anything in the text itself needs care.",
+  "notes": "Anything else a translator of this language must know."
+ }
+}

@@ -1,0 +1,120 @@
+[
+ {
+  "h": "amahbk",
+  "k": "Did not stay in Muzdalifah at all, or left before midnight without an excuse? The majority say a dam is owed (a sheep, slaughtered and given to the poor of the Haram); the Hajj is valid. Hanafis count the wajib as being there after Fajr, so leaving after midnight without excuse is also a dam for them. Those with a valid excuse (see the next step) owe nothing. Stuck in a bus queue and arrived only after Fajr? Scholars differ; most say nothing is owed if you did your best. Tell your group leader / ask a scholar.",
+  "c": "HAJJ_RITES.miss"
+ },
+ {
+  "h": "137lybl",
+  "k": "Did them out of order? \"No harm\" (Bukhari {1}) — Shafi'is and Hanbalis say nothing is owed. Hanafis: a dam for shaving before the stoning, or (Qiran / Tamattu') for sacrificing before the stoning or shaving before the hady; Malikis: a fidyah for shaving before the stoning, and a dam for a tawaf al-ifadah done before it. Mention it to your group leader so the rest of the day is sequenced right, and ask a scholar if your group follows the Hanafi school.",
+  "c": "HAJJ_RITES.miss",
+  "refs": [
+   "bukhari:1736"
+  ]
+ },
+ {
+  "h": "ukxrgd",
+  "k": "Forgot it or left it for later? Do it whenever you remember, even days later — it does not need ihram or a new tawaf, only to come after a tawaf you have already done (Malikis: do the sa'i straight after the tawaf; after a long gap repeat the tawaf first). Never done at all? It is a pillar for the majority (a wajib with a dam for Hanafis), so the Hajj stays incomplete until it is done. Tell your group leader / ask a scholar.",
+  "c": "HAJJ_RITES.miss"
+ },
+ {
+  "h": "1ej4ehw",
+  "k": "Forgot the ghusl or the perfume? Nothing is owed — both are sunnah. Just make the intention and carry on. If in doubt, tell your group leader or ask a scholar.",
+  "c": "HAJJ_RITES.miss"
+ },
+ {
+  "h": "uo7y7k",
+  "k": "Forgot to cut? Cut now. Your ordinary clothes were never a problem — women wear them in ihram — and the delay itself owes nothing if you cut by the {1}th. If you did something else forbidden before cutting (perfume, cutting nails, niqab or gloves): Shafi'is and Hanbalis excuse perfume used forgetfully but not cutting nails; Hanafis require the fidyah regardless; Malikis owe nothing once you had stoned (the stoning alone opens their first tahallul); many contemporary scholars excuse all forgetting (Bukhari {2}) — a fast of {3} days, feeding {4} poor, or a sheep (Quran {5}; the amounts are from Bukhari {6}). Left Makkah without cutting? Cut as soon as you remember. Hanafis and Malikis say a dam is owed; Shafi'is and Hanbalis say nothing is owed for the delay. Tell your group leader / ask a scholar.",
+  "c": "HAJJ_RITES.miss",
+  "refs": [
+   "bukhari:1536",
+   "quran:2:196",
+   "bukhari:1814"
+  ]
+ },
+ {
+  "h": "jj2klp",
+  "k": "If you cut your hair or changed into ordinary clothes after the arrival tawaf by mistake, your ihram still stands — put the ihram back on, stop the act, and carry on. Whether a fidyah is owed differs: Shafi'is and Hanbalis excuse perfume and clothing done forgetfully or unknowingly, but not cutting hair or nails; Hanafis and Malikis require the fidyah regardless; some Hanbalis and many contemporary scholars say nothing is owed for anything done forgetfully or unknowingly (Bukhari {1} — a man in a perfumed cloak was simply told to remove it). The fidyah is a fast of {2} days, feeding {3} poor, or a sheep (Quran {4}; the amounts are from the hadith of Ka'b ibn Ujrah, Bukhari {5}). Tell your group leader / ask a scholar whether one applies to you.",
+  "c": "HAJJ_RITES.miss",
+  "refs": [
+   "bukhari:1536",
+   "quran:2:196",
+   "bukhari:1814"
+  ]
+ },
+ {
+  "h": "6jbqso",
+  "k": "If you discover you spent the whole day outside the boundary (in Uranah), move inside now — any moment inside Arafah between Dhuhr of the {1}th (Hanbalis: from Fajr of the {2}th) and Fajr of the {3}th makes the wuquf valid (Malikis: it must include a moment after sunset, so stay inside until the sun has set). Tell your group leader / ask a scholar.",
+  "c": "HAJJ_RITES.miss"
+ },
+ {
+  "h": "fw0pkn",
+  "k": "If you were not inside Arafah at any moment between Dhuhr on the {1}th (Hanbalis: from Fajr of the {2}th) and Fajr on the {3}th, there is no Hajj this year: you exit by doing the rites of Umrah (tawaf, sa'i, cut the hair) and make the Hajj up another year — a hady is owed according to the majority (Hanafis: none), and the Hajj is still obligatory on you. Arrived after sunset but before Fajr? Your wuquf is valid (Tirmidhi {4}). Tell your group leader / ask a scholar before you do anything.",
+  "c": "HAJJ_RITES.miss",
+  "refs": [
+   "tirmidhi:889"
+  ]
+ },
+ {
+  "h": "1xgcdx3",
+  "k": "Left Makkah without it? If you are still close (Shafi'is and Hanbalis: under about {1} km, the distance for shortening prayers; Hanafis: before passing the miqat), go back and do it — nothing is owed. If you are already far away or home, the majority say a dam is owed (a sheep slaughtered in the Haram, which a trusted person there can arrange); Malikis hold it is a sunnah with nothing owed. Tell your group leader / ask a scholar.",
+  "c": "HAJJ_RITES.miss"
+ },
+ {
+  "h": "p2rsp9",
+  "k": "Left without it while pure? If still close, go back and do it; if far away, the majority say a dam is owed (Malikis: nothing). Left while menstruating? Nothing is owed at all. Tell your group leader / ask a scholar.",
+  "c": "HAJJ_RITES.miss"
+ },
+ {
+  "h": "w41o4",
+  "k": "Missed after midday and left? Stone before sunset if you can get back; after sunset of the {1}th the days of stoning are over and a dam is owed for a day's stoning left undone (for a pebble or two the schools differ). Unable? Delegate (permitted by all four schools — Ibn Majah {2} has a weak chain, its meaning is accepted; Malikis add a dam for the one unable). Tell your group leader / ask a scholar.",
+  "c": "HAJJ_RITES.miss",
+  "refs": [
+   "ibnmajah:3038"
+  ]
+ },
+ {
+  "h": "1xvb2ks",
+  "k": "Missed or done before midday? Repeat after midday, or stone tomorrow in order (the {1}th's three, then the {2}th's) — the stoning is made up; Shafi'is and Hanbalis: nothing more is owed, Hanafis and Malikis: a dam for the delay. If the {3}th passes with it undone, a dam is owed by all. Unable? Delegate (permitted by all four schools — Ibn Majah {4} has a weak chain, its meaning is accepted; Malikis add a dam for the one unable). Tell your group leader / ask a scholar.",
+  "c": "HAJJ_RITES.miss",
+  "refs": [
+   "ibnmajah:3038"
+  ]
+ },
+ {
+  "h": "s8bd9s",
+  "k": "Missed today? Stone it tomorrow before that day's three, in order: today's three first, then tomorrow's — the stoning is made up. Shafi'is and Hanbalis: nothing more is owed; Hanafis and Malikis: a dam is owed for the delay. Stoned before midday? The majority count it as not done — repeat it after midday (Hanafis allow before midday only on the {1}th; a few contemporary scholars permit it on the {2}th for the weak in severe crowding — ask before relying on it). Unable to go? Delegate to someone who has stoned for themselves (permitted by all four schools — Ibn Majah {3} has a weak chain, its meaning is accepted; Malikis add a dam for the one unable). If the {4}th passes with any day undone, a dam is owed by all. Tell your group leader / ask a scholar.",
+  "c": "HAJJ_RITES.miss",
+  "refs": [
+   "ibnmajah:3038"
+  ]
+ },
+ {
+  "h": "ikiaas",
+  "k": "Missed with no excuse? For a single night the schools differ: the Malikis owe a dam, as do the Hanbalis in their relied-upon view (another Hanbali view: a mudd of food), the Shafi'is a mudd of food, the Hanafis nothing (they count the nights as sunnah); missing all the nights owes a dam for the majority. Valid excuses remove it. Tell your group leader / ask a scholar.",
+  "c": "HAJJ_RITES.miss"
+ },
+ {
+  "h": "1q44nxo",
+  "k": "Missed with no excuse? For this night alone the schools differ: the Malikis owe a dam, as do the Hanbalis in their relied-upon view (another Hanbali view: a mudd of food), the Shafi'is a mudd of food, the Hanafis nothing; missing all the nights owes a dam for the majority — see the night of the {1}th. Excuses (illness, caring, no space) remove it. Tell your group leader / ask a scholar.",
+  "c": "HAJJ_RITES.miss"
+ },
+ {
+  "h": "4fkifi",
+  "k": "Never done? The Hajj is not complete: intimacy stays forbidden until you do it — even if that means months later or a return trip; nothing else substitutes for it. Delayed past the {1}th? Valid, and most scholars say nothing is owed (Hanafis: a dam once sunset on the {2}th has passed, unless a period caused the delay; Malikis: a dam once Dhul Hijjah ends). A sister whose period will not end before the group leaves: scholars differ — some permit tawaf with precautions in genuine necessity; do not decide alone. Tell your group leader / ask a scholar.",
+  "c": "HAJJ_RITES.miss"
+ },
+ {
+  "h": "123soh",
+  "k": "No pebbles? Pick them up anywhere in Mina on your way to the Jamarat — the ground around the camps is full of them. Nothing is owed. If in doubt, tell your group leader / ask a scholar.",
+  "c": "HAJJ_RITES.miss"
+ },
+ {
+  "h": "1t8q77z",
+  "k": "Not stoned today? Do it tonight (most scholars; the Hanbali school: tomorrow after midday) or, at the latest, tomorrow before that day's three jamarat (today's first, in order) — the stoning is made up. Shafi'is and Hanbalis: nothing more is owed; Hanafis: nothing if you stone before Fajr of the {1}th, a dam if it waits until the next day; Malikis: a dam is owed for the delay. If the {2}th passes with it undone, a dam is owed by all. Unable to go at all (illness, age, pregnancy, fear of the crush)? Appoint someone who has stoned for themselves to throw your seven — delegation for the one unable is permitted by all four schools (al-Mughni; the companions stoned on behalf of the children, Ibn Majah {3} — weak chain, meaning accepted); Malikis add that the one unable still owes a dam. Tell your group leader / ask a scholar.",
+  "c": "HAJJ_RITES.miss",
+  "refs": [
+   "ibnmajah:3038"
+  ]
+ }
+]

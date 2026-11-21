@@ -9,6 +9,9 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
 
 (async () => {
   const browser = await chromium.launch({ executablePath: exe });
+  // the checks below were written for the English app: every context gets an empty list of language packs (so no language sheet at first run),
+  // except the ones that test choosing a language. Done by routing, not by writing to storage: a write at page start races with a test's own seeding.
+  { const nc = browser.newContext.bind(browser); browser.newContext = async o => { const { _askLang, ...rest } = o || {}; const c = await nc(rest); if (!_askLang) await c.route(/i18n\/index\.js/, r => r.fulfill({ contentType: 'text/javascript', body: 'window.I18N_PACKS={};' })); return c; }; }
   const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, geolocation: { latitude: 21.42, longitude: 39.83 }, permissions: ['geolocation'] });
   const page = await ctx.newPage();
   const errors = []; page.on('pageerror', e => errors.push(e.message));
@@ -1901,6 +1904,63 @@ function check(name, cond, extra) { console.log((cond ? '  ✓ ' : '  ✗ ') + n
     const S2 = await pS.evaluate(() => { const st = document.querySelector('.story-stage'), bp = document.querySelector('.beat-phone'); return { over: document.documentElement.scrollWidth - innerWidth, stage: getComputedStyle(st).position, inline: getComputedStyle(bp).display, nav: getComputedStyle(document.querySelector('.nav-links')).display }; });
     check('site: on a desktop the phone stays put while the text scrolls (sticky stage on, inline phones off), the section links show, and nothing overflows', S2.over <= 0 && S2.stage === 'sticky' && S2.inline === 'none' && S2.nav === 'flex', S2);
     await ctxS.close();
+  }
+  // ── languages (6.11): the picker, the first-run sheet, right-to-left, and what a translation may never change ──
+  {
+    const fsL = require('fs'), IB = require('../tools/i18n-build.js'), at = f => path.resolve(__dirname, '..', f);
+    const INV = JSON.parse(fsL.readFileSync(at('i18n/src/units.json'), 'utf8')), byH = new Map(INV.units.map(u => [u.h, u.k])), byK = new Set(INV.units.map(u => u.k));
+    const appVL = /APP_VERSION='([^']+)'/.exec(fsL.readFileSync(at('app.js'), 'utf8'))[1];
+    check('i18n: the text inventory (i18n/src/units.json) was read from the running version — after changing the app run tools/i18n-extract.js, then tools/i18n-build.js chunks', INV.version === appVL, { inventory: INV.version, app: appVL });
+    const man = (() => { const w = {}; new Function('window', fsL.readFileSync(at('i18n/index.js'), 'utf8'))(w); return w.I18N_PACKS || {}; })(), badP = [];
+    Object.keys(man).forEach(l => { const f = at('i18n/' + l + '.js'); if (!fsL.existsSync(f)) { badP.push(l + ': no pack file'); return; } let P = null; new Function('I18N_PACK', fsL.readFileSync(f, 'utf8'))((c, p) => { if (c === l) P = p; });
+      if (!P || !P.u) { badP.push(l + ': the pack does not register'); return; }
+      Object.keys(P.u).forEach(h => { const k = byH.get(h); if (!k) return; const why = IB.check(l, k, P.u[h]); if (why) badP.push(l + ' ' + h + ': ' + why); });
+      Object.entries({ D: 7, d: 7, M: 12, m: 12, H: 12, P: 5 }).forEach(([g, n]) => { if (!P.g || !Array.isArray(P.g[g]) || P.g[g].length !== n || P.g[g].some(x => !x)) badP.push(l + ': names ' + g); });
+      if (!man[l].note) badP.push(l + ': no note saying how the translation was made and checked'); });
+    check('i18n: every language in the picker has its pack and its note, and no shipped line loses a number, a placeholder for the pilgrim’s own words, a tag, an arrow, a web address or ﷺ', badP.length === 0, badP.slice(0, 8));
+    const SK = IB.check('ar', 'Day {1} of {2} · <1>Tawaf</1> ▶ miqah.app ﷺ', 'x');
+    check('i18n: the checker refuses a line that drops a number, a tag, an arrow, an address or ﷺ, refuses Latin text for an Arabic-script language, and accepts a faithful line and a plural set', !!SK && !!IB.check('ar', 'Day {1} of {2}', 'اليوم {1}') && !!IB.check('ar', 'Read <1>this</1> first', 'اقرأ هذا أولا') && !!IB.check('ar', 'Open Settings▶Backup', 'افتح الإعدادات ثم النسخ') && !!IB.check('ar', 'The Prophet ﷺ said so', 'قال النبي ذلك') && !!IB.check('ar', 'Visit nusuk.sa for the permit', 'زر الموقع للتصريح') && !!IB.check('ar', 'This line is long enough to need Arabic letters', 'This line is long enough') && IB.check('ar', 'Day {1} of {2}', 'اليوم {1} من {2}') === '' && IB.check('ar', '{1} days left', { one: 'بقي يوم واحد', two: 'بقي يومان', few: 'بقيت {1} أيام', many: 'بقي {1} يومًا', other: 'بقي {1} يوم' }) === '', SK);
+    const E0 = await page.evaluate(() => ({ lang: I18N.lang, dir: document.documentElement.dir, missed: I18N.missed().length, n: I18N.langs.length, c: [I18N.canon('Day 5 of 10'), I18N.canon('Wed 24 Mar'), I18N.canon('Asr in 2h 21m'), I18N.canon('Read “this” first'), I18N.canon('1,250 steps · 3.5 km')], row: !!document.querySelector('#langLbl'), lbl: (document.getElementById('langLbl') || {}).textContent }));
+    check('i18n: in English nothing is translated or watched; numbers, dates and prayer names leave a line before it is looked up, so one entry serves every day and no number can be mistranslated; Settings has a Language row', E0.lang === 'en' && E0.dir !== 'rtl' && E0.missed === 0 && E0.n === 15 && E0.c[0] === 'Day {1} of {2}' && E0.c[1] === '{d1} {1} {m1}' && E0.c[2] === '{P1} in {1}h {2}m' && E0.c[3] === 'Read "this" first' && E0.c[4] === '{1} steps · {2} km' && E0.row && E0.lbl === 'English', E0);
+    // a test language made from the inventory itself: every line wrapped in « », so what was translated is visible
+    const pseudo = { g: IB.names('ar'), u: {} }; INV.units.forEach(u => { pseudo.u[u.h] = '«' + u.k + '»'; });
+    const routeL = async c => { await c.route(/i18n\/index\.js/, r => r.fulfill({ contentType: 'text/javascript', body: 'window.I18N_PACKS={ar:{v:"t",note:"ترجمة للاختبار"}};' })); await c.route(/i18n\/ar\.js/, r => r.fulfill({ contentType: 'text/javascript', body: 'I18N_PACK("ar",' + JSON.stringify(pseudo) + ');' })); await c.route(/^https?:/, r => r.abort()); };
+    const ctxL = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, locale: 'ar-SA', _askLang: true }); await routeL(ctxL);
+    const pL = await ctxL.newPage(), errL = []; pL.on('pageerror', e => errL.push(e.message)); pL.on('dialog', d => d.accept());
+    await pL.goto(URL); await pL.waitForTimeout(1100);
+    const L1 = await pL.evaluate(() => ({ sheet: !!document.querySelector('#gSheet.on [data-lang-sheet]'), opts: [...document.querySelectorAll('.lang-opt')].map(e => e.querySelector('b').textContent + (e.classList.contains('on') ? '*' : '')), go: (document.getElementById('langGo') || {}).textContent, note: (document.querySelector('.lang-note') || {}).textContent, noteDir: (document.querySelector('.lang-note') || {}).dir, ob: document.getElementById('obSheet').classList.contains('on'), stored: localStorage.getItem('us-lang'), radios: document.querySelectorAll('.lang-list[role=radiogroup] [role=radio][aria-checked]').length }));
+    check('i18n first run: before the welcome, a sheet asks for the language; it lists English and each language that has a pack, in its own name; the phone’s language is already selected; the button and the note are in that language; nothing is saved until Continue', L1.sheet && L1.opts.join('|') === 'English|العربية*' && L1.go === 'متابعة' && L1.note === 'ترجمة للاختبار' && L1.noteDir === 'rtl' && !L1.ob && L1.stored === null && L1.radios === 2, L1);
+    await pL.evaluate(() => I18N.choose('en')); const L1b = await pL.evaluate(() => ({ on: document.querySelector('.lang-opt.on b').textContent, go: document.getElementById('langGo').textContent, note: !!document.querySelector('.lang-note') }));
+    await pL.evaluate(() => I18N.choose('ar'));
+    await Promise.all([pL.waitForNavigation(), pL.click('#langGo')]); await pL.waitForTimeout(1500);
+    const L2 = await pL.evaluate(() => ({ stored: localStorage.getItem('us-lang'), dir: document.documentElement.dir, lang: document.documentElement.lang, sheet: !!document.querySelector('#gSheet.on [data-lang-sheet]'), ob: document.getElementById('obSheet').classList.contains('on'), tr: /«/.test(document.getElementById('obSheet').innerText), obLang: (document.getElementById('obLangN') || {}).textContent, wide: document.documentElement.scrollWidth - innerWidth, hid: document.documentElement.classList.contains('i18n-wait') }));
+    check('i18n first run: tapping a language changes the sheet’s own words; Continue saves it, the app reloads right-to-left in that language, the welcome follows without asking again, shows the language with a way to change it, and nothing scrolls sideways', L1b.on === 'English' && L1b.go === 'Continue' && !L1b.note && L2.stored === 'ar' && L2.dir === 'rtl' && L2.lang === 'ar' && !L2.sheet && L2.ob && L2.tr && L2.obLang === 'العربية' && L2.wide <= 0 && !L2.hid, { L1b, L2 });
+    await ctxL.close();
+    // waving the sheet away still leads to the welcome, and asks again next time
+    const ctxL2 = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, _askLang: true }); await routeL(ctxL2);
+    const pL2 = await ctxL2.newPage(); pL2.on('pageerror', e => errL.push(e.message)); await pL2.goto(URL); await pL2.waitForTimeout(1100);
+    const L3a = await pL2.evaluate(() => ({ sheet: !!document.querySelector('#gSheet.on [data-lang-sheet]'), on: (document.querySelector('.lang-opt.on b') || {}).textContent }));
+    await pL2.evaluate(() => closeSheet()); await pL2.waitForTimeout(700);
+    const L3 = await pL2.evaluate(() => ({ ob: document.getElementById('obSheet').classList.contains('on'), stored: localStorage.getItem('us-lang'), dir: document.documentElement.dir }));
+    check('i18n first run: on a phone in English the sheet starts on English; closing it without choosing still opens the welcome, in English, and saves nothing', L3a.sheet && L3a.on === 'English' && L3.ob && L3.stored === null && L3.dir !== 'rtl', { L3a, L3 });
+    await ctxL2.close();
+    // someone already using the app
+    const ctxL3 = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, locale: 'ar-SA', _askLang: true }); await routeL(ctxL3);
+    const pL3 = await ctxL3.newPage(); pL3.on('pageerror', e => errL.push(e.message)); pL3.on('dialog', d => d.accept());
+    await pL3.addInitScript(v => { try { if (!localStorage.getItem('us-settings')) localStorage.setItem('us-settings', JSON.stringify({ onboarded: true, name: 'Bilal', dep: '2027-03-20', ret: '2027-03-30', tripLen: 10, journey: 'umrah', seenVer: v, theme: 'light' })); } catch (e) { } }, appVL);
+    await pL3.goto(URL); await pL3.waitForTimeout(1600);
+    const L4 = await pL3.evaluate(() => ({ sheet: !!document.querySelector('#gSheet.on [data-lang-sheet]'), on: (document.querySelector('.lang-opt.on b') || {}).textContent, stored: localStorage.getItem('us-lang'), dir: document.documentElement.dir }));
+    await Promise.all([pL3.waitForNavigation(), pL3.click('#langGo')]); await pL3.waitForTimeout(1500);
+    const L5 = await pL3.evaluate(async () => { goTab('home'); await new Promise(r => setTimeout(r, 400)); const home = document.querySelector('#view-home') || document.body, txt = home.innerText;
+      const ar = [...document.querySelectorAll('.ar,[lang="ar"]:not(html)')].filter(e => !e.closest('[data-lang-sheet]')); goTab('more', 'settings'); await new Promise(r => setTimeout(r, 400));
+      return { stored: localStorage.getItem('us-lang'), dir: document.documentElement.dir, greet: /«As-salamu alaykum, Bilal»/.test(txt), anyTr: (txt.match(/«/g) || []).length, arN: ar.length, arTouched: ar.filter(e => /[«»]/.test(e.textContent)).length, lbl: document.getElementById('langLbl').textContent, t: I18N.t('Day 5 of 10'), tn: I18N.t('A line that is in no pack 123'), wide: document.documentElement.scrollWidth - innerWidth, offerAgain: !!document.querySelector('#gSheet.on [data-lang-sheet]') }; });
+    check('i18n for someone already using the app: when their phone is in a language Miqah has, the sheet is offered once with that language selected (English is kept until they choose); after Continue the app is right-to-left, a line with their name is translated around the name, Arabic text is never touched, a line with numbers gets its numbers back, a line that has no translation stays in English, Settings names the language, and nothing scrolls sideways', L4.sheet && L4.on === 'العربية' && L4.stored === 'en' && L4.dir !== 'rtl' && L5.stored === 'ar' && L5.dir === 'rtl' && L5.greet && L5.anyTr > 5 && L5.arN > 0 && L5.arTouched === 0 && L5.lbl === 'العربية' && (!byK.has('Day {1} of {2}') || L5.t === '«Day 5 of 10»') && L5.tn === 'A line that is in no pack 123' && L5.wide <= 0 && !L5.offerAgain, { L4, L5, has: byK.has('Day {1} of {2}') });
+    await pL3.evaluate(() => I18N.sheet()); await pL3.waitForTimeout(300); await pL3.evaluate(() => I18N.choose('en'));
+    await Promise.all([pL3.waitForNavigation(), pL3.click('#langGo')]); await pL3.waitForTimeout(1300);
+    const L6 = await pL3.evaluate(() => ({ stored: localStorage.getItem('us-lang'), dir: document.documentElement.dir, lang: document.documentElement.lang, tr: /«/.test(document.body.innerText), sheet: !!document.querySelector('#gSheet.on [data-lang-sheet]'), name: JSON.parse(localStorage.getItem('us-settings')).name }));
+    check('i18n: Settings › Language switches back to English (left-to-right, nothing translated, nothing of the pilgrim’s lost), and the offer does not come back', L6.stored === 'en' && L6.dir !== 'rtl' && L6.lang === 'en' && !L6.tr && !L6.sheet && L6.name === 'Bilal', L6);
+    check('i18n: no script errors in any language flow', errL.length === 0, errL);
+    await ctxL3.close();
   }
   check('no JS errors', errors.length === 0, errors);
   await browser.close();

@@ -1,0 +1,861 @@
+[
+ {
+  "h": "apsi44",
+  "k": "Bab as-Salam (Al Salam Gate)",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "16xkyat",
+  "k": "Bir Uthman (the Well of Rumah)",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "1o2gta2",
+  "k": "Birthplace of the Prophet ﷺ (Makkah Library)",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "1riroaz",
+  "k": "Dar Al Madinah Museum",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "momzfv",
+  "k": "Exhibition of the Holy Quran & the Prophet's Biography",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "a5l6y1",
+  "k": "Exhibition of the Two Holy Mosques",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "1l0tkcb",
+  "k": "Garden of Salman al-Farisi",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "69170x",
+  "k": "Hijr Isma'il & Maqam Ibrahim",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "1q08p0b",
+  "k": "Hira Cultural District & Revelation Exhibition",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "xqus29",
+  "k": "Historic Jeddah (Al-Balad)",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "uhnnlo",
+  "k": "Jabal Abu Qubays",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "1u6497x",
+  "k": "Jabal Thawr",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "1vyb2zg",
+  "k": "Jabal an-Nour & the Cave of Hira",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "c7gbdb",
+  "k": "Jannat al-Baqi'",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "u398ml",
+  "k": "Makkah Clock Tower Museum",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "15b8u4f",
+  "k": "Makkah Museum (Al-Zahir Palace)",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "ziir7",
+  "k": "Masjid Aisha (Tan'eem)",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "i4h0jv",
+  "k": "Masjid Namirah (Arafat)",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "fm0pvm",
+  "k": "Masjid Quba",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "z0blwy",
+  "k": "Masjid al-Bay'ah (Aqabah)",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "yerih",
+  "k": "Masjid al-Ghamamah",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "zo6m2z",
+  "k": "Masjid al-Haram & the Kaaba",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "67wukw",
+  "k": "Masjid al-Hudaybiyyah",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "w5hn0e",
+  "k": "Masjid al-Ijabah",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "13ord5d",
+  "k": "Masjid al-Ji'ranah",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "hcmoec",
+  "k": "Masjid al-Jumu'ah",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "xtnczm",
+  "k": "Masjid al-Khayf (Mina)",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "1bkr04x",
+  "k": "Masjid al-Mash'ar al-Haram",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "15y57uo",
+  "k": "Masjid al-Miqat (Dhul-Hulayfah / Abyar Ali)",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "15kqdpi",
+  "k": "Masjid al-Qiblatayn",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "bqk6b1",
+  "k": "Masjid an-Nabawi",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "f82mg",
+  "k": "Mount Arafat & Jabal ar-Rahmah",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "1gsq40c",
+  "k": "Mount Uhud & the Martyrs' Cemetery",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "1i5o0zc",
+  "k": "Quba Square & Quba Avenue",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "3onvdd",
+  "k": "Safa & Marwah (the Mas'a)",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "1k5gs97",
+  "k": "Site of Masjid ar-Rayah (demolished)",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "gzf3jk",
+  "k": "Sultanah — Abu Bakr as-Siddiq Road",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "1qdhppx",
+  "k": "Ta'if & Masjid Abdullah ibn Abbas",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "12u489u",
+  "k": "The Jamarat",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "jj2til",
+  "k": "The Kiswah Factory (King Abdulaziz Complex)",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "1432byj",
+  "k": "The Rawdah",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "1swr5ub",
+  "k": "The Trench Battlefield & the Seven Mosques",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "1ju9lt7",
+  "k": "The Well of Zamzam",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "1j9cx5e",
+  "k": "Wadi al-Aqiq",
+  "c": ".place-tg < .place-t < .place-h"
+ },
+ {
+  "h": "1gyt11e",
+  "k": "After {P1} & {P2}",
+  "c": ".ptag < .place-tg < .place-t"
+ },
+ {
+  "h": "1kccb24",
+  "k": "Arafah day only",
+  "c": ".ptag < .place-tg < .place-t"
+ },
+ {
+  "h": "14orwvu",
+  "k": "Best after {P1}",
+  "c": ".ptag < .place-tg < .place-t"
+ },
+ {
+  "h": "143pi9v",
+  "k": "By arrangement/tour",
+  "c": ".ptag < .place-tg < .place-t"
+ },
+ {
+  "h": "1wdjeoc",
+  "k": "Free Nusuk permit",
+  "c": ".ptag < .place-tg < .place-t"
+ },
+ {
+  "h": "1nt46nt",
+  "k": "Hard climb",
+  "c": ".ptag < .place-tg < .place-t"
+ },
+ {
+  "h": "1yyqh5a",
+  "k": "Limited hours",
+  "c": ".ptag < .place-tg < .place-t"
+ },
+ {
+  "h": "w253ox",
+  "k": "Men enter",
+  "c": ".ptag < .place-tg < .place-t"
+ },
+ {
+  "h": "swk8eh",
+  "k": "Sisters: salam from outside",
+  "c": ".ptag < .place-tg < .place-t"
+ },
+ {
+  "h": "1a4xj6o",
+  "k": "Usually viewed from road",
+  "c": ".ptag < .place-tg < .place-t"
+ },
+ {
+  "h": "1wuw91t",
+  "k": "View from below is fine",
+  "c": ".ptag < .place-tg < .place-t"
+ },
+ {
+  "h": "1cys7m2",
+  "k": "Women's slots",
+  "c": ".ptag < .place-tg < .place-t"
+ },
+ {
+  "h": "1giiw0y",
+  "k": "{1}–{2} min climb",
+  "c": ".ptag < .place-tg < .place-t"
+ },
+ {
+  "h": "1pr36bv",
+  "k": "＋Route",
+  "c": ".rt < .place-a < #pl-hira"
+ },
+ {
+  "h": "1azd270",
+  "k": "Green",
+  "c": ".stopbadge < .place-tg < .place-t",
+  "part_of": "Stop {1} · Green"
+ },
+ {
+  "h": "19d4ccc",
+  "k": "Red",
+  "c": ".stopbadge < .place-tg < .place-t",
+  "part_of": "Stop {1} · Red"
+ },
+ {
+  "h": "qo6w3y",
+  "k": "Stop {1}",
+  "c": ".stopbadge < .place-tg < .place-t",
+  "part_of": "Stop {1} · Green"
+ },
+ {
+  "h": "zrnzz0",
+  "k": "Stop {1} · Green",
+  "c": ".stopbadge < .place-tg < .place-t"
+ },
+ {
+  "h": "dsolbw",
+  "k": "Stop {1} · Red",
+  "c": ".stopbadge < .place-tg < .place-t"
+ },
+ {
+  "h": "1jjtkqe",
+  "k": "<1></1>{1} · Al Hijaz Railway Station",
+  "c": ".stopchip < .stops < #tourCard"
+ },
+ {
+  "h": "d9oa2t",
+  "k": "<1></1>{1} · Al Manakha Square",
+  "c": ".stopchip < .stops < #tourCard"
+ },
+ {
+  "h": "h0co04",
+  "k": "<1></1>{1} · Al Masjid an Nabawi",
+  "c": ".stopchip < .stops < #tourCard"
+ },
+ {
+  "h": "8e11nc",
+  "k": "<1></1>{1} · Al Qiblatain Mosque",
+  "c": ".stopchip < .stops < #tourCard"
+ },
+ {
+  "h": "jkm9ni",
+  "k": "<1></1>{1} · Al Salam Gate",
+  "c": ".stopchip < .stops < #tourCard"
+ },
+ {
+  "h": "12ffs2c",
+  "k": "<1></1>{1} · Al-Baqi'",
+  "c": ".stopchip < .stops < #tourCard"
+ },
+ {
+  "h": "aapqds",
+  "k": "<1></1>{1} · Al-Noor Mall",
+  "c": ".stopchip < .stops < #tourCard"
+ },
+ {
+  "h": "13fh2j1",
+  "k": "<1></1>{1} · Masjid Quba",
+  "c": ".stopchip < .stops < #tourCard"
+ },
+ {
+  "h": "8xidry",
+  "k": "<1></1>{1} · Quba Square",
+  "c": ".stopchip < .stops < #tourCard"
+ },
+ {
+  "h": "14dwkhk",
+  "k": "<1></1>{1} · Sultanah / Abu Bakr as-Siddiq Rd",
+  "c": ".stopchip < .stops < #tourCard"
+ },
+ {
+  "h": "238iqx",
+  "k": "<1></1>{1} · The Trench Battlefield",
+  "c": ".stopchip < .stops < #tourCard"
+ },
+ {
+  "h": "1u7c02u",
+  "k": "<1></1>{1} · Uhud Battlefield",
+  "c": ".stopchip < .stops < #tourCard"
+ },
+ {
+  "h": "q5fmgh",
+  "k": "A few minutes' walk from the Safa side of the Haram. Viewed from outside — it is not a place of worship; reflect, don't ritualise.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "zbhuad",
+  "k": "A short ride north-west of the Haram; combine with the Seven Mosques.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "148g3jm",
+  "k": "A short walk north of the Haram, near Jannat al-Mu'alla.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "wq6gcs",
+  "k": "A small, easily-missed mosque near the Jamarat bridge; built in {1} AH.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "s93s18",
+  "k": "A steep {1}–{2} min climb — go after Fajr, take water. Viewing from below also suffices; see the Revelation Exhibition at its foot.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "110mraw",
+  "k": "A tougher climb than Hira; most pilgrims view it from the road on a ziyarah tour.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "1b29k5f",
+  "k": "A working date farm north of the city; a lesson in sadaqah jariyah.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "1sr08u3",
+  "k": "A {1}-minute walk south-west of Masjid an-Nabawi, beside Al Manakha.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "k4c4su",
+  "k": "An evening stroll on the way to the airport. A cultural, not religious, visit.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "10ikg8o",
+  "k": "Between Arafat and Mina on the pilgrim road.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "10csun4",
+  "k": "Book in advance; sunset slots have the best views.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "m1wdtp",
+  "k": "Combine Arafat, Muzdalifah & Mina in one half-day ziyarah taxi tour (agree the price first).",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "viva9n",
+  "k": "Confirm it is open before going — it closed during the pandemic and may still be shut. The Exhibition of the Two Holy Mosques is about {1} km away in Umm al-Joud.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "nuat1n",
+  "k": "Dates, cafés and evening buzz; a good meeting point for families.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "1xtj8y2",
+  "k": "Drive-through on a ziyarah tour; picture more than {1} million people sleeping here in one night.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "e7c1xk",
+  "k": "Excellent with kids; guided tours available in English.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "qu7dvc",
+  "k": "Give salam to the Prophet ﷺ and his two companions with calm and lowered voice.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "1btdnmd",
+  "k": "Give salam to the deceased; visiting hours are limited and entry is for men.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "beq0il",
+  "k": "Handy between Uhud and Qiblatayn on the Red route.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "1t1etun",
+  "k": "Holds about {1}; it opens only in the Hajj season ({2} Dhul-Hijjah, Eid and the days of Tashriq) — outside Hajj you see it from the road.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "tj324e",
+  "k": "In Umm al-Joud on the old Jeddah road, next to the Kiswah complex. Entry has traditionally been free — check hours and entry rules before going.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "11tgv3f",
+  "k": "Landmarks inside: Hajar al-Aswad, Maqam Ibrahim, Hijr Isma'il, the Multazam & the Yamani corner.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "1bb89l5",
+  "k": "Masjid al-Fath on the hill is where the Prophet ﷺ prayed for victory. Minutes from Qiblatayn.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "mjc5ek",
+  "k": "Near Quba; a quiet place to reflect on a seeker who crossed empires to find the truth.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "orxu7h",
+  "k": "No longer standing — it was in the old al-Jawdariyyah quarter just north of the Haram and was demolished around {1}–{2} AH for the northern expansion of the Haram courtyards. Nothing remains to visit.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "kjif4w",
+  "k": "Now crowned by a royal palace; visible from the Safa end of the mataf — no visit needed.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "aduyt3",
+  "k": "Open after Fajr and Asr; entry for men. Give the sunnah salam to the people of the graves.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "jzexjt",
+  "k": "Opens only on the day of Arafah; outside Hajj you view it from the road.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "1sh5j5y",
+  "k": "Quiet outside Hajj season — a moving drive-through with Quran {1} in mind.",
+  "c": ".tip < .place-t < .place-h",
+  "refs": [
+   "quran:22:27"
+  ]
+ },
+ {
+  "h": "1r423u9",
+  "k": "Requires a free timed permit from the Nusuk app — slots open only a short time ahead, so check Nusuk as your dates approach and book as soon as they open.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "gnzxc6",
+  "k": "The Prophet ﷺ visited every Saturday, walking or riding (Bukhari {1}) — make wudu at your hotel and go at least once.",
+  "c": ".tip < .place-t < .place-h",
+  "refs": [
+   "bukhari:1193"
+  ]
+ },
+ {
+  "h": "1kqwtgq",
+  "k": "The multi-level bridge is an engineering marvel; visit outside Hajj to understand the layout before you ever come for Hajj.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "1sha2kt",
+  "k": "The museum is closed for restoration — check before you go. Hop-on hop-off stop.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "1hubeam",
+  "k": "The perfect alternative to the climb for the elderly and children. Book online; evening slots are cooler.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "ixhlim",
+  "k": "The well itself is now beneath the mataf; chilled and room-temperature dispensers are on every floor. Face the qibla and make dua as you drink.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "zt94yz",
+  "k": "Try the Hijr late at night after tawaf; pray your {1} rakahs anywhere behind the Maqam if the area is packed.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "17sub52",
+  "k": "Try the local Ajwa dates and the famous Madinah bukhari rice.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "12rbnjh",
+  "k": "Under {1} km north of Masjid Quba, near Quba Avenue — stop here if you walk to Quba.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "1c3hxv6",
+  "k": "Visit after Fajr before the heat; give salam at the martyrs' fence and climb the Archers' Hill to understand the battle.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "1nd5aeo",
+  "k": "Visits are by arrangement/tour; the exhibition explains every panel of calligraphy you see on the Kaaba.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "wwh3ap",
+  "k": "Walk it at sunset; the bus brings you back. Hop-on hop-off stop.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "yeb6ev",
+  "k": "Walk it slowly with salawat on your lips; no crowding, no raised voices.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "1ppszis",
+  "k": "Wheelchair lanes run down the middle; the green lights mark where men jog. Begin at Safa, finish at Marwah.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "1hob2ud",
+  "k": "Wonderful with children; tours in many languages.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "19541f6",
+  "k": "You cross it on the way to Masjid al-Miqat — look out for it.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "1h0mkme",
+  "k": "{1} km south-west. Showers, wudu areas and ihram shops on site; most buses stop here on request. The Haramain train does not stop here — put on ihram before boarding and make the intention before the train passes the miqat.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "192oobg",
+  "k": "{1} min from Baqi on Sitteen Street; pray two rakahs and make your own long dua.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "1fkc5mt",
+  "k": "{1}–{2} min taxi; a Makkah Bus route also serves Tan'eem — check the Makkah Bus app for the current route and fare. Showers and ihram shops on site.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "19be1z3",
+  "k": "~{1} h by road up the escarpment. Wadi Muharram on the way is a miqat if you return in ihram.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "thvhve",
+  "k": "~{1} km north-east; far calmer than Tan'eem for a second Umrah.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "8e7nhx",
+  "k": "~{1} km west on the Jeddah road; the old mosque ruins stand beside the modern one.",
+  "c": ".tip < .place-t < .place-h"
+ },
+ {
+  "h": "yfzpud",
+  "k": "City Sightseeing · {1} routes · tap for stops & booking",
+  "c": ".tour-h < #tourCard"
+ },
+ {
+  "h": "1oop7yy",
+  "k": "Ziyarah bus (hop-on hop-off)",
+  "c": ".tour-h < #tourCard"
+ },
+ {
+  "h": "1q7qc0m",
+  "k": "Tip: ride the full Red loop once for orientation, then hop off at Quba and Uhud around Fajr/Asr when they are calmest. Tap a stop to open its card.",
+  "c": ".tour-note < #tourCard"
+ },
+ {
+  "h": "kblsuu",
+  "k": "Tap a place for tips, Maps and to mark it visited.",
+  "c": ".vh < #view-places"
+ },
+ {
+  "h": "4v17ee",
+  "k": "Al Balad Jeddah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "1374e3h",
+  "k": "Al Baqi Cemetery Madinah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "1n2w4om",
+  "k": "Al Manakha Square Madinah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "1wgbgc3",
+  "k": "Al Masjid an Nabawi Madinah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "18g6mqg",
+  "k": "Al Noor Mall Madinah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "fry2sc",
+  "k": "Bab As Salam Al Masjid an Nabawi",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "mf1g13",
+  "k": "Bir Uthman Madinah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "1sl15ex",
+  "k": "Clock Tower Museum Makkah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "18tuisp",
+  "k": "Exhibition of the Two Holy Mosques Architecture Makkah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "1hhtgxs",
+  "k": "Hejaz Railway Museum Madinah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "i4vv40",
+  "k": "Hira Cultural District Makkah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "1vzuyur",
+  "k": "International Fair and Museum of the Prophet Biography Madinah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "19h87wt",
+  "k": "Jabal Abu Qubais Makkah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "daif36",
+  "k": "Jabal Thawr Makkah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "17uorbo",
+  "k": "Jabal al-Nour Makkah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "8ynyiz",
+  "k": "Jabal ar-Rahmah Arafat",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "9bfdd",
+  "k": "Jamarat Bridge Mina",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "fc1ahi",
+  "k": "Jannat al-Mualla Makkah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "ngsbz1",
+  "k": "Kiswa Factory Makkah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "kuytv5",
+  "k": "Makkah Al Mukarramah Library",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "9muekb",
+  "k": "Makkah Museum Al Zahir Palace",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "1eny8b8",
+  "k": "Masjid Abdullah Ibn Abbas Taif",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "1hi3cj6",
+  "k": "Masjid Aisha Taneem Makkah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "bhharo",
+  "k": "Masjid Al Bayah Mina",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "17fur0p",
+  "k": "Masjid Al Hudaibiyah Makkah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "qyz9xp",
+  "k": "Masjid Al Ijabah Madinah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "1io8v8",
+  "k": "Masjid Al Jiranah Makkah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "15ldvlq",
+  "k": "Masjid Al Jumuah Madinah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "bkiuug",
+  "k": "Masjid Al Khaif Mina",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "oihhih",
+  "k": "Masjid Al Mashar Al Haram Muzdalifah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "1jfp3b1",
+  "k": "Masjid Al Miqat Abyar Ali Madinah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "h7twqm",
+  "k": "Masjid Al Rayah Makkah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "bl5jui",
+  "k": "Masjid Namirah Arafat",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "1qgc65",
+  "k": "Masjid al-Ghamamah Madinah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "o0phkx",
+  "k": "Masjid al-Haram Makkah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "1fmlouf",
+  "k": "Masjid al-Jinn Makkah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "5aguhi",
+  "k": "Masjid al-Qiblatayn Madinah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "s65v1b",
+  "k": "Mina Makkah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "1pb5u9e",
+  "k": "Mount Uhud Madinah",
+  "c": "PLACES.q"
+ },
+ {
+  "h": "oc74rg",
+  "k": "Quba Avenue Madinah",
+  "c": "PLACES.q"
+ }
+]

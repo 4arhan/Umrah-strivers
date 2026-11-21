@@ -1,0 +1,316 @@
+[
+ {
+  "h": "2atou2",
+  "k": "Meeting point · Madinah: <1>{U1}</1>",
+  "c": "#printSheet"
+ },
+ {
+  "h": "11zvor7",
+  "k": "Meeting point · Makkah: <1>{U1}</1>",
+  "c": "#printSheet"
+ },
+ {
+  "h": "1oojdgx",
+  "k": "Mina camp: <1>Camp {1} · maktab {2}</1> · group leader: <2>{U1} · +{3} {4} {5} {6}</2>",
+  "c": "#printSheet"
+ },
+ {
+  "h": "100eeas",
+  "k": "Pocket cards",
+  "c": "#printSheet"
+ },
+ {
+  "h": "yre4w4",
+  "k": "Police · ambulance · fire <1>{1}</1> · Health line <2>{2}</2> · Hajj & Umrah care <3>{3}</3> · Tourism <4>{4}</4>",
+  "c": "#printSheet"
+ },
+ {
+  "h": "1lrq2tc",
+  "k": "Rami — {1} Dhul Hijjah · Tashriq · {2}nd day",
+  "c": "#ramiCard"
+ },
+ {
+  "h": "11mqt7g",
+  "k": "Rami — {1} Dhul Hijjah · Tashriq · {2}rd day",
+  "c": "#ramiCard"
+ },
+ {
+  "h": "15oo6m1",
+  "k": "Rami — {1} Dhul Hijjah · Tashriq · {2}st day",
+  "c": "#ramiCard"
+ },
+ {
+  "h": "1bb8a7o",
+  "k": "Rami — {1} Dhul Hijjah · Yawm an-Nahr",
+  "c": "#ramiCard"
+ },
+ {
+  "h": "mjen3",
+  "k": "Ghusl & ihram at the miqat",
+  "c": "#riteHeroS",
+  "part_of": "Ghusl & ihram at the miqat · wudu before tawaf"
+ },
+ {
+  "h": "pxerue",
+  "k": "wudu before tawaf",
+  "c": "#riteHeroS",
+  "part_of": "Ghusl & ihram at the miqat · wudu before tawaf"
+ },
+ {
+  "h": "1dbsy5l",
+  "k": "After midday: small jamarah→middle→Aqabah",
+  "c": "#riteHeroT"
+ },
+ {
+  "h": "ezi3zf",
+  "k": "After midday: small→middle→Aqabah",
+  "c": "#riteHeroT"
+ },
+ {
+  "h": "izv2xi",
+  "k": "Finish everything else first",
+  "c": "#riteHeroT"
+ },
+ {
+  "h": "wxg17y",
+  "k": "Ghusl, perfume on the body, ihram garments",
+  "c": "#riteHeroT"
+ },
+ {
+  "h": "1m12rit",
+  "k": "Next: Tawaf",
+  "c": "#riteHeroT"
+ },
+ {
+  "h": "n3ske6",
+  "k": "Rami · Jamrat al-Aqabah",
+  "c": "#riteHeroT"
+ },
+ {
+  "h": "e1hn80",
+  "k": "Ready to begin",
+  "c": "#riteHeroT"
+ },
+ {
+  "h": "91gvjl",
+  "k": "Stone Jamrat al-Aqabah only",
+  "c": "#riteHeroT"
+ },
+ {
+  "h": "svl35c",
+  "k": "A common wording: \"Allah is the Greatest, Allah is the Greatest, there is no god but Allah; Allah is the Greatest, Allah is the Greatest, and to Allah belongs all praise.\" This is not a hadith of the Prophet ﷺ: it is the takbir that the Companion Ibn Mas'ud (RA) said in the days of tashriq, recorded by Ibn Abi Shaybah in al-Musannaf with a chain its editor grades sahih. No single wording is fixed from the Prophet ﷺ, so there is room: the Hanafis prefer this form, al-Shafi'i preferred starting with three takbirs, and Ibn Abbas (RA) used another wording.",
+  "c": "#rulB"
+ },
+ {
+  "h": "1k2juxn",
+  "k": "As you move from Mina to Arafah on the morning of the {1}th, keep up the talbiyah. Saying the takbir is also fine: Anas (RA) said that on this journey with the Prophet ﷺ some said the talbiyah and some said the takbir, and no one objected to either (Bukhari {2}, {3}).",
+  "c": "#rulB",
+  "refs": [
+   "bukhari:970"
+  ]
+ },
+ {
+  "h": "1kt30y9",
+  "k": "At Arafah the Prophet ﷺ prayed Dhuhr and then Asr, both at the time of Dhuhr, with one adhan and two iqamahs and nothing in between (Jabir, Muslim {1}), each shortened to two rakahs. Salim told al-Hajjaj that the sunnah is to pray early, just after midday, that day, and Ibn Umar (RA) said he had spoken the truth (Bukhari {2}). This is the practice of the majority. Abu Hanifa allowed this combining only for one praying behind the Hajj imam, so many Hanafi groups pray each prayer at its own time in their tents. A pilgrim whose school counts them a resident of Makkah prays four rakahs each (see Mina's prayers); in the relied-upon Shafi'i view such a resident also prays each at its own time, since the combining is tied to travel. Prayed them separately, or at Asr time? Both prayers are valid and nothing is owed.",
+  "c": "#rulB",
+  "refs": [
+   "muslim:1218",
+   "bukhari:1662"
+  ]
+ },
+ {
+  "h": "1jkvsmg",
+  "k": "Besides after the prayers, you may say it at any time in these days. Umar (RA) said it in his tent in Mina, the people took it up, and Mina rang with takbir; Ibn Umar (RA) said it after the prayers, on his bed, in his tent, where he sat and as he walked (reported by al-Bukhari in a chapter heading, without its chain).",
+  "c": "#rulB"
+ },
+ {
+  "h": "1nykx56",
+  "k": "Do not stop for Maghrib on the way out of Arafah: when asked, the Prophet ﷺ said, \"The prayer is ahead of you\" (Bukhari {1}). On reaching Muzdalifah he prayed Maghrib and Isha together, with one adhan and two iqamahs and no voluntary prayer between them (Muslim {2}; Bukhari {3}, {4}). Maghrib stays three rakahs; Isha is shortened to two (four if your school counts you a resident of Makkah; in the relied-upon Shafi'i view such a resident also prays Maghrib and Isha each at its own time). If you fear you will arrive only after midnight, many scholars (including the Saudi fatwa bodies) say pray both on the way before midnight; the four schools still count Isha as on time until Fajr when there is a need. Never let Fajr come without praying them. Prayed Maghrib before reaching Muzdalifah? For the majority it is valid; the Hanafis say it must be prayed again at Muzdalifah before Fajr.",
+  "c": "#rulB",
+  "refs": [
+   "bukhari:1667",
+   "muslim:1218",
+   "bukhari:1673"
+  ]
+ },
+ {
+  "h": "1x54ep2",
+  "k": "Family at home: fasting the Day of Arafah is a sunnah; the Prophet ﷺ said he hoped from Allah that it expiates the year before and the year after (Muslim {1}).",
+  "c": "#rulB",
+  "refs": [
+   "muslim:1162"
+  ]
+ },
+ {
+  "h": "16b6rqc",
+  "k": "Hanafis: once after every obligatory prayer from Fajr on the {1}th to Asr on the {2}th, travellers and those praying alone included.",
+  "c": "#rulB"
+ },
+ {
+  "h": "6s416f",
+  "k": "Hanbalis (and Ibn Baz and Ibn Uthaymin): for the pilgrim, from Dhuhr on the {1}th to Asr on the {2}th.",
+  "c": "#rulB"
+ },
+ {
+  "h": "1edt9v",
+  "k": "In Mina the Prophet ﷺ prayed each prayer at its own time, shortening the four-rakah prayers to two (Bukhari {1}, {2}, {3}; Muslim {4}). Maghrib and Fajr are never shortened.",
+  "c": "#rulB",
+  "refs": [
+   "bukhari:1653",
+   "muslim:1218"
+  ]
+ },
+ {
+  "h": "1mjjipk",
+  "k": "Malikis and Shafi'is: for the pilgrim, from Dhuhr on the {1}th to Fajr on the {2}th.",
+  "c": "#rulB"
+ },
+ {
+  "h": "1xa5r9s",
+  "k": "No one fasts on the Day of Eid (Bukhari {1}). The days of tashriq, the {2}th, {3}th and {4}th, are \"days of eating, drinking and remembrance of Allah\" (Muslim {5}). Fasting them was allowed only for the pilgrim who could not afford a hady (Bukhari {6}, {7}), and even that is disputed: the Malikis, the Hanbalis and al-Shafi'i's old view allow that pilgrim to fast them; the Hanafis and the relied-upon Shafi'i view do not. Eat well and drink plenty: you need it in the heat.",
+  "c": "#rulB",
+  "refs": [
+   "bukhari:1990",
+   "muslim:1141",
+   "bukhari:1997"
+  ]
+ },
+ {
+  "h": "141mknj",
+  "k": "Not on Hajj? Many scholars start it at Fajr on the Day of Arafah, as reported from Ali and Ibn Abbas (RA); Ibn Mas'ud (RA) said it from Fajr on the Day of Arafah to Asr on the Day of Nahr. Follow your group's school. The general takbir is allowed at any time in these days.",
+  "c": "#rulB"
+ },
+ {
+  "h": "u9fi2q",
+  "k": "Pilgrims at Mina do not hold the Eid prayer. On the Day of Nahr the Prophet ﷺ stoned Jamrat al-Aqabah, sacrificed and rode on to the House (Jabir, Muslim {1}), and gave a sermon that day (Bukhari {2}, {3}); Eid fell during his Hajj and he did not pray it, as the Hanbali jurists point out. None of the four schools asks the pilgrim to hold it, to lighten a day full of rites: the Hanafis say it is not held at Mina; the Malikis, that it is not recommended for the pilgrim; the Hanbalis make settled residence a condition of the Eid prayer; the Shafi'is say the pilgrim does not pray it in congregation, but may pray it alone, and some of them call that better. Spend the morning on the stoning, the sacrifice, the shave and tawaf al-ifadah, with the takbir on your tongue.",
+  "c": "#rulB",
+  "refs": [
+   "muslim:1218",
+   "bukhari:1739"
+  ]
+ },
+ {
+  "h": "1rzw9z6",
+  "k": "Say it after each obligatory prayer in these days. Its start and end come from Companion reports that differ, so the schools differ:",
+  "c": "#rulB"
+ },
+ {
+  "h": "1qnvfq2",
+  "k": "The famous fast of Arafah is for those not on Hajj. At Arafah the Prophet ﷺ did not fast: when people disagreed about it, Umm al-Fadl (RA) sent him a cup of milk and he drank it on his camel (Bukhari {1}; Muslim {2}). Maymunah (RA) reported the same, with the people watching (Bukhari {3}; Muslim {4}). Ibn Umar (RA) said that neither the Prophet ﷺ nor Abu Bakr, Umar or Uthman fasted it on Hajj (Tirmidhi {5}). At-Tirmidhi wrote that most scholars prefer that the pilgrim not fast at Arafah, to have strength for dua, though some did fast it (Tirmidhi {6}).",
+  "c": "#rulB",
+  "refs": [
+   "bukhari:1988",
+   "muslim:1123",
+   "bukhari:1989",
+   "muslim:1124",
+   "tirmidhi:751",
+   "tirmidhi:750"
+  ]
+ },
+ {
+  "h": "1a9dxde",
+  "k": "The hady is the sacrifice of Hajj. It is owed by a pilgrim doing Tamattu' or Qiran (Quran {1}) and is slaughtered within the Haram: \"all of Mina is a place of sacrifice\" (Abu Dawud {2}). A pilgrim doing Ifrad owes none. Cannot afford it? Fast three days during the Hajj and seven when you are home (Quran {3}). Its time: until sunset on the {4}th according to the Hanafis, Malikis and Hanbalis, or the {5}th according to many contemporary scholars; the Shafi'is set no last day, though the {6}th is best.",
+  "c": "#rulB",
+  "refs": [
+   "quran:2:196",
+   "abudawud:1936"
+  ]
+ },
+ {
+  "h": "1utcsb0",
+  "k": "The schools: the Malikis, Shafi'is and Hanbalis say the pilgrim at Arafah should not fast it. Breaking the fast is better, and some of them call fasting there disliked. The Hanafis allow it if it does not weaken you for the standing and the duas, and dislike it if it does. In mid-May heat, eat, drink and keep your strength for dua. (A pilgrim fasting the three days in place of a hady may make the {1}th one of them according to the Hanafis and Hanbalis: see the hady.)",
+  "c": "#rulB"
+ },
+ {
+  "h": "zvg4q4",
+  "k": "The udhiyah is the Eid sacrifice that Muslims everywhere offer. For the pilgrim it is a sunnah according to most schools; the well-known Maliki view does not prescribe it for the pilgrim, and the Hanafi school makes it obligatory for a pilgrim who counts as resident and has the means.",
+  "c": "#rulB"
+ },
+ {
+  "h": "1dqwe3w",
+  "k": "Who shortens: the Malikis shorten in Mina and Arafah regardless, as a rite of Hajj, as do many Saudi scholars today. The Hanafis ({1}+ days in Makkah before the {2}th) count you a resident, and you pray four rakahs. So do the Shafi'is after {3} full days in Makkah (not counting the days of arrival and departure), unless you will set off for home after the rites without another {4} full days in Makkah: then you shorten from the moment you leave for Mina (al-Majmu' {5}/{6}). The Hanbalis shorten unless you will stay on in Makkah for more than {7} days after the Hajj. Follow your group's school, and ask your group leader.",
+  "c": "#rulB"
+ },
+ {
+  "h": "1vge8t6",
+  "k": "Why Dhuhr on the {1}th: the pilgrim says the talbiyah until the stoning that morning, and Dhuhr is the first prayer after it.",
+  "c": "#rulB"
+ },
+ {
+  "h": "y29sqw",
+  "k": "Waived for me — on my period (sisters) or I live in Makkah",
+  "c": "#rw-hwadaEx"
+ },
+ {
+  "h": "1bg4lyw",
+  "k": "◀Back",
+  "c": "#walkBack"
+ },
+ {
+  "h": "1vu496d",
+  "k": "Before you leave Makkah · Tawaf al-Wada · step {1} of {2}",
+  "c": "#walkHd"
+ },
+ {
+  "h": "cwv9nc",
+  "k": "Night before the {1}th",
+  "c": "#walkHd",
+  "part_of": "Night before the {1}th · Muzdalifah · step {2} of {3}"
+ },
+ {
+  "h": "19qswun",
+  "k": "Night before the {1}th · Muzdalifah · step {2} of {3}",
+  "c": "#walkHd"
+ },
+ {
+  "h": "2vsbxo",
+  "k": "Step {1}",
+  "c": "#walkHd"
+ },
+ {
+  "h": "1pbcddj",
+  "k": "Step {1} of {2} · Ihram at the miqat",
+  "c": "#walkHd"
+ },
+ {
+  "h": "12t8m93",
+  "k": "Step {1} of {2} · Tawaf",
+  "c": "#walkHd"
+ },
+ {
+  "h": "60adwa",
+  "k": "Yawm an-Nahr",
+  "c": "#walkHd",
+  "part_of": "{1} Dhul Hijjah · Yawm an-Nahr · step {2} of {3}"
+ },
+ {
+  "h": "yiv5j6",
+  "k": "{1} Dhul Hijjah · Arafah · step {2} of {3}",
+  "c": "#walkHd"
+ },
+ {
+  "h": "cges0a",
+  "k": "{1} Dhul Hijjah · First day of tashriq · step {2} of {3}",
+  "c": "#walkHd"
+ },
+ {
+  "h": "2s387g",
+  "k": "{1} Dhul Hijjah · Second day of tashriq · step {2} of {3}",
+  "c": "#walkHd"
+ },
+ {
+  "h": "1r2xf08",
+  "k": "{1} Dhul Hijjah · Tarwiyah · step {2} of {3}",
+  "c": "#walkHd"
+ },
+ {
+  "h": "xbeer4",
+  "k": "{1} Dhul Hijjah · Yawm an-Nahr · step {2} of {3}",
+  "c": "#walkHd"
+ },
+ {
+  "h": "lwl461",
+  "k": "✓Done→Next",
+  "c": "#walkNext"
+ }
+]

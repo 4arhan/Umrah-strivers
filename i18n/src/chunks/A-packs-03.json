@@ -1,0 +1,230 @@
+[
+ {
+  "h": "1qv72x1",
+  "k": "Your Umrah needs a free Umrah permit (a date-and-time slot) in the Nusuk app, in Ramadan as at any time of year. Nusuk allows one active permit at a time: you can book another once it expires, or cancel it before its start time. Praying in the Grand Mosque needs no permit. In past Ramadans the Ministry of Hajj and Umrah has limited repeat Umrahs to ease crowding: in {1} it said each person could perform Umrah only once in Ramadan, in {2} it said no permit would be issued for a second Umrah in Ramadan, and in {3} it encouraged pilgrims to perform Umrah only once in the last ten days. Check Nusuk for the rule in {H1} {4}.",
+  "c": "#pk-ram-nusuk"
+ },
+ {
+  "h": "14ghp99",
+  "k": "For the {1} season the Ministry of Hajj and Umrah set these dates: {2} {H1} {3} ({4} {M1} {5}) is the last day for issuing Umrah visas, {6} {H2} ({7} {M2} {8}) is the last day for Umrah pilgrims to enter the Kingdom, and {9} {H3} ({10} {M3} {11}) is the last day to leave. If you travel on another type of visa, check its own rules.",
+  "c": "#pk-ram-season-1448"
+ },
+ {
+  "h": "wc2but",
+  "k": "Umrah visa dates for {H1} {1}",
+  "c": "#pk-ram-season-1448"
+ },
+ {
+  "h": "1ip6b3a",
+  "k": "How do I get to al-Masjid al-Haram?",
+  "c": "#sayEn"
+ },
+ {
+  "h": "eaqirr",
+  "k": "How do I get to the Prophet's Mosque (al-Masjid an-Nabawi)?",
+  "c": "#sayEn"
+ },
+ {
+  "h": "1t6c6fz",
+  "k": "I am lost. Please help me.",
+  "c": "#sayEn"
+ },
+ {
+  "h": "1y3is3c",
+  "k": "I don't speak Arabic. Is there anyone here who speaks English?",
+  "c": "#sayEn"
+ },
+ {
+  "h": "10k8rvq",
+  "k": "I have diabetes and my blood sugar is low right now. I need sugar or a sweet juice immediately. If I lose consciousness, do not give me anything by mouth, and call an ambulance.",
+  "c": "#sayEn"
+ },
+ {
+  "h": "1fyyfwo",
+  "k": "I need a doctor.",
+  "c": "#sayEn"
+ },
+ {
+  "h": "1pjt8pt",
+  "k": "I need a wheelchair.",
+  "c": "#sayEn"
+ },
+ {
+  "h": "5qeeei",
+  "k": "I want to go to this hotel, please.",
+  "c": "#sayEn"
+ },
+ {
+  "h": "14tnibn",
+  "k": "My child is lost. This is her photo, and her name is <1>{U1}</1>. Please help me find her. My phone number: <2>…</2>",
+  "c": "#sayEn"
+ },
+ {
+  "h": "cgjpor",
+  "k": "My child is lost. This is his photo, and his name is <1>{U1}</1>. Please help me find him. My phone number: <2>+{1} {2} {3}</2>",
+  "c": "#sayEn"
+ },
+ {
+  "h": "rb5rwq",
+  "k": "My child is lost. This is his photo, and his name is <1>{U1}</1>. Please help me find him. My phone number: <2>…</2>",
+  "c": "#sayEn"
+ },
+ {
+  "h": "1xirl7e",
+  "k": "My name is <1>{U1}</1>. I am lost. Please call my parents on this number: <2>…</2>",
+  "c": "#sayEn"
+ },
+ {
+  "h": "1t4ldr8",
+  "k": "Please call an ambulance now.",
+  "c": "#sayEn"
+ },
+ {
+  "h": "17g7be6",
+  "k": "Please call this number: <1>+{1} {2} {3}</1>",
+  "c": "#sayEn"
+ },
+ {
+  "h": "nw2dwy",
+  "k": "Thank you, may Allah reward you with good.",
+  "c": "#sayEn"
+ },
+ {
+  "h": "zyozst",
+  "k": "What time is the suhur meal served?",
+  "c": "#sayEn"
+ },
+ {
+  "h": "c5v9y1",
+  "k": "Where is gate number <1>{1}</1>?",
+  "c": "#sayEn"
+ },
+ {
+  "h": "6og651",
+  "k": "Where is the nearest place for wudu?",
+  "c": "#sayEn"
+ },
+ {
+  "h": "1md37n1",
+  "k": "Today the jamarat stand inside a five-level building, about {1} m long and {2} m wide, with {3} entrances and {4} exits and separate routes in and out. Your group is given a route, a level and a time: keep to them, and follow the signs and the security staff. Do not stop in the walkway: to make dua after the first two jamarat, step aside out of the path. After Jamrat al-Aqabah, do not stop; move on towards the exit.",
+  "c": ".acc-b < #pka-jam-facility"
+ },
+ {
+  "h": "ooe9zv",
+  "k": "Your group decides how and when you go. Some groups take the Mashaer train, whose last station is on the {1}th level of the Jamarat facility, and then walk a short way. Others go by buses set aside for particular groups, or on foot; if you walk, the Ministry advises a sun umbrella and comfortable shoes. Golf carts carry the elderly and those who find walking hard, especially up to the Jamarat Bridge. Go at your group's stoning time. In {2} ({3}) the Ministry's instructions to Hajj companies said pilgrims going to the stoning should not bring children or luggage, or use wheelchairs; check this season's rules with your company. If you are elderly, weak, ill or pregnant, or fear harm, you may appoint another pilgrim to stone for you (tawkil). Your proxy stones for himself first, then for you.",
+  "c": ".acc-b < #pka-jam-getting-there"
+ },
+ {
+  "h": "1cpkd9m",
+  "k": "Until {1} the jamarat were tall pillars. By the Hajj of early {2} they had been replaced by long, thick walls, a bigger target. In {3} the basins around them were reshaped from round to oval to ease the movement of pilgrims. After the {4} Hajj it was decided to replace the old bridge, and today's multi-level Jamarat facility was built in stages over the following years.",
+  "c": ".acc-b < #pka-jam-history"
+ },
+ {
+  "h": "tks3h",
+  "k": "On the {1}th you stone only Jamrat al-Aqabah. On the {2}th and {3}th (and the {4}th if you stay) you stone all three, seven pebbles each, in this order: small, middle, then Aqabah.",
+  "c": ".acc-b < #pka-jam-order"
+ },
+ {
+  "h": "1pwefj5",
+  "k": "Walking from Mina towards Makkah, you meet them in this order:",
+  "c": ".acc-b < #pka-jam-order"
+ },
+ {
+  "h": "1mof7u8",
+  "k": "Each jamrah is a basin with a wall standing in its middle. The Ministry of Hajj's guide says: throw seven pebbles, one at a time, and say \"Allahu akbar\" with each; aim at the wall in front of you so that the pebble lands in the basin; come from the least crowded side, and take care not to hit anyone. Scholars such as Ibn Baz and Ibn Uthaymeen say a throw counts when the pebble lands in the basin, whether or not it hits the wall.",
+  "c": ".acc-b < #pka-jam-wall-basin"
+ },
+ {
+  "h": "1qz15fe",
+  "k": "Allah allows the sick and the traveller not to fast and to make up the same number of days later (Quran {1}–{2}). A woman does not fast during her period and makes the days up later (Bukhari {3}; Muslim {4}). For those too old to fast, Ibn Abbas explained that they feed a poor person for each day instead (Bukhari {5}).",
+  "c": ".acc-b < #pka-ram-excused",
+  "refs": [
+   "quran:2:184",
+   "bukhari:1951",
+   "muslim:335",
+   "bukhari:4505"
+  ]
+ },
+ {
+  "h": "1ynr8n",
+  "k": "The Prophet ﷺ said: \"Whoever fasts Ramadan out of faith and hoping for reward will have his past sins forgiven\" (Bukhari {1}). And: \"The fasting person has two joys: one when he breaks his fast, and one when he meets his Lord\" (Bukhari {2}).",
+  "c": ".acc-b < #pka-ram-fasting",
+  "refs": [
+   "bukhari:38",
+   "bukhari:1904"
+  ]
+ },
+ {
+  "h": "qgsaoc",
+  "k": "When the Prophet ﷺ broke his fast, he would say: \"The thirst has gone, the veins are moistened, and the reward is certain, if Allah wills.\" (Abu Dawud {1}, graded hasan by al-Albani)",
+  "c": ".acc-b < #pka-ram-iftar-dua",
+  "refs": [
+   "abudawud:2357"
+  ]
+ },
+ {
+  "h": "fksr6b",
+  "k": "At sunset the Grand Mosque breaks its fast together. Charities and volunteers set out iftar in the mosque and its courtyards, commonly dates and Zamzam, and the spreads are cleared quickly so the rows can form for Maghrib. Spreads inside are run by permit holders with an approved food list and must not block walkways or emergency routes, so sit where staff direct you. The sunnah is to break the fast as soon as the sun has set (Bukhari {1}, {2}), with fresh dates, or dry dates, or a few sips of water (Abu Dawud {3}, graded hasan sahih by al-Albani).",
+  "c": ".acc-b < #pka-ram-iftar-haram",
+  "refs": [
+   "bukhari:1954",
+   "abudawud:2356"
+  ]
+ },
+ {
+  "h": "19artlg",
+  "k": "When the last ten nights began, the Prophet ﷺ would tighten his waist-wrapper, pray through the night and wake his family (Bukhari {1}). He used to observe i'tikaf in the last ten days of Ramadan until Allah took him (Bukhari {2}).",
+  "c": ".acc-b < #pka-ram-last-ten",
+  "refs": [
+   "bukhari:2024",
+   "bukhari:2026"
+  ]
+ },
+ {
+  "h": "1327nxq",
+  "k": "Laylat al-Qadr \"is better than a thousand months\" (Quran {1}). The Prophet ﷺ said: \"Seek Laylat al-Qadr in the odd nights of the last ten nights of Ramadan\" (Bukhari {2}). He also said: \"Whoever stands in prayer on Laylat al-Qadr out of faith and hoping for reward will have his past sins forgiven\" (Bukhari {3}). An Islamic night begins at sunset, so the odd nights are the nights before the {4}st, {5}rd, {6}th, {7}th and {8}th days of Ramadan.",
+  "c": ".acc-b < #pka-ram-qadr",
+  "refs": [
+   "quran:97:3",
+   "bukhari:2017",
+   "bukhari:1901"
+  ]
+ },
+ {
+  "h": "1ejxowv",
+  "k": "Aishah asked the Prophet ﷺ what she should say if she knew which night was Laylat al-Qadr. He said: \"Say: O Allah, You are Pardoning and You love to pardon, so pardon me.\" (Ibn Majah {1} and Tirmidhi {2}. Al-Tirmidhi called it hasan sahih and al-Albani graded it sahih, though some graders weaken its chain.) Many printed copies of al-Tirmidhi add the word \"karim\" (Generous); al-Albani found it in none of the early sources and judged it a copyists' addition, so the shorter wording is given here.",
+  "c": ".acc-b < #pka-ram-qadr-dua",
+  "refs": [
+   "ibnmajah:3850",
+   "tirmidhi:3513"
+  ]
+ },
+ {
+  "h": "1fwqdsl",
+  "k": "The Prophet ﷺ said: \"Take suhoor, for there is blessing in suhoor\" (Bukhari {1}). You may eat and drink until dawn, when the fast begins (Quran {2}). The Grand Mosque gives two adhans for Fajr: an earlier first call, then the Fajr adhan itself. In the Prophet's ﷺ time Bilal also called before dawn, and the Prophet ﷺ said: \"Eat and drink until Ibn Umm Maktum calls the adhan\" (Bukhari {3}). When the app shows calculated prayer times (marked ±{4} min), Fajr can be a minute or two off the official timetable, so stop eating a few minutes early.",
+  "c": ".acc-b < #pka-ram-suhoor",
+  "refs": [
+   "bukhari:1923",
+   "quran:2:187",
+   "bukhari:617"
+  ]
+ },
+ {
+  "h": "155vq0k",
+  "k": "The Prophet ﷺ said: \"Whoever prays at night in Ramadan out of faith and hoping for reward will have his past sins forgiven\" (Bukhari {1}), and: \"Whoever prays with the imam until he finishes, a whole night of prayer is written for him\" (Tirmidhi {2}, which al-Tirmidhi called hasan sahih and al-Albani graded sahih). In the Grand Mosque, taraweeh is prayed in congregation after Isha. In the last ten nights a second congregational night prayer, tahajjud, is held late in the night. Times and imams are announced each year.",
+  "c": ".acc-b < #pka-ram-taraweeh",
+  "refs": [
+   "bukhari:2009",
+   "tirmidhi:806"
+  ]
+ },
+ {
+  "h": "nhss82",
+  "k": "On the journey you may fast or not. The Prophet ﷺ told a Companion, \"Fast if you wish, and do not fast if you wish\" (Bukhari {1}), and called it \"a concession from Allah: whoever takes it has done well, and whoever prefers to fast has no sin\" (Muslim {2}). Any day you do not fast is made up later. Once you are staying in Makkah or Madinah, scholars differ. Most (the Maliki, Shafi'i and Hanbali schools) count you a resident, who must fast, once you intend to stay in one city for about four days or more: the Shafi'is and Malikis count four full days, not counting the days you arrive and leave; the Hanbalis, more than four days. The Hanafi school sets the line at an intended stay of {3} days or more. Other scholars hold that the concession lasts as long as you are travelling, however long you stay. Ask a scholar you trust, or your group's guide, which view to follow.",
+  "c": ".acc-b < #pka-ram-traveller",
+  "refs": [
+   "bukhari:1943",
+   "muslim:1121"
+  ]
+ }
+]

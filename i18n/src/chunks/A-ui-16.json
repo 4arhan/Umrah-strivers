@@ -1,0 +1,892 @@
+[
+ {
+  "h": "1aztuhb",
+  "k": "Day {1} · {d1} {2} {M1} · {3} Dhul Hijjah · Arafah",
+  "c": "@title"
+ },
+ {
+  "h": "1kaaymg",
+  "k": "Day {1} · {d1} {2} {M1} · {3} Dhul Hijjah · Arafah: {4}%",
+  "c": "@title"
+ },
+ {
+  "h": "18sufdp",
+  "k": "Day {1} · {d1} {2} {M1} · {3} Dhul Hijjah · Tarwiyah",
+  "c": "@title"
+ },
+ {
+  "h": "cw4irt",
+  "k": "Day {1} · {d1} {2} {M1} · {3} Dhul Hijjah · Tashriq · {4}nd day",
+  "c": "@title"
+ },
+ {
+  "h": "vm1r74",
+  "k": "Day {1} · {d1} {2} {M1} · {3} Dhul Hijjah · Tashriq · {4}st day",
+  "c": "@title"
+ },
+ {
+  "h": "1kihmx9",
+  "k": "Day {1} · {d1} {2} {M1} · {3} Dhul Hijjah · Yawm an-Nahr",
+  "c": "@title"
+ },
+ {
+  "h": "10nmz2e",
+  "k": "Day {1} · {d1} {2} {m1}",
+  "c": "@title"
+ },
+ {
+  "h": "17ee0t4",
+  "k": "Day {1} · {d1} {2} {m1}: {3}%",
+  "c": "@title"
+ },
+ {
+  "h": "ls4bmc",
+  "k": "Learned one thing",
+  "c": "@title"
+ },
+ {
+  "h": "j1ghi4",
+  "k": "Meeting point: {U1}",
+  "c": "@title"
+ },
+ {
+  "h": "fxilwk",
+  "k": "Morning & evening adhkar and duas from the Sunnah, with audio — opens in browser, needs internet",
+  "c": "@title"
+ },
+ {
+  "h": "1ebtoib",
+  "k": "Patient in the crowd",
+  "c": "@title"
+ },
+ {
+  "h": "8xs1tw",
+  "k": "Prayed with us",
+  "c": "@title"
+ },
+ {
+  "h": "xmziuv",
+  "k": "Quran facing the Kaaba · Hijr Isma'il late night · Clock Tower museum",
+  "c": "@title"
+ },
+ {
+  "h": "14wqzv8",
+  "k": "Read, listen and study with translations — opens in browser, needs internet",
+  "c": "@title"
+ },
+ {
+  "h": "16o43xl",
+  "k": "Recite and get word-level mistake detection; memorisation tracking — opens in browser, needs internet",
+  "c": "@title"
+ },
+ {
+  "h": "zmqt3n",
+  "k": "SubhanAllah ×{1} / talbiyah",
+  "c": "@title"
+ },
+ {
+  "h": "jzwrgz",
+  "k": "The classic dua collection — every occasion, referenced — opens in browser, needs internet",
+  "c": "@title"
+ },
+ {
+  "h": "7bzwwp",
+  "k": "Turn on prayer reminders",
+  "c": "@title"
+ },
+ {
+  "h": "1eoulzx",
+  "k": "Zamzam + a dua",
+  "c": "@title"
+ },
+ {
+  "h": "16jbmt9",
+  "k": "{1}-day Nafl tawaf streak",
+  "c": "@title"
+ },
+ {
+  "h": "14609tu",
+  "k": "{1}-day Quran streak",
+  "c": "@title"
+ },
+ {
+  "h": "hsvz16",
+  "k": "{1}-day Tahajjud streak",
+  "c": "@title"
+ },
+ {
+  "h": "1nafqwy",
+  "k": "{1}-day {P1} streak",
+  "c": "@title"
+ },
+ {
+  "h": "g4ylfz",
+  "k": "cG",
+  "c": "CAMP_F"
+ },
+ {
+  "h": "imv0oq",
+  "k": "cL",
+  "c": "CAMP_F"
+ },
+ {
+  "h": "4sbsol",
+  "k": "cLm",
+  "c": "CAMP_F"
+ },
+ {
+  "h": "i2vtas",
+  "k": "cN",
+  "c": "CAMP_F"
+ },
+ {
+  "h": "al6jkj",
+  "k": "cS",
+  "c": "CAMP_F"
+ },
+ {
+  "h": "bz4k1e",
+  "k": "cT",
+  "c": "CAMP_F"
+ },
+ {
+  "h": "cj3rfc",
+  "k": "cZ",
+  "c": "CAMP_F"
+ },
+ {
+  "h": "mgrwnk",
+  "k": "h{1}nweak",
+  "c": "CATCH_NOPRE"
+ },
+ {
+  "h": "yq77li",
+  "k": "h{1}udhiyah",
+  "c": "CATCH_NOPRE"
+ },
+ {
+  "h": "6tceo1",
+  "k": "abu dawood sunan abi dawud abu daud",
+  "c": "CITE_ALIAS.abudawud"
+ },
+ {
+  "h": "3ew6a5",
+  "k": "musnad ahmad ibn hanbal",
+  "c": "CITE_ALIAS.ahmad"
+ },
+ {
+  "h": "nicp47",
+  "k": "sahih al-bukhari bukhaari",
+  "c": "CITE_ALIAS.bukhari"
+ },
+ {
+  "h": "hhnaqu",
+  "k": "sunan ibn majah ibn maja",
+  "c": "CITE_ALIAS.ibnmajah"
+ },
+ {
+  "h": "xzyojd",
+  "k": "sahih muslim",
+  "c": "CITE_ALIAS.muslim"
+ },
+ {
+  "h": "6bl324",
+  "k": "sunan an-nasa'i nasaai",
+  "c": "CITE_ALIAS.nasai"
+ },
+ {
+  "h": "y47ho3",
+  "k": "qur'an koran surah ayah verse",
+  "c": "CITE_ALIAS.quran"
+ },
+ {
+  "h": "3h2lyu",
+  "k": "jami at-tirmidhi tirmizi",
+  "c": "CITE_ALIAS.tirmidhi"
+ },
+ {
+  "h": "tphz08",
+  "k": "https://haj.gov.sa/en/FAQ",
+  "c": "CK_SRC.hajfaq"
+ },
+ {
+  "h": "fjrji",
+  "k": "https://www.moh.gov.sa/en/HealthAwareness/Pilgrims-Health/Documents/Health-Regulations-Umrah-EN.pdf",
+  "c": "CK_SRC.moh"
+ },
+ {
+  "h": "zbh6h3",
+  "k": "https://www.moh.gov.sa/HealthAwareness/Pilgrims-Health/Documents/Hajj-Health-Requirements-English-language.pdf",
+  "c": "CK_SRC.mohh"
+ },
+ {
+  "h": "4eozsy",
+  "k": "https://www.nusuk.sa/",
+  "c": "CK_SRC.nusuk"
+ },
+ {
+  "h": "r8rtoz",
+  "k": "https://haj.gov.sa/en/E-Services/Permit-to-Visit-Al-Rawdah-Al-Sharifiyah-for-Men-Women",
+  "c": "CK_SRC.rawdah"
+ },
+ {
+  "h": "1r8s74g",
+  "k": "Tashriq · {1}st day",
+  "c": "DH_NAME.11"
+ },
+ {
+  "h": "klf19l",
+  "k": "Tashriq · {1}nd day",
+  "c": "DH_NAME.12"
+ },
+ {
+  "h": "1i128jh",
+  "k": "Tashriq · {1}rd day",
+  "c": "DH_NAME.13"
+ },
+ {
+  "h": "1jsxanw",
+  "k": "hist{1}",
+  "c": "FC_DECK.k"
+ },
+ {
+  "h": "1xkmcnl",
+  "k": "know{1}",
+  "c": "FC_DECK.k"
+ },
+ {
+  "h": "j0bnd7",
+  "k": "l{1}q{2}",
+  "c": "FC_DECK.k"
+ },
+ {
+  "h": "1urg3b0",
+  "k": "mad{1}",
+  "c": "FC_DECK.k"
+ },
+ {
+  "h": "eb7w1y",
+  "k": "qa{1}",
+  "c": "FC_DECK.k"
+ },
+ {
+  "h": "1dnzllc",
+  "k": "scam{1}",
+  "c": "FC_DECK.k"
+ },
+ {
+  "h": "1aon6ml",
+  "k": "sis{1}",
+  "c": "FC_DECK.k"
+ },
+ {
+  "h": "14tokkt",
+  "k": "virt{1}",
+  "c": "FC_DECK.k"
+ },
+ {
+  "h": "btcryr",
+  "k": "Fiqh Q&A",
+  "c": "FC_DECK.src",
+  "part_of": "Read · Fiqh Q&A"
+ },
+ {
+  "h": "4z8ne",
+  "k": "Read · Fiqh Q&A",
+  "c": "FC_DECK.src"
+ },
+ {
+  "h": "1ba9vpi",
+  "k": "Read · For sisters",
+  "c": "FC_DECK.src"
+ },
+ {
+  "h": "so72sw",
+  "k": "Read · History",
+  "c": "FC_DECK.src"
+ },
+ {
+  "h": "1hx53vw",
+  "k": "Read · Madinah",
+  "c": "FC_DECK.src"
+ },
+ {
+  "h": "13bnqgh",
+  "k": "Read · Scams",
+  "c": "FC_DECK.src"
+ },
+ {
+  "h": "zuh806",
+  "k": "Read · Virtues",
+  "c": "FC_DECK.src"
+ },
+ {
+  "h": "veu1ra",
+  "k": "tawaf al-ifadah is in Part {1}",
+  "c": "HAJJDAY_OFF.ntawaf"
+ },
+ {
+  "h": "p0qai0",
+  "k": "Muzdalifah night",
+  "c": "HAJJDAY_OFF.tahajjud"
+ },
+ {
+  "h": "1y41rwy",
+  "k": "heat-why-{1}",
+  "c": "HEAT_ORDER"
+ },
+ {
+  "h": "bxjv3i",
+  "k": "nearest Makkah",
+  "c": "JAM.aqabah",
+  "part_of": "the big one · nearest Makkah"
+ },
+ {
+  "h": "1u5vv8u",
+  "k": "the big one",
+  "c": "JAM.aqabah",
+  "part_of": "the big one · nearest Makkah"
+ },
+ {
+  "h": "xamgas",
+  "k": "nearest Mina",
+  "c": "JAM.sughra",
+  "part_of": "the small one · nearest Mina"
+ },
+ {
+  "h": "102qlsb",
+  "k": "the small one",
+  "c": "JAM.sughra",
+  "part_of": "the small one · nearest Mina"
+ },
+ {
+  "h": "lmr0hg",
+  "k": "Jamrat al-Wusta",
+  "c": "JAM.wusta"
+ },
+ {
+  "h": "bd2fnl",
+  "k": "the middle one",
+  "c": "JAM.wusta"
+ },
+ {
+  "h": "1n2atxj",
+  "k": "histCard",
+  "c": "LN_CARDS"
+ },
+ {
+  "h": "1bugv00",
+  "k": "histContainer",
+  "c": "LN_CARDS"
+ },
+ {
+  "h": "1xb76hs",
+  "k": "knowCard",
+  "c": "LN_CARDS"
+ },
+ {
+  "h": "rtf9zt",
+  "k": "knowContainer",
+  "c": "LN_CARDS"
+ },
+ {
+  "h": "103616v",
+  "k": "madCard",
+  "c": "LN_CARDS"
+ },
+ {
+  "h": "gjdh0w",
+  "k": "madContainer",
+  "c": "LN_CARDS"
+ },
+ {
+  "h": "m97e69",
+  "k": "qaCard",
+  "c": "LN_CARDS"
+ },
+ {
+  "h": "19fcd76",
+  "k": "qaContainer",
+  "c": "LN_CARDS"
+ },
+ {
+  "h": "i9atc3",
+  "k": "scamCard",
+  "c": "LN_CARDS"
+ },
+ {
+  "h": "1vp6d38",
+  "k": "scamContainer",
+  "c": "LN_CARDS"
+ },
+ {
+  "h": "1ugbsdw",
+  "k": "sisCard",
+  "c": "LN_CARDS"
+ },
+ {
+  "h": "g95bfp",
+  "k": "sisContainer",
+  "c": "LN_CARDS"
+ },
+ {
+  "h": "1etz6dw",
+  "k": "virtCard",
+  "c": "LN_CARDS"
+ },
+ {
+  "h": "11dphz9",
+  "k": "virtContainer",
+  "c": "LN_CARDS"
+ },
+ {
+  "h": "4ugam4",
+  "k": "fcCard",
+  "c": "LN_OTHER"
+ },
+ {
+  "h": "4nc53s",
+  "k": "lnQuizCard",
+  "c": "LN_OTHER"
+ },
+ {
+  "h": "qyc2oq",
+  "k": "ritesCard",
+  "c": "LN_OTHER"
+ },
+ {
+  "h": "11n5ith",
+  "k": "Ajwa dates market",
+  "c": "MD",
+  "part_of": "Masjid al-Ijabah · Quran & Seerah museums · Ajwa dates market"
+ },
+ {
+  "h": "1in2b3t",
+  "k": "Baqi' after Fajr (brothers enter; sisters give salam from the gate)",
+  "c": "MD",
+  "part_of": "Rawdah (Nusuk permit) · Baqi' after Fajr (brothers enter; sisters give salam from the gate) · Quba with wudu from the hotel"
+ },
+ {
+  "h": "55fgek",
+  "k": "Haramain train",
+  "c": "MD",
+  "part_of": "Haramain train · settle · Maghrib & Isha in Masjid an-Nabawi · salam to the Prophet ﷺ"
+ },
+ {
+  "h": "1kqndes",
+  "k": "Hop-on hop-off: Qiblatayn→Uhud",
+  "c": "MD",
+  "part_of": "Hop-on hop-off: Qiblatayn→Uhud · the Hijaz Railway Museum is closed for restoration — check before you go"
+ },
+ {
+  "h": "1n4lew6",
+  "k": "Hop-on hop-off: Qiblatayn→Uhud · the Hijaz Railway Museum is closed for restoration — check before you go",
+  "c": "MD"
+ },
+ {
+  "h": "64383m",
+  "k": "Masjid al-Ijabah · Quran & Seerah museums · Ajwa dates market",
+  "c": "MD"
+ },
+ {
+  "h": "1dqi46x",
+  "k": "Quba Avenue walk",
+  "c": "MD",
+  "part_of": "Tahajjud in the Nabawi · Quba Avenue walk · long dua"
+ },
+ {
+  "h": "x4jcny",
+  "k": "Quba with wudu from the hotel",
+  "c": "MD",
+  "part_of": "Rawdah (Nusuk permit) · Baqi' after Fajr (brothers enter; sisters give salam from the gate) · Quba with wudu from the hotel"
+ },
+ {
+  "h": "atj1lx",
+  "k": "Quran & Seerah museums",
+  "c": "MD",
+  "part_of": "Masjid al-Ijabah · Quran & Seerah museums · Ajwa dates market"
+ },
+ {
+  "h": "mauubq",
+  "k": "Rawdah (Nusuk permit)",
+  "c": "MD",
+  "part_of": "Rawdah (Nusuk permit) · Baqi' after Fajr (brothers enter; sisters give salam from the gate) · Quba with wudu from the hotel"
+ },
+ {
+  "h": "uhwlll",
+  "k": "Rawdah (Nusuk permit) · Baqi' after Fajr (brothers enter; sisters give salam from the gate) · Quba with wudu from the hotel",
+  "c": "MD"
+ },
+ {
+  "h": "1a677pc",
+  "k": "Tahajjud in the Nabawi",
+  "c": "MD",
+  "part_of": "Tahajjud in the Nabawi · Quba Avenue walk · long dua"
+ },
+ {
+  "h": "p14zdu",
+  "k": "Tahajjud in the Nabawi · Quba Avenue walk · long dua",
+  "c": "MD"
+ },
+ {
+  "h": "bqsq1x",
+  "k": "long dua",
+  "c": "MD",
+  "part_of": "Tahajjud in the Nabawi · Quba Avenue walk · long dua"
+ },
+ {
+  "h": "tn33qd",
+  "k": "salam to the Prophet ﷺ",
+  "c": "MD",
+  "part_of": "Haramain train · settle · Maghrib & Isha in Masjid an-Nabawi · salam to the Prophet ﷺ"
+ },
+ {
+  "h": "vqqxa0",
+  "k": "the Hijaz Railway Museum is closed for restoration — check before you go",
+  "c": "MD",
+  "part_of": "Hop-on hop-off: Qiblatayn→Uhud · the Hijaz Railway Museum is closed for restoration — check before you go"
+ },
+ {
+  "h": "1njp3h",
+  "k": "{P1} & {P2} in Masjid an-Nabawi",
+  "c": "MD",
+  "part_of": "Haramain train · settle · Maghrib & Isha in Masjid an-Nabawi · salam to the Prophet ﷺ"
+ },
+ {
+  "h": "jg24n8",
+  "k": "Baqi' from the gate after {P1}",
+  "c": "MD_F",
+  "part_of": "Rawdah (Nusuk permit) · Baqi' from the gate after Fajr · {1}–{2}pm rest in hotel"
+ },
+ {
+  "h": "pbppcx",
+  "k": "Haramain train · settle · Maghrib & Isha in Masjid an-Nabawi · salam to the Prophet ﷺ · {1}–{2}pm rest in hotel",
+  "c": "MD_F"
+ },
+ {
+  "h": "hrijsd",
+  "k": "One site: Quba by hop-on hop-off or taxi, wudu from the hotel",
+  "c": "MD_F",
+  "part_of": "One site: Quba by hop-on hop-off or taxi, wudu from the hotel · {1}–{2}pm rest in hotel"
+ },
+ {
+  "h": "1p5m1hg",
+  "k": "One site: Quba by hop-on hop-off or taxi, wudu from the hotel · {1}–{2}pm rest in hotel",
+  "c": "MD_F"
+ },
+ {
+  "h": "11rp7ob",
+  "k": "One site: Uhud after Asr (short, flat visit) · Ajwa dates market · {1}–{2}pm rest in hotel",
+  "c": "MD_F"
+ },
+ {
+  "h": "1enkdmm",
+  "k": "One site: Uhud after {P1} (short, flat visit)",
+  "c": "MD_F",
+  "part_of": "One site: Uhud after Asr (short, flat visit) · Ajwa dates market · {1}–{2}pm rest in hotel"
+ },
+ {
+  "h": "eo8zlv",
+  "k": "Prayers in the Nabawi",
+  "c": "MD_F",
+  "part_of": "Prayers in the Nabawi · Quba Avenue walk after Maghrib · {1}–{2}pm rest in hotel"
+ },
+ {
+  "h": "15c9mz7",
+  "k": "Prayers in the Nabawi · Quba Avenue walk after Maghrib · {1}–{2}pm rest in hotel",
+  "c": "MD_F"
+ },
+ {
+  "h": "ho45zg",
+  "k": "Quba Avenue walk after {P1}",
+  "c": "MD_F",
+  "part_of": "Prayers in the Nabawi · Quba Avenue walk after Maghrib · {1}–{2}pm rest in hotel"
+ },
+ {
+  "h": "ugx2l1",
+  "k": "Rawdah (Nusuk permit) · Baqi' from the gate after Fajr · {1}–{2}pm rest in hotel",
+  "c": "MD_F"
+ },
+ {
+  "h": "1pdn7he",
+  "k": "Hijr Isma'il late night",
+  "c": "MK",
+  "part_of": "Quran facing the Kaaba · Hijr Isma'il late night · Clock Tower museum"
+ },
+ {
+  "h": "1q1qg78",
+  "k": "Nafl tawaf · Jannat al-Mu'alla · Masjid al-Jinn · rest",
+  "c": "MK"
+ },
+ {
+  "h": "1g74v99",
+  "k": "Second Umrah from Tan'eem (or Ji'ranah)",
+  "c": "MK",
+  "part_of": "Second Umrah from Tan'eem (or Ji'ranah) · Zamzam & long dua"
+ },
+ {
+  "h": "1nl61em",
+  "k": "Second Umrah from Tan'eem (or Ji'ranah) · Zamzam & long dua",
+  "c": "MK"
+ },
+ {
+  "h": "z9hqot",
+  "k": "Zamzam & long dua",
+  "c": "MK",
+  "part_of": "Second Umrah from Tan'eem (or Ji'ranah) · Zamzam & long dua"
+ },
+ {
+  "h": "1mtbimw",
+  "k": "Ziyarah taxi loop: Hira→Arafat→Muzdalifah→Mina→Thawr",
+  "c": "MK"
+ },
+ {
+  "h": "ugl2ie",
+  "k": "Arrive in ihram",
+  "c": "MK_F",
+  "part_of": "Arrive in ihram · settle, rest · Isha in the Haram — you stay in ihram until tomorrow's Umrah"
+ },
+ {
+  "h": "17ke3mz",
+  "k": "Arrive in ihram · settle, rest · Isha in the Haram — you stay in ihram until tomorrow's Umrah",
+  "c": "MK_F"
+ },
+ {
+  "h": "7qarw8",
+  "k": "Clock Tower museum (indoors, cool)",
+  "c": "MK_F",
+  "part_of": "Quran after Fajr · Clock Tower museum (indoors, cool) · {1}–{2}pm rest in hotel"
+ },
+ {
+  "h": "wg9gix",
+  "k": "Isha in the Haram — you stay in ihram until tomorrow's Umrah",
+  "c": "MK_F",
+  "part_of": "Arrive in ihram · settle, rest · Isha in the Haram — you stay in ihram until tomorrow's Umrah"
+ },
+ {
+  "h": "1kaywyb",
+  "k": "Nafl tawaf after Isha when it is cooler · dua list · {1}–{2}pm rest in hotel",
+  "c": "MK_F"
+ },
+ {
+  "h": "13cv7yb",
+  "k": "Nafl tawaf after {P1} when it is cooler",
+  "c": "MK_F",
+  "part_of": "Nafl tawaf after Isha when it is cooler · dua list · {1}–{2}pm rest in hotel"
+ },
+ {
+  "h": "1n9vn2t",
+  "k": "One site by taxi: Arafat (view from the car, no climbing)",
+  "c": "MK_F",
+  "part_of": "One site by taxi: Arafat (view from the car, no climbing) · {1}–{2}pm rest in hotel"
+ },
+ {
+  "h": "l1u8fg",
+  "k": "One site by taxi: Arafat (view from the car, no climbing) · {1}–{2}pm rest in hotel",
+  "c": "MK_F"
+ },
+ {
+  "h": "1sbdsds",
+  "k": "Optional second Umrah from Tan'eem after Fajr — skip if anyone is tired",
+  "c": "MK_F",
+  "part_of": "Optional second Umrah from Tan'eem after Fajr — skip if anyone is tired · {1}–{2}pm rest in hotel"
+ },
+ {
+  "h": "1wckxe5",
+  "k": "Optional second Umrah from Tan'eem after Fajr — skip if anyone is tired · {1}–{2}pm rest in hotel",
+  "c": "MK_F"
+ },
+ {
+  "h": "zxxhfg",
+  "k": "Prayers in the Haram",
+  "c": "MK_F",
+  "part_of": "Prayers in the Haram · Zamzam · one short visit: Jannat al-Mu'alla · {1}–{2}pm rest in hotel"
+ },
+ {
+  "h": "1cp50ar",
+  "k": "Prayers in the Haram · Zamzam · one short visit: Jannat al-Mu'alla · {1}–{2}pm rest in hotel",
+  "c": "MK_F"
+ },
+ {
+  "h": "9dwhpe",
+  "k": "Quran after Fajr · Clock Tower museum (indoors, cool) · {1}–{2}pm rest in hotel",
+  "c": "MK_F"
+ },
+ {
+  "h": "86p3nv",
+  "k": "Quran after {P1}",
+  "c": "MK_F",
+  "part_of": "Quran after Fajr · Clock Tower museum (indoors, cool) · {1}–{2}pm rest in hotel"
+ },
+ {
+  "h": "1dszg7s",
+  "k": "Umrah after Fajr while it is cool · sleep after Dhuhr · {1}–{2}pm rest in hotel",
+  "c": "MK_F"
+ },
+ {
+  "h": "4dm7d0",
+  "k": "Umrah after {P1} while it is cool",
+  "c": "MK_F",
+  "part_of": "Umrah after Fajr while it is cool · sleep after Dhuhr · {1}–{2}pm rest in hotel"
+ },
+ {
+  "h": "15j3fg3",
+  "k": "dua list",
+  "c": "MK_F",
+  "part_of": "Nafl tawaf after Isha when it is cooler · dua list · {1}–{2}pm rest in hotel"
+ },
+ {
+  "h": "ylycq5",
+  "k": "one short visit: Jannat al-Mu'alla",
+  "c": "MK_F",
+  "part_of": "Prayers in the Haram · Zamzam · one short visit: Jannat al-Mu'alla · {1}–{2}pm rest in hotel"
+ },
+ {
+  "h": "ub9xwk",
+  "k": "settle, rest",
+  "c": "MK_F",
+  "part_of": "Arrive in ihram · settle, rest · Isha in the Haram — you stay in ihram until tomorrow's Umrah"
+ },
+ {
+  "h": "1gz6cf7",
+  "k": "sleep after {P1}",
+  "c": "MK_F",
+  "part_of": "Umrah after Fajr while it is cool · sleep after Dhuhr · {1}–{2}pm rest in hotel"
+ },
+ {
+  "h": "t762wn",
+  "k": "{1}–{2}pm rest in hotel",
+  "c": "MK_F",
+  "part_of": "Umrah after Fajr while it is cool · sleep after Dhuhr · {1}–{2}pm rest in hotel"
+ },
+ {
+  "h": "3z8qdm",
+  "k": "Prayers in the Haram · Zamzam · {1}–{2}pm rest in hotel",
+  "c": "MK_FR"
+ },
+ {
+  "h": "12c3onq",
+  "k": "Quran after {P1} · {1}–{2}pm rest in hotel",
+  "c": "MK_FR"
+ },
+ {
+  "h": "1epbvaz",
+  "k": "Nafl tawaf · Zamzam & long dua · rest",
+  "c": "MK_R"
+ },
+ {
+  "h": "1gf5ftj",
+  "k": "Quran facing the Kaaba · Hijr Isma'il late night",
+  "c": "MK_R"
+ },
+ {
+  "h": "1jopv9x",
+  "k": "Between the Yamani corner and the Stone: \"Rabbana atina…\".",
+  "c": "NAFL_TIPS"
+ },
+ {
+  "h": "19rzfg2",
+  "k": "Crowded? The upper floors count just the same.",
+  "c": "NAFL_TIPS"
+ },
+ {
+  "h": "vlwnh7",
+  "k": "Every step is worship — there is no set formula.",
+  "c": "NAFL_TIPS"
+ },
+ {
+  "h": "ddg8o8",
+  "k": "Guard your gaze and your tongue.",
+  "c": "NAFL_TIPS"
+ },
+ {
+  "h": "aqogqw",
+  "k": "Keep your group in sight.",
+  "c": "NAFL_TIPS"
+ },
+ {
+  "h": "gunzqy",
+  "k": "Nafl tawaf complete.",
+  "c": "NAFL_TIPS"
+ },
+ {
+  "h": "1bblkw4",
+  "k": "Then {1} rakahs anywhere in the mosque.",
+  "c": "NAFL_TIPS"
+ },
+ {
+  "h": "986x7q",
+  "k": "{1} rakahs anywhere in the mosque, then Zamzam.",
+  "c": "NAFL_TIPS"
+ },
+ {
+  "h": "ezb3vf",
+  "k": "goSheet('go-walking')",
+  "c": "PL_WAY.jamarat"
+ },
+ {
+  "h": "timn3l",
+  "k": "jamSheet()",
+  "c": "PL_WAY.jamarat"
+ },
+ {
+  "h": "1bzm16h",
+  "k": "campWaySheet()",
+  "c": "PL_WAY.mina"
+ },
+ {
+  "h": "1plufmw",
+  "k": "showCampCard()",
+  "c": "PL_WAY.mina"
+ },
+ {
+  "h": "1hjrm2o",
+  "k": "catTiles",
+  "c": "PREP_ORDER"
+ },
+ {
+  "h": "jfovug",
+  "k": "cdCard",
+  "c": "PREP_ORDER"
+ },
+ {
+  "h": "1mczgbb",
+  "k": "hotelCard",
+  "c": "PREP_ORDER"
+ },
+ {
+  "h": "1rwx1ft",
+  "k": "itinCard",
+  "c": "PREP_ORDER"
+ },
+ {
+  "h": "17idvg8",
+  "k": "kidsRow",
+  "c": "PREP_ORDER"
+ },
+ {
+  "h": "1j5fy0l",
+  "k": "niyCard",
+  "c": "PREP_ORDER"
+ },
+ {
+  "h": "1r45f75",
+  "k": "planContainer",
+  "c": "PREP_ORDER"
+ },
+ {
+  "h": "1sd95he",
+  "k": "planHero",
+  "c": "PREP_ORDER"
+ },
+ {
+  "h": "19ev7vv",
+  "k": "prepJumps",
+  "c": "PREP_ORDER"
+ },
+ {
+  "h": "8dtdnb",
+  "k": "tlCard",
+  "c": "PREP_ORDER"
+ }
+]

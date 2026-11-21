@@ -4,11 +4,13 @@ var APP_VERSION = '6.10.2';
 var CACHE = 'umrah-strivers-' + APP_VERSION;
 /* 6.7 (G3 #33): web fonts live in their own unversioned cache, kept across updates — an update applied in Mina without data keeps Manrope and Scheherazade */
 var FONTS = 'miqah-fonts';
-var CORE = ['./', './index.html', './data.js', './cites.js', './app.js', './manifest.json',
+/* 6.11: a language pack is kept in its own unversioned cache, like the fonts: an update in Mina without data keeps the pilgrim's language */
+var LANGC = 'miqah-lang';
+var CORE = ['./', './index.html', './i18n/index.js', './i18n.js', './data.js', './cites.js', './app.js', './manifest.json',
   './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-192.png',
   './icons/maskable-512.png', './icons/apple-touch-icon.png', './icons/favicon-32.png',
   './icons/shortcut-sos-192.png', './icons/shortcut-help-192.png'];
-var SHELL = ['/', '/index.html', '/app.js', '/data.js', '/cites.js'];
+var SHELL = ['/', '/index.html', '/app.js', '/data.js', '/cites.js', '/i18n.js', '/i18n/index.js'];
 
 self.addEventListener('install', function (e) {
   // No skipWaiting here: the new worker waits until the page asks (update chip) so the app never reloads under the pilgrim's feet.
@@ -18,7 +20,7 @@ self.addEventListener('install', function (e) {
 self.addEventListener('activate', function (e) {
   e.waitUntil(caches.keys().then(function (keys) {
     // before an old versioned cache goes, its font files move to FONTS (earlier releases kept them in the versioned cache)
-    return Promise.all(keys.filter(function (k) { return k !== CACHE && k !== FONTS; }).map(function (k) {
+    return Promise.all(keys.filter(function (k) { return k !== CACHE && k !== FONTS && k !== LANGC; }).map(function (k) {
       return caches.open(k).then(function (c) {
         return c.keys().then(function (reqs) {
           return Promise.all(reqs.filter(function (r) { return /\/\/fonts\.(googleapis|gstatic)\.com\//.test(r.url); }).map(function (r) {
@@ -80,6 +82,18 @@ self.addEventListener('fetch', function (e) {
         if (hit) { net.catch(function () {}); return hit; }
         // Nothing cached yet: on a poor signal do not hang — race the network against 3 s, then fall back to the shell.
         return (req.mode === 'navigate' ? withTimeout(net, 3000) : net).catch(function () { return c.match('./index.html'); });
+      });
+    }));
+    return;
+  }
+
+  // Language packs (i18n/ar.js …): answered from their own cache at once and refreshed in the background
+  if (url.origin === location.origin && /\/i18n\/[a-z]{2}\.js$/.test(url.pathname)) {
+    e.respondWith(caches.open(LANGC).then(function (c) {
+      return c.match(url.pathname).then(function (hit) {
+        var net = fetch(req).then(function (res) { if (res && res.ok) c.put(url.pathname, res.clone()); return res; });
+        if (hit) { net.catch(function () {}); return hit; }
+        return net;
       });
     }));
     return;

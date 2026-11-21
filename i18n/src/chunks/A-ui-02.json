@@ -1,0 +1,877 @@
+[
+ {
+  "h": "11v2i1h",
+  "k": "Battlefields, wells & history",
+  "c": "#grp-madinah-history"
+ },
+ {
+  "h": "1qcsw7h",
+  "k": "The Prophet's Mosque & around",
+  "c": "#grp-madinah-mharam"
+ },
+ {
+  "h": "396p2z",
+  "k": "Historic mosques",
+  "c": "#grp-madinah-mosques"
+ },
+ {
+  "h": "1c050y5",
+  "k": "The Haram",
+  "c": "#grp-makkah-haram"
+ },
+ {
+  "h": "iwkph5",
+  "k": "Ziyarah in Makkah",
+  "c": "#grp-makkah-ziyarah"
+ },
+ {
+  "h": "4i20gz",
+  "k": "<1>Jumu'ah</1> at {1}",
+  "c": "#hNext"
+ },
+ {
+  "h": "rlzhw9",
+  "k": "<1>{P1} + {P2}</1> combined, with your group",
+  "c": "#hNext"
+ },
+ {
+  "h": "omhl47",
+  "k": "<1>{P1}</1> at {1}",
+  "c": "#hNext"
+ },
+ {
+  "h": "1a7nwvg",
+  "k": "<1>{P1}</1> in {1}m",
+  "c": "#hNext"
+ },
+ {
+  "h": "31onrj",
+  "k": "· Makkah time now {1}",
+  "c": "#hNext"
+ },
+ {
+  "h": "1v5sxr1",
+  "k": "· Makkah time now {1} · meet: {U1}",
+  "c": "#hNext"
+ },
+ {
+  "h": "15kzrr4",
+  "k": "· in {1}h {2}m · {P1} {3}",
+  "c": "#hNext"
+ },
+ {
+  "h": "ex3kon",
+  "k": "· {1} · meet: {U1}",
+  "c": "#hNext"
+ },
+ {
+  "h": "1aym6ai",
+  "k": "· ≈ {1} · prayed with Dhuhr if your group combined",
+  "c": "#hNext"
+ },
+ {
+  "h": "gzuoe5",
+  "k": "\"Umrah to Umrah is an expiation for what is between them\" (Bukhari {1}). Past journeys stay under More▶After▶My journeys.",
+  "c": "#hNextJ",
+  "refs": [
+   "bukhari:1773"
+  ]
+ },
+ {
+  "h": "p7u44f",
+  "k": "\"…and the accepted Hajj has no reward except Paradise\" (Bukhari {1}). Past journeys stay under More▶After▶My journeys.",
+  "c": "#hNextJ",
+  "refs": [
+   "bukhari:1773"
+  ]
+ },
+ {
+  "h": "1474uy",
+  "k": "Your Hajj {1}",
+  "c": "#hajjDone"
+ },
+ {
+  "h": "2z9vhr",
+  "k": "Add the days to my calendar",
+  "c": "#hajjIcsLnk"
+ },
+ {
+  "h": "1wrofqb",
+  "k": "Add the days of Hajj to my calendar",
+  "c": "#hajjIcsRow"
+ },
+ {
+  "h": "1lsetrn",
+  "k": "Alarms that ring with the screen off: the {1}th, Arafah's Dhuhr and the half hour before sunset, Fajr at Muzdalifah, the stoning after midday and leaving Mina — times computed (±{2} min), follow your group. Nothing is uploaded.",
+  "c": "#hajjIcsRow"
+ },
+ {
+  "h": "1614d5e",
+  "k": "<1>Hajj rulings:</1> confirm with your group leader or a scholar.",
+  "c": "#hajjNote"
+ },
+ {
+  "h": "ajmfx3",
+  "k": "Part {1} · Your Umrah — Ifrad: arrival tawaf & sa'i, no cutting",
+  "c": "#hajjPart1"
+ },
+ {
+  "h": "w5i0ra",
+  "k": "Part {1} · Your Umrah — Qiran: arrival tawaf & sa'i, no cutting",
+  "c": "#hajjPart1"
+ },
+ {
+  "h": "1v7smja",
+  "k": "Part {1} · Your Umrah — a Tamattu' Hajj begins with it",
+  "c": "#hajjPart1"
+ },
+ {
+  "h": "667aqs",
+  "k": "Type unconfirmed until the halq step",
+  "c": "#hajjPart1"
+ },
+ {
+  "h": "1pt5ob0",
+  "k": "Your Umrah — Ifrad: arrival tawaf & sa'i, no cutting",
+  "c": "#hajjPart1",
+  "part_of": "Part {1} · Your Umrah — Ifrad: arrival tawaf & sa'i, no cutting"
+ },
+ {
+  "h": "153ogpd",
+  "k": "Your Umrah — Qiran: arrival tawaf & sa'i, no cutting",
+  "c": "#hajjPart1",
+  "part_of": "Part {1} · Your Umrah — Qiran: arrival tawaf & sa'i, no cutting"
+ },
+ {
+  "h": "bl4jbj",
+  "k": "Your Umrah — a Tamattu' Hajj begins with it",
+  "c": "#hajjPart1",
+  "part_of": "Part {1} · Your Umrah — a Tamattu' Hajj begins with it"
+ },
+ {
+  "h": "1edbq08",
+  "k": "Part {1} · The days of Hajj {2}",
+  "c": "#hajjPart2"
+ },
+ {
+  "h": "l8exjc",
+  "k": "The days of Hajj {1}",
+  "c": "#hajjPart2",
+  "part_of": "Part {1} · The days of Hajj {2}"
+ },
+ {
+  "h": "cw2bqu",
+  "k": "Record it once these are ticked: halq / taqsir",
+  "c": "#hajjReadyNote",
+  "part_of": "Record it once these are ticked: halq / taqsir · tawaf al-ifadah · the sa'i of Hajj · tawaf al-wada (or its exemption)."
+ },
+ {
+  "h": "1b92fgd",
+  "k": "Record it once these are ticked: halq / taqsir · tawaf al-ifadah · the sa'i of Hajj · tawaf al-wada (or its exemption).",
+  "c": "#hajjReadyNote"
+ },
+ {
+  "h": "1hn2w65",
+  "k": "Record it once these are ticked: rami of the {1}th",
+  "c": "#hajjReadyNote",
+  "part_of": "Record it once these are ticked: rami of the {1}th · halq / taqsir · tawaf al-ifadah · the sa'i of Hajj · tawaf al-wada (or its exemption)."
+ },
+ {
+  "h": "1iw7cla",
+  "k": "Record it once these are ticked: rami of the {1}th · halq / taqsir · tawaf al-ifadah · the sa'i of Hajj · tawaf al-wada (or its exemption).",
+  "c": "#hajjReadyNote"
+ },
+ {
+  "h": "xaqfpp",
+  "k": "Record it once these are ticked: standing at Arafah",
+  "c": "#hajjReadyNote",
+  "part_of": "Record it once these are ticked: standing at Arafah · rami of the {1}th · halq / taqsir · tawaf al-ifadah · the sa'i of Hajj · tawaf al-wada (or its exemption)."
+ },
+ {
+  "h": "9bgb89",
+  "k": "Record it once these are ticked: standing at Arafah · rami of the {1}th · halq / taqsir · tawaf al-ifadah · the sa'i of Hajj · tawaf al-wada (or its exemption).",
+  "c": "#hajjReadyNote"
+ },
+ {
+  "h": "1fyqsij",
+  "k": "Record it once these are ticked: the ihram of Hajj ({1}th)",
+  "c": "#hajjReadyNote",
+  "part_of": "Record it once these are ticked: the ihram of Hajj ({1}th) · standing at Arafah · rami of the {2}th · halq / taqsir · tawaf al-ifadah · the sa'i of Hajj · tawaf al-wada (or its exemption)."
+ },
+ {
+  "h": "16q9uan",
+  "k": "Record it once these are ticked: the ihram of Hajj ({1}th) · standing at Arafah · rami of the {2}th · halq / taqsir · tawaf al-ifadah · the sa'i of Hajj · tawaf al-wada (or its exemption).",
+  "c": "#hajjReadyNote"
+ },
+ {
+  "h": "1csj6d4",
+  "k": "halq / taqsir",
+  "c": "#hajjReadyNote",
+  "part_of": "Record it once these are ticked: the ihram of Hajj ({1}th) · standing at Arafah · rami of the {2}th · halq / taqsir · tawaf al-ifadah · the sa'i of Hajj · tawaf al-wada (or its exemption)."
+ },
+ {
+  "h": "jamdv7",
+  "k": "rami of the {1}th",
+  "c": "#hajjReadyNote",
+  "part_of": "Record it once these are ticked: the ihram of Hajj ({1}th) · standing at Arafah · rami of the {2}th · halq / taqsir · tawaf al-ifadah · the sa'i of Hajj · tawaf al-wada (or its exemption)."
+ },
+ {
+  "h": "ulnm9z",
+  "k": "standing at Arafah",
+  "c": "#hajjReadyNote",
+  "part_of": "Record it once these are ticked: the ihram of Hajj ({1}th) · standing at Arafah · rami of the {2}th · halq / taqsir · tawaf al-ifadah · the sa'i of Hajj · tawaf al-wada (or its exemption)."
+ },
+ {
+  "h": "1ecqmfn",
+  "k": "tawaf al-ifadah",
+  "c": "#hajjReadyNote",
+  "part_of": "Record it once these are ticked: the ihram of Hajj ({1}th) · standing at Arafah · rami of the {2}th · halq / taqsir · tawaf al-ifadah · the sa'i of Hajj · tawaf al-wada (or its exemption)."
+ },
+ {
+  "h": "8spul8",
+  "k": "tawaf al-wada (or its exemption).",
+  "c": "#hajjReadyNote",
+  "part_of": "Record it once these are ticked: the ihram of Hajj ({1}th) · standing at Arafah · rami of the {2}th · halq / taqsir · tawaf al-ifadah · the sa'i of Hajj · tawaf al-wada (or its exemption)."
+ },
+ {
+  "h": "yn1x1g",
+  "k": "the sa'i of Hajj",
+  "c": "#hajjReadyNote",
+  "part_of": "Record it once these are ticked: the ihram of Hajj ({1}th) · standing at Arafah · rami of the {2}th · halq / taqsir · tawaf al-ifadah · the sa'i of Hajj · tawaf al-wada (or its exemption)."
+ },
+ {
+  "h": "1mmfpzk",
+  "k": "Record completed Hajj",
+  "c": "#hajjRecordBtn"
+ },
+ {
+  "h": "185cr6h",
+  "k": "Moon sighting can move the days by one",
+  "c": "#hajjShiftLbl"
+ },
+ {
+  "h": "1smjlrt",
+  "k": "Moon sighting can move the days by one · Arafah on {1} {M1} {2}",
+  "c": "#hajjShiftLbl"
+ },
+ {
+  "h": "wn76bd",
+  "k": "Ifrad",
+  "c": "#hajjTypeSeg"
+ },
+ {
+  "h": "nlkws4",
+  "k": "Qiran",
+  "c": "#hajjTypeSeg"
+ },
+ {
+  "h": "1vogzwi",
+  "k": "Call {1} — heatstroke is an emergency",
+  "c": "#heat911"
+ },
+ {
+  "h": "1bug5kg",
+  "k": "If you are lost, show your Nusuk card to security staff, a scout or a Nusuk Care point — the Ministry calls the card the main way to identify you and get you help.",
+  "c": "#helpCamp"
+ },
+ {
+  "h": "5gzhfb",
+  "k": "Lost in Mina? Show your maktab / camp number (on your wristband or card) to any scout (kashaf), security officer or the guides for lost pilgrims — they will walk you there. Never leave Mina to look for your group in Makkah.",
+  "c": "#helpCamp"
+ },
+ {
+  "h": "1sg9hcz",
+  "k": "Saudi numbers checked {1} {m1} {2}",
+  "c": "#helpCk"
+ },
+ {
+  "h": "n9l5ky",
+  "k": "Medical information",
+  "c": "#helpMed"
+ },
+ {
+  "h": "aihf67",
+  "k": "O+",
+  "c": "#helpMed"
+ },
+ {
+  "h": "t57a02",
+  "k": "History & significance",
+  "c": "#histCard"
+ },
+ {
+  "h": "czival",
+  "k": "Walk where the prophets walked — know the story behind every rite.",
+  "c": "#histCard"
+ },
+ {
+  "h": "1syf0ao",
+  "k": "Save your hotel to see walking times",
+  "c": "#hotelLbl"
+ },
+ {
+  "h": "1uovjui",
+  "k": "Hotel not pinned",
+  "c": "#hotelLbl2"
+ },
+ {
+  "h": "ymwz42",
+  "k": "Hotel not pinned — use your location at the hotel, or pick a landmark now",
+  "c": "#hotelLbl2"
+ },
+ {
+  "h": "1graqty",
+  "k": "Hanafi",
+  "c": "#hptAsr"
+ },
+ {
+  "h": "16gsi4e",
+  "k": "Use my location once",
+  "c": "#hptGeo"
+ },
+ {
+  "h": "96j1b8",
+  "k": "Egyptian General Authority — Fajr {1}°, Isha {2}°",
+  "c": "#hptM"
+ },
+ {
+  "h": "ujxy9m",
+  "k": "ISNA (North America) — {P1} {1}°, {P2} {2}°",
+  "c": "#hptM"
+ },
+ {
+  "h": "rqw6kh",
+  "k": "Muslim World League — {P1} {1}°, {P2} {2}°",
+  "c": "#hptM"
+ },
+ {
+  "h": "16nbdey",
+  "k": "Umm al-Qura, Makkah — Fajr {1}°, Isha {2} min after Maghrib ({3} in Ramadan)",
+  "c": "#hptM"
+ },
+ {
+  "h": "djijxz",
+  "k": "University of Islamic Sciences, Karachi — Fajr {1}°, Isha {2}°",
+  "c": "#hptM"
+ },
+ {
+  "h": "2cnj7k",
+  "k": "Use my home city",
+  "c": "#hptSet"
+ },
+ {
+  "h": "vamkz0",
+  "k": "Prayer times at home until you fly? Use my home city",
+  "c": "#hptSet1"
+ },
+ {
+  "h": "afip1o",
+  "k": "Alhamdulillah — keep the Haram version of you",
+  "c": "#hsNote"
+ },
+ {
+  "h": "y63oom",
+  "k": "from your hotel",
+  "c": "#hsNote"
+ },
+ {
+  "h": "19u81l4",
+  "k": "from {P1} until sunset",
+  "c": "#hsNote"
+ },
+ {
+  "h": "7oxx9c",
+  "k": "ihram before the miqat",
+  "c": "#hsNote"
+ },
+ {
+  "h": "ofg8hd",
+  "k": "{1} pebbles, takbir with each",
+  "c": "#hsNote"
+ },
+ {
+  "h": "1rahdlj",
+  "k": "Madinah",
+  "c": "#hsegMd"
+ },
+ {
+  "h": "1vs96l4",
+  "k": "Makkah",
+  "c": "#hsegMk"
+ },
+ {
+  "h": "167uuln",
+  "k": "{1} days × {2} prayers for your prayer city, each with a {3}-min alert ({4} for Jumu'ah) — works offline, nothing is uploaded",
+  "c": "#icsSub"
+ },
+ {
+  "h": "1ryjzrz",
+  "k": "Whole trip",
+  "c": "#icsTripBtn"
+ },
+ {
+  "h": "7buz0g",
+  "k": "Add to your home screen — works offline",
+  "c": "#installRow"
+ },
+ {
+  "h": "299hn",
+  "k": "Install app",
+  "c": "#installRow"
+ },
+ {
+  "h": "1rcoaie",
+  "k": "Madinah: {1} of {2} days fit — Madinah days go wholly before the {3}th or after the {4}th, never into the days of Hajj.",
+  "c": "#itMadNote"
+ },
+ {
+  "h": "3eiczu",
+  "k": "The rest go to Makkah",
+  "c": "#itMadSub"
+ },
+ {
+  "h": "1bl9qgv",
+  "k": "The rest of your {1}-day trip go to Makkah",
+  "c": "#itMadSub"
+ },
+ {
+  "h": "13wxk5t",
+  "k": "Madinah first",
+  "c": "#itMd"
+ },
+ {
+  "h": "78ciza",
+  "k": "Makkah first",
+  "c": "#itMk"
+ },
+ {
+  "h": "14sln5g",
+  "k": "Family pace",
+  "c": "#itPaceF"
+ },
+ {
+  "h": "otxnef",
+  "k": "Standard pace",
+  "c": "#itPaceN"
+ },
+ {
+  "h": "pj60xi",
+  "k": "Your trip falls in Ramadan. Dates follow the Umm al-Qura calendar; the official start can differ by a day.",
+  "c": "#itRam"
+ },
+ {
+  "h": "4smuc",
+  "k": "After Hajj",
+  "c": "#jChip"
+ },
+ {
+  "h": "1pqou36",
+  "k": "Arafah · {1} DH",
+  "c": "#jChip"
+ },
+ {
+  "h": "rejltr",
+  "k": "Day {1} / {2}",
+  "c": "#jChip"
+ },
+ {
+  "h": "m0kna1",
+  "k": "Hajj {1}",
+  "c": "#jChip"
+ },
+ {
+  "h": "13rrq8n",
+  "k": "Hajj · {1} days",
+  "c": "#jChip"
+ },
+ {
+  "h": "1vxoqx0",
+  "k": "Mina · {1} DH",
+  "c": "#jChip"
+ },
+ {
+  "h": "bbt9wu",
+  "k": "Nahr",
+  "c": "#jChip",
+  "part_of": "Nahr · {1} DH"
+ },
+ {
+  "h": "1nuc1n4",
+  "k": "Nahr · {1} DH",
+  "c": "#jChip"
+ },
+ {
+  "h": "8icj76",
+  "k": "Plan",
+  "c": "#jChip"
+ },
+ {
+  "h": "ne3437",
+  "k": "Post-Umrah",
+  "c": "#jChip"
+ },
+ {
+  "h": "d9iknz",
+  "k": "Tashriq",
+  "c": "#jChip",
+  "part_of": "Tashriq · {1} DH"
+ },
+ {
+  "h": "oat41j",
+  "k": "Tashriq · {1} DH",
+  "c": "#jChip"
+ },
+ {
+  "h": "sowpys",
+  "k": "Tawaf {1}/{2}",
+  "c": "#jChip"
+ },
+ {
+  "h": "4xgofs",
+  "k": "Umrah first",
+  "c": "#jChip"
+ },
+ {
+  "h": "1ouf66e",
+  "k": "{1} day",
+  "c": "#jChip"
+ },
+ {
+  "h": "11ukskg",
+  "k": "The Jamarat, drawn→",
+  "c": "#jam-h10rami"
+ },
+ {
+  "h": "1qcs75a",
+  "k": "Hajj {1} · Ifrad",
+  "c": "#journeyLbl"
+ },
+ {
+  "h": "12vtpen",
+  "k": "Hajj {1} · Qiran",
+  "c": "#journeyLbl"
+ },
+ {
+  "h": "1co6kvd",
+  "k": "Hajj {1} · Tamattu'",
+  "c": "#journeyLbl"
+ },
+ {
+  "h": "sp7mo9",
+  "k": "No journey recorded yet — every Umrah or Hajj you record appears here with its keepsake.",
+  "c": "#journeysArea"
+ },
+ {
+  "h": "1yrxww",
+  "k": "Every Umrah and Hajj recorded on this phone, newest first.",
+  "c": "#journeysCard"
+ },
+ {
+  "h": "17ldix0",
+  "k": "My journeys",
+  "c": "#journeysCard"
+ },
+ {
+  "h": "l43gg3",
+  "k": "My {1} lines→",
+  "c": "#jrAllBtn"
+ },
+ {
+  "h": "1t5hfu1",
+  "k": "One line for today",
+  "c": "#jrBox"
+ },
+ {
+  "h": "76g30c",
+  "k": "One line for {d1} {1} {M1}",
+  "c": "#jrBox"
+ },
+ {
+  "h": "1ev995o",
+  "k": "One line for {d1} {1} {m1}",
+  "c": "#jrBox"
+ },
+ {
+  "h": "1438pd3",
+  "k": "Your trip has ended. This line belongs to day {1} of it — the arrows above move to any other day.",
+  "c": "#jrEnded"
+ },
+ {
+  "h": "mqxd35",
+  "k": "Kept only on this phone, and in your backup.",
+  "c": "#jrFoot"
+ },
+ {
+  "h": "b2xmks",
+  "k": "{d1} {1} {M1} · Day {2}",
+  "c": "#jrMeta"
+ },
+ {
+  "h": "1f4xm7g",
+  "k": "{d1} {1} {m1} · Day {2}",
+  "c": "#jrMeta"
+ },
+ {
+  "h": "1ccvuwc",
+  "k": "Know before you go",
+  "c": "#knowCard"
+ },
+ {
+  "h": "1jsym8",
+  "k": "Miqats, ihram & the common mistakes — the knowledge that turns a trip into worship. Tap a topic to expand.",
+  "c": "#knowSub"
+ },
+ {
+  "h": "1hw9mz2",
+  "k": "The three kinds of Hajj, the five days and the hady — then miqats & ihram. Tap a topic to expand.",
+  "c": "#knowSub"
+ },
+ {
+  "h": "12w3yr",
+  "k": "A haircut!",
+  "c": "#kqo-0"
+ },
+ {
+  "h": "1dwiiwz",
+  "k": "Get a haircut!",
+  "c": "#kqo-0"
+ },
+ {
+  "h": "c5ri3t",
+  "k": "Prophet Ibrahim",
+  "c": "#kqo-0"
+ },
+ {
+  "h": "1gdy5o2",
+  "k": "The Kaaba",
+  "c": "#kqo-0"
+ },
+ {
+  "h": "1bkkvvm",
+  "k": "A big cake",
+  "c": "#kqo-1"
+ },
+ {
+  "h": "1wkts5s",
+  "k": "A castle",
+  "c": "#kqo-1"
+ },
+ {
+  "h": "exbbsc",
+  "k": "Go swimming",
+  "c": "#kqo-1"
+ },
+ {
+  "h": "13vjwzl",
+  "k": "Jeddah",
+  "c": "#kqo-1"
+ },
+ {
+  "h": "181azep",
+  "k": "Prophet Yunus",
+  "c": "#kqo-1"
+ },
+ {
+  "h": "1hpuumx",
+  "k": "Uhud",
+  "c": "#kqo-1"
+ },
+ {
+  "h": "16ih0hf",
+  "k": "A big tent",
+  "c": "#kqo-2"
+ },
+ {
+  "h": "ws43l1",
+  "k": "Fireworks",
+  "c": "#kqo-2"
+ },
+ {
+  "h": "16icgia",
+  "k": "Prophet Isa",
+  "c": "#kqo-2"
+ },
+ {
+  "h": "1ohhkpa",
+  "k": "Riyadh",
+  "c": "#kqo-2"
+ },
+ {
+  "h": "64g1uh",
+  "k": "Sleep all day",
+  "c": "#kqo-2"
+ },
+ {
+  "h": "1790b41",
+  "k": "Taif",
+  "c": "#kqo-2"
+ },
+ {
+  "h": "1b61xuh",
+  "k": "Lands the next day",
+  "c": "#landNx"
+ },
+ {
+  "h": "175qx9h",
+  "k": "Official & helpful links",
+  "c": "#linksCard"
+ },
+ {
+  "h": "1yez4ly",
+  "k": "Links checked {1} {m1} {2} · they open in your browser and need signal",
+  "c": "#linksCk"
+ },
+ {
+  "h": "p6s18t",
+  "k": "Open counter→",
+  "c": "#live-h10ifadah"
+ },
+ {
+  "h": "ii17hx",
+  "k": "Open the rami counter→",
+  "c": "#live-h10rami"
+ },
+ {
+  "h": "wzvl7o",
+  "k": "{1} / {2} jamarat done · Open the rami counter→",
+  "c": "#live-h10rami"
+ },
+ {
+  "h": "uzkubk",
+  "k": "Open the sa'i counter→",
+  "c": "#live-h10sai"
+ },
+ {
+  "h": "1wkhoii",
+  "k": "{1} / {2} laps · Open counter→",
+  "c": "#live-laps"
+ },
+ {
+  "h": "19t2zzh",
+  "k": "{1} / {2} rounds · Open counter→",
+  "c": "#live-rounds"
+ },
+ {
+  "h": "bp21us",
+  "k": "Cards",
+  "c": "#lnJumps"
+ },
+ {
+  "h": "b2htg8",
+  "k": "Essentials",
+  "c": "#lnJumps"
+ },
+ {
+  "h": "yugfpb",
+  "k": "History",
+  "c": "#lnJumps"
+ },
+ {
+  "h": "wiqnct",
+  "k": "Q&A",
+  "c": "#lnJumps"
+ },
+ {
+  "h": "9ix99y",
+  "k": "Scams",
+  "c": "#lnJumps"
+ },
+ {
+  "h": "1azluie",
+  "k": "Sisters",
+  "c": "#lnJumps"
+ },
+ {
+  "h": "a59uk5",
+  "k": "Virtues",
+  "c": "#lnJumps"
+ },
+ {
+  "h": "qcibdo",
+  "k": "No topics match — try \"ihram\", \"Zamzam\", \"wudu\" or \"period\".",
+  "c": "#lnNone"
+ },
+ {
+  "h": "w9bsb9",
+  "k": "Test what you learned",
+  "c": "#lnQuizCard"
+ },
+ {
+  "h": "1ltofw1",
+  "k": "Seven levels",
+  "c": "#lnQuizSub",
+  "part_of": "Seven levels · {1}% unlocks the next. Next up: Level {2} · Foundations of Umrah"
+ },
+ {
+  "h": "o3sblm",
+  "k": "Seven levels · {1}% unlocks the next. Next up: Level {2} · Foundations of Umrah",
+  "c": "#lnQuizSub"
+ },
+ {
+  "h": "1ewp39f",
+  "k": "Ten levels",
+  "c": "#lnQuizSub",
+  "part_of": "Ten levels · {1}% unlocks the next. Next up: Level {2} · Foundations of Hajj"
+ },
+ {
+  "h": "wmvykw",
+  "k": "Ten levels · {1}% unlocks the next. Next up: Level {2} · Foundations of Hajj",
+  "c": "#lnQuizSub"
+ },
+ {
+  "h": "knxlpq",
+  "k": "{1}% unlocks the next level.",
+  "c": "#lnQuizSub"
+ },
+ {
+  "h": "1k6uc0y",
+  "k": "{1}% unlocks the next. Next up: Level {2}",
+  "c": "#lnQuizSub",
+  "part_of": "Seven levels · {1}% unlocks the next. Next up: Level {2} · Foundations of Umrah"
+ },
+ {
+  "h": "19qv8",
+  "k": "Madinah — virtues & visiting",
+  "c": "#madCard"
+ },
+ {
+  "h": "2twm4x",
+  "k": "The City of the Prophet ﷺ deserves its own preparation.",
+  "c": "#madCard"
+ },
+ {
+  "h": "1c2o4rh",
+  "k": "Name, country, language, medical notes — for the \"I'm lost\" card",
+  "c": "#meSum"
+ },
+ {
+  "h": "opkace",
+  "k": "{U1} · {U2} · medical notes · {1} medicine",
+  "c": "#meSum"
+ },
+ {
+  "h": "4wa3wd",
+  "k": "Add a medicine",
+  "c": "#medAdd"
+ },
+ {
+  "h": "ca45le",
+  "k": "Times (up to four)",
+  "c": "#medTL"
+ },
+ {
+  "h": "9wslqk",
+  "k": "Keep the change alive after Hajj, the essential duas, and your settings & data.",
+  "c": "#moreP"
+ },
+ {
+  "h": "k4bn1a",
+  "k": "Keep the change alive after Umrah, the essential duas, and your settings & data.",
+  "c": "#moreP"
+ },
+ {
+  "h": "5rufhr",
+  "k": "Near me",
+  "c": "#nearBtn"
+ }
+]

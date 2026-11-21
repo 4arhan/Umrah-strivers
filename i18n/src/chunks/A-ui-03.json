@@ -1,0 +1,901 @@
+[
+ {
+  "h": "nvyou",
+  "k": "Plan your next journey",
+  "c": "#nextCard"
+ },
+ {
+  "h": "19j0eqv",
+  "k": "\"Umrah to Umrah is an expiation for what is between them\" (Bukhari {1}). When Allah invites you again, the checklists and countdown are ready — nothing from this journey is deleted.",
+  "c": "#nextP",
+  "refs": [
+   "bukhari:1773"
+  ]
+ },
+ {
+  "h": "hhg2zp",
+  "k": "\"…and the accepted Hajj has no reward except Paradise\" (Bukhari {1}). When Allah invites you again, the checklists and countdown are ready — nothing from this journey is deleted.",
+  "c": "#nextP",
+  "refs": [
+   "bukhari:1773"
+  ]
+ },
+ {
+  "h": "1dxekjx",
+  "k": "Define your specific spiritual goals for this journey — what you are asking Allah for, what you want to leave behind. \"The accepted Hajj has no reward except Paradise\" (Bukhari {1}). Decide now what you will ask for at Arafah. Go purely for Allah, not for the photos.",
+  "c": "#niyB1",
+  "refs": [
+   "bukhari:1773"
+  ]
+ },
+ {
+  "h": "drloe2",
+  "k": "Define your specific spiritual goals for this journey — what you are asking Allah for, what you want to leave behind. \"Umrah to Umrah is an expiation for what is between them\" (Bukhari {1}) — minor sins; major sins need sincere tawbah. Go purely for Allah, not for the photos.",
+  "c": "#niyB1",
+  "refs": [
+   "bukhari:1773"
+  ]
+ },
+ {
+  "h": "15q8cet",
+  "k": "Not written yet — tap to write it",
+  "c": "#niyColF"
+ },
+ {
+  "h": "r0c2e2",
+  "k": "Your intention",
+  "c": "#niyColT"
+ },
+ {
+  "h": "2ty6je",
+  "k": "✓Intention set",
+  "c": "#niyColT"
+ },
+ {
+  "h": "myot76",
+  "k": "Hajj is answered by the heart before it is booked by the hands. Three foundations, then everything else.",
+  "c": "#niyP"
+ },
+ {
+  "h": "1a3su02",
+  "k": "Umrah is answered by the heart before it is booked by the hands. Three foundations, then everything else.",
+  "c": "#niyP"
+ },
+ {
+  "h": "p9sjuh",
+  "k": "Write it down — it becomes your compass for the whole trip.",
+  "c": "#niyStatus"
+ },
+ {
+  "h": "1hiap4t",
+  "k": "×{1}",
+  "c": "#ntawafN"
+ },
+ {
+  "h": "ycpmr3",
+  "k": "Setting this up for someone else?",
+  "c": "#obCareLnk"
+ },
+ {
+  "h": "1fe4qp",
+  "k": "{1}–{2} Dhul Hijjah {3} ≈ {4} {M1} – {5} {M2} {6} · Arafah {7} {M3}",
+  "c": "#obHHint"
+ },
+ {
+  "h": "nh63pa",
+  "k": "Your flight date drives the countdown and the dated to-do list. The days of Hajj themselves follow the Hijri calendar.",
+  "c": "#obHIntro"
+ },
+ {
+  "h": "17u2p57",
+  "k": "Hajj {1} — when do you fly?",
+  "c": "#obHTitle"
+ },
+ {
+  "h": "fd00cl",
+  "k": "Joining a group? Paste the leader's link",
+  "c": "#obPasteLnk"
+ },
+ {
+  "h": "1o4c0av",
+  "k": "What has Allah invited you to?",
+  "c": "#obStep0"
+ },
+ {
+  "h": "woqww5",
+  "k": "Where are you on your Hajj journey? We'll take you straight to the right place.",
+  "c": "#obStep1"
+ },
+ {
+  "h": "1ae1lph",
+  "k": "Where are you on your Umrah journey? We'll take you straight to the right place.",
+  "c": "#obStep1"
+ },
+ {
+  "h": "1dudzcg",
+  "k": "Yes",
+  "c": "#obUmSeg"
+ },
+ {
+  "h": "1m09m3c",
+  "k": "Still to do when pure: <1>tawaf al-ifadah</1> (and the sa'i after it)",
+  "c": "#periodLeft"
+ },
+ {
+  "h": "14o79kr",
+  "k": "Still on my period when I leave: tawaf al-wada is waived — tick it",
+  "c": "#periodWadaBtn"
+ },
+ {
+  "h": "yhu38o",
+  "k": "Unvisited",
+  "c": "#pillUnvis",
+  "part_of": "Unvisited · {1}"
+ },
+ {
+  "h": "1kr85d2",
+  "k": "Unvisited · {1}",
+  "c": "#pillUnvis"
+ },
+ {
+  "h": "1gj9zu4",
+  "k": "Save this spot — stand at your camp gate",
+  "c": "#pinSave"
+ },
+ {
+  "h": "u9i5ar",
+  "k": "of {1} places visited",
+  "c": "#plHeroOf"
+ },
+ {
+  "h": "xxforf",
+  "k": "places visited",
+  "c": "#plHeroOf"
+ },
+ {
+  "h": "bhziy4",
+  "k": "items ready",
+  "c": "#planHeroS"
+ },
+ {
+  "h": "1c5mcxg",
+  "k": "of {1} items ready",
+  "c": "#planHeroS"
+ },
+ {
+  "h": "1hcyv4u",
+  "k": "Getting started",
+  "c": "#planHeroT"
+ },
+ {
+  "h": "16d18p3",
+  "k": "Let's get ready",
+  "c": "#planHeroT"
+ },
+ {
+  "h": "1b76k27",
+  "k": "\"The most beloved deeds to Allah are the most consistent, even if small.\" — Bukhari {1}. Don't let the Haram version of you fade — hold three habits for {2} days after you return.",
+  "c": "#postCard",
+  "refs": [
+   "bukhari:6464"
+  ]
+ },
+ {
+  "h": "i88maj",
+  "k": "After Hajj — keep it alive",
+  "c": "#postH3"
+ },
+ {
+  "h": "14n2jn",
+  "k": "After Umrah — keep it alive",
+  "c": "#postH3"
+ },
+ {
+  "h": "1bqqrky",
+  "k": "After-Hajj mode",
+  "c": "#postLbl"
+ },
+ {
+  "h": "1823mti",
+  "k": "Post-Umrah mode",
+  "c": "#postLbl"
+ },
+ {
+  "h": "1eg6hun",
+  "k": "countdown, timeline and checklists",
+  "c": "#prepBeforeS",
+  "part_of": "{1} of {2} items · countdown, timeline and checklists"
+ },
+ {
+  "h": "1tfb049",
+  "k": "{1} of {2} items",
+  "c": "#prepBeforeS",
+  "part_of": "{1} of {2} items · countdown, timeline and checklists"
+ },
+ {
+  "h": "6k554e",
+  "k": "{1} of {2} items · countdown, timeline and checklists",
+  "c": "#prepBeforeS"
+ },
+ {
+  "h": "boll6c",
+  "k": "Camp",
+  "c": "#prepJumps"
+ },
+ {
+  "h": "rjjetc",
+  "k": "Countdown",
+  "c": "#prepJumps"
+ },
+ {
+  "h": "emgun4",
+  "k": "Hotel & SOS",
+  "c": "#prepJumps"
+ },
+ {
+  "h": "11pbxwf",
+  "k": "Intention",
+  "c": "#prepJumps"
+ },
+ {
+  "h": "djv8ja",
+  "k": "Timeline",
+  "c": "#prepJumps"
+ },
+ {
+  "h": "1mvky8f",
+  "k": "Vault",
+  "c": "#prepJumps"
+ },
+ {
+  "h": "1g9kdd1",
+  "k": "Brother",
+  "c": "#profSeg"
+ },
+ {
+  "h": "va22bl",
+  "k": "Sister",
+  "c": "#profSeg"
+ },
+ {
+  "h": "1bj1o0q",
+  "k": "{1} Dhū al-Qaʿdah {2} AH",
+  "c": "#ptHijri",
+  "part_of": "{1} Dhū al-Qaʿdah {2} AH · Makkah"
+ },
+ {
+  "h": "2uv02r",
+  "k": "{1} Dhū al-Qaʿdah {2} AH · Madinah",
+  "c": "#ptHijri"
+ },
+ {
+  "h": "9g2ifw",
+  "k": "{1} Dhū al-Qaʿdah {2} AH · Makkah",
+  "c": "#ptHijri"
+ },
+ {
+  "h": "j1sfvg",
+  "k": "{1} Dhū al-Ḥijjah {2} AH",
+  "c": "#ptHijri",
+  "part_of": "{1} Dhū al-Ḥijjah {2} AH · Makkah"
+ },
+ {
+  "h": "d2lwjy",
+  "k": "{1} Dhū al-Ḥijjah {2} AH · Makkah",
+  "c": "#ptHijri"
+ },
+ {
+  "h": "1xjnx9v",
+  "k": "{1} Muḥarram {2} AH",
+  "c": "#ptHijri",
+  "part_of": "{1} Muḥarram {2} AH · Madinah"
+ },
+ {
+  "h": "1x2zq1e",
+  "k": "{1} Muḥarram {2} AH · Madinah",
+  "c": "#ptHijri"
+ },
+ {
+  "h": "159sglu",
+  "k": "{1} Ramaḍān {2} AH",
+  "c": "#ptHijri",
+  "part_of": "{1} Ramaḍān {2} AH · Madinah"
+ },
+ {
+  "h": "1etwmsb",
+  "k": "{1} Ramaḍān {2} AH · Madinah",
+  "c": "#ptHijri"
+ },
+ {
+  "h": "xye9ni",
+  "k": "{1} Shawwāl {2} AH",
+  "c": "#ptHijri",
+  "part_of": "{1} Shawwāl {2} AH · Makkah"
+ },
+ {
+  "h": "1m2ipqf",
+  "k": "{1} Shawwāl {2} AH · Madinah",
+  "c": "#ptHijri"
+ },
+ {
+  "h": "8nlxm0",
+  "k": "{1} Shawwāl {2} AH · Makkah",
+  "c": "#ptHijri"
+ },
+ {
+  "h": "rgdxix",
+  "k": "{1} Shaʿbān {2} AH",
+  "c": "#ptHijri",
+  "part_of": "{1} Shaʿbān {2} AH · Makkah"
+ },
+ {
+  "h": "1809d85",
+  "k": "{1} Shaʿbān {2} AH · Makkah",
+  "c": "#ptHijri"
+ },
+ {
+  "h": "9rrnvw",
+  "k": "Leave hotel: —",
+  "c": "#ptLead"
+ },
+ {
+  "h": "1d444xn",
+  "k": "{1} min before",
+  "c": "#ptLead"
+ },
+ {
+  "h": "1f5q986",
+  "k": "<1>Jumu'ah</1> in {1}h {2}m",
+  "c": "#ptNext"
+ },
+ {
+  "h": "ayhcx6",
+  "k": "<1>{P1}</1> in {1}h {2}m",
+  "c": "#ptNext"
+ },
+ {
+  "h": "sr7p15",
+  "k": "Loading times…",
+  "c": "#ptNext"
+ },
+ {
+  "h": "5f2yzh",
+  "k": "Umm al-Qura",
+  "c": "#ptNote",
+  "part_of": "Umm al-Qura · local Makkah/Madinah time"
+ },
+ {
+  "h": "vuds88",
+  "k": "Umm al-Qura · local Makkah/Madinah time",
+  "c": "#ptNote"
+ },
+ {
+  "h": "1fqv6s3",
+  "k": "local Makkah/Madinah time",
+  "c": "#ptNote",
+  "part_of": "Umm al-Qura · local Makkah/Madinah time"
+ },
+ {
+  "h": "uokhjt",
+  "k": "✓Umm al-Qura (live) · Duha from ~{1} · Madinah time",
+  "c": "#ptNote"
+ },
+ {
+  "h": "72aw8u",
+  "k": "✓Umm al-Qura (live) · Duha from ~{1} · Makkah time",
+  "c": "#ptNote"
+ },
+ {
+  "h": "137epa2",
+  "k": "Common questions (fiqh Q&A)",
+  "c": "#qaCard"
+ },
+ {
+  "h": "jf3vpq",
+  "k": "The questions every first-timer asks — answered with evidence.",
+  "c": "#qaCard"
+ },
+ {
+  "h": "wtmftz",
+  "k": "Start compass",
+  "c": "#qbBtn"
+ },
+ {
+  "h": "3dqkqn",
+  "k": "Tap start and allow location & motion access.",
+  "c": "#qbStatus"
+ },
+ {
+  "h": "1uw2t5p",
+  "k": "Find the direction of the Kaaba from wherever you are.",
+  "c": "#qiblaCard"
+ },
+ {
+  "h": "dpzyk0",
+  "k": "Qibla compass",
+  "c": "#qiblaCard"
+ },
+ {
+  "h": "1t0wqkb",
+  "k": "\"One Umrah to the next is an expiation for whatever (sins) come between them.\" — Bukhari {1}",
+  "c": "#quoteLine",
+  "refs": [
+   "bukhari:1773"
+  ]
+ },
+ {
+  "h": "p1uj3u",
+  "k": "\"Perform Umrah in Ramadan, for an Umrah in Ramadan is equal to a Hajj.\" — Bukhari {1}",
+  "c": "#quoteLine",
+  "refs": [
+   "bukhari:1782"
+  ]
+ },
+ {
+  "h": "w15ouf",
+  "k": "\"The accepted Hajj has no reward except Paradise.\" — Bukhari {1}",
+  "c": "#quoteLine",
+  "refs": [
+   "bukhari:1773"
+  ]
+ },
+ {
+  "h": "1syp1d9",
+  "k": "\"The guests of Allah are three: the warrior, the Hajj pilgrim, and the Umrah pilgrim.\" — Nasai {1}",
+  "c": "#quoteLine",
+  "refs": [
+   "nasai:2625"
+  ]
+ },
+ {
+  "h": "17iqgsa",
+  "k": "\"Whoever comes to this House and does not speak obscenely or act wickedly returns as the day his mother bore him.\" — Muslim {1}",
+  "c": "#quoteLine",
+  "refs": [
+   "muslim:1350"
+  ]
+ },
+ {
+  "h": "1av36so",
+  "k": "A. Dhul-Hulayfah (Abyar Ali)",
+  "c": "#qzo-0"
+ },
+ {
+  "h": "1fzwok9",
+  "k": "A. Every five years",
+  "c": "#qzo-0"
+ },
+ {
+  "h": "nx6wco",
+  "k": "A. Major sins only",
+  "c": "#qzo-0"
+ },
+ {
+  "h": "14quwhk",
+  "k": "A. Once in a lifetime",
+  "c": "#qzo-0"
+ },
+ {
+  "h": "jmbpg7",
+  "k": "A. Only for mothers",
+  "c": "#qzo-0"
+ },
+ {
+  "h": "182qps7",
+  "k": "A. Only for those who live near Makkah",
+  "c": "#qzo-0"
+ },
+ {
+  "h": "quvkqb",
+  "k": "A. Quraysh",
+  "c": "#qzo-0"
+ },
+ {
+  "h": "9ctx43",
+  "k": "A. The Black Stone (Hajar al-Aswad) corner",
+  "c": "#qzo-0"
+ },
+ {
+  "h": "1pge184",
+  "k": "A. The greater pilgrimage",
+  "c": "#qzo-0"
+ },
+ {
+  "h": "j4bk95",
+  "k": "A. {1} elsewhere",
+  "c": "#qzo-0"
+ },
+ {
+  "h": "1gxmy7j",
+  "k": "B. Every year",
+  "c": "#qzo-1"
+ },
+ {
+  "h": "5kcldt",
+  "k": "B. Ibrahim & Isma'il",
+  "c": "#qzo-1"
+ },
+ {
+  "h": "1qstaee",
+  "k": "B. Maqam Ibrahim",
+  "c": "#qzo-1"
+ },
+ {
+  "h": "b8nuut",
+  "k": "B. Once in a lifetime",
+  "c": "#qzo-1"
+ },
+ {
+  "h": "1u4ckdg",
+  "k": "B. Only for those who live near Makkah",
+  "c": "#qzo-1"
+ },
+ {
+  "h": "w256ux",
+  "k": "B. Qarn al-Manazil",
+  "c": "#qzo-1"
+ },
+ {
+  "h": "1z3ue0",
+  "k": "B. The minor pilgrimage",
+  "c": "#qzo-1"
+ },
+ {
+  "h": "kpqvy8",
+  "k": "B. The night journey",
+  "c": "#qzo-1"
+ },
+ {
+  "h": "c06z7b",
+  "k": "B. The sins committed between them",
+  "c": "#qzo-1"
+ },
+ {
+  "h": "1e6ul3n",
+  "k": "B. Yes — after having performed your own Umrah first",
+  "c": "#qzo-1"
+ },
+ {
+  "h": "xxz6ze",
+  "k": "B. {1} elsewhere",
+  "c": "#qzo-1"
+ },
+ {
+  "h": "uu0lyu",
+  "k": "C. Debts",
+  "c": "#qzo-2"
+ },
+ {
+  "h": "lflw5f",
+  "k": "C. Every five years",
+  "c": "#qzo-2"
+ },
+ {
+  "h": "1nvmlg",
+  "k": "C. Every year",
+  "c": "#qzo-2"
+ },
+ {
+  "h": "euziy0",
+  "k": "C. Musa & Harun",
+  "c": "#qzo-2"
+ },
+ {
+  "h": "18a5kwz",
+  "k": "C. Only during Hajj season",
+  "c": "#qzo-2"
+ },
+ {
+  "h": "1bivipp",
+  "k": "C. Only for those who live near Makkah",
+  "c": "#qzo-2"
+ },
+ {
+  "h": "106a6zx",
+  "k": "C. The Yamani corner",
+  "c": "#qzo-2"
+ },
+ {
+  "h": "1ky8xy7",
+  "k": "C. The minor pilgrimage",
+  "c": "#qzo-2"
+ },
+ {
+  "h": "1jz8qn1",
+  "k": "C. The night journey",
+  "c": "#qzo-2"
+ },
+ {
+  "h": "1ho02ru",
+  "k": "C. Yalamlam",
+  "c": "#qzo-2"
+ },
+ {
+  "h": "l229zg",
+  "k": "C. {1} elsewhere (except al-Masjid al-Haram)",
+  "c": "#qzo-2"
+ },
+ {
+  "h": "1yguv5l",
+  "k": "D. Adam alone",
+  "c": "#qzo-3"
+ },
+ {
+  "h": "z3rrad",
+  "k": "D. Al-Juhfah",
+  "c": "#qzo-3"
+ },
+ {
+  "h": "19s9miu",
+  "k": "D. All future sins",
+  "c": "#qzo-3"
+ },
+ {
+  "h": "17v4cju",
+  "k": "D. Every five years",
+  "c": "#qzo-3"
+ },
+ {
+  "h": "oscudp",
+  "k": "D. Every year",
+  "c": "#qzo-3"
+ },
+ {
+  "h": "55kirt",
+  "k": "D. Never",
+  "c": "#qzo-3"
+ },
+ {
+  "h": "1dbgvyj",
+  "k": "D. Once in a lifetime",
+  "c": "#qzo-3"
+ },
+ {
+  "h": "krk53e",
+  "k": "D. The Kaaba door",
+  "c": "#qzo-3"
+ },
+ {
+  "h": "pmsr6p",
+  "k": "D. The farewell pilgrimage",
+  "c": "#qzo-3"
+ },
+ {
+  "h": "ogmfnc",
+  "k": "D. {1} elsewhere",
+  "c": "#qzo-3"
+ },
+ {
+  "h": "x83b9b",
+  "k": "{1}h {2}m",
+  "c": "#ramLeft"
+ },
+ {
+  "h": "1r8ku4f",
+  "k": "Tonight: the night of the {1}th — an odd night of the last ten",
+  "c": "#ramTonight"
+ },
+ {
+  "h": "126fsi",
+  "k": "Tonight: the night of the {1}th — one of the last ten nights",
+  "c": "#ramTonight"
+ },
+ {
+  "h": "jdmb01",
+  "k": "Rami complete for the {1}th — back to the tent, takbir after every prayer.",
+  "c": "#ramiDone"
+ },
+ {
+  "h": "q4lsub",
+  "k": "Rami complete for the {1}th — leaving? Be out of Mina before sunset.",
+  "c": "#ramiDone"
+ },
+ {
+  "h": "1nnxyi8",
+  "k": "Rami complete for the {1}th — next: hady, halq, then tawaf al-ifadah.",
+  "c": "#ramiDone"
+ },
+ {
+  "h": "jq01ww",
+  "k": "Rami complete for the {1}th — next: halq, then tawaf al-ifadah.",
+  "c": "#ramiDone"
+ },
+ {
+  "h": "1rdcebo",
+  "k": "If it is still to do, stone it first — Jamrat al-Aqabah only — then today's.",
+  "c": "#ramiMakeup"
+ },
+ {
+  "h": "1qz16ck",
+  "k": "The {1}th is not counted here",
+  "c": "#ramiMakeup"
+ },
+ {
+  "h": "1jbvfvf",
+  "k": "After midday",
+  "c": "#ramiWin",
+  "part_of": "After midday · until sunset ≈ {1}"
+ },
+ {
+  "h": "37db2b",
+  "k": "After midday · until sunset ≈ {1}",
+  "c": "#ramiWin"
+ },
+ {
+  "h": "mo0uet",
+  "k": "From sunrise ≈ {1}",
+  "c": "#ramiWin",
+  "part_of": "From sunrise ≈ {1} · until sunset ≈ {2}"
+ },
+ {
+  "h": "12gmsxm",
+  "k": "From sunrise ≈ {1} · until sunset ≈ {2}",
+  "c": "#ramiWin"
+ },
+ {
+  "h": "18m4l2w",
+  "k": "Opens after midday",
+  "c": "#ramiWin",
+  "part_of": "Opens after midday · {P1} ≈ {1} in Mina · in"
+ },
+ {
+  "h": "11sadgl",
+  "k": "Opens after midday · {P1} ≈ {1} in Mina · in",
+  "c": "#ramiWin"
+ },
+ {
+  "h": "i3gxwe",
+  "k": "in",
+  "c": "#ramiWin",
+  "part_of": "Opens after midday · {P1} ≈ {1} in Mina · in"
+ },
+ {
+  "h": "fwk6z0",
+  "k": "until sunset ≈ {1}",
+  "c": "#ramiWin",
+  "part_of": "From sunrise ≈ {1} · until sunset ≈ {2}"
+ },
+ {
+  "h": "ap8vo5",
+  "k": "{P1} ≈ {1} in Mina",
+  "c": "#ramiWin",
+  "part_of": "Opens after midday · {P1} ≈ {1} in Mina · in"
+ },
+ {
+  "h": "kb2of4",
+  "k": "· computed ±{1} min, follow your group",
+  "c": "#ramiWin"
+ },
+ {
+  "h": "1rcchbd",
+  "k": "Record completed Umrah & reset",
+  "c": "#recordBtn"
+ },
+ {
+  "h": "bhbg1e",
+  "k": "Record your Umrah — your ihram ends until {1} Dhul Hijjah",
+  "c": "#recordBtn"
+ },
+ {
+  "h": "1klrjrz",
+  "k": "Return",
+  "c": "#retLbl"
+ },
+ {
+  "h": "mpt4ut",
+  "k": "All ihram restrictions are lifted until you enter ihram again for Hajj on {1} Dhul Hijjah. Record it — Part {2} then takes over.",
+  "c": "#riteDone"
+ },
+ {
+  "h": "1vxjxuy",
+  "k": "All ihram restrictions are lifted. May Allah accept it — make shukr, and keep filling your days with worship.",
+  "c": "#riteDone"
+ },
+ {
+  "h": "kpyszc",
+  "k": "Your Umrah is complete",
+  "c": "#riteDone"
+ },
+ {
+  "h": "1xfumya",
+  "k": "Do not cut your hair until after Arafah and the stoning on the {1}th. Ifrad: once the arrival tawaf and sa'i are done — keep the ihram rules, keep the talbiyah, and continue in Part {2} below.",
+  "c": "#riteLock"
+ },
+ {
+  "h": "15jzip5",
+  "k": "Do not cut your hair until after Arafah and the stoning on the {1}th. Qiran: once the arrival tawaf and sa'i are done — keep the ihram rules, keep the talbiyah, and continue in Part {2} below.",
+  "c": "#riteLock"
+ },
+ {
+  "h": "hgb0gr",
+  "k": "You stay in ihram",
+  "c": "#riteLock"
+ },
+ {
+  "h": "1igstau",
+  "k": "The whole rite in order — learn this first, then the cards below.",
+  "c": "#ritesSub"
+ },
+ {
+  "h": "vphhnf",
+  "k": "{1}–{2} Dhul Hijjah — the {3}th if you stay — then the farewell. Tap a day to open it in the rites guide. Dates are expected (Umm al-Qura); the moon sighting can move them by a day.",
+  "c": "#ritesSub"
+ },
+ {
+  "h": "1wrz7d",
+  "k": "Hajj in {1} days",
+  "c": "#ritesT"
+ },
+ {
+  "h": "kxjcih",
+  "k": "Umrah in {1} steps",
+  "c": "#ritesT"
+ },
+ {
+  "h": "6iutbz",
+  "k": "Set to {1}",
+  "c": "#rpSetGo"
+ },
+ {
+  "h": "1skpbis",
+  "k": "Sa'i of Hajj · {1}/{2} · after tawaf",
+  "c": "#saiSum"
+ },
+ {
+  "h": "n2lzr4",
+  "k": "Sa'i · {1}/{2} · after tawaf",
+  "c": "#saiSum"
+ },
+ {
+  "h": "15qe4xn",
+  "k": "Sa'i · {1}/{2} · not part of a nafl tawaf",
+  "c": "#saiSum"
+ },
+ {
+  "h": "1ryadju",
+  "k": "after tawaf",
+  "c": "#saiSum",
+  "part_of": "Sa'i · {1}/{2} · after tawaf"
+ },
+ {
+  "h": "kv8z25",
+  "k": "not part of a nafl tawaf",
+  "c": "#saiSum",
+  "part_of": "Sa'i · {1}/{2} · not part of a nafl tawaf"
+ },
+ {
+  "h": "7amy2u",
+  "k": "− Undo last lap",
+  "c": "#saiUndo"
+ },
+ {
+  "h": "xnlxf4",
+  "k": "Show a phrase",
+  "c": "#sayBtn"
+ },
+ {
+  "h": "11iizpd",
+  "k": "Child card",
+  "c": "#sayTop"
+ },
+ {
+  "h": "oytqw3",
+  "k": "Hotel check-in",
+  "c": "#sayTop"
+ },
+ {
+  "h": "tshm53",
+  "k": "I have a reservation",
+  "c": "#sayTop"
+ },
+ {
+  "h": "skvw7i",
+  "k": "My camp card",
+  "c": "#sayTop"
+ },
+ {
+  "h": "9kba1y",
+  "k": "What time is breakfast?",
+  "c": "#sayTop"
+ }
+]

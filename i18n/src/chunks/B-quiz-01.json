@@ -1,0 +1,648 @@
+[
+ {
+  "h": "1hpnu3d",
+  "k": "Daily knowledge cards",
+  "c": "#fcCard"
+ },
+ {
+  "h": "75b0j8",
+  "k": "Knowledge circuit — quiz levels",
+  "c": "#qzCard"
+ },
+ {
+  "h": "u1jaws",
+  "k": "True/false & multiple choice · <1>{1}%+</1> passes a level and unlocks the next. Complete the whole circuit before you fly.",
+  "c": "#qzCard"
+ },
+ {
+  "h": "1yptzcd",
+  "k": "Unlock all levels",
+  "c": ".btn < .qz-lock < #qzArea"
+ },
+ {
+  "h": "4rhd6z",
+  "k": "▶Take Level {1}",
+  "c": ".btn < .qz-lock < #qzArea"
+ },
+ {
+  "h": "k40l25",
+  "k": "◀All levels",
+  "c": ".btn < .qz-lock < #qzArea"
+ },
+ {
+  "h": "1sbdmiz",
+  "k": "\"Hajj is Arafah\", and tawaf al-ifadah is commanded in the Quran. Most schools also count ihram and sa'i as pillars (for Hanafis ihram is a condition and sa'i a wajib), and Shafi'is add the shave or trim.",
+  "c": ".fc-e < .fc-face < .fc-in"
+ },
+ {
+  "h": "127gmj8",
+  "k": "\"Hajj is Arafah.\" Being there — on the {1}th, or in the night before Fajr of the {2}th — is the pillar without which there is no Hajj.",
+  "c": ".fc-e < .fc-face < .fc-in"
+ },
+ {
+  "h": "1bxar80",
+  "k": "\"The days of tashreeq are days of eating, drinking and the remembrance of Allah\" — the \"numbered days\" of Quran {1}.",
+  "c": ".fc-e < .fc-face < .fc-in",
+  "refs": [
+   "quran:2:203"
+  ]
+ },
+ {
+  "h": "14ihgif",
+  "k": "\"Whoever forgets something of his rites or leaves it out, let him shed blood\" (Ibn Abbas). A missed wajib is repaired with a dam; a missed pillar is not — it must be done. Which rites are wajib differs a little between the schools, so learn your group's list.",
+  "c": ".fc-e < .fc-face < .fc-in"
+ },
+ {
+  "h": "s9slr",
+  "k": "False — \"I stood here, and all of Arafah is a place of standing.\" Sitting in your tent inside the boundary counts in full; climbing the hill is not a rite.",
+  "c": ".fc-e < .fc-face < .fc-in"
+ },
+ {
+  "h": "bu5qrp",
+  "k": "False — Hajj adds Arafat, Muzdalifah, Mina and the fixed days of Dhul-Hijjah; Umrah is ihram, tawaf, sa'i and halq.",
+  "c": ".fc-e < .fc-face < .fc-in"
+ },
+ {
+  "h": "m42gjr",
+  "k": "False — a child's Hajj is valid: when a woman held up a child and asked \"Is there Hajj for this one?\", the Prophet ﷺ said \"Yes, and you will have a reward.\" But the scholars agree he must perform it again after puberty to fulfil the obligation.",
+  "c": ".fc-e < .fc-face < .fc-in"
+ },
+ {
+  "h": "u7ksmc",
+  "k": "From the {1}th (Tarwiyah) to the {2}th — or the {3}th if you stay in Mina. The {4}th is Arafah and the {5}th is Eid al-Adha.",
+  "c": ".fc-e < .fc-face < .fc-in"
+ },
+ {
+  "h": "1ckm9uu",
+  "k": "He led Dhuhr, Asr, Maghrib, Isha and Fajr in Mina, then waited for sunrise before moving on. The four-rakah prayers were shortened to two; whether a pilgrim who has stayed long in Makkah also shortens differs between the schools.",
+  "c": ".fc-e < .fc-face < .fc-in"
+ },
+ {
+  "h": "1tinjfp",
+  "k": "He stoned on the {1}th in the forenoon, and afterwards \"when the sun had declined.\" Ibn Umar: \"We used to wait till the sun declined.\" Whether you may stone after sunset differs: Hanafis and Shafi'is allow it, and the Saudi fatwa bodies follow this; the Hanbali school moves it to the next day after midday — follow your group.",
+  "c": ".fc-e < .fc-face < .fc-in"
+ },
+ {
+  "h": "1yoyx9x",
+  "k": "Ihram at the miqat, then tawaf, then sa'i, then cutting the hair — in that order.",
+  "c": ".fc-e < .fc-face < .fc-in"
+ },
+ {
+  "h": "atjani",
+  "k": "Once in a lifetime. When a man asked \"every year?\", the Prophet ﷺ said: \"If I said yes, it would become obligatory — and you would not be able to do it.\"",
+  "c": ".fc-e < .fc-face < .fc-in"
+ },
+ {
+  "h": "15pnhnn",
+  "k": "One adhan, two iqamahs, nothing prayed between them — then the standing began. That is the Sunnah and the majority practice; Abu Hanifa allowed the combining only behind the imam, so many Hanafi groups pray each in its own time in the tents, and the schools differ on who shortens — follow your group's scholar.",
+  "c": ".fc-e < .fc-face < .fc-in"
+ },
+ {
+  "h": "1o6j8ar",
+  "k": "Seven rounds, counter-clockwise, starting and ending at the Black Stone corner.",
+  "c": ".fc-e < .fc-face < .fc-in"
+ },
+ {
+  "h": "1n509l1",
+  "k": "Seven, one at a time, with a takbir for each.",
+  "c": ".fc-e < .fc-face < .fc-in"
+ },
+ {
+  "h": "vdq6av",
+  "k": "Takbir with each pebble, then a long dua facing the qibla after the small and the middle — and none after Aqabah.",
+  "c": ".fc-e < .fc-face < .fc-in"
+ },
+ {
+  "h": "p6vhtr",
+  "k": "The small one by Masjid al-Khayf, then the middle, then Aqabah — \"I saw the Prophet ﷺ doing like this.\" Most scholars make this order a condition; Hanafis hold it is a sunnah.",
+  "c": ".fc-e < .fc-face < .fc-in"
+ },
+ {
+  "h": "1bcc945",
+  "k": "True — unlike Hajj, Umrah has no fixed date. (Ramadan carries a special reward.) Hanafis dislike it on {1}–{2} Dhul Hijjah, and Saudi authorities pause Umrah permits around the Hajj season — check Nusuk for your dates.",
+  "c": ".fc-e < .fc-face < .fc-in"
+ },
+ {
+  "h": "16b7ko1",
+  "k": "Umrah is the \"minor pilgrimage\" — Hajj is the major one with fixed dates and extra rites.",
+  "c": ".fc-e < .fc-face < .fc-in"
+ },
+ {
+  "h": "61vsr9",
+  "k": "Yawm at-Tarwiyah — the day the companions set out for Mina in ihram for Hajj. The {1}th is Arafah, the {2}th the Day of Nahr, and the {3}th the Day of Qarr (staying).",
+  "c": ".fc-e < .fc-face < .fc-in"
+ },
+ {
+  "h": "lwcnoi",
+  "k": "After Jamrat al-Aqabah only",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "1rbwpxw",
+  "k": "After all three, facing the qibla",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "10vwoa8",
+  "k": "After none — he left each one at once",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "hm7zyo",
+  "k": "Any order, as long as each gets seven",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "1vwwgzh",
+  "k": "Aqabah→middle→small (nearest Masjid al-Khayf)",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "841o31",
+  "k": "Before {P1}, to beat the crowds",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "k0m849",
+  "k": "Combined Dhuhr with Asr and Maghrib with Isha, as at Arafah",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "kfbm37",
+  "k": "Each in its own time, four rakahs each",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "1ycyzvu",
+  "k": "Every five years",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "78rpt9",
+  "k": "Every year",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "160vi7s",
+  "k": "False",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "q9vlrb",
+  "k": "Ihram→Sa'i→Tawaf→Halq",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "17z7txo",
+  "k": "In the early morning, soon after sunrise",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "w7ja0r",
+  "k": "Middle→small→Aqabah, then the dua",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "2qjxf9",
+  "k": "Not at all — he gave the whole day to dua",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "1m4j4id",
+  "k": "Only after {P1}, at night",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "95ozv6",
+  "k": "Only for those who live near Makkah",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "16hybj1",
+  "k": "Sa'i→Tawaf→Ihram→Halq",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "1vf9zrf",
+  "k": "Stoned the three jamarat after midday",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "1l3t2e7",
+  "k": "Stood in dua on Jabal ar-Rahmah until sunset",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "1nzhl25",
+  "k": "Tawaf→Ihram→Sa'i→Halq",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "1rfc9qa",
+  "k": "The Hajj is void and must be repeated next year",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "2sd3gf",
+  "k": "The Hajj stands once he fasts for three days",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "oiohk5",
+  "k": "The Hajj stands, and nothing at all is owed",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "1649a4f",
+  "k": "The arrival tawaf and the farewell tawaf",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "147aeo1",
+  "k": "The farewell pilgrimage",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "1jxyj5",
+  "k": "The first three days of Muharram",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "5slo23",
+  "k": "The greater pilgrimage",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "5l0nzd",
+  "k": "The last ten nights of Ramadan",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "j5c5wm",
+  "k": "The night at Muzdalifah and the stoning",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "18kosta",
+  "k": "The night journey",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "l7xsmg",
+  "k": "The sacrifice and the shave",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "19lunfv",
+  "k": "The {1}th to the {2}th",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "1m44sl7",
+  "k": "Together at {P1} time, with an adhan for each",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "1l4d43p",
+  "k": "True",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "1m9spnb",
+  "k": "Yawm 'Arafah",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "7uxs81",
+  "k": "Yawm al-Qarr",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "udp80g",
+  "k": "{1}st–{2}th",
+  "c": ".fc-opts < .fc-face < .fc-in"
+ },
+ {
+  "h": "1k1bxwo",
+  "k": "Show question",
+  "c": ".fc-showq < .fc-face < .fc-in"
+ },
+ {
+  "h": "lxkov9",
+  "k": "Read",
+  "c": ".fc-src < .fc-face < .fc-in",
+  "part_of": "Read · Know before you go"
+ },
+ {
+  "h": "1yogrjt",
+  "k": "Read · Know before you go",
+  "c": ".fc-src < .fc-face < .fc-in"
+ },
+ {
+  "h": "1x7oykc",
+  "k": "Tap to reveal",
+  "c": ".hint < .fc-face < .fc-in",
+  "part_of": "Tap to reveal · then grade yourself"
+ },
+ {
+  "h": "18wryoc",
+  "k": "Tap to reveal · then grade yourself",
+  "c": ".hint < .fc-face < .fc-in"
+ },
+ {
+  "h": "682066",
+  "k": "then grade yourself",
+  "c": ".hint < .fc-face < .fc-in",
+  "part_of": "Tap to reveal · then grade yourself"
+ },
+ {
+  "h": "hvffeb",
+  "k": "Locked",
+  "c": ".lvl-s < .lvl < #qzArea"
+ },
+ {
+  "h": "6sfevr",
+  "k": "Start→",
+  "c": ".lvl-s < .lvl < #qzArea"
+ },
+ {
+  "h": "koas4k",
+  "k": "Every tawaf & sa'i of your Hajj · {1} questions · pass = {2} correct",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "1xutpom",
+  "k": "Every tawaf & sa'i of your Hajj — and the Tamattu' Umrah · {1} questions · pass = {2} correct",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "gh91gw",
+  "k": "Fiqh essentials — Q&A",
+  "c": ".lvl-t < .lvl < #qzArea",
+  "part_of": "Level {1} · Fiqh essentials — Q&A"
+ },
+ {
+  "h": "att0ss",
+  "k": "Hajj fiqh — mistakes & concessions",
+  "c": ".lvl-t < .lvl < #qzArea",
+  "part_of": "Level {1} · Hajj fiqh — mistakes & concessions"
+ },
+ {
+  "h": "1we0jyy",
+  "k": "History of Makkah & the Kaaba",
+  "c": ".lvl-t < .lvl < #qzArea",
+  "part_of": "Level {1} · History of Makkah & the Kaaba"
+ },
+ {
+  "h": "18wiuoq",
+  "k": "Ihram & the Miqats",
+  "c": ".lvl-t < .lvl < #qzArea",
+  "part_of": "Level {1} · Ihram & the Miqats"
+ },
+ {
+  "h": "1k00k87",
+  "k": "Ihram for Hajj & the talbiyah",
+  "c": ".lvl-t < .lvl < #qzArea",
+  "part_of": "Level {1} · Ihram for Hajj & the talbiyah"
+ },
+ {
+  "h": "1pxoqg6",
+  "k": "Level {1}",
+  "c": ".lvl-t < .lvl < #qzArea",
+  "part_of": "Level {1} · Foundations of Umrah"
+ },
+ {
+  "h": "nph5w8",
+  "k": "Level {1} · Fiqh essentials — Q&A",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "1t58ccp",
+  "k": "Level {1} · Foundations of Hajj",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "neijwj",
+  "k": "Level {1} · Foundations of Umrah",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "13halxg",
+  "k": "Level {1} · Hajj fiqh — mistakes & concessions",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "jnkp2a",
+  "k": "Level {1} · History of Makkah & the Kaaba",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "12ofrxe",
+  "k": "Level {1} · Ihram & the Miqats",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "6rs0nz",
+  "k": "Level {1} · Ihram for Hajj & the talbiyah",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "1afv01g",
+  "k": "Level {1} · Madinah — City of the Prophet ﷺ",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "187jtp3",
+  "k": "Level {1} · Muzdalifah & the {2}th",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "ja551d",
+  "k": "Level {1} · Tashreeq & the farewell",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "1vv4k2y",
+  "k": "Level {1} · Tawaf, Sa'i & Halq",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "1w7jv29",
+  "k": "Level {1} · The {2}th & {3}th — Mina & Arafah",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "snk3od",
+  "k": "Level {1} · Virtues of Hajj & the Haram",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "1dv57vz",
+  "k": "Level {1} · Virtues of Umrah & the Haram",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "1djj9m8",
+  "k": "Miqats, the {1}th, the talbiyah & the ihram rules · {2} questions · pass = {3} correct",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "1bq506k",
+  "k": "Muzdalifah & the {1}th",
+  "c": ".lvl-t < .lvl < #qzArea",
+  "part_of": "Level {1} · Muzdalifah & the {2}th"
+ },
+ {
+  "h": "1tzzru2",
+  "k": "Pillars vs wajibs, dam, fidyah & the ease given to the weak · {1} questions · pass = {2} correct",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "zagjpk",
+  "k": "Pillars, wajibs, sunnahs & the three types · {1} questions · pass = {2} correct",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "1xntneg",
+  "k": "Rulings, nuances & common doubts · {1} questions · pass = {2} correct",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "d68nv8",
+  "k": "Tarwiyah, the standing & the dua of Arafah · {1} questions · pass = {2} correct",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "xm3gqx",
+  "k": "Tashreeq & the farewell",
+  "c": ".lvl-t < .lvl < #qzArea",
+  "part_of": "Level {1} · Tashreeq & the farewell"
+ },
+ {
+  "h": "1bjiubm",
+  "k": "Tawaf, Sa'i & Halq",
+  "c": ".lvl-t < .lvl < #qzArea",
+  "part_of": "Level {1} · Tawaf, Sa'i & Halq"
+ },
+ {
+  "h": "1opk4p7",
+  "k": "The night, the pebbles, the order of the Day of Nahr & the first release · {1} questions · pass = {2} correct",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "1jucj5a",
+  "k": "The rewards of an accepted Hajj · {1} questions · pass = {2} correct",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "1l7pp4q",
+  "k": "The rewards that await you · {1} questions · pass = {2} correct",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "585sqz",
+  "k": "The rites in fine detail · {1} questions · pass = {2} correct",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "17j4rvy",
+  "k": "The sacred state and its boundaries · {1} questions · pass = {2} correct",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "ge036c",
+  "k": "The story behind every rite · {1} questions · pass = {2} correct",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "nhzidf",
+  "k": "The three jamarat, leaving Mina & tawaf al-wada · {1} questions · pass = {2} correct",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "5fsm0b",
+  "k": "The {1}th & {2}th — Mina & Arafah",
+  "c": ".lvl-t < .lvl < #qzArea",
+  "part_of": "Level {1} · The {2}th & {3}th — Mina & Arafah"
+ },
+ {
+  "h": "194av5y",
+  "k": "Virtues & etiquette of the visit · {1} questions · pass = {2} correct",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "reommj",
+  "k": "What Umrah is and how it flows · {1} questions · pass = {2} correct",
+  "c": ".lvl-t < .lvl < #qzArea"
+ },
+ {
+  "h": "o5li69",
+  "k": "All levels open — you have been before.",
+  "c": ".qz-free < #qzArea"
+ },
+ {
+  "h": "t848xv",
+  "k": "Keys: {1}–{2} or A–D to answer · Enter for next · Esc to exit",
+  "c": ".qz-keys < #qzArea"
+ },
+ {
+  "h": "cmw6ic",
+  "k": "Level {1} is locked",
+  "c": ".qz-lock < #qzArea"
+ },
+ {
+  "h": "1ya9vjl",
+  "k": "Pass Level {1} · Foundations of Hajj first — {2} of {3} correct ({4}%). Been before, or want the harder levels now? Open them all; the certificate still needs every level passed.",
+  "c": ".qz-lock < #qzArea"
+ },
+ {
+  "h": "1rfihpd",
+  "k": "Pass Level {1} · Foundations of Umrah first — {2} of {3} correct ({4}%). Been before, or want the harder levels now? Open them all; the certificate still needs every level passed.",
+  "c": ".qz-lock < #qzArea"
+ },
+ {
+  "h": "1wt5zky",
+  "k": "Pass Level {1} · Hajj fiqh — mistakes & concessions first — {2} of {3} correct ({4}%). Been before, or want the harder levels now? Open them all; the certificate still needs every level passed.",
+  "c": ".qz-lock < #qzArea"
+ },
+ {
+  "h": "1f8qnq",
+  "k": "Pass Level {1} · History of Makkah & the Kaaba first — {2} of {3} correct ({4}%). Been before, or want the harder levels now? Open them all; the certificate still needs every level passed.",
+  "c": ".qz-lock < #qzArea"
+ },
+ {
+  "h": "dyzdv8",
+  "k": "Pass Level {1} · Ihram & the Miqats first — {2} of {3} correct ({4}%). Been before, or want the harder levels now? Open them all; the certificate still needs every level passed.",
+  "c": ".qz-lock < #qzArea"
+ },
+ {
+  "h": "1qhrm5f",
+  "k": "Pass Level {1} · Ihram for Hajj & the talbiyah first — {2} of {3} correct ({4}%). Been before, or want the harder levels now? Open them all; the certificate still needs every level passed.",
+  "c": ".qz-lock < #qzArea"
+ },
+ {
+  "h": "kgwq8",
+  "k": "Pass Level {1} · Madinah — City of the Prophet ﷺ first — {2} of {3} correct ({4}%). Been before, or want the harder levels now? Open them all; the certificate still needs every level passed.",
+  "c": ".qz-lock < #qzArea"
+ },
+ {
+  "h": "1bxfoc0",
+  "k": "Pass Level {1} · Muzdalifah & the {2}th first — {3} of {4} correct ({5}%). Been before, or want the harder levels now? Open them all; the certificate still needs every level passed.",
+  "c": ".qz-lock < #qzArea"
+ },
+ {
+  "h": "egrr6l",
+  "k": "Pass Level {1} · Tashreeq & the farewell first — {2} of {3} correct ({4}%). Been before, or want the harder levels now? Open them all; the certificate still needs every level passed.",
+  "c": ".qz-lock < #qzArea"
+ },
+ {
+  "h": "1855708",
+  "k": "Pass Level {1} · Tawaf, Sa'i & Halq first — {2} of {3} correct ({4}%). Been before, or want the harder levels now? Open them all; the certificate still needs every level passed.",
+  "c": ".qz-lock < #qzArea"
+ },
+ {
+  "h": "16o8o0j",
+  "k": "Pass Level {1} · The {2}th & {3}th — Mina & Arafah first — {4} of {5} correct ({6}%). Been before, or want the harder levels now? Open them all; the certificate still needs every level passed.",
+  "c": ".qz-lock < #qzArea"
+ }
+]

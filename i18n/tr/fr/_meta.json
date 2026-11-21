@@ -1,0 +1,74 @@
+{
+ "g": {
+  "D": [
+   "lundi",
+   "mardi",
+   "mercredi",
+   "jeudi",
+   "vendredi",
+   "samedi",
+   "dimanche"
+  ],
+  "d": [
+   "lun.",
+   "mar.",
+   "mer.",
+   "jeu.",
+   "ven.",
+   "sam.",
+   "dim."
+  ],
+  "M": [
+   "janvier",
+   "février",
+   "mars",
+   "avril",
+   "mai",
+   "juin",
+   "juillet",
+   "août",
+   "septembre",
+   "octobre",
+   "novembre",
+   "décembre"
+  ],
+  "m": [
+   "janv.",
+   "févr.",
+   "mars",
+   "avr.",
+   "mai",
+   "juin",
+   "juil.",
+   "août",
+   "sept.",
+   "oct.",
+   "nov.",
+   "déc."
+  ],
+  "H": [
+   "mouharram",
+   "safar",
+   "rabia al awal",
+   "rabia ath-thani",
+   "joumada al oula",
+   "joumada ath-thania",
+   "rajab",
+   "chaabane",
+   "ramadan",
+   "chawwal",
+   "dhou al qi`da",
+   "dhou al-hijja"
+  ],
+  "P": [
+   "Fajr",
+   "Dhuhr",
+   "Asr",
+   "Maghrib",
+   "Icha"
+  ]
+ },
+ "note": "",
+ "quran": "Muhammad Hamidullah",
+ "checked": ""
+}

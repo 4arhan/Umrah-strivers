@@ -1,0 +1,902 @@
+[
+ {
+  "h": "8twwio",
+  "k": "Every tent looks the same at {1} am. Save these before the {2}th — from the {3}th to the {4}th they lead the driver card, the \"I'm lost\" card, Help and the Counters header.",
+  "c": "#campBlk"
+ },
+ {
+  "h": "1sp78bp",
+  "k": "The Ministry of Hajj advises saving these and carrying proof of them — roads and camps in Mina look very alike.",
+  "c": "#campBlk"
+ },
+ {
+  "h": "iov3qo",
+  "k": "Fill this in before you land — then tap \"Show to driver\" whenever you need a ride back, or \"I'm lost\" if you get separated.",
+  "c": "#hotelCard"
+ },
+ {
+  "h": "17nbgxc",
+  "k": "My hotel & emergency numbers",
+  "c": "#hotelCard"
+ },
+ {
+  "h": "t15vqb",
+  "k": "Sends one link that sets the departure date, trip length, itinerary split, prayer city and this hotel card on their phones — their own progress is never touched.",
+  "c": "#hotelCard"
+ },
+ {
+  "h": "kopji4",
+  "k": "Write the leader's number on a wristband or a paper in each child's pocket every morning.",
+  "c": "#hotelCard"
+ },
+ {
+  "h": "5o31ag",
+  "k": "A suggestion, not a rule — worship comes first; drop ziyarah if you are tired. Tap any day to rewrite it (the days of Hajj follow the rites guide).",
+  "c": "#itinArea"
+ },
+ {
+  "h": "1wk0cna",
+  "k": "A suggestion, not a rule — worship comes first; drop ziyarah if you are tired. Tap any day to rewrite it.",
+  "c": "#itinArea"
+ },
+ {
+  "h": "40vugx",
+  "k": "Suggested itinerary",
+  "c": "#itinCard"
+ },
+ {
+  "h": "1kr3x4j",
+  "k": "Set your departure and return dates above",
+  "c": "#itinSub"
+ },
+ {
+  "h": "vqzsd7",
+  "k": "Set your departure and return dates above · {1}-day plan — tap a day to edit it",
+  "c": "#itinSub"
+ },
+ {
+  "h": "1kssvdo",
+  "k": "{1}-day trip · {2} {M1} – {3} {M2} — tap a day to edit it",
+  "c": "#itinSub"
+ },
+ {
+  "h": "4ccbh8",
+  "k": "{1}-day trip · {2} {m1} – {3} {m2} — tap a day to edit it",
+  "c": "#itinSub"
+ },
+ {
+  "h": "1oztbmq",
+  "k": "Before the checklist — the intention",
+  "c": "#niyCard"
+ },
+ {
+  "h": "7ttwwq",
+  "k": "Ready for no signal",
+  "c": "#readyCard"
+ },
+ {
+  "h": "10y37iz",
+  "k": "What to do when",
+  "c": "#tlCard"
+ },
+ {
+  "h": "1m4i2r5",
+  "k": "Share trip setup with group",
+  "c": ".btn < #hotelCard"
+ },
+ {
+  "h": "ut6oed",
+  "k": "Share itinerary",
+  "c": ".btn < #itinCard"
+ },
+ {
+  "h": "cgyua5",
+  "k": "Camp number",
+  "c": ".care-l < #campBlk"
+ },
+ {
+  "h": "6aex9q",
+  "k": "Group supervisor",
+  "c": ".care-l < #campBlk"
+ },
+ {
+  "h": "1pshqvo",
+  "k": "Group supervisor's phone",
+  "c": ".care-l < #campBlk"
+ },
+ {
+  "h": "mnl17h",
+  "k": "Maktab (if your company gives one)",
+  "c": ".care-l < #campBlk"
+ },
+ {
+  "h": "3aqmzo",
+  "k": "Nearest building or landmark",
+  "c": ".care-l < #campBlk"
+ },
+ {
+  "h": "kca6fx",
+  "k": "Area number",
+  "c": ".care-l < .camp-g < #campBlk"
+ },
+ {
+  "h": "15rtgdu",
+  "k": "Gate",
+  "c": ".care-l < .camp-g < #campBlk"
+ },
+ {
+  "h": "1gan4ny",
+  "k": "Street",
+  "c": ".care-l < .camp-g < #campBlk"
+ },
+ {
+  "h": "1sarfpu",
+  "k": "Train station number",
+  "c": ".care-l < .camp-g < #campBlk"
+ },
+ {
+  "h": "16cgz6h",
+  "k": "Finding your way back",
+  "c": ".chip-btn < #campBlk"
+ },
+ {
+  "h": "jc1jjr",
+  "k": "My saved pin",
+  "c": ".chip-btn < #campBlk"
+ },
+ {
+  "h": "18gkg8b",
+  "k": "To my camp",
+  "c": ".chip-btn < #campBlk"
+ },
+ {
+  "h": "6hkd6d",
+  "k": "Paste group link",
+  "c": ".chip-btn < #hotelCard"
+ },
+ {
+  "h": "149j2d8",
+  "k": "Set hotel location",
+  "c": ".chip-btn < .hstat < #hotelCard"
+ },
+ {
+  "h": "ay7i9f",
+  "k": "Start learning",
+  "c": ".chip-btn < .niy-b < #niyCard"
+ },
+ {
+  "h": "1wz7w7h",
+  "k": "{1} Dhul Hijjah",
+  "c": ".it-c < .it-t < #it-2"
+ },
+ {
+  "h": "9vlzeu",
+  "k": "Day {1}",
+  "c": ".it-d < #it-0"
+ },
+ {
+  "h": "1muawom",
+  "k": "Day {1} · today",
+  "c": ".it-d < #it-1"
+ },
+ {
+  "h": "ibe1mm",
+  "k": "today",
+  "c": ".it-d < #it-1",
+  "part_of": "Day {1} · today"
+ },
+ {
+  "h": "284dn1",
+  "k": "taraweeh after {P1}",
+  "c": ".it-ram < .it-t < #it-0",
+  "part_of": "{H1} {1} · taraweeh after {P1}"
+ },
+ {
+  "h": "kq9pjc",
+  "k": "{H1} {1} · taraweeh after {P1}",
+  "c": ".it-ram < .it-t < #it-0"
+ },
+ {
+  "h": "1p26ezm",
+  "k": "tonight: the night of the {1}th",
+  "c": ".it-ram < .it-t < #it-10",
+  "part_of": "{H1} {1} · taraweeh after Isha · tonight: the night of the {2}th"
+ },
+ {
+  "h": "1rsg6th",
+  "k": "{H1} {1} · taraweeh after Isha · tonight: the night of the {2}th",
+  "c": ".it-ram < .it-t < #it-10"
+ },
+ {
+  "h": "llyr6z",
+  "k": "tonight: the night of the {1}th, an odd night of the last ten",
+  "c": ".it-ram < .it-t < #it-11",
+  "part_of": "{H1} {1} · taraweeh after Isha · tonight: the night of the {2}th, an odd night of the last ten"
+ },
+ {
+  "h": "loiftg",
+  "k": "{H1} {1} · taraweeh after Isha · tonight: the night of the {2}th, an odd night of the last ten",
+  "c": ".it-ram < .it-t < #it-11"
+ },
+ {
+  "h": "lp42rk",
+  "k": "tonight: the night of the {1}st, an odd night of the last ten",
+  "c": ".it-ram < .it-t < #it-7",
+  "part_of": "{H1} {1} · taraweeh after Isha · tonight: the night of the {2}st, an odd night of the last ten"
+ },
+ {
+  "h": "1ykbhxj",
+  "k": "{H1} {1} · taraweeh after Isha · tonight: the night of the {2}st, an odd night of the last ten",
+  "c": ".it-ram < .it-t < #it-7"
+ },
+ {
+  "h": "1kmxwho",
+  "k": "tonight: the night of the {1}nd",
+  "c": ".it-ram < .it-t < #it-8",
+  "part_of": "{H1} {1} · taraweeh after Isha · tonight: the night of the {2}nd"
+ },
+ {
+  "h": "1meafv",
+  "k": "{H1} {1} · taraweeh after Isha · tonight: the night of the {2}nd",
+  "c": ".it-ram < .it-t < #it-8"
+ },
+ {
+  "h": "190m4tt",
+  "k": "tonight: the night of the {1}rd, an odd night of the last ten",
+  "c": ".it-ram < .it-t < #it-9",
+  "part_of": "{H1} {1} · taraweeh after Isha · tonight: the night of the {2}rd, an odd night of the last ten"
+ },
+ {
+  "h": "yobmum",
+  "k": "{H1} {1} · taraweeh after Isha · tonight: the night of the {2}rd, an odd night of the last ten",
+  "c": ".it-ram < .it-t < #it-9"
+ },
+ {
+  "h": "btkqda",
+  "k": "Arrive",
+  "c": ".it-t < #it-0",
+  "part_of": "Arrive · ihram at the miqat (in flight) · Umrah tonight when rested"
+ },
+ {
+  "h": "tm618e",
+  "k": "Arrive · ihram at the miqat (in flight) · Umrah tonight when rested",
+  "c": ".it-t < #it-0"
+ },
+ {
+  "h": "4s14rx",
+  "k": "Arrive · ihram at the miqat (in flight) · the arrival tawaf (and sa'i if you do it now) when rested — you stay in ihram until the {1}th",
+  "c": ".it-t < #it-0"
+ },
+ {
+  "h": "6i6fho",
+  "k": "Umrah tonight when rested",
+  "c": ".it-t < #it-0",
+  "part_of": "Arrive · ihram at the miqat (in flight) · Umrah tonight when rested"
+ },
+ {
+  "h": "1ixw40k",
+  "k": "ihram at the miqat (in flight)",
+  "c": ".it-t < #it-0",
+  "part_of": "Arrive · ihram at the miqat (in flight) · Umrah tonight when rested"
+ },
+ {
+  "h": "lfmjt",
+  "k": "All five prayers in the Haram",
+  "c": ".it-t < #it-1",
+  "part_of": "All five prayers in the Haram · nafl tawaf after Fajr · rest"
+ },
+ {
+  "h": "x7veck",
+  "k": "All five prayers in the Haram · nafl tawaf after Fajr · rest",
+  "c": ".it-t < #it-1"
+ },
+ {
+  "h": "svcp6c",
+  "k": "Nafl tawaf · rest — save your strength for the {1}th",
+  "c": ".it-t < #it-1"
+ },
+ {
+  "h": "fs2zgk",
+  "k": "nafl tawaf after {P1}",
+  "c": ".it-t < #it-1",
+  "part_of": "All five prayers in the Haram · nafl tawaf after Fajr · rest"
+ },
+ {
+  "h": "1t4qt1z",
+  "k": "rest",
+  "c": ".it-t < #it-1",
+  "part_of": "All five prayers in the Haram · nafl tawaf after Fajr · rest"
+ },
+ {
+  "h": "17yjqen",
+  "k": "rest — save your strength for the {1}th",
+  "c": ".it-t < #it-1",
+  "part_of": "Nafl tawaf · rest — save your strength for the {1}th"
+ },
+ {
+  "h": "lsdfjo",
+  "k": "You are already in ihram — stay in it · Mina · five prayers, the four-rakah ones shortened",
+  "c": ".it-t < #it-13"
+ },
+ {
+  "h": "1ehymrf",
+  "k": "Rami of Aqabah · halq · tawaf al-ifadah & sa'i · back to Mina",
+  "c": ".it-t < #it-15"
+ },
+ {
+  "h": "18s8hm9",
+  "k": "Ihram from where you are staying",
+  "c": ".it-t < #it-2",
+  "part_of": "Ihram from where you are staying · Mina · five prayers, the four-rakah ones shortened"
+ },
+ {
+  "h": "1eaunja",
+  "k": "Ihram from where you are staying · Mina · five prayers, the four-rakah ones shortened",
+  "c": ".it-t < #it-2"
+ },
+ {
+  "h": "yecwur",
+  "k": "Ziyarah taxi loop:",
+  "c": ".it-t < #it-2"
+ },
+ {
+  "h": "1z0p2kv",
+  "k": "five prayers, the four-rakah ones shortened",
+  "c": ".it-t < #it-2",
+  "part_of": "Ihram from where you are staying · Mina · five prayers, the four-rakah ones shortened"
+ },
+ {
+  "h": "1siuf",
+  "k": "& long dua",
+  "c": ".it-t < #it-3"
+ },
+ {
+  "h": "fg4ige",
+  "k": "(or",
+  "c": ".it-t < #it-3"
+ },
+ {
+  "h": "1mapvq1",
+  "k": "Arafah — the pillar of Hajj",
+  "c": ".it-t < #it-3",
+  "part_of": "Arafah — the pillar of Hajj · Dhuhr + Asr combined · wuquf until sunset · then Muzdalifah — Maghrib + Isha together · sleep · pebbles · the weak leave after midnight"
+ },
+ {
+  "h": "skh09q",
+  "k": "Arafah — the pillar of Hajj · Dhuhr + Asr combined · wuquf until sunset · then Muzdalifah — Maghrib + Isha together · sleep · pebbles · the weak leave after midnight",
+  "c": ".it-t < #it-3"
+ },
+ {
+  "h": "wul0dc",
+  "k": "Second Umrah from",
+  "c": ".it-t < #it-3"
+ },
+ {
+  "h": "crmsx6",
+  "k": "pebbles",
+  "c": ".it-t < #it-3",
+  "part_of": "Arafah — the pillar of Hajj · Dhuhr + Asr combined · wuquf until sunset · then Muzdalifah — Maghrib + Isha together · sleep · pebbles · the weak leave after midnight"
+ },
+ {
+  "h": "129m39k",
+  "k": "sleep",
+  "c": ".it-t < #it-3",
+  "part_of": "Arafah — the pillar of Hajj · Dhuhr + Asr combined · wuquf until sunset · then Muzdalifah — Maghrib + Isha together · sleep · pebbles · the weak leave after midnight"
+ },
+ {
+  "h": "tnpbj7",
+  "k": "the weak leave after midnight",
+  "c": ".it-t < #it-3",
+  "part_of": "Arafah — the pillar of Hajj · Dhuhr + Asr combined · wuquf until sunset · then Muzdalifah — Maghrib + Isha together · sleep · pebbles · the weak leave after midnight"
+ },
+ {
+  "h": "1eabkgn",
+  "k": "then Muzdalifah — {P1} + {P2} together",
+  "c": ".it-t < #it-3",
+  "part_of": "Arafah — the pillar of Hajj · Dhuhr + Asr combined · wuquf until sunset · then Muzdalifah — Maghrib + Isha together · sleep · pebbles · the weak leave after midnight"
+ },
+ {
+  "h": "1942mr7",
+  "k": "wuquf until sunset",
+  "c": ".it-t < #it-3",
+  "part_of": "Arafah — the pillar of Hajj · Dhuhr + Asr combined · wuquf until sunset · then Muzdalifah — Maghrib + Isha together · sleep · pebbles · the weak leave after midnight"
+ },
+ {
+  "h": "t4uiqg",
+  "k": "{P1} + {P2} combined",
+  "c": ".it-t < #it-3",
+  "part_of": "Arafah — the pillar of Hajj · Dhuhr + Asr combined · wuquf until sunset · then Muzdalifah — Maghrib + Isha together · sleep · pebbles · the weak leave after midnight"
+ },
+ {
+  "h": "flygff",
+  "k": "Quran facing the Kaaba",
+  "c": ".it-t < #it-4",
+  "part_of": "Quran facing the Kaaba ·"
+ },
+ {
+  "h": "16l6q36",
+  "k": "Quran facing the Kaaba ·",
+  "c": ".it-t < #it-4"
+ },
+ {
+  "h": "1qbmgm5",
+  "k": "Rami of Aqabah",
+  "c": ".it-t < #it-4",
+  "part_of": "Rami of Aqabah · hady · halq · tawaf al-ifadah & sa'i · back to Mina"
+ },
+ {
+  "h": "cs5kbs",
+  "k": "Rami of Aqabah · hady · halq · tawaf al-ifadah & sa'i · back to Mina",
+  "c": ".it-t < #it-4"
+ },
+ {
+  "h": "jjo66m",
+  "k": "back to Mina",
+  "c": ".it-t < #it-4",
+  "part_of": "Rami of Aqabah · hady · halq · tawaf al-ifadah & sa'i · back to Mina"
+ },
+ {
+  "h": "1pi6vox",
+  "k": "hady",
+  "c": ".it-t < #it-4",
+  "part_of": "Rami of Aqabah · hady · halq · tawaf al-ifadah & sa'i · back to Mina"
+ },
+ {
+  "h": "1rqv4u9",
+  "k": "halq",
+  "c": ".it-t < #it-4",
+  "part_of": "Rami of Aqabah · hady · halq · tawaf al-ifadah & sa'i · back to Mina"
+ },
+ {
+  "h": "1ojouuz",
+  "k": "late night",
+  "c": ".it-t < #it-4",
+  "part_of": "late night ·"
+ },
+ {
+  "h": "18wrqpu",
+  "k": "late night ·",
+  "c": ".it-t < #it-4"
+ },
+ {
+  "h": "z8neh7",
+  "k": "tawaf al-ifadah & sa'i",
+  "c": ".it-t < #it-4",
+  "part_of": "Rami of Aqabah · hady · halq · tawaf al-ifadah & sa'i · back to Mina"
+ },
+ {
+  "h": "73vgap",
+  "k": "Nafl tawaf",
+  "c": ".it-t < #it-5",
+  "part_of": "Nafl tawaf ·"
+ },
+ {
+  "h": "1u70uh8",
+  "k": "Nafl tawaf ·",
+  "c": ".it-t < #it-5"
+ },
+ {
+  "h": "xkarp1",
+  "k": "Three jamarat after midday",
+  "c": ".it-t < #it-5",
+  "part_of": "Three jamarat after midday · the night in Mina"
+ },
+ {
+  "h": "2ngfyb",
+  "k": "Three jamarat after midday · the night in Mina",
+  "c": ".it-t < #it-5"
+ },
+ {
+  "h": "11mdhi4",
+  "k": "the night in Mina",
+  "c": ".it-t < #it-5",
+  "part_of": "Three jamarat after midday · the night in Mina"
+ },
+ {
+  "h": "1ydtksg",
+  "k": "· rest",
+  "c": ".it-t < #it-5"
+ },
+ {
+  "h": "1sq6g3x",
+  "k": "Tahajjud in the Haram",
+  "c": ".it-t < #it-6",
+  "part_of": "Tahajjud in the Haram · dua list at the Multazam · shopping"
+ },
+ {
+  "h": "oy3rym",
+  "k": "Tahajjud in the Haram · dua list at the Multazam · shopping",
+  "c": ".it-t < #it-6"
+ },
+ {
+  "h": "cn48de",
+  "k": "Three jamarat after midday · leave Mina before sunset, or stay for the {1}th",
+  "c": ".it-t < #it-6"
+ },
+ {
+  "h": "zje90y",
+  "k": "dua list at the Multazam",
+  "c": ".it-t < #it-6",
+  "part_of": "Tahajjud in the Haram · dua list at the Multazam · shopping"
+ },
+ {
+  "h": "pu73fp",
+  "k": "leave Mina before sunset, or stay for the {1}th",
+  "c": ".it-t < #it-6",
+  "part_of": "Three jamarat after midday · leave Mina before sunset, or stay for the {1}th"
+ },
+ {
+  "h": "19r3b3x",
+  "k": "shopping",
+  "c": ".it-t < #it-6",
+  "part_of": "Tahajjud in the Haram · dua list at the Multazam · shopping"
+ },
+ {
+  "h": "39wfb4",
+  "k": "& long dua · rest",
+  "c": ".it-t < #it-7"
+ },
+ {
+  "h": "4ikv3g",
+  "k": "Haramain train · settle · Maghrib & Isha in Masjid an-Nabawi · salam to the Prophet ﷺ",
+  "c": ".it-t < #it-7"
+ },
+ {
+  "h": "14h7ths",
+  "k": "Tawaf al-wada — the last thing you do",
+  "c": ".it-t < #it-7",
+  "part_of": "Tawaf al-wada — the last thing you do · {1} rounds · waived for sisters on their period · then the train to Madinah"
+ },
+ {
+  "h": "1civ0jy",
+  "k": "Tawaf al-wada — the last thing you do · {1} rounds · waived for sisters on their period · then the train to Madinah",
+  "c": ".it-t < #it-7"
+ },
+ {
+  "h": "1uarzg",
+  "k": "then the train to Madinah",
+  "c": ".it-t < #it-7",
+  "part_of": "Tawaf al-wada — the last thing you do · {1} rounds · waived for sisters on their period · then the train to Madinah"
+ },
+ {
+  "h": "mhkuc7",
+  "k": "waived for sisters on their period",
+  "c": ".it-t < #it-7",
+  "part_of": "Tawaf al-wada — the last thing you do · {1} rounds · waived for sisters on their period · then the train to Madinah"
+ },
+ {
+  "h": "167vhql",
+  "k": "{1} rounds",
+  "c": ".it-t < #it-7",
+  "part_of": "Tawaf al-wada — the last thing you do · {1} rounds · waived for sisters on their period · then the train to Madinah"
+ },
+ {
+  "h": "1gob22p",
+  "k": "(Nusuk permit)",
+  "c": ".it-t < #it-8",
+  "part_of": "(Nusuk permit) ·"
+ },
+ {
+  "h": "eu6g5o",
+  "k": "(Nusuk permit) ·",
+  "c": ".it-t < #it-8"
+ },
+ {
+  "h": "t4jznt",
+  "k": "after Fajr (brothers enter; sisters give salam from the gate)",
+  "c": ".it-t < #it-8",
+  "part_of": "after Fajr (brothers enter; sisters give salam from the gate) ·"
+ },
+ {
+  "h": "1l41u44",
+  "k": "after Fajr (brothers enter; sisters give salam from the gate) ·",
+  "c": ".it-t < #it-8"
+ },
+ {
+  "h": "2zb641",
+  "k": "with wudu from the hotel",
+  "c": ".it-t < #it-8"
+ },
+ {
+  "h": "t2pwxo",
+  "k": "Last salam to the Prophet ﷺ · depart",
+  "c": ".it-t < #it-9"
+ },
+ {
+  "h": "dzeueo",
+  "k": "Hajj day",
+  "c": ".it-tag < .it-t < #it-2"
+ },
+ {
+  "h": "arcqn6",
+  "k": "Health (Ministry of Health line)",
+  "c": ".kv < #hotelCard"
+ },
+ {
+  "h": "15hro48",
+  "k": "Ministry of Hajj & Umrah care",
+  "c": ".kv < #hotelCard"
+ },
+ {
+  "h": "1lqrcpn",
+  "k": "Police",
+  "c": ".kv < #hotelCard",
+  "part_of": "Police · ambulance · fire"
+ },
+ {
+  "h": "1cwlo57",
+  "k": "Police · ambulance · fire",
+  "c": ".kv < #hotelCard"
+ },
+ {
+  "h": "swkkyv",
+  "k": "Saudi Red Crescent",
+  "c": ".kv < #hotelCard"
+ },
+ {
+  "h": "3taoyn",
+  "k": "Tourism helpline",
+  "c": ".kv < #hotelCard"
+ },
+ {
+  "h": "13y3qjh",
+  "k": "ambulance",
+  "c": ".kv < #hotelCard",
+  "part_of": "Police · ambulance · fire"
+ },
+ {
+  "h": "13l2nyx",
+  "k": "fire",
+  "c": ".kv < #hotelCard",
+  "part_of": "Police · ambulance · fire"
+ },
+ {
+  "h": "1jhpkrx",
+  "k": "Show to driver",
+  "c": ".main < .hcard < #hotelCard"
+ },
+ {
+  "h": "dzutle",
+  "k": "Cut ties with worldly distractions before departure — markets, debates, idle talk, the scroll. Settle debts, seek forgiveness from people, write your will, and travel light in the heart.",
+  "c": ".niy-b < #niyCard"
+ },
+ {
+  "h": "1yowtmg",
+  "k": "Learning the rituals is mandatory. Do not obsess over the hotel and forget the rules of the worship. The Learn and Quiz tabs exist for this — finish the circuit before you fly.",
+  "c": ".niy-b < #niyCard"
+ },
+ {
+  "h": "cxlfqf",
+  "k": "The Detachment",
+  "c": ".niy-b < #niyCard",
+  "part_of": "{1} · The Detachment"
+ },
+ {
+  "h": "ogtpjh",
+  "k": "{1} · The Detachment",
+  "c": ".niy-b < #niyCard"
+ },
+ {
+  "h": "1blsd4u",
+  "k": "{1} · The Intention <1>(Niyyah)</1>",
+  "c": ".niy-b < #niyCard"
+ },
+ {
+  "h": "1fyaqh0",
+  "k": "{1} · The Knowledge <1>(Fiqh)</1>",
+  "c": ".niy-b < #niyCard"
+ },
+ {
+  "h": "1zjsc",
+  "k": "Begin here",
+  "c": ".niy-k < #niyCard"
+ },
+ {
+  "h": "emrjbk",
+  "k": "My intention & spiritual goals",
+  "c": ".niy-l < #niyCard"
+ },
+ {
+  "h": "13689oo",
+  "k": "Arafat",
+  "c": ".pl-link < .it-t < #it-2"
+ },
+ {
+  "h": "1o5xd17",
+  "k": "Hira",
+  "c": ".pl-link < .it-t < #it-2"
+ },
+ {
+  "h": "1srhnaa",
+  "k": "Mina",
+  "c": ".pl-link < .it-t < #it-2"
+ },
+ {
+  "h": "dsbpj6",
+  "k": "Muzdalifah",
+  "c": ".pl-link < .it-t < #it-2"
+ },
+ {
+  "h": "1bynxhx",
+  "k": "Thawr",
+  "c": ".pl-link < .it-t < #it-2"
+ },
+ {
+  "h": "d5vcrn",
+  "k": "Ji'ranah",
+  "c": ".pl-link < .it-t < #it-3"
+ },
+ {
+  "h": "1pnv666",
+  "k": "Tan'eem",
+  "c": ".pl-link < .it-t < #it-3"
+ },
+ {
+  "h": "k3r95d",
+  "k": "Zamzam",
+  "c": ".pl-link < .it-t < #it-3"
+ },
+ {
+  "h": "1mtnx08",
+  "k": "Clock Tower museum",
+  "c": ".pl-link < .it-t < #it-4"
+ },
+ {
+  "h": "7k2788",
+  "k": "Hijr Isma'il",
+  "c": ".pl-link < .it-t < #it-4"
+ },
+ {
+  "h": "1plh466",
+  "k": "Jannat al-Mu'alla",
+  "c": ".pl-link < .it-t < #it-5"
+ },
+ {
+  "h": "18eysvu",
+  "k": "Masjid al-Jinn",
+  "c": ".pl-link < .it-t < #it-5"
+ },
+ {
+  "h": "g4x5p3",
+  "k": "Baqi'",
+  "c": ".pl-link < .it-t < #it-8"
+ },
+ {
+  "h": "1ilh9ku",
+  "k": "Quba",
+  "c": ".pl-link < .it-t < #it-8"
+ },
+ {
+  "h": "ubm8p2",
+  "k": "Rawdah",
+  "c": ".pl-link < .it-t < #it-8"
+ },
+ {
+  "h": "1ryxjjd",
+  "k": "Priority",
+  "c": ".prio < .row-t < #dw-fajr"
+ },
+ {
+  "h": "13xd6jh",
+  "k": "Muslim {1}",
+  "c": ".rf < .row-t < #dw-fajr",
+  "refs": [
+   "muslim:656"
+  ]
+ },
+ {
+  "h": "94x84a",
+  "k": "La ilaha illallah / SubhanAllah dhikr",
+  "c": ".rl < .row-t < #dw-dhikr100"
+ },
+ {
+  "h": "8h09xx",
+  "k": "Jumu'ah in congregation",
+  "c": ".rl < .row-t < #dw-dhuhr"
+ },
+ {
+  "h": "7vkdhu",
+  "k": "Went through my personal dua list",
+  "c": ".rl < .row-t < #dw-dualist"
+ },
+ {
+  "h": "15mvt8a",
+  "k": "Made dua for family & the ummah",
+  "c": ".rl < .row-t < #dw-duaothers"
+ },
+ {
+  "h": "59uhms",
+  "k": "Duha prayer",
+  "c": ".rl < .row-t < #dw-duha"
+ },
+ {
+  "h": "1mtopzi",
+  "k": "Evening adhkar",
+  "c": ".rl < .row-t < #dw-eadhkar"
+ },
+ {
+  "h": "xk8axb",
+  "k": "{P1} in congregation",
+  "c": ".rl < .row-t < #dw-fajr"
+ },
+ {
+  "h": "dqj3dl",
+  "k": "Helped a fellow pilgrim",
+  "c": ".rl < .row-t < #dw-helped"
+ },
+ {
+  "h": "29k03h",
+  "k": "Takbir after the prayers",
+  "c": ".rl < .row-t < #dw-htakbir"
+ },
+ {
+  "h": "17prw6q",
+  "k": "Istighfar ×{1}",
+  "c": ".rl < .row-t < #dw-istighfar"
+ },
+ {
+  "h": "1en19xn",
+  "k": "Listened to the Haram recitation attentively",
+  "c": ".rl < .row-t < #dw-listen"
+ },
+ {
+  "h": "1uynmvi",
+  "k": "Morning adhkar",
+  "c": ".rl < .row-t < #dw-madhkar"
+ },
+ {
+  "h": "1fqdp0t",
+  "k": "Memorised new ayah(s)",
+  "c": ".rl < .row-t < #dw-memorize"
+ },
+ {
+  "h": "ahi8m0",
+  "k": "Nafl tawaf ({1} rounds)",
+  "c": ".rl < .row-t < #dw-ntawaf"
+ },
+ {
+  "h": "1aqoxna",
+  "k": "Kept patience in the crowds",
+  "c": ".rl < .row-t < #dw-patience"
+ },
+ {
+  "h": "1pmqbd4",
+  "k": "Recited Quran (facing the Kaaba if you can)",
+  "c": ".rl < .row-t < #dw-recite"
+ },
+ {
+  "h": "vbdg1j",
+  "k": "Gave sadaqah",
+  "c": ".rl < .row-t < #dw-sadaqah"
+ },
+ {
+  "h": "1jxl1ks",
+  "k": "Salawat on the Prophet ﷺ ×{1}",
+  "c": ".rl < .row-t < #dw-salawat"
+ },
+ {
+  "h": "1rmn2gq",
+  "k": "Reflected on the meaning (tadabbur)",
+  "c": ".rl < .row-t < #dw-tadabbur"
+ },
+ {
+  "h": "1pk65mo",
+  "k": "Guarded the tongue",
+  "c": ".rl < .row-t < #dw-tongue"
+ },
+ {
+  "h": "b5k9u3",
+  "k": "Drank Zamzam with dua",
+  "c": ".rl < .row-t < #dw-zamzam"
+ },
+ {
+  "h": "115eyyr",
+  "k": "Visited a ziyarah place",
+  "c": ".rl < .row-t < #dw-ziyarah"
+ },
+ {
+  "h": "2al7li",
+  "k": "Loose, modest clothing (women)",
+  "c": ".row-t < #pw-abaya"
+ }
+]

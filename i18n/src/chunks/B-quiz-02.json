@@ -1,0 +1,664 @@
+[
+ {
+  "h": "cl9clp",
+  "k": "Pass Level {1} · Virtues of Hajj & the Haram first — {2} of {3} correct ({4}%). Been before, or want the harder levels now? Open them all; the certificate still needs every level passed.",
+  "c": ".qz-lock < #qzArea"
+ },
+ {
+  "h": "m4a119",
+  "k": "Pass Level {1} · Virtues of Umrah & the Haram first — {2} of {3} correct ({4}%). Been before, or want the harder levels now? Open them all; the certificate still needs every level passed.",
+  "c": ".qz-lock < #qzArea"
+ },
+ {
+  "h": "lcftu7",
+  "k": "{1} more to pass",
+  "c": ".qz-need < .qz-needrow < #qzArea"
+ },
+ {
+  "h": "szyeo5",
+  "k": "\"Umrah to Umrah is an expiation for…\"",
+  "c": ".qz-q < #qzArea"
+ },
+ {
+  "h": "1tmc2v4",
+  "k": "Can you perform Umrah on behalf of a deceased parent?",
+  "c": ".qz-q < #qzArea"
+ },
+ {
+  "h": "1n8lrpe",
+  "k": "One prayer in Masjid an-Nabawi is better than…",
+  "c": ".qz-q < #qzArea"
+ },
+ {
+  "h": "1mmi6ny",
+  "k": "The miqat for those travelling to Makkah from Madinah is…",
+  "c": ".qz-q < #qzArea"
+ },
+ {
+  "h": "1a3b8ae",
+  "k": "Where does each round of tawaf begin?",
+  "c": ".qz-q < #qzArea"
+ },
+ {
+  "h": "1smmump",
+  "k": "Who raised the foundations of the Kaaba?",
+  "c": ".qz-q < #qzArea"
+ },
+ {
+  "h": "gxdv4k",
+  "k": "{1} of {2} questions correct in your best runs",
+  "c": ".qz-sub < #qzArea"
+ },
+ {
+  "h": "qu2loe",
+  "k": "Level {1} · Q{2}/{3} · {4}✓",
+  "c": ".qz-top < #qzArea"
+ },
+ {
+  "h": "zer0q3",
+  "k": "\"Hajj is ___,\" said the Prophet ﷺ.",
+  "c": ".t < .fc-face < .fc-in"
+ },
+ {
+  "h": "1fzc1h7",
+  "k": "A pilgrim leaves out a wajib of Hajj — say, the stoning — without an excuse. What follows?",
+  "c": ".t < .fc-face < .fc-in"
+ },
+ {
+  "h": "1l9d6tn",
+  "k": "At Arafah, the Prophet ﷺ prayed {P1} and {P2}…",
+  "c": ".t < .fc-face < .fc-in"
+ },
+ {
+  "h": "d5a3zo",
+  "k": "How many pebbles are thrown at each jamarah?",
+  "c": ".t < .fc-face < .fc-in"
+ },
+ {
+  "h": "1mw7j07",
+  "k": "How many rounds (circuits) make one complete tawaf?",
+  "c": ".t < .fc-face < .fc-in"
+ },
+ {
+  "h": "83jntx",
+  "k": "On the {1}th and {2}th, after which jamarat do you stop for a long dua?",
+  "c": ".t < .fc-face < .fc-in"
+ },
+ {
+  "h": "1tq50zu",
+  "k": "On the {1}th and {2}th, in which order did the Prophet ﷺ stone the three jamarat?",
+  "c": ".t < .fc-face < .fc-in"
+ },
+ {
+  "h": "u9s8b1",
+  "k": "On the {1}th in Mina, the Prophet ﷺ…",
+  "c": ".t < .fc-face < .fc-in"
+ },
+ {
+  "h": "161z878",
+  "k": "The correct order of the Umrah rites is…",
+  "c": ".t < .fc-face < .fc-in"
+ },
+ {
+  "h": "1397owl",
+  "k": "The days of tashreeq are…",
+  "c": ".t < .fc-face < .fc-in"
+ },
+ {
+  "h": "ozu58u",
+  "k": "The rites of Hajj fall on which days of Dhul Hijjah?",
+  "c": ".t < .fc-face < .fc-in"
+ },
+ {
+  "h": "14nd3r6",
+  "k": "The {1}th of Dhul Hijjah is called…",
+  "c": ".t < .fc-face < .fc-in"
+ },
+ {
+  "h": "c907bp",
+  "k": "True or false: Umrah and Hajj are identical acts of worship.",
+  "c": ".t < .fc-face < .fc-in"
+ },
+ {
+  "h": "813ra6",
+  "k": "True or false: Umrah can be performed at any time of the year.",
+  "c": ".t < .fc-face < .fc-in"
+ },
+ {
+  "h": "12rclln",
+  "k": "True or false: a child's Hajj counts as his obligatory Hajj of Islam.",
+  "c": ".t < .fc-face < .fc-in"
+ },
+ {
+  "h": "qff0uu",
+  "k": "True or false: the standing at Arafah is valid only on Jabal ar-Rahmah.",
+  "c": ".t < .fc-face < .fc-in"
+ },
+ {
+  "h": "8maiy4",
+  "k": "When did the Prophet ﷺ stone on the days of tashreeq?",
+  "c": ".t < .fc-face < .fc-in"
+ },
+ {
+  "h": "fvpwfa",
+  "k": "Which two rites are pillars of Hajj in all four schools?",
+  "c": ".t < .fc-face < .fc-in"
+ },
+ {
+  "h": "z76gnj",
+  "k": "\"Labbayk Allahumma labbayk\" — Here I am, O Allah, here I am!",
+  "c": "KIDSQ.e"
+ },
+ {
+  "h": "dizux8",
+  "k": "Arafah! On the {1}th day more than a million pilgrims stand together and ask Allah for everything. The Prophet ﷺ said: \"Hajj is Arafah.\"",
+  "c": "KIDSQ.e"
+ },
+ {
+  "h": "97ukar",
+  "k": "Boys shave or cut their hair, girls trim a tiny bit — and the Umrah is complete. Mabrook!",
+  "c": "KIDSQ.e"
+ },
+ {
+  "h": "os4uqq",
+  "k": "Eid al-Adha, on the {1}th day! On Eid we remember how Prophet Ibrahim was ready to obey Allah — and Allah ransomed his son with a great sacrifice.",
+  "c": "KIDSQ.e"
+ },
+ {
+  "h": "bqmiok",
+  "k": "Haircut time! Men and boys shave or cut their hair, girls and women trim a tiny bit — and the men can take off their white ihram cloths.",
+  "c": "KIDSQ.e"
+ },
+ {
+  "h": "1p9pz4a",
+  "k": "Madinah! Praying there once is better than a thousand prayers anywhere else — except the Haram in Makkah, which is even better!",
+  "c": "KIDSQ.e"
+ },
+ {
+  "h": "481kjw",
+  "k": "Mina — a whole valley of tents! Pilgrims stay there on the {1}th and again for the days after Eid.",
+  "c": "KIDSQ.e"
+ },
+ {
+  "h": "7ws2gq",
+  "k": "No! The Prophet ﷺ said all of Arafah is a place of standing — sitting in your tent and making dua counts.",
+  "c": "KIDSQ.e"
+ },
+ {
+  "h": "1da7o9o",
+  "k": "Prophet Ibrahim! Allah told him: \"Call the people to Hajj; they will come to you on foot and on every lean camel\" — and you are answering his call.",
+  "c": "KIDSQ.e"
+ },
+ {
+  "h": "1gibm6l",
+  "k": "Safa and Marwah — just like Isma'il's mother Hajar, who ran between them looking for water.",
+  "c": "KIDSQ.e"
+ },
+ {
+  "h": "15t2z9t",
+  "k": "Seven times — and it's called tawaf. Try counting to {1} on your fingers!",
+  "c": "KIDSQ.e"
+ },
+ {
+  "h": "13rb1za",
+  "k": "Seven tiny pebbles, each about as big as a chickpea — and you say \"Allahu Akbar\" with every throw.",
+  "c": "KIDSQ.e"
+ },
+ {
+  "h": "2ohria",
+  "k": "The Kaaba — the House of Allah that Prophet Ibrahim built with his son Isma'il!",
+  "c": "KIDSQ.e"
+ },
+ {
+  "h": "1js6hlb",
+  "k": "The farewell tawaf — seven last circles around the Kaaba to say goodbye to the House of Allah.",
+  "c": "KIDSQ.e"
+ },
+ {
+  "h": "1wwmovo",
+  "k": "The {1}th! And the very next day, the {2}th, is Eid al-Adha.",
+  "c": "KIDSQ.e"
+ },
+ {
+  "h": "wif3jf",
+  "k": "Two simple white cloths called ihram — rich or poor, everyone dresses the same, because we are all equal before Allah.",
+  "c": "KIDSQ.e"
+ },
+ {
+  "h": "1jy82i7",
+  "k": "Under the stars! The Prophet ﷺ lay down there until dawn, and most pilgrims sleep in the open on mats. Many pick up their pebbles there too.",
+  "c": "KIDSQ.e"
+ },
+ {
+  "h": "1vkf26u",
+  "k": "Zamzam! Allah made it spring up for baby Isma'il thousands of years ago — and it still flows today.",
+  "c": "KIDSQ.e"
+ },
+ {
+  "h": "10jfi4w",
+  "k": "A black suit",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "12ooei4",
+  "k": "A goodbye tawaf around the Kaaba",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "jwelmu",
+  "k": "A superhero cape",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "q16i5d",
+  "k": "Buying lots of sweets",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "lga2ba",
+  "k": "Climbing a big mountain",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "vpq94j",
+  "k": "Eid al-Adha",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "1hv4gy2",
+  "k": "Eid al-Fitr",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "1jk68pl",
+  "k": "Happy birthday!",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "fj492u",
+  "k": "In a hotel room",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "bb6cco",
+  "k": "Labbayk Allahumma labbayk!",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "hdjsw",
+  "k": "Lemonade",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "1cd8bkw",
+  "k": "Let's go, let's go!",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "gh942d",
+  "k": "Mina & Arafat",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "1elr0v5",
+  "k": "No — anywhere in Arafah counts",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "98irhh",
+  "k": "On a big boat",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "1p75f41",
+  "k": "Only the children must climb",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "11nl1yq",
+  "k": "Rainwater",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "p8b9im",
+  "k": "Safa & Marwah",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "gbksmc",
+  "k": "The {1}st",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "u1vqg0",
+  "k": "There is no Eid",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "tkvh5t",
+  "k": "Two white cloths",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "1xrzxn9",
+  "k": "Uhud & Thawr",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "10w9r1v",
+  "k": "Under the open sky",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "1knr5cn",
+  "k": "Yes, right to the top",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "1r8rk8q",
+  "k": "{1} times",
+  "c": "KIDSQ.o"
+ },
+ {
+  "h": "1ddt23i",
+  "k": "At Muzdalifah, where do pilgrims sleep?",
+  "c": "KIDSQ.q"
+ },
+ {
+  "h": "1srsltk",
+  "k": "Do pilgrims have to climb the mountain at Arafah for their Hajj to count?",
+  "c": "KIDSQ.q"
+ },
+ {
+  "h": "nfzatb",
+  "k": "How many little pebbles are thrown at each pillar (jamarah)?",
+  "c": "KIDSQ.q"
+ },
+ {
+  "h": "rymzlb",
+  "k": "How many times do we walk around the Kaaba?",
+  "c": "KIDSQ.q"
+ },
+ {
+  "h": "zsprb9",
+  "k": "On which day of Dhul Hijjah is the Day of Arafah?",
+  "c": "KIDSQ.q"
+ },
+ {
+  "h": "po4ex0",
+  "k": "We walk {1} times between two small hills. What are they called?",
+  "c": "KIDSQ.q"
+ },
+ {
+  "h": "1dwauvd",
+  "k": "What do pilgrims keep saying on the way to Makkah?",
+  "c": "KIDSQ.q"
+ },
+ {
+  "h": "v11y21",
+  "k": "What do the men wear for Umrah and Hajj?",
+  "c": "KIDSQ.q"
+ },
+ {
+  "h": "2s20xj",
+  "k": "What is the very last thing pilgrims do in Makkah before going home?",
+  "c": "KIDSQ.q"
+ },
+ {
+  "h": "743f13",
+  "k": "What special water do we drink in Makkah?",
+  "c": "KIDSQ.q"
+ },
+ {
+  "h": "yjpw7q",
+  "k": "Where do pilgrims stay in a giant city of white tents?",
+  "c": "KIDSQ.q"
+ },
+ {
+  "h": "1ijtwfd",
+  "k": "Which Eid comes in the middle of Hajj?",
+  "c": "KIDSQ.q"
+ },
+ {
+  "h": "1poae2a",
+  "k": "Quran {1}–{2} (addressed to Ibrahim, per most scholars of tafsir)",
+  "c": "KIDSQ.src",
+  "refs": [
+   "quran:22:26"
+  ]
+ },
+ {
+  "h": "aivtz0",
+  "k": "Arafah, Muzdalifah, Mina and the stoning",
+  "c": "QUIZ_LEVELS.desc"
+ },
+ {
+  "h": "a3g7se",
+  "k": "Every tawaf & sa'i of your Hajj",
+  "c": "QUIZ_LEVELS.desc"
+ },
+ {
+  "h": "rvpv1w",
+  "k": "Every tawaf & sa'i of your Hajj — and the Tamattu' Umrah",
+  "c": "QUIZ_LEVELS.desc"
+ },
+ {
+  "h": "1jquwpq",
+  "k": "Miqats, the {1}th, the talbiyah & the ihram rules",
+  "c": "QUIZ_LEVELS.desc"
+ },
+ {
+  "h": "hzm79k",
+  "k": "Pillars vs wajibs, dam, fidyah & the ease given to the weak",
+  "c": "QUIZ_LEVELS.desc"
+ },
+ {
+  "h": "1260u36",
+  "k": "Pillars, wajibs, sunnahs & the three types",
+  "c": "QUIZ_LEVELS.desc"
+ },
+ {
+  "h": "14jd0pu",
+  "k": "Rulings, nuances & common doubts",
+  "c": "QUIZ_LEVELS.desc"
+ },
+ {
+  "h": "cq7fb2",
+  "k": "Tarwiyah, the standing & the dua of Arafah",
+  "c": "QUIZ_LEVELS.desc"
+ },
+ {
+  "h": "3wdrlb",
+  "k": "The night, the pebbles, the order of the Day of Nahr & the first release",
+  "c": "QUIZ_LEVELS.desc"
+ },
+ {
+  "h": "rbouzg",
+  "k": "The rewards of an accepted Hajj",
+  "c": "QUIZ_LEVELS.desc"
+ },
+ {
+  "h": "1r5dy7s",
+  "k": "The rewards that await you",
+  "c": "QUIZ_LEVELS.desc"
+ },
+ {
+  "h": "13k6b5b",
+  "k": "The rites in fine detail",
+  "c": "QUIZ_LEVELS.desc"
+ },
+ {
+  "h": "bgh6e4",
+  "k": "The sacred state and its boundaries",
+  "c": "QUIZ_LEVELS.desc"
+ },
+ {
+  "h": "kldqf2",
+  "k": "The story behind every rite",
+  "c": "QUIZ_LEVELS.desc"
+ },
+ {
+  "h": "1d8hdvr",
+  "k": "The three jamarat, leaving Mina & tawaf al-wada",
+  "c": "QUIZ_LEVELS.desc"
+ },
+ {
+  "h": "1ikuano",
+  "k": "Virtues & etiquette of the visit",
+  "c": "QUIZ_LEVELS.desc"
+ },
+ {
+  "h": "129q0q7",
+  "k": "What Umrah is and how it flows",
+  "c": "QUIZ_LEVELS.desc"
+ },
+ {
+  "h": "1win7ya",
+  "k": "\"An Umrah in Ramadan is equal to a Hajj\" (Bukhari {1}) — and in one narration: \"a Hajj with me\" (Bukhari {2}, Muslim {3}).",
+  "c": "QUIZ_LEVELS.e",
+  "refs": [
+   "bukhari:1782",
+   "bukhari:1863",
+   "muslim:1256"
+  ]
+ },
+ {
+  "h": "eq95d0",
+  "k": "\"And when Ibrahim was raising the foundations of the House with Isma'il…\" (Quran {1}).",
+  "c": "QUIZ_LEVELS.e",
+  "refs": [
+   "quran:2:127"
+  ]
+ },
+ {
+  "h": "cac7sg",
+  "k": "\"Begin with what Allah began with\" — Quran {1} mentions Safa first; {2} laps ending at Marwah.",
+  "c": "QUIZ_LEVELS.e",
+  "refs": [
+   "quran:2:158"
+  ]
+ },
+ {
+  "h": "1278bl6",
+  "k": "\"Between my house and my minbar is a garden from the gardens of Paradise.\" (Bukhari {1})",
+  "c": "QUIZ_LEVELS.e",
+  "refs": [
+   "bukhari:1195"
+  ]
+ },
+ {
+  "h": "1it8qrr",
+  "k": "\"Do not kill game while you are in ihram\" — while \"game of the sea\" stays lawful. The Prophet ﷺ himself had a tent pitched for him at Namirah on the day of Arafah.",
+  "c": "QUIZ_LEVELS.e"
+ },
+ {
+  "h": "m8qp8l",
+  "k": "\"Hajj is Arafah\" (Tirmidhi {1}) — standing there on the {2}th is the pillar without which there is no Hajj.",
+  "c": "QUIZ_LEVELS.e",
+  "refs": [
+   "tirmidhi:889"
+  ]
+ },
+ {
+  "h": "ae67b9",
+  "k": "\"Hajj is Arafah\" — no dam replaces it. He leaves ihram by doing the acts of an Umrah (tawaf, sa'i and the cut) and performs the Hajj in another year; this is reported as Umar's (RA) ruling for Companions who arrived on the Day of Sacrifice. The majority add a sacrifice; Hanafis owe none.",
+  "c": "QUIZ_LEVELS.e"
+ },
+ {
+  "h": "q86rug",
+  "k": "\"Hajj is Arafah. Whoever comes on the night of Jam', before Fajr, has caught the Hajj.\" He stands for a moment, then goes on to Muzdalifah.",
+  "c": "QUIZ_LEVELS.e"
+ },
+ {
+  "h": "1556ial",
+  "k": "\"He kept standing there till the sun set… and the disc of the sun had disappeared,\" then moved calmly to Muzdalifah. Stay inside Arafah until sunset; the schools differ on what is owed by one who leaves early.",
+  "c": "QUIZ_LEVELS.e"
+ },
+ {
+  "h": "fhptm6",
+  "k": "\"I sacrificed here, and the whole of Mina is a place of sacrifice\" — and \"all the passes of Makkah are a place of sacrifice.\" It must be within the Haram.",
+  "c": "QUIZ_LEVELS.e"
+ },
+ {
+  "h": "wfme6c",
+  "k": "\"If you are prevented, then [offer] what can be obtained with ease of sacrificial animals.\" At Hudaybiyyah the Prophet ﷺ slaughtered his hady and shaved. The schools differ on the details — whether illness counts as being prevented, and what must be made up afterwards — so ask a scholar.",
+  "c": "QUIZ_LEVELS.e"
+ },
+ {
+  "h": "1xte8db",
+  "k": "\"Iqra — Read!\" (Quran {1}) descended in Hira, the cave above Makkah (Bukhari {2}).",
+  "c": "QUIZ_LEVELS.e",
+  "refs": [
+   "quran:96:1",
+   "bukhari:3"
+  ]
+ },
+ {
+  "h": "ug1phs",
+  "k": "\"Jibril came to me and commanded me to order my companions to raise their voices with the talbiyah.\" Sisters recite it in a low voice.",
+  "c": "QUIZ_LEVELS.e"
+ },
+ {
+  "h": "1y291gc",
+  "k": "\"Labbayk Allahumma labbayk, labbayk la sharika laka labbayk, inna al-hamda wan-ni'mata laka wal-mulk, la sharika lak\" — \"Here I am, O Allah, here I am…\" — the Prophet's ﷺ own wording.",
+  "c": "QUIZ_LEVELS.e"
+ },
+ {
+  "h": "1sxhhu",
+  "k": "\"Like these. And beware of going to extremes in religion, for those before you were destroyed by going to extremes.\"",
+  "c": "QUIZ_LEVELS.e"
+ },
+ {
+  "h": "1vdjgfc",
+  "k": "\"Our Lord, give us good in this world and good in the Hereafter, and protect us from the punishment of the Fire.\" (Quran {1})",
+  "c": "QUIZ_LEVELS.e",
+  "refs": [
+   "quran:2:201"
+  ]
+ },
+ {
+  "h": "1o1u578",
+  "k": "\"The delegation of Allah are three: the one who fights in His cause, the one performing Hajj and the one performing Umrah.\" (Nasai {1})",
+  "c": "QUIZ_LEVELS.e",
+  "refs": [
+   "nasai:2625"
+  ]
+ },
+ {
+  "h": "1qow4ao",
+  "k": "\"The first House established for mankind was that at Bakkah — blessed and a guidance for the worlds.\" (Quran {1})",
+  "c": "QUIZ_LEVELS.e",
+  "refs": [
+   "quran:3:96"
+  ]
+ },
+ {
+  "h": "15vhin5",
+  "k": "\"The woman in ihram should not wear a niqab or gloves.\" The niqab is agreed on; most scholars also forbid gloves, while Hanafis permit them. Her ordinary modest clothing in any colour is her ihram.",
+  "c": "QUIZ_LEVELS.e"
+ },
+ {
+  "h": "plwy02",
+  "k": "\"We used to wait till the sun declined, then do the rami\" (Bukhari {1}; Tirmidhi {2}). Those who cannot may stone at night.",
+  "c": "QUIZ_LEVELS.e",
+  "refs": [
+   "bukhari:1746",
+   "tirmidhi:894"
+  ]
+ },
+ {
+  "h": "1afth82",
+  "k": "\"When you depart from Arafat, remember Allah at al-Mash'ar al-Haram\" — at Muzdalifah (also called Jam'), where the Prophet ﷺ stood in dua after Fajr until it was very bright.",
+  "c": "QUIZ_LEVELS.e"
+ },
+ {
+  "h": "durgo0",
+  "k": "\"Whenever he was asked about anything done before or after, he said: Do it, and there is no harm.\" Shafi'is and Hanbalis say nothing is owed; Hanafis require a dam for some changes of order, and Malikis a fidyah for shaving before the stoning and a dam for a tawaf al-ifadah done before it.",
+  "c": "QUIZ_LEVELS.e"
+ },
+ {
+  "h": "1y5jw0w",
+  "k": "\"Whoever cannot find one — a fast of three days during Hajj and of seven when you have returned. Those are ten complete.\" Which days count differs a little by school — ask before the {1}th.",
+  "c": "QUIZ_LEVELS.e"
+ }
+]
